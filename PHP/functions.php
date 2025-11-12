@@ -565,6 +565,7 @@ function renderizar_hoja_personaje($post_id) {
             'clase',
             'subclase',
 			'raza',
+            'background',
 		
 		'cs_iniciativa',
     	'cs_ac',
