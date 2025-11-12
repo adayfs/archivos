@@ -42,8 +42,6 @@ function enqueue_custom_scripts() {
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
-add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
 // Mover extracto dentro de entry-content
 add_action('wp_footer', function(){
   if (is_category()) : ?>
@@ -235,6 +233,24 @@ add_action('wp_head', function () {
     </style>
     <?php
 });
+
+/**
+ * Sanitiza valores provenientes de $_POST (strings o arrays) con soporte para defaults.
+ */
+function drak_get_post_value( $key, $default = '' ) {
+    if ( ! isset( $_POST[ $key ] ) ) {
+        return $default;
+    }
+
+    $value = wp_unslash( $_POST[ $key ] );
+
+    if ( is_array( $value ) ) {
+        return array_map( 'sanitize_text_field', $value );
+    }
+
+    return sanitize_text_field( $value );
+}
+
 // RENDERIZAR INVENTARIO DE PERSONAJE____________________________________________________________________
 
 function renderizar_inventario_personaje($post_id) {
@@ -244,21 +260,19 @@ function renderizar_inventario_personaje($post_id) {
 
     // Guardado del formulario
     if (isset($_POST['mainpack_guardar']) && isset($_POST['post_id']) && intval($_POST['post_id']) === $post_id) {
-// Guardar oro (campo golden_coins)
-if (isset($_POST['golden_coins'])) {
-    $oro = intval($_POST['golden_coins']);
-    update_field('golden_coins', $oro, $post_id);
-}
+        if (isset($_POST['golden_coins'])) {
+            $oro = max(0, intval(drak_get_post_value('golden_coins', 0)));
+            update_field('golden_coins', $oro, $post_id);
+        }
 
+        if (isset($_POST['arma_principal']) && is_array($_POST['arma_principal'])) {
+            $arma_data = drak_get_post_value('arma_principal', []);
+            update_field('arma_principal', $arma_data, $post_id);
+        }
 
         for ($i = 1; $i <= 8; $i++) {
-    // Guardar arma principal (subcampos de grupo ACF)
-    	if (isset($_POST['arma_principal']) && is_array($_POST['arma_principal'])) {
-        	$arma_data = array_map('sanitize_text_field', $_POST['arma_principal']);
-    	    update_field('arma_principal', $arma_data, $post_id);
-	    }
             $campo = 'mainpack_slot_' . $i;
-            $valor = sanitize_text_field($_POST[$campo]);
+            $valor = drak_get_post_value($campo, '');
             update_field($campo, $valor, $post_id);
         }
         echo '<div class="mensaje-confirmacion">✅ Inventario actualizado correctamente.</div>';
@@ -518,8 +532,7 @@ function renderizar_hoja_personaje($post_id) {
 
         foreach ($campos as $campo) {
             if (isset($_POST[$campo])) {
-                $valor = sanitize_text_field($_POST[$campo]);
-                update_field($campo, $valor, $post_id);
+                update_field($campo, drak_get_post_value($campo, ''), $post_id);
             } else {
                 // Para las competencias (checkbox tipo circulito) que no envían valor si se desmarcan
                 if (strpos($campo, 'cs_prof_') === 0) {
@@ -1535,56 +1548,36 @@ updateGoldDisplay();
 <?php
 });
 
-function registrar_cpt_personaje() {
-    $labels = array(
-        'name' => 'Personajes',
-        'singular_name' => 'Personaje',
-        'add_new' => 'Añadir nuevo',
-        'add_new_item' => 'Añadir nuevo personaje',
-        'edit_item' => 'Editar personaje',
-        'new_item' => 'Nuevo personaje',
-        'view_item' => 'Ver personaje',
-        'search_items' => 'Buscar personajes',
-        'not_found' => 'No se encontraron personajes',
+function drak_register_personaje_cpt() {
+    $labels = [
+        'name'               => 'Personajes',
+        'singular_name'      => 'Personaje',
+        'add_new'            => 'Añadir nuevo',
+        'add_new_item'       => 'Añadir nuevo personaje',
+        'edit_item'          => 'Editar personaje',
+        'new_item'           => 'Nuevo personaje',
+        'view_item'          => 'Ver personaje',
+        'search_items'       => 'Buscar personajes',
+        'not_found'          => 'No se encontraron personajes',
         'not_found_in_trash' => 'No hay personajes en la papelera',
-        'menu_name' => 'Personajes'
-    );
+        'menu_name'          => 'Personajes',
+    ];
 
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => false,
-        'rewrite' => array('slug' => 'personaje'),
-        'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'thumbnail'),
-        'menu_icon' => 'dashicons-groups',
-        'capability_type' => 'post',
-    );
-
-    register_post_type('personaje', $args);
-}
-add_action('init', 'registrar_cpt_personaje');
-
-
-
-// Registrar tipo de contenido personalizado 'personaje'
-function registrar_tipo_contenido_personaje() {
-    $args = array(
-        'labels' => array(
-            'name' => 'Personajes',
-            'singular_name' => 'Personaje'
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'personaje'),
-        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields', 'excerpt'),
-        'show_in_rest' => true,
+    $args = [
+        'labels'        => $labels,
+        'public'        => true,
+        'has_archive'   => true,
+        'rewrite'       => ['slug' => 'personaje'],
+        'show_in_rest'  => true,
+        'supports'      => ['title', 'editor', 'thumbnail', 'custom-fields', 'excerpt'],
+        'menu_icon'     => 'dashicons-groups',
         'menu_position' => 5,
-        'menu_icon' => 'dashicons-groups'
-    );
+        'capability_type' => 'post',
+    ];
+
     register_post_type('personaje', $args);
 }
-add_action('init', 'registrar_tipo_contenido_personaje');
+add_action('init', 'drak_register_personaje_cpt');
 
 // Ocultar barra de administración para usuarios no administradores
 add_action('after_setup_theme', function () {
@@ -1601,6 +1594,30 @@ function redirigir_pj_si_no_logueado() {
 }
 add_action('template_redirect', 'redirigir_pj_si_no_logueado');
 
+/**
+ * Obtiene la consulta de personajes asociados a un usuario.
+ */
+function drak_get_user_personajes_query( $user_id ) {
+    $args = [
+        'post_type'      => 'personaje',
+        'posts_per_page' => -1,
+        'meta_query'     => [[
+            'key'     => 'jugador_asociado',
+            'value'   => $user_id,
+            'compare' => '=',
+        ]],
+    ];
+
+    return new WP_Query( $args );
+}
+
+/**
+ * HTML reutilizable de bienvenida para las vistas de personajes del usuario.
+ */
+function drak_render_personajes_welcome( WP_User $user ) {
+    return '<div class="bienvenida-usuario">Bienvenido, <strong>' . esc_html( $user->display_name ) . '</strong></div>';
+}
+
 // Shortcode para mostrar personajes asociados a un usuario
 function mostrar_personajes_del_usuario() {
     if (!is_user_logged_in()) {
@@ -1609,23 +1626,11 @@ function mostrar_personajes_del_usuario() {
     }
 
     $usuario = wp_get_current_user();
-    $usuario_id = $usuario->ID;
-
-    // Consulta correcta sobre CPT personaje y campo ACF usuario
-    $args = [
-        'post_type' => 'personaje',
-        'posts_per_page' => -1,
-        'meta_query' => [[
-            'key' => 'jugador_asociado',
-            'value' => $usuario_id,
-            'compare' => '='
-        ]]
-    ];
-    $query = new WP_Query($args);
+    $query   = drak_get_user_personajes_query( $usuario->ID );
 
     ob_start();
 
-    echo '<div class="bienvenida-usuario">Bienvenido, <strong>' . esc_html($usuario->display_name) . '</strong></div>';
+    echo drak_render_personajes_welcome( $usuario );
 
     if ($query->have_posts()) {
         echo '<div class="lista-personajes">';
@@ -1651,32 +1656,19 @@ function mostrar_personajes_del_usuario() {
 add_shortcode('personajes_usuario', 'mostrar_personajes_del_usuario');
 
 
-add_shortcode('galeria_personajes_usuario', function () {
+function drak_render_galeria_personajes_usuario() {
     if (!is_user_logged_in()) {
         wp_redirect(wp_login_url(home_url('/pj')));
         exit;
     }
 
-    $user_id = get_current_user_id();
     $usuario = wp_get_current_user();
 
-    $args = array(
-        'post_type' => 'personaje',
-        'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key' => 'jugador_asociado',
-                'value' => $user_id,
-                'compare' => '='
-            )
-        )
-    );
-
-    $query = new WP_Query($args);
+    $query = drak_get_user_personajes_query( $usuario->ID );
 
     ob_start();
 
-    echo '<div class="bienvenida-usuario">Bienvenido, <strong>' . esc_html($usuario->display_name) . '</strong></div>';
+    echo drak_render_personajes_welcome( $usuario );
 
     if ($query->have_posts()) {
       echo '<div class="galeria-personajes">';
@@ -1698,7 +1690,8 @@ echo '</div>';
 
     wp_reset_postdata();
     return ob_get_clean();
-});
+}
+add_shortcode('galeria_personajes_usuario', 'drak_render_galeria_personajes_usuario');
 
 
 
@@ -1706,74 +1699,53 @@ add_action('add_meta_boxes', function() {
     add_meta_box('postimagediv', __('Imagen destacada'), 'post_thumbnail_meta_box', 'personaje', 'side', 'low');
 });
 
-function custom_personaje_inventory_rewrite() {
-    add_rewrite_rule(
-        '^personaje/([^/]+)/inventario/?',
-        'index.php?personaje=$matches[1]&inventario_personaje=1',
-        'top'
-    );
-}
-add_action('init', 'custom_personaje_inventory_rewrite');
+/**
+ * Busca el primer slug de página existente para mantener reglas de reescritura flexibles.
+ */
+function drak_locate_existing_page_slug( array $candidates, $fallback = '' ) {
+    foreach ( $candidates as $slug ) {
+        if ( get_page_by_path( $slug ) ) {
+            return $slug;
+        }
+    }
 
-function add_inventory_query_var($vars) {
+    if ( $fallback ) {
+        return $fallback;
+    }
+
+    return $candidates[0] ?? '';
+}
+
+/**
+ * Registra todas las reglas de URLs amigables relacionadas con personajes.
+ */
+function drak_register_personaje_rewrites() {
+    $inventory_page = drak_locate_existing_page_slug( ['inventario-personaje', 'inventario'], 'inventario-personaje' );
+    $sheet_page     = drak_locate_existing_page_slug( ['hoja-personaje'], 'hoja-personaje' );
+
+    $rules = [
+        '^personaje/([^/]+)/inventario/?' => 'index.php?personaje=$matches[1]&inventario_personaje=1',
+        '^inventario/([^/]+)/?$'          => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $inventory_page ),
+        '^hoja-personaje/([^/]+)/?$'      => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $sheet_page ),
+    ];
+
+    foreach ( $rules as $regex => $query ) {
+        add_rewrite_rule( $regex, $query, 'top' );
+    }
+}
+add_action( 'init', 'drak_register_personaje_rewrites' );
+
+/**
+ * Registra las query vars personalizadas usadas por las reglas anteriores.
+ */
+function drak_register_personaje_query_vars( $vars ) {
     $vars[] = 'inventario_personaje';
-    return $vars;
-}
-add_filter('query_vars', 'add_inventory_query_var');
-
-function inventario_personaje_rewrite() {
-    add_rewrite_rule(
-        '^inventario/([^/]+)/?$',
-        'index.php?pagename=inventario-personaje&personaje_slug=$matches[1]',
-        'top'
-    );
-}
-add_action('init', 'inventario_personaje_rewrite');
-
-function inventario_personaje_query_vars($vars) {
     $vars[] = 'personaje_slug';
-    return $vars;
+
+    return array_values( array_unique( $vars ) );
 }
-add_filter('query_vars', 'inventario_personaje_query_vars');
+add_filter( 'query_vars', 'drak_register_personaje_query_vars' );
 
-// Redirección para URLs como /inventario/slug-personaje/
-function ruta_inventario_personaje() {
-    add_rewrite_rule(
-        '^inventario/([^/]+)/?$',
-        'index.php?pagename=inventario&personaje_slug=$matches[1]',
-        'top'
-    );
-}
-add_action('init', 'ruta_inventario_personaje');
-
-// Ruta para URLs como /hoja-personaje/slug-personaje/
-function hoja_personaje_rewrite() {
-    add_rewrite_rule(
-        '^hoja-personaje/([^/]+)/?$',                       // URL amigable
-        'index.php?pagename=hoja-personaje&personaje_slug=$matches[1]', // Página + query var
-        'top'
-    );
-}
-add_action('init', 'hoja_personaje_rewrite');
-
-
-// Permitir variable personalizada en query
-function registrar_query_var_personaje_slug($vars) {
-    $vars[] = 'personaje_slug';
-    return $vars;
-}
-add_filter('query_vars', 'registrar_query_var_personaje_slug');
-add_action('wp_footer', function () {
-    if (!is_page_template('page-hoja-personaje.php')) return;
-    ?>
-
-
-	  
-	  
-
-    <?php
-});
-add_action('wp_ajax_guardar_hp_temporal', 'guardar_hp_temporal');
 function guardar_hp_temporal() {
 	
 	    if (!isset($_POST['post_id']) || !isset($_POST['valor'])) {
@@ -1787,6 +1759,9 @@ function guardar_hp_temporal() {
 
     wp_send_json_success(['message' => 'HP temporal guardado con éxito']);
 }
+
+add_action('wp_ajax_guardar_hp_temporal', 'guardar_hp_temporal');
+add_action('wp_ajax_nopriv_guardar_hp_temporal', 'guardar_hp_temporal');
 
 
 add_action('wp_enqueue_scripts', function () {
@@ -1806,9 +1781,6 @@ add_action('wp_enqueue_scripts', function () {
 
     }
 });
-
-add_action('wp_ajax_guardar_hp_temporal', 'guardar_hp_temporal');
-add_action('wp_ajax_nopriv_guardar_hp_temporal', 'guardar_hp_temporal');
 
 
 /**
@@ -1889,9 +1861,6 @@ function drak_dnd5_get_classes() {
 add_action('wp_ajax_drak_dnd5_get_classes', 'drak_dnd5_get_classes');
 add_action('wp_ajax_nopriv_drak_dnd5_get_classes', 'drak_dnd5_get_classes');
 
-add_action('wp_ajax_drak_dnd5_get_classes', 'drak_dnd5_get_classes');
-add_action('wp_ajax_nopriv_drak_dnd5_get_classes', 'drak_dnd5_get_classes');
-
 /**
  * AJAX: subclases disponibles para una clase
  */
@@ -1902,7 +1871,7 @@ add_action('wp_ajax_nopriv_drak_dnd5_get_classes', 'drak_dnd5_get_classes');
 function drak_dnd5_get_subclasses() {
     // Usamos el mismo nombre de parámetro ('class_index'),
     // pero contiene el ID de nuestra clase local.
-    $class_id = isset($_POST['class_index']) ? sanitize_text_field($_POST['class_index']) : '';
+    $class_id = drak_get_post_value('class_index', '');
 
     if (!$class_id) {
         wp_send_json_error(['message' => 'Falta el parámetro class_index']);
@@ -1971,9 +1940,6 @@ function drak_dnd5_get_subclasses() {
 add_action('wp_ajax_drak_dnd5_get_subclasses', 'drak_dnd5_get_subclasses');
 add_action('wp_ajax_nopriv_drak_dnd5_get_subclasses', 'drak_dnd5_get_subclasses');
 
-add_action('wp_ajax_drak_dnd5_get_subclasses', 'drak_dnd5_get_subclasses');
-add_action('wp_ajax_nopriv_drak_dnd5_get_subclasses', 'drak_dnd5_get_subclasses');
-
 /**
  * (Opcional) AJAX: lista de armas
  * Usa una categoría de equipo de la API: /api/equipment-categories/{index}
@@ -1981,7 +1947,7 @@ add_action('wp_ajax_nopriv_drak_dnd5_get_subclasses', 'drak_dnd5_get_subclasses'
  * "simple-weapons", "martial-weapons", etc.).
  */
 function drak_dnd5_get_weapons() {
-    $category_index = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'weapon';
+    $category_index = drak_get_post_value('category', 'weapon');
 
     $url      = 'https://www.dnd5eapi.co/api/equipment-categories/' . rawurlencode($category_index);
     $response = wp_remote_get($url);
