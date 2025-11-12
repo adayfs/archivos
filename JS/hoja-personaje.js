@@ -6,6 +6,7 @@
     initStatsOverlay();
     refreshAbilityDisplays();
     initSkillSaveSystem();
+    initExtendedModule();
     initStandaloneClassSelects();
   });
 
@@ -62,6 +63,10 @@
     'cs_carisma',
     'cs_proeficiencia',
   ];
+
+  const featureModuleApi = {
+    invalidate: () => {},
+  };
 
   let recomputeSkillsAndSaves = () => {};
 
@@ -351,6 +356,11 @@
       const option = select.options[select.selectedIndex];
       hiddenField.value = select.value || '';
       displayField.textContent = option ? option.textContent : '';
+
+      const watchIds = ['clase', 'subclase', 'raza'];
+      if (watchIds.includes(hiddenField.id)) {
+        featureModuleApi.invalidate();
+      }
     }
 
     if (classSelect) {
@@ -804,6 +814,219 @@
     recomputeSkillsAndSaves();
   }
 
+  function initExtendedModule() {
+    const moduleEl = document.getElementById('character-extended-module');
+    const panelEl = document.getElementById('character-extended-panel');
+    if (!moduleEl || !panelEl) {
+      featureModuleApi.invalidate = () => {};
+      return;
+    }
+
+    const tabs = moduleEl.querySelectorAll('.character-extended__tab[data-ext-tab]');
+    const defaultTab = moduleEl.querySelector('.character-extended__tab.is-active');
+    let activeTab = defaultTab ? defaultTab.dataset.extTab : (tabs[0]?.dataset.extTab || 'features');
+    let featureCache = null;
+    let featureCacheKey = '';
+    let isLoading = false;
+
+    const tabLabels = {
+      features: 'Features & Traits',
+      spells: 'Spells',
+      actions: 'Actions',
+      background: 'Background',
+    };
+
+    function setActiveTab(tabName) {
+      tabs.forEach((btn) => {
+        btn.classList.toggle('is-active', btn.dataset.extTab === tabName);
+      });
+    }
+
+    function readValue(id) {
+      const input = document.getElementById(id);
+      return input ? (input.value || '').trim() : '';
+    }
+
+    function currentKey() {
+      return [readValue('clase'), readValue('subclase'), readValue('raza')].join('|');
+    }
+
+    function showLoading() {
+      panelEl.innerHTML = '<p class="character-extended__loading">Cargando rasgos...</p>';
+    }
+
+    function showEmpty(message) {
+      panelEl.innerHTML = `<p class="character-extended__empty">${message}</p>`;
+    }
+
+    function showError(message) {
+      panelEl.innerHTML = `<p class="character-extended__error">${message}</p>`;
+    }
+
+    function renderFeatures(data) {
+      if (!data) {
+        showEmpty('Sin datos disponibles.');
+        return;
+      }
+
+      const blocks = [];
+
+      if (data.race && Array.isArray(data.race.entries) && data.race.entries.length) {
+        const content = renderEntries(data.race.entries);
+        if (content) {
+          blocks.push(`
+            <section class="character-extended__section">
+              <h4 class="character-extended__section-title">Rasgos raciales · ${escapeHtml(data.race.name || '')}</h4>
+              ${content}
+            </section>
+          `);
+        }
+      }
+
+      if (data.class && Array.isArray(data.class.features) && data.class.features.length) {
+        const entries = data.class.features.map((feature) => {
+          const bodyEntries = Array.isArray(feature.entries) && feature.entries.length
+            ? feature.entries
+            : (feature.shortEntries || []);
+          const body = renderEntries(bodyEntries);
+          const level = feature.level ? `Nivel ${feature.level}` : '';
+          const metaParts = [];
+          if (level) metaParts.push(level);
+          if (feature.source) metaParts.push(escapeHtml(feature.source));
+          const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
+          return `
+            <article class="feature-card">
+              <h5 class="feature-card__title">${escapeHtml(feature.name || 'Rasgo')}</h5>
+              ${meta}
+              <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+            </article>
+          `;
+        }).join('');
+
+        blocks.push(`
+          <section class="character-extended__section">
+            <h4 class="character-extended__section-title">Rasgos de clase · ${escapeHtml(data.class.name || '')}</h4>
+            ${entries}
+          </section>
+        `);
+      }
+
+      if (data.subclass && data.subclass.features && data.subclass.features.length) {
+        const entries = data.subclass.features.map((feature) => {
+          const bodyEntries = Array.isArray(feature.entries) && feature.entries.length
+            ? feature.entries
+            : (feature.shortEntries || []);
+          const body = renderEntries(bodyEntries);
+          const level = feature.level ? `Nivel ${feature.level}` : '';
+          const metaParts = [];
+          if (level) metaParts.push(level);
+          if (feature.source) metaParts.push(escapeHtml(feature.source));
+          const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
+          return `
+            <article class="feature-card">
+              <h5 class="feature-card__title">${escapeHtml(feature.name || 'Rasgo')}</h5>
+              ${meta}
+              <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+            </article>
+          `;
+        }).join('');
+
+        blocks.push(`
+          <section class="character-extended__section">
+            <h4 class="character-extended__section-title">Rasgos de subclase · ${escapeHtml(data.subclass.name || '')}</h4>
+            ${entries}
+          </section>
+        `);
+      }
+
+      if (!blocks.length) {
+        showEmpty('No hay rasgos disponibles para esta combinación.');
+        return;
+      }
+
+      panelEl.innerHTML = blocks.join('');
+    }
+
+    function fetchFeatures(force = false) {
+      const key = currentKey();
+      if (!force && featureCache && featureCacheKey === key) {
+        renderFeatures(featureCache);
+        return;
+      }
+
+      if (isLoading) {
+        return;
+      }
+
+      if (typeof window.DND5_API === 'undefined') {
+        showError('No se pudo localizar el endpoint de datos.');
+        return;
+      }
+
+      isLoading = true;
+      showLoading();
+
+      const payload = new URLSearchParams({
+        action: 'drak_dnd5_get_feature_traits',
+        class_id: readValue('clase'),
+        subclass_id: readValue('subclase'),
+        race_id: readValue('raza'),
+      });
+
+      fetch(window.DND5_API.ajax_url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: payload,
+      })
+        .then((resp) => resp.json())
+        .then((json) => {
+          isLoading = false;
+          if (!json || !json.success) {
+            showError('No se pudieron cargar los rasgos.');
+            return;
+          }
+          featureCache = json.data;
+          featureCacheKey = key;
+          renderFeatures(featureCache);
+        })
+        .catch(() => {
+          isLoading = false;
+          showError('Error de conexión al cargar los rasgos.');
+        });
+    }
+
+    function handleTabChange(tabName) {
+      activeTab = tabName;
+      setActiveTab(tabName);
+
+      if (tabName === 'features') {
+        fetchFeatures();
+        return;
+      }
+
+      const label = tabLabels[tabName] || tabName;
+      showEmpty(`La sección “${label}” estará disponible próximamente.`);
+    }
+
+    tabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.extTab;
+        if (!target || target === activeTab) return;
+        handleTabChange(target);
+      });
+    });
+
+    handleTabChange(activeTab);
+
+    featureModuleApi.invalidate = () => {
+      featureCache = null;
+      featureCacheKey = '';
+      if (activeTab === 'features') {
+        fetchFeatures(true);
+      }
+    };
+  }
+
   function initStandaloneClassSelects() {
     if (typeof window.DND5_API === 'undefined') return;
     const classSelect = document.getElementById('clase');
@@ -868,6 +1091,155 @@
       const selected = this.value || '';
       this.dataset.current = selected;
       loadSubclasses(selected, '');
+      featureModuleApi.invalidate();
     });
+
+    subclassSelect.addEventListener('change', () => {
+      featureModuleApi.invalidate();
+    });
+  }
+
+  function renderEntries(entries) {
+    if (!entries || !entries.length) {
+      return '';
+    }
+    return entries.map((entry) => renderEntryNode(entry)).join('');
+  }
+
+  function renderEntryNode(entry) {
+    if (entry == null) {
+      return '';
+    }
+    if (typeof entry === 'string') {
+      return `<p>${format5eText(entry)}</p>`;
+    }
+    if (typeof entry !== 'object') {
+      return '';
+    }
+
+    const type = entry.type || 'entries';
+
+    if (type === 'entries') {
+      const title = entry.name ? `<h4>${escapeHtml(entry.name)}</h4>` : '';
+      const body = renderEntries(entry.entries || []);
+      return `<div class="dnd5-entry-block">${title}${body}</div>`;
+    }
+
+    if (type === 'list') {
+      const items = entry.items || entry.entries || [];
+      const html = items
+        .map((item) => {
+          if (typeof item === 'string') {
+            return `<li>${format5eText(item)}</li>`;
+          }
+          if (item.entry) {
+            const extra = item.entries ? renderEntries(item.entries) : '';
+            return `<li>${format5eText(item.entry)}${extra}</li>`;
+          }
+          if (item.name) {
+            const nested = item.entries ? renderEntries(item.entries) : '';
+            return `<li><strong>${escapeHtml(item.name)}:</strong> ${nested || ''}</li>`;
+          }
+          return `<li>${renderEntryNode(item)}</li>`;
+        })
+        .join('');
+      return `<ul>${html}</ul>`;
+    }
+
+    if (type === 'options') {
+      const options = entry.entries || entry.options || [];
+      return options.map((opt) => renderEntryNode(opt)).join('');
+    }
+
+    if (type === 'table') {
+      const caption = entry.caption || entry.name || '';
+      const colLabels = entry.colLabels || entry.colLabel || [];
+      const rows = entry.rows || [];
+      const header = colLabels.length
+        ? `<thead><tr>${colLabels.map((label) => `<th>${format5eText(label)}</th>`).join('')}</tr></thead>`
+        : '';
+      const body = rows
+        .map((row) => `<tr>${row.map((cell) => `<td>${format5eText(cell)}</td>`).join('')}</tr>`)
+        .join('');
+      return `
+        <div class="dnd5-entry-block">
+          ${caption ? `<h4>${format5eText(caption)}</h4>` : ''}
+          <table>
+            ${header}
+            <tbody>${body}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    if (type === 'refOptionalfeature') {
+      return `<p>${format5eText(entry.optionalfeature || entry.name || '')}</p>`;
+    }
+
+    if (entry.entry) {
+      return `<p>${format5eText(entry.entry)}</p>`;
+    }
+
+    if (entry.entries) {
+      return renderEntries(entry.entries);
+    }
+
+    return '';
+  }
+
+  function format5eText(text) {
+    if (!text) return '';
+    let safe = escapeHtml(String(text));
+    safe = safe.replace(/\{@([^}]+)\}/g, (_, inner) => render5eTag(inner));
+    return safe.replace(/\n+/g, '<br>');
+  }
+
+  function render5eTag(innerRaw) {
+    if (!innerRaw) return '';
+    const spaceIndex = innerRaw.indexOf(' ');
+    if (spaceIndex === -1) return innerRaw;
+
+    const tag = innerRaw.slice(0, spaceIndex).toLowerCase();
+    const body = innerRaw.slice(spaceIndex + 1);
+    const label = body.split('|')[0] || body;
+
+    const textualTags = new Set(['italic', 'i', 'bold', 'b']);
+    const strongTags = new Set(['dc', 'dice', 'damage', 'hit', 'skillcheck']);
+    const chipTags = new Set([
+      'spell',
+      'action',
+      'skill',
+      'condition',
+      'item',
+      'creature',
+      'classfeature',
+      'subclassfeature',
+      'feat',
+    ]);
+
+    if (textualTags.has(tag)) {
+      return tag === 'bold' || tag === 'b'
+        ? `<strong>${label}</strong>`
+        : `<em>${label}</em>`;
+    }
+
+    if (strongTags.has(tag)) {
+      return `<strong>${label}</strong>`;
+    }
+
+    if (chipTags.has(tag)) {
+      const modifier = ['spell', 'action', 'skill'].includes(tag) ? ` dnd5-tag-${tag}` : '';
+      return `<span class="dnd5-tag${modifier}">${label}</span>`;
+    }
+
+    return label;
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;');
   }
 })();

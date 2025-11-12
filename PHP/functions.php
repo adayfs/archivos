@@ -1129,6 +1129,34 @@ foreach ($filas as $label => $keys_row) :
       </form>
     </div>
 
+    <section class="character-extended" id="character-extended-module">
+      <div class="character-extended__tabs" role="tablist">
+        <button
+          type="button"
+          class="character-extended__tab is-active"
+          data-ext-tab="features"
+          aria-selected="true"
+        >
+          Features &amp; Traits
+        </button>
+        <button type="button" class="character-extended__tab" data-ext-tab="spells">
+          Spells
+        </button>
+        <button type="button" class="character-extended__tab" data-ext-tab="actions">
+          Actions
+        </button>
+        <button type="button" class="character-extended__tab" data-ext-tab="background">
+          Background
+        </button>
+      </div>
+
+      <div class="character-extended__panel" id="character-extended-panel">
+        <p class="character-extended__empty">
+          Selecciona una pestaña para ver la información asociada.
+        </p>
+      </div>
+    </section>
+
 
 <!-- MODAL: Competencias (armas, armaduras, herramientas, idiomas) -->
 <div id="profs-overlay" class="modal-overlay" style="display:none;">
@@ -2081,6 +2109,93 @@ function drak_get_local_dnd_list( $filename, $root_key ) {
 }
 
 /**
+ * Lee el JSON con los rasgos de clase/subclase.
+ */
+function drak_get_local_dnd_class_features_data() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $path = get_stylesheet_directory() . '/data/dnd-class-features.json';
+    if ( ! file_exists( $path ) ) {
+        $cache = [
+            'classFeatures'    => [],
+            'subclassFeatures' => [],
+        ];
+        return $cache;
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+    if ( ! is_array( $data ) ) {
+        $cache = [
+            'classFeatures'    => [],
+            'subclassFeatures' => [],
+        ];
+        return $cache;
+    }
+
+    $defaults = [
+        'classFeatures'    => [],
+        'subclassFeatures' => [],
+    ];
+
+    $cache = array_merge( $defaults, $data );
+    return $cache;
+}
+
+/**
+ * Índices rápidos para clases y subclases.
+ */
+function drak_get_local_dnd_class_lookup() {
+    static $lookup = null;
+    if ( $lookup !== null ) {
+        return $lookup;
+    }
+
+    $data = drak_get_local_dnd_classes_data();
+    $result = [
+        'classes'    => [],
+        'subclasses' => [],
+    ];
+
+    if ( ! $data || empty( $data['classes'] ) ) {
+        $lookup = $result;
+        return $lookup;
+    }
+
+    foreach ( $data['classes'] as $class ) {
+        $class_id = $class['id'] ?? '';
+        if ( ! $class_id ) {
+            continue;
+        }
+
+        $result['classes'][ $class_id ] = $class;
+
+        if ( empty( $class['subclasses'] ) || ! is_array( $class['subclasses'] ) ) {
+            continue;
+        }
+
+        foreach ( $class['subclasses'] as $sub ) {
+            $sub_id = $sub['id'] ?? '';
+            if ( ! $sub_id ) {
+                continue;
+            }
+
+            $result['subclasses'][ $sub_id ] = [
+                'class_id' => $class_id,
+                'data'     => $sub,
+            ];
+        }
+    }
+
+    $lookup = $result;
+    return $lookup;
+}
+
+/**
  * Devuelve listas de armas, armaduras, herramientas e idiomas para el modal.
  */
 function drak_dnd5_get_proficiencies() {
@@ -2119,3 +2234,68 @@ function drak_dnd5_get_proficiencies() {
 
 add_action( 'wp_ajax_drak_dnd5_get_proficiencies',        'drak_dnd5_get_proficiencies' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_proficiencies', 'drak_dnd5_get_proficiencies' );
+
+/**
+ * AJAX: rasgos combinados (raza + clase + subclase).
+ */
+function drak_dnd5_get_feature_traits() {
+    $class_id    = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
+    $subclass_id = isset( $_POST['subclass_id'] ) ? sanitize_text_field( wp_unslash( $_POST['subclass_id'] ) ) : '';
+    $race_id     = isset( $_POST['race_id'] ) ? sanitize_text_field( wp_unslash( $_POST['race_id'] ) ) : '';
+
+    $class_lookup     = drak_get_local_dnd_class_lookup();
+    $features_data    = drak_get_local_dnd_class_features_data();
+    $race_data        = drak_get_local_dnd_races_data();
+
+    $class_entry   = $class_lookup['classes'][ $class_id ] ?? null;
+    $subclass_meta = $class_lookup['subclasses'][ $subclass_id ] ?? null;
+    if ( $subclass_meta && $class_id && $subclass_meta['class_id'] !== $class_id ) {
+        $subclass_meta = null; // No pertenece a la clase seleccionada.
+    }
+
+    $race_entry = null;
+    if ( $race_id && $race_data && ! empty( $race_data['races'] ) ) {
+        foreach ( $race_data['races'] as $race ) {
+            if ( isset( $race['id'] ) && $race['id'] === $race_id ) {
+                $race_entry = $race;
+                break;
+            }
+        }
+    }
+
+    $race_payload = null;
+    if ( $race_entry ) {
+        $race_payload = [
+            'id'      => $race_entry['id'],
+            'name'    => $race_entry['name']['es'] ?? $race_entry['name']['en'] ?? $race_entry['id'],
+            'source'  => $race_entry['source'] ?? '',
+            'entries' => $race_entry['entries'] ?? ( $race_entry['entries_en'] ?? [] ),
+        ];
+    }
+
+    $class_payload = [
+        'id'       => $class_id,
+        'name'     => $class_entry['name'] ?? '',
+        'source'   => $class_entry['source'] ?? '',
+        'features' => $features_data['classFeatures'][ $class_id ] ?? [],
+    ];
+
+    $subclass_payload = null;
+    if ( $subclass_meta ) {
+        $sub_data = $subclass_meta['data'];
+        $subclass_payload = [
+            'id'       => $subclass_id,
+            'name'     => $sub_data['name'] ?? '',
+            'source'   => $sub_data['source'] ?? '',
+            'features' => $features_data['subclassFeatures'][ $subclass_id ] ?? [],
+        ];
+    }
+
+    wp_send_json_success([
+        'race'     => $race_payload,
+        'class'    => $class_payload,
+        'subclass' => $subclass_payload,
+    ]);
+}
+add_action( 'wp_ajax_drak_dnd5_get_feature_traits', 'drak_dnd5_get_feature_traits' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_feature_traits', 'drak_dnd5_get_feature_traits' );
