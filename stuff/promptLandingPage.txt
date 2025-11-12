@@ -1,0 +1,104 @@
+Design a dark fantasy landing page layout inspired by Dungeons of Drakkenheim, intended for a WordPress theme.
+The page must blend gothic atmosphere with modular web structure: a cinematic header with fog and logo, followed by three feature blocks (character sheet, campaign journal, wiki), and finally a feed section showing the latest campaign journal entries.
+No body text — use layout placeholders and UI composition only.
+
+🔮 Header
+
+Full-width top section styled like a cinematic banner.
+
+Centered title text placeholder: “DUNGEONS OF DRAKKENHEIM”, embossed metallic lettering.
+
+Above or beside it: circular logo placeholder — a brass emblem enclosing a glowing violet delirium crystal or stylized tower silhouette.
+
+Behind: animated fog or static mist texture drifting across a ruined city skyline, lit by faint violet and green light.
+
+Palette: blackened steel, muted purples, faint emerald highlights.
+
+Mood: mysterious, solemn, and epic — like the opening of a dark fantasy chronicle.
+
+🧭 Navigation Bar
+
+Positioned directly beneath the header.
+
+Long brass horizontal band, engraved with faint runes and edge filigree.
+
+No text or buttons — only visual placeholders for future WordPress nav items.
+
+Subtle inner glow on hover zones.
+
+⚙️ Three Feature Blocks
+
+Immediately below the navigation bar, display three large framed panels arranged horizontally (responsive grid that stacks on mobile).
+
+Each panel follows the Drakkenheim manual style — painterly, textured, with ornate copper borders and dark parchment backgrounds.
+Inside each, a centered icon placeholder and space for future title/text content.
+
+Character Sheets Block
+
+Icon: brass grimorio or mask motif.
+
+Background hint: aged parchment with faint stat-grid overlay.
+
+Accent glow: soft violet.
+
+Campaign Journal Block
+
+Icon: quill crossed with a delirium shard.
+
+Background hint: parchment with faint map outlines or ink blotches.
+
+Accent glow: copper-amber.
+
+Lore Wiki Block
+
+Icon: compass rose encircling a crystal.
+
+Background hint: faded runes and geometric diagrams.
+
+Accent glow: pale green.
+
+Add soft vignette shadows beneath each card. On hover, edges brighten in brass tones and icon halos glow faintly.
+
+📜 Latest Journal Entries Feed
+
+Full-width section below the three blocks, styled as a continuous parchment strip.
+
+Each entry placeholder appears as a framed card within the strip — parchment panels with torn or burned edges, faint violet stains, and copper corners.
+
+Arrange 3–4 entries visible side-by-side (scrollable horizontally or fade carousel).
+
+Each entry card has space for a thumbnail, date label, and excerpt placeholder (no text content).
+
+Background: darker parchment fading to black toward edges; faint drifting fog overlay.
+
+Mood: feels like flipping through the physical pages of an adventurer’s chronicle.
+
+🎨 Visual Style & Palette
+
+Art style: Drakkenheim campaign manual — painterly fantasy UI with visible brushwork and high-contrast chiaroscuro.
+
+Palette: blackened parchment, dark umber, aged copper, muted violet and green luminescence (delirium glow).
+
+Materials: brass, leather, ink, smoke, and crystal light textures.
+
+Lighting: moody but readable, warm copper highlights balanced by cool mystical tones.
+
+Typography placeholders: serif ornamental (e.g., Cinzel / Cormorant), embossed metallic texture (no actual text).
+
+🧩 Structure for WordPress Adaptation
+
+Header area: hero banner (Site Title + Logo).
+
+Navigation bar: standard WordPress menu region (no buttons shown).
+
+Feature section: three linked cards (can map to custom post types).
+
+Journal feed: dynamic block pulling from latest posts.
+
+Layout spacing generous; backgrounds and blocks clearly separated by tone, not borders.
+
+⚗️ Mood Summary
+
+The overall feel should evoke entering a living codex — atmospheric, elegant, modular.
+A world between knowledge and decay, science and magic.
+The fog, copper frames, and delirium light unify every element into one cohesive Drakkenheim-style experience.

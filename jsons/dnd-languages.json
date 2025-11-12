@@ -1,0 +1,1486 @@
+{
+  "languages": [
+    {
+      "id": "aarakocra-mm",
+      "name": {
+        "en": "Aarakocra",
+        "es": "Aarakocra"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature aarakocra}"
+      ]
+    },
+    {
+      "id": "abanasinian-dsotdq",
+      "name": {
+        "en": "Abanasinian",
+        "es": "Abanasinian"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "Abanasinia"
+      ]
+    },
+    {
+      "id": "abyssal-phb",
+      "name": {
+        "en": "Abyssal",
+        "es": "Abisal"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Infernal",
+      "typicalSpeakers": [
+        "{@filter demons|bestiary|tag=demon}"
+      ]
+    },
+    {
+      "id": "aglarondan-frhof",
+      "name": {
+        "en": "Aglarondan",
+        "es": "Aglarondan"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Aglarond"
+    },
+    {
+      "id": "alzhedo-frhof",
+      "name": {
+        "en": "Alzhedo",
+        "es": "Alzhedo"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Calimshan"
+    },
+    {
+      "id": "aven-psd",
+      "name": {
+        "en": "Aven",
+        "es": "Aven"
+      },
+      "source": "PSD",
+      "typicalSpeakers": [
+        "{@race Aven|PSD}"
+      ]
+    },
+    {
+      "id": "blink-dog-mm",
+      "name": {
+        "en": "Blink Dog",
+        "es": "Blink Dog"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Blink Dog||blink dogs}"
+      ]
+    },
+    {
+      "id": "bothii-frhof",
+      "name": {
+        "en": "Bothii",
+        "es": "Bothii"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Uthgardt nomads"
+    },
+    {
+      "id": "bullywug-mm",
+      "name": {
+        "en": "Bullywug",
+        "es": "Bullywug"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Bullywug||bullywugs}"
+      ]
+    },
+    {
+      "id": "celestial-phb",
+      "name": {
+        "en": "Celestial",
+        "es": "Celestial"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Celestial",
+      "typicalSpeakers": [
+        "{@filter celestials|bestiary|type=celestial}"
+      ]
+    },
+    {
+      "id": "chessentan-frhof",
+      "name": {
+        "en": "Chessentan",
+        "es": "Chessentan"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Chessenta"
+    },
+    {
+      "id": "chondathan-frhof",
+      "name": {
+        "en": "Chondathan",
+        "es": "Chondathan"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Chondath"
+    },
+    {
+      "id": "coalition-pidgin-psx",
+      "name": {
+        "en": "Coalition Pidgin",
+        "es": "Coalition Pidgin"
+      },
+      "source": "PSX",
+      "typicalSpeakers": [
+        "Brazen Coalition",
+        "{@race Human (Ixalan)|PSX|Humans}",
+        "{@race Orc (Ixalan)|PSX|Orcs}",
+        "{@race Siren|PSX|Sirens}",
+        "{@race Goblin (Ixalan)|PSX|Goblins}"
+      ],
+      "entries_en": [
+        "The humans of the Brazen Coalition speak a different language—a pidgin of Orc, Siren, and a native human language that is similar to {@language Vampire|PSX} (about as closely related as Italian is to Spanish). Orcs, sirens, and goblins also speak this Brazen Coalition pidgin."
+      ]
+    },
+    {
+      "id": "common-phb",
+      "name": {
+        "en": "Common",
+        "es": "Común"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "{@filter humans|bestiary|type=humanoid|tag=any race;human}"
+      ]
+    },
+    {
+      "id": "daelkyr-erlw",
+      "name": {
+        "en": "Daelkyr",
+        "es": "Daelkyr"
+      },
+      "source": "ERLW",
+      "type": "exotic",
+      "script": "Daelkyr",
+      "typicalSpeakers": [
+        "{@filter aberrations|bestiary|type=aberration|source=ERLW}",
+        "denizens of Khyber"
+      ]
+    },
+    {
+      "id": "damaran-frhof",
+      "name": {
+        "en": "Damaran",
+        "es": "Damaran"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Damara"
+    },
+    {
+      "id": "dambrathan-scag",
+      "name": {
+        "en": "Dambrathan",
+        "es": "Dambrathan"
+      },
+      "source": "SCAG",
+      "script": "Espruar",
+      "typicalSpeakers": [
+        "Arkaiun ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deep-crow-ai",
+      "name": {
+        "en": "Deep Crow",
+        "es": "Deep Crow"
+      },
+      "source": "AI",
+      "typicalSpeakers": [
+        "{@creature Deep Crow|AI|deep crows}"
+      ]
+    },
+    {
+      "id": "demonic-psi",
+      "name": {
+        "en": "Demonic",
+        "es": "Demonic"
+      },
+      "source": "PSI",
+      "typicalSpeakers": [
+        "{@filter Demons|bestiary|source=|tag=demon}",
+        "{@filter Devils|bestiary|source=|tag=devil}"
+      ]
+    },
+    {
+      "id": "draconic-phb",
+      "name": {
+        "en": "Draconic",
+        "es": "Dragónico"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Draconic",
+      "typicalSpeakers": [
+        "{@filter dragons|bestiary|type=dragon}",
+        "{@race dragonborn}"
+      ],
+      "entries_en": [
+        "Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants."
+      ]
+    },
+    {
+      "id": "druidic-phb",
+      "name": {
+        "en": "Druidic",
+        "es": "Druídico"
+      },
+      "source": "PHB",
+      "type": "secret",
+      "typicalSpeakers": [
+        "{@class druid||druids}/{@creature druid||druids}",
+        "{@creature treant||treants}"
+      ],
+      "entries_en": [
+        "Druidic is the secret language of druids. It can be spoken or used to leave hidden messages. Creatures who know this language automatically spot such a message. Others spot the message's presence with a successful {@dc 15} Wisdom ({@skill Perception}) check but can't decipher it without magic."
+      ]
+    },
+    {
+      "id": "dwarvish-phb",
+      "name": {
+        "en": "Dwarvish",
+        "es": "Enano"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Dwarvish",
+      "typicalSpeakers": [
+        "{@filter dwarves|bestiary|type=humanoid|tag=any race;dwarf}"
+      ],
+      "entries_en": [
+        "Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak."
+      ]
+    },
+    {
+      "id": "ergot-dsotdq",
+      "name": {
+        "en": "Ergot",
+        "es": "Ergot"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "Northern Ergoth"
+      ]
+    },
+    {
+      "id": "giant-eagle-mm",
+      "name": {
+        "en": "Giant Eagle",
+        "es": "Giant Eagle"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Giant Eagle||giant eagles}"
+      ]
+    },
+    {
+      "id": "giant-elk-mm",
+      "name": {
+        "en": "Giant Elk",
+        "es": "Giant Elk"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Giant Elk||giant elks}"
+      ]
+    },
+    {
+      "id": "giant-owl-mm",
+      "name": {
+        "en": "Giant Owl",
+        "es": "Giant Owl"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Giant Owl||giant owls}"
+      ]
+    },
+    {
+      "id": "giant-phb",
+      "name": {
+        "en": "Giant",
+        "es": "Gigante"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Dwarvish",
+      "typicalSpeakers": [
+        "{@creature ogre||ogres}",
+        "{@filter giants|bestiary|type=giant}"
+      ]
+    },
+    {
+      "id": "gith-mm",
+      "name": {
+        "en": "Gith",
+        "es": "Gith"
+      },
+      "source": "MM",
+      "script": "Tir'su",
+      "typicalSpeakers": [
+        "{@creature Githzerai Monk||githzerai monks}",
+        "{@creature Githyanki Warrior||githyanki warriors}",
+        "{@creature Githzerai Zerth||githzerai zerths}",
+        "{@creature Githyanki Knight||githyanki knights}"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "The Gith Alphabet",
+          "entries": [
+            "The gith use a written language composed of alphabetic symbols arranged in circular clusters called tir'su. Each \"spoke\" on the wheel corresponds to a letter of the alphabet. Each cluster of characters represents a single word, and multiple tir'su connect to form phrases and sentences.",
+            "Githyanki and githzerai both speak Gith, but each race has a distinct dialect and accent. Similarly, the two races of gith differentiate their language by how they write it. Githyanki write a tir'su clockwise, starting at the top. Githzerai use the same letter symbols but write their tir'su counterclockwise, starting from the bottom."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gnoll-mm",
+      "name": {
+        "en": "Gnoll",
+        "es": "Gnoll"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Gnoll||gnolls}",
+        "{@creature Gnoll Pack Lord||gnoll pack lords}",
+        "{@creature Gnoll Fang of Yeenoghu||gnoll fangs of Yeenoghu}"
+      ]
+    },
+    {
+      "id": "gnomish-phb",
+      "name": {
+        "en": "Gnomish",
+        "es": "Gnómico"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Dwarvish",
+      "typicalSpeakers": [
+        "{@filter gnomes|bestiary|type=humanoid|tag=any race;gnome}"
+      ],
+      "entries_en": [
+        "The Gnomish language, which uses the Dwarvish script, is renowned for its technical treatises and its catalogs of knowledge about the natural world."
+      ]
+    },
+    {
+      "id": "goblin-phb",
+      "name": {
+        "en": "Goblin",
+        "es": "Goblin"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Dwarvish",
+      "typicalSpeakers": [
+        "{@filter goblinoids|bestiary|tag=goblinoid}"
+      ]
+    },
+    {
+      "id": "grell-mm",
+      "name": {
+        "en": "Grell",
+        "es": "Grell"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Grell||grells}"
+      ]
+    },
+    {
+      "id": "grung-vgm",
+      "name": {
+        "en": "Grung",
+        "es": "Grung"
+      },
+      "source": "VGM",
+      "typicalSpeakers": [
+        "{@creature Grung|VGM|grungs}",
+        "{@creature Grung Wildling|VGM|grung wildlings}",
+        "{@creature Grung Elite Warrior|VGM|grung elite warriors}"
+      ]
+    },
+    {
+      "id": "guran-scag",
+      "name": {
+        "en": "Guran",
+        "es": "Guran"
+      },
+      "source": "SCAG",
+      "script": "Thorass",
+      "typicalSpeakers": [
+        "Gur ethnic group"
+      ],
+      "entries_en": [
+        "A patois of {@language Roushoum|SCAG} and {@language Rashemi|SCAG}.",
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deep-speech-phb",
+      "name": {
+        "en": "Deep Speech",
+        "es": "Habla profunda"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "none",
+      "typicalSpeakers": [
+        "{@creature mind flayer||mind flayers}",
+        "{@creature beholder||beholders}"
+      ]
+    },
+    {
+      "id": "halruaan-scag",
+      "name": {
+        "en": "Halruaan",
+        "es": "Halruaan"
+      },
+      "source": "SCAG",
+      "script": "Draconic",
+      "typicalSpeakers": [
+        "Halruaan ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "homarid-psd",
+      "name": {
+        "en": "Homarid",
+        "es": "Homarid"
+      },
+      "source": "PSD",
+      "typicalSpeakers": [
+        "{@creature Homarid|PSD|homarids}"
+      ]
+    },
+    {
+      "id": "hook-horror-mm",
+      "name": {
+        "en": "Hook Horror",
+        "es": "Hook Horror"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Hook Horror||hook horrors}"
+      ]
+    },
+    {
+      "id": "ice-toad-rot",
+      "name": {
+        "en": "Ice Toad",
+        "es": "Ice Toad"
+      },
+      "source": "RoT",
+      "typicalSpeakers": [
+        "{@creature Ice Toad|RoT|ice toads}"
+      ]
+    },
+    {
+      "id": "illuskan-frhof",
+      "name": {
+        "en": "Illuskan",
+        "es": "Illuskan"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "The North"
+    },
+    {
+      "id": "infernal-phb",
+      "name": {
+        "en": "Infernal",
+        "es": "Infernal"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Infernal",
+      "typicalSpeakers": [
+        "{@filter devils|bestiary|tag=devil}"
+      ]
+    },
+    {
+      "id": "istarian-dsotdq",
+      "name": {
+        "en": "Istarian",
+        "es": "Istarian"
+      },
+      "source": "DSotDQ",
+      "type": "rare",
+      "script": "Istarian",
+      "typicalSpeakers": [
+        "Ancient Istarians"
+      ]
+    },
+    {
+      "id": "itzocan-psx",
+      "name": {
+        "en": "Itzocan",
+        "es": "Itzocan"
+      },
+      "source": "PSX",
+      "typicalSpeakers": [
+        "Sun Empire",
+        "{@race Human (Ixalan)|PSX|Humans}"
+      ]
+    },
+    {
+      "id": "ixitxachitl-oota",
+      "name": {
+        "en": "Ixitxachitl",
+        "es": "Ixitxachitl"
+      },
+      "source": "OotA",
+      "typicalSpeakers": [
+        "{@creature ixitxachitl|OotA}",
+        "{@creature Ixitxachitl Cleric|OotA|ixitxachitl clerics}",
+        "{@creature vampiric ixitxachitl|OotA}",
+        "{@creature Vampiric Ixitxachitl Cleric|OotA|vampiric ixitxachitl clerics}"
+      ]
+    },
+    {
+      "id": "thieves-cant-phb",
+      "name": {
+        "en": "Thieves' Cant",
+        "es": "Jerga de ladrones"
+      },
+      "source": "PHB",
+      "type": "secret",
+      "typicalSpeakers": [
+        "{@creature assassin||assassins}",
+        "{@class rogue||rogues}"
+      ],
+      "entries_en": [
+        "Thieves' cant is a secret mix of dialect, jargon, and code that allows messages to be hidden in seemingly normal conversation. Only a creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly."
+      ]
+    },
+    {
+      "id": "keldon-psd",
+      "name": {
+        "en": "Keldon",
+        "es": "Keldon"
+      },
+      "source": "PSD",
+      "typicalSpeakers": [
+        "{@race Human (Keldon)|PSD|Keldons}"
+      ]
+    },
+    {
+      "id": "kenderspeak-dsotdq",
+      "name": {
+        "en": "Kenderspeak",
+        "es": "Kenderspeak"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "Goodlund",
+        "Hylo"
+      ]
+    },
+    {
+      "id": "kharolian-dsotdq",
+      "name": {
+        "en": "Kharolian",
+        "es": "Kharolian"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "Plains of Dust",
+        "Tarsis"
+      ]
+    },
+    {
+      "id": "khenra-psa",
+      "name": {
+        "en": "Khenra",
+        "es": "Khenra"
+      },
+      "source": "PSA",
+      "typicalSpeakers": [
+        "{@race Khenra|PSA}"
+      ]
+    },
+    {
+      "id": "khur-dsotdq",
+      "name": {
+        "en": "Khur",
+        "es": "Khur"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Istarian",
+      "typicalSpeakers": [
+        "Khur"
+      ]
+    },
+    {
+      "id": "kothian-dsotdq",
+      "name": {
+        "en": "Kothian",
+        "es": "Kothian"
+      },
+      "source": "DSotDQ",
+      "type": "rare",
+      "script": "Kothian",
+      "typicalSpeakers": [
+        "Minotaurs"
+      ]
+    },
+    {
+      "id": "kraul-ggr",
+      "name": {
+        "en": "Kraul",
+        "es": "Kraul"
+      },
+      "source": "GGR",
+      "type": "standard",
+      "script": "Kraul",
+      "typicalSpeakers": [
+        "kraul",
+        "{@creature Kraul Warrior|GGR|kraul warriors}",
+        "{@creature Kraul Death Priest|GGR|kraul death priests}",
+        "{@creature Devkarin Lich|GGR|devkarin liches}"
+      ]
+    },
+    {
+      "id": "kruthik-mtf",
+      "name": {
+        "en": "Kruthik",
+        "es": "Kruthik"
+      },
+      "source": "MTF",
+      "typicalSpeakers": [
+        "{@creature Young Kruthik|MTF|young kruthiks}",
+        "{@creature Adult Kruthik|MTF|adult kruthiks}",
+        "{@creature Kruthik Hive Lord|MTF|kruthik hive lords}"
+      ]
+    },
+    {
+      "id": "lantanese-frhof",
+      "name": {
+        "en": "Lantanese",
+        "es": "Lantanese"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Lantan"
+    },
+    {
+      "id": "common-sign-language-xphb",
+      "name": {
+        "en": "Common Sign Language",
+        "es": "Lengua de signos común"
+      },
+      "source": "XPHB",
+      "type": "standard",
+      "origin": "Sigil"
+    },
+    {
+      "id": "leonin-mot",
+      "name": {
+        "en": "Leonin",
+        "es": "Leonin"
+      },
+      "source": "MOT",
+      "script": "Common",
+      "typicalSpeakers": [
+        "Leonin"
+      ]
+    },
+    {
+      "id": "loross-idrotf",
+      "name": {
+        "en": "Loross",
+        "es": "Loross"
+      },
+      "source": "IDRotF",
+      "script": "Draconic",
+      "entries_en": [
+        "Loross, a language spoken by the Netherese, is a dead tongue. Very few creatures in the world today would recognize it, much less speak it. Loross used the Draconic alphabet in its written form, while the spoken language had many similarities with Elvish, due to the cultural influence the elves had on Netherese civilization. A character who speaks Elvish can understand what a creature speaking Loross is saying, and vice versa. A character who has the Cloistered Scholar or Sage background, or a warlock who knows the Eyes of the Rune Keeper invocation, can translate written Loross without an ability check."
+      ]
+    },
+    {
+      "id": "loxodon-ggr",
+      "name": {
+        "en": "Loxodon",
+        "es": "Loxodon"
+      },
+      "source": "GGR",
+      "type": "standard",
+      "script": "Elvish",
+      "typicalSpeakers": [
+        "{@filter loxodons|bestiary|tag=any race|source=GGR}"
+      ]
+    },
+    {
+      "id": "marquesian-egw",
+      "name": {
+        "en": "Marquesian",
+        "es": "Marquesian"
+      },
+      "source": "EGW",
+      "entries_en": [
+        "The Menagerie Coast was settled by colonists from the arid land of Marquet, and their language now holds an unusual position in the Clovis Concord. It is the language of high society, as many Clovis elite are descended from Marquesians, but it is also the language of piracy, since countless lower-class Marquesians defected from the Concord and formed the Revelry pirates."
+      ]
+    },
+    {
+      "id": "halfling-phb",
+      "name": {
+        "en": "Halfling",
+        "es": "Mediano"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "{@filter halflings|bestiary|type=humanoid|tag=any race;halfling}"
+      ],
+      "entries_en": [
+        "The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling."
+      ]
+    },
+    {
+      "id": "merfolk-ggr",
+      "name": {
+        "en": "Merfolk",
+        "es": "Merfolk"
+      },
+      "source": "GGR",
+      "type": "standard",
+      "script": "Merfolk",
+      "typicalSpeakers": [
+        "{@filter merfolk|bestiary|source=GGR|tag=any race;merfolk}"
+      ]
+    },
+    {
+      "id": "midani-frhof",
+      "name": {
+        "en": "Midani",
+        "es": "Midani"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Bedine nomads"
+    },
+    {
+      "id": "minotaur-ggr",
+      "name": {
+        "en": "Minotaur",
+        "es": "Minotaur"
+      },
+      "source": "GGR",
+      "type": "standard",
+      "script": "Minotaur",
+      "typicalSpeakers": [
+        "{@race minotaur|ggr|minotaurs}"
+      ]
+    },
+    {
+      "id": "modron-mm",
+      "name": {
+        "en": "Modron",
+        "es": "Modron"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Monodrone||monodrones}",
+        "{@creature Duodrone||duodrones}",
+        "{@creature Tridrone||tridrones}",
+        "{@creature Quadrone||quadrones}",
+        "{@creature Pentadrone||pentadrones}"
+      ]
+    },
+    {
+      "id": "mulhorandi-frhof",
+      "name": {
+        "en": "Mulhorandi",
+        "es": "Mulhorandi"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Mulhorand"
+    },
+    {
+      "id": "naga-psa",
+      "name": {
+        "en": "Naga",
+        "es": "Naga"
+      },
+      "source": "PSA",
+      "typicalSpeakers": [
+        "{@race Naga|PSA|}"
+      ]
+    },
+    {
+      "id": "naush-egw",
+      "name": {
+        "en": "Naush",
+        "es": "Naush"
+      },
+      "source": "EGW",
+      "entries_en": [
+        "Originally spoken by the Ki'Nau islanders native to the Menagerie Coast, Naush is a thriving language within the multicultural cities of the Clovis Concord. Even sailors who only speak Common incorporate dozens of Naush words into their nautical jargon."
+      ]
+    },
+    {
+      "id": "nerakese-dsotdq",
+      "name": {
+        "en": "Nerakese",
+        "es": "Nerakese"
+      },
+      "source": "DSotDQ",
+      "type": "rare",
+      "script": "Istarian",
+      "typicalSpeakers": [
+        "Neraka"
+      ]
+    },
+    {
+      "id": "netherese-frhof",
+      "name": {
+        "en": "Netherese",
+        "es": "Netherese"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Netheril"
+    },
+    {
+      "id": "nordmaarian-dsotdq",
+      "name": {
+        "en": "Nordmaarian",
+        "es": "Nordmaarian"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Istarian",
+      "typicalSpeakers": [
+        "Nordmaar"
+      ]
+    },
+    {
+      "id": "ogre-dsotdq",
+      "name": {
+        "en": "Ogre",
+        "es": "Ogre"
+      },
+      "source": "DSotDQ",
+      "type": "rare",
+      "script": "Ogre",
+      "typicalSpeakers": [
+        "Blode",
+        "Kern"
+      ]
+    },
+    {
+      "id": "olman-tftyp",
+      "name": {
+        "en": "Olman",
+        "es": "Olman"
+      },
+      "source": "TftYP"
+    },
+    {
+      "id": "orc-phb",
+      "name": {
+        "en": "Orc",
+        "es": "Orco"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Dwarvish",
+      "typicalSpeakers": [
+        "{@filter orcs|bestiary|tag=orc}"
+      ],
+      "entries_en": [
+        "Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script."
+      ]
+    },
+    {
+      "id": "otyugh-mm",
+      "name": {
+        "en": "Otyugh",
+        "es": "Otyugh"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Otyugh||otyughs}"
+      ]
+    },
+    {
+      "id": "common-trade-pidgin-psx",
+      "name": {
+        "en": "Common Trade Pidgin",
+        "es": "Pidgin de comercio común"
+      },
+      "source": "PSX",
+      "typicalSpeakers": [
+        "Sun Empire",
+        "River Heralds",
+        "Legion of Dusk",
+        "Brazen Coalition",
+        "{@race Human (Ixalan)|PSX|Humans}",
+        "{@race Orc (Ixalan)|PSX|Orcs}",
+        "{@race Siren|PSX|Sirens}",
+        "{@race Goblin (Ixalan)|PSX|Goblins}"
+      ],
+      "entries_en": [
+        "A trade pidgin used in circumstances where members of different peoples do interact with each other. But this language is almost impossible to use for discussions of matters of any depth."
+      ]
+    },
+    {
+      "id": "primordial-phb",
+      "name": {
+        "en": "Primordial",
+        "es": "Primordial"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Dwarvish",
+      "typicalSpeakers": [
+        "{@filter elementals|bestiary|type=elemental}"
+      ],
+      "entries_en": [
+        "Primordial is a guttural language, filled with harsh syllables and hard consonants."
+      ]
+    },
+    {
+      "id": "qualith-vgm",
+      "name": {
+        "en": "Qualith",
+        "es": "Qualith"
+      },
+      "source": "VGM",
+      "script": "Qualith",
+      "typicalSpeakers": [
+        "{@creature Mind Flayer||Mind Flayers}"
+      ],
+      "entries_en": [
+        "The \"writing\" of mind flayers, known as Qualith, isn't as simple as a set of symbols representing sounds or ideas. An inscription in Qualith captures the thoughts of its creator and psionically transmits the thoughts to a mind flayer who later reads the inscription by touching it with its tentacles. Mind flayers write in Qualith by psionically imprinting their messages on nonmagical, nonliving material they grasp or caress with their tentacles. The imprinting causes imperceptible surface changes to the object, and abrasion or degradation of the material can cause the inscription to fade and fail.",
+        "An expression in Qualith is made up of four-line stanzas packed into interlocking blocks, creating complex patterns that are indecipherable by other creatures. Someone that touches a Qualith inscription, however, can receive fragmentary insight into the multilayered thoughts contained within it. A non-illithid that wants to understand a Qualith inscription can make an Intelligence check (DC based on the complexity of the contained thoughts) to try to derive some of the inscription's meaning. Multiple successful attempts might uncover different aspects about the illithid author, its intended meaning, and its intended audience. A failed attempt results in a crushing headache and, in extreme cases, madness. A {@spell comprehend languages} spell provides understanding of the inscription roughly equivalent to what a mind flayer would get from it."
+      ]
+    },
+    {
+      "id": "quori-erlw",
+      "name": {
+        "en": "Quori",
+        "es": "Quori"
+      },
+      "source": "ERLW",
+      "type": "exotic",
+      "script": "Quori",
+      "typicalSpeakers": [
+        "{@creature inspired|ERLW}",
+        "kalashtar",
+        "{@filter quori|bestiary|source=ERLW|search=quori}"
+      ]
+    },
+    {
+      "id": "rashemi-frhof",
+      "name": {
+        "en": "Rashemi",
+        "es": "Rashemi"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Rashemen"
+    },
+    {
+      "id": "reghedjic-frhof",
+      "name": {
+        "en": "Reghedjic",
+        "es": "Reghedjic"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Reghed nomads"
+    },
+    {
+      "id": "riedran-erlw",
+      "name": {
+        "en": "Riedran",
+        "es": "Riedran"
+      },
+      "source": "ERLW",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "people of Sarlona"
+      ]
+    },
+    {
+      "id": "roushoum-scag",
+      "name": {
+        "en": "Roushoum",
+        "es": "Roushoum"
+      },
+      "source": "SCAG",
+      "script": "Thorass",
+      "typicalSpeakers": [
+        "Imaskari ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sahuagin-mm",
+      "name": {
+        "en": "Sahuagin",
+        "es": "Sahuagin"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature sahuagin}",
+        "{@creature Sahuagin Priestess||sahuagin priestesses}",
+        "{@creature Sahuagin Baron||sahuagin barons}"
+      ]
+    },
+    {
+      "id": "sespech-frhof",
+      "name": {
+        "en": "Sespech",
+        "es": "Sespech"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Sespech"
+    },
+    {
+      "id": "shaaran-scag",
+      "name": {
+        "en": "Shaaran",
+        "es": "Shaaran"
+      },
+      "source": "SCAG",
+      "script": "Dethek",
+      "typicalSpeakers": [
+        "Shaaran ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shou-scag",
+      "name": {
+        "en": "Shou",
+        "es": "Shou"
+      },
+      "source": "SCAG",
+      "script": "Thorass",
+      "typicalSpeakers": [
+        "Shou ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sylvan-phb",
+      "name": {
+        "en": "Sylvan",
+        "es": "Silvano"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Elvish",
+      "typicalSpeakers": [
+        "{@filter fey creatures|bestiary|type=fey}"
+      ]
+    },
+    {
+      "id": "siren-psx",
+      "name": {
+        "en": "Siren",
+        "es": "Siren"
+      },
+      "source": "PSX",
+      "typicalSpeakers": [
+        "{@race Siren|PSX|Sirens}"
+      ]
+    },
+    {
+      "id": "slaad-mm",
+      "name": {
+        "en": "Slaad",
+        "es": "Slaad"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Slaad Tadpole||slaad tadpoles}",
+        "{@creature Red Slaad||red slaadi}",
+        "{@creature Blue Slaad||blue slaadi}",
+        "{@creature Green Slaad||green slaadi}",
+        "{@creature Gray Slaad||gray slaadi}",
+        "{@creature Death Slaad||death slaadi}"
+      ]
+    },
+    {
+      "id": "solamnic-dsotdq",
+      "name": {
+        "en": "Solamnic",
+        "es": "Solamnic"
+      },
+      "source": "DSotDQ",
+      "type": "standard",
+      "script": "Common",
+      "typicalSpeakers": [
+        "Sancrist",
+        "Solamnia"
+      ]
+    },
+    {
+      "id": "sphinx-ggr",
+      "name": {
+        "en": "Sphinx",
+        "es": "Sphinx"
+      },
+      "source": "GGR",
+      "type": "standard",
+      "script": "none",
+      "typicalSpeakers": [
+        "{@creature Sphinx of Judgment|ggr|sphinxes}"
+      ]
+    },
+    {
+      "id": "undercommon-phb",
+      "name": {
+        "en": "Undercommon",
+        "es": "Subcomún"
+      },
+      "source": "PHB",
+      "type": "exotic",
+      "script": "Elvish",
+      "typicalSpeakers": [
+        "underdark traders"
+      ]
+    },
+    {
+      "id": "thayan-frhof",
+      "name": {
+        "en": "Thayan",
+        "es": "Thayan"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Thay"
+    },
+    {
+      "id": "thri-kreen-mm",
+      "name": {
+        "en": "Thri-kreen",
+        "es": "Thri-kreen"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature thri-kreen}"
+      ]
+    },
+    {
+      "id": "tlincalli-vgm",
+      "name": {
+        "en": "Tlincalli",
+        "es": "Tlincalli"
+      },
+      "source": "VGM",
+      "typicalSpeakers": [
+        "{@creature tlincalli|VGM}"
+      ]
+    },
+    {
+      "id": "troglodyte-mm",
+      "name": {
+        "en": "Troglodyte",
+        "es": "Troglodyte"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Troglodyte||troglodytes}"
+      ]
+    },
+    {
+      "id": "tuigan-scag",
+      "name": {
+        "en": "Tuigan",
+        "es": "Tuigan"
+      },
+      "source": "SCAG",
+      "script": "Thorass",
+      "typicalSpeakers": [
+        "Tuigan ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turmic-frhof",
+      "name": {
+        "en": "Turmic",
+        "es": "Turmic"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Turmish"
+    },
+    {
+      "id": "uluik-scag",
+      "name": {
+        "en": "Uluik",
+        "es": "Uluik"
+      },
+      "source": "SCAG",
+      "script": "Thorass",
+      "typicalSpeakers": [
+        "Ulutiun ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "umber-hulk-mm",
+      "name": {
+        "en": "Umber Hulk",
+        "es": "Umber Hulk"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Umber Hulk||umber hulks}"
+      ]
+    },
+    {
+      "id": "untheric-frhof",
+      "name": {
+        "en": "Untheric",
+        "es": "Untheric"
+      },
+      "source": "FRHoF",
+      "type": "standard",
+      "origin": "Unther"
+    },
+    {
+      "id": "vampire-psx",
+      "name": {
+        "en": "Vampire",
+        "es": "Vampire"
+      },
+      "source": "PSX",
+      "typicalSpeakers": [
+        "Legion of Dusk"
+      ]
+    },
+    {
+      "id": "vedalken-ggr",
+      "name": {
+        "en": "Vedalken",
+        "es": "Vedalken"
+      },
+      "source": "GGR",
+      "type": "standard",
+      "script": "Vedalken",
+      "typicalSpeakers": [
+        "{@race Vedalken|ggr}"
+      ],
+      "entries_en": [
+        "The Vedalken language is renowned for its technical treatises and its catalogs of knowledge about the natural world and the aether that pervades it."
+      ]
+    },
+    {
+      "id": "vegepygmy-vgm",
+      "name": {
+        "en": "Vegepygmy",
+        "es": "Vegepygmy"
+      },
+      "source": "VGM",
+      "typicalSpeakers": [
+        "{@creature Vegepygmy|VGM|vegepygmies}",
+        "{@creature Vegepygmy Chief|VGM|vegepygmy chiefs}"
+      ]
+    },
+    {
+      "id": "waelan-scag",
+      "name": {
+        "en": "Waelan",
+        "es": "Waelan"
+      },
+      "source": "SCAG",
+      "script": "Thorass",
+      "typicalSpeakers": [
+        "Ffolk ethnic group"
+      ],
+      "entries_en": [
+        {
+          "type": "inset",
+          "name": "Option: Human Languages",
+          "entries": [
+            "Many human ethnicities and nations in Faerûn have their own language, in addition to Common. Most human languages are written in Thorass, the alphabet of Old Common, derived from the Chondathan language that traders used as their common tongue. A few human languages use other alphabets, including Draconic, Dethek, and Espruar.",
+            "If your Dungeon Master allows this option, then any human from an ethnic group that has its own language is assumed to know that language as well as Common. This ethnic language is treated as a free additional language for such individuals."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "winter-wolf-mm",
+      "name": {
+        "en": "Winter Wolf",
+        "es": "Winter Wolf"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Winter Wolf||winter wolves}"
+      ]
+    },
+    {
+      "id": "worg-mm",
+      "name": {
+        "en": "Worg",
+        "es": "Worg"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Worg||worgs}"
+      ]
+    },
+    {
+      "id": "yeti-mm",
+      "name": {
+        "en": "Yeti",
+        "es": "Yeti"
+      },
+      "source": "MM",
+      "typicalSpeakers": [
+        "{@creature Yeti||yetis}",
+        "{@creature Abominable Yeti||abominable yetis}"
+      ]
+    },
+    {
+      "id": "yikaria-skt",
+      "name": {
+        "en": "Yikaria",
+        "es": "Yikaria"
+      },
+      "source": "SKT",
+      "typicalSpeakers": [
+        "{@creature Yakfolk Priest|SKT|yakfolk priests}",
+        "{@creature Yakfolk Warrior|SKT|yakfolk warriors}"
+      ]
+    },
+    {
+      "id": "zemnian-egw",
+      "name": {
+        "en": "Zemnian",
+        "es": "Zemnian"
+      },
+      "source": "EGW",
+      "entries_en": [
+        "This ancient language was spoken by the people of Zemniaz in the Age of Arcanum. That ancient culture has long since crumbled, but its language and its people live on in the Dwendalian Empire. Many ancient scrolls were written in Zemnian, but it is a language now largely spoken by farmers, as Common is the default language of the empire."
+      ]
+    },
+    {
+      "id": "elvish-phb",
+      "name": {
+        "en": "Elvish",
+        "es": "Élfico"
+      },
+      "source": "PHB",
+      "type": "standard",
+      "script": "Elvish",
+      "typicalSpeakers": [
+        "{@filter elves|bestiary|type=humanoid|tag=any race;elf}"
+      ],
+      "entries_en": [
+        "Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires."
+      ]
+    }
+  ]
+}

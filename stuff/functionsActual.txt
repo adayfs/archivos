@@ -1,0 +1,109 @@
+<?php
+/**
+ * temaHijo Theme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package temaHijo
+ * @since 1.0.0
+ */
+
+/**
+ * Define Constants
+ */
+define( 'CHILD_THEME_TEMAHIJO_VERSION', '1.0.0' );
+
+/**
+ * Enqueue styles
+ */
+function child_enqueue_styles() {
+
+	wp_enqueue_style( 'temahijo-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_TEMAHIJO_VERSION, 'all' );
+
+}
+
+add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
+
+// Mover extracto dentro de entry-content
+add_action('wp_footer', function(){
+  if (is_category()) : ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!document.body.classList.contains('archive')) return;
+      document.querySelectorAll('.ast-article-post').forEach(function (article) {
+        const exWrap = article.querySelector('.ast-excerpt-container');
+        const entry  = article.querySelector('.entry-content.clear');
+        if (exWrap) exWrap.classList.add('entry-content', 'clear');
+        if (entry && entry.textContent.trim() === '') entry.remove();
+      });
+    });
+    </script>
+  <?php endif;
+});
+
+/** ========= Placeholders por categoría ========= **/
+
+// Mapea slugs de categoría => ID de la imagen placeholder (Mediateca)
+function drak_placeholder_map() {
+    return array(
+        'npc'     => 2880,  // <— pon aquí ID numérico
+        'lugares' => 2880,
+        'pj'      => 2880,
+        'diario'  => 0,
+        'default' => 0,
+    );
+}
+
+// Devuelve el placeholder correcto en base a las categorías del post
+function drak_pick_placeholder_for_post( $post_id ) {
+    $map = drak_placeholder_map();
+    $cats = wp_get_post_categories( $post_id, array('fields'=>'all') );
+    foreach ( $cats as $c ) {
+        $slug = get_category( $c )->slug;
+        if ( isset($map[$slug]) && intval($map[$slug]) > 0 ) {
+            return intval($map[$slug]);
+        }
+    }
+    return isset($map['default']) ? intval($map['default']) : 0;
+}
+
+// 1) Al guardar post: si no hay miniatura, pone la de placeholder
+add_action('save_post', function($post_id, $post, $update){
+    if ( wp_is_post_revision($post_id) ) return;
+    if ( $post->post_type !== 'post' ) return;
+    if ( has_post_thumbnail($post_id) ) return;
+
+    $ph = drak_pick_placeholder_for_post($post_id);
+    if ( $ph ) {
+        set_post_thumbnail( $post_id, $ph );
+    }
+}, 10, 3);
+
+// 2) Endpoint manual: https://tusitio.com/?set_placeholders=1
+add_action('template_redirect', function(){
+    if ( ! isset($_GET['set_placeholders']) ) return;
+
+    $count = 0;
+    $map = drak_placeholder_map();
+
+    $q = new WP_Query(array(
+        'post_type'      => 'post',
+        'post_status'    => array('publish','draft','pending','future','private'),
+        'posts_per_page' => -1,
+        'meta_query'     => array(
+            'relation' => 'OR',
+            array( 'key' => '_thumbnail_id', 'compare' => 'NOT EXISTS' ),
+            array( 'key' => '_thumbnail_id', 'value' => '0', 'compare' => '=' ),
+            array( 'key' => '_thumbnail_id', 'value' => '',  'compare' => '=' ),
+        ),
+        'fields'         => 'ids',
+    ));
+
+    foreach ( $q->posts as $pid ) {
+        $ph = drak_pick_placeholder_for_post($pid);
+        if ( $ph ) { set_post_thumbnail($pid, $ph); $count++; }
+    }
+
+    wp_die( sprintf('Placeholders aplicados a %d entradas.', $count) );
+});
+

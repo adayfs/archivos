@@ -1,0 +1,257 @@
+/************** CONFIGURACIÓN **************/
+const CFG = {
+  WP_URL: 'https://adayfs.com',                 // tu dominio con https
+  WP_USER: 'admin',                             // usuario WP que creó la App Password
+  WP_APP_PASS: 'Kz2T Dbj2 uFqR lTLK o9wJ Hn9D', // Application Password (con espacios; se limpian)
+  DOC_ID: '1-kKaUQSNrxeDseNIIZ39vYXe6FMFESwU1lOyEKd5kyo', // ID del Google Doc
+
+  // Categorías (si no existen, se crearán)
+  CAT_DIARIO: 'Diario',
+  CAT_WIKI: 'Wiki',
+  CAT_NPC: 'NPC',
+  CAT_LUGARES: 'Lugares',
+  CAT_PJ: 'PJ'
+};
+/*******************************************/
+
+/** ====== PUNTO DE ENTRADA ====== **/
+function importarSesionesDesdeDoc() {
+  const doc = DocumentApp.openById(CFG.DOC_ID);
+  const text = doc.getBody().getText();
+
+  const sesiones = parseSesiones(text); // [{num,titulo,contenido,pjs,npcs,lugares}, ...]
+  if (!sesiones.length) { Logger.log('No se encontraron sesiones con los delimitadores.'); return; }
+
+  const props = PropertiesService.getScriptProperties();
+  let last = parseInt(props.getProperty('LAST_SESSION') || '0', 10);
+
+  // Solo procesar las sesiones nuevas (num > last), en orden ascendente
+  const pendientes = sesiones.filter(s => s.num && s.num > last).sort((a,b)=>a.num-b.num);
+  if (!pendientes.length) { Logger.log(`Nada que hacer. Última sesión = ${last}.`); return; }
+
+  const catDiarioId = getOrCreateCategoryId(CFG.CAT_DIARIO);
+
+  pendientes.forEach(s => {
+    // Evita duplicar por título exacto
+    const ya = (wpGet(`/wp-json/wp/v2/posts?search=${encodeURIComponent(s.titulo)}&per_page=10`)||[])
+      .find(p => (p.title?.rendered || '').trim().toLowerCase() === s.titulo.toLowerCase());
+
+    const payload = {
+      title: s.titulo,
+      content: textToBasicHtml(s.contenido),
+      status: 'draft',
+      categories: [catDiarioId]
+    };
+
+    if (ya) {
+      wpPost(`/wp-json/wp/v2/posts/${ya.id}`, payload, 'POST'); // update
+      Logger.log(`Actualizada: ${s.titulo} (id ${ya.id})`);
+    } else {
+      const res = wpPost('/wp-json/wp/v2/posts', payload, 'POST'); // create
+      Logger.log(`Creada: ${s.titulo} (id ${res.id})`);
+    }
+
+    // Wiki (sin duplicados y anotando “Mencionado en Sesión X”)
+    upsertWikiLote(s.pjs,     [CFG.CAT_WIKI, CFG.CAT_PJ],      s.num);
+    upsertWikiLote(s.npcs,    [CFG.CAT_WIKI, CFG.CAT_NPC],     s.num);
+    upsertWikiLote(s.lugares, [CFG.CAT_WIKI, CFG.CAT_LUGARES], s.num);
+
+    // avanzar marcador
+    last = s.num;
+    props.setProperty('LAST_SESSION', String(last));
+    Logger.log(`Procesada Sesión ${s.num}. LAST_SESSION=${last}`);
+  });
+}
+
+/** ====== PARSER DE SESIONES Y ENTIDADES ====== **/
+function parseSesiones(fullText) {
+  const lines = fullText.split('\n');
+
+  // Inicio: "#SESION" o "&SESION" + número (capturamos ese número)
+  const startRe = /^\s*(?:#|&)\s*SESION\s*(\d+)/i;
+
+  // Fin: "FIN SESION" o "FINSESION", con # o & opcional (permite espacios)
+  const endRe   = /^\s*FIN\s*SESION\s*(?:#|&)?\s*$/i;
+
+  const sesiones = [];
+  let current = null;
+
+  for (let i = 0; i < lines.length; i++) {
+    const ln = lines[i];
+
+    if (!current) {
+      const m = ln.match(startRe);
+      if (m) {
+        const num = parseInt(m[1], 10);
+        current = { num, raw: [] };
+        continue;
+      }
+    } else {
+      if (endRe.test(ln)) {
+        const rawText = current.raw.join('\n');
+        const ext = extractEntitiesAndClean(rawText);
+        sesiones.push({
+          num: current.num,
+          titulo: `Sesión ${current.num}`,
+          contenido: ext.cleanText,
+          pjs: [...new Set(ext.pjs)],
+          npcs: [...new Set(ext.npcs)],
+          lugares: [...new Set(ext.lugares)]
+        });
+        current = null;
+      } else {
+        current.raw.push(ln);
+      }
+    }
+  }
+  return sesiones;
+}
+
+// Extrae €…€ (PJ), @…@ (NPC), %…% (Lugar) y devuelve texto sin esos marcadores
+function extractEntitiesAndClean(t) {
+  const pjs = [], npcs = [], lugares = [];
+  const pushClean = (arr, s) => { const x = s.trim(); if (x) arr.push(x); };
+
+  // extrae sin avidez (non-greedy) y elimina los signos
+  t = t.replace(/€([^€]+)€/g, (_, name) => { pushClean(pjs, name); return name; });
+  t = t.replace(/@([^@]+)@/g,   (_, name) => { pushClean(npcs, name); return name; });
+  t = t.replace(/%([^%]+)%/g,   (_, name) => { pushClean(lugares, name); return name; });
+
+  return { pjs, npcs, lugares, cleanText: t };
+}
+
+function nameToSlug(name){
+  return name
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // quita acentos
+    .replace(/[^a-z0-9]+/g,'-')                     // no alfanumérico -> guion
+    .replace(/^-+|-+$/g,'');                        // bordes limpios
+}
+
+function nameToSlug(name){
+  return name
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // quita acentos
+    .replace(/[^a-z0-9]+/g,'-')                     // no alfanumérico -> guion
+    .replace(/^-+|-+$/g,'');                        // bordes limpios
+}
+
+// --- cache en ScriptProperties: slug -> postId ---
+function getCachedWikiId(slug){
+  const props = PropertiesService.getScriptProperties();
+  const v = props.getProperty('WIKI_ID__' + slug);
+  return v ? parseInt(v,10) : null;
+}
+function setCachedWikiId(slug, id){
+  PropertiesService.getScriptProperties().setProperty('WIKI_ID__' + slug, String(id));
+}
+
+function upsertWikiLote(nombres, catsByName, sessionNum) {
+  if (!nombres || !nombres.length) return;
+
+  const catIds = catsByName.map(getOrCreateCategoryId);
+  const unique = [...new Set(nombres.map(s => s.trim()).filter(Boolean))];
+
+  unique.forEach(name => {
+    const slug = nameToSlug(name);
+    const mentionLine = `<p><em>Mencionado en Sesión ${sessionNum}</em></p>`;
+    const baseContent = '<p>Entrada generada automáticamente desde el Diario.</p>';
+
+    // 1) cache primero
+    let id = getCachedWikiId(slug);
+    let found = null;
+
+    if (id) {
+      try { found = wpGet(`/wp-json/wp/v2/posts/${id}`); } catch(e) { found = null; }
+    }
+
+    // 2) si no hay cache o no existe el post -> buscar por slug exacto
+    if (!found) {
+      const bySlug = wpGet(`/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}`) || [];
+      if (bySlug.length) { found = bySlug[0]; id = found.id; setCachedWikiId(slug, id); }
+    }
+
+    // 3) último fallback: buscar por título exacto (por si el primer alta fue sin slug fijo)
+    if (!found) {
+      const list = wpGet(`/wp-json/wp/v2/posts?search=${encodeURIComponent(name)}&per_page=50`) || [];
+      found = list.find(p => (p.title?.rendered || '').trim().toLowerCase() === name.toLowerCase());
+      if (found) { id = found.id; setCachedWikiId(slug, id); }
+    }
+
+    if (found && id) {
+      // actualizar: añadir mención si falta
+      const currentHtml = (found.content && found.content.rendered) ? found.content.rendered : '';
+      if (!new RegExp(`Sesión\\s+${sessionNum}\\b`).test(currentHtml)) {
+        const updated = currentHtml + '\n' + mentionLine;
+        wpPost(`/wp-json/wp/v2/posts/${id}`, {
+          title: name,
+          content: updated,
+          categories: catIds,
+          status: 'draft'
+        }, 'POST');
+      }
+    } else {
+      // crear por primera vez con slug fijo + cachear ID
+      const created = wpPost('/wp-json/wp/v2/posts', {
+        title: name,
+        slug: slug,
+        content: baseContent + '\n' + mentionLine,
+        status: 'draft',
+        categories: catIds
+      }, 'POST');
+      setCachedWikiId(slug, created.id);
+    }
+  });
+}
+
+
+
+/** ====== UTILIDADES WP ====== **/
+function textToBasicHtml(t) {
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return esc(t).split('\n').map(p => p.trim() ? `<p>${p}</p>` : '<p>&nbsp;</p>').join('\n');
+}
+
+function getOrCreateCategoryId(name) {
+  const list = wpGet(`/wp-json/wp/v2/categories?search=${encodeURIComponent(name)}&per_page=50`) || [];
+  const exact = list.find(c => c.name === name);
+  if (exact) return exact.id;
+  const created = wpPost('/wp-json/wp/v2/categories', { name }, 'POST');
+  return created.id;
+}
+
+function wpGet(path) {
+  const url = CFG.WP_URL + path;
+  const headers = { 'Authorization': basicAuthHeader() };
+  const resp = UrlFetchApp.fetch(url, { method: 'get', headers, muteHttpExceptions: true });
+  const code = resp.getResponseCode();
+  if (code >= 300) throw new Error('GET ' + url + ' → ' + code + ' | ' + resp.getContentText());
+  return JSON.parse(resp.getContentText());
+}
+
+function wpPost(path, data, method) {
+  const url = CFG.WP_URL + path;
+  const headers = { 'Authorization': basicAuthHeader(), 'Content-Type': 'application/json' };
+  const resp = UrlFetchApp.fetch(url, {
+    method: (method || 'post'),
+    headers,
+    payload: JSON.stringify(data),
+    muteHttpExceptions: true
+  });
+  const code = resp.getResponseCode();
+  if (code >= 300) throw new Error((method||'POST') + ' ' + url + ' → ' + code + ' | ' + resp.getContentText());
+  return JSON.parse(resp.getContentText());
+}
+
+function basicAuthHeader() {
+  const token = Utilities.base64Encode(CFG.WP_USER + ':' + CFG.WP_APP_PASS.replace(/\s+/g,''));
+  return 'Basic ' + token;
+}
+
+/** ====== UTILIDADES EXTRA ====== **/
+// Resetear el contador si alguna vez lo necesitas manualmente
+function resetLastSession(n) {
+  const props = PropertiesService.getScriptProperties();
+  props.setProperty('LAST_SESSION', String(n || 0));
+  Logger.log('LAST_SESSION = ' + (n || 0));
+}

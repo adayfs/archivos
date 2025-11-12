@@ -1,0 +1,722 @@
+/* Contenedor general de la página de hoja */
+.contenido-hoja-personaje {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+.titulo-hoja-personaje {
+    margin-bottom: 1.5rem;
+}
+
+/* Avatar circular del personaje debajo del título */
+.personaje-avatar-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.personaje-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #9933ff;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 15px #9933ff;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Caja central */
+.hoja-personaje-container {
+    display: flex;
+    justify-content: center;
+}
+
+.formulario-hoja-personaje {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+}
+
+/* Fila de stats: label | valor | Mod/Bonus | valor mod */
+.fila-stat {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr auto 1fr;
+    column-gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.stat-label {
+    text-align: left;
+    color: #ccc;
+}
+
+/* Valor principal de característica como <p> */
+.stat-main-display {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Texto "Mod" / "Bonus" */
+.stat-mod-text {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Valor del modificador y de las habilidades como texto */
+.stat-mod-display,
+.skill-display {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Colores según signo */
+.stat-mod-display.mod-pos,
+.skill-display.mod-pos,
+.save-display.mod-pos {
+    color: #39ff14;
+}
+
+.stat-mod-display.mod-neg,
+.skill-display.mod-neg,
+.save-display.mod-neg {
+    color: #ff4c4c;
+}
+
+.stat-mod-display.mod-zero,
+.skill-display.mod-zero,
+.save-display.mod-zero {
+    color: #ffffff;
+}
+
+/* Cabecera de características */
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.stats-info,
+.skills-info {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+
+/* Botón guardar centrado (reutilizamos estilos del inventario) */
+.boton-centrao {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.boton-centrao button {
+    padding: 0.7rem 1.5rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.boton-centrao button:hover {
+    background-color: #8a008a;
+}
+
+/* Responsive para móvil */
+@media (max-width: 600px) {
+    .fila-stat {
+        grid-template-columns: 1.4fr 0.9fr auto 0.7fr;
+    }
+}
+
+
+/* Colores para los modificadores según el signo */
+.stat-mod-input.mod-pos {
+    color: #39ff14;          /* verde neón */
+    border-color: #39ff14;
+    font-weight: bold;
+}
+
+.stat-mod-input.mod-neg {
+    color: #ff4c4c;          /* rojo */
+    border-color: #ff4c4c;
+    font-weight: bold;
+}
+
+.stat-mod-input.mod-zero {
+    color: #ffffff;          /* blanco neutro */
+    border-color: #999999;
+}
+
+.subtitulo-hoja-personaje {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+
+.skills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.skills-info {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+/* Botón "Modificar hoja" */
+.btn-modificar-hoja {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    background-color: #a600a6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.btn-modificar-hoja:hover {
+    background-color: #8a008a;
+}
+
+/* Lista de habilidades */
+.skills-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.5rem;
+}
+
+.fila-skill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-label {
+    font-size: 0.9rem;
+}
+
+
+/* Fila de stats: label | valor | Mod/Bonus | valor mod */
+.fila-stat {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr auto 1fr;
+    column-gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.stat-label {
+    text-align: left;
+    color: #ccc;
+}
+
+.stat-main-display {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.stat-mod-text {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.stat-mod-display,
+.skill-display {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.stat-mod-display.mod-pos,
+.skill-display.mod-pos {
+    color: #39ff14;
+}
+
+.stat-mod-display.mod-neg,
+.skill-display.mod-neg {
+    color: #ff4c4c;
+}
+
+.stat-mod-display.mod-zero,
+.skill-display.mod-zero {
+    color: #ffffff;
+}
+
+.btn-modificar-hoja {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    background-color: #a600a6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.btn-modificar-hoja:hover {
+    background-color: #8a008a;
+}
+
+/* AGRUPACIÓN DE HABILIDADES */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 0.75rem;
+}
+
+.skills-group-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffbfff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+
+.skills-group-separator {
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    margin: 0.25rem 0 0.5rem;
+}
+
+.fila-skill {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.skill-label {
+    font-size: 0.9rem;
+}
+
+/* CIRCULITO DE PROEFICIENCIA */
+.skill-prof-toggle {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.skill-prof-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #888;
+    display: inline-block;
+    box-shadow: 0 0 0 1px transparent;
+    transition: all 0.15s ease;
+}
+
+.skill-prof-circle.skill-prof-active {
+    border-color: #ffbfff;
+    background: radial-gradient(circle, #ffbfff 0%, #a600a6 60%, transparent 100%);
+    box-shadow: 0 0 6px rgba(255, 191, 255, 0.8);
+}
+
+
+
+/* Bloque de acciones bajo las características */
+.acciones-hoja {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 2rem;
+}
+
+/* Botones de acciones de la hoja */
+.btn-modificar-hoja,
+.btn-guardar-hoja {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-modificar-hoja:hover,
+.btn-guardar-hoja:hover {
+    background-color: #8a008a;
+}
+
+/* En pantallas pequeñas, apilar los botones uno debajo del otro */
+@media (max-width: 600px) {
+    .acciones-hoja {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ===== MODAL: MODIFICAR CARACTERÍSTICAS ===== */
+
+/* Que el modal de stats sea un pelín más estrecho */
+#stats-overlay .modal-contenido {
+    max-width: 360px;
+}
+
+/* Contenedor de filas del modal */
+#stats-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+/* ===== MODAL: MODIFICAR CARACTERÍSTICAS ===== */
+
+/* Hacemos el modal algo más estrecho */
+#stats-overlay .modal-contenido {
+    max-width: 380px;
+}
+
+/* Contenedor de filas del modal */
+#stats-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Cada fila: etiqueta a la izquierda, input a la derecha */
+#stats-fields .stats-modal-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 0.75rem;
+}
+
+/* Etiqueta a la izquierda */
+#stats-fields .stats-modal-row label {
+    margin: 0;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+/* Input pequeñito a la derecha (2 cifras máximo) */
+#stats-fields .stats-modal-input {
+    width: 6ch !important;      /* anulamos cualquier width:100% */
+    padding: 0.25rem 0.35rem;
+    border-radius: 6px;
+    border: 1px solid #999;
+    background: #0b0015;
+    color: #fff;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* Bloque de tiradas de salvación */
+.saves-list {
+    margin: 0.75rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.fila-save {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+.save-label {
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+/* Valor de la tirada (misma pinta que habilidades / mods) */
+.save-display {
+    margin: 0;
+    text-align: right;   /* también en la "columna roja" */
+    font-weight: bold;
+    font-size: 1.05rem;
+    min-width: 2.5rem;
+}
+
+
+/* Compartimos colores con mods/habilidades */
+.save-display.mod-pos { color: #39ff14; }
+.save-display.mod-neg { color: #ff4c4c; }
+.save-display.mod-zero { color: #ffffff; }
+
+/* ===== BLOQUE BÁSICOS: INI / CA / VEL / PV ===== */
+
+.basicos-container {
+    margin: 0 auto 1.5rem;
+    display: flex;
+    flex-direction: column;      /* círculos arriba, botón debajo */
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.basicos-list {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.basic-item {
+    text-align: center;
+}
+
+.basic-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.25rem;
+    color: #ffbfff;
+}
+
+.basic-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 3px solid #ffbfff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(255, 191, 255, 0.6);
+}
+
+/* Botón "MOD" debajo y centrado */
+.btn-basicos-mod {
+    padding: 0.25rem 0.9rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.btn-basicos-mod:hover {
+    background-color: #8a008a;
+}
+
+/* En móvil apilamos un poco más compacto */
+@media (max-width: 600px) {
+    .basicos-list {
+        gap: 1rem;
+    }
+}
+
+
+/* ===== MODAL DE BÁSICOS: INI / CA / VEL / PV ===== */
+
+#basics-overlay .modal-contenido {
+    max-width: 380px;  /* igual que el de características */
+}
+
+/* Contenedor de filas del modal */
+#basics-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Cada fila: label izquierda, input derecha */
+#basics-fields .basics-modal-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 0.75rem;
+}
+
+/* Etiqueta */
+#basics-fields .basics-modal-row label {
+    margin: 0;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+/* Input pequeñito (2–3 cifras), como las características */
+#basics-fields .basics-modal-input {
+    width: 4ch !important;   /* machacamos cualquier width:100% global */
+    padding: 0.25rem 0.3rem;
+    border-radius: 6px;
+    border: 1px solid #999;
+    background: #0b0015;
+    color: #fff;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+
+.temp-pv-slider-wrapper {
+  margin-top: 10px;
+  padding: 0 1rem;
+}
+
+#slider_temp_hp {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ff4c4c 0%, #ff4c4c 100%);
+  outline: none;
+  transition: background 0.3s ease;
+  box-shadow: none;
+}
+
+/* El círculo del thumb */
+#slider_temp_hp::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ff00ff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin-top: -5px;
+  box-shadow: none;
+}
+
+#slider_temp_hp::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ff00ff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+
+
+.basic-circle[contenteditable="true"] {
+    outline: none;
+    caret-color: white;
+    user-select: text;
+}
+
+
+.temp-pv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.btn-reset-temp-pv {
+  background-color: #ff00ff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-reset-temp-pv:hover {
+  background-color: #cc00cc;
+}
+.temp-pv-separator {
+  border: 0;
+  height: 2px; /* O el grosor que prefieras */
+  width: 100%;  /* Ajusta esto a 50%, 60%, 80%, etc. */
+  margin: 1rem auto; /* auto para centrar horizontalmente */
+  background: linear-gradient(to right, transparent, #9933ff, transparent);
+}
+
+/* Segundo circulito para Expertise (misma pinta que el de proeficiencia) */
+.skill-expertise-toggle {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 0.25rem; /* pequeño hueco entre los dos círculos */
+}
+
+/* No hace falta clase extra: reutilizamos .skill-prof-circle y .skill-prof-active */
+/* Contenedor de los dos toggles (proficiencia + expertise) */
+.skill-toggles {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;            /* separación pequeña entre los dos círculos */
+}
+
+/* El botón de expertise ya no necesita margen propio */
+.skill-expertise-toggle {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 0;          /* lo controla el gap del contenedor */
+}
+
+/* Valor de la habilidad: columna roja, pegado a la derecha */
+.skill-display {
+    text-align: right;
+    min-width: 2.5rem;       /* mantiene alineada la "columna" de números */
+}
+
+
+/* Bloque superior: Nivel / Clase / Subclase */
+.basicos-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Fila con Clase y Subclase */
+.basicos-secundarios {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;               /* separación entre clase y subclase */
+    width: 100%;
+}
+
+/* Nivel un poco más compacto que los otros círculos si quieres */
+.basic-circle-small {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.1rem;
+}
+
+/* Texto de clase y subclase */
+.basic-item-wide .basic-text {
+    min-width: 120px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+

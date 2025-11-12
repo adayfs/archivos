@@ -1,0 +1,334 @@
+/************** CONFIGURACIÓN ÚNICA **************/
+const CFG = {
+  // === WordPress ===
+  WP_URL:   'https://adayfs.com',
+  WP_USER:  'admin',
+  WP_APP_PASS: 'Kz2T Dbj2 uFqR lTLK o9wJ Hn9D', // se envía sin espacios
+
+  // === Google Docs ===
+  DOC_ID_SESIONES: '1-kKaUQSNrxeDseNIIZ39vYXe6FMFESwU1lOyEKd5kyo',   // Sesiones
+  DOC_ID_FICHAS:   '1FI2JUCx1Gg71zmvs8HUzdgITpqG1gTOZB8pqSvD9vvY',     // Fichas
+
+  // === Categorías WP (nombres EXACTOS como están en WP) ===
+  CAT_DIARIO:  'Diario',
+  CAT_NPC:     'NPC',
+  CAT_LUGARES: 'Lugares',
+  CAT_PJ:      'PJ',
+
+  // === Base de categorías en Enlaces Permanentes ===
+  CATEGORY_BASE: 'wiki',                      // tienes "wiki" configurado
+  CAT_SLUGS: { NPC:'npc', Lugares:'lugares', PJ:'pj' },
+
+  // Publicación automática
+  PUBLICAR_SESIONES: true,                    // sesiones se publican
+  PUBLICAR_FICHAS_ACTUALIZADAS: true,         // fichas actualizadas desde DOC
+  PUBLICAR_FICHAS_CREADAS: true,              // fichas nuevas desde DOC
+
+  // Crear ficha (en borrador) si no existe al enlazar desde Sesiones
+  CREATE_MISSING_WHEN_LINKING: true
+};
+/**************************************************/
+
+/** ====================== FLUJO 1: SESIONES ====================== **/
+function importarSesionesDesdeDoc() {
+  const body = DocumentApp.openById(CFG.DOC_ID_SESIONES).getBody().getText();
+  const catDiarioId  = getOrCreateCategoryId(CFG.CAT_DIARIO);
+  const catIdsMap = {
+    NPC:     getOrCreateCategoryId(CFG.CAT_NPC),
+    Lugares: getOrCreateCategoryId(CFG.CAT_LUGARES),
+    PJ:      getOrCreateCategoryId(CFG.CAT_PJ)
+  };
+
+  const sesiones = parseSesiones(body);
+  if (!sesiones.length){ Logger.log('No hay sesiones.'); return; }
+
+  sesiones.forEach(s => {
+    // 1) Crear/actualizar fichas mencionadas y preparar enlaces estables
+    const linkMap = {}; // nombre -> {id, href}
+    [
+      {list:s.pjs, tipo:'PJ'},
+      {list:s.npcs, tipo:'NPC'},
+      {list:s.lugares, tipo:'Lugares'}
+    ].forEach(({list, tipo}) => {
+      unique(list).forEach(name => {
+        const catId   = catIdsMap[tipo];
+        const catSlug = CFG.CAT_SLUGS[tipo];
+        const slug    = toSlug(name);
+
+        let post = findPostByExactTitle(name);
+        if (!post && CFG.CREATE_MISSING_WHEN_LINKING){
+          // al enlazar desde sesiones se crean en borrador
+          post = wpPost('/wp-json/wp/v2/posts', {
+            title: name,
+            content: '<p>Entrada generada automáticamente desde el Diario.</p>',
+            status: 'draft',
+            categories: [catId],
+            slug
+          }, 'POST');
+        } else if (post) {
+          const curr = (post.categories||[]).slice();
+          if (curr.indexOf(catId) === -1){
+            const merged = Array.from(new Set([...curr, catId]));
+            post = wpPost(`/wp-json/wp/v2/posts/${post.id}`, { categories: merged }, 'POST');
+          }
+        }
+
+        const href = `${CFG.WP_URL.replace(/\/+$/,'')}/${CFG.CATEGORY_BASE}/${catSlug}/${slug}/`;
+        linkMap[name] = { id: post ? post.id : null, href };
+      });
+    });
+
+    // 2) Enlazar todas las apariciones (acepta .link o .href)
+    const linked = linkifyAllOccurrences(s.contenido, linkMap);
+
+    // 3) Convertir a <p>…</p> respetando anchors
+    const contentHtml = paragraphsPreservingAnchors(linked);
+
+    // 4) Crear la sesión
+    const payload = {
+      title: s.titulo || ('Sesión ' + (s.num||'')),
+      slug:  s.num ? `sesion-${s.num}` : undefined,
+      content: contentHtml,
+      status: CFG.PUBLICAR_SESIONES ? 'publish' : 'draft',
+      categories: [catDiarioId]
+    };
+    const res = wpPost('/wp-json/wp/v2/posts', payload, 'POST');
+    Logger.log(`Sesión ${s.num||''} → ${res.link}`);
+  });
+
+  Logger.log(`Sesiones procesadas: ${sesiones.length}`);
+}
+
+/** ====================== FLUJO 2: FICHAS DESDE DOC ====================== **/
+/************* REUTILIZABLES (misma lógica que Diario) *************/
+function escapeRegExp(s){ return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+function linkifyAllOccurrences(plainText, linkMap) {
+  if (!plainText) return '';
+  const names = Object.keys(linkMap || {});
+  if (!names.length) return plainText;
+
+  const byLc = {};
+  names.forEach(n => {
+    const v = linkMap[n] || {};
+    byLc[n.toLowerCase()] = v.link || v.href || '';   // <— acepta link u href
+  });
+
+  const alt = names.slice().sort((a,b)=>b.length-a.length).map(escapeRegExp).join('|');
+  const re = new RegExp(`(^|[^\\p{L}\\p{N}_])(${alt})(?=[^\\p{L}\\p{N}_]|$)`, 'giu');
+
+  return plainText.replace(re, (full, pre, found) => {
+    const href = byLc[found.toLowerCase()];
+    if (!href) return full;
+    return `${pre}<a href="${href}">${found}</a>`;
+  });
+}
+
+function paragraphsPreservingAnchors(s) {
+  if (!s) return '';
+  const anchors = [];
+  const reA = /<a\b[^>]*>[\s\S]*?<\/a>/gi;
+  let i = 0;
+  s = s.replace(reA, (m)=>`%%A${i++}%%` && (anchors.push(m), `%%A${i-1}%%`));
+  s = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  s = s.replace(/%%A(\d+)%%/g, (_,idx)=>anchors[Number(idx)]);
+  return s.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '<p>&nbsp;</p>').join('\n');
+}
+
+/************* CATÁLOGO: publicadas y borradores *************/
+function listarPostsPorTitulo(catIds) {
+  const out = {};
+  catIds.forEach(catId => {
+    let page = 1, more = true;
+    while (more) {
+      const q = `/wp-json/wp/v2/posts?categories=${catId}` +
+                `&per_page=100&page=${page}` +
+                `&status=any&_fields=id,link,title,slug`;
+      const lista = wpGet(q) || [];
+      lista.forEach(p => {
+        const t = (p.title && p.title.rendered || '').trim();
+        if (t) out[t.toLowerCase()] = { id: p.id, link: p.link || `${CFG.WP_URL}/?p=${p.id}` };
+      });
+      more = lista.length === 100;
+      page++;
+    }
+  });
+  return out;
+}
+
+/************* PARSE DOC DE FICHAS (H1 “#” + cuerpo) *************/
+function parseDocByH1(docId){
+  const doc = DocumentApp.openById(docId);
+  const paras = doc.getBody().getParagraphs();
+  const blocks = [];
+  let current = null;
+  paras.forEach(p => {
+    const t = p.getText() || '';
+    const st = p.getHeading();
+    const isH1 = (st === DocumentApp.ParagraphHeading.HEADING1) || /^#\s*/.test(t);
+    if (isH1) {
+      if (current) blocks.push(current);
+      const title = t.replace(/^#\s*/,'').trim();
+      current = { title, body: [] };
+    } else if (current) {
+      current.body.push(t);
+    }
+  });
+  if (current) blocks.push(current);
+  return blocks.map(b => ({ title: b.title, body: (b.body||[]).join('\n').trim() }));
+}
+
+/************* ACTUALIZACIÓN DE FICHAS (enlazado tipo Diario) *************/
+function actualizarEntradasDesdeDoc(){
+  const CAT_IDS = [
+    getOrCreateCategoryId(CFG.CAT_NPC),
+    getOrCreateCategoryId(CFG.CAT_LUGARES),
+    getOrCreateCategoryId(CFG.CAT_PJ)
+  ];
+
+  // 1) Catálogo de fichas existentes (para enlazar)
+  const catalogo = listarPostsPorTitulo(CAT_IDS);
+
+  // 2) Leer bloques del DOC de fichas
+  const bloques = parseDocByH1(CFG.DOC_ID_FICHAS);
+  Logger.log('Bloques detectados: ' + bloques.length);
+
+  // 3) Procesar cada ficha
+  bloques.forEach(b => {
+    const titulo = (b.title || '').trim();
+    if (!titulo) return;
+
+    const cuerpoLinkeado = linkifyAllOccurrences(b.body || '', catalogo);
+    const html = paragraphsPreservingAnchors(cuerpoLinkeado);
+
+    const existente = findPostByExactTitle(titulo);
+    let categorias = [ getOrCreateCategoryId(CFG.CAT_NPC) ];
+    if (existente && Array.isArray(existente.categories) && existente.categories.length){
+      categorias = existente.categories.slice(); // mantenemos lo que tenga
+    }
+
+    const payload = {
+      title: titulo,
+      content: html,
+      status: (existente
+              ? (CFG.PUBLICAR_FICHAS_ACTUALIZADAS ? 'publish' : 'draft')
+              : (CFG.PUBLICAR_FICHAS_CREADAS     ? 'publish' : 'draft')),
+      categories: categorias
+    };
+
+    let res;
+    if (existente){
+      res = wpPost(`/wp-json/wp/v2/posts/${existente.id}`, payload, 'POST');
+      Logger.log(`Actualizada: ${titulo} → ${res.link}`);
+    } else {
+      res = wpPost('/wp-json/wp/v2/posts', payload, 'POST');
+      Logger.log(`Creada: ${titulo} → ${res.link}`);
+    }
+
+    // 4) Refrescar catálogo para que siguientes bloques ya enlacen esta ficha
+    if (res){
+      catalogo[titulo.toLowerCase()] = { id: res.id, link: res.link };
+    }
+  });
+
+  Logger.log('Fichas procesadas con enlazado tipo Diario.');
+}
+
+/** ====================== PARSER DE SESIONES ====================== **/
+function parseSesiones(fullText) {
+  const lines = fullText.split('\n');
+  const startRe = /^\s*(?:#|&)\s*SESION\s*(\d*)\s*$/i;
+  const endRe   = /^\s*FIN\s*SESION\s*#\s*$|^\s*FINSESION#\s*$/i;
+
+  const out = [];
+  let current = null;
+
+  for (let i = 0; i < lines.length; i++) {
+    const ln = lines[i];
+
+    if (!current) {
+      const m = ln.match(startRe);
+      if (m) {
+        const num = m[1] ? parseInt(m[1],10) : null;
+        current = { num, raw: [] };
+      }
+      continue;
+    }
+    if (endRe.test(ln)) {
+      const rawText = current.raw.join('\n');
+      const ext = extractEntitiesAndClean(rawText);
+      out.push({
+        num: current.num,
+        titulo: current.num ? `Sesión ${current.num}` : 'Sesión',
+        contenido: ext.cleanText,
+        pjs: unique(ext.pjs),
+        npcs: unique(ext.npcs),
+        lugares: unique(ext.lugares)
+      });
+      current = null;
+    } else {
+      current.raw.push(ln);
+    }
+  }
+  return out;
+}
+
+function extractEntitiesAndClean(t) {
+  const pjs = [], npcs = [], lugares = [];
+  const push = (arr, s) => { s = (s||'').trim(); if (s) arr.push(s); };
+
+  t = t.replace(/€([^€]+)€/g, (_, n) => { push(pjs, n);   return n; });
+  t = t.replace(/@([^@]+)@/g, (_, n) => { push(npcs, n);  return n; });
+  t = t.replace(/%([^%]+)%/g, (_, n) => { push(lugares, n); return n; });
+
+  return { pjs, npcs, lugares, cleanText: t };
+}
+
+/** ====================== HELPERS WP ====================== **/
+function getOrCreateCategoryId(name){
+  const list = wpGet(`/wp-json/wp/v2/categories?search=${encodeURIComponent(name)}&per_page=50`);
+  const exact = (list||[]).find(c => c.name===name);
+  if(exact) return exact.id;
+  const created = wpPost('/wp-json/wp/v2/categories',{name},'POST');
+  return created.id;
+}
+
+function findPostByExactTitle(title){
+  const q = `/wp-json/wp/v2/posts?search=${encodeURIComponent(title)}&status=any&per_page=50`;
+  const res = wpGet(q) || [];
+  const tNorm = title.trim().toLowerCase();
+  return res.find(p => (p.title?.rendered || '').trim().toLowerCase() === tNorm) || null;
+}
+
+function wpGet(path){
+  const url = CFG.WP_URL + path;
+  const headers = { 'Authorization': basicAuthHeader() };
+  const resp = UrlFetchApp.fetch(url,{method:'get',headers,muteHttpExceptions:true});
+  const code = resp.getResponseCode();
+  if(code>=300) throw new Error(`GET ${url} → ${code} | ${resp.getContentText()}`);
+  return JSON.parse(resp.getContentText());
+}
+
+function wpPost(path,data,method){
+  const url = CFG.WP_URL + path;
+  const headers = { 'Authorization': basicAuthHeader(), 'Content-Type':'application/json' };
+  const resp = UrlFetchApp.fetch(url,{
+    method:(method||'post'),
+    headers,
+    payload: JSON.stringify(data),
+    muteHttpExceptions:true
+  });
+  const code = resp.getResponseCode();
+  if(code>=300) throw new Error(`${method||'POST'} ${url} → ${code} | ${resp.getContentText()}`);
+  return JSON.parse(resp.getContentText());
+}
+
+function basicAuthHeader(){
+  const token = Utilities.base64Encode(CFG.WP_USER + ':' + CFG.WP_APP_PASS.replace(/\s+/g,'')); // sin espacios
+  return 'Basic ' + token;
+}
+
+/** ====================== UTIL ====================== **/
+function unique(a){ return Array.from(new Set(a||[])); }
+function toSlug(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-+|-+$/g,'').toLowerCase(); }

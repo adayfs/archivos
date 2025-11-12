@@ -1,0 +1,148 @@
+/* ===== Fondo general ===== */
+body,
+.site,
+.site-main {
+  background-color: #161224 !important;
+  background-image: none !important;
+}
+
+/* ===== Tarjeta Drak ===== */
+.drak-card {
+  --card-w: 760px;
+  width: min(100%, var(--card-w));
+  margin: 32px auto;
+  padding: 0;
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 0px;
+  color: black;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* ----- Título ----- */
+.drak-card .wp-block-post-title,
+.drak-card h2 {
+  width: 100%;
+  margin: 0;
+  padding: 0 28px;
+  background: url('/wp-content/uploads/2025/10/title-frame.png') center / 100% 100% no-repeat;
+  aspect-ratio: 576 / 94;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  text-transform: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.15;
+  color: inherit;
+}
+.drak-card .wp-block-post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----- Contenido ----- */
+.drak-card .wp-block-post-excerpt,
+.drak-card .excerpt,
+.drak-card .entry-summary,
+.drak-card .drak-excerpt,
+.drak-card > p {
+  width: 100%;
+  margin: 0;
+  padding: 28px 36px 64px;
+  background: url('/wp-content/uploads/2025/10/content-frame-perg.png') center / 100% 100% no-repeat;
+  aspect-ratio: 576 / 139; /* mitad de la altura original */
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: start;
+  justify-items: center;
+  text-align: center;
+  color: inherit;
+  overflow: hidden;
+}
+
+/* Extracto */
+:where(.drak-card .wp-block-post-excerpt p,
+       .drak-card .excerpt,
+       .drak-card > p) {
+  margin: 0;
+  max-width: 60ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fecha dentro del marco con hr */
+.drak-card .drak-meta {
+  margin: 10px 0 0;
+  padding: 8px 0 0;
+  width: 100%;
+  text-align: center;
+  color: inherit;
+}
+.drak-card .drak-meta::before {
+  content: "";
+  display: block;
+  width: 88%;
+  height: 1px;
+  margin: 0 auto 10px;
+  background: currentColor;
+  opacity: .35;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .drak-card {
+    --card-w: 92vw;
+    row-gap: 12px;
+  }
+  .drak-card .wp-block-post-title {
+    padding: 0 18px;
+    font-size: clamp(20px, 4vw, 24px);
+  }
+  .drak-card .wp-block-post-excerpt,
+  .drak-card .excerpt,
+  .drak-card .entry-summary,
+  .drak-card .drak-excerpt,
+  .drak-card > p {
+    padding: 22px 22px 48px;
+  }
+}
+
+/* Quitar la caja de Astra */
+.ast-separate-container .ast-article-single,
+.ast-separate-container .ast-article-post,
+.ast-separate-container .site-main > article {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* === Fecha debajo del contenido y HR por debajo de la fecha === */
+.drak-card .drak-meta{
+  margin: 10px 0 0;      /* pegada al texto */
+  padding: 0 0 10px;     /* espacio antes del HR */
+}
+
+/* quitamos la línea superior anterior */
+.drak-card .drak-meta::before{
+  content: none !important;
+}
+
+/* dibujamos la línea por DEBAJO de la fecha */
+.drak-card .drak-meta::after{
+  content: "";
+  display: block;
+  width: 85%;
+  height: 1px;
+  margin: 10px auto 0;   /* separada un poco de la fecha */
+  background: currentColor;
+  opacity: .35;
+}
+

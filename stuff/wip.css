@@ -1,0 +1,396 @@
+/* ===== Fondo general ===== */
+body,
+.site,
+.site-main {
+  background-color: #161224 !important;
+  background-image: none !important;
+}
+
+/* ===== Tarjeta Drak ===== */
+.drak-card {
+  --card-w: 760px;
+  width: min(100%, var(--card-w));
+  margin: 32px auto;
+  padding: 0;
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 0px;
+  color: inherit;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* ----- Título ----- */
+.drak-card .wp-block-post-title,
+.drak-card h2 {
+  width: 100%;
+  margin: 0;
+  padding: 0 28px;
+  background: url('/wp-content/uploads/2025/10/title-frame.png') center / 100% 100% no-repeat;
+  aspect-ratio: 576 / 94;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  text-transform: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.15;
+  color: inherit;
+}
+.drak-card .wp-block-post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----- Contenido ----- */
+.drak-card .wp-block-post-excerpt,
+.drak-card .excerpt,
+.drak-card .entry-summary,
+.drak-card .drak-excerpt,
+.drak-card > p {
+  width: 100%;
+  margin: 0;
+  padding: 28px 36px 64px;
+  background: url('/wp-content/uploads/2025/10/content-frame.png') center / 100% 100% no-repeat;
+  aspect-ratio: 576 / 139; /* mitad de la altura original */
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: start;
+  justify-items: center;
+  text-align: center;
+  color: inherit;
+  overflow: hidden;
+}
+
+/* Extracto */
+:where(.drak-card .wp-block-post-excerpt p,
+       .drak-card .excerpt,
+       .drak-card > p) {
+  margin: 0;
+  max-width: 60ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fecha dentro del marco con hr */
+.drak-card .drak-meta {
+  margin: 10px 0 0;
+  padding: 8px 0 0;
+  width: 100%;
+  text-align: center;
+  color: inherit;
+}
+.drak-card .drak-meta::before {
+  content: "";
+  display: block;
+  width: 88%;
+  height: 1px;
+  margin: 0 auto 10px;
+  background: currentColor;
+  opacity: .35;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .drak-card {
+    --card-w: 92vw;
+    row-gap: 12px;
+  }
+  .drak-card .wp-block-post-title {
+    padding: 0 18px;
+    font-size: clamp(20px, 4vw, 24px);
+  }
+  .drak-card .wp-block-post-excerpt,
+  .drak-card .excerpt,
+  .drak-card .entry-summary,
+  .drak-card .drak-excerpt,
+  .drak-card > p {
+    padding: 22px 22px 48px;
+  }
+}
+
+/* Quitar la caja de Astra */
+.ast-separate-container .ast-article-single,
+.ast-separate-container .ast-article-post,
+.ast-separate-container .site-main > article {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* === Fecha debajo del contenido y HR por debajo de la fecha === */
+.drak-card .drak-meta{
+  margin: 10px 0 0;      /* pegada al texto */
+  padding: 0 0 10px;     /* espacio antes del HR */
+}
+
+/* quitamos la línea superior anterior */
+.drak-card .drak-meta::before{
+  content: none !important;
+}
+
+/* dibujamos la línea por DEBAJO de la fecha */
+.drak-card .drak-meta::after{
+  content: "";
+  display: block;
+  width: 85%;
+  height: 1px;
+  margin: 10px auto 0;   /* separada un poco de la fecha */
+  background: currentColor;
+  opacity: .35;
+}
+/* Ocultar metadatos por si el tema los deja aunque estén desactivados */
+.single-post .entry-meta,
+.single-post .posted-on,
+.single-post .byline,
+.single-post .cat-links,
+.single-post .comments-link,
+.single-post .ast-breadcrumbs {
+  display: none !important;
+}
+/* ===== Formato de la página de entrada individual ===== */
+
+/* Contenedor general */
+.single-post .site-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #161224;  /* igual que el resto del sitio */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Título de la entrada */
+.single-post .entry-title {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: clamp(26px, 3vw, 38px);
+  color: #de53ff;
+  margin-bottom: 20px;
+}
+
+/* Imagen destacada */
+.single-post .post-thumbnail img {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 24px;
+  border: 2px solid rgba(80,60,40,0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Contenido de la entrada */
+.single-post .entry-content {
+  max-width: 960px;
+  line-height: 1.75;
+  font-size: 1.08rem;
+  color: #f2f2f2;
+  text-align: justify;
+}
+
+/* Quitar recuadros del tema Astra */
+.ast-separate-container .ast-article-single {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Imagen placeholder si no hay imagen destacada */
+.single-post .post-thumbnail img {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  height: auto;
+  margin: 0 auto 32px;
+  border: 2px solid #3a2e1f;
+  border-radius: 6px;
+  box-shadow: 0 0 14px rgba(0,0,0,0.4);
+}
+
+.single-post .post-thumbnail img:empty {
+  content: url('https://adayfs.com/wp-content/uploads/2025/10/placeholder.jpg');
+}
+
+.single-post .entry-title,
+.single .entry-title{
+  display:block !important;
+  visibility:visible !important;
+  height:auto !important;
+  margin: 0 0 .75rem 0;
+}
+
+/* ===== Fondo general (igual que Diario) ===== */
+body, .site, .site-main{
+  background-color:#161224!important;
+  background-image:none!important;
+}
+
+/* ====== ARCHIVOS CON FORMATO DRAK ======
+   Aplica en listados de categorías que quieres “como Diario”.
+   Puedes añadir más (p.ej. .category-pj) si quieres el mismo look.
+================================================ */
+.archive.category.category-npc,
+.archive.category.category-lugares{
+  --card-w: 760px;         /* ancho uniforme de tarjeta */
+  --gap: 0px;              /* separación entre título y contenido (pegados) */
+  --title-frame: url('/wp-content/uploads/2025/10/title-frame.png');
+  --content-frame: url('/wp-content/uploads/2025/10/content-frame.png');
+}
+
+/* Artículo = una tarjeta completa con grid: Título + Contenido (+ fecha debajo) */
+.archive.category.category-npc article,
+.archive.category.category-lugares article{
+  width:min(100%, var(--card-w));
+  margin:32px auto 44px;     /* deja hueco para la fecha que queda debajo */
+  padding:0;
+  display:grid;
+  grid-template-rows:auto auto; /* header (título) + extracto */
+  row-gap:var(--gap);
+  box-sizing:border-box;
+  background:transparent;
+  color:inherit;
+  border:0;
+  box-shadow:none;
+}
+
+/* ===== TÍTULO con marco ===== */
+.archive.category.category-npc .entry-header,
+.archive.category.category-lugares .entry-header{
+  margin:0; padding:0;
+}
+
+.archive.category.category-npc .entry-title,
+.archive.category.category-lugares .entry-title{
+  margin:0;
+  padding:0 28px;
+  background: var(--title-frame) center / 100% 100% no-repeat;
+  aspect-ratio: 576 / 94;   /* mismo frame de Diario */
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-weight:700;
+  font-size:clamp(22px, 2vw, 28px);
+  line-height:1.15;
+}
+.archive.category.category-npc .entry-title a,
+.archive.category.category-lugares .entry-title a{
+  color:inherit; text-decoration:none;
+}
+
+/* Oculta meta del header (fecha suele ir ahí en Astra) para no romper el diseño.
+   La fecha la mostramos debajo de la tarjeta con el bloque nativo. */
+.archive.category.category-npc .entry-header .entry-meta,
+.archive.category.category-lugares .entry-header .entry-meta{
+  display:none;
+}
+
+/* ===== CONTENIDO con marco ===== */
+.archive.category.category-npc .entry-content,
+.archive.category.category-npc .ast-excerpt,
+.archive.category.category-npc .entry-summary,
+.archive.category.category-lugares .entry-content,
+.archive.category.category-lugares .ast-excerpt,
+.archive.category.category-lugares .entry-summary{
+  margin:0;
+  padding:28px 36px 64px;
+  background: var(--content-frame) center / 100% 100% no-repeat;
+  aspect-ratio: 576 / 139;     /* mitad de alto del original, como acordamos */
+  display:grid;
+  align-items:start;
+  justify-items:center;
+  text-align:center;
+  overflow:hidden;
+  color:inherit;
+  box-sizing:border-box;
+}
+
+/* Limita líneas del párrafo del extracto (≈ 3–4 líneas) */
+.archive.category.category-npc .entry-content p,
+.archive.category.category-npc .ast-excerpt p,
+.archive.category.category-npc .entry-summary p,
+.archive.category.category-lugares .entry-content p,
+.archive.category.category-lugares .ast-excerpt p,
+.archive.category.category-lugares .entry-summary p{
+  margin:0 auto;
+  max-width:60ch;
+  display:-webkit-box;
+  -webkit-line-clamp:3;     /* ajusta a tu gusto */
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* ===== Fecha debajo de cada tarjeta, con línea fina bajo la fecha ===== */
+.archive.category.category-npc .ast-archive-entry-meta,
+.archive.category.category-lugares .ast-archive-entry-meta,
+.archive.category.category-npc .entry-footer,
+.archive.category.category-lugares .entry-footer{
+  width:min(100%, var(--card-w));
+  margin:12px auto 24px;
+  padding:0;
+  text-align:center;
+  color:inherit;
+  background:none;
+  border:0;
+}
+.archive.category.category-npc .ast-archive-entry-meta .posted-on,
+.archive.category.category-lugares .ast-archive-entry-meta .posted-on,
+.archive.category.category-npc .entry-footer .posted-on,
+.archive.category.category-lugares .entry-footer .posted-on{
+  display:inline-block;
+  position:relative;
+  padding-bottom:12px;
+  opacity:.9;
+}
+.archive.category.category-npc .ast-archive-entry-meta .posted-on:after,
+.archive.category.category-lugares .ast-archive-entry-meta .posted-on:after,
+.archive.category.category-npc .entry-footer .posted-on:after,
+.archive.category.category-lugares .entry-footer .posted-on:after{
+  content:"";
+  display:block;
+  width:85%;
+  height:1px;
+  margin:12px auto 0;
+  background:currentColor;
+  opacity:.35;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px){
+  .archive.category.category-npc article,
+  .archive.category.category-lugares article{
+    --card-w: 92vw;
+  }
+  .archive.category.category-npc .entry-title,
+  .archive.category.category-lugares .entry-title{
+    padding:0 18px;
+    font-size:clamp(20px, 4vw, 24px);
+  }
+  .archive.category.category-npc .entry-content,
+  .archive.category.category-lugares .entry-content,
+  .archive.category.category-npc .ast-excerpt,
+  .archive.category.category-lugares .ast-excerpt{
+    padding:22px 22px 48px;
+  }
+}
+
+/* ===== Limpieza de la “caja” del tema para que sólo se vea tu marco ===== */
+.ast-separate-container .ast-article-single,
+.ast-separate-container .ast-article-post,
+.ast-separate-container .site-main > article{
+  background:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  border:0 !important;
+}

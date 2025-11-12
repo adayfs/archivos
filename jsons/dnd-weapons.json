@@ -1,0 +1,1157 @@
+{
+  "weapons": [
+    {
+      "id": "halberd-phb",
+      "name": {
+        "en": "Halberd",
+        "es": "Alabarda"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d10",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "H",
+        "R",
+        "2H"
+      ],
+      "weight": 6,
+      "value": 2000
+    },
+    {
+      "id": "antimatter-rifle-dmg",
+      "name": {
+        "en": "Antimatter Rifle",
+        "es": "Antimatter Rifle"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "120/360",
+      "dmg1": "6d8",
+      "dmg2": null,
+      "dmgType": "N",
+      "ammoType": "energy cell",
+      "properties": [
+        "AF|DMG",
+        "RLD",
+        "2H"
+      ],
+      "weight": 10,
+      "value": null
+    },
+    {
+      "id": "shortbow-phb",
+      "name": {
+        "en": "Shortbow",
+        "es": "Arco corto"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "simple",
+      "range": "80/320",
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "arrow|phb",
+      "properties": [
+        "A",
+        "2H"
+      ],
+      "weight": 2,
+      "value": 2500
+    },
+    {
+      "id": "automatic-pistol-dmg",
+      "name": {
+        "en": "Automatic Pistol",
+        "es": "Automatic Pistol"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "50/150",
+      "dmg1": "2d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "modern bullet",
+      "properties": [
+        "AF|DMG",
+        "RLD"
+      ],
+      "weight": 3,
+      "value": null
+    },
+    {
+      "id": "automatic-rifle-dmg",
+      "name": {
+        "en": "Automatic Rifle",
+        "es": "Automatic Rifle"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "80/240",
+      "dmg1": "2d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "modern bullet",
+      "properties": [
+        "AF|DMG",
+        "BF|DMG",
+        "RLD",
+        "2H"
+      ],
+      "weight": 8,
+      "value": null
+    },
+    {
+      "id": "quarterstaff-phb",
+      "name": {
+        "en": "Quarterstaff",
+        "es": "Bastón"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": null,
+      "dmg1": "1d6",
+      "dmg2": "1d8",
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [
+        "V"
+      ],
+      "weight": 4,
+      "value": 20
+    },
+    {
+      "id": "blowgun-phb",
+      "name": {
+        "en": "Blowgun",
+        "es": "Blowgun"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "martial",
+      "range": "25/100",
+      "dmg1": "1",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "blowgun needle|phb",
+      "properties": [
+        "A",
+        "LD"
+      ],
+      "weight": 1,
+      "value": 1000
+    },
+    {
+      "id": "scimitar-phb",
+      "name": {
+        "en": "Scimitar",
+        "es": "Cimitarra"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "F",
+        "L"
+      ],
+      "weight": 3,
+      "value": 2500
+    },
+    {
+      "id": "dagger-phb",
+      "name": {
+        "en": "Dagger",
+        "es": "Daga"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": "20/60",
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "F",
+        "L",
+        "T"
+      ],
+      "weight": 1,
+      "value": 200
+    },
+    {
+      "id": "dart-phb",
+      "name": {
+        "en": "Dart",
+        "es": "Dardo"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "simple",
+      "range": "20/60",
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "F",
+        "T"
+      ],
+      "weight": 0.25,
+      "value": 5
+    },
+    {
+      "id": "double-bladed-scimitar-erlw",
+      "name": {
+        "en": "Double-Bladed Scimitar",
+        "es": "Double-Bladed Scimitar"
+      },
+      "source": "ERLW",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "2d4",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "S",
+        "2H"
+      ],
+      "weight": 6,
+      "value": 10000,
+      "entries_en": [
+        {
+          "type": "entries",
+          "name": "Special",
+          "entries": [
+            "If you attack with a double-bladed scimitar as part of the {@action Attack} action on your turn, you can use a bonus action immediately after to make a melee attack with it. This attack deals {@damage 1d4} slashing damage on a hit, instead of {@damage 2d4}."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shortsword-phb",
+      "name": {
+        "en": "Shortsword",
+        "es": "Espada corta"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "F",
+        "L"
+      ],
+      "weight": 2,
+      "value": 1000
+    },
+    {
+      "id": "longsword-phb",
+      "name": {
+        "en": "Longsword",
+        "es": "Espada larga"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": "1d10",
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "V"
+      ],
+      "weight": 3,
+      "value": 1500
+    },
+    {
+      "id": "greatsword-phb",
+      "name": {
+        "en": "Greatsword",
+        "es": "Espadón"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "2d6",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "H",
+        "2H"
+      ],
+      "weight": 6,
+      "value": 5000
+    },
+    {
+      "id": "rapier-phb",
+      "name": {
+        "en": "Rapier",
+        "es": "Estoque"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "F"
+      ],
+      "weight": 2,
+      "value": 2500
+    },
+    {
+      "id": "flail-phb",
+      "name": {
+        "en": "Flail",
+        "es": "Flail"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [],
+      "weight": 2,
+      "value": 1000
+    },
+    {
+      "id": "club-phb",
+      "name": {
+        "en": "Club",
+        "es": "Garrote"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": null,
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [
+        "L"
+      ],
+      "weight": 2,
+      "value": 10
+    },
+    {
+      "id": "greatclub-phb",
+      "name": {
+        "en": "Greatclub",
+        "es": "Gran garrote"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [
+        "2H"
+      ],
+      "weight": 10,
+      "value": 20
+    },
+    {
+      "id": "greataxe-phb",
+      "name": {
+        "en": "Greataxe",
+        "es": "Gran hacha"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d12",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "H",
+        "2H"
+      ],
+      "weight": 7,
+      "value": 3000
+    },
+    {
+      "id": "glaive-phb",
+      "name": {
+        "en": "Glaive",
+        "es": "Guja"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d10",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "H",
+        "R",
+        "2H"
+      ],
+      "weight": 6,
+      "value": 2000
+    },
+    {
+      "id": "battleaxe-phb",
+      "name": {
+        "en": "Battleaxe",
+        "es": "Hacha de batalla"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": "1d10",
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "V"
+      ],
+      "weight": 4,
+      "value": 1000
+    },
+    {
+      "id": "handaxe-phb",
+      "name": {
+        "en": "Handaxe",
+        "es": "Hacha de mano"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": "20/60",
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "L",
+        "T"
+      ],
+      "weight": 2,
+      "value": 500
+    },
+    {
+      "id": "hand-crossbow-phb",
+      "name": {
+        "en": "Hand Crossbow",
+        "es": "Hand Crossbow"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "martial",
+      "range": "30/120",
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "crossbow bolt|phb",
+      "properties": [
+        "A",
+        "L",
+        "LD"
+      ],
+      "weight": 3,
+      "value": 7500
+    },
+    {
+      "id": "heavy-crossbow-phb",
+      "name": {
+        "en": "Heavy Crossbow",
+        "es": "Heavy Crossbow"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "martial",
+      "range": "100/400",
+      "dmg1": "1d10",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "crossbow bolt|phb",
+      "properties": [
+        "A",
+        "H",
+        "LD",
+        "2H"
+      ],
+      "weight": 18,
+      "value": 5000
+    },
+    {
+      "id": "sling-phb",
+      "name": {
+        "en": "Sling",
+        "es": "Honda"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "simple",
+      "range": "30/120",
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": "sling bullet|phb",
+      "properties": [
+        "A"
+      ],
+      "weight": null,
+      "value": 10
+    },
+    {
+      "id": "hooked-shortspear-oota",
+      "name": {
+        "en": "Hooked Shortspear",
+        "es": "Hooked Shortspear"
+      },
+      "source": "OotA",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "L"
+      ],
+      "weight": 2,
+      "value": null,
+      "entries_en": [
+        "On a hit with this weapon, the wielder can forgo dealing damage and attempt to trip the target, in which case the target must succeed on a Strength saving throw or fall {@condition prone}. The DC is 8 + the wielder's Strength modifier + the wielder's proficiency bonus."
+      ]
+    },
+    {
+      "id": "hoopak-dsotdq",
+      "name": {
+        "en": "Hoopak",
+        "es": "Hoopak"
+      },
+      "source": "DSotDQ",
+      "type": "M",
+      "category": "martial",
+      "range": "40/160",
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "sling bullet|phb",
+      "properties": [
+        "A",
+        "F",
+        "S",
+        "2H"
+      ],
+      "weight": 2,
+      "value": 10,
+      "entries_en": [
+        "A hoopak is a sturdy stick with a sling at one end and a pointed tip at the other.",
+        {
+          "type": "entries",
+          "name": "Special",
+          "entries": [
+            "When you make a melee attack with this weapon, you ignore its ammunition property. You can use the hoopak as a martial ranged weapon. If you do, it uses the ammunition property, uses sling bullets, and deals {@damage 1d4} bludgeoning damage on a hit."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sickle-phb",
+      "name": {
+        "en": "Sickle",
+        "es": "Hoz"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": null,
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "L"
+      ],
+      "weight": 2,
+      "value": 100
+    },
+    {
+      "id": "hunting-rifle-dmg",
+      "name": {
+        "en": "Hunting Rifle",
+        "es": "Hunting Rifle"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "80/240",
+      "dmg1": "2d10",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "modern bullet",
+      "properties": [
+        "AF|DMG",
+        "RLD",
+        "2H"
+      ],
+      "weight": 8,
+      "value": null
+    },
+    {
+      "id": "javelin-phb",
+      "name": {
+        "en": "Javelin",
+        "es": "Jabalina"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": "30/120",
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "T"
+      ],
+      "weight": 2,
+      "value": 50
+    },
+    {
+      "id": "spear-phb",
+      "name": {
+        "en": "Spear",
+        "es": "Lanza"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": "20/60",
+      "dmg1": "1d6",
+      "dmg2": "1d8",
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "T",
+        "V"
+      ],
+      "weight": 3,
+      "value": 100
+    },
+    {
+      "id": "lance-phb",
+      "name": {
+        "en": "Lance",
+        "es": "Lanza de caballería"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d12",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "R",
+        "S"
+      ],
+      "weight": 6,
+      "value": 1000,
+      "entries_en": [
+        {
+          "type": "entries",
+          "name": "Special",
+          "entries": [
+            "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "laser-pistol-dmg",
+      "name": {
+        "en": "Laser Pistol",
+        "es": "Laser Pistol"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "40/120",
+      "dmg1": "3d6",
+      "dmg2": null,
+      "dmgType": "R",
+      "ammoType": "energy cell",
+      "properties": [
+        "AF|DMG",
+        "RLD"
+      ],
+      "weight": 2,
+      "value": null
+    },
+    {
+      "id": "laser-rifle-dmg",
+      "name": {
+        "en": "Laser Rifle",
+        "es": "Laser Rifle"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "100/300",
+      "dmg1": "3d8",
+      "dmg2": null,
+      "dmgType": "R",
+      "ammoType": "energy cell",
+      "properties": [
+        "AF|DMG",
+        "RLD",
+        "2H"
+      ],
+      "weight": 7,
+      "value": null
+    },
+    {
+      "id": "light-crossbow-phb",
+      "name": {
+        "en": "Light Crossbow",
+        "es": "Light Crossbow"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "simple",
+      "range": "80/320",
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "crossbow bolt|phb",
+      "properties": [
+        "A",
+        "LD",
+        "2H"
+      ],
+      "weight": 5,
+      "value": 2500
+    },
+    {
+      "id": "light-repeating-crossbow-oota",
+      "name": {
+        "en": "Light Repeating Crossbow",
+        "es": "Light Repeating Crossbow"
+      },
+      "source": "OotA",
+      "type": "R",
+      "category": "simple",
+      "range": "40/160",
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "crossbow bolt|phb",
+      "properties": [
+        "A",
+        "2H"
+      ],
+      "weight": 5,
+      "value": null,
+      "entries_en": [
+        "This crossbow is fitted with a cartridge that can hold up to six crossbow bolts. It automatically reloads after firing until the cartridge runs out of ammunition. Reloading the cartridge takes an action."
+      ]
+    },
+    {
+      "id": "longbow-phb",
+      "name": {
+        "en": "Longbow",
+        "es": "Longbow"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "martial",
+      "range": "150/600",
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "arrow|phb",
+      "properties": [
+        "A",
+        "H",
+        "2H"
+      ],
+      "weight": 2,
+      "value": 5000
+    },
+    {
+      "id": "whip-phb",
+      "name": {
+        "en": "Whip",
+        "es": "Látigo"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "S",
+      "ammoType": null,
+      "properties": [
+        "F",
+        "R"
+      ],
+      "weight": 3,
+      "value": 200
+    },
+    {
+      "id": "morningstar-phb",
+      "name": {
+        "en": "Morningstar",
+        "es": "Mangual"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [],
+      "weight": 4,
+      "value": 1500
+    },
+    {
+      "id": "warhammer-phb",
+      "name": {
+        "en": "Warhammer",
+        "es": "Martillo de guerra"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": "1d10",
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [
+        "V"
+      ],
+      "weight": 2,
+      "value": 1500
+    },
+    {
+      "id": "light-hammer-phb",
+      "name": {
+        "en": "Light Hammer",
+        "es": "Martillo ligero"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": "20/60",
+      "dmg1": "1d4",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [
+        "L",
+        "T"
+      ],
+      "weight": 2,
+      "value": 200
+    },
+    {
+      "id": "mace-phb",
+      "name": {
+        "en": "Mace",
+        "es": "Maza"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "simple",
+      "range": null,
+      "dmg1": "1d6",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [],
+      "weight": 4,
+      "value": 500
+    },
+    {
+      "id": "maul-phb",
+      "name": {
+        "en": "Maul",
+        "es": "Mazo pesado"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "2d6",
+      "dmg2": null,
+      "dmgType": "B",
+      "ammoType": null,
+      "properties": [
+        "H",
+        "2H"
+      ],
+      "weight": 10,
+      "value": 1000
+    },
+    {
+      "id": "musket-xphb",
+      "name": {
+        "en": "Musket",
+        "es": "Musket"
+      },
+      "source": "XPHB",
+      "type": "R|XPHB",
+      "category": "martial",
+      "range": "40/120",
+      "dmg1": "1d12",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "firearm bullet|xphb",
+      "properties": [
+        "A|XPHB",
+        "LD|XPHB",
+        "2H|XPHB"
+      ],
+      "weight": 10,
+      "value": 50000
+    },
+    {
+      "id": "net-phb",
+      "name": {
+        "en": "Net",
+        "es": "Net"
+      },
+      "source": "PHB",
+      "type": "R",
+      "category": "martial",
+      "range": "5/15",
+      "dmg1": null,
+      "dmg2": null,
+      "dmgType": null,
+      "ammoType": null,
+      "properties": [
+        "S",
+        "T"
+      ],
+      "weight": 3,
+      "value": 100,
+      "entries_en": [
+        {
+          "type": "entries",
+          "name": "Special",
+          "entries": [
+            "A Large or smaller creature hit by a net is {@condition restrained} until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a {@dc 10} Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pike-phb",
+      "name": {
+        "en": "Pike",
+        "es": "Pica"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d10",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "H",
+        "R",
+        "2H"
+      ],
+      "weight": 18,
+      "value": 500
+    },
+    {
+      "id": "pistol-xphb",
+      "name": {
+        "en": "Pistol",
+        "es": "Pistol"
+      },
+      "source": "XPHB",
+      "type": "R|XPHB",
+      "category": "martial",
+      "range": "30/90",
+      "dmg1": "1d10",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "firearm bullet|xphb",
+      "properties": [
+        "A|XPHB",
+        "LD|XPHB"
+      ],
+      "weight": 3,
+      "value": 25000
+    },
+    {
+      "id": "revolver-dmg",
+      "name": {
+        "en": "Revolver",
+        "es": "Revolver"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "40/120",
+      "dmg1": "2d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "modern bullet",
+      "properties": [
+        "AF|DMG",
+        "RLD"
+      ],
+      "weight": 3,
+      "value": null
+    },
+    {
+      "id": "semiautomatic-pistol-xdmg",
+      "name": {
+        "en": "Semiautomatic Pistol",
+        "es": "Semiautomatic Pistol"
+      },
+      "source": "XDMG",
+      "type": "R|XPHB",
+      "category": "martial",
+      "range": "50/150",
+      "dmg1": "2d6",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "firearm bullet|xphb",
+      "properties": [
+        "AF|XDMG",
+        "RLD|XDMG"
+      ],
+      "weight": 3,
+      "value": null
+    },
+    {
+      "id": "shotgun-dmg",
+      "name": {
+        "en": "Shotgun",
+        "es": "Shotgun"
+      },
+      "source": "DMG",
+      "type": "R",
+      "category": "martial",
+      "range": "30/90",
+      "dmg1": "2d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": "modern bullet",
+      "properties": [
+        "AF|DMG",
+        "RLD",
+        "2H"
+      ],
+      "weight": 7,
+      "value": null
+    },
+    {
+      "id": "trident-phb",
+      "name": {
+        "en": "Trident",
+        "es": "Trident"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": "20/60",
+      "dmg1": "1d6",
+      "dmg2": "1d8",
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "T",
+        "V"
+      ],
+      "weight": 4,
+      "value": 500
+    },
+    {
+      "id": "war-pick-phb",
+      "name": {
+        "en": "War Pick",
+        "es": "War Pick"
+      },
+      "source": "PHB",
+      "type": "M",
+      "category": "martial",
+      "range": null,
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [],
+      "weight": 2,
+      "value": 500
+    },
+    {
+      "id": "yklwa-toa",
+      "name": {
+        "en": "Yklwa",
+        "es": "Yklwa"
+      },
+      "source": "ToA",
+      "type": "M",
+      "category": "simple",
+      "range": "10/30",
+      "dmg1": "1d8",
+      "dmg2": null,
+      "dmgType": "P",
+      "ammoType": null,
+      "properties": [
+        "T"
+      ],
+      "weight": 3,
+      "value": 100,
+      "entries_en": [
+        "A yklwa (pronounced YICK-ul-wah) is a simple melee weapon that is the traditional weapon of Chultan warriors. A yklwa consists of a 3-foot wooden shaft with a steel or stone blade up to 18 inches long. Although it has the thrown weapon property, the yklwa is not well balanced for throwing."
+      ]
+    }
+  ]
+}

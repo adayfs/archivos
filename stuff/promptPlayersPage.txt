@@ -1,0 +1,88 @@
+Design a dark fantasy web layout for the Character Sheets section of a Dungeons of Drakkenheim WordPress theme, following the same structure and art direction as the landing page.
+The aesthetic remains gothic-steampunk and painterly, matching the style of the Drakkenheim campaign manual: visible brushstrokes, brass filigree, parchment textures, and violet-green glow effects.
+No text; show only layout composition and placeholders for images, headers, and interactive areas.
+
+🔮 Header
+
+Identical to the landing page header.
+
+Full-width hero banner with drifting fog texture, muted violet light, and a faint silhouette of Drakkenheim’s skyline.
+
+Centered metallic embossed title: “DUNGEONS OF DRAKKENHEIM”.
+
+Above or beside it, a logo emblem (brass ring enclosing a glowing delirium crystal).
+
+Below, a thin brass divider line separating the header from the body content.
+
+Palette: black steel, smoke gray, copper, and faint luminous violet.
+
+⚙️ Character Gallery Section (below the header)
+
+Three (or more) large rectangular cards arranged horizontally, each representing a character.
+
+Each card framed in engraved brass with subtle alchemical filigree in the corners.
+
+Inside each frame:
+
+A portrait placeholder (illustration of the character).
+
+Below it, a small nameplate area — a brass plate placeholder for the character’s name (no text).
+
+When hovered, each frame emits a soft violet or green inner glow (delirium light).
+
+The gallery should be scrollable or expandable, accommodating multiple characters per player (at least 3 per row).
+
+Background: dark parchment with faint ink stains and geometric runes fading into fog.
+
+📜 Character Sheet Display (dynamic section below gallery)
+
+Occupies the entire width of the screen below the gallery.
+
+The sheet appears when a character portrait is selected.
+
+Framed area styled like an open alchemical codex page:
+
+Double-page parchment texture with ornamental brass corners.
+
+The center spine slightly shadowed, as if part of a physical tome.
+
+Subtle overlays of alchemical circles, runes, and faint violet glow.
+
+The parchment area is mostly blank for WordPress content embedding (to insert the actual character sheet later).
+
+Border details: engraved copper filigree, faint scratches, and magical sigils barely visible.
+
+Ambient lighting: soft warm highlights around the parchment, fading into cooler tones near the screen edges.
+
+🧩 Interactivity (visual layout only)
+
+When a character image is selected from the gallery above, the corresponding sheet slides or fades into view directly below.
+
+The previous sheet fades into shadow.
+
+Keep transitions smooth and subtle, as if pages of a magical book turning.
+
+🎨 Color Palette & Mood
+
+Base: dark parchment, blackened bronze, and ash-gray.
+
+Accents: aged copper, faint violet and green luminescence, muted gold.
+
+Lighting: soft, moody, candlelit glow with reflections of violet light on metal frames.
+
+Mood: arcane, organized, yet personal — this is the player’s sanctum within the grim world of Drakkenheim.
+
+🧩 WordPress Structural Mapping
+
+Header area: reused from landing page (site identity).
+
+Character gallery: grid layout with custom post type “Character” → each image links dynamically to its sheet below.
+
+Character sheet area: single block region (e.g., custom field display or embedded PDF/HTML sheet).
+
+Ensure spacing and padding mirror the landing design for seamless navigation.
+
+⚗️ Style Summary
+
+The page must feel like turning the pages of a living grimoire — brass, parchment, magic, and mystery.
+Every frame, glow, and detail should reinforce the identity of Drakkenheim: scholarly, dark, alchemical, and beautiful in decay.

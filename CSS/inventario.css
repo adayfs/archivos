@@ -1,0 +1,503 @@
+/* INVENTARIO - Estilos para el formulario de slots */
+
+/* Contenedor general de la página de inventario */
+.contenido-inventario {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 2rem 1rem;
+	 text-align: center;
+}
+
+/* Título "Inventario de X" */
+.titulo-inventario {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+/* Avatar circular del personaje debajo del título de inventario */
+.personaje-avatar-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.personaje-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #9933ff;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 15px #9933ff;
+}
+
+
+/* Contenedor que envuelve al formulario */
+.mainpack-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Caja del formulario de inventario */
+.formulario-inventario {
+    max-width: 600px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 1rem;
+    color: white;
+}
+
+/* Cada fila de slot */
+.inventory-slot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* "Slot 1:" "Slot 2:" ... */
+.slot-label {
+    flex: 0 0 auto;
+    color: #ccc;
+    width: 60px;
+}
+
+/* Contenido del slot: lista vertical de objetos */
+.slot-content {
+    flex: 1;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #999;
+    border-radius: 6px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+
+/* Cada objeto dentro del slot */
+.slot-item,
+.slot-empty {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Botones + y - */
+.inventory-slot button {
+    padding: 0.45rem 0.8rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.inventory-slot button:hover {
+    background-color: #8a008a;
+}
+
+/* Contenedor del botón "Guardar Inventario" */
+.boton-centrao,
+.botones-formulario {   /* por si en algún momento vuelves a usar esta clase */
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Botón "Guardar Inventario" */
+.boton-centrao button,
+.botones-formulario button {
+    padding: 0.7rem 1.5rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.boton-centrao button:hover,
+.botones-formulario button:hover {
+    background-color: #8a008a;
+}
+
+
+/* ===========================
+   MODALES INVENTARIO
+   =========================== */
+
+/* Capa oscura que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    background: rgba(0, 0, 0, 0.7);
+    display: none;                /* El JS la pone en 'flex' al abrir */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+/* Caja morada del contenido del modal */
+.modal-contenido {
+    background: #1a0827;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+/* Título del modal */
+.modal-contenido h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #ff3bff; /* tu fucsia drakkenheim */
+    font-size: 1.4rem;
+}
+
+/* Formulario en columna, no en línea */
+.modal-contenido form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Labels dentro del modal */
+.modal-contenido label {
+    text-align: left;
+    font-size: 0.9rem;
+    margin-bottom: 0.15rem;
+}
+
+/* Inputs y selects del modal */
+.modal-contenido input[type="text"],
+.modal-contenido input[type="number"],
+.modal-contenido select {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #0b0015;
+    color: #fff;
+}
+
+/* Botón principal del modal (Añadir / Eliminar) */
+.modal-contenido button[type="submit"] {
+    align-self: center;
+    margin-top: 0.6rem;
+    padding: 0.6rem 1.6rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-contenido button[type="submit"]:hover {
+    background-color: #8a008a;
+}
+
+/* Botones de cerrar (la X) */
+.close-popup,
+.close-delete-popup {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.6rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #ff3bff;
+}
+@media (max-width: 600px) {
+    .inventory-slot {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .slot-label {
+        width: auto;
+        text-align: left;
+        margin-bottom: 0.25rem;
+    }
+
+    .slot-content {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .inventory-slot button {
+        align-self: flex-end;
+        margin-top: 0.25rem;
+    }
+}
+/* ===== Layout móvil para los slots ===== */
+@media (max-width: 600px) {
+    .inventory-slot {
+        flex-wrap: wrap;        /* permite que los hijos salten a varias filas */
+        align-items: stretch;
+    }
+
+    /* El "Slot 1:" ocupa toda la fila superior */
+    .slot-label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.25rem;
+    }
+
+    /* El recuadro del contenido ocupa toda la segunda fila */
+    .slot-content {
+        min-width: 0;
+        width: 100%;
+    }
+
+    /* Los dos botones forman una tercera fila: cada uno 50% */
+    .inventory-slot button {
+        flex: 0 0 50%;          /* 50% del ancho cada uno */
+        margin-top: 0.3rem;
+    }
+}
+/* ===== Layout móvil para los slots (botones 50% + 50%) ===== */
+@media (max-width: 600px) {
+    /* Cambiamos de flex a grid solo en móvil */
+    .inventory-slot {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "label  label"
+            "content content"
+            "btnplus btnminus";
+        column-gap: 0.5rem;
+        row-gap: 0.35rem;
+        align-items: stretch;
+    }
+
+    .slot-label {
+        grid-area: label;
+        width: auto;
+        text-align: left;
+        margin-bottom: 0;
+    }
+
+    .slot-content {
+        grid-area: content;
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Botón + ocupa la mitad izquierda de la fila final */
+    .inventory-slot .add-item {
+        grid-area: btnplus;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Botón - ocupa la mitad derecha de la fila final */
+    .inventory-slot .remove-item {
+        grid-area: btnminus;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+.arma-modal .resumen-arma {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #1a1324;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.arma-modal .resumen-arma p {
+  margin-bottom: 0.6rem;
+}
+
+.arma-modal .resumen-arma strong {
+  color: #e940e4;
+}
+
+
+/* Estilos para el modal de selección de arma */
+.modal-armas {
+  background-color: #150622;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  color: white;
+}
+
+.modal-armas h2 {
+  color: #ff4bf2;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modal-armas label {
+  font-size: 0.9rem;
+  display: block;
+  margin: 10px 0 5px;
+  color: #fff;
+  text-align: left;
+}
+
+.modal-armas select {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.resumen-arma {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.resumen-arma h3 {
+  color: #ff4bf2;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.resumen-arma p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.resumen-arma strong {
+  font-weight: bold;
+  color: #fff;
+}
+
+#arma-properties {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+#arma-properties li {
+  list-style-type: disc;
+  margin-left: 15px;
+  font-size: 0.9rem;
+}
+
+.checkbox-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.checkbox-group label {
+  margin-left: 5px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.modal-armas button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal-armas button:hover {
+  background-color: #8e2de2;
+}
+.modal-contenido {
+  text-align: left; /* fuerza la alineación izquierda del contenido */
+}
+
+.fila-dano {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.fila-dano p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+
+/* Centrar el botón de aplicar arma */
+#arma-aplicar {
+  display: block;
+  margin: 30px auto 0 auto; /* arriba-izquierda-abajo-derecha */
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#arma-aplicar:hover {
+  background-color: #8e2de2;
+}
+
+/* Espaciado del selector respecto al título y al botón */
+#arma-selector {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+
+#armaModalEliminar .modal-contenido {
+  background-color: #1f1f2e;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#armaModalEliminar .btn-danger {
+  background-color: #aa0000;
+  color: white;
+  padding: 8px 16px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#armaModalEliminar .btn-danger:hover {
+  background-color: #cc0000;
+}
+
+#armaModalEliminar .close-modal {
+  background-color: #444;
+  color: white;
+  padding: 8px 16px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.inventory-slot[data-slot="oro"] .slot-label {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+#modal-add-gold .modal-contenido,
+#modal-remove-gold .modal-contenido {
+  background-color: #1a0827;
+}
+

@@ -1,0 +1,1323 @@
+<?php
+/**
+ * temaHijo Theme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package temaHijo
+ * @since 1.0.0
+ */
+
+/**
+ * Define Constants
+ */
+define( 'CHILD_THEME_TEMAHIJO_VERSION', '1.0.0' );
+
+/**
+ * Enqueue styles
+ */
+function child_enqueue_styles() {
+
+	wp_enqueue_style( 'temahijo-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_TEMAHIJO_VERSION, 'all' );
+    wp_enqueue_style('tema-principal', get_stylesheet_directory_uri() . '/style.css');
+    wp_enqueue_style('estilos-personaje', get_stylesheet_directory_uri() . '/css/personaje.css');
+    wp_enqueue_style('estilos-inventario', get_stylesheet_directory_uri() . '/css/inventario.css');
+	wp_enqueue_style('estilos-hoja-personaje', get_stylesheet_directory_uri() . '/css/hoja-personaje.css');
+
+}
+
+add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
+
+
+// Mover extracto dentro de entry-content
+add_action('wp_footer', function(){
+  if (is_category()) : ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!document.body.classList.contains('archive')) return;
+      document.querySelectorAll('.ast-article-post').forEach(function (article) {
+        const exWrap = article.querySelector('.ast-excerpt-container');
+        const entry  = article.querySelector('.entry-content.clear');
+        if (exWrap) exWrap.classList.add('entry-content', 'clear');
+        if (entry && entry.textContent.trim() === '') entry.remove();
+      });
+    });
+    </script>
+  <?php endif;
+});
+
+/** ========= Placeholders por categoría ========= **/
+
+// Mapea slugs de categoría => ID de la imagen placeholder (Mediateca)
+function drak_placeholder_map() {
+    return array(
+        'npc'     => 2872,  // <— pon aquí ID numérico
+        'lugares' => 2873,
+        'pj'      => 2872,
+        'diario'  => 0,
+        'default' => 0,
+    );
+}
+
+// Devuelve el placeholder correcto en base a las categorías del post
+function drak_pick_placeholder_for_post( $post_id ) {
+    $map = drak_placeholder_map();
+    $cats = wp_get_post_categories( $post_id, array('fields'=>'all') );
+    foreach ( $cats as $c ) {
+        $slug = get_category( $c )->slug;
+        if ( isset($map[$slug]) && intval($map[$slug]) > 0 ) {
+            return intval($map[$slug]);
+        }
+    }
+    return isset($map['default']) ? intval($map['default']) : 0;
+}
+
+// 1) Al guardar post: si no hay miniatura, pone la de placeholder
+add_action('save_post', function($post_id, $post, $update){
+    if ( wp_is_post_revision($post_id) ) return;
+    if ( $post->post_type !== 'post' ) return;
+    if ( has_post_thumbnail($post_id) ) return;
+
+    $ph = drak_pick_placeholder_for_post($post_id);
+    if ( $ph ) {
+        set_post_thumbnail( $post_id, $ph );
+    }
+}, 10, 3);
+
+// 2) Endpoint manual: https://tusitio.com/?set_placeholders=1
+add_action('template_redirect', function(){
+    if ( ! isset($_GET['set_placeholders']) ) return;
+
+    $count = 0;
+    $map = drak_placeholder_map();
+
+    $q = new WP_Query(array(
+        'post_type'      => 'post',
+        'post_status'    => array('publish','draft','pending','future','private'),
+        'posts_per_page' => -1,
+        'meta_query'     => array(
+            'relation' => 'OR',
+            array( 'key' => '_thumbnail_id', 'compare' => 'NOT EXISTS' ),
+            array( 'key' => '_thumbnail_id', 'value' => '0', 'compare' => '=' ),
+            array( 'key' => '_thumbnail_id', 'value' => '',  'compare' => '=' ),
+        ),
+        'fields'         => 'ids',
+    ));
+
+    foreach ( $q->posts as $pid ) {
+        $ph = drak_pick_placeholder_for_post($pid);
+        if ( $ph ) { set_post_thumbnail($pid, $ph); $count++; }
+    }
+
+    wp_die( sprintf('Placeholders aplicados a %d entradas.', $count) );
+});
+
+/**
+ * Forzar que la miga "Wiki" enlace a /wiki/ (Astra breadcrumb nativo)
+ */
+add_filter( 'astra_the_breadcrumb', 'drak_fix_wiki_breadcrumb_to_page', 20 );
+function drak_fix_wiki_breadcrumb_to_page( $html ) {
+
+    // Localiza el enlace real de la categoría "wiki" (por si cambia el dominio o el slug)
+    $term = get_term_by( 'slug', 'wiki', 'category' );
+    if ( $term && ! is_wp_error( $term ) ) {
+        $term_link = get_term_link( $term );               // p.ej. https://adayfs.com/category/wiki/
+        $target    = home_url( '/wiki/' );                 // p.ej. https://adayfs.com/wiki/
+
+        // Reemplaza el enlace en el HTML final del breadcrumb
+        $html = str_replace( esc_url( $term_link ), esc_url( $target ), $html );
+
+        // Por si hay variaciones con/ sin barra final (algunos sitios la quitan)
+        $html = str_replace( untrailingslashit( esc_url( $term_link ) ), esc_url( $target ), $html );
+    }
+
+    return $html;
+}
+
+/**
+ * 1) Cambiar el enlace del item "Wiki" en las migas de Astra.
+ *    (Astra usa astra_breadcrumb_trail_items para construir el trail)
+ */
+add_filter( 'astra_breadcrumb_trail_items', 'drak_fix_wiki_breadcrumb_items', 20, 2 );
+function drak_fix_wiki_breadcrumb_items( $items, $args ) {
+	$target    = esc_url( home_url( '/wiki/' ) );
+
+	// Si existe el término "wiki", cogemos su URL real por si cambia el dominio/estructura.
+	$src_term  = get_term_by( 'slug', 'wiki', 'category' );
+	$src_url   = $src_term && ! is_wp_error( $src_term ) ? esc_url( get_term_link( $src_term ) ) : '';
+
+	foreach ( $items as &$it ) {
+		// Caso ideal: encontramos exactamente la URL del término.
+		if ( $src_url && strpos( $it, $src_url ) !== false ) {
+			$it = str_replace( $src_url, $target, $it );
+			continue;
+		}
+		// Fallback robusto: cualquier /category/wiki/ (con o sin barra final).
+		if ( preg_match( '~href=["\']([^"\']+/category/wiki/?)["\']~i', $it ) ) {
+			$it = preg_replace( '~href=["\']([^"\']+/category/wiki/?)["\']~i', 'href="'.$target.'"', $it );
+		}
+	}
+	return $items;
+}
+
+/**
+ * 2) Redirección SEO: si alguien entra a /category/wiki/, lo enviamos a /wiki/
+ */
+add_action( 'template_redirect', function () {
+	if ( is_category( 'wiki' ) ) {
+		wp_redirect( home_url( '/wiki/' ), 301 );
+		exit;
+	}
+} );
+
+
+// Mostrar metadatos en entradas de categoría 'quests'
+add_filter('the_content', 'mostrar_campos_quest_en_contenido');
+function mostrar_campos_quest_en_contenido($content) {
+    if (is_single() && has_category('quests')) {
+        $estado     = get_post_meta(get_the_ID(), 'estado_de_la_mision', true);
+        $encargado  = get_post_meta(get_the_ID(), 'encargado', true);
+        $ubicacion  = get_post_meta(get_the_ID(), 'ubicacion', true);
+
+        $npc_url    = $encargado ? home_url('/wiki/npc/' . sanitize_title($encargado)) : '';
+        $lugar_url  = $ubicacion ? home_url('/wiki/lugares/' . sanitize_title($ubicacion)) : '';
+
+        ob_start();
+        echo '<div class="quest-meta">';
+
+        if ($estado) {
+            $estado_clase = strtolower(str_replace(' ', '-', $estado));
+            echo '<p class="estado estado-' . esc_attr($estado_clase) . '">Estado: ' . esc_html($estado) . '</p>';
+        }
+
+        if ($encargado) {
+            echo '<p class="encargado">Encargado: <a href="' . esc_url($npc_url) . '">' . esc_html($encargado) . '</a></p>';
+        }
+
+        if ($ubicacion) {
+            echo '<p class="ubicacion">Ubicación: <a href="' . esc_url($lugar_url) . '">' . esc_html($ubicacion) . '</a></p>';
+        }
+
+        echo '<hr></div>';
+        return ob_get_clean() . $content;
+    }
+
+    return $content;
+}
+
+add_action('wp_head', function () {
+    ?>
+    <style>
+    .estado-activa {
+      color: #39ff14 !important;
+    }
+    .estado-completada {
+      color: #66ccff !important;
+    }
+    .estado-fallida {
+      color: #ff4c4c !important;
+    }
+    </style>
+    <?php
+});
+
+function renderizar_inventario_personaje($post_id) {
+    ob_start();
+
+    if (!$post_id) return '';
+
+    // Guardado del formulario
+    if (isset($_POST['mainpack_guardar']) && isset($_POST['post_id']) && intval($_POST['post_id']) === $post_id) {
+        for ($i = 1; $i <= 8; $i++) {
+            $campo = 'mainpack_slot_' . $i;
+            $valor = sanitize_text_field($_POST[$campo]);
+            update_field($campo, $valor, $post_id);
+        }
+        echo '<div class="mensaje-confirmacion">✅ Inventario actualizado correctamente.</div>';
+    }
+
+    echo '<div class="mainpack-container">';
+    echo '<form method="post" id="mainpack-formulario" class="formulario-inventario">';
+    for ($i = 1; $i <= 8; $i++) {
+        $campo = 'mainpack_slot_' . $i;
+        $valor = get_field($campo, $post_id);
+        echo '<div class="inventory-slot" data-slot="' . $i . '">';
+        echo '<span class="slot-label">Slot ' . $i . ':</span>';
+        echo '<p class="slot-content ' . (empty($valor) ? 'empty' : '') . '" id="texto_' . $i . '">' . (!empty($valor) ? esc_html($valor) : '(vacío)') . '</p>';
+        echo '<input type="hidden" name="' . esc_attr($campo) . '" id="input_slot_' . $i . '" value="' . esc_attr($valor) . '">';
+        echo '<button type="button" class="add-item" data-slot="' . $i . '" data-personaje="' . esc_attr($post_id) . '">＋</button>';
+        echo '<button type="button" class="remove-item">−</button>';
+        echo '</div>';
+    }
+    echo '<input type="hidden" name="post_id" value="' . esc_attr($post_id) . '">';
+    echo '<div class="boton-centrao"><button type="submit" name="mainpack_guardar">Guardar Inventario</button></div>';
+    echo '</form>';
+    echo '</div>';
+
+    return ob_get_clean();
+}
+
+// RENDERIZAR HOJA DE PERSONAJE____________________________________________________________________
+
+function renderizar_hoja_personaje($post_id) {
+    if (!$post_id) return '';
+
+    // Guardado del formulario
+    if (isset($_POST['hoja_guardar']) && intval($_POST['post_id']) === $post_id) {
+        $campos = [
+            // Características + mods
+            'cs_fuerza', 'cs_fuerza_mod',
+            'cs_destreza', 'cs_destreza_mod',
+            'cs_constitucion', 'cs_constitucion_mod',
+            'cs_inteligencia', 'cs_inteligencia_mod',
+            'cs_sabiduria', 'cs_sabiduria_mod',
+            'cs_carisma', 'cs_carisma_mod',
+            'cs_proeficiencia',
+
+            // Habilidades
+            'cs_skill_acrobacias',
+            'cs_skill_atletismo',
+            'cs_skill_juego_manos',
+            'cs_skill_sigilo',
+            'cs_skill_arcanos',
+            'cs_skill_historia',
+            'cs_skill_investigacion',
+            'cs_skill_naturaleza',
+            'cs_skill_religion',
+            'cs_skill_trato_animales',
+            'cs_skill_perspicacia',
+            'cs_skill_medicina',
+            'cs_skill_percepcion',
+            'cs_skill_supervivencia',
+            'cs_skill_engano',
+            'cs_skill_intimidacion',
+            'cs_skill_interpretacion',
+            'cs_skill_persuasion',
+
+            // Competencias en habilidades
+            'cs_prof_acrobacias',
+            'cs_prof_atletismo',
+            'cs_prof_juego_manos',
+            'cs_prof_sigilo',
+            'cs_prof_arcanos',
+            'cs_prof_historia',
+            'cs_prof_investigacion',
+            'cs_prof_naturaleza',
+            'cs_prof_religion',
+            'cs_prof_trato_animales',
+            'cs_prof_perspicacia',
+            'cs_prof_medicina',
+            'cs_prof_percepcion',
+            'cs_prof_supervivencia',
+            'cs_prof_engano',
+            'cs_prof_intimidacion',
+            'cs_prof_interpretacion',
+            'cs_prof_persuasion',
+        ];
+
+        foreach ($campos as $campo) {
+            if (isset($_POST[$campo])) {
+                $valor = sanitize_text_field($_POST[$campo]);
+                update_field($campo, $valor, $post_id);
+            } else {
+                // Para las competencias (checkbox tipo circulito) que no envían valor si se desmarcan
+                if (strpos($campo, 'cs_prof_') === 0) {
+                    update_field($campo, '0', $post_id);
+                }
+            }
+        }
+
+        echo '<div class="mensaje-confirmacion">✅ Hoja de personaje actualizada.</div>';
+    }
+
+    // Cargar valores actuales
+    $keys = [
+        'cs_fuerza',
+        'cs_fuerza_mod',
+        'cs_destreza',
+        'cs_destreza_mod',
+        'cs_constitucion',
+        'cs_constitucion_mod',
+        'cs_inteligencia',
+        'cs_inteligencia_mod',
+        'cs_sabiduria',
+        'cs_sabiduria_mod',
+        'cs_carisma',
+        'cs_carisma_mod',
+        'cs_proeficiencia',
+
+        'cs_skill_acrobacias',
+        'cs_skill_atletismo',
+        'cs_skill_juego_manos',
+        'cs_skill_sigilo',
+        'cs_skill_arcanos',
+        'cs_skill_historia',
+        'cs_skill_investigacion',
+        'cs_skill_naturaleza',
+        'cs_skill_religion',
+        'cs_skill_trato_animales',
+        'cs_skill_perspicacia',
+        'cs_skill_medicina',
+        'cs_skill_percepcion',
+        'cs_skill_supervivencia',
+        'cs_skill_engano',
+        'cs_skill_intimidacion',
+        'cs_skill_interpretacion',
+        'cs_skill_persuasion',
+
+        'cs_prof_acrobacias',
+        'cs_prof_atletismo',
+        'cs_prof_juego_manos',
+        'cs_prof_sigilo',
+        'cs_prof_arcanos',
+        'cs_prof_historia',
+        'cs_prof_investigacion',
+        'cs_prof_naturaleza',
+        'cs_prof_religion',
+        'cs_prof_trato_animales',
+        'cs_prof_perspicacia',
+        'cs_prof_medicina',
+        'cs_prof_percepcion',
+        'cs_prof_supervivencia',
+        'cs_prof_engano',
+        'cs_prof_intimidacion',
+        'cs_prof_interpretacion',
+        'cs_prof_persuasion',
+    ];
+
+    $datos = [];
+    foreach ($keys as $k) {
+        $datos[$k] = get_field($k, $post_id);
+    }
+
+    // Definimos grupos de habilidades por característica, ordenados por nº de habilidades (más a menos)
+    $skill_groups = [
+        'Sabiduría' => [
+            ['label' => 'Trato con Animales', 'skill' => 'cs_skill_trato_animales', 'prof' => 'cs_prof_trato_animales'],
+            ['label' => 'Perspicacia',        'skill' => 'cs_skill_perspicacia',    'prof' => 'cs_prof_perspicacia'],
+            ['label' => 'Medicina',           'skill' => 'cs_skill_medicina',       'prof' => 'cs_prof_medicina'],
+            ['label' => 'Percepción',         'skill' => 'cs_skill_percepcion',     'prof' => 'cs_prof_percepcion'],
+            ['label' => 'Supervivencia',      'skill' => 'cs_skill_supervivencia',  'prof' => 'cs_prof_supervivencia'],
+        ],
+        'Inteligencia' => [
+            ['label' => 'Arcanos',        'skill' => 'cs_skill_arcanos',       'prof' => 'cs_prof_arcanos'],
+            ['label' => 'Historia',       'skill' => 'cs_skill_historia',      'prof' => 'cs_prof_historia'],
+            ['label' => 'Investigación',  'skill' => 'cs_skill_investigacion', 'prof' => 'cs_prof_investigacion'],
+            ['label' => 'Naturaleza',     'skill' => 'cs_skill_naturaleza',    'prof' => 'cs_prof_naturaleza'],
+            ['label' => 'Religión',       'skill' => 'cs_skill_religion',      'prof' => 'cs_prof_religion'],
+        ],
+        'Carisma' => [
+            ['label' => 'Engaño',         'skill' => 'cs_skill_engano',         'prof' => 'cs_prof_engano'],
+            ['label' => 'Intimidación',   'skill' => 'cs_skill_intimidacion',   'prof' => 'cs_prof_intimidacion'],
+            ['label' => 'Interpretación', 'skill' => 'cs_skill_interpretacion', 'prof' => 'cs_prof_interpretacion'],
+            ['label' => 'Persuasión',     'skill' => 'cs_skill_persuasion',     'prof' => 'cs_prof_persuasion'],
+        ],
+        'Destreza' => [
+            ['label' => 'Acrobacias',     'skill' => 'cs_skill_acrobacias',    'prof' => 'cs_prof_acrobacias'],
+            ['label' => 'Juego de Manos', 'skill' => 'cs_skill_juego_manos',   'prof' => 'cs_prof_juego_manos'],
+            ['label' => 'Sigilo',         'skill' => 'cs_skill_sigilo',        'prof' => 'cs_prof_sigilo'],
+        ],
+        'Fuerza' => [
+            ['label' => 'Atletismo',      'skill' => 'cs_skill_atletismo',     'prof' => 'cs_prof_atletismo'],
+        ],
+    ];
+
+    ob_start();
+    ?>
+    <div class="hoja-personaje-container">
+      <form method="post" class="formulario-hoja-personaje">
+        <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>">
+
+        <!-- CARACTERÍSTICAS -->
+        <h3 class="subtitulo-hoja-personaje">Características</h3>
+        <div class="stats-header">
+          <p class="stats-info">Valores base y modificadores</p>
+          <button type="button" id="btn-modificar-hoja" class="btn-modificar-hoja">
+            Modificar hoja
+          </button>
+        </div>
+
+        <?php
+        $filas = [
+          'Fuerza'              => ['cs_fuerza', 'cs_fuerza_mod'],
+          'Destreza'            => ['cs_destreza', 'cs_destreza_mod'],
+          'Constitución'        => ['cs_constitucion', 'cs_constitucion_mod'],
+          'Inteligencia'        => ['cs_inteligencia', 'cs_inteligencia_mod'],
+          'Sabiduría'           => ['cs_sabiduria', 'cs_sabiduria_mod'],
+          'Carisma'             => ['cs_carisma', 'cs_carisma_mod'],
+          'Bonus Proeficiencia' => ['cs_proeficiencia', null],
+        ];
+
+        foreach ($filas as $label => $keys_row) :
+            $campo_valor = $keys_row[0];
+            $campo_mod   = $keys_row[1];
+            $valor       = isset($datos[$campo_valor]) ? $datos[$campo_valor] : '';
+            $mod         = $campo_mod ? (isset($datos[$campo_mod]) ? $datos[$campo_mod] : '') : '';
+        ?>
+          <div class="fila-stat">
+            <label class="stat-label">
+              <?php echo esc_html($label); ?>
+            </label>
+
+            <!-- Valor principal como <p> -->
+            <p
+              class="stat-main-display"
+              id="display_<?php echo esc_attr($campo_valor); ?>"
+            ></p>
+
+            <span class="stat-mod-text">
+              <?php echo ($campo_valor === 'cs_proeficiencia') ? 'Bonus' : 'Mod'; ?>
+            </span>
+
+            <!-- Modificador / Bonus como <p> -->
+            <p
+              class="stat-mod-display"
+              id="display_<?php echo esc_attr($campo_mod ? $campo_mod : $campo_valor . '_mod'); ?>"
+            ></p>
+
+            <!-- Inputs ocultos -->
+            <input
+              type="hidden"
+              id="<?php echo esc_attr($campo_valor); ?>"
+              name="<?php echo esc_attr($campo_valor); ?>"
+              value="<?php echo esc_attr($valor); ?>"
+            >
+
+            <?php if ($campo_mod): ?>
+              <input
+                type="hidden"
+                id="<?php echo esc_attr($campo_mod); ?>"
+                name="<?php echo esc_attr($campo_mod); ?>"
+                value="<?php echo esc_attr($mod); ?>"
+              >
+            <?php endif; ?>
+          </div>
+        <?php endforeach; ?>
+
+        <!-- HABILIDADES AGRUPADAS -->
+        <h3 class="subtitulo-hoja-personaje">Habilidades</h3>
+        <p class="skills-info">Bonos totales (modificador de característica + proeficiencia si aplica)</p>
+
+        <div class="skills-list">
+          <?php foreach ($skill_groups as $stat_label => $skills) : ?>
+            <div class="skills-group">
+              <h4 class="skills-group-title"><?php echo esc_html($stat_label); ?></h4>
+              <hr class="skills-group-separator">
+
+<?php foreach ($skills as $skill) :
+    $s_field = $skill['skill'];
+    $p_field = $skill['prof'];
+
+    $s_val    = isset($datos[$s_field]) ? $datos[$s_field] : '';
+    $raw_prof = isset($datos[$p_field]) ? $datos[$p_field] : 0;
+
+    // ACF puede devolver 1, "1", true... lo normalizamos a booleano
+    $es_prof = ($raw_prof == 1); // OJO: comparación no estricta a propósito
+?>
+  <div class="fila-skill">
+    <!-- Toggle de proeficiencia (circulito) -->
+    <button
+      type="button"
+      class="skill-prof-toggle"
+      data-skill="<?php echo esc_attr($s_field); ?>"
+    >
+      <span class="skill-prof-circle<?php echo $es_prof ? ' skill-prof-active' : ''; ?>"></span>
+    </button>
+
+    <span class="skill-label"><?php echo esc_html($skill['label']); ?></span>
+
+    <p class="skill-display" id="display_<?php echo esc_attr($s_field); ?>"></p>
+
+    <input
+      type="hidden"
+      id="<?php echo esc_attr($s_field); ?>"
+      name="<?php echo esc_attr($s_field); ?>"
+      value="<?php echo esc_attr($s_val); ?>"
+    >
+    <input
+      type="hidden"
+      id="prof_<?php echo esc_attr($s_field); ?>"
+      name="<?php echo esc_attr($p_field); ?>"
+      value="<?php echo $es_prof ? '1' : '0'; ?>"
+    >
+  </div>
+<?php endforeach; ?>
+
+            </div>
+          <?php endforeach; ?>
+        </div>
+
+        <!-- Modal para editar CARACTERÍSTICAS PRINCIPALES -->
+        <div id="stats-overlay" class="modal-overlay" style="display:none;">
+          <div class="modal-contenido">
+            <span class="close-stats-popup">&times;</span>
+            <h3>Modificar características</h3>
+
+            <div id="stats-fields">
+              <?php
+              $stats_modal = [
+                'Fuerza'              => 'cs_fuerza',
+                'Destreza'            => 'cs_destreza',
+                'Constitución'        => 'cs_constitucion',
+                'Inteligencia'        => 'cs_inteligencia',
+                'Sabiduría'           => 'cs_sabiduria',
+                'Carisma'             => 'cs_carisma',
+                'Bonus Proeficiencia' => 'cs_proeficiencia',
+              ];
+              foreach ($stats_modal as $label => $field) :
+              ?>
+                <div class="stats-modal-row">
+                  <label><?php echo esc_html($label); ?></label>
+                  <input
+                    type="number"
+                    class="stats-modal-input"
+                    data-stat="<?php echo esc_attr($field); ?>"
+                    <?php echo ($field === 'cs_proeficiencia') ? 'min="0" max="9"' : 'min="0" max="99"'; ?>
+                  >
+                </div>
+              <?php endforeach; ?>
+            </div>
+
+            <button type="button" id="stats-apply" class="btn-primary">
+              Aplicar cambios
+            </button>
+          </div>
+        </div>
+
+        <div class="boton-centrao">
+          <button type="submit" name="hoja_guardar">Guardar Hoja</button>
+        </div>
+      </form>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+
+
+
+//FIN RENDERIZAR HOJA DE PERSONAJE____________________________________________________________________
+
+
+
+
+
+add_action('wp_footer', function () {
+    if (!is_page()) return;
+    ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const overlay       = document.getElementById('item-form-overlay');
+  const form          = document.getElementById('item-form');
+  if (!overlay || !form) return; // No estamos en la página de inventario
+
+  const nameInput     = document.getElementById('item-name');
+  const nameSelect    = document.getElementById('item-name-select');
+  const sizeSelect    = document.getElementById('item-size');
+  const qtySelect     = document.getElementById('item-qty');
+  const currentSlot   = document.getElementById('current-slot');
+  const slotNumero    = document.getElementById('slot-numero');
+
+  const deleteOverlay = document.getElementById('delete-form-overlay');
+  const deleteForm    = document.getElementById('delete-form');
+  const deleteContent = document.getElementById('delete-form-content');
+
+  // Rellenar selector de cantidad 1..10 (si está vacío)
+  if (qtySelect && !qtySelect.options.length) {
+    for (let i = 1; i <= 10; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = i;
+      qtySelect.appendChild(opt);
+    }
+  }
+
+  function toggleQtyField() {
+    const isSmall = sizeSelect.value === 'pequeño';
+    qtySelect.disabled = !isSmall;
+  }
+
+  sizeSelect.addEventListener('change', toggleQtyField);
+  toggleQtyField();
+
+  // Abrir modal de añadir ("+")
+  document.querySelectorAll('.add-item').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const slot = this.closest('.inventory-slot').dataset.slot;
+      currentSlot.value = slot;
+      if (slotNumero) slotNumero.textContent = slot;
+
+      nameInput.value = '';
+      if (nameSelect) nameSelect.value = '';
+      sizeSelect.value = 'normal';
+      qtySelect.value = '1';
+      toggleQtyField();
+
+      overlay.style.display = 'flex';
+    });
+  });
+
+  // Cerrar modal de añadir
+  const closeAdd = document.querySelector('.close-popup');
+  if (closeAdd) {
+    closeAdd.addEventListener('click', function () {
+      overlay.style.display = 'none';
+    });
+  }
+
+  // Si elige de la lista, rellenamos el nombre
+  if (nameSelect) {
+    nameSelect.addEventListener('change', function () {
+      if (this.value) {
+        nameInput.value = this.value;
+      }
+    });
+  }
+
+  // Enviar formulario de añadir
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const size = sizeSelect.value;
+    const qty  = parseInt(qtySelect.value, 10) || 0;
+    const slot = currentSlot.value;
+
+    if (!name || !size || (size === 'pequeño' && !qty)) {
+      alert('Todos los campos son obligatorios.');
+      return;
+    }
+
+    const input = document.getElementById('input_slot_' + slot);
+    const p     = document.getElementById('texto_' + slot);
+    const currentVal = (input.value || '').trim();
+    const items = currentVal ? currentVal.split(' - ') : [];
+
+    const hayObjetoNormal = items.length === 1 && !items[0].includes('x');
+
+    if (size === 'normal') {
+      // Solo puede haber un objeto normal y nada más
+      if (items.length > 0) {
+        alert('Este slot ya tiene objetos. Elimina antes de añadir uno normal.');
+        return;
+      }
+      input.value = name;
+      p.textContent = name;
+    } else {
+      // Tamaño pequeño
+      if (hayObjetoNormal) {
+        alert('No puedes añadir objetos pequeños si ya hay uno normal.');
+        return;
+      }
+
+      // Parsear objetos pequeños existentes
+      const parsed = items
+        .map(function (item) {
+          const m = item.match(/^(.+?) x (\d+)$/);
+          if (m) {
+            return { nombre: m[1].trim(), cantidad: parseInt(m[2], 10) };
+          }
+          return null;
+        })
+        .filter(Boolean);
+
+      const totalExistente = parsed.reduce(function (sum, it) {
+        return sum + it.cantidad;
+      }, 0);
+
+      let existente = parsed.find(function (it) {
+        return it.nombre === name;
+      });
+
+      let nuevoTotal = totalExistente + qty;
+      if (nuevoTotal > 10) {
+        alert('Máximo 10 objetos pequeños por slot.');
+        return;
+      }
+
+      if (existente) {
+        existente.cantidad += qty;
+      } else {
+        parsed.push({ nombre: name, cantidad: qty });
+      }
+
+      const nuevosItems = parsed.map(function (it) {
+        return it.nombre + ' x ' + it.cantidad;
+      });
+
+      input.value = nuevosItems.join(' - ');
+      p.textContent = input.value;
+    }
+
+    p.classList.remove('empty');
+    overlay.style.display = 'none';
+  });
+
+  // ----------------- ELIMINAR OBJETOS ("-") -----------------
+
+  document.querySelectorAll('.remove-item').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const slot = this.closest('.inventory-slot').dataset.slot;
+      const input = document.getElementById('input_slot_' + slot);
+      const currentVal = (input.value || '').trim();
+      const items = currentVal ? currentVal.split(' - ') : [];
+
+      deleteContent.innerHTML = '';
+      deleteContent.dataset.slot = slot;
+
+      if (!items.length) {
+        deleteContent.innerHTML = '<p>No hay objetos en este slot.</p>';
+        deleteOverlay.style.display = 'flex';
+        return;
+      }
+
+      items.forEach(function (item) {
+        const match = item.match(/^(.+?)\s*x\s*(\d+)$/);
+        const wrapper = document.createElement('div');
+
+        if (match) {
+          const name = match[1].trim();
+          const qty  = parseInt(match[2], 10);
+
+          wrapper.innerHTML = `
+            <label>${name}</label>
+            <select data-name="${name}">
+              ${Array.from({length: qty + 1}, (_, i) => `<option value="${i}">${i}</option>`).join('')}
+            </select>
+          `;
+        } else {
+          wrapper.innerHTML = `
+            <label>${item}</label>
+            <input type="checkbox" data-name="${item}"> Eliminar
+          `;
+        }
+
+        deleteContent.appendChild(wrapper);
+      });
+
+      deleteOverlay.style.display = 'flex';
+    });
+  });
+
+  const closeDelete = document.querySelector('.close-delete-popup');
+  if (closeDelete) {
+    closeDelete.addEventListener('click', function () {
+      deleteOverlay.style.display = 'none';
+    });
+  }
+
+  deleteForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const slot  = deleteContent.dataset.slot;
+    const input = document.getElementById('input_slot_' + slot);
+    const p     = document.getElementById('texto_' + slot);
+    const items = (input.value || '').split(' - ').filter(Boolean);
+
+    const newItems = [];
+
+    deleteContent.querySelectorAll('div').forEach(function (div) {
+      const select   = div.querySelector('select');
+      const checkbox = div.querySelector('input[type="checkbox"]');
+
+      if (select) {
+        const name      = select.dataset.name;
+        const removeQty = parseInt(select.value, 10);
+        const itemStr   = items.find(i => i.startsWith(name + ' x'));
+        if (itemStr) {
+          const currentQty = parseInt(itemStr.split('x')[1], 10);
+          const remaining  = currentQty - removeQty;
+          if (remaining > 0) {
+            newItems.push(name + ' x ' + remaining);
+          }
+        }
+      } else if (checkbox) {
+        if (!checkbox.checked) {
+          newItems.push(checkbox.dataset.name);
+        }
+      }
+    });
+
+    input.value = newItems.join(' - ');
+    if (newItems.length) {
+      p.textContent = input.value;
+      p.classList.remove('empty');
+    } else {
+      p.textContent = '(vacío)';
+      p.classList.add('empty');
+    }
+
+    deleteOverlay.style.display = 'none';
+  });
+});
+</script>
+
+
+
+
+<?php
+});
+
+function registrar_cpt_personaje() {
+    $labels = array(
+        'name' => 'Personajes',
+        'singular_name' => 'Personaje',
+        'add_new' => 'Añadir nuevo',
+        'add_new_item' => 'Añadir nuevo personaje',
+        'edit_item' => 'Editar personaje',
+        'new_item' => 'Nuevo personaje',
+        'view_item' => 'Ver personaje',
+        'search_items' => 'Buscar personajes',
+        'not_found' => 'No se encontraron personajes',
+        'not_found_in_trash' => 'No hay personajes en la papelera',
+        'menu_name' => 'Personajes'
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => false,
+        'rewrite' => array('slug' => 'personaje'),
+        'show_in_rest' => true,
+        'supports' => array('title', 'editor', 'thumbnail'),
+        'menu_icon' => 'dashicons-groups',
+        'capability_type' => 'post',
+    );
+
+    register_post_type('personaje', $args);
+}
+add_action('init', 'registrar_cpt_personaje');
+
+// Control de acceso: solo el usuario asignado puede ver sus personajes
+add_action('template_redirect', function () {
+    if ( is_singular() && has_category('personajes') ) {
+
+        if ( current_user_can('administrator') || is_admin() ) return;
+
+        $asignado = get_field('jugador_asociado'); // ACF user field
+        $actual   = wp_get_current_user();
+
+        if ( ! is_user_logged_in() || ! $actual || $actual->ID !== $asignado ) {
+            auth_redirect(); // fuerza login
+            exit;
+        }
+    }
+});
+
+// Registrar tipo de contenido personalizado 'personaje'
+function registrar_tipo_contenido_personaje() {
+    $args = array(
+        'labels' => array(
+            'name' => 'Personajes',
+            'singular_name' => 'Personaje'
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'personaje'),
+        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields', 'excerpt'),
+        'show_in_rest' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-groups'
+    );
+    register_post_type('personaje', $args);
+}
+add_action('init', 'registrar_tipo_contenido_personaje');
+
+// Ocultar barra de administración para usuarios no administradores
+add_action('after_setup_theme', function () {
+    if (!current_user_can('administrator') && !is_admin()) {
+        show_admin_bar(false);
+    }
+});
+
+// Redirigir /pj al login si no está logueado
+function redirigir_pj_si_no_logueado() {
+    if (is_page('pj') && !is_user_logged_in()) {
+        auth_redirect();
+    }
+}
+add_action('template_redirect', 'redirigir_pj_si_no_logueado');
+
+// Shortcode para mostrar personajes asociados a un usuario
+function mostrar_personajes_del_usuario() {
+    if (!is_user_logged_in()) {
+        wp_login_form(['redirect' => home_url('/pj/')]);
+        return '';
+    }
+
+    $usuario = wp_get_current_user();
+    $usuario_id = $usuario->ID;
+
+    // Consulta correcta sobre CPT personaje y campo ACF usuario
+    $args = [
+        'post_type' => 'personaje',
+        'posts_per_page' => -1,
+        'meta_query' => [[
+            'key' => 'jugador_asociado',
+            'value' => $usuario_id,
+            'compare' => '='
+        ]]
+    ];
+    $query = new WP_Query($args);
+
+    ob_start();
+
+    echo '<div class="bienvenida-usuario">Bienvenido, <strong>' . esc_html($usuario->display_name) . '</strong></div>';
+
+    if ($query->have_posts()) {
+        echo '<div class="lista-personajes">';
+        while ($query->have_posts()) {
+            $query->the_post();
+            echo '<div class="tarjeta-personaje">';
+            if (has_post_thumbnail()) {
+                echo '<div class="avatar-personaje">';
+                echo '<a href="' . get_permalink() . '">' . get_the_post_thumbnail(get_the_ID(), 'medium') . '</a>';
+                echo '</div>';
+            }
+            echo '<h3 class="nombre-personaje"><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>';
+            echo '</div>';
+        }
+        echo '</div>';
+    } else {
+        echo '<p>No tienes personajes asignados todavía.</p>';
+    }
+
+    wp_reset_postdata();
+    return ob_get_clean();
+}
+add_shortcode('personajes_usuario', 'mostrar_personajes_del_usuario');
+
+
+add_shortcode('galeria_personajes_usuario', function () {
+    if (!is_user_logged_in()) {
+        wp_redirect(wp_login_url(home_url('/pj')));
+        exit;
+    }
+
+    $user_id = get_current_user_id();
+    $usuario = wp_get_current_user();
+
+    $args = array(
+        'post_type' => 'personaje',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            array(
+                'key' => 'jugador_asociado',
+                'value' => $user_id,
+                'compare' => '='
+            )
+        )
+    );
+
+    $query = new WP_Query($args);
+
+    ob_start();
+
+    echo '<div class="bienvenida-usuario">Bienvenido, <strong>' . esc_html($usuario->display_name) . '</strong></div>';
+
+    if ($query->have_posts()) {
+      echo '<div class="galeria-personajes">';
+while ($query->have_posts()) {
+    $query->the_post();
+    $img_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+    $link = get_permalink(get_the_ID());  // Enlace a single-personaje.php
+
+    echo '<a href="' . esc_url($link) . '" class="personaje-card">';
+    echo '<div class="imagen-personaje" style="background-image: url(' . esc_url($img_url) . ')"></div>';
+    echo '<div class="nombre-personaje">' . esc_html(get_the_title()) . '</div>';
+    echo '</a>';
+}
+echo '</div>';
+
+    } else {
+        echo '<p class="sin-personajes">No tienes personajes asignados todavía.</p>';
+    }
+
+    wp_reset_postdata();
+    return ob_get_clean();
+});
+
+
+
+add_action('add_meta_boxes', function() {
+    add_meta_box('postimagediv', __('Imagen destacada'), 'post_thumbnail_meta_box', 'personaje', 'side', 'low');
+});
+
+function custom_personaje_inventory_rewrite() {
+    add_rewrite_rule(
+        '^personaje/([^/]+)/inventario/?',
+        'index.php?personaje=$matches[1]&inventario_personaje=1',
+        'top'
+    );
+}
+add_action('init', 'custom_personaje_inventory_rewrite');
+
+function add_inventory_query_var($vars) {
+    $vars[] = 'inventario_personaje';
+    return $vars;
+}
+add_filter('query_vars', 'add_inventory_query_var');
+
+function inventario_personaje_rewrite() {
+    add_rewrite_rule(
+        '^inventario/([^/]+)/?$',
+        'index.php?pagename=inventario-personaje&personaje_slug=$matches[1]',
+        'top'
+    );
+}
+add_action('init', 'inventario_personaje_rewrite');
+
+function inventario_personaje_query_vars($vars) {
+    $vars[] = 'personaje_slug';
+    return $vars;
+}
+add_filter('query_vars', 'inventario_personaje_query_vars');
+
+// Redirección para URLs como /inventario/slug-personaje/
+function ruta_inventario_personaje() {
+    add_rewrite_rule(
+        '^inventario/([^/]+)/?$',
+        'index.php?pagename=inventario&personaje_slug=$matches[1]',
+        'top'
+    );
+}
+add_action('init', 'ruta_inventario_personaje');
+
+// Ruta para URLs como /hoja-personaje/slug-personaje/
+function hoja_personaje_rewrite() {
+    add_rewrite_rule(
+        '^hoja-personaje/([^/]+)/?$',                       // URL amigable
+        'index.php?pagename=hoja-personaje&personaje_slug=$matches[1]', // Página + query var
+        'top'
+    );
+}
+add_action('init', 'hoja_personaje_rewrite');
+
+
+// Permitir variable personalizada en query
+function registrar_query_var_personaje_slug($vars) {
+    $vars[] = 'personaje_slug';
+    return $vars;
+}
+add_filter('query_vars', 'registrar_query_var_personaje_slug');
+// FOOTER CON JS HOJA PERSONAJE____________________________________________________
+add_action('wp_footer', function () {
+    ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.formulario-hoja-personaje');
+  if (!form) return;
+
+  // Características principales
+  const mainStats = [
+    'cs_fuerza',
+    'cs_destreza',
+    'cs_constitucion',
+    'cs_inteligencia',
+    'cs_sabiduria',
+    'cs_carisma',
+    'cs_proeficiencia',
+  ];
+
+  // Pares [stat, mod]
+  const modPairs = [
+    ['cs_fuerza',       'cs_fuerza_mod'],
+    ['cs_destreza',     'cs_destreza_mod'],
+    ['cs_constitucion', 'cs_constitucion_mod'],
+    ['cs_inteligencia', 'cs_inteligencia_mod'],
+    ['cs_sabiduria',    'cs_sabiduria_mod'],
+    ['cs_carisma',      'cs_carisma_mod'],
+  ];
+
+  // Mapeo habilidad -> modificador de característica
+  const skillToMod = {
+    'cs_skill_acrobacias':       'cs_destreza_mod',
+    'cs_skill_atletismo':        'cs_fuerza_mod',
+    'cs_skill_juego_manos':      'cs_destreza_mod',
+    'cs_skill_sigilo':           'cs_destreza_mod',
+    'cs_skill_arcanos':          'cs_inteligencia_mod',
+    'cs_skill_historia':         'cs_inteligencia_mod',
+    'cs_skill_investigacion':    'cs_inteligencia_mod',
+    'cs_skill_naturaleza':       'cs_inteligencia_mod',
+    'cs_skill_religion':         'cs_inteligencia_mod',
+    'cs_skill_trato_animales':   'cs_sabiduria_mod',
+    'cs_skill_perspicacia':      'cs_sabiduria_mod',
+    'cs_skill_medicina':         'cs_sabiduria_mod',
+    'cs_skill_percepcion':       'cs_sabiduria_mod',
+    'cs_skill_supervivencia':    'cs_sabiduria_mod',
+    'cs_skill_engano':           'cs_carisma_mod',
+    'cs_skill_intimidacion':     'cs_carisma_mod',
+    'cs_skill_interpretacion':   'cs_carisma_mod',
+    'cs_skill_persuasion':       'cs_carisma_mod',
+  };
+
+  function computeMod(score) {
+    const n = parseInt(score, 10);
+    if (isNaN(n)) return null;
+    return Math.floor((n - 10) / 2);
+  }
+
+  function setModDisplayClasses(el, val) {
+    el.classList.remove('mod-pos', 'mod-neg', 'mod-zero');
+    if (val === null || val === undefined) return;
+    if (val > 0)      el.classList.add('mod-pos');
+    else if (val < 0) el.classList.add('mod-neg');
+    else              el.classList.add('mod-zero');
+  }
+
+  function updateStatsAndMods() {
+    // Mostrar valor principal
+    mainStats.forEach(function (id) {
+      const hidden  = document.getElementById(id);
+      const display = document.getElementById('display_' + id);
+      if (!hidden || !display) return;
+
+      const raw = (hidden.value || '').trim();
+      display.textContent = raw ? raw : '--';
+    });
+
+    // Calcular modificadores
+    modPairs.forEach(function (pair) {
+      const statId = pair[0];
+      const modId  = pair[1];
+
+      const hiddenStat = document.getElementById(statId);
+      const hiddenMod  = document.getElementById(modId);
+      const displayMod = document.getElementById('display_' + modId);
+
+      if (!hiddenStat || !hiddenMod || !displayMod) return;
+
+      const mod = computeMod(hiddenStat.value);
+      if (mod === null) {
+        hiddenMod.value = '';
+        displayMod.textContent = '--';
+        setModDisplayClasses(displayMod, null);
+        return;
+      }
+
+      hiddenMod.value = mod;
+      displayMod.textContent = (mod > 0 ? '+' + mod : mod.toString());
+      setModDisplayClasses(displayMod, mod);
+    });
+
+    // Bonus de proeficiencia: lo mostramos como "+X"
+    const profHidden  = document.getElementById('cs_proeficiencia');
+    const profDisplay = document.getElementById('display_cs_proeficiencia_mod');
+    if (profHidden && profDisplay) {
+      const raw = (profHidden.value || '').trim();
+      if (!raw) {
+        profDisplay.textContent = '--';
+        setModDisplayClasses(profDisplay, null);
+      } else {
+        const n = parseInt(raw, 10);
+        if (isNaN(n)) {
+          profDisplay.textContent = raw;
+          setModDisplayClasses(profDisplay, null);
+        } else {
+          profDisplay.textContent = (n > 0 ? '+' + n : n.toString());
+          setModDisplayClasses(profDisplay, n);
+        }
+      }
+    }
+  }
+
+  function updateSkills() {
+    const profHiddenBonus = document.getElementById('cs_proeficiencia');
+    const profBonus = profHiddenBonus ? parseInt(profHiddenBonus.value || '0', 10) : 0;
+
+    Object.keys(skillToMod).forEach(function (skillId) {
+      const modId       = skillToMod[skillId];
+      const hiddenSkill = document.getElementById(skillId);
+      const hiddenMod   = document.getElementById(modId);
+      const display     = document.getElementById('display_' + skillId);
+      const hiddenProf  = document.getElementById('prof_' + skillId);
+
+      if (!hiddenSkill || !hiddenMod || !display || !hiddenProf) return;
+
+      const rawMod = (hiddenMod.value || '').trim();
+      const m = parseInt(rawMod, 10);
+      if (isNaN(m)) {
+        hiddenSkill.value = '';
+        display.textContent = '--';
+        setModDisplayClasses(display, null);
+        return;
+      }
+
+      const isProf = hiddenProf.value === '1';
+      const total  = m + (isProf ? (isNaN(profBonus) ? 0 : profBonus) : 0);
+
+      hiddenSkill.value = total;
+      display.textContent = (total > 0 ? '+' + total : total.toString());
+      setModDisplayClasses(display, total);
+    });
+  }
+
+  function recalcAll() {
+    updateStatsAndMods();
+    updateSkills();
+  }
+
+  // Inicializar
+  recalcAll();
+
+  // -------- MODAL: MODIFICAR CARACTERÍSTICAS --------
+  const statsOverlay = document.getElementById('stats-overlay');
+  const btnModificar = document.getElementById('btn-modificar-hoja');
+  const btnCerrar    = document.querySelector('.close-stats-popup');
+  const btnApply     = document.getElementById('stats-apply');
+
+  if (btnModificar && statsOverlay) {
+    btnModificar.addEventListener('click', function () {
+      document.querySelectorAll('.stats-modal-input').forEach(function (input) {
+        const fieldId = input.dataset.stat;
+        const hidden  = document.getElementById(fieldId);
+        input.value   = hidden ? hidden.value : '';
+      });
+      statsOverlay.style.display = 'flex';
+    });
+  }
+
+  if (btnCerrar && statsOverlay) {
+    btnCerrar.addEventListener('click', function () {
+      statsOverlay.style.display = 'none';
+    });
+  }
+
+  if (btnApply && statsOverlay) {
+    btnApply.addEventListener('click', function () {
+      document.querySelectorAll('.stats-modal-input').forEach(function (input) {
+        const fieldId = input.dataset.stat;
+        const hidden  = document.getElementById(fieldId);
+        if (!hidden) return;
+        hidden.value = input.value;
+      });
+      recalcAll();
+      statsOverlay.style.display = 'none';
+    });
+  }
+
+  // -------- CIRCULITOS DE PROEFICIENCIA --------
+  document.querySelectorAll('.skill-prof-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const skillId = this.dataset.skill;
+      const circle  = this.querySelector('.skill-prof-circle');
+      const hidden  = document.getElementById('prof_' + skillId);
+
+      if (!circle || !hidden) return;
+
+      const currentlyActive = circle.classList.contains('skill-prof-active');
+      if (currentlyActive) {
+        circle.classList.remove('skill-prof-active');
+        hidden.value = '0';
+      } else {
+        circle.classList.add('skill-prof-active');
+        hidden.value = '1';
+      }
+
+      updateSkills();
+    });
+  });
+});
+</script>
+<?php
+});
