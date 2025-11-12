@@ -828,11 +828,13 @@
     let featureCache = null;
     let featureCacheKey = '';
     let isLoading = false;
+    let actionsCache = null;
+    let actionsLoading = false;
 
     const tabLabels = {
       features: 'Features & Traits',
       spells: 'Spells',
-      actions: 'Actions',
+      actions: 'Acciones',
       background: 'Background',
     };
 
@@ -1004,8 +1006,88 @@
         return;
       }
 
+      if (tabName === 'actions') {
+        fetchActions();
+        return;
+      }
+
       const label = tabLabels[tabName] || tabName;
       showEmpty(`La sección “${label}” estará disponible próximamente.`);
+    }
+
+    function fetchActions() {
+      if (actionsCache) {
+        renderActions(actionsCache);
+        return;
+      }
+
+      if (actionsLoading) {
+        return;
+      }
+
+      if (typeof window.DND5_API === 'undefined') {
+        showError('No se pudo localizar el endpoint de datos.');
+        return;
+      }
+
+      actionsLoading = true;
+      showLoading();
+
+      const payload = new URLSearchParams({
+        action: 'drak_dnd5_get_actions',
+      });
+
+      fetch(window.DND5_API.ajax_url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: payload,
+      })
+        .then((resp) => resp.json())
+        .then((json) => {
+          actionsLoading = false;
+          if (!json || !json.success) {
+            showError('No se pudieron cargar las acciones.');
+            return;
+          }
+          actionsCache = json.data?.actions || [];
+          renderActions(actionsCache);
+        })
+        .catch(() => {
+          actionsLoading = false;
+          showError('Error de conexión al cargar las acciones.');
+        });
+    }
+
+    function renderActions(list) {
+      if (!list || !list.length) {
+        showEmpty('No hay acciones disponibles.');
+        return;
+      }
+
+      const cards = list
+        .map((action) => {
+          const time = formatActionTime(action.time);
+          const metaParts = [];
+          if (time) metaParts.push(time);
+          if (action.source) metaParts.push(escapeHtml(action.source));
+          const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
+          const body = renderEntries(action.entries || []);
+          return `
+            <article class="feature-card">
+              <h5 class="feature-card__title">${escapeHtml(action.name || 'Acción')}</h5>
+              ${meta}
+              <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+            </article>
+          `;
+        })
+        .join('');
+
+      panelEl.innerHTML = `
+        <section class="character-extended__section">
+          <h4 class="character-extended__section-title">Acciones generales</h4>
+          ${cards}
+        </section>
+      `;
     }
 
     tabs.forEach((btn) => {
@@ -1241,5 +1323,18 @@
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/\"/g, '&quot;');
+  }
+
+  function formatActionTime(timeArray) {
+    if (!Array.isArray(timeArray) || !timeArray.length) {
+      return '';
+    }
+    return timeArray
+      .map((time) => {
+        const number = time.number ?? 1;
+        const unit = time.unit || 'action';
+        return `${number} ${unit}`;
+      })
+      .join(' / ');
   }
 })();

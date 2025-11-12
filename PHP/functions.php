@@ -2108,6 +2108,30 @@ function drak_get_local_dnd_list( $filename, $root_key ) {
     return $cache[ $filename ];
 }
 
+function drak_get_local_dnd_actions() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $path = get_stylesheet_directory() . '/data/dnd-actions.json';
+    if ( ! file_exists( $path ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+    if ( ! is_array( $data ) || empty( $data['actions'] ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $cache = $data['actions'];
+    return $cache;
+}
+
 /**
  * Lee el JSON con los rasgos de clase/subclase.
  */
@@ -2234,6 +2258,13 @@ function drak_dnd5_get_proficiencies() {
 
 add_action( 'wp_ajax_drak_dnd5_get_proficiencies',        'drak_dnd5_get_proficiencies' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_proficiencies', 'drak_dnd5_get_proficiencies' );
+
+function drak_dnd5_get_actions() {
+    $actions = drak_get_local_dnd_actions();
+    wp_send_json_success( [ 'actions' => $actions ] );
+}
+add_action( 'wp_ajax_drak_dnd5_get_actions', 'drak_dnd5_get_actions' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_actions', 'drak_dnd5_get_actions' );
 
 /**
  * AJAX: rasgos combinados (raza + clase + subclase).
