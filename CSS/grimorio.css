@@ -1,0 +1,112 @@
+.contenido-grimorio {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+.titulo-grimorio {
+    margin-bottom: 1.5rem;
+}
+
+.grimorio-formulario {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 1.5rem;
+}
+
+.grimorio-slot-grid h3,
+.grimorio-prepared h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+.grimorio-slot-grid__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.grimorio-slot-column {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
+
+.grimorio-slot-column header {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.grimorio-slot-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: center;
+}
+
+.grimorio-slot-checkboxes label {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.grimorio-slot-checkboxes input {
+    display: none;
+}
+
+.grimorio-slot-checkboxes label span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.15s ease;
+}
+
+.grimorio-slot-checkboxes input:checked + span {
+    background: #39ff14;
+}
+
+.grimorio-prepared__level {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.grimorio-prepared__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.5rem;
+}
+
+.grimorio-prepared__list select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(15, 15, 15, 0.8);
+    color: #fff;
+}
+
+.grimorio-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .grimorio-formulario {
+        padding: 1.25rem;
+    }
+}

@@ -19,7 +19,7 @@ $titulo = get_the_title();
 
 
 
-    <a class="personaje-boton" href="#">Lore</a>
+    <a class="personaje-boton" href="<?php echo home_url('/grimorio/' . get_post_field('post_name', get_the_ID())); ?>">Grimorio</a>
   </div>
 </div>
 

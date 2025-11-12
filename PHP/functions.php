@@ -23,6 +23,7 @@ function child_enqueue_styles() {
     wp_enqueue_style('estilos-personaje', get_stylesheet_directory_uri() . '/css/personaje.css');
     wp_enqueue_style('estilos-inventario', get_stylesheet_directory_uri() . '/css/inventario.css');
 	wp_enqueue_style('estilos-hoja-personaje', get_stylesheet_directory_uri() . '/css/hoja-personaje.css');
+    wp_enqueue_style('estilos-grimorio', get_stylesheet_directory_uri() . '/css/grimorio.css');
 
 }
 
@@ -1622,6 +1623,130 @@ function drak_register_personaje_cpt() {
 
     register_post_type('personaje', $args);
 }
+
+function drak_get_full_caster_slots_table() {
+    return [
+        1 => [1 => 2],
+        2 => [1 => 3],
+        3 => [1 => 4, 2 => 2],
+        4 => [1 => 4, 2 => 3],
+        5 => [1 => 4, 2 => 3, 3 => 2],
+        6 => [1 => 4, 2 => 3, 3 => 3],
+        7 => [1 => 4, 2 => 3, 3 => 3, 4 => 1],
+        8 => [1 => 4, 2 => 3, 3 => 3, 4 => 2],
+        9 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 1],
+        10 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2],
+        11 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1],
+        12 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1],
+        13 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1, 7 => 1],
+        14 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1, 7 => 1],
+        15 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1, 7 => 1, 8 => 1],
+        16 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1, 7 => 1, 8 => 1],
+        17 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 2, 6 => 1, 7 => 1, 8 => 1, 9 => 1],
+        18 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 3, 6 => 1, 7 => 1, 8 => 1, 9 => 1],
+        19 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 3, 6 => 2, 7 => 1, 8 => 1, 9 => 1],
+        20 => [1 => 4, 2 => 3, 3 => 3, 4 => 3, 5 => 3, 6 => 2, 7 => 2, 8 => 1, 9 => 1],
+    ];
+}
+
+function renderizar_grimorio_personaje( $post_id ) {
+    if ( ! $post_id ) {
+        return '';
+    }
+
+    if ( isset( $_POST['grimorio_guardar'], $_POST['grimorio_nonce'] ) && wp_verify_nonce( $_POST['grimorio_nonce'], 'grimorio_guardar_' . $post_id ) ) {
+        $slots_posted = isset( $_POST['grimorio_slots_used'] ) && is_array( $_POST['grimorio_slots_used'] ) ? array_map( 'intval', $_POST['grimorio_slots_used'] ) : [];
+        update_field( 'grimorio_slots_used', $slots_posted, $post_id );
+
+        $spells_posted = isset( $_POST['grimorio_spells'] ) && is_array( $_POST['grimorio_spells'] ) ? $_POST['grimorio_spells'] : [];
+        $clean = [];
+        foreach ( $spells_posted as $level => $list ) {
+            $level = intval( $level );
+            if ( $level < 1 || $level > 9 ) {
+                continue;
+            }
+            $clean[ $level ] = array_map( 'sanitize_text_field', array_filter( (array) $list ) );
+        }
+        update_field( 'grimorio_spells', $clean, $post_id );
+    }
+
+    $nivel      = intval( get_field( 'nivel', $post_id ) );
+    $clase_id   = get_field( 'clase', $post_id );
+    $slots_used = get_field( 'grimorio_slots_used', $post_id );
+    $slots_used = is_array( $slots_used ) ? $slots_used : [];
+    $prepared   = get_field( 'grimorio_spells', $post_id );
+    $prepared   = is_array( $prepared ) ? $prepared : [];
+
+    $slot_table = drak_get_full_caster_slots_table();
+    $row        = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
+
+    ob_start();
+    ?>
+    <form method="post" class="grimorio-formulario">
+      <?php wp_nonce_field( 'grimorio_guardar_' . $post_id, 'grimorio_nonce' ); ?>
+
+      <section class="grimorio-slot-grid">
+        <h3>Espacios de conjuro</h3>
+        <div class="grimorio-slot-grid__inner">
+        <?php for ( $lvl = 1; $lvl <= 9; $lvl++ ) :
+            $max_slots = $row[ $lvl ] ?? 0;
+            $used      = isset( $slots_used[ $lvl ] ) ? intval( $slots_used[ $lvl ] ) : 0;
+            ?>
+            <div class="grimorio-slot-column" data-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
+              <header>
+                <span>Nivel <?php echo esc_html( $lvl ); ?></span>
+                <small><?php echo esc_html( $max_slots ); ?> slots</small>
+              </header>
+              <div class="grimorio-slot-checkboxes">
+                <?php for ( $i = 1; $i <= $max_slots; $i++ ) :
+                    $checked = $i <= $used ? 'checked' : '';
+                    ?>
+                    <label>
+                      <input type="checkbox" class="grimorio-slot-toggle" <?php echo $checked; ?>>
+                      <span></span>
+                    </label>
+                <?php endfor; ?>
+              </div>
+              <input type="hidden" name="grimorio_slots_used[<?php echo esc_attr( $lvl ); ?>]" value="<?php echo esc_attr( $used ); ?>">
+            </div>
+        <?php endfor; ?>
+        </div>
+      </section>
+
+      <section class="grimorio-prepared">
+        <h3>Conjuros preparados</h3>
+        <p class="grimorio-prepared__help">Por ahora se muestran tantos huecos como espacios de conjuro de cada nivel.</p>
+        <?php foreach ( $row as $lvl => $max_slots ) :
+            $current = $prepared[ $lvl ] ?? [];
+            ?>
+            <div class="grimorio-prepared__level" data-spell-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
+              <header>
+                <span>Nivel <?php echo esc_html( $lvl ); ?></span>
+                <small><?php echo esc_html( $max_slots ); ?> conjuros</small>
+              </header>
+              <div class="grimorio-prepared__list">
+                <?php for ( $i = 0; $i < $max_slots; $i++ ) :
+                    $value = $current[ $i ] ?? '';
+                    ?>
+                    <select class="grimorio-spell-select" data-level="<?php echo esc_attr( $lvl ); ?>" name="grimorio_spells[<?php echo esc_attr( $lvl ); ?>][]">
+                      <option value="">-- Conjuro nivel <?php echo esc_html( $lvl ); ?> --</option>
+                      <?php if ( $value ) : ?>
+                        <option value="<?php echo esc_attr( $value ); ?>" selected><?php echo esc_html( $value ); ?></option>
+                      <?php endif; ?>
+                    </select>
+                <?php endfor; ?>
+              </div>
+            </div>
+        <?php endforeach; ?>
+      </section>
+
+      <footer class="grimorio-actions">
+        <button type="submit" name="grimorio_guardar" class="btn-guardar-hoja">Guardar grimorio</button>
+      </footer>
+    </form>
+    <?php
+    return ob_get_clean();
+}
 add_action('init', 'drak_register_personaje_cpt');
 
 // Ocultar barra de administración para usuarios no administradores
@@ -1767,11 +1892,13 @@ function drak_locate_existing_page_slug( array $candidates, $fallback = '' ) {
 function drak_register_personaje_rewrites() {
     $inventory_page = drak_locate_existing_page_slug( ['inventario-personaje', 'inventario'], 'inventario-personaje' );
     $sheet_page     = drak_locate_existing_page_slug( ['hoja-personaje'], 'hoja-personaje' );
+    $grimorio_page  = drak_locate_existing_page_slug( ['grimorio'], 'grimorio' );
 
     $rules = [
         '^personaje/([^/]+)/inventario/?' => 'index.php?personaje=$matches[1]&inventario_personaje=1',
         '^inventario/([^/]+)/?$'          => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $inventory_page ),
         '^hoja-personaje/([^/]+)/?$'      => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $sheet_page ),
+        '^grimorio/([^/]+)/?$'            => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $grimorio_page ),
     ];
 
     foreach ( $rules as $regex => $query ) {
@@ -1820,10 +1947,30 @@ add_action('wp_enqueue_scripts', function () {
             'ajax_url' => admin_url('admin-ajax.php'),
             'post_id' => $post_id,
         ]);
-		        wp_localize_script('hoja-personaje-js', 'DND5_API', [
+	        wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => admin_url('admin-ajax.php'),
         ]);
 
+    }
+
+    if (is_page_template('page-grimorio-personaje.php')) {
+        $personaje_slug = get_query_var('personaje_slug');
+        $personaje = $personaje_slug ? get_page_by_path($personaje_slug, OBJECT, 'personaje') : null;
+        $post_id = $personaje ? $personaje->ID : 0;
+        $nivel  = $personaje ? intval( get_field( 'nivel', $post_id ) ) : 0;
+        $clase  = $personaje ? get_field( 'clase', $post_id ) : '';
+        $slots  = get_field( 'grimorio_slots_used', $post_id );
+        $spells = get_field( 'grimorio_spells', $post_id );
+
+        wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', [], null, true);
+        wp_localize_script('grimorio-js', 'GRIMORIO_DATA', [
+            'ajax_url'      => admin_url('admin-ajax.php'),
+            'post_id'       => $post_id,
+            'level'         => $nivel,
+            'class_id'      => $clase,
+            'slots_used'    => is_array( $slots ) ? $slots : [],
+            'prepared'      => is_array( $spells ) ? $spells : [],
+        ]);
     }
 });
 
