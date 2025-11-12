@@ -720,3 +720,81 @@
     font-size: 0.9rem;
 }
 
+/* ===== MODAL: COMPETENCIAS (armas, armaduras, herramientas, idiomas) ==== */
+
+/* Fila select + botón */
+#profs-overlay .profs-modal-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#profs-overlay .profs-modal-row .basics-modal-input {
+    flex: 1;
+}
+
+/* Botones "Añadir" muy compactos */
+#profs-overlay .btn-profs-add {
+    padding: 0.15rem 0.7rem;
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+/* Lista dentro del modal */
+#profs-overlay .profs-modal-list {
+    list-style: disc;
+    margin: 0 0 1rem 1.2rem;
+    padding: 0;
+}
+
+#profs-overlay .profs-modal-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+
+/* Botón pequeñito para eliminar (la "x") */
+#profs-overlay .profs-remove {
+    padding: 0.1rem 0.45rem;
+    font-size: 0.7rem;
+    line-height: 1;
+    text-transform: none;   /* anulamos el uppercase de btn-basicos-mod */
+    letter-spacing: 0;      /* sin espaciado extra */
+}
+
+
+/* ===== BLOQUE: COMPETENCIAS EN LA HOJA ===== */
+
+.profs-container {
+    margin-top: 1.5rem;
+}
+
+.profs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+/* Cada línea: título a la izquierda, lista de competencias a la derecha */
+.profs-list .prof-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+/* Título (Armas, Armaduras...) pegado a la izquierda */
+.profs-list .prof-item .basic-label {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: left;
+    min-width: 6rem; /* ancho fijo para alinear las columnas, ajusta si quieres */
+}
+
+/* Texto de competencias en la misma línea, separado por comas */
+.profs-list .prof-item .basic-text {
+    margin: 0;
+    display: inline;
+    text-align: left;
+}

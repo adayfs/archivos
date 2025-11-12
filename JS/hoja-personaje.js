@@ -100,6 +100,241 @@ document.addEventListener('DOMContentLoaded', function () {
   const modalClassSelect    = document.getElementById('modal-clase');
   const modalSubclassSelect = document.getElementById('modal-subclase');
   const modalRaceSelect     = document.getElementById('modal-raza');
+	
+	
+	  // === MODAL: COMPETENCIAS (ARMAS / ARMADURAS / HERRAMIENTAS / IDIOMAS) ===
+  const profsOverlay   = document.getElementById('profs-overlay');
+  const profsBtn       = document.getElementById('btn-profs-modal');
+  const profsApplyBtn  = document.getElementById('profs-apply');
+  const profsClose     = document.querySelector('.close-profs-popup');
+
+  if (profsOverlay && profsBtn && profsApplyBtn && profsClose && typeof DND5_API !== 'undefined') {
+const hiddenProfs = {
+  weapons:   document.getElementById('prof_weapons'),
+  armors:    document.getElementById('prof_armors'),
+  tools:     document.getElementById('prof_tools'),
+  languages: document.getElementById('prof_languages'),
+};
+
+
+    const displayProfs = {
+      weapons:   document.getElementById('display_cs_armas'),
+      armors:    document.getElementById('display_cs_armaduras'),
+      tools:     document.getElementById('display_cs_herramientas'),
+      languages: document.getElementById('display_cs_idiomas'),
+    };
+
+    const selects = {
+      weapons:   document.getElementById('profs-weapons-select'),
+      armors:    document.getElementById('profs-armors-select'),
+      tools:     document.getElementById('profs-tools-select'),
+      languages: document.getElementById('profs-languages-select'),
+    };
+
+    const addButtons = {
+      weapons:   document.getElementById('profs-weapons-add'),
+      armors:    document.getElementById('profs-armors-add'),
+      tools:     document.getElementById('profs-tools-add'),
+      languages: document.getElementById('profs-languages-add'),
+    };
+
+    const lists = {
+      weapons:   document.getElementById('profs-weapons-list'),
+      armors:    document.getElementById('profs-armors-list'),
+      tools:     document.getElementById('profs-tools-list'),
+      languages: document.getElementById('profs-languages-list'),
+    };
+
+    // Datos de referencia cargados desde el servidor
+    const lookups = {
+      weapons:   [],
+      armors:    [],
+      tools:     [],
+      languages: [],
+    };
+
+    // Estado actual (arrays de IDs seleccionados)
+    const selected = {
+      weapons:   [],
+      armors:    [],
+      tools:     [],
+      languages: [],
+    };
+
+    function parseIds(str) {
+      return (str || '')
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
+
+    function serializeIds(arr) {
+      return arr.join(',');
+    }
+
+    function findName(type, id) {
+      const list = lookups[type] || [];
+      const item = list.find(it => it.id === id);
+      return item ? (item.name || item.id) : id;
+    }
+
+    // Mostrar en la hoja (fuera del modal)
+    function refreshDisplays() {
+      Object.keys(hiddenProfs).forEach(type => {
+        const hidden = hiddenProfs[type];
+        const display = displayProfs[type];
+        if (!hidden || !display) return;
+
+        const ids = parseIds(hidden.value);
+        const names = ids.map(id => findName(type, id));
+        display.textContent = names.join(', ');
+      });
+    }
+
+    // Rellenar selects
+    function fillSelect(select, list, placeholder) {
+      if (!select) return;
+      select.innerHTML = '';
+
+      const opt0 = document.createElement('option');
+      opt0.value = '';
+      opt0.textContent = placeholder;
+      select.appendChild(opt0);
+
+      list.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id || '';
+        opt.textContent = item.name || item.id || '';
+        select.appendChild(opt);
+      });
+    }
+
+    function renderList(type) {
+      const ul = lists[type];
+      if (!ul) return;
+      ul.innerHTML = '';
+
+      selected[type].forEach(id => {
+        const li = document.createElement('li');
+        li.dataset.id = id;
+        li.textContent = findName(type, id);
+
+const btn = document.createElement('button');
+btn.type = 'button';
+btn.textContent = '×';
+btn.className = 'btn-basicos-mod profs-remove';
+btn.style.marginLeft = '0.5rem';
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+    }
+
+    function loadProficiencies() {
+      const formData = new FormData();
+      formData.append('action', 'drak_dnd5_get_proficiencies');
+
+      return fetch(DND5_API.ajax_url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: formData
+      })
+        .then(r => r.json())
+        .then(res => {
+          if (!res || !res.success || !res.data) return;
+
+          lookups.weapons   = res.data.weapons   || [];
+          lookups.armors    = res.data.armors    || [];
+          lookups.tools     = res.data.tools     || [];
+          lookups.languages = res.data.languages || [];
+
+          fillSelect(selects.weapons,   lookups.weapons,   'Selecciona arma…');
+          fillSelect(selects.armors,    lookups.armors,    'Selecciona armadura…');
+          fillSelect(selects.tools,     lookups.tools,     'Selecciona herramienta…');
+          fillSelect(selects.languages, lookups.languages, 'Selecciona idioma…');
+
+          refreshDisplays();
+        });
+    }
+
+    // Inicializar estado desde los ocultos
+    Object.keys(hiddenProfs).forEach(type => {
+      const hidden = hiddenProfs[type];
+      selected[type] = parseIds(hidden ? hidden.value : '');
+    });
+
+    // Cargar listas desde el servidor
+    loadProficiencies();
+
+    // Botones "Añadir"
+    Object.keys(addButtons).forEach(type => {
+      const btn = addButtons[type];
+      const select = selects[type];
+      if (!btn || !select) return;
+
+      btn.addEventListener('click', () => {
+        const id = select.value;
+        if (!id) return;
+        if (!selected[type].includes(id)) {
+          selected[type].push(id);
+          renderList(type);
+        }
+      });
+    });
+
+    // Eliminar elementos (delegado en cada UL)
+    Object.keys(lists).forEach(type => {
+      const ul = lists[type];
+      if (!ul) return;
+
+      ul.addEventListener('click', e => {
+        if (!e.target.classList.contains('profs-remove')) return;
+        const li = e.target.closest('li');
+        if (!li) return;
+        const id = li.dataset.id;
+        selected[type] = selected[type].filter(x => x !== id);
+        renderList(type);
+      });
+    });
+
+    // Abrir modal
+    profsBtn.addEventListener('click', () => {
+      // Re-sincronizar desde los valores actuales
+      Object.keys(hiddenProfs).forEach(type => {
+        const hidden = hiddenProfs[type];
+        selected[type] = parseIds(hidden ? hidden.value : '');
+        renderList(type);
+      });
+
+      profsOverlay.style.display = 'flex';
+    });
+
+    // Cerrar modal
+    profsClose.addEventListener('click', () => {
+      profsOverlay.style.display = 'none';
+    });
+
+    profsOverlay.addEventListener('click', e => {
+      if (e.target === profsOverlay) {
+        profsOverlay.style.display = 'none';
+      }
+    });
+
+    // Aplicar cambios
+    profsApplyBtn.addEventListener('click', () => {
+      Object.keys(hiddenProfs).forEach(type => {
+        const hidden = hiddenProfs[type];
+        if (!hidden) return;
+        hidden.value = serializeIds(selected[type]);
+      });
+
+      refreshDisplays();
+      profsOverlay.style.display = 'none';
+    });
+
+    // Mostrar algo en la hoja al cargar
+    refreshDisplays();
+  }
+
 
   // === 3.1 Inicializar displays en la hoja ===
   // INI / CA / VEL / PV / nivel

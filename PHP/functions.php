@@ -510,7 +510,10 @@ function renderizar_hoja_personaje($post_id) {
         'cs_prof_save_inteligencia',
         'cs_prof_save_sabiduria',
         'cs_prof_save_carisma',
-
+		'prof_weapons',
+		'prof_armors',
+		'prof_languages',
+		'prof_tools'
         ];
 
         foreach ($campos as $campo) {
@@ -606,6 +609,12 @@ function renderizar_hoja_personaje($post_id) {
         'cs_prof_save_inteligencia',
         'cs_prof_save_sabiduria',
         'cs_prof_save_carisma',
+		
+		      // NUEVO: competencias generales
+        'prof_weapons',
+        'prof_armors',
+        'prof_tools',
+        'prof_languages'
 
     ];
 
@@ -664,6 +673,12 @@ function renderizar_hoja_personaje($post_id) {
     $speed = isset($datos['cs_velocidad']) ? $datos['cs_velocidad'] : '';
 	$hp = isset($datos['cs_hp']) ? $datos['cs_hp'] : '';
 	$hp_temp = isset($datos['cs_hp_temp']) ? $datos['cs_hp_temp'] : '';
+	
+	$armas_val        = isset($datos['prof_weapons'])        ? $datos['prof_weapons']        : '';
+	$armaduras_val    = isset($datos['prof_armors'])    ? $datos['prof_armors']    : '';
+	$herramientas_val = isset($datos['prof_tools']) ? $datos['prof_tools'] : '';
+	$idiomas_val      = isset($datos['prof_languages'])      ? $datos['prof_languages']      : '';
+
 
     ?>
     <!-- BLOQUE PROGRESION: NIVEL / CLASE / SUBCLASE -->
@@ -755,6 +770,11 @@ function renderizar_hoja_personaje($post_id) {
     <input type="hidden" id="clase"    name="clase"    value="<?php echo esc_attr($clase_val); ?>">
     <input type="hidden" id="subclase" name="subclase" value="<?php echo esc_attr($sub_val); ?>">
 	<input type="hidden" id="raza"     name="raza"     value="<?php echo esc_attr($raza_val); ?>">
+<input type="hidden" id="prof_weapons" name="prof_weapons" value="<?php echo esc_attr($armas_val); ?>">
+<input type="hidden" id="prof_armors" name="prof_armors" value="<?php echo esc_attr($armaduras_val); ?>">
+<input type="hidden" id="prof_tools" name="prof_tools" value="<?php echo esc_attr($herramientas_val); ?>">
+<input type="hidden" id="prof_languages" name="prof_languages" value="<?php echo esc_attr($idiomas_val); ?>">
+
 
 
 <input type="hidden" id="cs_hp_temp" name="cs_hp_temp" value="<?php echo esc_attr($hp_temp); ?>">
@@ -936,12 +956,56 @@ foreach ($filas as $label => $keys_row) :
       name="<?php echo esc_attr($p_field); ?>"
       value="<?php echo $es_prof ? '1' : '0'; ?>"
     >
+	  
+	  
+	  
+	  
+
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
   </div>
+				
+				
 <?php endforeach; ?>
 
             </div>
           <?php endforeach; ?>
         </div>
+		  <hr class="temp-pv-separator">
+
+		  	  <!-- BLOQUE: Competencias (armas, armaduras, herramientas, idiomas) -->
+<div class="profs-container">
+  <div class="profs-header">
+    <h3 class="profs-title">Competencias</h3>
+  </div>
+
+  <div class="profs-list">
+    <div class="prof-item">
+      <span class="basic-label">Armas</span>
+      <p class="basic-text" id="display_cs_armas"></p>
+    </div>
+    <div class="prof-item">
+      <span class="basic-label">Armaduras</span>
+      <p class="basic-text" id="display_cs_armaduras"></p>
+    </div>
+    <div class="prof-item">
+      <span class="basic-label">Herramientas</span>
+      <p class="basic-text" id="display_cs_herramientas"></p>
+    </div>
+    <div class="prof-item">
+      <span class="basic-label">Idiomas</span>
+      <p class="basic-text" id="display_cs_idiomas"></p>
+    </div>
+	      <button type="button" id="btn-profs-modal" class="btn-basicos-mod">MOD</button>
+
+  </div>
+</div>
         <!-- Modal para editar INI / CA / VEL / PV -->
         <div id="basics-overlay" class="modal-overlay" style="display:none;">
           <div class="modal-contenido">
@@ -1051,6 +1115,68 @@ foreach ($filas as $label => $keys_row) :
         </div>
       </form>
     </div>
+
+
+<!-- MODAL: Competencias (armas, armaduras, herramientas, idiomas) -->
+<div id="profs-overlay" class="modal-overlay" style="display:none;">
+  <div class="modal-contenido">
+    <span class="close-profs-popup">&times;</span>
+    <h3>Editar competencias</h3>
+
+    <!-- Armas -->
+    <div class="profs-modal-section">
+      <h4>Armas</h4>
+      <div class="profs-modal-row">
+        <select id="profs-weapons-select" class="basics-modal-input">
+          <option value="">Cargando armas…</option>
+        </select>
+<button type="button" id="profs-weapons-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+      </div>
+      <ul id="profs-weapons-list" class="profs-modal-list"></ul>
+    </div>
+
+    <!-- Armaduras -->
+    <div class="profs-modal-section">
+      <h4>Armaduras</h4>
+      <div class="profs-modal-row">
+        <select id="profs-armors-select" class="basics-modal-input">
+          <option value="">Cargando armaduras…</option>
+        </select>
+<button type="button" id="profs-armors-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+      </div>
+      <ul id="profs-armors-list" class="profs-modal-list"></ul>
+    </div>
+
+    <!-- Herramientas -->
+    <div class="profs-modal-section">
+      <h4>Herramientas</h4>
+      <div class="profs-modal-row">
+        <select id="profs-tools-select" class="basics-modal-input">
+          <option value="">Cargando herramientas…</option>
+        </select>
+<button type="button" id="profs-tools-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+      </div>
+      <ul id="profs-tools-list" class="profs-modal-list"></ul>
+    </div>
+
+    <!-- Idiomas -->
+    <div class="profs-modal-section">
+      <h4>Idiomas</h4>
+      <div class="profs-modal-row">
+        <select id="profs-languages-select" class="basics-modal-input">
+          <option value="">Cargando idiomas…</option>
+        </select>
+<button type="button" id="profs-languages-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+      </div>
+      <ul id="profs-languages-list" class="profs-modal-list"></ul>
+    </div>
+
+    <button type="button" id="profs-apply" class="btn-primary">
+      Aplicar cambios
+    </button>
+  </div>
+</div>
+
     <?php
     return ob_get_clean();
 }
@@ -1962,3 +2088,68 @@ function drak_dnd5_get_races() {
 add_action('wp_ajax_drak_dnd5_get_races', 'drak_dnd5_get_races');
 add_action('wp_ajax_nopriv_drak_dnd5_get_races', 'drak_dnd5_get_races');
 
+/**
+ * Carga un JSON de /data y devuelve el array del key indicado.
+ */
+function drak_get_local_dnd_list( $filename, $root_key ) {
+    static $cache = [];
+
+    if ( isset( $cache[ $filename ] ) ) {
+        return $cache[ $filename ];
+    }
+
+    $path = get_stylesheet_directory() . '/data/' . $filename;
+    if ( ! file_exists( $path ) ) {
+        return [];
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+
+    if ( ! is_array( $data ) || ! isset( $data[ $root_key ] ) || ! is_array( $data[ $root_key ] ) ) {
+        return [];
+    }
+
+    $cache[ $filename ] = $data[ $root_key ];
+    return $cache[ $filename ];
+}
+
+/**
+ * Devuelve listas de armas, armaduras, herramientas e idiomas para el modal.
+ */
+function drak_dnd5_get_proficiencies() {
+    $weapons   = drak_get_local_dnd_list( 'dnd-weapons.json',   'weapons' );
+    $armors    = drak_get_local_dnd_list( 'dnd-armors.json',    'armors' );
+    $tools     = drak_get_local_dnd_list( 'dnd-tools.json',     'tools' );
+    $languages = drak_get_local_dnd_list( 'dnd-languages.json', 'languages' );
+
+    // Nos quedamos solo con id + name (preferimos español si existe)
+    $map = function( $item ) {
+        $raw_name = isset( $item['name'] ) ? $item['name'] : '';
+
+        if ( is_array( $raw_name ) ) {
+            // Estructura tipo: "name": { "en": "...", "es": "..." }
+            $name = $raw_name['es'] ?? $raw_name['en'] ?? '';
+        } else {
+            $name = $raw_name;
+        }
+
+        return [
+            'id'   => isset( $item['id'] ) ? $item['id'] : '',
+            'name' => $name,
+        ];
+    };
+
+
+    $data = [
+        'weapons'   => array_map( $map, $weapons ),
+        'armors'    => array_map( $map, $armors ),
+        'tools'     => array_map( $map, $tools ),
+        'languages' => array_map( $map, $languages ),
+    ];
+
+    wp_send_json_success( $data );
+}
+
+add_action( 'wp_ajax_drak_dnd5_get_proficiencies',        'drak_dnd5_get_proficiencies' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_proficiencies', 'drak_dnd5_get_proficiencies' );
