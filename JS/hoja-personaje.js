@@ -72,6 +72,10 @@
     invalidate: () => {},
   };
 
+  const spellsModuleApi = {
+    invalidate: () => {},
+  };
+
   let recomputeSkillsAndSaves = () => {};
 
   function qs(selector, scope = document) {
@@ -410,6 +414,9 @@
       }
       if (hiddenField.id === 'background') {
         backgroundModuleApi.invalidate();
+      }
+      if (hiddenField.id === 'clase') {
+        spellsModuleApi.invalidate();
       }
     }
 
@@ -916,6 +923,8 @@
     let actionsLoading = false;
     let backgroundList = null;
     let backgroundPromise = null;
+    let spellsCache = {};
+    let spellsLoading = false;
 
     const tabLabels = {
       features: 'Features & Traits',
@@ -1092,6 +1101,11 @@
         return;
       }
 
+      if (tabName === 'spells') {
+        fetchSpells();
+        return;
+      }
+
       if (tabName === 'actions') {
         fetchActions();
         return;
@@ -1178,6 +1192,121 @@
           <h4 class="character-extended__section-title">Acciones generales</h4>
           ${cards}
         </section>
+      `;
+    }
+
+    function fetchSpells(force = false) {
+      const classId = readValue('clase');
+      if (!classId) {
+        showEmpty('Selecciona una clase para ver los conjuros disponibles.');
+        return;
+      }
+
+      if (!force && spellsCache[classId]) {
+        renderSpells(spellsCache[classId]);
+        return;
+      }
+
+      if (spellsLoading) {
+        return;
+      }
+
+      if (typeof window.DND5_API === 'undefined') {
+        showError('No se pudo localizar el endpoint de datos.');
+        return;
+      }
+
+      spellsLoading = true;
+      showLoading();
+
+      const payload = new URLSearchParams({
+        action: 'drak_dnd5_get_spells',
+        class_id: classId,
+      });
+
+      fetch(window.DND5_API.ajax_url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: payload,
+      })
+        .then((resp) => resp.json())
+        .then((json) => {
+          spellsLoading = false;
+          if (!json || !json.success) {
+            showError('No se pudieron cargar los conjuros.');
+            return;
+          }
+          const list = json.data?.spells || [];
+          spellsCache[classId] = list;
+          renderSpells(list);
+        })
+        .catch(() => {
+          spellsLoading = false;
+          showError('Error de conexión al cargar los conjuros.');
+        });
+    }
+
+    function renderSpells(list) {
+      if (!list || !list.length) {
+        showEmpty('La clase seleccionada no tiene conjuros disponibles.');
+        return;
+      }
+
+      const groups = list.reduce((acc, spell) => {
+        const lvl = typeof spell.level === 'number' ? spell.level : 0;
+        acc[lvl] = acc[lvl] || [];
+        acc[lvl].push(spell);
+        return acc;
+      }, {});
+
+      const levels = Object.keys(groups)
+        .map((lvl) => parseInt(lvl, 10))
+        .sort((a, b) => a - b);
+
+      const sections = levels
+        .map((level) => {
+          const spells = groups[level];
+          const title = level === 0 ? 'Trucos' : `Nivel ${level}`;
+          const cards = spells
+            .map((spell) => renderSpellCard(spell))
+            .join('');
+          return `
+            <section class="character-extended__section">
+              <h4 class="character-extended__section-title">${title}</h4>
+              ${cards}
+            </section>
+          `;
+        })
+        .join('');
+
+      panelEl.innerHTML = sections;
+    }
+
+    function renderSpellCard(spell) {
+      const levelLabel = spell.level === 0 ? 'Truco' : `Nivel ${spell.level}`;
+      const school = spell.school ? spell.school : '';
+      const time = formatSpellTime(spell.time);
+      const metaParts = [levelLabel, school, time].filter(Boolean);
+
+      const infoRows = [
+        ['Alcance', formatRange(spell.range)],
+        ['Duración', formatDuration(spell.duration)],
+        ['Componentes', formatComponents(spell.components)],
+      ]
+        .map(([label, value]) => (value ? `<p><strong>${label}:</strong> ${value}</p>` : ''))
+        .join('');
+
+      const body = renderEntries(spell.entries || []);
+
+      return `
+        <article class="feature-card">
+          <h5 class="feature-card__title">${escapeHtml(spell.name || 'Conjuro')}</h5>
+          ${metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : ''}
+          <div class="feature-card__body">
+            ${infoRows}
+            ${body || '<p>Sin descripción.</p>'}
+          </div>
+        </article>
       `;
     }
 
@@ -1284,6 +1413,13 @@
     backgroundModuleApi.invalidate = () => {
       if (activeTab === 'background') {
         fetchBackgroundView(true);
+      }
+    };
+
+    spellsModuleApi.invalidate = () => {
+      spellsCache = {};
+      if (activeTab === 'spells') {
+        fetchSpells(true);
       }
     };
   }
@@ -1578,10 +1714,78 @@
     }
     return timeArray
       .map((time) => {
-    const number = typeof time.number !== 'undefined' ? time.number : 1;
-    const unit = time.unit || 'action';
+        const number = typeof time.number !== 'undefined' ? time.number : 1;
+        const unit = time.unit || 'action';
         return `${number} ${unit}`;
       })
       .join(' / ');
+  }
+
+  function formatSpellTime(timeArray) {
+    return formatActionTime(timeArray);
+  }
+
+  function formatRange(range) {
+    if (!range) return '';
+    if (range.type === 'self') {
+      if (range.distance && range.distance.amount) {
+        return `Personal (${range.distance.amount} ${range.distance.type})`;
+      }
+      return 'Personal';
+    }
+    if (range.type === 'point' && range.distance) {
+      const dist = range.distance;
+      if (dist.amount) {
+        return `${dist.amount} ${dist.type || ''}`.trim();
+      }
+      return dist.type || 'Punto';
+    }
+    if (range.type === 'touch') {
+      return 'Toque';
+    }
+    if (range.type === 'line' && range.distance) {
+      return `Línea de ${range.distance.amount} ${range.distance.type}`;
+    }
+    return range.type || '';
+  }
+
+  function formatDuration(durationArray) {
+    if (!Array.isArray(durationArray) || !durationArray.length) {
+      return '';
+    }
+    return durationArray
+      .map((entry) => {
+        if (entry.type === 'instant') return 'Instantánea';
+        if (entry.type === 'permanent') return 'Permanente';
+        if (entry.type === 'timed') {
+          const parts = [];
+          if (entry.concentration) parts.push('Concentración');
+          const duration = entry.duration || {};
+          if (duration.amount) {
+            parts.push(`${duration.amount} ${duration.type || ''}`.trim());
+          }
+          return parts.join(', ') || 'Tiempo limitado';
+        }
+        return entry.type || '';
+      })
+      .filter(Boolean)
+      .join(', ');
+  }
+
+  function formatComponents(components) {
+    if (!components) return '';
+    const parts = [];
+    if (components.v) parts.push('V');
+    if (components.s) parts.push('S');
+    if (components.m) {
+      if (typeof components.m === 'object' && components.m.text) {
+        parts.push(`M (${components.m.text})`);
+      } else if (typeof components.m === 'object' && components.m.cost) {
+        parts.push(`M (${components.m.cost} gp)`);
+      } else {
+        parts.push('M');
+      }
+    }
+    return parts.join(', ');
   }
 })();

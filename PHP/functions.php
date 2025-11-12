@@ -2260,6 +2260,30 @@ function drak_get_local_dnd_backgrounds() {
     return $cache;
 }
 
+function drak_get_local_dnd_spells() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $path = get_stylesheet_directory() . '/data/dnd-spells.json';
+    if ( ! file_exists( $path ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+    if ( ! is_array( $data ) || empty( $data['spells'] ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $cache = $data['spells'];
+    return $cache;
+}
+
 /**
  * Devuelve listas de armas, armaduras, herramientas e idiomas para el modal.
  */
@@ -2313,6 +2337,33 @@ function drak_dnd5_get_backgrounds() {
 }
 add_action( 'wp_ajax_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgrounds' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgrounds' );
+
+function drak_dnd5_get_spells() {
+    $class_id = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
+    $spells   = drak_get_local_dnd_spells();
+
+    if ( ! $class_id ) {
+        wp_send_json_success( [ 'spells' => [] ] );
+    }
+
+    $filtered = array_values( array_filter( $spells, function ( $spell ) use ( $class_id ) {
+        if ( empty( $spell['classes'] ) || ! is_array( $spell['classes'] ) ) {
+            return false;
+        }
+
+        foreach ( $spell['classes'] as $cls ) {
+            if ( isset( $cls['id'] ) && $cls['id'] === $class_id ) {
+                return true;
+            }
+        }
+
+        return false;
+    } ) );
+
+    wp_send_json_success( [ 'spells' => $filtered ] );
+}
+add_action( 'wp_ajax_drak_dnd5_get_spells', 'drak_dnd5_get_spells' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_spells', 'drak_dnd5_get_spells' );
 
 /**
  * AJAX: rasgos combinados (raza + clase + subclase).
