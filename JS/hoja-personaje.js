@@ -68,6 +68,10 @@
     invalidate: () => {},
   };
 
+  const backgroundModuleApi = {
+    invalidate: () => {},
+  };
+
   let recomputeSkillsAndSaves = () => {};
 
   function qs(selector, scope = document) {
@@ -119,6 +123,43 @@
     });
   }
 
+  const backgroundStore = {
+    list: null,
+    promise: null,
+  };
+
+  function fetchBackgroundData() {
+    if (backgroundStore.list) {
+      return Promise.resolve(backgroundStore.list);
+    }
+    if (backgroundStore.promise) {
+      return backgroundStore.promise;
+    }
+    if (typeof window.DND5_API === 'undefined') {
+      return Promise.reject(new Error('DND5_API no definido'));
+    }
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_get_backgrounds',
+    });
+    backgroundStore.promise = fetch(window.DND5_API.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (!json || !json.success) {
+          throw new Error('No se pudieron cargar los trasfondos.');
+        }
+        backgroundStore.list = json.data?.backgrounds || [];
+        return backgroundStore.list;
+      })
+      .finally(() => {
+        backgroundStore.promise = null;
+      });
+    return backgroundStore.promise;
+  }
+
   function parseIds(value) {
     return (value || '')
       .split(',')
@@ -133,7 +174,7 @@
   function getNumberFromInput(id) {
     const el = document.getElementById(id);
     if (!el) return 0;
-    const raw = el.value ?? el.textContent;
+    const raw = typeof el.value !== 'undefined' ? el.value : el.textContent;
     const parsed = parseInt(raw || '0', 10);
     return Number.isNaN(parsed) ? 0 : parsed;
   }
@@ -285,6 +326,7 @@
       clase: document.getElementById('clase'),
       subclase: document.getElementById('subclase'),
       raza: document.getElementById('raza'),
+      background: document.getElementById('background'),
     };
 
     const displayBasics = {
@@ -296,12 +338,14 @@
       clase: document.getElementById('display_clase'),
       subclase: document.getElementById('display_subclase'),
       raza: document.getElementById('display_raza'),
+      background: document.getElementById('display_background'),
     };
 
     const modalInputs = qsa('.basics-modal-input[data-basic]', overlay);
     const classSelect = document.getElementById('modal-clase');
     const subclassSelect = document.getElementById('modal-subclase');
     const raceSelect = document.getElementById('modal-raza');
+    const backgroundSelect = document.getElementById('modal-background');
 
     function populateModal() {
       modalInputs.forEach((input) => {
@@ -320,6 +364,9 @@
       }
       if (raceSelect && hiddenBasics.raza) {
         raceSelect.value = hiddenBasics.raza.value || '';
+      }
+      if (backgroundSelect && hiddenBasics.background) {
+        backgroundSelect.value = hiddenBasics.background.value || '';
       }
     }
 
@@ -360,6 +407,9 @@
       const watchIds = ['clase', 'subclase', 'raza'];
       if (watchIds.includes(hiddenField.id)) {
         featureModuleApi.invalidate();
+      }
+      if (hiddenField.id === 'background') {
+        backgroundModuleApi.invalidate();
       }
     }
 
@@ -464,8 +514,42 @@
         });
     }
 
+    function loadBackgrounds() {
+      if (!backgroundSelect || typeof window.DND5_API === 'undefined') return;
+      loadBackgroundData('');
+    }
+
+    function loadBackgroundData(preselect) {
+      if (!backgroundSelect) return;
+      backgroundSelect.disabled = true;
+      backgroundSelect.innerHTML = '<option value="">Cargando trasfondos…</option>';
+      fetchBackgroundData()
+        .then((list) => {
+          const current = preselect || hiddenBasics.background?.value || '';
+          populateSelect(
+            backgroundSelect,
+            list.length ? 'Selecciona trasfondo…' : 'No hay trasfondos disponibles',
+            list,
+            current
+          );
+          backgroundSelect.disabled = list.length === 0;
+          syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background);
+        })
+        .catch(() => {
+          populateSelect(backgroundSelect, 'Error al cargar trasfondos', []);
+          backgroundSelect.disabled = true;
+        });
+    }
+
     loadClasses();
     loadRaces();
+    loadBackgrounds();
+
+    if (backgroundSelect) {
+      backgroundSelect.addEventListener('change', () => {
+        syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background);
+      });
+    }
   }
 
   function initProficiencyModal() {
@@ -830,6 +914,8 @@
     let isLoading = false;
     let actionsCache = null;
     let actionsLoading = false;
+    let backgroundList = null;
+    let backgroundPromise = null;
 
     const tabLabels = {
       features: 'Features & Traits',
@@ -854,7 +940,7 @@
     }
 
     function showLoading() {
-      panelEl.innerHTML = '<p class="character-extended__loading">Cargando rasgos...</p>';
+      panelEl.innerHTML = '<p class="character-extended__loading">Cargando datos...</p>';
     }
 
     function showEmpty(message) {
@@ -1011,6 +1097,11 @@
         return;
       }
 
+      if (tabName === 'background') {
+        fetchBackgroundView();
+        return;
+      }
+
       const label = tabLabels[tabName] || tabName;
       showEmpty(`La sección “${label}” estará disponible próximamente.`);
     }
@@ -1090,6 +1181,88 @@
       `;
     }
 
+    function ensureBackgroundList(force = false) {
+      if (backgroundList && !force) {
+        return Promise.resolve(backgroundList);
+      }
+      if (backgroundPromise) {
+        return backgroundPromise;
+      }
+      backgroundPromise = fetchBackgroundData()
+        .then((list) => {
+          backgroundList = list;
+          return backgroundList;
+        })
+        .finally(() => {
+          backgroundPromise = null;
+        });
+      return backgroundPromise;
+    }
+
+    function getCurrentBackground() {
+      const bgId = readValue('background');
+      if (!bgId || !backgroundList) return null;
+      return backgroundList.find((bg) => bg.id === bgId) || null;
+    }
+
+    function fetchBackgroundView(force = false) {
+      ensureBackgroundList(force)
+        .then(() => {
+          renderBackgroundView();
+        })
+        .catch(() => {
+          showError('No se pudieron cargar los trasfondos.');
+        });
+    }
+
+    function renderBackgroundView() {
+      const bg = getCurrentBackground();
+      if (!bg) {
+        showEmpty('Selecciona un trasfondo en la ventana de datos básicos.');
+        return;
+      }
+
+      const profBlocks = renderBackgroundProficiencies(bg);
+      const body = renderEntries(bg.entries || []);
+
+      panelEl.innerHTML = `
+        <section class="character-extended__section">
+          <h4 class="character-extended__section-title">Trasfondo · ${escapeHtml(bg.name || '')}</h4>
+          ${bg.source ? `<div class="feature-card__meta">${escapeHtml(bg.source)}</div>` : ''}
+          ${profBlocks}
+          <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+        </section>
+      `;
+    }
+
+    function renderBackgroundProficiencies(bg) {
+      const sections = [];
+      if (bg.skillProficiencies) {
+        sections.push(renderBackgroundSummary('Competencias en habilidades', bg.skillProficiencies));
+      }
+      if (bg.toolProficiencies) {
+        sections.push(renderBackgroundSummary('Herramientas', bg.toolProficiencies));
+      }
+      if (bg.languageProficiencies) {
+        sections.push(renderBackgroundSummary('Idiomas', bg.languageProficiencies));
+      }
+      if (bg.equipment) {
+        sections.push(renderBackgroundSummary('Equipo', bg.equipment));
+      }
+      return sections.join('');
+    }
+
+    function renderBackgroundSummary(title, value) {
+      const text = formatBackgroundValue(value);
+      if (!text) return '';
+      return `
+        <div class="feature-card">
+          <h5 class="feature-card__title">${title}</h5>
+          <div class="feature-card__body">${text}</div>
+        </div>
+      `;
+    }
+
     tabs.forEach((btn) => {
       btn.addEventListener('click', () => {
         const target = btn.dataset.extTab;
@@ -1105,6 +1278,12 @@
       featureCacheKey = '';
       if (activeTab === 'features') {
         fetchFeatures(true);
+      }
+    };
+
+    backgroundModuleApi.invalidate = () => {
+      if (activeTab === 'background') {
+        fetchBackgroundView(true);
       }
     };
   }
@@ -1325,14 +1504,82 @@
       .replace(/\"/g, '&quot;');
   }
 
+  function formatBackgroundValue(value) {
+    if (value == null) return '';
+    if (typeof value === 'string') {
+      return format5eText(value);
+    }
+    if (Array.isArray(value)) {
+      const parts = value.map((entry) => formatBackgroundValue(entry)).filter(Boolean);
+      return parts.join('<br>');
+    }
+    if (typeof value === 'object') {
+      if (value.entry) {
+        return format5eText(value.entry);
+      }
+      if (value.entries) {
+        return formatBackgroundValue(value.entries);
+      }
+      if (value.choose) {
+        const choose = value.choose;
+        let count = '';
+        let fromList = [];
+
+        if (typeof choose === 'object' && choose !== null) {
+          if (typeof choose.count !== 'undefined') {
+            count = choose.count;
+          }
+          if (Array.isArray(choose.from)) {
+            fromList = choose.from;
+          }
+        } else {
+          count = choose;
+        }
+
+        const from = fromList.length ? fromList.join(', ') : '';
+        return `Elige ${count}${from ? ` de ${from}` : ''}`;
+      }
+      const pieces = [];
+      Object.keys(value).forEach((key) => {
+        const val = value[key];
+        if (val == null || val === false) return;
+        if (typeof val === 'boolean') {
+          if (val) pieces.push(formatKeyLabel(key));
+          return;
+        }
+        if (key === 'anyStandard') {
+          pieces.push(`Elige ${val} idiomas estándar`);
+          return;
+        }
+        if (key === 'any') {
+          pieces.push(`Elige ${val} opciones`);
+          return;
+        }
+        const formatted = formatBackgroundValue(val);
+        if (formatted) {
+          pieces.push(formatted);
+        }
+      });
+      return pieces.join('<br>');
+    }
+    return escapeHtml(String(value));
+  }
+
+  function formatKeyLabel(key) {
+    return key
+      .split('_')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  }
+
   function formatActionTime(timeArray) {
     if (!Array.isArray(timeArray) || !timeArray.length) {
       return '';
     }
     return timeArray
       .map((time) => {
-        const number = time.number ?? 1;
-        const unit = time.unit || 'action';
+    const number = typeof time.number !== 'undefined' ? time.number : 1;
+    const unit = time.unit || 'action';
         return `${number} ${unit}`;
       })
       .join(' / ');

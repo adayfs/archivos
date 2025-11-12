@@ -527,7 +527,8 @@ function renderizar_hoja_personaje($post_id) {
 		'prof_weapons',
 		'prof_armors',
 		'prof_languages',
-		'prof_tools'
+		'prof_tools',
+        'background',
         ];
 
         foreach ($campos as $campo) {
@@ -679,6 +680,7 @@ function renderizar_hoja_personaje($post_id) {
     $clase_val = isset($datos['clase']) ? $datos['clase'] : '';
     $sub_val   = isset($datos['subclase']) ? $datos['subclase'] : '';
 	$raza_val  = isset($datos['raza'])  ? $datos['raza']  : '';
+    $background_val = isset($datos['background']) ? $datos['background'] : '';
 
     // Valores actuales de los 4 básicos
     $init  = isset($datos['cs_iniciativa']) ? $datos['cs_iniciativa'] : '';
@@ -719,6 +721,10 @@ function renderizar_hoja_personaje($post_id) {
     <div class="basic-item basic-item-wide">
       <span class="basic-label">Raza</span>
       <p class="basic-text" id="display_raza"></p>
+    </div>
+    <div class="basic-item basic-item-wide">
+      <span class="basic-label">Trasfondo</span>
+      <p class="basic-text" id="display_background"></p>
     </div>
   </div>
 </div>
@@ -783,6 +789,7 @@ function renderizar_hoja_personaje($post_id) {
     <input type="hidden" id="clase"    name="clase"    value="<?php echo esc_attr($clase_val); ?>">
     <input type="hidden" id="subclase" name="subclase" value="<?php echo esc_attr($sub_val); ?>">
 	<input type="hidden" id="raza"     name="raza"     value="<?php echo esc_attr($raza_val); ?>">
+    <input type="hidden" id="background" name="background" value="<?php echo esc_attr($background_val); ?>">
 <input type="hidden" id="prof_weapons" name="prof_weapons" value="<?php echo esc_attr($armas_val); ?>">
 <input type="hidden" id="prof_armors" name="prof_armors" value="<?php echo esc_attr($armaduras_val); ?>">
 <input type="hidden" id="prof_tools" name="prof_tools" value="<?php echo esc_attr($herramientas_val); ?>">
@@ -1062,6 +1069,15 @@ foreach ($filas as $label => $keys_row) :
     class="basics-modal-input"
   >
     <option value="">Cargando razas…</option>
+  </select>
+</div>
+<div class="basics-modal-row">
+  <label>Trasfondo</label>
+  <select
+    id="modal-background"
+    class="basics-modal-input"
+  >
+    <option value="">Cargando trasfondos…</option>
   </select>
 </div>
 
@@ -2219,6 +2235,30 @@ function drak_get_local_dnd_class_lookup() {
     return $lookup;
 }
 
+function drak_get_local_dnd_backgrounds() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $path = get_stylesheet_directory() . '/data/dnd-backgrounds.json';
+    if ( ! file_exists( $path ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+    if ( ! is_array( $data ) || empty( $data['backgrounds'] ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $cache = $data['backgrounds'];
+    return $cache;
+}
+
 /**
  * Devuelve listas de armas, armaduras, herramientas e idiomas para el modal.
  */
@@ -2265,6 +2305,13 @@ function drak_dnd5_get_actions() {
 }
 add_action( 'wp_ajax_drak_dnd5_get_actions', 'drak_dnd5_get_actions' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_actions', 'drak_dnd5_get_actions' );
+
+function drak_dnd5_get_backgrounds() {
+    $backgrounds = drak_get_local_dnd_backgrounds();
+    wp_send_json_success( [ 'backgrounds' => $backgrounds ] );
+}
+add_action( 'wp_ajax_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgrounds' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgrounds' );
 
 /**
  * AJAX: rasgos combinados (raza + clase + subclase).
