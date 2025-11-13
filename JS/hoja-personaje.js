@@ -8,6 +8,8 @@
     initSkillSaveSystem();
     initExtendedModule();
     initStandaloneClassSelects();
+    initExpertiseManager();
+    initCharacterAutomation();
   });
 
   const SELECT_PLACEHOLDERS = Object.freeze({
@@ -63,6 +65,75 @@
     'cs_carisma',
     'cs_proeficiencia',
   ];
+
+  const STATIC_DATA = window.DND5_STATIC_DATA || null;
+
+  const SKILL_FIELD_BY_NAME = Object.freeze({
+    'acrobatics': 'cs_skill_acrobacias',
+    'animal handling': 'cs_skill_trato_animales',
+    'arcana': 'cs_skill_arcanos',
+    'athletics': 'cs_skill_atletismo',
+    'deception': 'cs_skill_engano',
+    'history': 'cs_skill_historia',
+    'insight': 'cs_skill_perspicacia',
+    'intimidation': 'cs_skill_intimidacion',
+    'investigation': 'cs_skill_investigacion',
+    'medicine': 'cs_skill_medicina',
+    'nature': 'cs_skill_naturaleza',
+    'perception': 'cs_skill_percepcion',
+    'performance': 'cs_skill_interpretacion',
+    'persuasion': 'cs_skill_persuasion',
+    'religion': 'cs_skill_religion',
+    'sleight of hand': 'cs_skill_juego_manos',
+    'sleight-of-hand': 'cs_skill_juego_manos',
+    'stealth': 'cs_skill_sigilo',
+    'survival': 'cs_skill_supervivencia',
+  });
+
+  const SKILL_LABELS = Object.freeze({
+    cs_skill_acrobacias: 'Acrobacias',
+    cs_skill_juego_manos: 'Juego de Manos',
+    cs_skill_sigilo: 'Sigilo',
+    cs_skill_atletismo: 'Atletismo',
+    cs_skill_trato_animales: 'Trato con Animales',
+    cs_skill_perspicacia: 'Perspicacia',
+    cs_skill_medicina: 'Medicina',
+    cs_skill_percepcion: 'Percepción',
+    cs_skill_supervivencia: 'Supervivencia',
+    cs_skill_arcanos: 'Arcanos',
+    cs_skill_historia: 'Historia',
+    cs_skill_investigacion: 'Investigación',
+    cs_skill_naturaleza: 'Naturaleza',
+    cs_skill_religion: 'Religión',
+    cs_skill_engano: 'Engaño',
+    cs_skill_intimidacion: 'Intimidación',
+    cs_skill_interpretacion: 'Interpretación',
+    cs_skill_persuasion: 'Persuasión',
+  });
+
+  const SAVE_FIELDS = Object.freeze({
+    str: 'cs_save_fuerza',
+    dex: 'cs_save_destreza',
+    con: 'cs_save_constitucion',
+    int: 'cs_save_inteligencia',
+    wis: 'cs_save_sabiduria',
+    cha: 'cs_save_carisma',
+  });
+
+  const characterAutomationState = {
+    autoSkills: new Set(),
+    expertise: new Set(),
+    manualSaves: new Map(),
+    saveSources: new Map(),
+    lastContextKey: '',
+  };
+
+  const characterDataStore = {
+    promise: null,
+    data: null,
+  };
+
+  let characterRecalcTimer = null;
 
   const featureModuleApi = {
     invalidate: () => {},
@@ -173,6 +244,29 @@
 
   function serializeIds(value) {
     return value.join(',');
+  }
+
+  function parseExpertiseValue(value) {
+    return (value || '')
+      .split(',')
+      .map((v) => v.trim())
+      .filter(Boolean);
+  }
+
+  function getExpertiseHiddenField() {
+    return document.getElementById('skills_expertise');
+  }
+
+  function getExpertiseSetFromHidden() {
+    const hidden = getExpertiseHiddenField();
+    if (!hidden) return new Set();
+    return new Set(parseExpertiseValue(hidden.value));
+  }
+
+  function saveExpertiseSet(set) {
+    const hidden = getExpertiseHiddenField();
+    if (!hidden) return;
+    hidden.value = Array.from(set).join(',');
   }
 
   function getNumberFromInput(id) {
@@ -418,6 +512,7 @@
       if (hiddenField.id === 'clase') {
         spellsModuleApi.invalidate();
       }
+      scheduleCharacterRecalc();
     }
 
     if (classSelect) {
@@ -749,6 +844,7 @@
       refreshAbilityDisplays();
       recomputeSkillsAndSaves();
       overlay.style.display = 'none';
+      scheduleCharacterRecalc();
     });
   }
 
@@ -805,9 +901,8 @@
       const abilityMod = getNumberFromInput(abilityId);
       const profBonus = getNumberFromInput('cs_proeficiencia');
       const profInput = document.getElementById(`prof_${skillId}`);
-      const expertiseBtn = qs(`.skill-expertise-toggle[data-skill="${skillId}"]`);
       const isProf = profInput?.value === '1';
-      const hasExpertise = expertiseBtn?.dataset.expertise === '1';
+      const hasExpertise = characterAutomationState.expertise.has(skillId);
 
       const total = abilityMod + (isProf ? profBonus : 0) + (hasExpertise ? profBonus : 0);
 
@@ -829,56 +924,6 @@
       setDisplayAndClasses(saveId, total);
     }
 
-    qsa('.skill-prof-toggle[data-skill]').forEach((btn) => {
-      const skillId = btn.dataset.skill;
-      const profInput = document.getElementById(`prof_${skillId}`);
-      const circle = btn.querySelector('.skill-prof-circle');
-
-      if (profInput?.value === '1' && circle) {
-        circle.classList.add('skill-prof-active');
-      }
-
-      btn.addEventListener('click', () => {
-        if (!profInput) return;
-        const newValue = profInput.value === '1' ? '0' : '1';
-        profInput.value = newValue;
-        circle?.classList.toggle('skill-prof-active', newValue === '1');
-
-        const expertiseBtn = qs(`.skill-expertise-toggle[data-skill="${skillId}"]`);
-        if (expertiseBtn) {
-          if (newValue !== '1') {
-            expertiseBtn.style.display = 'none';
-            expertiseBtn.dataset.expertise = '0';
-            expertiseBtn.querySelector('.skill-prof-circle')?.classList.remove('skill-prof-active');
-          } else {
-            expertiseBtn.style.display = 'inline-block';
-          }
-        }
-
-        updateSkill(skillId);
-      });
-    });
-
-    qsa('.skill-expertise-toggle').forEach((btn) => {
-      const skillId = btn.dataset.skill;
-      const profInput = document.getElementById(`prof_${skillId}`);
-      const circle = btn.querySelector('.skill-prof-circle');
-      if (!profInput || profInput.value !== '1') {
-        btn.style.display = 'none';
-      }
-
-      btn.dataset.expertise = btn.dataset.expertise === '1' ? '1' : '0';
-      circle?.classList.toggle('skill-prof-active', btn.dataset.expertise === '1');
-
-      btn.addEventListener('click', () => {
-        if (profInput?.value !== '1') return;
-        const newValue = btn.dataset.expertise === '1' ? '0' : '1';
-        btn.dataset.expertise = newValue;
-        circle?.classList.toggle('skill-prof-active', newValue === '1');
-        updateSkill(skillId);
-      });
-    });
-
     qsa('.save-prof-toggle').forEach((btn) => {
       const saveId = btn.dataset.save;
       const profInput = document.getElementById(`prof_${saveId}`);
@@ -894,6 +939,8 @@
         profInput.value = newValue;
         circle?.classList.toggle('skill-prof-active', newValue === '1');
         updateSave(saveId);
+        characterAutomationState.manualSaves.set(saveId, newValue === '1');
+        scheduleCharacterRecalc();
       });
     });
 
@@ -1664,6 +1711,563 @@
 
     return '';
   }
+
+  function fetchStaticJson(url) {
+    if (!url) return Promise.resolve(null);
+    return fetch(url, { credentials: 'same-origin' })
+      .then((resp) => (resp.ok ? resp.json() : null))
+      .catch(() => null);
+  }
+
+  function loadCharacterData() {
+    if (characterDataStore.data) {
+      return Promise.resolve(characterDataStore.data);
+    }
+    if (!STATIC_DATA || !STATIC_DATA.races) {
+      return Promise.reject(new Error('Datos estáticos no disponibles'));
+    }
+    if (!characterDataStore.promise) {
+      const requests = [
+        fetchStaticJson(STATIC_DATA.races),
+        fetchStaticJson(STATIC_DATA.backgrounds),
+        fetchStaticJson(STATIC_DATA.classDetails || STATIC_DATA.classList),
+        fetchStaticJson(STATIC_DATA.classList),
+        STATIC_DATA.feats ? fetchStaticJson(STATIC_DATA.feats) : Promise.resolve(null),
+      ];
+      characterDataStore.promise = Promise.all(requests)
+        .then(([races, backgrounds, classDetails, classList, feats]) => {
+          const raceMap = {};
+          (races?.races || []).forEach((race) => {
+            if (race?.id) raceMap[race.id] = race;
+          });
+
+          const backgroundMap = {};
+          (backgrounds?.backgrounds || []).forEach((bg) => {
+            if (bg?.id) backgroundMap[bg.id] = bg;
+          });
+
+          const classDetailMap = classDetails?.classes || {};
+          const classListMap = {};
+          (classList?.classes || []).forEach((cls) => {
+            if (cls?.id) classListMap[cls.id] = cls;
+          });
+
+          const featMap = {};
+          (feats?.feats || []).forEach((feat) => {
+            if (!feat) return;
+            const key = feat.id || feat.name;
+            if (key) featMap[key] = feat;
+          });
+
+          characterDataStore.data = {
+            races: raceMap,
+            backgrounds: backgroundMap,
+            classes: classListMap,
+            classDetails: classDetailMap,
+            feats: featMap,
+          };
+          return characterDataStore.data;
+        })
+        .finally(() => {
+          characterDataStore.promise = null;
+        });
+    }
+    return characterDataStore.promise;
+  }
+
+  function initCharacterAutomation() {
+    if (!STATIC_DATA || !STATIC_DATA.races) {
+      console.warn('[Hoja] No se han localizado los datos estáticos (DND5_STATIC_DATA). Automatización desactivada.');
+      return;
+    }
+
+    characterAutomationState.expertise = getExpertiseSetFromHidden();
+
+    loadCharacterData()
+      .then(() => {
+        console.debug('[Hoja] Datos estáticos cargados para automatizar hoja.');
+        const watcherIds = new Set([
+          'nivel',
+          'clase',
+          'subclase',
+          'raza',
+          'background',
+          ...abilityIds,
+        ]);
+
+        watcherIds.forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.addEventListener('change', scheduleCharacterRecalc);
+          el.addEventListener('input', scheduleCharacterRecalc);
+        });
+
+        scheduleCharacterRecalc();
+      })
+      .catch(() => {});
+  }
+
+  function scheduleCharacterRecalc() {
+    if (!characterDataStore.data) return;
+    clearTimeout(characterRecalcTimer);
+    characterRecalcTimer = setTimeout(() => {
+      console.debug('[Hoja] Recalcular hoja (trigger).');
+      recalculateCharacterSheet();
+    }, 80);
+  }
+
+  function recalculateCharacterSheet() {
+    if (!characterDataStore.data) return;
+    const context = collectCharacterContext();
+    const contextKey = [context.classId, context.subclassId, context.raceId, context.backgroundId].join('|');
+    if (contextKey !== characterAutomationState.lastContextKey) {
+      characterAutomationState.manualSaves.clear();
+      characterAutomationState.lastContextKey = contextKey;
+    }
+    const derived = buildDerivedCharacter(context, characterDataStore.data);
+    console.debug('[Hoja] Contexto calculado', context, derived);
+    applyDerivedCharacter(derived);
+  }
+
+  function collectCharacterContext() {
+    const abilityScores = {
+      str: getNumberFromInput('cs_fuerza'),
+      dex: getNumberFromInput('cs_destreza'),
+      con: getNumberFromInput('cs_constitucion'),
+      int: getNumberFromInput('cs_inteligencia'),
+      wis: getNumberFromInput('cs_sabiduria'),
+      cha: getNumberFromInput('cs_carisma'),
+    };
+
+    const abilityMods = {
+      str: Math.floor((abilityScores.str - 10) / 2),
+      dex: Math.floor((abilityScores.dex - 10) / 2),
+      con: Math.floor((abilityScores.con - 10) / 2),
+      int: Math.floor((abilityScores.int - 10) / 2),
+      wis: Math.floor((abilityScores.wis - 10) / 2),
+      cha: Math.floor((abilityScores.cha - 10) / 2),
+    };
+
+    return {
+      level: Math.max(1, getNumberFromInput('nivel')),
+      abilities: abilityScores,
+      abilityMods,
+      classId: (document.getElementById('clase')?.value || '').trim(),
+      subclassId: (document.getElementById('subclase')?.value || '').trim(),
+      raceId: (document.getElementById('raza')?.value || '').trim(),
+      backgroundId: (document.getElementById('background')?.value || '').trim(),
+    };
+  }
+
+  function buildDerivedCharacter(context, data) {
+    const derived = {
+      level: context.level,
+      abilityMods: context.abilityMods,
+      proficiencyBonus: Math.max(2, 2 + Math.floor((context.level - 1) / 4)),
+      skills: new Map(),
+      saves: new Map(),
+      armorText: [],
+      weaponText: [],
+      toolText: [],
+      languageText: [],
+      hitDie: null,
+      speed: null,
+      speedNotes: [],
+      hp: null,
+      initiative: context.abilityMods.dex,
+      ac: null,
+    };
+
+    const classDef = data.classDetails?.[context.classId];
+    const raceDef = data.races?.[context.raceId];
+    const backgroundDef = data.backgrounds?.[context.backgroundId];
+
+    if (classDef) {
+      derived.hitDie = classDef.hitDie || derived.hitDie;
+      (classDef.savingThrows || []).forEach((abbr) => {
+        const saveField = SAVE_FIELDS[abbr];
+        if (saveField) derived.saves.set(saveField, { source: 'Clase' });
+      });
+      derived.spellcastingAbility = classDef.spellcastingAbility || derived.spellcastingAbility;
+      mergeProficiencyText(derived.weaponText, classDef.startingProficiencies?.weapons, 'Clase');
+      mergeProficiencyText(derived.armorText, classDef.startingProficiencies?.armor, 'Clase');
+      mergeProficiencyText(derived.toolText, classDef.startingProficiencies?.tools, 'Clase');
+      mergeLanguageText(derived.languageText, classDef.startingProficiencies?.languages, 'Clase');
+    assignSkillGroups(derived, classDef.startingProficiencies?.skills, 'Clase');
+    }
+
+    if (raceDef) {
+      mergeLanguageText(derived.languageText, raceDef.languageProficiencies, 'Raza');
+      mergeProficiencyText(derived.toolText, raceDef.toolProficiencies, 'Raza');
+      assignSkillGroups(derived, raceDef.skillProficiencies, 'Raza');
+
+      if (raceDef.speed) {
+        if (typeof raceDef.speed === 'number') {
+          derived.speed = raceDef.speed;
+        } else if (typeof raceDef.speed === 'object') {
+          if (typeof raceDef.speed.walk === 'number') {
+            derived.speed = raceDef.speed.walk;
+          }
+          Object.entries(raceDef.speed).forEach(([mode, value]) => {
+            if (mode === 'walk' || typeof value !== 'number') return;
+            derived.speedNotes.push(`${capitalize(mode)} ${value} ft`);
+          });
+        }
+      }
+    }
+
+    if (backgroundDef) {
+      assignSkillGroups(derived, backgroundDef.skillProficiencies, 'Trasfondo');
+      mergeLanguageText(derived.languageText, backgroundDef.languageProficiencies, 'Trasfondo');
+      mergeProficiencyText(derived.toolText, backgroundDef.toolProficiencies, 'Trasfondo');
+    }
+
+    if (!derived.hitDie && classDef) {
+      derived.hitDie = classDef.hitDie || 8;
+    }
+
+    const hitDie = derived.hitDie || 8;
+    const conMod = context.abilityMods.con;
+    const firstLevelHp = Math.max(1, hitDie + conMod);
+    const perLevelHp = Math.max(1, Math.ceil(hitDie / 2) + conMod);
+    derived.hp = firstLevelHp + Math.max(0, context.level - 1) * perLevelHp;
+
+    derived.ac = 10 + context.abilityMods.dex;
+
+    if (raceDef && typeof derived.speed !== 'number') {
+      derived.speed = 30;
+    } else if (!derived.speed) {
+      derived.speed = 30;
+    }
+
+    return derived;
+  }
+
+  function applyDerivedCharacter(derived) {
+    if (!derived) return;
+
+    updateBasicStat('cs_proeficiencia', derived.proficiencyBonus);
+    updateBasicStat('cs_iniciativa', derived.initiative, formatMod);
+    updateBasicStat('cs_ac', derived.ac || 10);
+    const speedLabel = derived.speedNotes.length ? `${derived.speed} ft (${derived.speedNotes.join(', ')})` : `${derived.speed} ft`;
+    updateBasicStat('cs_velocidad', speedLabel);
+    updateBasicStat('cs_hp', derived.hp || '');
+
+    const slider = document.getElementById('slider_temp_hp');
+    if (slider && derived.hp) {
+      slider.max = String(derived.hp);
+    }
+
+    updateSaveDisplays(derived);
+    updateSkillDisplays(derived);
+
+    setDisplayText('display_cs_armas', formatJoinedList(derived.weaponText));
+    setDisplayText('display_cs_armaduras', formatJoinedList(derived.armorText));
+    setDisplayText('display_cs_herramientas', formatJoinedList(derived.toolText));
+    setDisplayText('display_cs_idiomas', formatJoinedList(derived.languageText));
+
+    recomputeSkillsAndSaves();
+  }
+
+  function updateBasicStat(fieldId, value, formatter) {
+    const hidden = document.getElementById(fieldId);
+    if (hidden) hidden.value = typeof value === 'number' ? value : (value || '');
+    const display = document.getElementById(`display_${fieldId}`);
+    if (!display) return;
+    const formatted = typeof formatter === 'function' ? formatter(value) : value;
+    display.textContent = formatted ?? '';
+  }
+
+  function updateSaveDisplays(derived) {
+    Object.values(SAVE_FIELDS).forEach((fieldId) => {
+      const info = derived.saves.get(fieldId);
+      const finalValue = Boolean(info);
+      setSaveProficiency(fieldId, finalValue, info?.source);
+    });
+  }
+
+  function updateSkillDisplays(derived) {
+    const allFields = Object.values(SKILL_FIELD_BY_NAME);
+    characterAutomationState.autoSkills = new Set();
+    if (derived?.skills?.forEach) {
+      derived.skills.forEach((info, fieldId) => {
+        characterAutomationState.autoSkills.add(fieldId);
+      });
+    }
+    characterAutomationState.expertise = getExpertiseSetFromHidden();
+
+    allFields.forEach((fieldId) => {
+      const info = derived?.skills?.get ? derived.skills.get(fieldId) : null;
+      const hasProf = Boolean(info);
+      const hasExpert = characterAutomationState.expertise.has(fieldId);
+      setSkillProficiency(fieldId, hasProf, info?.source, hasExpert);
+    });
+
+    renderExpertiseList();
+    populateExpertiseSelect();
+  }
+
+  function setSaveProficiency(fieldId, isActive, source) {
+    const hidden = document.getElementById(`prof_${fieldId}`);
+    if (hidden) hidden.value = isActive ? '1' : '0';
+    if (source) {
+      characterAutomationState.saveSources.set(fieldId, source);
+    } else {
+      characterAutomationState.saveSources.delete(fieldId);
+    }
+    const btn = qs(`.save-prof-toggle[data-save="${fieldId}"]`);
+    const circle = btn?.querySelector('.skill-prof-circle');
+    circle?.classList.toggle('skill-prof-active', Boolean(isActive));
+  }
+
+  function setSkillProficiency(fieldId, isActive, source, hasExpertise) {
+    const profInput = document.getElementById(`prof_${fieldId}`);
+    if (profInput) {
+      profInput.value = isActive ? '1' : '0';
+    }
+
+    const icon = document.querySelector(`.skill-icon[data-skill-icon="${fieldId}"]`);
+    if (icon) {
+      icon.classList.remove('skill-icon--prof', 'skill-icon--expert');
+      if (hasExpertise) {
+        icon.classList.add('skill-icon--expert');
+      } else if (isActive) {
+        icon.classList.add('skill-icon--prof');
+      }
+    }
+
+    const label = document.querySelector(`.skill-source-label[data-skill-label="${fieldId}"]`);
+    if (label) {
+      if (isActive && source) {
+        label.textContent = mapSourceLabel(source);
+      } else {
+        label.textContent = '';
+      }
+    }
+  }
+
+  function addSkillSource(derived, fieldId, source) {
+    if (!fieldId) return;
+    if (!derived.skills.has(fieldId)) {
+      derived.skills.set(fieldId, { sources: new Set() });
+    }
+    const entry = derived.skills.get(fieldId);
+    entry.sources.add(source);
+    entry.source = source;
+    console.debug('[Hoja] Asignando skill', fieldId, 'desde', source);
+  }
+
+  function assignSkillGroups(derived, groups, source) {
+    if (!groups) return;
+    const normalized = Array.isArray(groups) ? groups : [groups];
+    normalized.forEach((originalGroup) => {
+      let group = originalGroup;
+      if (!group) return;
+      if (typeof group === 'string') {
+        const directField = mapSkillNameToField(group);
+        if (directField) addSkillSource(derived, directField, source);
+        return;
+      }
+      if (group.choose && !group.type) {
+        const choose = group.choose;
+        const options = Array.isArray(choose.from) ? choose.from : [];
+        const count = typeof choose.count !== 'undefined' ? choose.count : choose;
+        group = {
+          type: 'choice',
+          count,
+          options,
+        };
+      }
+      if (group.type === 'choice' && Array.isArray(group.options)) {
+        const options = group.options.map((opt) => mapSkillNameToField(opt)).filter(Boolean);
+        if (!options.length) return;
+        const count = group.count && Number.isFinite(group.count) ? group.count : options.length;
+        const assigned = selectLimitedOptions(options, count);
+        assigned.forEach((fieldId) => addSkillSource(derived, fieldId, source));
+        return;
+      }
+
+      const entries = [];
+      if (group.items) entries.push(...group.items);
+      else if (Array.isArray(group)) entries.push(...group);
+      else if (typeof group === 'object') entries.push(...Object.keys(group).filter((key) => group[key]));
+      entries.map((item) => mapSkillNameToField(item)).filter(Boolean).forEach((fieldId) => {
+        addSkillSource(derived, fieldId, source);
+      });
+    });
+  }
+
+  function selectLimitedOptions(options, count) {
+    const selected = new Set();
+    options.some((fieldId) => {
+      if (selected.size >= count) return true;
+      selected.add(fieldId);
+      return selected.size >= count;
+    });
+    return selected;
+  }
+
+  function mergeProficiencyText(target, entries, prefix) {
+    if (!entries) return;
+    const list = Array.isArray(entries) ? entries : [entries];
+    list.forEach((entry) => {
+      if (!entry) return;
+      if (typeof entry === 'string') {
+        target.push(`${prefix ? `${prefix}: ` : ''}${strip5eTags(entry)}`);
+      } else if (entry.type === 'fixed' && Array.isArray(entry.items)) {
+        target.push(`${prefix ? `${prefix}: ` : ''}${entry.items.map(strip5eTags).join(', ')}`);
+      } else if (entry.type === 'choice' && Array.isArray(entry.options)) {
+        target.push(
+          `${prefix ? `${prefix}: ` : ''}Elige ${entry.count || 1}: ${entry.options.map(strip5eTags).join(', ')}`
+        );
+      } else if (typeof entry === 'object') {
+        const keys = Object.keys(entry)
+          .filter((key) => entry[key] && key !== 'type')
+          .map(strip5eTags);
+        if (keys.length) {
+          target.push(`${prefix ? `${prefix}: ` : ''}${keys.join(', ')}`);
+        }
+      } else if (Array.isArray(entry)) {
+        target.push(`${prefix ? `${prefix}: ` : ''}${entry.map(strip5eTags).join(', ')}`);
+      }
+    });
+  }
+
+  function mergeLanguageText(target, entries, prefix) {
+    if (!entries) return;
+    const list = Array.isArray(entries) ? entries : [entries];
+    list.forEach((entry) => {
+      if (!entry) return;
+      if (typeof entry === 'string') {
+        target.push(`${prefix ? `${prefix}: ` : ''}${strip5eTags(entry)}`);
+      } else if (entry.choose) {
+        const from = (entry.choose.from || []).map(strip5eTags).join(', ');
+        target.push(`${prefix ? `${prefix}: ` : ''}Elige ${entry.choose.count || 1}${from ? ` de ${from}` : ''}`);
+      } else {
+        Object.keys(entry).forEach((key) => {
+          if (entry[key]) {
+            target.push(`${prefix ? `${prefix}: ` : ''}${strip5eTags(key)}`);
+          }
+        });
+      }
+    });
+  }
+
+  function mapSkillNameToField(value) {
+    if (!value) return null;
+    const text = strip5eTags(value).toLowerCase().trim();
+    return SKILL_FIELD_BY_NAME[text] || null;
+  }
+
+  function strip5eTags(text) {
+    if (typeof text !== 'string') return '';
+    return text
+      .replace(/\{@([^}|]+)\|([^}|]+)(?:\|[^}]*)?\}/gi, '$2')
+      .replace(/[{}]/g, '')
+      .trim();
+  }
+
+  function formatJoinedList(items) {
+    if (!items || !items.length) return '—';
+    return items.join('; ');
+  }
+
+  function setDisplayText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value || '—';
+  }
+
+  function capitalize(text) {
+    if (!text) return '';
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+  function mapSourceLabel(source) {
+    const value = (source || '').toLowerCase();
+    if (value.includes('clase')) return 'C';
+    if (value.includes('raza')) return 'R';
+    if (value.includes('trasf') || value.includes('fondo')) return 'T';
+    if (value.includes('feat')) return 'D';
+    return 'O';
+  }
+
+  function initExpertiseManager() {
+    expertiseUI.select = document.getElementById('expertise-select');
+    expertiseUI.addBtn = document.getElementById('expertise-add');
+    expertiseUI.list = document.getElementById('expertise-list');
+
+    if (!expertiseUI.select || !expertiseUI.addBtn || !expertiseUI.list) {
+      expertiseUI.select = expertiseUI.addBtn = expertiseUI.list = null;
+      return;
+    }
+
+    characterAutomationState.expertise = getExpertiseSetFromHidden();
+    renderExpertiseList();
+    populateExpertiseSelect();
+
+    expertiseUI.addBtn.addEventListener('click', () => {
+      const value = expertiseUI.select.value;
+      if (!value) return;
+      if (characterAutomationState.expertise.has(value)) return;
+      characterAutomationState.expertise.add(value);
+      saveExpertiseSet(characterAutomationState.expertise);
+      renderExpertiseList();
+      populateExpertiseSelect();
+      scheduleCharacterRecalc();
+    });
+  }
+
+  function renderExpertiseList() {
+    if (!expertiseUI.list) return;
+    expertiseUI.list.innerHTML = '';
+    const set = characterAutomationState.expertise || new Set();
+    if (!set.size) {
+      const li = document.createElement('li');
+      li.textContent = 'Sin pericias añadidas.';
+      li.className = 'expertise-empty';
+      expertiseUI.list.appendChild(li);
+      return;
+    }
+    set.forEach((fieldId) => {
+      const li = document.createElement('li');
+      li.textContent = SKILL_LABELS[fieldId] || fieldId;
+      expertiseUI.list.appendChild(li);
+    });
+  }
+
+  function populateExpertiseSelect() {
+    if (!expertiseUI.select) return;
+    const set = characterAutomationState.expertise || new Set();
+    const autoSet = characterAutomationState.autoSkills || new Set();
+    const available = Object.keys(SKILL_LABELS).filter((fieldId) => {
+      if (set.has(fieldId)) return false;
+      if (!autoSet.size) return true;
+      return autoSet.has(fieldId);
+    });
+
+    expertiseUI.select.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = available.length ? 'Selecciona habilidad…' : 'Sin habilidades disponibles';
+    expertiseUI.select.appendChild(placeholder);
+
+    available.forEach((fieldId) => {
+      const option = document.createElement('option');
+      option.value = fieldId;
+      option.textContent = SKILL_LABELS[fieldId] || fieldId;
+      expertiseUI.select.appendChild(option);
+    });
+
+    const disabled = available.length === 0;
+    expertiseUI.select.disabled = disabled;
+    expertiseUI.addBtn.disabled = disabled;
+  }
+
+  const expertiseUI = {
+    select: null,
+    addBtn: null,
+    list: null,
+  };
 
   function format5eText(text) {
     if (!text) return '';

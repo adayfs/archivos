@@ -1,0 +1,1114 @@
+{
+  "classes": {
+    "artificer-tce-classic": {
+      "id": "artificer-tce-classic",
+      "name": "Artificer",
+      "source": "TCE",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "con",
+        "int"
+      ],
+      "spellcastingAbility": "int",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "{@item thieves' tools|PHB}"
+            ]
+          },
+          {
+            "type": "fixed",
+            "items": [
+              "{@item tinker's tools|PHB}"
+            ]
+          },
+          {
+            "type": "fixed",
+            "items": [
+              "one type of {@item artisan's tools|PHB} of your choice"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "history",
+              "investigation",
+              "medicine",
+              "nature",
+              "perception",
+              "sleight of hand"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "barbarian-phb-classic": {
+      "id": "barbarian-phb-classic",
+      "name": "Barbarian",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 12,
+      "savingThrows": [
+        "str",
+        "con"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "animal handling",
+              "athletics",
+              "intimidation",
+              "nature",
+              "perception",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "barbarian-xphb-one": {
+      "id": "barbarian-xphb-one",
+      "name": "Barbarian",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 12,
+      "savingThrows": [
+        "str",
+        "con"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "animal handling",
+              "athletics",
+              "intimidation",
+              "nature",
+              "perception",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "bard-phb-classic": {
+      "id": "bard-phb-classic",
+      "name": "Bard",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "dex",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple",
+          "{@item hand crossbow|phb|hand crossbows}",
+          "{@item longsword|phb|longswords}",
+          "{@item rapier|phb|rapiers}",
+          "{@item shortsword|phb|shortswords}"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "three {@item musical instrument|PHB|musical instruments} of your choice"
+            ]
+          }
+        ],
+        "skills": [],
+        "languages": []
+      }
+    },
+    "bard-xphb-one": {
+      "id": "bard-xphb-one",
+      "name": "Bard",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 8,
+      "savingThrows": [
+        "dex",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "Choose three {@item Musical Instrument|XPHB|Musical Instruments}"
+            ]
+          }
+        ],
+        "skills": [],
+        "languages": []
+      }
+    },
+    "cleric-phb-classic": {
+      "id": "cleric-phb-classic",
+      "name": "Cleric",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "wis",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "history",
+              "insight",
+              "medicine",
+              "persuasion",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "cleric-xphb-one": {
+      "id": "cleric-xphb-one",
+      "name": "Cleric",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 8,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "wis",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "history",
+              "insight",
+              "medicine",
+              "persuasion",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "druid-phb-classic": {
+      "id": "druid-phb-classic",
+      "name": "Druid",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "wis",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium"
+        ],
+        "weapons": [
+          "{@item club|phb|clubs}",
+          "{@item dagger|phb|daggers}",
+          "{@item dart|phb|darts}",
+          "{@item javelin|phb|javelins}",
+          "{@item mace|phb|maces}",
+          "{@item quarterstaff|phb|quarterstaffs}",
+          "{@item scimitar|phb|scimitars}",
+          "{@item sickle|phb|sickles}",
+          "{@item sling|phb|slings}",
+          "{@item spear|phb|spears}"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "{@item Herbalism kit|PHB}"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "animal handling",
+              "insight",
+              "medicine",
+              "nature",
+              "perception",
+              "religion",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "druid-xphb-one": {
+      "id": "druid-xphb-one",
+      "name": "Druid",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 8,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "wis",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "shield"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "{@item Herbalism Kit|XPHB}"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "animal handling",
+              "insight",
+              "medicine",
+              "nature",
+              "perception",
+              "religion",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "expert-sidekick-tce-classic": {
+      "id": "expert-sidekick-tce-classic",
+      "name": "Expert Sidekick",
+      "source": "TCE",
+      "edition": "classic",
+      "hitDie": null,
+      "savingThrows": [],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [],
+        "tools": [],
+        "skills": [],
+        "languages": []
+      }
+    },
+    "fighter-phb-classic": {
+      "id": "fighter-phb-classic",
+      "name": "Fighter",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 10,
+      "savingThrows": [
+        "str",
+        "con"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "heavy",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "acrobatics",
+              "animal handling",
+              "athletics",
+              "history",
+              "insight",
+              "intimidation",
+              "perception",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "fighter-xphb-one": {
+      "id": "fighter-xphb-one",
+      "name": "Fighter",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 10,
+      "savingThrows": [
+        "str",
+        "con"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "heavy",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "acrobatics",
+              "animal handling",
+              "athletics",
+              "history",
+              "insight",
+              "intimidation",
+              "persuasion",
+              "perception",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "monk-phb-classic": {
+      "id": "monk-phb-classic",
+      "name": "Monk",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "str",
+        "dex"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "simple",
+          "{@item shortsword|phb|shortswords}"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "any one type of {@item artisan's tools|PHB} or any one {@item musical instrument|PHB} of your choice"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "acrobatics",
+              "athletics",
+              "history",
+              "insight",
+              "religion",
+              "stealth"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "monk-xphb-one": {
+      "id": "monk-xphb-one",
+      "name": "Monk",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 8,
+      "savingThrows": [
+        "str",
+        "dex"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "simple",
+          "Martial weapons that have the {@filter Light|items|type=martial weapon|property=light} property"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "Choose one type of {@item Artisan's Tools|XPHB} or {@item Musical Instrument|XPHB}"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "acrobatics",
+              "athletics",
+              "history",
+              "insight",
+              "religion",
+              "stealth"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "mystic-uathemysticclass-classic": {
+      "id": "mystic-uathemysticclass-classic",
+      "name": "Mystic",
+      "source": "UATheMysticClass",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "history",
+              "insight",
+              "medicine",
+              "nature",
+              "perception",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "paladin-phb-classic": {
+      "id": "paladin-phb-classic",
+      "name": "Paladin",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 10,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "heavy",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "athletics",
+              "insight",
+              "intimidation",
+              "medicine",
+              "persuasion",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "paladin-xphb-one": {
+      "id": "paladin-xphb-one",
+      "name": "Paladin",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 10,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "heavy",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "athletics",
+              "insight",
+              "intimidation",
+              "medicine",
+              "persuasion",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "ranger-phb-classic": {
+      "id": "ranger-phb-classic",
+      "name": "Ranger",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 10,
+      "savingThrows": [
+        "str",
+        "dex"
+      ],
+      "spellcastingAbility": "wis",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 3,
+            "options": [
+              "animal handling",
+              "athletics",
+              "insight",
+              "investigation",
+              "nature",
+              "perception",
+              "stealth",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "ranger-xphb-one": {
+      "id": "ranger-xphb-one",
+      "name": "Ranger",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 10,
+      "savingThrows": [
+        "str",
+        "dex"
+      ],
+      "spellcastingAbility": "wis",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "shield"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 3,
+            "options": [
+              "animal handling",
+              "athletics",
+              "insight",
+              "investigation",
+              "nature",
+              "perception",
+              "stealth",
+              "survival"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "rogue-phb-classic": {
+      "id": "rogue-phb-classic",
+      "name": "Rogue",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "dex",
+        "int"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple",
+          "{@item hand crossbow|phb|hand crossbows}",
+          "{@item longsword|phb|longswords}",
+          "{@item rapier|phb|rapiers}",
+          "{@item shortsword|phb|shortswords}"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "{@item thieves' tools|PHB}"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 4,
+            "options": [
+              "acrobatics",
+              "athletics",
+              "deception",
+              "insight",
+              "intimidation",
+              "investigation",
+              "perception",
+              "performance",
+              "persuasion",
+              "sleight of hand",
+              "stealth"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "rogue-xphb-one": {
+      "id": "rogue-xphb-one",
+      "name": "Rogue",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 8,
+      "savingThrows": [
+        "dex",
+        "int"
+      ],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple",
+          "Martial weapons that have the {@filter Finesse or Light|items|type=martial weapon|property=finesse;light} property"
+        ],
+        "tools": [
+          {
+            "type": "fixed",
+            "items": [
+              "{@item Thieves' Tools|XPHB}"
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 4,
+            "options": [
+              "acrobatics",
+              "athletics",
+              "deception",
+              "insight",
+              "intimidation",
+              "investigation",
+              "perception",
+              "persuasion",
+              "sleight of hand",
+              "stealth"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "sorcerer-phb-classic": {
+      "id": "sorcerer-phb-classic",
+      "name": "Sorcerer",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 6,
+      "savingThrows": [
+        "con",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "{@item dagger|phb|daggers}",
+          "{@item dart|phb|darts}",
+          "{@item sling|phb|slings}",
+          "{@item quarterstaff|phb|quarterstaffs}",
+          "{@item light crossbow|phb|light crossbows}"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "deception",
+              "insight",
+              "intimidation",
+              "persuasion",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "sorcerer-xphb-one": {
+      "id": "sorcerer-xphb-one",
+      "name": "Sorcerer",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 6,
+      "savingThrows": [
+        "con",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "deception",
+              "insight",
+              "intimidation",
+              "persuasion",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "spellcaster-sidekick-tce-classic": {
+      "id": "spellcaster-sidekick-tce-classic",
+      "name": "Spellcaster Sidekick",
+      "source": "TCE",
+      "edition": "classic",
+      "hitDie": null,
+      "savingThrows": [],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [],
+        "tools": [],
+        "skills": [],
+        "languages": []
+      }
+    },
+    "warlock-phb-classic": {
+      "id": "warlock-phb-classic",
+      "name": "Warlock",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 8,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "deception",
+              "history",
+              "intimidation",
+              "investigation",
+              "nature",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "warlock-xphb-one": {
+      "id": "warlock-xphb-one",
+      "name": "Warlock",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 8,
+      "savingThrows": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "cha",
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "deception",
+              "history",
+              "intimidation",
+              "investigation",
+              "nature",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "warrior-sidekick-tce-classic": {
+      "id": "warrior-sidekick-tce-classic",
+      "name": "Warrior Sidekick",
+      "source": "TCE",
+      "edition": "classic",
+      "hitDie": null,
+      "savingThrows": [],
+      "spellcastingAbility": null,
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [],
+        "tools": [],
+        "skills": [],
+        "languages": []
+      }
+    },
+    "wizard-phb-classic": {
+      "id": "wizard-phb-classic",
+      "name": "Wizard",
+      "source": "PHB",
+      "edition": "classic",
+      "hitDie": 6,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "int",
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "{@item dagger|phb|daggers}",
+          "{@item dart|phb|darts}",
+          "{@item sling|phb|slings}",
+          "{@item quarterstaff|phb|quarterstaffs}",
+          "{@item light crossbow|phb|light crossbows}"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "history",
+              "insight",
+              "investigation",
+              "medicine",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
+    "wizard-xphb-one": {
+      "id": "wizard-xphb-one",
+      "name": "Wizard",
+      "source": "XPHB",
+      "edition": "one",
+      "hitDie": 6,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "int",
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "simple"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "history",
+              "insight",
+              "investigation",
+              "medicine",
+              "nature",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    }
+  }
+}

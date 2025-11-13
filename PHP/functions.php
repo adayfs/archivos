@@ -638,6 +638,7 @@ function renderizar_hoja_personaje($post_id) {
     foreach ($keys as $k) {
         $datos[$k] = get_field($k, $post_id);
     }
+    $datos['skills_expertise'] = get_post_meta($post_id, 'skills_expertise', true);
 
     // Definimos grupos de habilidades por característica, ordenados por nº de habilidades (más a menos)
     $skill_groups = [
@@ -893,12 +894,10 @@ foreach ($filas as $label => $keys_row) :
  <!-- Valor de la tirada como <p> (no editable) -->
               <p class="save-display" id="display_<?php echo esc_attr($save_field); ?>"></p>
 
-              <!-- Circulito de proeficiencia (reutilizamos estilos de habilidades) -->
-              <button type="button"
-                      class="skill-prof-toggle save-prof-toggle"
-                      data-save="<?php echo esc_attr($save_field); ?>">
-                <span class=" skill-prof-circle<?php echo $es_prof ? ' skill-prof-active' : ''; ?>"></span>
-              </button>
+              <!-- Indicador visual de competencia -->
+              <span class="skill-indicator" data-save-indicator="<?php echo esc_attr($save_field); ?>">
+                <span class="skill-icon<?php echo $es_prof ? ' skill-icon--prof' : ''; ?>" data-save-icon="<?php echo esc_attr($save_field); ?>"></span>
+              </span>
 
 
              
@@ -923,6 +922,7 @@ foreach ($filas as $label => $keys_row) :
         <!-- HABILIDADES AGRUPADAS -->
         <h3 class="subtitulo-hoja-personaje">Habilidades</h3>
 
+        <input type="hidden" id="skills_expertise" name="skills_expertise" value="<?php echo esc_attr(isset($datos['skills_expertise']) ? $datos['skills_expertise'] : ''); ?>">
         <div class="skills-list">
           <?php foreach ($skill_groups as $stat_label => $skills) : ?>
             <div class="skills-group">
@@ -941,23 +941,11 @@ foreach ($filas as $label => $keys_row) :
 ?>
 
   <div class="fila-skill">
-    <!-- Columna de toggles (proficiencia + expertise) -->
     <div class="skill-toggles">
-      <button
-        type="button"
-        class="skill-prof-toggle"
-        data-skill="<?php echo esc_attr($s_field); ?>"
-      >
-        <span class="skill-prof-circle<?php echo $es_prof ? ' skill-prof-active' : ''; ?>"></span>
-      </button>
-
-      <button
-        type="button"
-        class="skill-expertise-toggle"
-        data-skill="<?php echo esc_attr($s_field); ?>"
-      >
-        <span class="skill-prof-circle"></span>
-      </button>
+      <span class="skill-indicator" data-skill-indicator="<?php echo esc_attr($s_field); ?>">
+        <span class="skill-icon<?php echo $es_prof ? ' skill-icon--prof' : ''; ?>" data-skill-icon="<?php echo esc_attr($s_field); ?>"></span>
+        <small class="skill-source-label" data-skill-label="<?php echo esc_attr($s_field); ?>"></small>
+      </span>
     </div>
 
     <!-- Nombre de la habilidad -->
@@ -1123,7 +1111,6 @@ foreach ($filas as $label => $keys_row) :
                 'Inteligencia'        => 'cs_inteligencia',
                 'Sabiduría'           => 'cs_sabiduria',
                 'Carisma'             => 'cs_carisma',
-                'Bonus Proeficiencia' => 'cs_proeficiencia',
               ];
               foreach ($stats_modal as $label => $field) :
               ?>
@@ -1137,6 +1124,14 @@ foreach ($filas as $label => $keys_row) :
                   >
                 </div>
               <?php endforeach; ?>
+            </div>
+            <div class="stats-expertise-manager">
+              <label for="expertise-select">Añadir pericia</label>
+              <div class="expertise-controls">
+                <select id="expertise-select" class="basics-modal-input"></select>
+                <button type="button" id="expertise-add" class="btn-basicos-mod">Añadir</button>
+              </div>
+              <ul id="expertise-list" class="expertise-list"></ul>
             </div>
 
             <button type="button" id="stats-apply" class="btn-primary">
@@ -1671,6 +1666,10 @@ function drak_grimorio_decode_meta_array( $value ) {
         if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
             return $decoded;
         }
+
+        if (isset($_POST['skills_expertise'])) {
+            update_post_meta($post_id, 'skills_expertise', sanitize_text_field($_POST['skills_expertise']));
+        }
     }
     return [];
 }
@@ -2145,6 +2144,43 @@ function drak_register_personaje_query_vars( $vars ) {
 }
 add_filter( 'query_vars', 'drak_register_personaje_query_vars' );
 
+function drak_get_static_data_base() {
+    static $cache = null;
+    if ( null !== $cache ) {
+        return $cache;
+    }
+
+    $candidates = [ 'data', 'jsons' ];
+    foreach ( $candidates as $folder ) {
+        $dir = trailingslashit( get_stylesheet_directory() ) . $folder;
+        $uri = trailingslashit( get_stylesheet_directory_uri() ) . $folder;
+        if ( file_exists( $dir . '/dnd-races.json' ) ) {
+            $cache = [
+                'dir' => trailingslashit( $dir ),
+                'uri' => trailingslashit( $uri ),
+            ];
+            return $cache;
+        }
+    }
+
+    $cache = [
+        'dir' => trailingslashit( get_stylesheet_directory() ),
+        'uri' => trailingslashit( get_stylesheet_directory_uri() ),
+    ];
+
+    return $cache;
+}
+
+function drak_static_data_uri( $filename ) {
+    $base      = drak_get_static_data_base();
+    $file_path = $base['dir'] . $filename;
+    if ( file_exists( $file_path ) ) {
+        return $base['uri'] . $filename;
+    }
+
+    return '';
+}
+
 function guardar_hp_temporal() {
 	
 	    if (!isset($_POST['post_id']) || !isset($_POST['valor'])) {
@@ -2176,6 +2212,13 @@ add_action('wp_enqueue_scripts', function () {
         ]);
 	        wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => admin_url('admin-ajax.php'),
+        ]);
+        wp_localize_script('hoja-personaje-js', 'DND5_STATIC_DATA', [
+            'races'        => drak_static_data_uri( 'dnd-races.json' ),
+            'backgrounds'  => drak_static_data_uri( 'dnd-backgrounds.json' ),
+            'classList'    => drak_static_data_uri( 'dnd-classes.json' ),
+            'classDetails' => drak_static_data_uri( 'dnd-class-details.json' ),
+            'feats'        => drak_static_data_uri( 'dnd-feats.json' ),
         ]);
 
     }

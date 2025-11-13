@@ -319,27 +319,42 @@
 }
 
 /* CIRCULITO DE PROEFICIENCIA */
-.skill-prof-toggle {
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
+.skill-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
-.skill-prof-circle {
-    width: 16px;
-    height: 16px;
+.skill-icon {
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    border: 2px solid #888;
+    border: 2px solid #5f5f5f;
     display: inline-block;
-    box-shadow: 0 0 0 1px transparent;
-    transition: all 0.15s ease;
+    box-shadow: inset 0 0 0 2px transparent;
 }
 
-.skill-prof-circle.skill-prof-active {
-    border-color: #ffbfff;
-    background: radial-gradient(circle, #ffbfff 0%, #a600a6 60%, transparent 100%);
-    box-shadow: 0 0 6px rgba(255, 191, 255, 0.8);
+.skill-icon--prof {
+    background: #a600a6;
+    border-color: #a600a6;
+}
+
+.skill-icon--expert {
+    background: #a600a6;
+    border-color: #f86aff;
+}
+
+.skill-source-label {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #f36aff;
 }
 
 
@@ -1008,4 +1023,39 @@
         flex: 1 0 50%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+}
+.stats-expertise-manager {
+    margin-top: 1.25rem;
+    text-align: left;
+}
+
+.expertise-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.expertise-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.expertise-list li {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(243, 106, 255, 0.15);
+    border: 1px solid rgba(243, 106, 255, 0.4);
+    font-size: 0.8rem;
+}
+
+.expertise-list .expertise-empty {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #aaa;
 }
