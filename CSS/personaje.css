@@ -70,6 +70,58 @@
   color: #fff;
 }
 
+.personaje-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.personaje-nav .personaje-avatar-link {
+  margin-bottom: 0;
+}
+
+.personaje-nav-link {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.personaje-nav-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #9933ff;
+  box-shadow: 0 0 15px #9933ff;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.personaje-nav .personaje-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #9933ff;
+  box-shadow: 0 0 15px #9933ff;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.personaje-nav-link:hover .personaje-nav-button,
+.personaje-avatar-link:hover .personaje-avatar {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px #ff4dff;
+}
+
+@media (max-width: 560px) {
+  .personaje-nav {
+    gap: 1.5rem;
+  }
+}
+
 
 /* Contenedor general */
 .pagina-personajes {
@@ -120,5 +172,3 @@
   color: #f36aff;
   font-weight: bold;
 }
-
-

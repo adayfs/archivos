@@ -6,6 +6,8 @@
     initSpells();
   });
 
+  const slotSaveTimers = {};
+
   function initSlots() {
     document.querySelectorAll('.grimorio-slot-column').forEach((column) => {
       const level = column.dataset.level;
@@ -13,12 +15,42 @@
       if (!hidden) return;
 
       const checkboxes = column.querySelectorAll('.grimorio-slot-toggle');
-      checkboxes.forEach((checkbox, index) => {
+      checkboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
           const used = Array.from(checkboxes).filter((cb) => cb.checked).length;
           hidden.value = used;
+          scheduleSlotSave(level, used);
         });
       });
+    });
+  }
+
+  function scheduleSlotSave(level, used) {
+    if (!GRIMORIO_DATA.nonce) return;
+    if (slotSaveTimers[level]) {
+      clearTimeout(slotSaveTimers[level]);
+    }
+
+    slotSaveTimers[level] = setTimeout(() => {
+      persistSlot(level, used);
+    }, 400);
+  }
+
+  function persistSlot(level, used) {
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_save_spell_slots',
+      nonce: GRIMORIO_DATA.nonce,
+      post_id: GRIMORIO_DATA.post_id,
+      level,
+      value: used,
+    });
+
+    fetch(GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    }).catch(() => {
+      console.warn('No se pudo guardar el estado de los slots de conjuro.');
     });
   }
 
@@ -64,6 +96,7 @@
     document.querySelectorAll('.grimorio-spell-select').forEach((select) => {
       const level = parseInt(select.dataset.level || '0', 10);
       const list = grouped[level] || [];
+      const currentValue = select.dataset.current || select.value || '';
 
       while (select.options.length > 1) {
         select.remove(1);
@@ -75,6 +108,10 @@
         option.textContent = `${spell.name} (${spell.source})`;
         select.appendChild(option);
       });
+
+      if (currentValue) {
+        select.value = currentValue;
+      }
     });
   }
 

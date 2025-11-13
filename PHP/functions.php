@@ -1649,12 +1649,25 @@ function drak_get_full_caster_slots_table() {
     ];
 }
 
+function drak_user_can_manage_personaje( $post_id ) {
+    if ( current_user_can( 'edit_post', $post_id ) ) {
+        return true;
+    }
+
+    $owner = get_field( 'jugador_asociado', $post_id );
+    if ( $owner && intval( $owner ) === get_current_user_id() ) {
+        return true;
+    }
+
+    return false;
+}
+
 function renderizar_grimorio_personaje( $post_id ) {
     if ( ! $post_id ) {
         return '';
     }
 
-    if ( isset( $_POST['grimorio_guardar'], $_POST['grimorio_nonce'] ) && wp_verify_nonce( $_POST['grimorio_nonce'], 'grimorio_guardar_' . $post_id ) ) {
+    if ( isset( $_POST['grimorio_guardar'], $_POST['grimorio_nonce'] ) && wp_verify_nonce( $_POST['grimorio_nonce'], 'grimorio_guardar_' . $post_id ) && drak_user_can_manage_personaje( $post_id ) ) {
         $slots_posted = isset( $_POST['grimorio_slots_used'] ) && is_array( $_POST['grimorio_slots_used'] ) ? array_map( 'intval', $_POST['grimorio_slots_used'] ) : [];
         update_field( 'grimorio_slots_used', $slots_posted, $post_id );
 
@@ -1728,7 +1741,7 @@ function renderizar_grimorio_personaje( $post_id ) {
                 <?php for ( $i = 0; $i < $max_slots; $i++ ) :
                     $value = $current[ $i ] ?? '';
                     ?>
-                    <select class="grimorio-spell-select" data-level="<?php echo esc_attr( $lvl ); ?>" name="grimorio_spells[<?php echo esc_attr( $lvl ); ?>][]">
+                    <select class="grimorio-spell-select" data-level="<?php echo esc_attr( $lvl ); ?>" data-current="<?php echo esc_attr( $value ); ?>" name="grimorio_spells[<?php echo esc_attr( $lvl ); ?>][]">
                       <option value="">-- Conjuro nivel <?php echo esc_html( $lvl ); ?> --</option>
                       <?php if ( $value ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" selected><?php echo esc_html( $value ); ?></option>
@@ -1747,6 +1760,44 @@ function renderizar_grimorio_personaje( $post_id ) {
     <?php
     return ob_get_clean();
 }
+
+add_action( 'acf/init', function () {
+    if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+        return;
+    }
+
+    acf_add_local_field_group( [
+        'key' => 'group_grimorio_personaje',
+        'title' => 'Grimorio personaje',
+        'fields' => [
+            [
+                'key' => 'field_grimorio_slots_used',
+                'label' => 'Slots de conjuro usados',
+                'name' => 'grimorio_slots_used',
+                'type' => 'textarea',
+                'instructions' => 'Almacén interno del módulo de grimorio (no editar manualmente).',
+            ],
+            [
+                'key' => 'field_grimorio_spells',
+                'label' => 'Conjuros preparados',
+                'name' => 'grimorio_spells',
+                'type' => 'textarea',
+                'instructions' => 'Almacén interno del módulo de grimorio (no editar manualmente).',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'personaje',
+                ],
+            ],
+        ],
+        'position' => 'normal',
+        'style'    => 'default',
+    ] );
+} );
 add_action('init', 'drak_register_personaje_cpt');
 
 // Ocultar barra de administración para usuarios no administradores
@@ -1963,6 +2014,8 @@ add_action('wp_enqueue_scripts', function () {
         $spells = get_field( 'grimorio_spells', $post_id );
 
         wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', [], null, true);
+        $nonce = wp_create_nonce( 'grimorio_slots_' . $post_id );
+
         wp_localize_script('grimorio-js', 'GRIMORIO_DATA', [
             'ajax_url'      => admin_url('admin-ajax.php'),
             'post_id'       => $post_id,
@@ -1970,6 +2023,7 @@ add_action('wp_enqueue_scripts', function () {
             'class_id'      => $clase,
             'slots_used'    => is_array( $slots ) ? $slots : [],
             'prepared'      => is_array( $spells ) ? $spells : [],
+            'nonce'         => $nonce,
         ]);
     }
 });
@@ -2511,6 +2565,34 @@ function drak_dnd5_get_spells() {
 }
 add_action( 'wp_ajax_drak_dnd5_get_spells', 'drak_dnd5_get_spells' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_spells', 'drak_dnd5_get_spells' );
+
+function drak_dnd5_save_spell_slots() {
+    if ( ! isset( $_POST['post_id'], $_POST['level'], $_POST['value'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $level   = intval( $_POST['level'] );
+    $value   = intval( $_POST['value'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_slots_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $stored = get_field( 'grimorio_slots_used', $post_id );
+    $stored = is_array( $stored ) ? $stored : [];
+    $stored[ $level ] = max( 0, $value );
+
+    update_field( 'grimorio_slots_used', $stored, $post_id );
+
+    wp_send_json_success( [ 'slots' => $stored ] );
+}
+add_action( 'wp_ajax_drak_dnd5_save_spell_slots', 'drak_dnd5_save_spell_slots' );
 
 /**
  * AJAX: rasgos combinados (raza + clase + subclase).

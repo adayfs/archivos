@@ -1,0 +1,34 @@
+{
+  "acf-field-group": {
+    "key": "group_grimorio_personaje",
+    "title": "Grimorio personaje",
+    "fields": [
+      {
+        "key": "field_grimorio_slots_used",
+        "label": "Slots de conjuro usados",
+        "name": "grimorio_slots_used",
+        "type": "textarea"
+      },
+      {
+        "key": "field_grimorio_spells",
+        "label": "Conjuros preparados",
+        "name": "grimorio_spells",
+        "type": "textarea"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": ""
+  }
+}

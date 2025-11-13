@@ -14,6 +14,20 @@ if (!$personaje) {
     get_footer();
     exit;
 }
+
+$personaje_slug = $personaje->post_name;
+
+$nav_links = array(
+    'hoja'       => home_url('/hoja-personaje/' . $personaje_slug),
+    'inventario' => home_url('/inventario/' . $personaje_slug),
+    'grimorio'   => home_url('/grimorio/' . $personaje_slug),
+);
+
+$nav_images = array(
+    'hoja'       => 'https://adayfs.com/wp-content/uploads/2025/11/hj-pj.webp',
+    'inventario' => 'https://adayfs.com/wp-content/uploads/2025/11/mochila.webp',
+    'grimorio'   => 'https://adayfs.com/wp-content/uploads/2025/11/grimorio.webp',
+);
 ?>
 
 <div class="contenido-inventario">
@@ -25,12 +39,30 @@ if (!$personaje) {
     $imagen_url    = get_the_post_thumbnail_url($personaje->ID, 'medium');
     $personaje_url = get_permalink($personaje->ID);
 
-    if ($imagen_url) : ?>
-      <a href="<?php echo esc_url($personaje_url); ?>" class="personaje-avatar-link">
+  ?>
+
+  <div class="personaje-nav">
+    <a class="personaje-nav-link"
+       href="<?php echo esc_url($nav_links['grimorio']); ?>"
+       aria-label="Ir al Grimorio del personaje">
+      <div class="personaje-nav-button"
+           style="background-image:url('<?php echo esc_url($nav_images['grimorio']); ?>');"></div>
+    </a>
+
+    <?php if ($imagen_url) : ?>
+      <a href="<?php echo esc_url($personaje_url); ?>" class="personaje-avatar-link" aria-label="Volver a la ficha del personaje">
         <div class="personaje-avatar"
              style="background-image:url('<?php echo esc_url($imagen_url); ?>');"></div>
       </a>
-  <?php endif; ?>
+    <?php endif; ?>
+
+    <a class="personaje-nav-link"
+       href="<?php echo esc_url($nav_links['hoja']); ?>"
+       aria-label="Ir a la Hoja de Personaje">
+      <div class="personaje-nav-button"
+           style="background-image:url('<?php echo esc_url($nav_images['hoja']); ?>');"></div>
+    </a>
+  </div>
 
   <?php echo renderizar_inventario_personaje($personaje->ID); ?>
 </div>
