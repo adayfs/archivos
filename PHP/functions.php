@@ -1695,9 +1695,7 @@ function renderizar_grimorio_personaje( $post_id ) {
 
     ob_start();
     ?>
-    <form method="post" class="grimorio-formulario">
-      <?php wp_nonce_field( 'grimorio_guardar_' . $post_id, 'grimorio_nonce' ); ?>
-
+    <div class="grimorio-formulario">
       <section class="grimorio-slot-grid">
         <h3>Espacios de conjuro</h3>
         <div class="grimorio-slot-grid__inner">
@@ -1727,36 +1725,94 @@ function renderizar_grimorio_personaje( $post_id ) {
       </section>
 
       <section class="grimorio-prepared">
-        <h3>Conjuros preparados</h3>
-        <p class="grimorio-prepared__help">Por ahora se muestran tantos huecos como espacios de conjuro de cada nivel.</p>
-        <?php foreach ( $row as $lvl => $max_slots ) :
-            $current = $prepared[ $lvl ] ?? [];
-            ?>
-            <div class="grimorio-prepared__level" data-spell-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
-              <header>
-                <span>Nivel <?php echo esc_html( $lvl ); ?></span>
-                <small><?php echo esc_html( $max_slots ); ?> conjuros</small>
-              </header>
-              <div class="grimorio-prepared__list">
-                <?php for ( $i = 0; $i < $max_slots; $i++ ) :
-                    $value = $current[ $i ] ?? '';
-                    ?>
-                    <select class="grimorio-spell-select" data-level="<?php echo esc_attr( $lvl ); ?>" data-current="<?php echo esc_attr( $value ); ?>" name="grimorio_spells[<?php echo esc_attr( $lvl ); ?>][]">
-                      <option value="">-- Conjuro nivel <?php echo esc_html( $lvl ); ?> --</option>
-                      <?php if ( $value ) : ?>
-                        <option value="<?php echo esc_attr( $value ); ?>" selected><?php echo esc_html( $value ); ?></option>
-                      <?php endif; ?>
-                    </select>
-                <?php endfor; ?>
-              </div>
-            </div>
-        <?php endforeach; ?>
-      </section>
+        <div class="grimorio-prepared__header">
+          <div>
+            <h3>Conjuros preparados</h3>
+            <p class="grimorio-prepared__help">
+              Gestiona la lista desde la ventana de selección. Los cambios se guardan automáticamente.
+            </p>
+          </div>
+          <button type="button" class="grimorio-prepared__edit-btn">Editar conjuros</button>
+        </div>
 
-      <footer class="grimorio-actions">
-        <button type="submit" name="grimorio_guardar" class="btn-guardar-hoja">Guardar grimorio</button>
-      </footer>
-    </form>
+        <div class="grimorio-prepared__levels">
+          <?php foreach ( $row as $lvl => $max_slots ) :
+              $current = $prepared[ $lvl ] ?? [];
+              ?>
+              <article class="grimorio-prepared-block" data-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
+                <div class="grimorio-prepared-block__head">
+                  <div>
+                    <span class="grimorio-prepared-block__label">Nivel <?php echo esc_html( $lvl ); ?></span>
+                    <small><?php echo esc_html( $max_slots ); ?> huecos disponibles</small>
+                  </div>
+                  <span class="grimorio-prepared-block__counter" data-counter-for="<?php echo esc_attr( $lvl ); ?>">
+                    <?php echo esc_html( count( array_filter( $current ) ) ); ?> / <?php echo esc_html( $max_slots ); ?>
+                  </span>
+                </div>
+                <ul class="grimorio-prepared-block__list" data-list-level="<?php echo esc_attr( $lvl ); ?>">
+                  <?php if ( empty( $current ) ) : ?>
+                    <li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Aún no hay conjuros preparados.</li>
+                  <?php else : ?>
+                    <?php foreach ( $current as $spell_name ) :
+                        $spell_name = trim( (string) $spell_name );
+                        if ( '' === $spell_name ) {
+                            continue;
+                        }
+                        ?>
+                        <li class="grimorio-prepared-spell" data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
+                          <span class="grimorio-prepared-spell__name"><?php echo esc_html( $spell_name ); ?></span>
+                          <button type="button" class="grimorio-cast-spell" data-level="<?php echo esc_attr( $lvl ); ?>" data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
+                            Lanzar spell
+                          </button>
+                        </li>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
+                </ul>
+              </article>
+          <?php endforeach; ?>
+        </div>
+      </section>
+    </div>
+
+    <div id="grimorio-spell-picker" class="grimorio-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="grimorio-modal__dialog">
+        <header class="grimorio-modal__header">
+          <h3>Seleccionar conjuros preparados</h3>
+          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
+        </header>
+        <div class="grimorio-modal__body">
+          <p class="grimorio-spell-picker__hint">
+            Marca los conjuros que quieres preparar en cada nivel. No podrás seleccionar más
+            conjuros de los huecos disponibles para ese nivel.
+          </p>
+          <div id="grimorio-spell-picker-loading" class="grimorio-spell-picker__loading">
+            Cargando lista de conjuros...
+          </div>
+          <div id="grimorio-spell-picker-levels" class="grimorio-spell-picker__levels" hidden></div>
+        </div>
+        <footer class="grimorio-modal__footer">
+          <button type="button" class="grimorio-modal__btn" data-grimorio-close>Cancelar</button>
+          <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-spell-picker-save">
+            Guardar y cerrar
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="grimorio-info-modal" class="grimorio-modal grimorio-modal--small" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="grimorio-modal__dialog">
+        <header class="grimorio-modal__header">
+          <h3 id="grimorio-info-title">Información</h3>
+          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
+        </header>
+        <div class="grimorio-modal__body" id="grimorio-info-content">
+          <p>Información del conjuro.</p>
+        </div>
+        <footer class="grimorio-modal__footer">
+          <button type="button" class="grimorio-modal__btn grimorio-info-close" data-grimorio-close>Cerrar</button>
+        </footer>
+      </div>
+    </div>
     <?php
     return ob_get_clean();
 }
@@ -2012,18 +2068,23 @@ add_action('wp_enqueue_scripts', function () {
         $clase  = $personaje ? get_field( 'clase', $post_id ) : '';
         $slots  = get_field( 'grimorio_slots_used', $post_id );
         $spells = get_field( 'grimorio_spells', $post_id );
+        $slot_table = drak_get_full_caster_slots_table();
+        $slot_row   = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
 
         wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', [], null, true);
-        $nonce = wp_create_nonce( 'grimorio_slots_' . $post_id );
+        $slots_nonce     = wp_create_nonce( 'grimorio_slots_' . $post_id );
+        $prepared_nonce  = wp_create_nonce( 'grimorio_prepared_' . $post_id );
 
         wp_localize_script('grimorio-js', 'GRIMORIO_DATA', [
-            'ajax_url'      => admin_url('admin-ajax.php'),
-            'post_id'       => $post_id,
-            'level'         => $nivel,
-            'class_id'      => $clase,
-            'slots_used'    => is_array( $slots ) ? $slots : [],
-            'prepared'      => is_array( $spells ) ? $spells : [],
-            'nonce'         => $nonce,
+            'ajax_url'       => admin_url('admin-ajax.php'),
+            'post_id'        => $post_id,
+            'level'          => $nivel,
+            'class_id'       => $clase,
+            'slots_used'     => is_array( $slots ) ? $slots : [],
+            'prepared'       => is_array( $spells ) ? $spells : [],
+            'slot_limits'    => array_map( 'intval', $slot_row ),
+            'nonce'          => $slots_nonce,
+            'prepared_nonce' => $prepared_nonce,
         ]);
     }
 });
@@ -2593,6 +2654,55 @@ function drak_dnd5_save_spell_slots() {
     wp_send_json_success( [ 'slots' => $stored ] );
 }
 add_action( 'wp_ajax_drak_dnd5_save_spell_slots', 'drak_dnd5_save_spell_slots' );
+
+function drak_dnd5_save_prepared_spells() {
+    if ( ! isset( $_POST['post_id'], $_POST['prepared'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_prepared_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $prepared_raw = wp_unslash( $_POST['prepared'] );
+    $decoded      = json_decode( $prepared_raw, true );
+    if ( ! is_array( $decoded ) ) {
+        wp_send_json_error( [ 'message' => 'Formato inválido.' ], 400 );
+    }
+
+    $clean = [];
+    foreach ( $decoded as $level => $spells ) {
+        $level = intval( $level );
+        if ( $level < 0 || $level > 9 ) {
+            continue;
+        }
+
+        $list = [];
+        foreach ( (array) $spells as $spell_name ) {
+            $spell_name = sanitize_text_field( (string) $spell_name );
+            if ( '' === $spell_name ) {
+                continue;
+            }
+            $list[] = $spell_name;
+        }
+
+        if ( ! empty( $list ) ) {
+            $clean[ $level ] = array_values( array_unique( $list ) );
+        }
+    }
+
+    update_field( 'grimorio_spells', $clean, $post_id );
+
+    wp_send_json_success( [ 'prepared' => $clean ] );
+}
+add_action( 'wp_ajax_drak_dnd5_save_prepared_spells', 'drak_dnd5_save_prepared_spells' );
 
 /**
  * AJAX: rasgos combinados (raza + clase + subclase).
