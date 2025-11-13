@@ -992,10 +992,17 @@
           if (feature.source) metaParts.push(escapeHtml(feature.source));
           const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
           return `
-            <article class="feature-card">
-              <h5 class="feature-card__title">${escapeHtml(feature.name || 'Rasgo')}</h5>
-              ${meta}
-              <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+            <article class="feature-card is-collapsed">
+              <header class="feature-card__header">
+                <h5 class="feature-card__title">${escapeHtml(feature.name || 'Rasgo')}</h5>
+                <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle">
+                  <span class="feature-card__toggle-icon">▼</span>
+                </button>
+              </header>
+              <div class="feature-card__content">
+                ${meta}
+                <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+              </div>
             </article>
           `;
         }).join('');
@@ -1020,10 +1027,17 @@
           if (feature.source) metaParts.push(escapeHtml(feature.source));
           const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
           return `
-            <article class="feature-card">
-              <h5 class="feature-card__title">${escapeHtml(feature.name || 'Rasgo')}</h5>
-              ${meta}
-              <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+            <article class="feature-card is-collapsed">
+              <header class="feature-card__header">
+                <h5 class="feature-card__title">${escapeHtml(feature.name || 'Rasgo')}</h5>
+                <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle">
+                  <span class="feature-card__toggle-icon">▼</span>
+                </button>
+              </header>
+              <div class="feature-card__content">
+                ${meta}
+                <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+              </div>
             </article>
           `;
         }).join('');
@@ -1042,6 +1056,51 @@
       }
 
       panelEl.innerHTML = blocks.join('');
+      initFeatureAccordions(panelEl);
+    }
+
+    function initFeatureAccordions(root) {
+      root.querySelectorAll('.feature-card').forEach((card) => {
+        const toggle = card.querySelector('.feature-card__toggle');
+        if (!toggle) return;
+        const icon = toggle.querySelector('.feature-card__toggle-icon');
+
+        const setState = (expanded) => {
+          card.classList.toggle('is-collapsed', !expanded);
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.setAttribute('aria-label', expanded ? 'Ocultar detalle' : 'Mostrar detalle');
+          if (icon) icon.textContent = expanded ? '▲' : '▼';
+        };
+
+        setState(false);
+
+        toggle.addEventListener('click', () => {
+          const shouldExpand = card.classList.contains('is-collapsed');
+          setState(shouldExpand);
+        });
+      });
+    }
+
+    function initSpellLevelAccordions(root) {
+      root.querySelectorAll('.spell-level').forEach((section) => {
+        const toggle = section.querySelector('.spell-level__toggle');
+        if (!toggle) return;
+        const icon = toggle.querySelector('.feature-card__toggle-icon');
+
+        const setState = (expanded) => {
+          section.classList.toggle('is-collapsed', !expanded);
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.setAttribute('aria-label', expanded ? 'Ocultar conjuros' : 'Mostrar conjuros');
+          if (icon) icon.textContent = expanded ? '▲' : '▼';
+        };
+
+        setState(false);
+
+        toggle.addEventListener('click', () => {
+          const shouldExpand = section.classList.contains('is-collapsed');
+          setState(shouldExpand);
+        });
+      });
     }
 
     function fetchFeatures(force = false) {
@@ -1178,10 +1237,17 @@
           const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
           const body = renderEntries(action.entries || []);
           return `
-            <article class="feature-card">
-              <h5 class="feature-card__title">${escapeHtml(action.name || 'Acción')}</h5>
-              ${meta}
-              <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+            <article class="feature-card is-collapsed">
+              <header class="feature-card__header">
+                <h5 class="feature-card__title">${escapeHtml(action.name || 'Acción')}</h5>
+                <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle de la acción">
+                  <span class="feature-card__toggle-icon">▼</span>
+                </button>
+              </header>
+              <div class="feature-card__content">
+                ${meta}
+                <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+              </div>
             </article>
           `;
         })
@@ -1193,6 +1259,7 @@
           ${cards}
         </section>
       `;
+      initFeatureAccordions(panelEl);
     }
 
     function fetchSpells(force = false) {
@@ -1267,19 +1334,26 @@
         .map((level) => {
           const spells = groups[level];
           const title = level === 0 ? 'Trucos' : `Nivel ${level}`;
-          const cards = spells
-            .map((spell) => renderSpellCard(spell))
-            .join('');
+          const cards = spells.map((spell) => renderSpellCard(spell)).join('');
           return `
-            <section class="character-extended__section">
-              <h4 class="character-extended__section-title">${title}</h4>
-              ${cards}
+            <section class="character-extended__section spell-level is-collapsed" data-spell-level="${level}">
+              <header class="spell-level__header">
+                <h4 class="character-extended__section-title">${title}</h4>
+                <button type="button" class="feature-card__toggle spell-level__toggle" aria-expanded="false" aria-label="Mostrar conjuros">
+                  <span class="feature-card__toggle-icon">▼</span>
+                </button>
+              </header>
+              <div class="spell-level__content">
+                ${cards}
+              </div>
             </section>
           `;
         })
         .join('');
 
       panelEl.innerHTML = sections;
+      initSpellLevelAccordions(panelEl);
+      initFeatureAccordions(panelEl);
     }
 
     function renderSpellCard(spell) {
@@ -1299,12 +1373,19 @@
       const body = renderEntries(spell.entries || []);
 
       return `
-        <article class="feature-card">
-          <h5 class="feature-card__title">${escapeHtml(spell.name || 'Conjuro')}</h5>
-          ${metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : ''}
-          <div class="feature-card__body">
-            ${infoRows}
-            ${body || '<p>Sin descripción.</p>'}
+        <article class="feature-card spell-card is-collapsed">
+          <header class="feature-card__header">
+            <h5 class="feature-card__title">${escapeHtml(spell.name || 'Conjuro')}</h5>
+            <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle del conjuro">
+              <span class="feature-card__toggle-icon">▼</span>
+            </button>
+          </header>
+          <div class="feature-card__content">
+            ${metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : ''}
+            <div class="feature-card__body">
+              ${infoRows}
+              ${body || '<p>Sin descripción.</p>'}
+            </div>
           </div>
         </article>
       `;

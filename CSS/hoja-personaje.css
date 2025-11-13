@@ -883,16 +883,70 @@
     border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
+.feature-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
 .feature-card__title {
-    margin: 0 0 0.35rem;
+    margin: 0;
     font-size: 1rem;
     color: #fff;
+}
+
+.feature-card__toggle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(153, 51, 255, 0.25);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card__toggle:hover {
+    background: rgba(153, 51, 255, 0.45);
+    box-shadow: 0 0 10px rgba(153, 51, 255, 0.5);
+}
+
+.feature-card__toggle-icon {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+.feature-card__content {
+    margin-top: 0.75rem;
+}
+
+.feature-card.is-collapsed .feature-card__content {
+    display: none;
 }
 
 .feature-card__meta {
     font-size: 0.85rem;
     color: #c8c8c8;
     margin-bottom: 0.5rem;
+}
+
+.spell-level__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.spell-level__content {
+    margin-top: 0.75rem;
+}
+
+.spell-level.is-collapsed .spell-level__content {
+    display: none;
 }
 
 .dnd5-entry-block h4 {
