@@ -1,9 +1,7 @@
 (function () {
   document.addEventListener('DOMContentLoaded', () => {
     initTempHpControls();
-    initBasicsModal();
-    initProficiencyModal();
-    initStatsOverlay();
+    initSheetModal();
     refreshAbilityDisplays();
     initSkillSaveSystem();
     initExtendedModule();
@@ -407,50 +405,144 @@
     syncTempHp(parseInt(hidden.value || '0', 10));
   }
 
-  function initBasicsModal() {
-    const overlay = qs('#basics-overlay');
-    const openBtn = qs('#btn-basicos-modal');
-    const applyBtn = qs('#basics-apply');
-    const closeBtn = qs('.close-basics-popup');
+  function initSheetModal() {
+    const overlay = document.getElementById('sheet-overlay');
+    const openBtn = document.getElementById('btn-sheet-modal');
+    const applyBtn = document.getElementById('sheet-apply');
+    const closeBtn = overlay?.querySelector('.close-sheet-popup');
+    const form = document.querySelector('.formulario-hoja-personaje');
 
-    if (!overlay || !openBtn || !applyBtn || !closeBtn) return;
+    if (!overlay || !openBtn || !applyBtn) return;
 
+    const statsSection = createStatsSectionController(overlay);
+    const basicsSection = createBasicsSectionController(overlay);
+    const profsSection = createProficiencySectionController(overlay);
+
+    function openModal() {
+      statsSection.populate();
+      basicsSection.populate();
+      profsSection.populate();
+      renderExpertiseList();
+      populateExpertiseSelect();
+      overlay.style.display = 'flex';
+    }
+
+    function closeModal() {
+      overlay.style.display = 'none';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) closeModal();
+    });
+
+    applyBtn.addEventListener('click', () => {
+      statsSection.apply();
+      basicsSection.apply();
+      profsSection.apply();
+      refreshAbilityDisplays();
+      recomputeSkillsAndSaves();
+      recalculateCharacterSheet();
+      scheduleCharacterRecalc();
+      submitSheetForm(form);
+      closeModal();
+    });
+
+    basicsSection.loadInitialData();
+    profsSection.ensureLookupCache();
+  }
+
+  function submitSheetForm(form) {
+    if (!form) return;
+    const flag = form.querySelector('#hoja_guardar');
+    if (flag) flag.value = '1';
+    if (typeof form.requestSubmit === 'function') {
+      form.requestSubmit();
+    } else {
+      form.submit();
+    }
+  }
+
+  function createStatsSectionController(root) {
+    const inputs = qsa('.stats-modal-input[data-stat]', root);
+
+    function populate() {
+      inputs.forEach((input) => {
+        const stat = input.dataset.stat;
+        const hidden = document.getElementById(stat);
+        input.value = hidden?.value || '';
+      });
+    }
+
+    function apply() {
+      inputs.forEach((input) => {
+        const stat = input.dataset.stat;
+        const hidden = document.getElementById(stat);
+        if (!hidden) return;
+
+        const numeric = parseInt(input.value || '0', 10);
+        hidden.value = Number.isNaN(numeric) ? '' : numeric;
+
+        const modId = `${stat}_mod`;
+        const modHidden = document.getElementById(modId);
+        const modDisplay = document.getElementById(`display_${modId}`);
+        if (modHidden) {
+          const modValue = Math.floor((numeric - 10) / 2);
+          modHidden.value = Number.isNaN(modValue) ? '' : modValue;
+          if (modDisplay) {
+            modDisplay.textContent = formatMod(modValue);
+          }
+        }
+      });
+    }
+
+    return { populate, apply };
+  }
+
+  function createBasicsSectionController(root) {
     const hiddenBasics = {
-      cs_iniciativa: document.getElementById('cs_iniciativa'),
-      cs_ac: document.getElementById('cs_ac'),
-      cs_velocidad: document.getElementById('cs_velocidad'),
-      cs_hp: document.getElementById('cs_hp'),
       nivel: document.getElementById('nivel'),
       clase: document.getElementById('clase'),
       subclase: document.getElementById('subclase'),
       raza: document.getElementById('raza'),
       background: document.getElementById('background'),
+      cs_iniciativa: document.getElementById('cs_iniciativa'),
+      cs_ac: document.getElementById('cs_ac'),
+      cs_velocidad: document.getElementById('cs_velocidad'),
+      cs_hp: document.getElementById('cs_hp'),
     };
 
     const displayBasics = {
-      cs_iniciativa: document.getElementById('display_cs_iniciativa'),
-      cs_ac: document.getElementById('display_cs_ac'),
-      cs_velocidad: document.getElementById('display_cs_velocidad'),
-      cs_hp: document.getElementById('display_cs_hp'),
       nivel: document.getElementById('display_nivel'),
       clase: document.getElementById('display_clase'),
       subclase: document.getElementById('display_subclase'),
       raza: document.getElementById('display_raza'),
       background: document.getElementById('display_background'),
+      cs_iniciativa: document.getElementById('display_cs_iniciativa'),
+      cs_ac: document.getElementById('display_cs_ac'),
+      cs_velocidad: document.getElementById('display_cs_velocidad'),
+      cs_hp: document.getElementById('display_cs_hp'),
     };
 
-    const modalInputs = qsa('.basics-modal-input[data-basic]', overlay);
-    const classSelect = document.getElementById('modal-clase');
-    const subclassSelect = document.getElementById('modal-subclase');
-    const raceSelect = document.getElementById('modal-raza');
-    const backgroundSelect = document.getElementById('modal-background');
+    const modalInputs = qsa('.basics-modal-input[data-basic]', root);
+    const classSelect = root.querySelector('#modal-clase');
+    const subclassSelect = root.querySelector('#modal-subclase');
+    const raceSelect = root.querySelector('#modal-raza');
+    const backgroundSelect = root.querySelector('#modal-background');
 
-    function populateModal() {
+    function populate() {
       modalInputs.forEach((input) => {
         const key = input.dataset.basic;
         const hidden = hiddenBasics[key];
-        if (hidden) {
-          input.value = hidden.value || '';
+        if (!hidden) return;
+        const raw = hidden.value || '';
+        if (input.type === 'number') {
+          const parsed = parseInt(raw, 10);
+          input.value = Number.isNaN(parsed) ? '' : parsed;
+        } else {
+          input.value = raw;
         }
       });
 
@@ -468,39 +560,33 @@
       }
     }
 
-    function hideOverlay() {
-      overlay.style.display = 'none';
-    }
-
-    openBtn.addEventListener('click', () => {
-      populateModal();
-      overlay.style.display = 'flex';
-    });
-
-    closeBtn.addEventListener('click', hideOverlay);
-    overlay.addEventListener('click', (event) => {
-      if (event.target === overlay) hideOverlay();
-    });
-
-    applyBtn.addEventListener('click', () => {
+    function apply() {
       modalInputs.forEach((input) => {
         const key = input.dataset.basic;
         const hidden = hiddenBasics[key];
         const display = displayBasics[key];
         if (!hidden || !display) return;
-        hidden.value = input.value;
-        display.textContent = input.value || '';
+        const value = input.value === '' ? '' : input.value;
+        hidden.value = value;
+        display.textContent = value || '';
       });
 
-      hideOverlay();
-      refreshAbilityDisplays();
-    });
+      syncSelect(classSelect, hiddenBasics.clase, displayBasics.clase);
+      syncSelect(subclassSelect, hiddenBasics.subclase, displayBasics.subclase);
+      syncSelect(raceSelect, hiddenBasics.raza, displayBasics.raza);
+      syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background);
+    }
 
-    function syncSelect(select, hiddenField, displayField) {
+    function syncSelect(select, hiddenField, displayField, options = {}) {
+      const silent = Boolean(options.silent);
       if (!select || !hiddenField || !displayField) return;
       const option = select.options[select.selectedIndex];
-      hiddenField.value = select.value || '';
-      displayField.textContent = option ? option.textContent : '';
+      const nextValue = select.value || '';
+      const prevValue = hiddenField.value || '';
+      displayField.textContent = nextValue ? (option ? option.textContent : '') : '';
+      hiddenField.value = nextValue;
+
+      if (silent || prevValue === nextValue) return;
 
       const watchIds = ['clase', 'subclase', 'raza'];
       if (watchIds.includes(hiddenField.id)) {
@@ -515,25 +601,6 @@
       scheduleCharacterRecalc();
     }
 
-    if (classSelect) {
-      classSelect.addEventListener('change', () => {
-        syncSelect(classSelect, hiddenBasics.clase, displayBasics.clase);
-        loadSubclasses(classSelect.value, hiddenBasics.subclase?.value || '');
-      });
-    }
-
-    if (subclassSelect) {
-      subclassSelect.addEventListener('change', () => {
-        syncSelect(subclassSelect, hiddenBasics.subclase, displayBasics.subclase);
-      });
-    }
-
-    if (raceSelect) {
-      raceSelect.addEventListener('change', () => {
-        syncSelect(raceSelect, hiddenBasics.raza, displayBasics.raza);
-      });
-    }
-
     function loadClasses() {
       if (!classSelect || typeof window.DND5_API === 'undefined') return;
       ajaxRequest('drak_dnd5_get_classes')
@@ -546,8 +613,8 @@
             classes,
             hiddenBasics.clase?.value || ''
           );
-          syncSelect(classSelect, hiddenBasics.clase, displayBasics.clase);
-          const currentClass = hiddenBasics.clase?.value || '';
+          syncSelect(classSelect, hiddenBasics.clase, displayBasics.clase, { silent: true });
+          const currentClass = classSelect.value || hiddenBasics.clase?.value || '';
           loadSubclasses(currentClass, hiddenBasics.subclase?.value || '');
         })
         .catch(() => {
@@ -556,7 +623,8 @@
     }
 
     function loadSubclasses(classId, preselect) {
-      if (!subclassSelect || !classId || typeof window.DND5_API === 'undefined') {
+      if (!subclassSelect) return;
+      if (!classId || typeof window.DND5_API === 'undefined') {
         populateSelect(subclassSelect, SELECT_PLACEHOLDERS.subclass, []);
         subclassSelect.disabled = true;
         return;
@@ -580,11 +648,12 @@
             preselect || hiddenBasics.subclase?.value || ''
           );
           subclassSelect.disabled = subclasses.length === 0;
-          syncSelect(subclassSelect, hiddenBasics.subclase, displayBasics.subclase);
+          syncSelect(subclassSelect, hiddenBasics.subclase, displayBasics.subclase, { silent: true });
         })
         .catch(() => {
           populateSelect(subclassSelect, 'Error al cargar subclases', []);
           subclassSelect.disabled = true;
+          syncSelect(subclassSelect, hiddenBasics.subclase, displayBasics.subclase, { silent: true });
         });
     }
 
@@ -598,6 +667,7 @@
           if (!res?.success) {
             populateSelect(raceSelect, 'Error al cargar razas', []);
             raceSelect.disabled = true;
+            syncSelect(raceSelect, hiddenBasics.raza, displayBasics.raza, { silent: true });
             return;
           }
           const races = res.data?.races || [];
@@ -608,26 +678,23 @@
             hiddenBasics.raza?.value || ''
           );
           raceSelect.disabled = races.length === 0;
-          syncSelect(raceSelect, hiddenBasics.raza, displayBasics.raza);
+          syncSelect(raceSelect, hiddenBasics.raza, displayBasics.raza, { silent: true });
         })
         .catch(() => {
           populateSelect(raceSelect, 'Error al cargar razas', []);
           raceSelect.disabled = true;
+          syncSelect(raceSelect, hiddenBasics.raza, displayBasics.raza, { silent: true });
         });
     }
 
     function loadBackgrounds() {
-      if (!backgroundSelect || typeof window.DND5_API === 'undefined') return;
-      loadBackgroundData('');
-    }
-
-    function loadBackgroundData(preselect) {
       if (!backgroundSelect) return;
       backgroundSelect.disabled = true;
       backgroundSelect.innerHTML = '<option value="">Cargando trasfondos…</option>';
+
       fetchBackgroundData()
         .then((list) => {
-          const current = preselect || hiddenBasics.background?.value || '';
+          const current = hiddenBasics.background?.value || '';
           populateSelect(
             backgroundSelect,
             list.length ? 'Selecciona trasfondo…' : 'No hay trasfondos disponibles',
@@ -635,43 +702,45 @@
             current
           );
           backgroundSelect.disabled = list.length === 0;
-          syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background);
+          syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background, { silent: true });
         })
         .catch(() => {
           populateSelect(backgroundSelect, 'Error al cargar trasfondos', []);
           backgroundSelect.disabled = true;
+          syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background, { silent: true });
         });
     }
 
-    loadClasses();
-    loadRaces();
-    loadBackgrounds();
-
-    if (backgroundSelect) {
-      backgroundSelect.addEventListener('change', () => {
-        syncSelect(backgroundSelect, hiddenBasics.background, displayBasics.background);
+    if (classSelect) {
+      classSelect.addEventListener('change', () => {
+        if (subclassSelect) {
+          subclassSelect.value = '';
+        }
+        loadSubclasses(classSelect.value, '');
       });
     }
+
+    return {
+      populate,
+      apply,
+      loadInitialData() {
+        loadClasses();
+        loadRaces();
+        loadBackgrounds();
+      },
+    };
   }
 
-  function initProficiencyModal() {
-    const overlay = qs('#profs-overlay');
-    const openBtn = qs('#btn-profs-modal');
-    const applyBtn = qs('#profs-apply');
-    const closeBtn = qs('.close-profs-popup');
-
-    if (!overlay || !openBtn || !applyBtn || !closeBtn || typeof window.DND5_API === 'undefined') {
-      return;
-    }
-
+  function createProficiencySectionController(root) {
+    const hasApi = typeof window.DND5_API !== 'undefined';
     const config = Object.entries(PROF_TYPES).reduce((acc, [type, ids]) => {
       acc[type] = {
         hidden: document.getElementById(ids.hidden),
         display: document.getElementById(ids.display),
-        select: document.getElementById(ids.select),
-        addBtn: document.getElementById(ids.add),
-        list: document.getElementById(ids.list),
-        values: [],
+        select: root.querySelector(`#${ids.select}`),
+        addBtn: root.querySelector(`#${ids.add}`),
+        list: root.querySelector(`#${ids.list}`),
+        values: parseIds(document.getElementById(ids.hidden)?.value || ''),
         options: [],
       };
       return acc;
@@ -680,6 +749,7 @@
     let profDataPromise = null;
 
     function fetchProficiencies() {
+      if (!hasApi) return Promise.resolve({});
       if (profDataPromise) return profDataPromise;
       const formData = new FormData();
       formData.append('action', 'drak_dnd5_get_proficiencies');
@@ -693,6 +763,9 @@
         .catch((error) => {
           console.error('Error al cargar competencias', error);
           return {};
+        })
+        .finally(() => {
+          profDataPromise = null;
         });
       return profDataPromise;
     }
@@ -728,15 +801,15 @@
       Object.values(config).forEach((info) => {
         if (!info?.hidden || !info.display) return;
         const ids = parseIds(info.hidden.value);
+        if (!ids.length) {
+          return;
+        }
         const names = ids.map((id) => findName(info.options, id));
-        info.display.textContent = names.join(', ');
+        info.display.textContent = names.join(', ') || '—';
       });
     }
 
     Object.entries(config).forEach(([type, info]) => {
-      if (info.hidden) {
-        info.values = parseIds(info.hidden.value);
-      }
       if (info.addBtn && info.select) {
         info.addBtn.addEventListener('click', () => {
           const value = info.select.value;
@@ -759,93 +832,26 @@
       });
     }
 
-    openBtn.addEventListener('click', () => {
-      ensureLookupCache().then((data) => {
+    function populate() {
+      ensureLookupCache().then(() => {
         Object.entries(config).forEach(([type, info]) => {
           const label = PROF_LABELS[type] || type;
           populateSelect(info.select, `Selecciona ${label}…`, info.options, '');
           info.values = parseIds(info.hidden?.value || '');
           renderList(type);
         });
-        overlay.style.display = 'flex';
       });
-    });
+    }
 
-    closeBtn.addEventListener('click', () => {
-      overlay.style.display = 'none';
-    });
-
-    overlay.addEventListener('click', (event) => {
-      if (event.target === overlay) {
-        overlay.style.display = 'none';
-      }
-    });
-
-    applyBtn.addEventListener('click', () => {
+    function apply() {
       Object.values(config).forEach((info) => {
         if (!info.hidden) return;
         info.hidden.value = serializeIds(info.values);
       });
       refreshSheetDisplays();
-      overlay.style.display = 'none';
-    });
-
-    ensureLookupCache();
-  }
-
-  function initStatsOverlay() {
-    const trigger = document.getElementById('btn-modificar-hoja');
-    const overlay = document.getElementById('stats-overlay');
-    const closeBtn = qs('.close-stats-popup');
-    const applyBtn = document.getElementById('stats-apply');
-
-    if (!trigger || !overlay || !applyBtn) return;
-
-    function hideOverlay() {
-      overlay.style.display = 'none';
     }
 
-    trigger.addEventListener('click', () => {
-      const inputs = qsa('.stats-modal-input[data-stat]', overlay);
-      inputs.forEach((input) => {
-        const stat = input.dataset.stat;
-        const hidden = document.getElementById(stat);
-        input.value = hidden?.value || '';
-      });
-      overlay.style.display = 'flex';
-    });
-
-    closeBtn?.addEventListener('click', hideOverlay);
-
-    overlay.addEventListener('click', (event) => {
-      if (event.target === overlay) hideOverlay();
-    });
-
-    applyBtn.addEventListener('click', () => {
-      const inputs = qsa('.stats-modal-input[data-stat]', overlay);
-      inputs.forEach((input) => {
-        const stat = input.dataset.stat;
-        const hidden = document.getElementById(stat);
-        if (!hidden) return;
-        hidden.value = input.value;
-
-        const modId = stat === 'cs_proeficiencia' ? null : `${stat}_mod`;
-        if (modId) {
-          const modValue = Math.floor((parseInt(input.value || '0', 10) - 10) / 2);
-          const modHidden = document.getElementById(modId);
-          const modDisplay = document.getElementById(`display_${modId}`);
-          if (modHidden) modHidden.value = modValue;
-          if (modDisplay) {
-            modDisplay.textContent = formatMod(modValue);
-          }
-        }
-      });
-
-      refreshAbilityDisplays();
-      recomputeSkillsAndSaves();
-      overlay.style.display = 'none';
-      scheduleCharacterRecalc();
-    });
+    return { populate, apply, ensureLookupCache };
   }
 
   function initSkillSaveSystem() {
@@ -924,20 +930,21 @@
       setDisplayAndClasses(saveId, total);
     }
 
-    qsa('.save-prof-toggle').forEach((btn) => {
-      const saveId = btn.dataset.save;
+    qsa('.skill-indicator[data-save-indicator]').forEach((indicator) => {
+      const saveId = indicator.dataset.saveIndicator;
+      if (!saveId) return;
       const profInput = document.getElementById(`prof_${saveId}`);
-      const circle = btn.querySelector('.skill-prof-circle');
+      const icon = indicator.querySelector('[data-save-icon]');
 
       if (profInput?.value === '1') {
-        circle?.classList.add('skill-prof-active');
+        icon?.classList.add('skill-icon--prof');
       }
 
-      btn.addEventListener('click', () => {
+      indicator.addEventListener('click', () => {
         if (!profInput) return;
         const newValue = profInput.value === '1' ? '0' : '1';
         profInput.value = newValue;
-        circle?.classList.toggle('skill-prof-active', newValue === '1');
+        icon?.classList.toggle('skill-icon--prof', newValue === '1');
         updateSave(saveId);
         characterAutomationState.manualSaves.set(saveId, newValue === '1');
         scheduleCharacterRecalc();
@@ -2015,9 +2022,14 @@
     } else {
       characterAutomationState.saveSources.delete(fieldId);
     }
-    const btn = qs(`.save-prof-toggle[data-save="${fieldId}"]`);
-    const circle = btn?.querySelector('.skill-prof-circle');
-    circle?.classList.toggle('skill-prof-active', Boolean(isActive));
+    const icon = document.querySelector(`.skill-icon[data-save-icon="${fieldId}"]`);
+    if (icon) {
+      if (isActive) {
+        icon.classList.add('skill-icon--prof');
+      } else {
+        icon.classList.remove('skill-icon--prof', 'skill-icon--expert');
+      }
+    }
   }
 
   function setSkillProficiency(fieldId, isActive, source, hasExpertise) {

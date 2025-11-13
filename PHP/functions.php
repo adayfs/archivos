@@ -676,6 +676,7 @@ function renderizar_hoja_personaje($post_id) {
     ?>
     <div class="hoja-personaje-container">
       <form method="post" class="formulario-hoja-personaje">
+        <input type="hidden" id="hoja_guardar" name="hoja_guardar" value="">
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>">
 		  
 		      <?php
@@ -756,10 +757,6 @@ function renderizar_hoja_personaje($post_id) {
 
 
 
-      <button type="button" id="btn-basicos-modal" class="btn-basicos-mod">
-        MOD
-      </button>
-
 <hr class="temp-pv-separator">
 
 <div class="temp-pv-block">
@@ -813,7 +810,7 @@ $filas = [
   'Inteligencia'        => ['cs_inteligencia', 'cs_inteligencia_mod'],
   'Sabiduría'           => ['cs_sabiduria', 'cs_sabiduria_mod'],
   'Carisma'             => ['cs_carisma', 'cs_carisma_mod'],
-  'Bonus Proeficiencia' => ['cs_proeficiencia', null],
+  'Bonificador de competencia' => ['cs_proeficiencia', null],
 ];
 
 foreach ($filas as $label => $keys_row) :
@@ -856,16 +853,6 @@ foreach ($filas as $label => $keys_row) :
   </div>
 <?php endforeach; ?>
 
-<!-- NUEVO: botones justo debajo del bloque de características -->
-<div class="acciones-hoja">
-  <button type="button" id="btn-modificar-hoja" class="btn-modificar-hoja">
-    Modificar hoja
-  </button>
-  <button type="submit" name="hoja_guardar" class="btn-guardar-hoja">
-    Guardar hoja
-  </button>
-</div>
-<hr class="temp-pv-separator">
         <!-- TIRADAS DE SALVACIÓN -->
         <h3 class="subtitulo-hoja-personaje">Tiradas de salvación</h3>
 
@@ -1012,224 +999,175 @@ foreach ($filas as $label => $keys_row) :
       <span class="basic-label">Idiomas</span>
       <p class="basic-text" id="display_cs_idiomas"></p>
     </div>
-	      <button type="button" id="btn-profs-modal" class="btn-basicos-mod">MOD</button>
 
   </div>
 </div>
-        <!-- Modal para editar INI / CA / VEL / PV -->
-        <div id="basics-overlay" class="modal-overlay" style="display:none;">
-          <div class="modal-contenido">
-            <span class="close-basics-popup">&times;</span>
-            <h3>Modificar datos básicos</h3>
-      <div class="basics-modal-row">
-        <label>Nivel</label>
-        <input
-          type="number"
-          min="1"
-          max="20"
-          class="basics-modal-input"
-          data-basic="nivel"
-        >
-      </div>
 
-      <div class="basics-modal-row">
-        <label>Clase</label>
-        <select
-          id="modal-clase"
-          class="basics-modal-input"
-        >
-          <option value="">Cargando clases…</option>
-        </select>
-      </div>
-
-      <div class="basics-modal-row">
-        <label>Subclase</label>
-        <select
-          id="modal-subclase"
-          class="basics-modal-input"
-          disabled
-        >
-          <option value="">Selecciona una clase primero…</option>
-        </select>
-      </div>
-<div class="basics-modal-row">
-  <label>Raza</label>
-  <select
-    id="modal-raza"
-    class="basics-modal-input"
-  >
-    <option value="">Cargando razas…</option>
-  </select>
-</div>
-<div class="basics-modal-row">
-  <label>Trasfondo</label>
-  <select
-    id="modal-background"
-    class="basics-modal-input"
-  >
-    <option value="">Cargando trasfondos…</option>
-  </select>
-</div>
-
-            <div id="basics-fields">
-              <div class="basics-modal-row">
-                <label>Iniciativa</label>
-                <input type="number" class="basics-modal-input" data-basic="cs_iniciativa">
-              </div>
-              <div class="basics-modal-row">
-                <label>Clase de armadura (CA)</label>
-                <input type="number" class="basics-modal-input" data-basic="cs_ac">
-              </div>
-              <div class="basics-modal-row">
-                <label>Velocidad</label>
-                <input type="number" class="basics-modal-input" data-basic="cs_velocidad">
-              </div>
-              <div class="basics-modal-row">
-                <label>Puntos de vida (PV)</label>
-                <input type="number" class="basics-modal-input" data-basic="cs_hp">
-              </div>
-            </div>
-
-            <button type="button" id="basics-apply" class="btn-primary">
-              Aplicar cambios
-            </button>
-          </div>
-        </div>
-
-        <!-- Modal para editar CARACTERÍSTICAS PRINCIPALES -->
-        <div id="stats-overlay" class="modal-overlay" style="display:none;">
-          <div class="modal-contenido">
-            <span class="close-stats-popup">&times;</span>
-            <h3>Modificar características</h3>
-
-            <div id="stats-fields">
-              <?php
-              $stats_modal = [
-                'Fuerza'              => 'cs_fuerza',
-                'Destreza'            => 'cs_destreza',
-                'Constitución'        => 'cs_constitucion',
-                'Inteligencia'        => 'cs_inteligencia',
-                'Sabiduría'           => 'cs_sabiduria',
-                'Carisma'             => 'cs_carisma',
-              ];
-              foreach ($stats_modal as $label => $field) :
-              ?>
-                <div class="stats-modal-row">
-                  <label><?php echo esc_html($label); ?></label>
-                  <input
-                    type="number"
-                    class="stats-modal-input"
-                    data-stat="<?php echo esc_attr($field); ?>"
-                    <?php echo ($field === 'cs_proeficiencia') ? 'min="0" max="9"' : 'min="0" max="99"'; ?>
-                  >
-                </div>
-              <?php endforeach; ?>
-            </div>
-            <div class="stats-expertise-manager">
-              <label for="expertise-select">Añadir pericia</label>
-              <div class="expertise-controls">
-                <select id="expertise-select" class="basics-modal-input"></select>
-                <button type="button" id="expertise-add" class="btn-basicos-mod">Añadir</button>
-              </div>
-              <ul id="expertise-list" class="expertise-list"></ul>
-            </div>
-
-            <button type="button" id="stats-apply" class="btn-primary">
-              Aplicar cambios
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <section class="character-extended" id="character-extended-module">
-      <div class="character-extended__tabs" role="tablist">
-        <button
-          type="button"
-          class="character-extended__tab is-active"
-          data-ext-tab="features"
-          aria-selected="true"
-        >
-          Features &amp; Traits
-        </button>
-        <button type="button" class="character-extended__tab" data-ext-tab="spells">
-          Spells
-        </button>
-        <button type="button" class="character-extended__tab" data-ext-tab="actions">
-          Actions
-        </button>
-        <button type="button" class="character-extended__tab" data-ext-tab="background">
-          Background
-        </button>
-      </div>
-
-      <div class="character-extended__panel" id="character-extended-panel">
-        <p class="character-extended__empty">
-          Selecciona una pestaña para ver la información asociada.
-        </p>
-      </div>
-    </section>
-
-
-<!-- MODAL: Competencias (armas, armaduras, herramientas, idiomas) -->
-<div id="profs-overlay" class="modal-overlay" style="display:none;">
-  <div class="modal-contenido">
-    <span class="close-profs-popup">&times;</span>
-    <h3>Editar competencias</h3>
-
-    <!-- Armas -->
-    <div class="profs-modal-section">
-      <h4>Armas</h4>
-      <div class="profs-modal-row">
-        <select id="profs-weapons-select" class="basics-modal-input">
-          <option value="">Cargando armas…</option>
-        </select>
-<button type="button" id="profs-weapons-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
-      </div>
-      <ul id="profs-weapons-list" class="profs-modal-list"></ul>
-    </div>
-
-    <!-- Armaduras -->
-    <div class="profs-modal-section">
-      <h4>Armaduras</h4>
-      <div class="profs-modal-row">
-        <select id="profs-armors-select" class="basics-modal-input">
-          <option value="">Cargando armaduras…</option>
-        </select>
-<button type="button" id="profs-armors-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
-      </div>
-      <ul id="profs-armors-list" class="profs-modal-list"></ul>
-    </div>
-
-    <!-- Herramientas -->
-    <div class="profs-modal-section">
-      <h4>Herramientas</h4>
-      <div class="profs-modal-row">
-        <select id="profs-tools-select" class="basics-modal-input">
-          <option value="">Cargando herramientas…</option>
-        </select>
-<button type="button" id="profs-tools-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
-      </div>
-      <ul id="profs-tools-list" class="profs-modal-list"></ul>
-    </div>
-
-    <!-- Idiomas -->
-    <div class="profs-modal-section">
-      <h4>Idiomas</h4>
-      <div class="profs-modal-row">
-        <select id="profs-languages-select" class="basics-modal-input">
-          <option value="">Cargando idiomas…</option>
-        </select>
-<button type="button" id="profs-languages-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
-      </div>
-      <ul id="profs-languages-list" class="profs-modal-list"></ul>
-    </div>
-
-    <button type="button" id="profs-apply" class="btn-primary">
-      Aplicar cambios
+<div id="character-extended-module" class="character-extended">
+  <div class="character-extended__tabs">
+    <button type="button" class="character-extended__tab is-active" data-ext-tab="features">
+      Feats &amp; Traits
+    </button>
+    <button type="button" class="character-extended__tab" data-ext-tab="spells">
+      Conjuros
+    </button>
+    <button type="button" class="character-extended__tab" data-ext-tab="actions">
+      Acciones
+    </button>
+    <button type="button" class="character-extended__tab" data-ext-tab="background">
+      Trasfondo
     </button>
   </div>
+  <div id="character-extended-panel" class="character-extended__panel">
+    <p class="character-extended__loading">Cargando datos...</p>
+  </div>
 </div>
+
+        <!-- Modal para editar INI / CA / VEL / PV -->
+        <div id="sheet-overlay" class="modal-overlay" style="display:none;">
+  <div class="modal-contenido modal-contenido--sheet">
+    <span class="close-sheet-popup">&times;</span>
+    <div class="sheet-modal-scroll">
+      <section class="sheet-section sheet-section--stats">
+        <h3>Modificar características</h3>
+        <div id="stats-fields">
+<?php
+  $stats_modal = [
+    'Fuerza'       => 'cs_fuerza',
+    'Destreza'     => 'cs_destreza',
+    'Constitución' => 'cs_constitucion',
+    'Inteligencia' => 'cs_inteligencia',
+    'Sabiduría'    => 'cs_sabiduria',
+    'Carisma'      => 'cs_carisma',
+  ];
+  foreach ($stats_modal as $label => $field) :
+?>
+          <div class="stats-modal-row">
+            <label><?php echo esc_html($label); ?></label>
+            <input
+              type="number"
+              class="stats-modal-input"
+              data-stat="<?php echo esc_attr($field); ?>"
+              min="0"
+              max="99"
+            >
+          </div>
+<?php endforeach; ?>
+        </div>
+        <div class="stats-expertise-manager">
+          <label for="expertise-select">Añadir pericia</label>
+          <div class="expertise-controls">
+            <select id="expertise-select" class="basics-modal-input"></select>
+            <button type="button" id="expertise-add" class="btn-basicos-mod">Añadir</button>
+          </div>
+          <ul id="expertise-list" class="expertise-list"></ul>
+        </div>
+      </section>
+
+      <hr class="temp-pv-separator">
+
+      <section class="sheet-section sheet-section--basics">
+        <h3>Datos básicos</h3>
+        <div class="basics-modal-row">
+          <label>Nivel</label>
+          <input type="number" min="1" max="20" class="basics-modal-input" data-basic="nivel">
+        </div>
+        <div class="basics-modal-row">
+          <label>Clase</label>
+          <select id="modal-clase" class="basics-modal-input">
+            <option value="">Cargando clases…</option>
+          </select>
+        </div>
+        <div class="basics-modal-row">
+          <label>Subclase</label>
+          <select id="modal-subclase" class="basics-modal-input" disabled>
+            <option value="">Selecciona una clase primero…</option>
+          </select>
+        </div>
+        <div class="basics-modal-row">
+          <label>Raza</label>
+          <select id="modal-raza" class="basics-modal-input">
+            <option value="">Cargando razas…</option>
+          </select>
+        </div>
+        <div class="basics-modal-row">
+          <label>Trasfondo</label>
+          <select id="modal-background" class="basics-modal-input">
+            <option value="">Cargando trasfondos…</option>
+          </select>
+        </div>
+        <div id="basics-fields">
+          <div class="basics-modal-row">
+            <label>Iniciativa</label>
+            <input type="number" class="basics-modal-input" data-basic="cs_iniciativa">
+          </div>
+          <div class="basics-modal-row">
+            <label>Clase de armadura (CA)</label>
+            <input type="number" class="basics-modal-input" data-basic="cs_ac">
+          </div>
+          <div class="basics-modal-row">
+            <label>Velocidad</label>
+            <input type="number" class="basics-modal-input" data-basic="cs_velocidad">
+          </div>
+          <div class="basics-modal-row">
+            <label>Puntos de vida (PV)</label>
+            <input type="number" class="basics-modal-input" data-basic="cs_hp">
+          </div>
+        </div>
+      </section>
+
+      <hr class="temp-pv-separator">
+
+      <section class="sheet-section sheet-section--profs">
+        <h3>Competencias</h3>
+        <div class="profs-modal-section">
+          <h4>Armas</h4>
+          <div class="profs-modal-row">
+            <select id="profs-weapons-select" class="basics-modal-input">
+              <option value="">Cargando armas…</option>
+            </select>
+            <button type="button" id="profs-weapons-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+          </div>
+          <ul id="profs-weapons-list" class="profs-modal-list"></ul>
+        </div>
+        <div class="profs-modal-section">
+          <h4>Armaduras</h4>
+          <div class="profs-modal-row">
+            <select id="profs-armors-select" class="basics-modal-input">
+              <option value="">Cargando armaduras…</option>
+            </select>
+            <button type="button" id="profs-armors-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+          </div>
+          <ul id="profs-armors-list" class="profs-modal-list"></ul>
+        </div>
+        <div class="profs-modal-section">
+          <h4>Herramientas</h4>
+          <div class="profs-modal-row">
+            <select id="profs-tools-select" class="basics-modal-input">
+              <option value="">Cargando herramientas…</option>
+            </select>
+            <button type="button" id="profs-tools-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+          </div>
+          <ul id="profs-tools-list" class="profs-modal-list"></ul>
+        </div>
+        <div class="profs-modal-section">
+          <h4>Idiomas</h4>
+          <div class="profs-modal-row">
+            <select id="profs-languages-select" class="basics-modal-input">
+              <option value="">Cargando idiomas…</option>
+            </select>
+            <button type="button" id="profs-languages-add" class="btn-basicos-mod btn-profs-add">Añadir</button>
+          </div>
+          <ul id="profs-languages-list" class="profs-modal-list"></ul>
+        </div>
+      </section>
+    </div>
+    <div class="sheet-modal-actions">
+      <button type="button" id="sheet-apply" class="btn-primary">Aplicar cambios</button>
+    </div>
+  </div>
+</div>
+
 
     <?php
     return ob_get_clean();

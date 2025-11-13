@@ -66,6 +66,12 @@ $nav_images = array(
     </a>
   </div>
 
+  <div class="hoja-toolbar">
+    <button type="button" id="btn-sheet-modal" class="btn-hoja-edit">
+      Editar Hoja.pj
+    </button>
+  </div>
+
   <?php echo renderizar_hoja_personaje($personaje->ID); ?>
 </div>
 

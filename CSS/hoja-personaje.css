@@ -117,6 +117,48 @@
     color: #cccccc;
 }
 
+.hoja-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.btn-hoja-edit {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    background-color: #a600a6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-hoja-edit:hover {
+    background-color: #8a008a;
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    padding: 0.55rem 1.5rem;
+    background: linear-gradient(90deg, #ff00ff, #a600a6);
+    border: none;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 0, 255, 0.25);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #ff55ff, #cc00cc);
+}
+
 
 /* Botón guardar centrado (reutilizamos estilos del inventario) */
 .boton-centrao {
@@ -325,6 +367,10 @@
     gap: 0.25rem;
 }
 
+.skill-indicator[data-save-indicator] {
+    cursor: pointer;
+}
+
 .skill-icon {
     width: 18px;
     height: 18px;
@@ -397,9 +443,48 @@
 
 /* ===== MODAL: MODIFICAR CARACTERÍSTICAS ===== */
 
-/* Que el modal de stats sea un pelín más estrecho */
-#stats-overlay .modal-contenido {
-    max-width: 360px;
+.modal-contenido--sheet {
+    width: min(960px, 95vw);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: rgba(7, 0, 18, 0.95);
+}
+
+.sheet-modal-scroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: calc(90vh - 4rem);
+    padding-right: 0.75rem;
+    margin-right: -0.25rem;
+}
+
+.sheet-section {
+    margin-bottom: 1.5rem;
+}
+
+.sheet-section h3 {
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffbfff;
+}
+
+.sheet-section h4 {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: #f7deff;
+}
+
+.sheet-modal-actions {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 
 /* Contenedor de filas del modal */
@@ -408,13 +493,6 @@
     flex-direction: column;
     gap: 0.4rem;
 }
-/* ===== MODAL: MODIFICAR CARACTERÍSTICAS ===== */
-
-/* Hacemos el modal algo más estrecho */
-#stats-overlay .modal-contenido {
-    max-width: 380px;
-}
-
 /* Contenedor de filas del modal */
 #stats-fields {
     display: flex;
@@ -553,12 +631,6 @@
     }
 }
 
-
-/* ===== MODAL DE BÁSICOS: INI / CA / VEL / PV ===== */
-
-#basics-overlay .modal-contenido {
-    max-width: 380px;  /* igual que el de características */
-}
 
 /* Contenedor de filas del modal */
 #basics-fields {
@@ -735,35 +807,50 @@
     font-size: 0.9rem;
 }
 
-/* ===== MODAL: COMPETENCIAS (armas, armaduras, herramientas, idiomas) ==== */
+@media (max-width: 640px) {
+    .basicos-secundarios {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
 
-/* Fila select + botón */
-#profs-overlay .profs-modal-row {
+    .basic-item-wide {
+        width: 100%;
+    }
+
+    .basic-item-wide .basic-text {
+        min-width: 0;
+        width: 100%;
+        display: inline-block;
+    }
+}
+
+.sheet-section--profs .profs-modal-row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-#profs-overlay .profs-modal-row .basics-modal-input {
+.sheet-section--profs .profs-modal-row .basics-modal-input {
     flex: 1;
 }
 
 /* Botones "Añadir" muy compactos */
-#profs-overlay .btn-profs-add {
+.sheet-section--profs .btn-profs-add {
     padding: 0.15rem 0.7rem;
     font-size: 0.7rem;
     line-height: 1;
 }
 
 /* Lista dentro del modal */
-#profs-overlay .profs-modal-list {
+.sheet-section--profs .profs-modal-list {
     list-style: disc;
     margin: 0 0 1rem 1.2rem;
     padding: 0;
 }
 
-#profs-overlay .profs-modal-list li {
+.sheet-section--profs .profs-modal-list li {
     display: flex;
     align-items: center;
     gap: 0.4rem;
@@ -771,7 +858,7 @@
 }
 
 /* Botón pequeñito para eliminar (la "x") */
-#profs-overlay .profs-remove {
+.sheet-section--profs .profs-remove {
     padding: 0.1rem 0.45rem;
     font-size: 0.7rem;
     line-height: 1;
