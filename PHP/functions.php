@@ -1662,33 +1662,115 @@ function drak_user_can_manage_personaje( $post_id ) {
     return false;
 }
 
+function drak_grimorio_decode_meta_array( $value ) {
+    if ( is_array( $value ) ) {
+        return $value;
+    }
+    if ( is_string( $value ) && $value !== '' ) {
+        $decoded = json_decode( $value, true );
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            return $decoded;
+        }
+    }
+    return [];
+}
+
+function drak_grimorio_normalize_slots_array( $data ) {
+    if ( ! is_array( $data ) ) {
+        return [];
+    }
+    $clean = [];
+    foreach ( $data as $level => $value ) {
+        $level = intval( $level );
+        if ( $level < 0 || $level > 9 ) {
+            continue;
+        }
+        $clean[ $level ] = max( 0, intval( $value ) );
+    }
+    ksort( $clean );
+    return $clean;
+}
+
+function drak_grimorio_normalize_spells_array( $data ) {
+    if ( ! is_array( $data ) ) {
+        return [];
+    }
+    $clean = [];
+    foreach ( $data as $level => $list ) {
+        $level = intval( $level );
+        if ( $level < 0 || $level > 9 ) {
+            continue;
+        }
+        $list      = is_array( $list ) ? $list : [];
+        $sanitized = [];
+        foreach ( $list as $spell_name ) {
+            $spell_name = sanitize_text_field( (string) $spell_name );
+            if ( '' === $spell_name ) {
+                continue;
+            }
+            if ( ! in_array( $spell_name, $sanitized, true ) ) {
+                $sanitized[] = $spell_name;
+            }
+        }
+        if ( ! empty( $sanitized ) ) {
+            $clean[ $level ] = $sanitized;
+        }
+    }
+    ksort( $clean );
+    return $clean;
+}
+
+function drak_grimorio_save_slots( $post_id, $data ) {
+    $clean   = drak_grimorio_normalize_slots_array( $data );
+    $payload = empty( $clean ) ? '' : wp_json_encode( $clean, JSON_UNESCAPED_UNICODE );
+    update_field( 'grimorio_slots_used', $payload, $post_id );
+    return $clean;
+}
+
+function drak_grimorio_save_prepared( $post_id, $data ) {
+    $clean   = drak_grimorio_normalize_spells_array( $data );
+    $payload = empty( $clean ) ? '' : wp_json_encode( $clean, JSON_UNESCAPED_UNICODE );
+    update_field( 'grimorio_spells', $payload, $post_id );
+    return $clean;
+}
+
+function drak_grimorio_get_slots( $post_id ) {
+    $raw   = get_field( 'grimorio_slots_used', $post_id );
+    $array = drak_grimorio_decode_meta_array( $raw );
+    $clean = drak_grimorio_normalize_slots_array( $array );
+    if ( is_array( $raw ) ) {
+        drak_grimorio_save_slots( $post_id, $clean );
+    }
+    return $clean;
+}
+
+function drak_grimorio_get_prepared( $post_id ) {
+    $raw   = get_field( 'grimorio_spells', $post_id );
+    $array = drak_grimorio_decode_meta_array( $raw );
+    $clean = drak_grimorio_normalize_spells_array( $array );
+    if ( is_array( $raw ) ) {
+        drak_grimorio_save_prepared( $post_id, $clean );
+    }
+    return $clean;
+}
+
 function renderizar_grimorio_personaje( $post_id ) {
     if ( ! $post_id ) {
         return '';
     }
 
     if ( isset( $_POST['grimorio_guardar'], $_POST['grimorio_nonce'] ) && wp_verify_nonce( $_POST['grimorio_nonce'], 'grimorio_guardar_' . $post_id ) && drak_user_can_manage_personaje( $post_id ) ) {
-        $slots_posted = isset( $_POST['grimorio_slots_used'] ) && is_array( $_POST['grimorio_slots_used'] ) ? array_map( 'intval', $_POST['grimorio_slots_used'] ) : [];
-        update_field( 'grimorio_slots_used', $slots_posted, $post_id );
+        $slots_posted = isset( $_POST['grimorio_slots_used'] ) ? $_POST['grimorio_slots_used'] : [];
+        drak_grimorio_save_slots( $post_id, $slots_posted );
 
-        $spells_posted = isset( $_POST['grimorio_spells'] ) && is_array( $_POST['grimorio_spells'] ) ? $_POST['grimorio_spells'] : [];
-        $clean = [];
-        foreach ( $spells_posted as $level => $list ) {
-            $level = intval( $level );
-            if ( $level < 1 || $level > 9 ) {
-                continue;
-            }
-            $clean[ $level ] = array_map( 'sanitize_text_field', array_filter( (array) $list ) );
-        }
-        update_field( 'grimorio_spells', $clean, $post_id );
+        $spells_posted = isset( $_POST['grimorio_spells'] ) ? $_POST['grimorio_spells'] : [];
+        drak_grimorio_save_prepared( $post_id, $spells_posted );
     }
 
     $nivel      = intval( get_field( 'nivel', $post_id ) );
     $clase_id   = get_field( 'clase', $post_id );
-    $slots_used = get_field( 'grimorio_slots_used', $post_id );
-    $slots_used = is_array( $slots_used ) ? $slots_used : [];
-    $prepared   = get_field( 'grimorio_spells', $post_id );
-    $prepared   = is_array( $prepared ) ? $prepared : [];
+    $slots_used = drak_grimorio_get_slots( $post_id );
+    $prepared   = drak_grimorio_get_prepared( $post_id );
     $concentration = get_post_meta( $post_id, 'grimorio_concentration_state', true );
     $concentration = is_array( $concentration ) ? $concentration : [];
     $concentration_level = isset( $concentration['level'] ) ? intval( $concentration['level'] ) : null;
@@ -1882,6 +1964,24 @@ add_action('after_setup_theme', function () {
         show_admin_bar(false);
     }
 });
+
+if ( is_admin() ) {
+    add_filter( 'acf/load_value/name=grimorio_slots_used', 'drak_grimorio_acf_admin_format_json' );
+    add_filter( 'acf/load_value/name=grimorio_spells', 'drak_grimorio_acf_admin_format_json' );
+}
+
+function drak_grimorio_acf_admin_format_json( $value ) {
+    if ( is_array( $value ) ) {
+        return wp_json_encode( $value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
+    }
+    if ( is_string( $value ) && $value !== '' ) {
+        $decoded = json_decode( $value, true );
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            return wp_json_encode( $decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
+        }
+    }
+    return $value;
+}
 
 // Redirigir /pj al login si no está logueado
 function redirigir_pj_si_no_logueado() {
@@ -2086,8 +2186,8 @@ add_action('wp_enqueue_scripts', function () {
         $post_id = $personaje ? $personaje->ID : 0;
         $nivel  = $personaje ? intval( get_field( 'nivel', $post_id ) ) : 0;
         $clase  = $personaje ? get_field( 'clase', $post_id ) : '';
-        $slots  = get_field( 'grimorio_slots_used', $post_id );
-        $spells = get_field( 'grimorio_spells', $post_id );
+        $slots  = drak_grimorio_get_slots( $post_id );
+        $spells = drak_grimorio_get_prepared( $post_id );
         $slot_table = drak_get_full_caster_slots_table();
         $slot_row   = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
         $concentration = get_post_meta( $post_id, 'grimorio_concentration_state', true );
@@ -2674,13 +2774,11 @@ function drak_dnd5_save_spell_slots() {
         wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
     }
 
-    $stored = get_field( 'grimorio_slots_used', $post_id );
-    $stored = is_array( $stored ) ? $stored : [];
+    $stored           = drak_grimorio_get_slots( $post_id );
     $stored[ $level ] = max( 0, $value );
+    $clean            = drak_grimorio_save_slots( $post_id, $stored );
 
-    update_field( 'grimorio_slots_used', $stored, $post_id );
-
-    wp_send_json_success( [ 'slots' => $stored ] );
+    wp_send_json_success( [ 'slots' => $clean ] );
 }
 add_action( 'wp_ajax_drak_dnd5_save_spell_slots', 'drak_dnd5_save_spell_slots' );
 
@@ -2705,29 +2803,7 @@ function drak_dnd5_save_prepared_spells() {
     if ( ! is_array( $decoded ) ) {
         wp_send_json_error( [ 'message' => 'Formato inválido.' ], 400 );
     }
-
-    $clean = [];
-    foreach ( $decoded as $level => $spells ) {
-        $level = intval( $level );
-        if ( $level < 0 || $level > 9 ) {
-            continue;
-        }
-
-        $list = [];
-        foreach ( (array) $spells as $spell_name ) {
-            $spell_name = sanitize_text_field( (string) $spell_name );
-            if ( '' === $spell_name ) {
-                continue;
-            }
-            $list[] = $spell_name;
-        }
-
-        if ( ! empty( $list ) ) {
-            $clean[ $level ] = array_values( array_unique( $list ) );
-        }
-    }
-
-    update_field( 'grimorio_spells', $clean, $post_id );
+    $clean = drak_grimorio_save_prepared( $post_id, $decoded );
 
     wp_send_json_success( [ 'prepared' => $clean ] );
 }
