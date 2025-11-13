@@ -1689,6 +1689,11 @@ function renderizar_grimorio_personaje( $post_id ) {
     $slots_used = is_array( $slots_used ) ? $slots_used : [];
     $prepared   = get_field( 'grimorio_spells', $post_id );
     $prepared   = is_array( $prepared ) ? $prepared : [];
+    $concentration = get_post_meta( $post_id, 'grimorio_concentration_state', true );
+    $concentration = is_array( $concentration ) ? $concentration : [];
+    $concentration_level = isset( $concentration['level'] ) ? intval( $concentration['level'] ) : null;
+    $concentration_spell = isset( $concentration['spell'] ) ? (string) $concentration['spell'] : '';
+    $concentration_spell_id = isset( $concentration['spell_id'] ) ? (string) $concentration['spell_id'] : '';
 
     $slot_table = drak_get_full_caster_slots_table();
     $row        = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
@@ -1724,55 +1729,70 @@ function renderizar_grimorio_personaje( $post_id ) {
         </div>
       </section>
 
-      <section class="grimorio-prepared">
-        <div class="grimorio-prepared__header">
-          <div>
-            <h3>Conjuros preparados</h3>
-            <p class="grimorio-prepared__help">
-              Gestiona la lista desde la ventana de selección. Los cambios se guardan automáticamente.
-            </p>
-          </div>
-          <button type="button" class="grimorio-prepared__edit-btn">Editar conjuros</button>
-        </div>
-
-        <div class="grimorio-prepared__levels">
-          <?php foreach ( $row as $lvl => $max_slots ) :
-              $current = $prepared[ $lvl ] ?? [];
-              ?>
-              <article class="grimorio-prepared-block" data-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
-                <div class="grimorio-prepared-block__head">
-                  <div>
-                    <span class="grimorio-prepared-block__label">Nivel <?php echo esc_html( $lvl ); ?></span>
-                    <small><?php echo esc_html( $max_slots ); ?> huecos disponibles</small>
-                  </div>
-                  <span class="grimorio-prepared-block__counter" data-counter-for="<?php echo esc_attr( $lvl ); ?>">
-                    <?php echo esc_html( count( array_filter( $current ) ) ); ?> / <?php echo esc_html( $max_slots ); ?>
-                  </span>
-                </div>
-                <ul class="grimorio-prepared-block__list" data-list-level="<?php echo esc_attr( $lvl ); ?>">
-                  <?php if ( empty( $current ) ) : ?>
-                    <li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Aún no hay conjuros preparados.</li>
-                  <?php else : ?>
-                    <?php foreach ( $current as $spell_name ) :
-                        $spell_name = trim( (string) $spell_name );
-                        if ( '' === $spell_name ) {
-                            continue;
-                        }
-                        ?>
-                        <li class="grimorio-prepared-spell" data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
-                          <span class="grimorio-prepared-spell__name"><?php echo esc_html( $spell_name ); ?></span>
-                          <button type="button" class="grimorio-cast-spell" data-level="<?php echo esc_attr( $lvl ); ?>" data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
-                            Lanzar spell
-                          </button>
-                        </li>
-                    <?php endforeach; ?>
-                  <?php endif; ?>
-                </ul>
-              </article>
-          <?php endforeach; ?>
-        </div>
+      <section class="grimorio-quick-actions">
+        <button type="button" class="grimorio-reset-slots">Descanso largo</button>
+        <button type="button" class="grimorio-reset-prepared">Reiniciar grimorio</button>
+        <button type="button" class="grimorio-finish-concentration" <?php disabled( empty( $concentration_spell ) && empty( $concentration_spell_id ) ); ?>>
+          Fin concentración
+        </button>
       </section>
     </div>
+
+    <section class="grimorio-prepared">
+      <div class="grimorio-prepared__header">
+        <h3>Conjuros preparados</h3>
+        <button type="button" class="grimorio-prepared__edit-btn">Editar conjuros</button>
+      </div>
+
+      <div class="grimorio-prepared__levels">
+        <?php foreach ( $row as $lvl => $max_slots ) :
+            if ( intval( $max_slots ) <= 0 ) {
+                continue;
+            }
+            $current = $prepared[ $lvl ] ?? [];
+            ?>
+            <article class="grimorio-prepared-block" data-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
+              <div class="grimorio-prepared-block__head">
+                <div>
+                  <span class="grimorio-prepared-block__label">Nivel <?php echo esc_html( $lvl ); ?></span>
+                  <small><?php echo esc_html( $max_slots ); ?> huecos disponibles</small>
+                </div>
+                <span class="grimorio-prepared-block__counter" data-counter-for="<?php echo esc_attr( $lvl ); ?>">
+                  <?php echo esc_html( count( array_filter( $current ) ) ); ?> / <?php echo esc_html( $max_slots ); ?>
+                </span>
+              </div>
+              <ul class="grimorio-prepared-block__list" data-list-level="<?php echo esc_attr( $lvl ); ?>">
+                <?php if ( empty( $current ) ) : ?>
+                  <li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Aún no hay conjuros preparados.</li>
+                <?php else : ?>
+                  <?php foreach ( $current as $spell_name ) :
+                      $spell_name = trim( (string) $spell_name );
+                      if ( '' === $spell_name ) {
+                          continue;
+                      }
+                      ?>
+                      <?php
+                        $is_concentration = ( null !== $concentration_level && intval( $concentration_level ) === intval( $lvl ) )
+                          && ( $concentration_spell === $spell_name );
+                      ?>
+                      <li class="grimorio-prepared-spell <?php echo $is_concentration ? 'grimorio-prepared-spell--concentration' : ''; ?>"
+                          data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
+                        <span class="grimorio-prepared-spell__name"><?php echo esc_html( $spell_name ); ?></span>
+                        <button type="button"
+                                class="grimorio-cast-spell"
+                                data-level="<?php echo esc_attr( $lvl ); ?>"
+                                data-spell-id=""
+                                data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
+                          Lanzar spell
+                        </button>
+                      </li>
+                  <?php endforeach; ?>
+                <?php endif; ?>
+              </ul>
+            </article>
+        <?php endforeach; ?>
+      </div>
+    </section>
 
     <div id="grimorio-spell-picker" class="grimorio-modal" role="dialog" aria-modal="true" aria-hidden="true">
       <div class="grimorio-modal__dialog">
@@ -2070,10 +2090,13 @@ add_action('wp_enqueue_scripts', function () {
         $spells = get_field( 'grimorio_spells', $post_id );
         $slot_table = drak_get_full_caster_slots_table();
         $slot_row   = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
+        $concentration = get_post_meta( $post_id, 'grimorio_concentration_state', true );
+        $concentration = is_array( $concentration ) ? $concentration : [];
 
         wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', [], null, true);
         $slots_nonce     = wp_create_nonce( 'grimorio_slots_' . $post_id );
         $prepared_nonce  = wp_create_nonce( 'grimorio_prepared_' . $post_id );
+        $concentration_nonce = wp_create_nonce( 'grimorio_concentration_' . $post_id );
 
         wp_localize_script('grimorio-js', 'GRIMORIO_DATA', [
             'ajax_url'       => admin_url('admin-ajax.php'),
@@ -2085,6 +2108,12 @@ add_action('wp_enqueue_scripts', function () {
             'slot_limits'    => array_map( 'intval', $slot_row ),
             'nonce'          => $slots_nonce,
             'prepared_nonce' => $prepared_nonce,
+            'concentration'  => [
+                'level'   => isset( $concentration['level'] ) ? intval( $concentration['level'] ) : null,
+                'spell'   => $concentration['spell'] ?? '',
+                'spell_id'=> $concentration['spell_id'] ?? '',
+            ],
+            'concentration_nonce' => $concentration_nonce,
         ]);
     }
 });
@@ -2703,6 +2732,49 @@ function drak_dnd5_save_prepared_spells() {
     wp_send_json_success( [ 'prepared' => $clean ] );
 }
 add_action( 'wp_ajax_drak_dnd5_save_prepared_spells', 'drak_dnd5_save_prepared_spells' );
+
+function drak_dnd5_save_concentration_state() {
+    if ( ! isset( $_POST['post_id'], $_POST['state'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_concentration_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $state_raw = json_decode( wp_unslash( $_POST['state'] ), true );
+    if ( ! is_array( $state_raw ) ) {
+        delete_post_meta( $post_id, 'grimorio_concentration_state' );
+        wp_send_json_success( [ 'concentration' => null ] );
+    }
+
+    $level    = isset( $state_raw['level'] ) ? intval( $state_raw['level'] ) : null;
+    $spell    = isset( $state_raw['spell'] ) ? sanitize_text_field( $state_raw['spell'] ) : '';
+    $spell_id = isset( $state_raw['spell_id'] ) ? sanitize_text_field( $state_raw['spell_id'] ) : '';
+
+    if ( null === $level || ( '' === $spell && '' === $spell_id ) ) {
+        delete_post_meta( $post_id, 'grimorio_concentration_state' );
+        wp_send_json_success( [ 'concentration' => null ] );
+    }
+
+    $payload = [
+        'level'    => $level,
+        'spell'    => $spell,
+        'spell_id' => $spell_id,
+    ];
+
+    update_post_meta( $post_id, 'grimorio_concentration_state', $payload );
+
+    wp_send_json_success( [ 'concentration' => $payload ] );
+}
+add_action( 'wp_ajax_drak_dnd5_save_concentration_state', 'drak_dnd5_save_concentration_state' );
 
 /**
  * AJAX: rasgos combinados (raza + clase + subclase).

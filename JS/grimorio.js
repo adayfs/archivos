@@ -17,6 +17,7 @@
     spellIndexById: {},
     spellIndexByName: {},
     spellsLoaded: false,
+    concentration: defaultConcentrationState(),
   };
 
   const selectors = {};
@@ -24,6 +25,8 @@
   function initGrimorio() {
     selectors.preparedContainer = document.querySelector('.grimorio-prepared');
     selectors.editButton = document.querySelector('.grimorio-prepared__edit-btn');
+    selectors.resetSlotsBtn = document.querySelector('.grimorio-reset-slots');
+    selectors.resetPreparedBtn = document.querySelector('.grimorio-reset-prepared');
     selectors.pickerModal = document.getElementById('grimorio-spell-picker');
     selectors.pickerLevels = document.getElementById('grimorio-spell-picker-levels');
     selectors.pickerLoading = document.getElementById('grimorio-spell-picker-loading');
@@ -31,6 +34,7 @@
     selectors.infoModal = document.getElementById('grimorio-info-modal');
     selectors.infoTitle = document.getElementById('grimorio-info-title');
     selectors.infoBody = document.getElementById('grimorio-info-content');
+    selectors.finishConcentrationBtn = document.querySelector('.grimorio-finish-concentration');
 
     hydrateState();
     initSlots();
@@ -44,11 +48,26 @@
     state.slotsUsed = cloneObject(data.slots_used || {});
     state.slotLimits = normalizeSlotLimits(data.slot_limits || {});
     state.prepared = normalizePrepared(data.prepared || {});
+    state.concentration = normalizeConcentrationState(data.concentration);
   }
 
   function bindEvents() {
     if (selectors.editButton) {
       selectors.editButton.addEventListener('click', openSpellPicker);
+    }
+
+    if (selectors.resetSlotsBtn) {
+      selectors.resetSlotsBtn.addEventListener('click', resetSlots);
+    }
+
+    if (selectors.resetPreparedBtn) {
+      selectors.resetPreparedBtn.addEventListener('click', resetPreparedSpells);
+    }
+
+    if (selectors.finishConcentrationBtn) {
+      selectors.finishConcentrationBtn.addEventListener('click', () => {
+        setConcentrationState(null);
+      });
     }
 
     if (selectors.preparedContainer) {
@@ -164,8 +183,12 @@
       listEl.innerHTML = spells
         .map((spell) => {
           const source = spell.source ? `<small class="grimorio-prepared-spell__source">${escapeHtml(spell.source)}</small>` : '';
+          const concentrationClass = isSpellConcentration(spell, level) ? ' grimorio-prepared-spell--concentration' : '';
           return `
-            <li class="grimorio-prepared-spell">
+            <li class="grimorio-prepared-spell${concentrationClass}"
+                data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                data-spell-name="${escapeAttr(spell.name)}"
+                data-spell-level="${level}">
               <div class="grimorio-prepared-spell__info">
                 <span class="grimorio-prepared-spell__name">${escapeHtml(spell.name)}</span>
                 ${source}
@@ -182,6 +205,7 @@
         })
         .join('');
     });
+    updateConcentrationControls();
   }
 
   function openSpellPicker() {
@@ -230,11 +254,10 @@
   }
 
   function getRelevantLevels() {
-    const levels = Object.keys(state.slotLimits)
+    return Object.keys(state.slotLimits)
       .map((key) => parseInt(key, 10))
-      .filter((lvl) => !Number.isNaN(lvl))
+      .filter((lvl) => !Number.isNaN(lvl) && state.slotLimits[lvl] > 0)
       .sort((a, b) => a - b);
-    return levels;
   }
 
   function renderPickerLevel(level) {
@@ -247,15 +270,16 @@
     const listContent = spells.length
       ? spells
           .map((spell) => {
-            const checked = selectedIds.has(spell.id);
+            const identifier = spell.id || spell.name;
+            const checked = selectedIds.has(identifier);
             const shouldDisable = disabledAll || (!checked && max > 0 && selected.length >= max);
             const summary = spell.source ? `<small>${escapeHtml(spell.source)}</small>` : '';
             return `
               <label class="grimorio-spell-picker__item">
                 <input type="checkbox"
-                       value="${escapeAttr(spell.id)}"
+                       value="${escapeAttr(identifier)}"
                        data-level="${level}"
-                       data-spell-id="${escapeAttr(spell.id)}"
+                       data-spell-id="${escapeAttr(spell.id || '')}"
                        data-spell-name="${escapeAttr(spell.name)}"
                        ${checked ? 'checked' : ''}
                        ${shouldDisable ? 'disabled' : ''}>
@@ -293,29 +317,30 @@
     if (!input || !input.dataset.level) return;
 
     const level = parseInt(input.dataset.level, 10);
-    const spellId = input.dataset.spellId;
-    const spellName = input.dataset.spellName || input.value;
+    const identifier = input.value;
+    const spellId = input.dataset.spellId || identifier;
+    const spellName = input.dataset.spellName || identifier;
     const isChecked = input.checked;
     const max = state.slotLimits[level] || 0;
-    const current = pickerState[level] || [];
-
-    if (isChecked && max > 0 && current.length >= max) {
-      input.checked = false;
-      openInfoModal('Sin huecos disponibles', `<p>No puedes preparar más conjuros de nivel ${level}.</p>`);
-      return;
-    }
+    let current = pickerState[level] ? [...pickerState[level]] : [];
 
     const spellData = findSpellById(spellId) || { id: spellId, name: spellName, source: '', level };
 
     if (isChecked) {
+      if (max > 0 && current.length >= max) {
+        input.checked = false;
+        openInfoModal('Sin huecos disponibles', `<p>No puedes preparar más conjuros de nivel ${level}.</p>`);
+        return;
+      }
+
       if (!current.find((item) => item.id === spellData.id || item.name === spellData.name)) {
         current.push(mapSpellForState(spellData, level));
       }
+      pickerState[level] = current;
     } else {
-      pickerState[level] = current.filter((item) => item.id !== spellData.id && item.name !== spellData.name);
+      current = current.filter((item) => item.id !== spellData.id && item.name !== spellData.name);
+      pickerState[level] = current;
     }
-
-    pickerState[level] = current;
     buildSpellPickerUI();
   }
 
@@ -327,13 +352,21 @@
 
     const nextState = clonePrepared(pickerState);
     const previousState = clonePrepared(state.prepared);
+    const previousConcentration = { ...state.concentration };
 
     state.prepared = nextState;
+    if (!hasConcentrationSpell(nextState, previousConcentration)) {
+      state.concentration = defaultConcentrationState();
+    }
     renderPreparedView();
     closeModal(selectors.pickerModal);
 
-    persistPreparedSpells(nextState).catch(() => {
+    Promise.all([
+      persistPreparedSpells(nextState),
+      persistConcentration(state.concentration),
+    ]).catch(() => {
       state.prepared = previousState;
+      state.concentration = previousConcentration;
       renderPreparedView();
       openInfoModal('Error al guardar', '<p>No se pudo guardar la lista de conjuros. Intenta de nuevo.</p>');
     });
@@ -360,6 +393,50 @@
 
     const title = spell ? `Lanzamiento de ${spell.name}` : 'Lanzamiento de conjuro';
     openInfoModal(title, buildSpellContextHtml(spell, context));
+
+    if (context.concentration) {
+      setConcentrationState({
+        level,
+        spell_id: spell?.id || '',
+        spell: spell?.name || fallbackName || '',
+      });
+    }
+  }
+
+  function resetSlots() {
+    state.slotsUsed = Object.keys(state.slotLimits).reduce((acc, level) => {
+      acc[level] = 0;
+      return acc;
+    }, {});
+
+    slotColumns.forEach((record, level) => {
+      if (record.hidden) record.hidden.value = 0;
+      updateSlotCheckboxes(level, 0);
+      persistSlot(level, 0);
+    });
+  }
+
+  function resetPreparedSpells() {
+    const empty = {};
+    Object.keys(state.prepared).forEach((key) => {
+      empty[key] = [];
+    });
+    const previousPrepared = clonePrepared(state.prepared);
+    const previousConcentration = { ...state.concentration };
+
+    state.prepared = empty;
+    state.concentration = defaultConcentrationState();
+    renderPreparedView();
+
+    Promise.all([
+      persistPreparedSpells(state.prepared),
+      persistConcentration(state.concentration),
+    ]).catch(() => {
+      state.prepared = previousPrepared;
+      state.concentration = previousConcentration;
+      renderPreparedView();
+      openInfoModal('Error al reiniciar', '<p>No se pudo reiniciar el grimorio. Intenta de nuevo.</p>');
+    });
   }
 
   function consumeSlot(level) {
@@ -622,33 +699,37 @@
   }
 
   function buildSpellContextHtml(spell, context) {
-    const concentration = context.concentration ? 'Sí' : 'No';
-    const savingThrowText = context.savingThrows.length
-      ? context.savingThrows.map(formatSavingThrow).join(', ')
-      : 'Añade manualmente la tirada de salvación.';
-    const dcNote = context.savingThrows.length
-      ? `DC estimada: 8 + bono de competencia + modificador de ${formatSavingThrowShort(context.savingThrows[0])}.`
-      : 'Calcula la DC según tus estadísticas.';
-    const conditions = context.conditions.length
-      ? context.conditions.map((cond) => `<span class="grimorio-tag">${escapeHtml(cond)}</span>`).join(' ')
-      : '<span class="grimorio-placeholder">Añade aquí las condiciones aplicadas.</span>';
-    const summaryText = context.text
-      ? escapeHtml(context.text.split('\n')[0]).slice(0, 400)
-      : 'Agrega el efecto completo del conjuro en tus notas.';
+    const rows = [];
+    rows.push(`<li><strong>Concentración:</strong> ${context.concentration ? 'Sí' : 'No'}</li>`);
 
-    const source = spell?.source ? `<li><strong>Fuente:</strong> ${escapeHtml(spell.source)}</li>` : '';
+    if (context.savingThrows.length) {
+      const list = context.savingThrows.map(formatSavingThrow).join(', ');
+      const dcNote = `DC estimada: 8 + bono de competencia + modificador de ${formatSavingThrowShort(context.savingThrows[0])}.`;
+      rows.push(`
+        <li>
+          <strong>Tirada de salvación:</strong> ${list}
+          <div class="grimorio-cast-summary__note">${escapeHtml(dcNote)}</div>
+        </li>
+      `);
+    }
+
+    if (context.conditions.length) {
+      const tags = context.conditions.map((cond) => `<span class="grimorio-tag">${escapeHtml(cond)}</span>`).join(' ');
+      rows.push(`<li><strong>Condiciones:</strong> ${tags}</li>`);
+    }
+
+    if (spell?.source) {
+      rows.push(`<li><strong>Fuente:</strong> ${escapeHtml(spell.source)}</li>`);
+    }
+
+    const summaryText = context.text ? escapeHtml(context.text.split('\n')[0]).slice(0, 400) : '';
+    const summaryParagraph = summaryText ? `<p class="grimorio-cast-summary__text">${summaryText}</p>` : '';
 
     return `
       <ul class="grimorio-cast-summary">
-        <li><strong>Concentración:</strong> ${concentration}</li>
-        <li>
-          <strong>Tirada de salvación:</strong> ${savingThrowText}
-          <div class="grimorio-cast-summary__note">${escapeHtml(dcNote)}</div>
-        </li>
-        <li><strong>Condiciones:</strong> ${conditions}</li>
-        ${source}
+        ${rows.join('')}
       </ul>
-      <p class="grimorio-cast-summary__text">${summaryText}</p>
+      ${summaryParagraph}
     `;
   }
 
@@ -695,6 +776,10 @@
 
   function closeModal(modal) {
     if (!modal) return;
+    const active = document.activeElement;
+    if (active && modal.contains(active)) {
+      active.blur();
+    }
     modal.classList.remove('is-visible');
     modal.setAttribute('aria-hidden', 'true');
     if (modal === selectors.pickerModal) {
@@ -730,5 +815,108 @@
 
   function escapeAttr(text) {
     return escapeHtml(text).replace(/`/g, '&#096;');
+  }
+
+  function defaultConcentrationState() {
+    return { level: null, spell: '', spell_id: '' };
+  }
+
+  function normalizeConcentrationState(raw) {
+    if (!raw || typeof raw !== 'object') return defaultConcentrationState();
+    const level = Number.isInteger(raw.level) ? raw.level : null;
+    const spell = typeof raw.spell === 'string' ? raw.spell : '';
+    const spellId = typeof raw.spell_id === 'string' ? raw.spell_id : '';
+    if (level === null || (!spell && !spellId)) {
+      return defaultConcentrationState();
+    }
+    return { level, spell, spell_id: spellId };
+  }
+
+  function isSpellConcentration(spell, level) {
+    if (!state.concentration || state.concentration.level === null) return false;
+    if (parseInt(level, 10) !== parseInt(state.concentration.level, 10)) return false;
+    if (state.concentration.spell_id && spell.id) {
+      return state.concentration.spell_id === spell.id;
+    }
+    return (spell.name || '').toLowerCase() === (state.concentration.spell || '').toLowerCase();
+  }
+
+  function updateConcentrationControls() {
+    if (!selectors.finishConcentrationBtn) return;
+    const active =
+      state.concentration &&
+      state.concentration.level !== null &&
+      (state.concentration.spell || state.concentration.spell_id);
+    selectors.finishConcentrationBtn.disabled = !active;
+  }
+
+  function setConcentrationState(newState, options = {}) {
+    const prev = { ...state.concentration };
+    if (newState && typeof newState === 'object') {
+      state.concentration = {
+        level: Number.isInteger(newState.level) ? newState.level : null,
+        spell: newState.spell || '',
+        spell_id: newState.spell_id || '',
+      };
+    } else {
+      state.concentration = defaultConcentrationState();
+    }
+
+    if (!options.skipRender) {
+      renderPreparedView();
+    } else {
+      updateConcentrationControls();
+    }
+
+    if (options.persist === false) {
+      return Promise.resolve();
+    }
+
+    return persistConcentration(state.concentration).catch(() => {
+      state.concentration = prev;
+      if (!options.skipRender) {
+        renderPreparedView();
+      } else {
+        updateConcentrationControls();
+      }
+      openInfoModal('Error de concentración', '<p>No se pudo actualizar el estado de concentración.</p>');
+    });
+  }
+
+  function persistConcentration(value) {
+    if (!window.GRIMORIO_DATA.concentration_nonce) {
+      return Promise.resolve();
+    }
+
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_save_concentration_state',
+      nonce: window.GRIMORIO_DATA.concentration_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      state: JSON.stringify(value || defaultConcentrationState()),
+    });
+
+    return fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        if (!json || !json.success) {
+          throw new Error('No se pudo actualizar la concentración.');
+        }
+        return json;
+      });
+  }
+
+  function hasConcentrationSpell(prepared, concentration) {
+    if (!concentration || concentration.level === null) return false;
+    const list = prepared[concentration.level] || [];
+    return list.some((spell) => {
+      if (concentration.spell_id && spell.id) {
+        return concentration.spell_id === spell.id;
+      }
+      return (spell.name || '').toLowerCase() === (concentration.spell || '').toLowerCase();
+    });
   }
 })();

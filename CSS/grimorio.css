@@ -4,6 +4,9 @@
     padding: 2rem 1rem;
     text-align: center;
     color: #fff;
+    --grimorio-accent: #f36aff;
+    --grimorio-concentration-bg: #fe00f1;
+    --grimorio-concentration-text: #9933ff;
 }
 
 .titulo-grimorio {
@@ -91,12 +94,15 @@
     align-items: flex-start;
     gap: 1rem;
     flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(0, 0, 0, 0.35);
 }
 
-.grimorio-prepared__help {
-    margin: 0.3rem 0 0;
-    color: #c8c8c8;
-    font-size: 0.9rem;
+.grimorio-prepared__header h3 {
+    margin: 0;
+    color: var(--grimorio-accent);
 }
 
 .grimorio-prepared__edit-btn {
@@ -120,6 +126,10 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(5, 0, 15, 0.65);
 }
 
 .grimorio-prepared-block {
@@ -184,6 +194,14 @@
     color: #c8c8c8;
 }
 
+.grimorio-prepared-spell--concentration {
+    border-color: var(--grimorio-concentration-bg);
+    box-shadow: 0 0 12px rgba(254, 0, 241, 0.45);
+    background: var(--grimorio-concentration-bg);
+    color: var(--grimorio-concentration-text);
+    text-shadow: none;
+}
+
 .grimorio-prepared-spell--empty {
     justify-content: center;
     font-size: 0.9rem;
@@ -231,6 +249,7 @@
     background: rgba(0, 0, 0, 0.65);
     padding: 1rem;
     z-index: 999;
+    --grimorio-accent: #f36aff;
 }
 
 .grimorio-modal.is-visible {
@@ -354,6 +373,7 @@
     padding: 0.5rem;
     border: 1px solid transparent;
     cursor: pointer;
+    align-items: flex-start;
 }
 
 .grimorio-spell-picker__item input {
@@ -361,7 +381,16 @@
 }
 
 .grimorio-spell-picker__item span {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0.4rem;
+    border-radius: 0.4rem;
     font-size: 0.9rem;
+}
+
+.grimorio-spell-picker__item input:checked + span {
+    background: var(--grimorio-accent);
+    color: #1c0023;
 }
 
 .grimorio-spell-picker__item small {
@@ -417,4 +446,42 @@
 .grimorio-placeholder {
     color: #aaa;
     font-style: italic;
+}
+.grimorio-quick-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.grimorio-quick-actions button {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.grimorio-quick-actions button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.grimorio-quick-actions .grimorio-finish-concentration {
+    border-color: var(--grimorio-concentration-bg);
+    background: var(--grimorio-concentration-bg);
+    color: var(--grimorio-concentration-text);
+    text-shadow: none;
+}
+
+.grimorio-quick-actions .grimorio-finish-concentration:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
 }
