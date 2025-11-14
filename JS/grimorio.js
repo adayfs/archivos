@@ -8,11 +8,14 @@
   const slotColumns = new Map();
   let pickerState = null;
   let spellsPromise = null;
+  let classReferenceInitialized = false;
 
   const state = {
     slotsUsed: {},
     slotLimits: {},
     prepared: {},
+    preparedLimit: null,
+    autoPrepared: { class: {}, subclass: {} },
     spellsByLevel: {},
     spellIndexById: {},
     spellIndexByName: {},
@@ -41,6 +44,17 @@
     renderPreparedView();
     bindEvents();
     fetchSpellList();
+
+    if (typeof window.initClassReferenceModule === 'function') {
+      window.initClassReferenceModule();
+    }
+
+    const classReferenceEl = document.getElementById('class-reference-module');
+    const classReferenceState = window.classReferenceState || null;
+    if (classReferenceEl && classReferenceState && window.refreshClassReferenceModule) {
+      classReferenceInitialized = true;
+      refreshClassReferenceForGrimoire();
+    }
   }
 
   function hydrateState() {
@@ -48,7 +62,14 @@
     state.slotsUsed = cloneObject(data.slots_used || {});
     state.slotLimits = normalizeSlotLimits(data.slot_limits || {});
     state.prepared = normalizePrepared(data.prepared || {});
+    state.level = data.level || 1;
+    state.classId = data.class_id || '';
+    const limitValue = Number.isFinite(data.prepared_limit)
+      ? data.prepared_limit
+      : parseInt(data.prepared_limit || '0', 10);
+    state.preparedLimit = Number.isFinite(limitValue) && limitValue > 0 ? limitValue : null;
     state.concentration = normalizeConcentrationState(data.concentration);
+    state.autoPrepared = data.auto_prepared_spells || { class: {}, subclass: {} };
   }
 
   function bindEvents() {
@@ -162,6 +183,16 @@
   }
 
   function renderPreparedView() {
+    const totalPrepared = getTotalPreparedCount(state.prepared);
+    const summary = document.getElementById('grimorio-prepared-total');
+    if (summary) {
+      if (state.preparedLimit) {
+        summary.textContent = `Total: ${totalPrepared} / ${state.preparedLimit}`;
+      } else {
+        summary.textContent = `Total preparados: ${totalPrepared}`;
+      }
+    }
+
     document.querySelectorAll('.grimorio-prepared-block').forEach((block) => {
       const level = parseInt(block.dataset.level || '0', 10);
       const listEl = block.querySelector('.grimorio-prepared-block__list');
@@ -261,19 +292,25 @@
   }
 
   function renderPickerLevel(level) {
-    const max = state.slotLimits[level] || 0;
+    const levelSlots = state.slotLimits[level] || 0;
     const spells = (state.spellsByLevel[level] || []).slice().sort((a, b) => a.name.localeCompare(b.name));
     const selected = pickerState[level] || [];
     const selectedIds = new Set(selected.map((spell) => spell.id || spell.name));
+    const totalSelected = getTotalPreparedCount(pickerState);
+    const limitReached = state.preparedLimit ? totalSelected >= state.preparedLimit : false;
 
-    const disabledAll = max === 0;
+    const disabledAll = levelSlots === 0;
     const listContent = spells.length
       ? spells
           .map((spell) => {
             const identifier = spell.id || spell.name;
             const checked = selectedIds.has(identifier);
-            const shouldDisable = disabledAll || (!checked && max > 0 && selected.length >= max);
+            const shouldDisable = disabledAll || (!checked && limitReached);
             const summary = spell.source ? `<small>${escapeHtml(spell.source)}</small>` : '';
+            const description = getSpellSummary(spell);
+            const descriptionBlock = description
+              ? `<small class="grimorio-spell-picker__desc">${escapeHtml(description)}</small>`
+              : '';
             return `
               <label class="grimorio-spell-picker__item">
                 <input type="checkbox"
@@ -286,6 +323,7 @@
                 <span>
                   ${escapeHtml(spell.name)}
                   ${summary}
+                  ${descriptionBlock}
                 </span>
               </label>
             `;
@@ -293,18 +331,22 @@
           .join('')
       : '<p class="grimorio-spell-picker__empty">No hay conjuros de este nivel para tu clase.</p>';
 
-    const limitNote =
-      max === 0
-        ? '<p class="grimorio-spell-picker__limit">No tienes espacios de conjuro para este nivel.</p>'
-        : `<p class="grimorio-spell-picker__limit">Huecos disponibles: ${selected.length} / ${max}</p>`;
+    const limitNote = state.preparedLimit
+      ? `<p class="grimorio-spell-picker__limit">Total preparados: ${totalSelected} / ${state.preparedLimit}</p>`
+      : `<p class="grimorio-spell-picker__limit">Conjuros preparados en este nivel: ${selected.length}</p>`;
+
+    const slotNote = levelSlots
+      ? `<small class="grimorio-spell-picker__slots">Espacios de nivel ${level}: ${levelSlots}</small>`
+      : '<small class="grimorio-spell-picker__slots">Sin espacios de este nivel.</small>';
 
     return `
-      <article class="grimorio-spell-picker__level" data-picker-level="${level}" data-max="${max}">
+      <article class="grimorio-spell-picker__level" data-picker-level="${level}" data-max="${state.preparedLimit || ''}">
         <header class="grimorio-spell-picker__header">
           <h4>Nivel ${level}</h4>
-          <span class="grimorio-spell-picker__count">${selected.length} / ${max}</span>
+          <span class="grimorio-spell-picker__count">${selected.length}</span>
         </header>
         ${limitNote}
+        ${slotNote}
         <div class="grimorio-spell-picker__list">
           ${listContent}
         </div>
@@ -323,13 +365,23 @@
     const isChecked = input.checked;
     const max = state.slotLimits[level] || 0;
     let current = pickerState[level] ? [...pickerState[level]] : [];
+    const currentTotal = getTotalPreparedCount(pickerState);
 
     const spellData = findSpellById(spellId) || { id: spellId, name: spellName, source: '', level };
 
     if (isChecked) {
-      if (max > 0 && current.length >= max) {
+      if (state.preparedLimit && currentTotal >= state.preparedLimit) {
         input.checked = false;
-        openInfoModal('Sin huecos disponibles', `<p>No puedes preparar más conjuros de nivel ${level}.</p>`);
+        openInfoModal(
+          'Límite alcanzado',
+          `<p>No puedes preparar más de ${state.preparedLimit} conjuros. Quita otro conjuro antes de añadir más.</p>`
+        );
+        return;
+      }
+
+      if (max === 0) {
+        input.checked = false;
+        openInfoModal('Sin espacios disponibles', `<p>No tienes espacios de nivel ${level}.</p>`);
         return;
       }
 
@@ -688,6 +740,16 @@
     }
   }
 
+  function getSpellSummary(spell) {
+    if (!spell || !spell.entries) return '';
+    const chunks = [];
+    flattenSpellEntry(spell.entries, chunks);
+    if (!chunks.length) return '';
+    const text = chunks.join(' ').replace(/\s+/g, ' ').trim();
+    if (!text) return '';
+    return text.length > 180 ? `${text.slice(0, 177).trim()}...` : text;
+  }
+
   function extractMatches(text, regex) {
     if (!text) return [];
     const matches = [];
@@ -797,6 +859,11 @@
 
   function cloneObject(obj) {
     return JSON.parse(JSON.stringify(obj || {}));
+  }
+
+  function getTotalPreparedCount(map) {
+    const source = map || state.prepared;
+    return Object.values(source).reduce((sum, list) => sum + (Array.isArray(list) ? list.length : 0), 0);
   }
 
   function clamp(value, min, max) {
@@ -918,5 +985,33 @@
       }
       return (spell.name || '').toLowerCase() === (concentration.spell || '').toLowerCase();
     });
+  }
+
+  function collectGrimoireContext() {
+    return {
+      level: state.level || 1,
+      classId: state.classId || (window.GRIMORIO_DATA?.class_id || ''),
+      subclassId: window.GRIMORIO_DATA?.subclass_id || '',
+      prefetchedReference: window.GRIMORIO_DATA?.class_reference || null,
+    };
+  }
+
+  function refreshClassReferenceForGrimoire() {
+    const classReferenceState = window.classReferenceState || null;
+    if (!classReferenceState?.container) return;
+
+    const context = collectGrimoireContext();
+    if (!context.classId) return;
+
+    const loader =
+      typeof window.loadCharacterData === 'function'
+        ? window.loadCharacterData()
+        : Promise.resolve();
+
+    loader
+      .catch(() => null)
+      .then(() => {
+        refreshClassReferenceModule(context);
+      });
   }
 })();

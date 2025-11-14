@@ -1732,67 +1732,676 @@ function drak_grimorio_get_prepared( $post_id ) {
     return $clean;
 }
 
-function drak_get_spellcasting_ability_for_class( $class_id ) {
+function drak_get_class_detail_entry( $class_id ) {
     static $class_details = null;
 
+    if ( $class_details === null ) {
+        $class_details = [];
+        $path          = drak_locate_theme_data_file( 'dnd-class-details.json' );
+
+        if ( $path ) {
+            $json = file_get_contents( $path );
+            if ( $json !== false ) {
+                $data = json_decode( $json, true );
+                if ( isset( $data['classes'] ) && is_array( $data['classes'] ) ) {
+                    $class_details = $data['classes'];
+                }
+            }
+        }
+    }
+
+    return $class_details[ $class_id ] ?? null;
+}
+
+function drak_get_spellcasting_ability_for_class( $class_id ) {
     if ( ! $class_id ) {
         return null;
     }
 
-    if ( $class_details === null ) {
-        $class_details = [];
-
-        $candidate_paths = [];
-        if ( function_exists( 'drak_get_static_data_base' ) ) {
-            $base = drak_get_static_data_base();
-            if ( ! empty( $base['dir'] ) ) {
-                $candidate_paths[] = $base['dir'] . 'dnd-class-details.json';
-            }
-        }
-
-        $candidate_paths[] = trailingslashit( get_stylesheet_directory() ) . 'jsons/dnd-class-details.json';
-
-        if ( function_exists( 'get_template_directory' ) && get_template_directory() !== get_stylesheet_directory() ) {
-            $candidate_paths[] = trailingslashit( get_template_directory() ) . 'jsons/dnd-class-details.json';
-        }
-
-        foreach ( array_filter( array_unique( $candidate_paths ) ) as $path ) {
-            if ( ! file_exists( $path ) ) {
-                continue;
-            }
-
-            $json = file_get_contents( $path );
-            $data = json_decode( $json, true );
-            if ( isset( $data['classes'] ) && is_array( $data['classes'] ) ) {
-                $classes = $data['classes'];
-
-                if ( array_keys( $classes ) === range( 0, count( $classes ) - 1 ) ) {
-                    $indexed = [];
-                    foreach ( $classes as $entry ) {
-                        if ( isset( $entry['id'] ) ) {
-                            $indexed[ $entry['id'] ] = $entry;
-                        }
-                    }
-                    $class_details = $indexed;
-                } else {
-                    $class_details = $classes;
-                }
-
-                break;
-            }
-        }
-    }
-
-    if ( empty( $class_details ) || ! isset( $class_details[ $class_id ] ) ) {
+    $entry = drak_get_class_detail_entry( $class_id );
+    if ( ! $entry ) {
         return null;
     }
 
-    $ability = $class_details[ $class_id ]['spellcastingAbility'] ?? null;
+    $ability = $entry['spellcastingAbility'] ?? null;
     if ( ! is_string( $ability ) || $ability === '' ) {
         return null;
     }
 
     return strtolower( $ability );
+}
+
+function drak_set_class_reference_error( $message ) {
+    $GLOBALS['drak_class_reference_error'] = $message;
+    error_log( '[ClassRef] ' . $message );
+}
+
+function drak_get_class_reference_error() {
+    return $GLOBALS['drak_class_reference_error'] ?? '';
+}
+
+function drak_load_5etools_class_file( $class_name ) {
+    static $cache = [];
+
+    if ( ! $class_name ) {
+        return null;
+    }
+
+    $slug = sanitize_title( $class_name );
+    if ( isset( $cache[ $slug ] ) ) {
+        return $cache[ $slug ];
+    }
+
+    $path = drak_locate_theme_data_file( 'class/class-' . $slug . '.json' );
+    if ( ! $path ) {
+        $path = drak_locate_theme_data_file( 'class-' . $slug . '.json' );
+    }
+    if ( ! $path ) {
+        $path = trailingslashit( get_stylesheet_directory() ) . '5etools-src-main/data/class/class-' . $slug . '.json';
+        if ( ! file_exists( $path ) ) {
+            drak_set_class_reference_error( sprintf( 'Archivo de clase no encontrado para "%s" (slug "%s").', $class_name, $slug ) );
+            $cache[ $slug ] = null;
+            return null;
+        }
+    }
+
+    $json = file_get_contents( $path );
+    if ( $json === false ) {
+        drak_set_class_reference_error( sprintf( 'No se pudo leer el archivo %s', $path ) );
+        $cache[ $slug ] = null;
+        return null;
+    }
+
+    $decoded = json_decode( $json, true );
+    if ( ! is_array( $decoded ) ) {
+        drak_set_class_reference_error( sprintf( 'JSON inválido en %s', $path ) );
+        $cache[ $slug ] = null;
+        return null;
+    }
+
+    $cache[ $slug ] = $decoded;
+    return $cache[ $slug ];
+}
+
+function drak_find_class_json_entry( $class_id ) {
+    if ( ! $class_id ) {
+        return null;
+    }
+
+    $meta = drak_get_class_detail_entry( $class_id );
+    if ( ! $meta ) {
+        return null;
+    }
+
+    $file = drak_load_5etools_class_file( $meta['name'] ?? '' );
+    if ( ! $file || empty( $file['class'] ) || ! is_array( $file['class'] ) ) {
+        return null;
+    }
+
+    foreach ( $file['class'] as $entry ) {
+        $entry_name   = strtolower( $entry['name'] ?? '' );
+        $target_name  = strtolower( $meta['name'] ?? '' );
+        $entry_source = $entry['source'] ?? '';
+        $entry_edition = $entry['edition'] ?? 'classic';
+
+        if ( $entry_name === $target_name
+            && $entry_source === ( $meta['source'] ?? '' )
+            && $entry_edition === ( $meta['edition'] ?? 'classic' ) ) {
+            return [
+                'meta'  => $meta,
+                'entry' => $entry,
+                'file'  => $file,
+            ];
+        }
+    }
+
+    if ( ! empty( $file['class'] ) ) {
+        foreach ( $file['class'] as $entry ) {
+            if ( strtolower( $entry['name'] ?? '' ) === strtolower( $meta['name'] ?? '' ) ) {
+                return [
+                    'meta'  => $meta,
+                    'entry' => $entry,
+                    'file'  => $file,
+                ];
+            }
+        }
+
+        drak_set_class_reference_error( sprintf( 'No hubo coincidencia exacta para la clase "%s" (%s %s). Se usará la primera entrada del JSON.', $meta['name'] ?? $class_id, $meta['source'] ?? 'sin fuente', $meta['edition'] ?? 'sin edición' ) );
+        return [
+            'meta'  => $meta,
+            'entry' => $file['class'][0],
+            'file'  => $file,
+        ];
+    }
+
+    return null;
+}
+
+function drak_find_subclass_json_entry( $subclass_id ) {
+    if ( ! $subclass_id ) {
+        return null;
+    }
+
+    $lookup = drak_get_local_dnd_class_lookup();
+    $record = $lookup['subclasses'][ $subclass_id ] ?? null;
+    if ( ! $record ) {
+        return null;
+    }
+
+    $class_id  = $record['class_id'] ?? '';
+    $class_ref = drak_find_class_json_entry( $class_id );
+    if ( ! $class_ref ) {
+        return null;
+    }
+
+    $file        = $class_ref['file'];
+    $sub_meta    = $record['data'] ?? [];
+    $target_name = strtolower( $sub_meta['name'] ?? '' );
+    $target_source = $sub_meta['source'] ?? '';
+    $target_short = strtolower( $sub_meta['shortName'] ?? '' );
+    $target_edition = $sub_meta['edition'] ?? ( $class_ref['meta']['edition'] ?? 'classic' );
+    $target_class_name = strtolower( $sub_meta['className'] ?? ( $class_ref['meta']['name'] ?? '' ) );
+    $target_class_source = $sub_meta['classSource'] ?? ( $class_ref['meta']['source'] ?? '' );
+
+    foreach ( $file['subclass'] ?? [] as $entry ) {
+        $entry_name  = strtolower( $entry['name'] ?? '' );
+        $entry_short = strtolower( $entry['shortName'] ?? '' );
+        $entry_source = $entry['source'] ?? '';
+        $entry_class_name = strtolower( $entry['className'] ?? '' );
+        $entry_class_source = $entry['classSource'] ?? '';
+        $entry_edition = $entry['edition'] ?? ( $class_ref['meta']['edition'] ?? 'classic' );
+
+        if (
+            ( $entry_name === $target_name || $entry_short === $target_short )
+            && $entry_source === $target_source
+            && $entry_class_name === $target_class_name
+            && $entry_class_source === $target_class_source
+            && $entry_edition === $target_edition
+        ) {
+            return [
+                'entry' => $entry,
+                'meta'  => $sub_meta,
+                'class' => $class_ref,
+            ];
+        }
+    }
+
+    foreach ( $file['subclass'] ?? [] as $entry ) {
+        if ( strtolower( $entry['name'] ?? '' ) === $target_name ) {
+            return [
+                'entry' => $entry,
+                'meta'  => $sub_meta,
+                'class' => $class_ref,
+            ];
+        }
+    }
+
+    if ( ! empty( $file['subclass'] ) ) {
+        drak_set_class_reference_error( sprintf( 'No hubo coincidencia exacta para la subclase "%s". Se usará la primera entrada disponible.', $sub_meta['name'] ?? $subclass_id ) );
+        return [
+            'entry' => $file['subclass'][0],
+            'meta'  => $sub_meta,
+            'class' => $class_ref,
+        ];
+    }
+
+    return null;
+}
+
+function drak_strip_5e_markup( $text ) {
+    if ( ! is_string( $text ) ) {
+        return '';
+    }
+
+    $clean = preg_replace( '/\{@[^|}]+\|([^}|]+)(?:\|[^}]*)?\}/', '$1', $text );
+    $clean = preg_replace( '/{[^}]+}/', '', $clean );
+
+    return trim( $clean );
+}
+
+function drak_parse_spell_slot_label( $label ) {
+    $plain = drak_strip_5e_markup( $label );
+    if ( $plain === '' ) {
+        $plain = (string) $label;
+    }
+
+    if ( preg_match( '/level=(\d+)/i', $label, $matches ) ) {
+        return intval( $matches[1] );
+    }
+
+    if ( preg_match( '/(\d+)(?:st|nd|rd|th)/i', $plain, $matches ) ) {
+        return intval( $matches[1] );
+    }
+
+    if ( preg_match( '/(\d+)/', $plain, $matches ) ) {
+        return intval( $matches[1] );
+    }
+
+    return null;
+}
+
+function drak_extract_prepared_progression( $class_entry ) {
+    if ( empty( $class_entry ) || ! is_array( $class_entry ) ) {
+        return [];
+    }
+
+    if ( ! empty( $class_entry['preparedSpellsProgression'] ) && is_array( $class_entry['preparedSpellsProgression'] ) ) {
+        $progression = [];
+        foreach ( $class_entry['preparedSpellsProgression'] as $index => $value ) {
+            $progression[ $index + 1 ] = intval( $value );
+        }
+        return $progression;
+    }
+
+    foreach ( $class_entry['classTableGroups'] ?? [] as $group ) {
+        $labels = $group['colLabels'] ?? [];
+        $rows   = $group['rows'] ?? [];
+
+        if ( empty( $labels ) || empty( $rows ) ) {
+            continue;
+        }
+
+        foreach ( $labels as $idx => $label ) {
+            $plain = strtolower( drak_strip_5e_markup( $label ) );
+            if ( false !== strpos( $plain, 'prepared spells' ) ) {
+                $progression = [];
+                foreach ( $rows as $row_index => $row_values ) {
+                    $progression[ $row_index + 1 ] = intval( $row_values[ $idx ] ?? 0 );
+                }
+                return $progression;
+            }
+        }
+    }
+
+    return [];
+}
+
+function drak_extract_cantrip_progression( $class_entry ) {
+    if ( empty( $class_entry['cantripProgression'] ) || ! is_array( $class_entry['cantripProgression'] ) ) {
+        return [];
+    }
+
+    $progression = [];
+    foreach ( $class_entry['cantripProgression'] as $index => $value ) {
+        $progression[ $index + 1 ] = intval( $value );
+    }
+
+    return $progression;
+}
+
+function drak_extract_spell_slot_progression( $class_entry ) {
+    if ( empty( $class_entry ) || ! is_array( $class_entry ) ) {
+        return [];
+    }
+
+    foreach ( $class_entry['classTableGroups'] ?? [] as $group ) {
+        if ( empty( $group['rowsSpellProgression'] ) || ! is_array( $group['rowsSpellProgression'] ) ) {
+            continue;
+        }
+
+        $labels     = $group['colLabels'] ?? [];
+        $slot_index = [];
+        foreach ( $labels as $idx => $label ) {
+            $slot_level = drak_parse_spell_slot_label( $label );
+            if ( $slot_level !== null ) {
+                $slot_index[ $idx ] = $slot_level;
+            }
+        }
+
+        if ( empty( $slot_index ) ) {
+            continue;
+        }
+
+        $progression = [];
+        foreach ( $group['rowsSpellProgression'] as $row_idx => $row_values ) {
+            $character_level = $row_idx + 1;
+            foreach ( $slot_index as $col_idx => $slot_level ) {
+                $progression[ $character_level ][ $slot_level ] = intval( $row_values[ $col_idx ] ?? 0 );
+            }
+        }
+
+        if ( ! empty( $progression ) ) {
+            return $progression;
+        }
+    }
+
+    foreach ( $class_entry['classTableGroups'] ?? [] as $group ) {
+        $labels = $group['colLabels'] ?? [];
+        $rows   = $group['rows'] ?? [];
+
+        if ( empty( $labels ) || empty( $rows ) ) {
+            continue;
+        }
+
+        $slots_idx = null;
+        $level_idx = null;
+
+        foreach ( $labels as $idx => $label ) {
+            $plain = strtolower( drak_strip_5e_markup( $label ) );
+            if ( $plain === 'spell slots' ) {
+                $slots_idx = $idx;
+            }
+            if ( false !== strpos( $plain, 'slot level' ) ) {
+                $level_idx = $idx;
+            }
+        }
+
+        if ( $slots_idx === null || $level_idx === null ) {
+            continue;
+        }
+
+        $progression = [];
+        foreach ( $rows as $row_index => $row_values ) {
+            $character_level = $row_index + 1;
+            $slot_count      = intval( $row_values[ $slots_idx ] ?? 0 );
+            $slot_level      = drak_parse_spell_slot_label( $row_values[ $level_idx ] ?? '' );
+
+            if ( $slot_count > 0 && $slot_level ) {
+                $progression[ $character_level ][ $slot_level ] = $slot_count;
+            }
+        }
+
+        if ( ! empty( $progression ) ) {
+            return $progression;
+        }
+    }
+
+    return [];
+}
+
+function drak_parse_spell_token( $value ) {
+    if ( is_array( $value ) ) {
+        if ( isset( $value['choose'] ) ) {
+            return null;
+        }
+        if ( isset( $value['item'] ) && is_array( $value['item'] ) ) {
+            $value = reset( $value['item'] );
+        } elseif ( isset( $value['entry'] ) ) {
+            $value = $value['entry'];
+        } else {
+            $value = '';
+        }
+    }
+
+    $raw = trim( (string) $value );
+    if ( $raw === '' ) {
+        return null;
+    }
+
+    $name   = $raw;
+    $source = '';
+
+    if ( preg_match( '/^\{@spell ([^}|]+)(?:\|([^}|]+))?(?:\|([^}]+))?\}$/i', $raw, $matches ) ) {
+        $name   = $matches[1];
+        $source = $matches[2] ?? '';
+    } elseif ( strpos( $raw, '|' ) !== false ) {
+        $parts  = explode( '|', $raw );
+        $name   = $parts[0];
+        $source = $parts[1] ?? '';
+    }
+
+    $name = drak_strip_5e_markup( $name );
+
+    if ( $name === '' ) {
+        return null;
+    }
+
+    return [
+        'name'   => trim( $name ),
+        'source' => strtoupper( trim( $source ) ),
+        'raw'    => $raw,
+    ];
+}
+
+function drak_collect_prepared_spells_from_additional( $additional, $max_level = null ) {
+    if ( empty( $additional ) || ! is_array( $additional ) ) {
+        return [];
+    }
+
+    $result = [];
+
+    foreach ( $additional as $block ) {
+        if ( empty( $block['prepared'] ) || ! is_array( $block['prepared'] ) ) {
+            continue;
+        }
+
+        foreach ( $block['prepared'] as $level => $spells ) {
+            $lvl = intval( $level );
+            if ( $lvl <= 0 ) {
+                continue;
+            }
+            if ( $max_level !== null && $lvl > $max_level ) {
+                continue;
+            }
+
+            foreach ( (array) $spells as $entry ) {
+                $spell = drak_parse_spell_token( $entry );
+                if ( ! $spell ) {
+                    continue;
+                }
+                $key = strtolower( $spell['name'] . '|' . $spell['source'] );
+                if ( ! isset( $result[ $lvl ] ) ) {
+                    $result[ $lvl ] = [];
+                }
+                if ( isset( $result[ $lvl ][ $key ] ) ) {
+                    continue;
+                }
+                $result[ $lvl ][ $key ] = $spell;
+            }
+        }
+    }
+
+    foreach ( $result as $lvl => $spells ) {
+        $result[ $lvl ] = array_values( $spells );
+    }
+
+    ksort( $result );
+
+    return $result;
+}
+
+function drak_normalize_class_table_groups( $class_entry ) {
+    $groups = [];
+
+    foreach ( $class_entry['classTableGroups'] ?? [] as $group ) {
+        $labels = array_map( 'drak_strip_5e_markup', $group['colLabels'] ?? [] );
+        $rows   = [];
+        $has_rows = false;
+
+        if ( ! empty( $group['rows'] ) && is_array( $group['rows'] ) ) {
+            foreach ( $group['rows'] as $row ) {
+                $rows[] = array_map( 'drak_strip_5e_markup', $row );
+            }
+            $has_rows = true;
+        } elseif ( ! empty( $group['rowsSpellProgression'] ) && is_array( $group['rowsSpellProgression'] ) ) {
+            $labels = array_merge( [ 'Level' ], $labels );
+            foreach ( $group['rowsSpellProgression'] as $idx => $row ) {
+                $display = [ $idx + 1 ];
+                foreach ( $row as $value ) {
+                    $display[] = is_numeric( $value ) ? intval( $value ) : drak_strip_5e_markup( (string) $value );
+                }
+                $rows[] = $display;
+            }
+            $has_rows = true;
+        }
+
+        if ( ! $has_rows ) {
+            continue;
+        }
+
+        $groups[] = [
+            'title'    => $group['title'] ?? '',
+            'subtitle' => $group['subtitle'] ?? '',
+            'colLabels'=> $labels,
+            'rows'     => $rows,
+        ];
+    }
+
+    return $groups;
+}
+
+function drak_get_class_reference_map( $class_id ) {
+    static $cache = [];
+
+    if ( isset( $cache[ $class_id ] ) ) {
+        return $cache[ $class_id ];
+    }
+
+    $class_ref = drak_find_class_json_entry( $class_id );
+    if ( ! $class_ref ) {
+        drak_set_class_reference_error( sprintf( 'No se encontró referencia para la clase "%s".', $class_id ) );
+        $cache[ $class_id ] = null;
+        return null;
+    }
+
+    $entry = $class_ref['entry'];
+
+    $cache[ $class_id ] = [
+        'meta'                => $class_ref['meta'],
+        'table_groups'        => drak_normalize_class_table_groups( $entry ),
+        'prepared_progression'=> drak_extract_prepared_progression( $entry ),
+        'slot_progression'    => drak_extract_spell_slot_progression( $entry ),
+        'cantrip_progression' => drak_extract_cantrip_progression( $entry ),
+        'additional_prepared' => drak_collect_prepared_spells_from_additional( $entry['additionalSpells'] ?? [] ),
+    ];
+
+    return $cache[ $class_id ];
+}
+
+function drak_get_class_reference_payload( $class_id, $subclass_id = '' ) {
+    $class_data = drak_get_class_reference_map( $class_id );
+    if ( ! $class_data ) {
+        return null;
+    }
+
+    $payload = [
+        'class_id'            => $class_id,
+        'class_meta'          => $class_data['meta'],
+        'table_groups'        => $class_data['table_groups'],
+        'prepared_progression'=> $class_data['prepared_progression'],
+        'slot_progression'    => $class_data['slot_progression'],
+        'class_prepared_spells'=> $class_data['additional_prepared'],
+        'cantrip_progression' => $class_data['cantrip_progression'],
+    ];
+
+    if ( $subclass_id ) {
+        $sub_ref = drak_find_subclass_json_entry( $subclass_id );
+        if ( $sub_ref ) {
+            $payload['subclass'] = [
+                'id'        => $subclass_id,
+                'meta'      => $sub_ref['meta'],
+                'prepared'  => drak_collect_prepared_spells_from_additional( $sub_ref['entry']['additionalSpells'] ?? [] ),
+            ];
+        }
+    }
+
+    return $payload;
+}
+
+function drak_get_class_prepared_limit( $class_id, $level ) {
+    $class_data = drak_get_class_reference_map( $class_id );
+    if ( ! $class_data ) {
+        return 0;
+    }
+
+    $level = max( 1, min( 20, intval( $level ) ) );
+    return intval( $class_data['prepared_progression'][ $level ] ?? 0 );
+}
+
+function drak_get_class_spell_slots_for_level( $class_id, $level ) {
+    $class_data = drak_get_class_reference_map( $class_id );
+    if ( ! $class_data ) {
+        return [];
+    }
+
+    $level = max( 1, min( 20, intval( $level ) ) );
+    return $class_data['slot_progression'][ $level ] ?? [];
+}
+
+function drak_filter_prepared_spell_list_by_level( $spell_map, $max_level ) {
+    $result = [];
+    foreach ( $spell_map as $lvl => $spells ) {
+        if ( $max_level !== null && intval( $lvl ) > $max_level ) {
+            continue;
+        }
+        $result[ intval( $lvl ) ] = $spells;
+    }
+    ksort( $result );
+    return $result;
+}
+
+function drak_lookup_spell_reference( $name, $source = '' ) {
+    static $index = null;
+
+    if ( $index === null ) {
+        $index = [];
+        foreach ( drak_get_local_dnd_spells() as $spell ) {
+            $spell_name   = strtolower( $spell['name'] ?? '' );
+            $spell_source = strtoupper( $spell['source'] ?? '' );
+            if ( $spell_name === '' ) {
+                continue;
+            }
+            $index[ $spell_name . '|' . $spell_source ] = $spell;
+            if ( $spell_source ) {
+                $index[ $spell_name . '|' ] = $spell;
+            }
+        }
+    }
+
+    $key = strtolower( $name ) . '|' . strtoupper( $source );
+    if ( isset( $index[ $key ] ) ) {
+        return $index[ $key ];
+    }
+
+    $fallback = strtolower( $name ) . '|';
+    return $index[ $fallback ] ?? null;
+}
+
+function drak_enrich_prepared_spell_map( $spell_map ) {
+    $result = [];
+    foreach ( $spell_map as $level => $spells ) {
+        foreach ( $spells as $spell ) {
+            $lookup = drak_lookup_spell_reference( $spell['name'], $spell['source'] );
+            if ( $lookup ) {
+                $spell['spell_level'] = intval( $lookup['level'] ?? 0 );
+                $spell['spell_id']    = $lookup['id'] ?? '';
+                $spell['source']      = $lookup['source'] ?? $spell['source'];
+            } else {
+                $spell['spell_level'] = 0;
+                $spell['spell_id']    = '';
+            }
+            $result[ $level ][] = $spell;
+        }
+    }
+    return $result;
+}
+
+function drak_get_auto_prepared_spells( $class_id, $subclass_id, $character_level, &$reference_payload = null ) {
+    $payload = [
+        'class'    => [],
+        'subclass' => [],
+    ];
+
+    $class_data = drak_get_class_reference_map( $class_id );
+    if ( $class_data && ! empty( $class_data['class_prepared_spells'] ) ) {
+        $filtered = drak_filter_prepared_spell_list_by_level( $class_data['class_prepared_spells'], $character_level );
+        $payload['class'] = drak_enrich_prepared_spell_map( $filtered );
+    }
+
+    if ( $subclass_id ) {
+        $sub_ref = drak_find_subclass_json_entry( $subclass_id );
+        if ( $sub_ref ) {
+            $spell_map = drak_collect_prepared_spells_from_additional( $sub_ref['entry']['additionalSpells'] ?? [] );
+            $filtered  = drak_filter_prepared_spell_list_by_level( $spell_map, $character_level );
+            $payload['subclass'] = drak_enrich_prepared_spell_map( $filtered );
+        }
+    }
+
+    if ( func_num_args() >= 4 ) {
+        $reference_payload = drak_get_class_reference_payload( $class_id, $subclass_id );
+    }
+
+    return $payload;
 }
 
 function drak_format_signed_number( $value ) {
@@ -1983,8 +2592,24 @@ function renderizar_grimorio_personaje( $post_id ) {
     $concentration_spell = isset( $concentration['spell'] ) ? (string) $concentration['spell'] : '';
     $concentration_spell_id = isset( $concentration['spell_id'] ) ? (string) $concentration['spell_id'] : '';
 
-    $slot_table = drak_get_full_caster_slots_table();
-    $row        = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
+    $row = drak_get_class_spell_slots_for_level( $clase_id, $nivel );
+    if ( empty( $row ) ) {
+        $fallback = drak_get_full_caster_slots_table();
+        $row      = $fallback[ max( 1, min( 20, $nivel ) ) ] ?? [];
+    }
+    ksort( $row );
+
+    $subclass_id    = get_field( 'subclase', $post_id );
+    $auto_prepared  = drak_get_auto_prepared_spells( $clase_id, $subclass_id, $nivel );
+    $has_auto_prepared = false;
+    foreach ( $auto_prepared as $group ) {
+        foreach ( $group as $spells ) {
+            if ( ! empty( $spells ) ) {
+                $has_auto_prepared = true;
+                break 2;
+            }
+        }
+    }
 
     ob_start();
     ?>
@@ -1992,9 +2617,12 @@ function renderizar_grimorio_personaje( $post_id ) {
       <section class="grimorio-slot-grid">
         <h3>Espacios de conjuro</h3>
         <div class="grimorio-slot-grid__inner">
-        <?php for ( $lvl = 1; $lvl <= 9; $lvl++ ) :
-            $max_slots = $row[ $lvl ] ?? 0;
-            $used      = isset( $slots_used[ $lvl ] ) ? intval( $slots_used[ $lvl ] ) : 0;
+        <?php foreach ( $row as $lvl => $max_slots ) :
+            $max_slots = intval( $max_slots );
+            if ( $max_slots <= 0 ) {
+                continue;
+            }
+            $used = isset( $slots_used[ $lvl ] ) ? intval( $slots_used[ $lvl ] ) : 0;
             ?>
             <div class="grimorio-slot-column" data-level="<?php echo esc_attr( $lvl ); ?>" data-max="<?php echo esc_attr( $max_slots ); ?>">
               <header>
@@ -2013,7 +2641,7 @@ function renderizar_grimorio_personaje( $post_id ) {
               </div>
               <input type="hidden" name="grimorio_slots_used[<?php echo esc_attr( $lvl ); ?>]" value="<?php echo esc_attr( $used ); ?>">
             </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
         </div>
       </section>
 
@@ -2029,6 +2657,7 @@ function renderizar_grimorio_personaje( $post_id ) {
     <section class="grimorio-prepared">
       <div class="grimorio-prepared__header">
         <h3>Conjuros preparados</h3>
+        <div class="grimorio-prepared__summary" id="grimorio-prepared-total"></div>
         <button type="button" class="grimorio-prepared__edit-btn">Editar conjuros</button>
       </div>
 
@@ -2090,8 +2719,7 @@ function renderizar_grimorio_personaje( $post_id ) {
         </header>
         <div class="grimorio-modal__body">
           <p class="grimorio-spell-picker__hint">
-            Marca los conjuros que quieres preparar en cada nivel. No podrás seleccionar más
-            conjuros de los huecos disponibles para ese nivel.
+            Marca los conjuros que quieres preparar en cada nivel. El límite total de conjuros preparados depende de tu clase y nivel.
           </p>
           <div id="grimorio-spell-picker-loading" class="grimorio-spell-picker__loading">
             Cargando lista de conjuros...
@@ -2121,6 +2749,84 @@ function renderizar_grimorio_personaje( $post_id ) {
         </footer>
       </div>
     </div>
+    <?php
+    return ob_get_clean();
+}
+function drak_render_grimorio_auto_prepared_section( $auto_prepared, $subclass_id ) {
+    $subclass_label = '';
+    if ( $subclass_id ) {
+        $sub_ref = drak_find_subclass_json_entry( $subclass_id );
+        if ( $sub_ref && ! empty( $sub_ref['meta']['name'] ) ) {
+            $subclass_label = $sub_ref['meta']['name'];
+        }
+    }
+    ob_start();
+    ?>
+    <section class="grimorio-auto-prepared">
+      <div class="grimorio-auto-prepared__header">
+        <h3>Conjuros siempre preparados</h3>
+        <p>Estas opciones no consumen tus huecos de conjuros preparados.</p>
+      </div>
+      <?php
+        $auto_groups = [
+            'class'    => __( 'De tu clase', 'grimorio' ),
+            'subclass' => $subclass_label ? $subclass_label : __( 'De tu subclase', 'grimorio' ),
+        ];
+        foreach ( $auto_groups as $group_key => $group_label ) :
+            $group_spells = $auto_prepared[ $group_key ] ?? [];
+            $group_has_spells = false;
+            foreach ( $group_spells as $spell_list ) {
+                if ( ! empty( $spell_list ) ) {
+                    $group_has_spells = true;
+                    break;
+                }
+            }
+            if ( ! $group_has_spells ) {
+                continue;
+            }
+        ?>
+        <div class="grimorio-auto-prepared__group">
+          <h4><?php echo esc_html( $group_label ); ?></h4>
+          <?php foreach ( $group_spells as $unlock_level => $spells ) : ?>
+            <?php if ( empty( $spells ) ) { continue; } ?>
+            <div class="grimorio-auto-prepared__level">
+              <span class="grimorio-auto-prepared__level-label">
+                Disponible al nivel <?php echo esc_html( $unlock_level ); ?>
+              </span>
+              <ul class="grimorio-auto-prepared__list">
+                <?php foreach ( $spells as $spell ) :
+                    $spell_name   = $spell['name'] ?? '';
+                    $spell_source = $spell['source'] ?? '';
+                    $spell_level  = intval( $spell['spell_level'] ?? 0 );
+                    $spell_id     = $spell['spell_id'] ?? '';
+                    if ( '' === $spell_name ) {
+                        continue;
+                    }
+                    ?>
+                    <li class="grimorio-prepared-spell grimorio-prepared-spell--auto">
+                      <div class="grimorio-prepared-spell__info">
+                        <span class="grimorio-prepared-spell__name"><?php echo esc_html( $spell_name ); ?></span>
+                        <?php if ( $spell_source ) : ?>
+                          <small class="grimorio-prepared-spell__source"><?php echo esc_html( $spell_source ); ?></small>
+                        <?php endif; ?>
+                      </div>
+                      <?php if ( $spell_level > 0 ) : ?>
+                        <button type="button"
+                                class="grimorio-cast-spell"
+                                data-level="<?php echo esc_attr( $spell_level ); ?>"
+                                data-spell-id="<?php echo esc_attr( $spell_id ); ?>"
+                                data-spell-name="<?php echo esc_attr( $spell_name ); ?>">
+                          Lanzar spell
+                        </button>
+                      <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endforeach; ?>
+    </section>
     <?php
     return ob_get_clean();
 }
@@ -2412,13 +3118,14 @@ add_action('wp_enqueue_scripts', function () {
         $personaje = $personaje_slug ? get_page_by_path($personaje_slug, OBJECT, 'personaje') : null;
         $post_id = $personaje ? $personaje->ID : 0;
 
-        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', [], null, true);
+        wp_enqueue_script('class-reference-js', get_stylesheet_directory_uri() . '/js/class-reference.js', ['jquery'], null, true);
+        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js'], null, true);
         wp_localize_script('hoja-personaje-js', 'HP_TEMP_AJAX', [
-            'ajax_url' => admin_url('admin-ajax.php'),
+            'ajax_url' => drak_get_admin_ajax_url(),
             'post_id' => $post_id,
         ]);
-	        wp_localize_script('hoja-personaje-js', 'DND5_API', [
-            'ajax_url' => admin_url('admin-ajax.php'),
+        wp_localize_script('hoja-personaje-js', 'DND5_API', [
+            'ajax_url' => drak_get_admin_ajax_url(),
         ]);
         wp_localize_script('hoja-personaje-js', 'DND5_STATIC_DATA', [
             'races'        => drak_static_data_uri( 'dnd-races.json' ),
@@ -2436,26 +3143,49 @@ add_action('wp_enqueue_scripts', function () {
         $post_id = $personaje ? $personaje->ID : 0;
         $nivel  = $personaje ? intval( get_field( 'nivel', $post_id ) ) : 0;
         $clase  = $personaje ? get_field( 'clase', $post_id ) : '';
+        $subclase = $personaje ? get_field( 'subclase', $post_id ) : '';
         $slots  = drak_grimorio_get_slots( $post_id );
         $spells = drak_grimorio_get_prepared( $post_id );
-        $slot_table = drak_get_full_caster_slots_table();
-        $slot_row   = $slot_table[ max( 1, min( 20, $nivel ) ) ] ?? [];
+        $subclase   = $personaje ? get_field( 'subclase', $post_id ) : '';
+        $slot_row   = drak_get_class_spell_slots_for_level( $clase, $nivel );
+        if ( empty( $slot_row ) ) {
+            $fallback  = drak_get_full_caster_slots_table();
+            $slot_row  = $fallback[ max( 1, min( 20, $nivel ) ) ] ?? [];
+        }
+        ksort( $slot_row );
         $concentration = get_post_meta( $post_id, 'grimorio_concentration_state', true );
         $concentration = is_array( $concentration ) ? $concentration : [];
+        $class_reference_payload = null;
+        $auto_prepared = drak_get_auto_prepared_spells( $clase, $subclase, $nivel, $class_reference_payload );
+        $prepared_limit = drak_get_class_prepared_limit( $clase, $nivel );
 
-        wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', [], null, true);
+        wp_enqueue_script('class-reference-js', get_stylesheet_directory_uri() . '/js/class-reference.js', ['jquery'], null, true);
+        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js'], null, true);
+        wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', ['jquery', 'class-reference-js', 'hoja-personaje-js'], null, true);
+        wp_localize_script('grimorio-js', 'DND5_STATIC_DATA', [
+            'races'        => drak_static_data_uri( 'dnd-races.json' ),
+            'backgrounds'  => drak_static_data_uri( 'dnd-backgrounds.json' ),
+            'classList'    => drak_static_data_uri( 'dnd-classes.json' ),
+            'classDetails' => drak_static_data_uri( 'dnd-class-details.json' ),
+            'feats'        => drak_static_data_uri( 'dnd-feats.json' ),
+        ]);
+        wp_localize_script('grimorio-js', 'DND5_API', [
+            'ajax_url' => drak_get_admin_ajax_url(),
+        ]);
         $slots_nonce     = wp_create_nonce( 'grimorio_slots_' . $post_id );
         $prepared_nonce  = wp_create_nonce( 'grimorio_prepared_' . $post_id );
         $concentration_nonce = wp_create_nonce( 'grimorio_concentration_' . $post_id );
 
         wp_localize_script('grimorio-js', 'GRIMORIO_DATA', [
-            'ajax_url'       => admin_url('admin-ajax.php'),
+            'ajax_url'       => drak_get_admin_ajax_url(),
             'post_id'        => $post_id,
             'level'          => $nivel,
             'class_id'       => $clase,
+            'subclass_id'    => $subclase,
             'slots_used'     => is_array( $slots ) ? $slots : [],
             'prepared'       => is_array( $spells ) ? $spells : [],
             'slot_limits'    => array_map( 'intval', $slot_row ),
+            'prepared_limit' => $prepared_limit,
             'nonce'          => $slots_nonce,
             'prepared_nonce' => $prepared_nonce,
             'concentration'  => [
@@ -2464,6 +3194,18 @@ add_action('wp_enqueue_scripts', function () {
                 'spell_id'=> $concentration['spell_id'] ?? '',
             ],
             'concentration_nonce' => $concentration_nonce,
+            'auto_prepared_spells' => $auto_prepared,
+            'class_reference'   => $class_reference_payload,
+        ]);
+        wp_localize_script('hoja-personaje-js', 'DND5_API', [
+            'ajax_url' => drak_get_admin_ajax_url(),
+        ]);
+        wp_localize_script('hoja-personaje-js', 'DND5_STATIC_DATA', [
+            'races'        => drak_static_data_uri( 'dnd-races.json' ),
+            'backgrounds'  => drak_static_data_uri( 'dnd-backgrounds.json' ),
+            'classList'    => drak_static_data_uri( 'dnd-classes.json' ),
+            'classDetails' => drak_static_data_uri( 'dnd-class-details.json' ),
+            'feats'        => drak_static_data_uri( 'dnd-feats.json' ),
         ]);
     }
 });
@@ -2476,6 +3218,33 @@ add_action('wp_enqueue_scripts', function () {
 /**
  * Lee y cachea el JSON local con clases/subclases de D&D.
  */
+function drak_locate_theme_data_file( $relative ) {
+    $relative = ltrim( $relative, '/\\' );
+    $candidates = [];
+    $child_base = trailingslashit( get_stylesheet_directory() );
+    $parent_base = function_exists( 'get_template_directory' ) ? trailingslashit( get_template_directory() ) : $child_base;
+
+    $bases = [
+        $child_base . 'data/',
+        $child_base . 'jsons/',
+        $child_base . '5etools-src-main/data/',
+        $parent_base . 'data/',
+        $parent_base . 'jsons/',
+        $parent_base . '5etools-src-main/data/',
+        $child_base,
+        $parent_base,
+    ];
+
+    foreach ( $bases as $base ) {
+        $path = $base . $relative;
+        if ( file_exists( $path ) ) {
+            return $path;
+        }
+    }
+
+    return '';
+}
+
 function drak_get_local_dnd_classes_data() {
     static $cached = null;
 
@@ -2483,9 +3252,8 @@ function drak_get_local_dnd_classes_data() {
         return $cached;
     }
 
-    $path = get_stylesheet_directory() . '/data/dnd-classes.json';
-
-    if (!file_exists($path)) {
+    $path = drak_locate_theme_data_file( 'dnd-classes.json' );
+    if (!$path) {
         return null;
     }
 
@@ -2675,9 +3443,8 @@ function drak_get_local_dnd_races_data() {
         return $cached;
     }
 
-    $path = get_stylesheet_directory() . '/data/dnd-races.json';
-
-    if (!file_exists($path)) {
+    $path = drak_locate_theme_data_file( 'dnd-races.json' );
+    if (!$path) {
         return null;
     }
 
@@ -2750,8 +3517,8 @@ function drak_get_local_dnd_list( $filename, $root_key ) {
         return $cache[ $filename ];
     }
 
-    $path = get_stylesheet_directory() . '/data/' . $filename;
-    if ( ! file_exists( $path ) ) {
+    $path = drak_locate_theme_data_file( $filename );
+    if ( ! $path ) {
         return [];
     }
 
@@ -2773,8 +3540,8 @@ function drak_get_local_dnd_actions() {
         return $cache;
     }
 
-    $path = get_stylesheet_directory() . '/data/dnd-actions.json';
-    if ( ! file_exists( $path ) ) {
+    $path = drak_locate_theme_data_file( 'dnd-actions.json' );
+    if ( ! $path ) {
         $cache = [];
         return $cache;
     }
@@ -2800,8 +3567,8 @@ function drak_get_local_dnd_class_features_data() {
         return $cache;
     }
 
-    $path = get_stylesheet_directory() . '/data/dnd-class-features.json';
-    if ( ! file_exists( $path ) ) {
+    $path = drak_locate_theme_data_file( 'dnd-class-features.json' );
+    if ( ! $path ) {
         $cache = [
             'classFeatures'    => [],
             'subclassFeatures' => [],
@@ -2884,8 +3651,8 @@ function drak_get_local_dnd_backgrounds() {
         return $cache;
     }
 
-    $path = get_stylesheet_directory() . '/data/dnd-backgrounds.json';
-    if ( ! file_exists( $path ) ) {
+    $path = drak_locate_theme_data_file( 'dnd-backgrounds.json' );
+    if ( ! $path ) {
         $cache = [];
         return $cache;
     }
@@ -2908,8 +3675,8 @@ function drak_get_local_dnd_spells() {
         return $cache;
     }
 
-    $path = get_stylesheet_directory() . '/data/dnd-spells.json';
-    if ( ! file_exists( $path ) ) {
+    $path = drak_locate_theme_data_file( 'dnd-spells.json' );
+    if ( ! $path ) {
         $cache = [];
         return $cache;
     }
@@ -2978,6 +3745,32 @@ function drak_dnd5_get_backgrounds() {
 }
 add_action( 'wp_ajax_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgrounds' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgrounds' );
+
+function drak_dnd5_get_class_reference() {
+    $class_id    = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
+    $subclass_id = isset( $_POST['subclass_id'] ) ? sanitize_text_field( wp_unslash( $_POST['subclass_id'] ) ) : '';
+
+    if ( ! $class_id ) {
+        wp_send_json_error( [ 'message' => 'Falta el parámetro class_id.' ], 400 );
+    }
+
+    $reference = drak_get_class_reference_payload( $class_id, $subclass_id );
+    if ( ! $reference ) {
+        $debug = drak_get_class_reference_error();
+        drak_set_class_reference_error( sprintf( 'drak_get_class_reference_payload devolvió vacío para class_id=%s subclass_id=%s', $class_id, $subclass_id ) );
+        wp_send_json_error(
+            [
+                'message' => 'No se pudo generar la referencia de clase.',
+                'debug'   => $debug,
+            ],
+            404
+        );
+    }
+
+    wp_send_json_success( [ 'reference' => $reference ] );
+}
+add_action( 'wp_ajax_drak_dnd5_get_class_reference', 'drak_dnd5_get_class_reference' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_class_reference', 'drak_dnd5_get_class_reference' );
 
 function drak_dnd5_get_spells() {
     $class_id = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
@@ -3166,3 +3959,14 @@ function drak_dnd5_get_feature_traits() {
 }
 add_action( 'wp_ajax_drak_dnd5_get_feature_traits', 'drak_dnd5_get_feature_traits' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_feature_traits', 'drak_dnd5_get_feature_traits' );
+function drak_get_admin_ajax_url() {
+    static $cached = null;
+
+    if ( $cached !== null ) {
+        return $cached;
+    }
+
+    $cached = site_url( '/wp-admin/admin-ajax.php' );
+
+    return $cached;
+}

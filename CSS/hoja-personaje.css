@@ -1154,3 +1154,71 @@
     background: transparent;
     color: #aaa;
 }
+
+.class-reference-module {
+    margin-top: 2rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(10, 0, 25, 0.85);
+    padding: 1.5rem;
+    color: #f1f1f1;
+}
+
+.class-reference-module__header h3 {
+    margin: 0;
+    color: #f7c8ff;
+}
+
+.class-reference-module__body {
+    margin-top: 1rem;
+}
+
+.class-reference-module table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+}
+
+.class-reference-module th,
+.class-reference-module td {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 0.5rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.class-reference-module__group {
+    margin-top: 1.5rem;
+}
+
+.class-reference-module__group h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #c5f1ff;
+}
+
+.class-reference-module__slots {
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.class-reference-module__slots ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.class-reference-module__auto {
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    margin-top: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.class-reference-module__auto ul {
+    margin: 0.35rem 0 0;
+    padding-left: 1rem;
+}

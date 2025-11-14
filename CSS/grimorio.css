@@ -137,6 +137,59 @@
     margin-top: 2rem;
 }
 
+.grimorio-auto-prepared {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(8, 0, 20, 0.85);
+}
+
+.grimorio-auto-prepared__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.grimorio-auto-prepared__header h3 {
+    margin: 0;
+    color: var(--grimorio-accent);
+}
+
+.grimorio-auto-prepared__group + .grimorio-auto-prepared__group {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.grimorio-auto-prepared__level {
+    margin-top: 0.75rem;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 0.85rem;
+    padding: 0.85rem;
+}
+
+.grimorio-auto-prepared__level-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #b8b8b8;
+}
+
+.grimorio-auto-prepared__list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grimorio-prepared-spell--auto {
+    background: rgba(255, 255, 255, 0.04);
+}
+
 .grimorio-prepared__header {
     display: flex;
     justify-content: space-between;
@@ -152,6 +205,11 @@
 .grimorio-prepared__header h3 {
     margin: 0;
     color: var(--grimorio-accent);
+}
+
+.grimorio-prepared__summary {
+    font-size: 0.9rem;
+    color: #c8c8c8;
 }
 
 .grimorio-prepared__edit-btn {
@@ -408,6 +466,13 @@
     color: #c7a9ff;
 }
 
+.grimorio-spell-picker__slots {
+    display: block;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+    margin-bottom: 0.5rem;
+}
+
 .grimorio-spell-picker__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -446,6 +511,13 @@
     display: block;
     color: #c8c8c8;
     font-size: 0.8rem;
+}
+
+.grimorio-spell-picker__desc {
+    color: #e2d9ff;
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+    line-height: 1.3;
 }
 
 .grimorio-spell-picker__item input:disabled + span {
@@ -499,6 +571,7 @@
 .grimorio-quick-actions {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-top: 2rem;
 }
@@ -533,4 +606,16 @@
     cursor: not-allowed;
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 640px) {
+    .grimorio-quick-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .grimorio-quick-actions button {
+        width: 100%;
+        text-align: center;
+    }
 }

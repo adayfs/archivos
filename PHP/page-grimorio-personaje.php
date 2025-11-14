@@ -90,6 +90,28 @@ $nav_images = array(
   </div>
 
   <?php echo renderizar_grimorio_personaje($personaje->ID); ?>
+
+  <?php
+    $auto_prepared = drak_get_auto_prepared_spells( get_field( 'clase', $personaje->ID ), get_field( 'subclase', $personaje->ID ), intval( get_field( 'nivel', $personaje->ID ) ) );
+    $has_auto_prepared = false;
+    foreach ( $auto_prepared as $group ) {
+        foreach ( $group as $spells ) {
+            if ( ! empty( $spells ) ) {
+                $has_auto_prepared = true;
+                break 2;
+            }
+        }
+    }
+    if ( $has_auto_prepared ) {
+        echo drak_render_grimorio_auto_prepared_section( $auto_prepared, get_field( 'subclase', $personaje->ID ) );
+    }
+  ?>
+
+  <section class="class-reference-module" id="class-reference-module" data-class-reference>
+    <div class="class-reference-module__body">
+      <p class="class-reference-module__hint">Selecciona clase y subclase para cargar la información.</p>
+    </div>
+  </section>
 </div>
 
 <?php

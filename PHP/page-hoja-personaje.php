@@ -73,6 +73,16 @@ $nav_images = array(
   </div>
 
   <?php echo renderizar_hoja_personaje($personaje->ID); ?>
+
+  <section class="class-reference-module" id="class-reference-module" data-class-reference>
+    <header class="class-reference-module__header">
+      <h3>Referencia de clase</h3>
+      <p>Consulta la progresión oficial de tu clase y los hechizos preparados por nivel.</p>
+    </header>
+    <div class="class-reference-module__body">
+      <p class="class-reference-module__hint">Selecciona clase y subclase para cargar la información.</p>
+    </div>
+  </section>
 </div>
 
 

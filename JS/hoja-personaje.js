@@ -1,5 +1,8 @@
 (function () {
   document.addEventListener('DOMContentLoaded', () => {
+    if (!document.querySelector('.formulario-hoja-personaje')) {
+      return;
+    }
     initManualOverrideState();
     initTempHpControls();
     initSheetModal();
@@ -8,6 +11,7 @@
     initExtendedModule();
     initStandaloneClassSelects();
     initExpertiseManager();
+    initClassReferenceModule();
     initCharacterAutomation();
   });
 
@@ -1928,6 +1932,10 @@
       return;
     }
 
+    if (!document.getElementById('clase')) {
+      return;
+    }
+
     characterAutomationState.expertise = getExpertiseSetFromHidden();
 
     loadCharacterData()
@@ -1974,6 +1982,7 @@
     const derived = buildDerivedCharacter(context, characterDataStore.data);
     console.debug('[Hoja] Contexto calculado', context, derived);
     applyDerivedCharacter(derived);
+    refreshClassReferenceModule(context);
   }
 
   function collectCharacterContext() {
