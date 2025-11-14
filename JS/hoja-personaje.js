@@ -1,5 +1,6 @@
 (function () {
   document.addEventListener('DOMContentLoaded', () => {
+    initManualOverrideState();
     initTempHpControls();
     initSheetModal();
     refreshAbilityDisplays();
@@ -63,6 +64,12 @@
     'cs_carisma',
     'cs_proeficiencia',
   ];
+
+  const manualOverrideConfig = Object.freeze({
+    cs_hp: 'cs_hp_manual_override',
+  });
+
+  const manualBasicOverrides = new Set();
 
   const STATIC_DATA = window.DND5_STATIC_DATA || null;
 
@@ -153,6 +160,32 @@
 
   function qsa(selector, scope = document) {
     return Array.from(scope.querySelectorAll(selector));
+  }
+
+  function initManualOverrideState() {
+    Object.entries(manualOverrideConfig).forEach(([fieldId, hiddenId]) => {
+      const hidden = document.getElementById(hiddenId);
+      if (hidden && hidden.value === '1') {
+        manualBasicOverrides.add(fieldId);
+      }
+    });
+  }
+
+  function setManualOverride(fieldId, enabled) {
+    const hiddenId = manualOverrideConfig[fieldId];
+    if (!hiddenId) return;
+    const hidden = document.getElementById(hiddenId);
+    if (enabled) {
+      manualBasicOverrides.add(fieldId);
+      if (hidden) hidden.value = '1';
+    } else {
+      manualBasicOverrides.delete(fieldId);
+      if (hidden) hidden.value = '';
+    }
+  }
+
+  function hasManualOverride(fieldId) {
+    return manualBasicOverrides.has(fieldId);
   }
 
   function formatMod(value) {
@@ -446,7 +479,7 @@
       recomputeSkillsAndSaves();
       recalculateCharacterSheet();
       scheduleCharacterRecalc();
-      submitSheetForm(form);
+      submitSheetForm(form, collectSpellcastingStats());
       closeModal();
     });
 
@@ -454,10 +487,24 @@
     profsSection.ensureLookupCache();
   }
 
-  function submitSheetForm(form) {
+  function submitSheetForm(form, spellStats = null) {
     if (!form) return;
     const flag = form.querySelector('#hoja_guardar');
     if (flag) flag.value = '1';
+    if (spellStats) {
+      console.log('[Hoja] Enviando spell stats al backend', spellStats);
+      Object.entries(spellStats).forEach(([key, value]) => {
+        let hidden = form.querySelector(`input[name="${key}"]`);
+        if (!hidden) {
+          hidden = document.createElement('input');
+          hidden.type = 'hidden';
+          hidden.name = key;
+          hidden.id = key;
+          form.appendChild(hidden);
+        }
+        hidden.value = value;
+      });
+    }
     if (typeof form.requestSubmit === 'function') {
       form.requestSubmit();
     } else {
@@ -465,8 +512,116 @@
     }
   }
 
+  function collectSpellcastingStats() {
+    const classId = document.getElementById('clase')?.value || '';
+    if (!classId || !characterDataStore.data?.classDetails?.[classId]) {
+      return null;
+    }
+
+    const classInfo = characterDataStore.data.classDetails[classId];
+    const abilityKey = classInfo.spellcastingAbility;
+    if (!abilityKey) {
+      console.warn('[Hoja] Clase sin atributo lanzador definido', classId);
+      return null;
+    }
+
+    const abilityFieldMap = {
+      str: 'cs_fuerza',
+      dex: 'cs_destreza',
+      con: 'cs_constitucion',
+      int: 'cs_inteligencia',
+      wis: 'cs_sabiduria',
+      cha: 'cs_carisma',
+    };
+
+    const scoreField = abilityFieldMap[abilityKey];
+    const scoreInput = document.getElementById(scoreField);
+    const profInput = document.getElementById('cs_proeficiencia');
+    if (!scoreInput || !profInput) {
+      console.warn('[Hoja] No se encontraron inputs para calcular spells', scoreField);
+      return null;
+    }
+
+    const score = parseInt(scoreInput.value || '0', 10);
+    const profBonus = parseInt(profInput.value || '0', 10);
+    if (Number.isNaN(score) || Number.isNaN(profBonus)) {
+      console.warn('[Hoja] Valores inválidos al calcular spells', { score, profBonus });
+      return null;
+    }
+
+    const abilityMod = Math.floor((score - 10) / 2);
+    const spellAttack = profBonus + abilityMod;
+    const spellDc = 8 + profBonus + abilityMod;
+
+    const abilityLabel = {
+      str: 'Fuerza',
+      dex: 'Destreza',
+      con: 'Constitución',
+      int: 'Inteligencia',
+      wis: 'Sabiduría',
+      cha: 'Carisma',
+    }[abilityKey] || abilityKey.toUpperCase();
+
+    const abilityShort = {
+      str: 'FUE',
+      dex: 'DES',
+      con: 'CON',
+      int: 'INT',
+      wis: 'SAB',
+      cha: 'CAR',
+    }[abilityKey] || abilityKey.toUpperCase();
+
+    console.log('[Hoja] Spell stats calculados', {
+      abilityKey,
+      abilityShort,
+      score,
+      profBonus,
+      abilityMod,
+      spellAttack,
+      spellDc,
+    });
+
+    return {
+      spellcasting_hability: abilityShort,
+      spell_attack_bonus: spellAttack,
+      spell_save_dc: spellDc,
+    };
+  }
+
   function createStatsSectionController(root) {
     const inputs = qsa('.stats-modal-input[data-stat]', root);
+
+    function syncStatInput(input) {
+      const stat = input.dataset.stat;
+      if (!stat) return;
+      const hidden = document.getElementById(stat);
+      const display = document.getElementById(`display_${stat}`);
+      const rawValue = input.value;
+      const numeric = rawValue === '' ? Number.NaN : parseInt(rawValue, 10);
+      const storedValue = Number.isNaN(numeric) ? '' : numeric;
+      if (hidden) hidden.value = storedValue;
+      if (display) {
+        display.textContent = Number.isNaN(numeric) ? '0' : String(numeric);
+      }
+
+      if (stat === 'cs_proeficiencia') return;
+
+      const modId = `${stat}_mod`;
+      const modHidden = document.getElementById(modId);
+      const modDisplay = document.getElementById(`display_${modId}`);
+      if (!modHidden) return;
+
+      const modValue = Number.isNaN(numeric) ? Number.NaN : Math.floor((numeric - 10) / 2);
+      modHidden.value = Number.isNaN(modValue) ? '' : modValue;
+      if (modDisplay) {
+        const formatted = Number.isNaN(modValue) ? '0' : formatMod(modValue);
+        modDisplay.textContent = formatted;
+      }
+    }
+
+    inputs.forEach((input) => {
+      input.addEventListener('input', () => syncStatInput(input));
+    });
 
     function populate() {
       inputs.forEach((input) => {
@@ -477,25 +632,7 @@
     }
 
     function apply() {
-      inputs.forEach((input) => {
-        const stat = input.dataset.stat;
-        const hidden = document.getElementById(stat);
-        if (!hidden) return;
-
-        const numeric = parseInt(input.value || '0', 10);
-        hidden.value = Number.isNaN(numeric) ? '' : numeric;
-
-        const modId = `${stat}_mod`;
-        const modHidden = document.getElementById(modId);
-        const modDisplay = document.getElementById(`display_${modId}`);
-        if (modHidden) {
-          const modValue = Math.floor((numeric - 10) / 2);
-          modHidden.value = Number.isNaN(modValue) ? '' : modValue;
-          if (modDisplay) {
-            modDisplay.textContent = formatMod(modValue);
-          }
-        }
-      });
+      inputs.forEach((input) => syncStatInput(input));
     }
 
     return { populate, apply };
@@ -569,6 +706,9 @@
         const value = input.value === '' ? '' : input.value;
         hidden.value = value;
         display.textContent = value || '';
+        if (key === 'cs_hp') {
+          setManualOverride('cs_hp', value !== '');
+        }
       });
 
       syncSelect(classSelect, hiddenBasics.clase, displayBasics.clase);
@@ -1958,11 +2098,25 @@
     updateBasicStat('cs_ac', derived.ac || 10);
     const speedLabel = derived.speedNotes.length ? `${derived.speed} ft (${derived.speedNotes.join(', ')})` : `${derived.speed} ft`;
     updateBasicStat('cs_velocidad', speedLabel);
-    updateBasicStat('cs_hp', derived.hp || '');
+    const manualHp = hasManualOverride('cs_hp');
+    if (!manualHp) {
+      updateBasicStat('cs_hp', derived.hp || '');
+    } else {
+      const manualHidden = document.getElementById('cs_hp');
+      const hpDisplay = document.getElementById('display_cs_hp');
+      if (hpDisplay) {
+        hpDisplay.textContent = manualHidden?.value || '0';
+      }
+    }
 
     const slider = document.getElementById('slider_temp_hp');
-    if (slider && derived.hp) {
-      slider.max = String(derived.hp);
+    if (slider) {
+      const sliderMax = manualHp
+        ? parseInt(document.getElementById('cs_hp')?.value || '0', 10)
+        : derived.hp;
+      if (sliderMax) {
+        slider.max = String(sliderMax);
+      }
     }
 
     updateSaveDisplays(derived);
@@ -2242,7 +2396,21 @@
     }
     set.forEach((fieldId) => {
       const li = document.createElement('li');
-      li.textContent = SKILL_LABELS[fieldId] || fieldId;
+      const label = SKILL_LABELS[fieldId] || fieldId;
+      li.textContent = label;
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'btn-basicos-mod profs-remove';
+      removeBtn.textContent = '×';
+      removeBtn.setAttribute('aria-label', `Quitar pericia ${label}`);
+      removeBtn.addEventListener('click', () => {
+        characterAutomationState.expertise.delete(fieldId);
+        saveExpertiseSet(characterAutomationState.expertise);
+        renderExpertiseList();
+        populateExpertiseSelect();
+        scheduleCharacterRecalc();
+      });
+      li.appendChild(removeBtn);
       expertiseUI.list.appendChild(li);
     });
   }

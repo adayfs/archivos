@@ -235,6 +235,27 @@ add_action('wp_head', function () {
     <?php
 });
 
+add_action( 'init', function () {
+    if ( ! isset( $_GET['spellcasting-log'] ) ) {
+        return;
+    }
+
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( 'No tienes permisos para ver este log.' );
+    }
+
+    $upload_dir = wp_upload_dir();
+    $log_file   = trailingslashit( $upload_dir['basedir'] ) . 'spellcasting-debug.log';
+    if ( ! file_exists( $log_file ) ) {
+        wp_die( 'El log todavía no existe.' );
+    }
+
+    header( 'Content-Type: text/plain' );
+    header( 'Content-Disposition: attachment; filename="spellcasting-debug.log"' );
+    readfile( $log_file );
+    exit;
+} );
+
 /**
  * Sanitiza valores provenientes de $_POST (strings o arrays) con soporte para defaults.
  */
@@ -530,6 +551,9 @@ function renderizar_hoja_personaje($post_id) {
 		'prof_languages',
 		'prof_tools',
         'background',
+        'spellcasting_hability',
+        'spell_save_dc',
+        'spell_attack_bonus',
         ];
 
         foreach ($campos as $campo) {
@@ -542,6 +566,19 @@ function renderizar_hoja_personaje($post_id) {
                 }
             }
         }
+
+        if (isset($_POST['skills_expertise'])) {
+            update_post_meta(
+                $post_id,
+                'skills_expertise',
+                sanitize_text_field(wp_unslash($_POST['skills_expertise']))
+            );
+        }
+
+        $hp_manual_flag = drak_get_post_value( 'cs_hp_manual_override', '' ) === '1' ? '1' : '';
+        update_post_meta( $post_id, 'cs_hp_manual_override', $hp_manual_flag );
+
+        drak_update_spellcasting_fields($post_id);
 
         echo '<div class="mensaje-confirmacion">✅ Hoja de personaje actualizada.</div>';
     }
@@ -630,7 +667,10 @@ function renderizar_hoja_personaje($post_id) {
         'prof_weapons',
         'prof_armors',
         'prof_tools',
-        'prof_languages'
+        'prof_languages',
+        'spellcasting_hability',
+        'spell_save_dc',
+        'spell_attack_bonus'
 
     ];
 
@@ -692,6 +732,7 @@ function renderizar_hoja_personaje($post_id) {
     $speed = isset($datos['cs_velocidad']) ? $datos['cs_velocidad'] : '';
 	$hp = isset($datos['cs_hp']) ? $datos['cs_hp'] : '';
 	$hp_temp = isset($datos['cs_hp_temp']) ? $datos['cs_hp_temp'] : '';
+    $hp_manual_override = get_post_meta( $post_id, 'cs_hp_manual_override', true ) ? '1' : '';
 	
 	$armas_val        = isset($datos['prof_weapons'])        ? $datos['prof_weapons']        : '';
 	$armaduras_val    = isset($datos['prof_armors'])    ? $datos['prof_armors']    : '';
@@ -789,15 +830,19 @@ function renderizar_hoja_personaje($post_id) {
     <input type="hidden" id="clase"    name="clase"    value="<?php echo esc_attr($clase_val); ?>">
     <input type="hidden" id="subclase" name="subclase" value="<?php echo esc_attr($sub_val); ?>">
 	<input type="hidden" id="raza"     name="raza"     value="<?php echo esc_attr($raza_val); ?>">
-    <input type="hidden" id="background" name="background" value="<?php echo esc_attr($background_val); ?>">
+<input type="hidden" id="background" name="background" value="<?php echo esc_attr($background_val); ?>">
 <input type="hidden" id="prof_weapons" name="prof_weapons" value="<?php echo esc_attr($armas_val); ?>">
 <input type="hidden" id="prof_armors" name="prof_armors" value="<?php echo esc_attr($armaduras_val); ?>">
 <input type="hidden" id="prof_tools" name="prof_tools" value="<?php echo esc_attr($herramientas_val); ?>">
 <input type="hidden" id="prof_languages" name="prof_languages" value="<?php echo esc_attr($idiomas_val); ?>">
+<input type="hidden" id="spellcasting_hability" name="spellcasting_hability" value="<?php echo esc_attr(isset($datos['spellcasting_hability']) ? $datos['spellcasting_hability'] : ''); ?>">
+<input type="hidden" id="spell_save_dc" name="spell_save_dc" value="<?php echo esc_attr(isset($datos['spell_save_dc']) ? $datos['spell_save_dc'] : ''); ?>">
+<input type="hidden" id="spell_attack_bonus" name="spell_attack_bonus" value="<?php echo esc_attr(isset($datos['spell_attack_bonus']) ? $datos['spell_attack_bonus'] : ''); ?>">
 
 
 
 <input type="hidden" id="cs_hp_temp" name="cs_hp_temp" value="<?php echo esc_attr($hp_temp); ?>">
+<input type="hidden" id="cs_hp_manual_override" name="cs_hp_manual_override" value="<?php echo esc_attr( $hp_manual_override ); ?>">
 
         <!-- CARACTERÍSTICAS -->
       <h3 class="subtitulo-hoja-personaje">Características</h3>
@@ -1090,7 +1135,7 @@ foreach ($filas as $label => $keys_row) :
             <option value="">Cargando razas…</option>
           </select>
         </div>
-        <div class="basics-modal-row">
+        <div class="basics-modal-row basics-modal-row--background">
           <label>Trasfondo</label>
           <select id="modal-background" class="basics-modal-input">
             <option value="">Cargando trasfondos…</option>
@@ -1604,10 +1649,6 @@ function drak_grimorio_decode_meta_array( $value ) {
         if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
             return $decoded;
         }
-
-        if (isset($_POST['skills_expertise'])) {
-            update_post_meta($post_id, 'skills_expertise', sanitize_text_field($_POST['skills_expertise']));
-        }
     }
     return [];
 }
@@ -1689,6 +1730,234 @@ function drak_grimorio_get_prepared( $post_id ) {
         drak_grimorio_save_prepared( $post_id, $clean );
     }
     return $clean;
+}
+
+function drak_get_spellcasting_ability_for_class( $class_id ) {
+    static $class_details = null;
+
+    if ( ! $class_id ) {
+        return null;
+    }
+
+    if ( $class_details === null ) {
+        $class_details = [];
+
+        $candidate_paths = [];
+        if ( function_exists( 'drak_get_static_data_base' ) ) {
+            $base = drak_get_static_data_base();
+            if ( ! empty( $base['dir'] ) ) {
+                $candidate_paths[] = $base['dir'] . 'dnd-class-details.json';
+            }
+        }
+
+        $candidate_paths[] = trailingslashit( get_stylesheet_directory() ) . 'jsons/dnd-class-details.json';
+
+        if ( function_exists( 'get_template_directory' ) && get_template_directory() !== get_stylesheet_directory() ) {
+            $candidate_paths[] = trailingslashit( get_template_directory() ) . 'jsons/dnd-class-details.json';
+        }
+
+        foreach ( array_filter( array_unique( $candidate_paths ) ) as $path ) {
+            if ( ! file_exists( $path ) ) {
+                continue;
+            }
+
+            $json = file_get_contents( $path );
+            $data = json_decode( $json, true );
+            if ( isset( $data['classes'] ) && is_array( $data['classes'] ) ) {
+                $classes = $data['classes'];
+
+                if ( array_keys( $classes ) === range( 0, count( $classes ) - 1 ) ) {
+                    $indexed = [];
+                    foreach ( $classes as $entry ) {
+                        if ( isset( $entry['id'] ) ) {
+                            $indexed[ $entry['id'] ] = $entry;
+                        }
+                    }
+                    $class_details = $indexed;
+                } else {
+                    $class_details = $classes;
+                }
+
+                break;
+            }
+        }
+    }
+
+    if ( empty( $class_details ) || ! isset( $class_details[ $class_id ] ) ) {
+        return null;
+    }
+
+    $ability = $class_details[ $class_id ]['spellcastingAbility'] ?? null;
+    if ( ! is_string( $ability ) || $ability === '' ) {
+        return null;
+    }
+
+    return strtolower( $ability );
+}
+
+function drak_format_signed_number( $value ) {
+    if ( $value === null || $value === '' ) {
+        return '—';
+    }
+    $value = intval( $value );
+    return $value > 0 ? '+' . $value : (string) $value;
+}
+
+function drak_spellcasting_log( $message ) {
+    $upload_dir = wp_upload_dir();
+    $log_dir    = trailingslashit( $upload_dir['basedir'] );
+    $log_file   = $log_dir . 'spellcasting-debug.log';
+
+    if ( ! file_exists( $log_file ) ) {
+        @file_put_contents( $log_file, "=== Spellcasting Debug Log ===\n" );
+    }
+
+    $timestamp = date_i18n( 'Y-m-d H:i:s' );
+    @file_put_contents( $log_file, '[' . $timestamp . '] ' . $message . "\n", FILE_APPEND );
+}
+
+function drak_get_ability_field_map() {
+    return [
+        'str' => ['field' => 'cs_fuerza',       'label' => 'Fuerza',       'short' => 'FUE'],
+        'dex' => ['field' => 'cs_destreza',     'label' => 'Destreza',     'short' => 'DES'],
+        'con' => ['field' => 'cs_constitucion', 'label' => 'Constitución', 'short' => 'CON'],
+        'int' => ['field' => 'cs_inteligencia', 'label' => 'Inteligencia', 'short' => 'INT'],
+        'wis' => ['field' => 'cs_sabiduria',    'label' => 'Sabiduría',    'short' => 'SAB'],
+        'cha' => ['field' => 'cs_carisma',      'label' => 'Carisma',      'short' => 'CAR'],
+    ];
+}
+
+function drak_get_grimorio_spellcasting_stats( $post_id, $context = [] ) {
+    $defaults = [
+        'ability_key'      => null,
+        'ability_label'    => '—',
+        'ability_short'    => null,
+        'ability_display'  => '—',
+        'ability_modifier' => null,
+        'spell_attack'     => '—',
+        'spell_attack_value' => null,
+        'spell_dc'         => '—',
+    ];
+
+    if ( ! $post_id || ! function_exists( 'get_field' ) ) {
+        drak_spellcasting_log( '[Spellcasting] abort: invalid post or missing get_field' );
+        return $defaults;
+    }
+
+    $class_id = $context['class_id'] ?? get_field( 'clase', $post_id );
+    $ability_key = drak_get_spellcasting_ability_for_class( $class_id );
+    if ( ! $ability_key ) {
+        drak_spellcasting_log( '[Spellcasting] no spellcasting ability for post ' . $post_id . ' class=' . var_export( $class_id, true ) );
+        return $defaults;
+    }
+
+    $ability_map = drak_get_ability_field_map();
+    if ( ! isset( $ability_map[ $ability_key ] ) ) {
+        return $defaults;
+    }
+
+    $score_field = $ability_map[ $ability_key ]['field'];
+    if ( isset( $context['scores'][ $score_field ] ) ) {
+        $score_value = $context['scores'][ $score_field ];
+    } else {
+        $score_raw   = get_field( $score_field, $post_id );
+        $score_value = ( $score_raw === '' || $score_raw === null ) ? null : intval( $score_raw );
+    }
+
+    if ( isset( $context['prof_bonus'] ) ) {
+        $prof_bonus = intval( $context['prof_bonus'] );
+    } else {
+        $prof_bonus = intval( get_field( 'cs_proeficiencia', $post_id ) );
+    }
+
+    $ability_mod = $score_value !== null ? floor( ( $score_value - 10 ) / 2 ) : null;
+
+    drak_spellcasting_log(
+        sprintf(
+            '[Spellcasting] computed context post=%d class=%s ability=%s score=%s prof=%s mod=%s',
+            $post_id,
+            $class_id ?? 'n/a',
+            $ability_key,
+            var_export( $score_value, true ),
+            var_export( $prof_bonus, true ),
+            var_export( $ability_mod, true )
+        )
+    );
+
+    $stats = [
+        'ability_key'        => $ability_key,
+        'ability_label'      => $ability_map[ $ability_key ]['label'],
+        'ability_short'      => $ability_map[ $ability_key ]['short'],
+        'ability_modifier'   => $ability_mod,
+        'ability_display'    => $ability_map[ $ability_key ]['short'],
+        'spell_attack'       => '—',
+        'spell_attack_value' => null,
+        'spell_dc'           => '—',
+    ];
+
+    if ( $ability_mod !== null ) {
+        $attack_value = $prof_bonus + $ability_mod;
+        $stats['ability_display'] = sprintf( '%s (%s)', $stats['ability_short'], drak_format_signed_number( $ability_mod ) );
+        $stats['spell_attack']    = drak_format_signed_number( $attack_value );
+        $stats['spell_attack_value'] = $attack_value;
+        $stats['spell_dc']        = (string) ( 8 + $prof_bonus + $ability_mod );
+    }
+
+    return $stats;
+}
+
+function drak_update_spellcasting_fields( $post_id ) {
+    if ( ! $post_id || ! function_exists( 'update_field' ) ) {
+        return;
+    }
+
+    $ability_map = drak_get_ability_field_map();
+    $context = [
+        'class_id'   => isset( $_POST['clase'] ) ? drak_get_post_value( 'clase', get_field( 'clase', $post_id ) ) : get_field( 'clase', $post_id ),
+        'scores'     => [],
+        'prof_bonus' => isset( $_POST['cs_proeficiencia'] ) ? intval( drak_get_post_value( 'cs_proeficiencia', get_field( 'cs_proeficiencia', $post_id ) ) ) : intval( get_field( 'cs_proeficiencia', $post_id ) ),
+    ];
+
+    foreach ( $ability_map as $info ) {
+        $field = $info['field'];
+        if ( isset( $_POST[ $field ] ) ) {
+            $context['scores'][ $field ] = intval( drak_get_post_value( $field, get_field( $field, $post_id ) ) );
+        }
+    }
+
+    drak_spellcasting_log(
+        sprintf(
+            '[Spellcasting] save context post=%d class=%s scores=%s prof=%s',
+            $post_id,
+            var_export( $context['class_id'], true ),
+            json_encode( $context['scores'] ),
+            var_export( $context['prof_bonus'], true )
+        )
+    );
+
+    $stats = drak_get_grimorio_spellcasting_stats( $post_id, $context );
+    if ( ! $stats ) {
+        drak_spellcasting_log( '[Spellcasting] stats not available for post ' . $post_id );
+        return;
+    }
+
+    $ability_value = $stats['ability_short'] ?? '';
+    $dc_value      = $stats['spell_dc'] !== '—' ? $stats['spell_dc'] : '';
+    $attack_value  = $stats['spell_attack_value'] !== null ? $stats['spell_attack_value'] : '';
+
+    drak_spellcasting_log(
+        sprintf(
+            '[Spellcasting] saving post=%d ability=%s dc=%s attack=%s',
+            $post_id,
+            var_export( $ability_value, true ),
+            var_export( $dc_value, true ),
+            var_export( $attack_value, true )
+        )
+    );
+
+    update_field( 'spellcasting_hability', $ability_value, $post_id );
+    update_field( 'spell_save_dc', $dc_value, $post_id );
+    update_field( 'spell_attack_bonus', $attack_value, $post_id );
 }
 
 function renderizar_grimorio_personaje( $post_id ) {

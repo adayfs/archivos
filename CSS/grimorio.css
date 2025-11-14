@@ -13,6 +13,55 @@
     margin-bottom: 1.5rem;
 }
 
+.grimorio-caster-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 1.5rem auto 2.5rem;
+    max-width: 900px;
+}
+
+.grimorio-caster-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 140px;
+}
+
+.grimorio-caster-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c8b3ff;
+}
+
+.grimorio-caster-badge {
+    width: 72px;
+    height: 72px;
+    background-image: none !important;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(153, 51, 255, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.65);
+}
+
+.grimorio-caster-badge span {
+    user-select: none;
+}
+
+.grimorio-caster-value {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--grimorio-accent);
+}
+
 .grimorio-formulario {
     max-width: 720px;
     margin: 0 auto;

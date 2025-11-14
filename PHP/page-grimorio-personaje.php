@@ -64,6 +64,31 @@ $nav_images = array(
     </a>
   </div>
 
+  <?php $caster_stats = drak_get_grimorio_spellcasting_stats($personaje->ID); ?>
+  <div class="grimorio-caster-stats">
+    <div class="grimorio-caster-item">
+      <span class="grimorio-caster-label">Atributo lanzador</span>
+      <div class="personaje-nav-button grimorio-caster-badge">
+        <span><?php echo esc_html($caster_stats['ability_short']); ?></span>
+      </div>
+      <p class="grimorio-caster-value"><?php echo esc_html($caster_stats['ability_display']); ?></p>
+    </div>
+    <div class="grimorio-caster-item">
+      <span class="grimorio-caster-label">CD de conjuro</span>
+      <div class="personaje-nav-button grimorio-caster-badge">
+        <span><?php echo esc_html($caster_stats['spell_dc']); ?></span>
+      </div>
+      <p class="grimorio-caster-value">8 + Mod + Prof</p>
+    </div>
+    <div class="grimorio-caster-item">
+      <span class="grimorio-caster-label">Ataque de conjuro</span>
+      <div class="personaje-nav-button grimorio-caster-badge">
+        <span><?php echo esc_html($caster_stats['spell_attack']); ?></span>
+      </div>
+      <p class="grimorio-caster-value">Mod + Prof</p>
+    </div>
+  </div>
+
   <?php echo renderizar_grimorio_personaje($personaje->ID); ?>
 </div>
 
