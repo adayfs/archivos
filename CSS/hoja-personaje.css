@@ -666,6 +666,10 @@
     font-size: 0.95rem;
 }
 
+.basics-modal-row--background {
+    margin-bottom: 1rem;
+}
+
 
 .temp-pv-slider-wrapper {
   margin-top: 10px;
@@ -1133,12 +1137,16 @@
 }
 
 .expertise-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     padding: 0.2rem 0.55rem;
     border-radius: 999px;
     background: rgba(243, 106, 255, 0.15);
     border: 1px solid rgba(243, 106, 255, 0.4);
     font-size: 0.8rem;
 }
+
 
 .expertise-list .expertise-empty {
     padding: 0;
