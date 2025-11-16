@@ -2845,7 +2845,6 @@ function renderizar_grimorio_personaje( $post_id ) {
       <div class="grimorio-modal__dialog">
         <header class="grimorio-modal__header">
           <h3 id="grimorio-info-title">Información</h3>
-          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
         </header>
         <div class="grimorio-modal__body" id="grimorio-info-content">
           <p>Información del conjuro.</p>
@@ -2887,7 +2886,7 @@ function drak_render_grimorio_auto_prepared_section( $auto_prepared, $subclass_i
     }
     ob_start();
     ?>
-    <section class="grimorio-auto-prepared">
+  <section class="grimorio-auto-prepared">
       <div class="grimorio-auto-prepared__header">
         <h3>Conjuros siempre preparados</h3>
         <p>Estas opciones no consumen tus huecos de conjuros preparados.</p>
@@ -2930,7 +2929,13 @@ function drak_render_grimorio_auto_prepared_section( $auto_prepared, $subclass_i
                     ?>
                     <li class="grimorio-prepared-spell grimorio-prepared-spell--auto">
                       <div class="grimorio-prepared-spell__info">
-                        <span class="grimorio-prepared-spell__name"><?php echo esc_html( $spell_name ); ?></span>
+                        <button type="button"
+                                class="grimorio-prepared-spell__name"
+                                data-spell-id="<?php echo esc_attr( $spell_id ); ?>"
+                                data-spell-name="<?php echo esc_attr( $spell_name ); ?>"
+                                data-spell-level="<?php echo esc_attr( $spell_level ); ?>">
+                          <?php echo esc_html( $spell_name ); ?>
+                        </button>
                         <?php if ( $spell_source ) : ?>
                           <small class="grimorio-prepared-spell__source"><?php echo esc_html( $spell_source ); ?></small>
                         <?php endif; ?>

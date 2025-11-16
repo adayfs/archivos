@@ -294,11 +294,30 @@
 
 .grimorio-prepared-spell__name {
     font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.grimorio-prepared-spell__name:hover,
+.grimorio-prepared-spell__name:focus-visible {
+    text-decoration: underline;
+}
+
+.grimorio-prepared-spell__name::first-letter {
+    text-transform: uppercase;
 }
 
 .grimorio-prepared-spell__source {
-    font-size: 0.85rem;
+    font-size: 0.65rem;
     color: #c8c8c8;
+}
+
+.grimorio-auto-prepared .grimorio-prepared-spell__source {
+    margin-left: -64%;
 }
 
 .grimorio-prepared-spell--concentration {
@@ -336,6 +355,13 @@
     text-align: center;
 }
 
+.temp-pv-separator {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0.75rem 0 1.25rem;
+}
+
 @media (max-width: 640px) {
     .grimorio-formulario {
         padding: 1.25rem;
@@ -370,6 +396,7 @@
     width: min(720px, 100%);
     color: #fff;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 .grimorio-modal--small .grimorio-modal__dialog {
@@ -390,11 +417,32 @@
 }
 
 .grimorio-modal__close {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.08);
     border: none;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    line-height: 1;
+}
+
+#grimorio-info-modal .grimorio-modal__header {
+    justify-content: flex-start;
+    text-align: left;
+    padding-right: 0;
+}
+
+#grimorio-info-modal .grimorio-modal__header h3 {
+    width: auto;
+    padding-right: 0;
 }
 
 .grimorio-modal__body {
@@ -537,11 +585,16 @@
 
 .grimorio-cast-summary {
     list-style: none;
-    margin: 0;
+    margin: 0 0 1rem;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.92rem;
+    color: #dcdcdc;
+    display: block;
+}
+
+.grimorio-cast-summary li {
+    margin-bottom: 0.5rem;
 }
 
 .grimorio-cast-summary__note {
@@ -553,6 +606,7 @@
     margin-top: 1rem;
     font-size: 0.95rem;
     line-height: 1.5;
+    text-align: left;
 }
 
 .grimorio-tag {

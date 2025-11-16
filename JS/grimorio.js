@@ -32,6 +32,7 @@
 
   function initGrimorio() {
     selectors.preparedContainer = document.querySelector('.grimorio-prepared');
+    selectors.autoPreparedContainer = document.querySelector('.grimorio-auto-prepared');
     selectors.editButton = document.querySelector('.grimorio-prepared__edit-btn');
     selectors.resetSlotsBtn = document.querySelector('.grimorio-reset-slots');
     selectors.resetPreparedBtn = document.querySelector('.grimorio-reset-prepared');
@@ -108,16 +109,8 @@
       });
     }
 
-    if (selectors.preparedContainer) {
-      selectors.preparedContainer.addEventListener('click', (event) => {
-        const button = event.target.closest('.grimorio-cast-spell');
-        if (!button) return;
-        const level = parseInt(button.dataset.level || '0', 10);
-        const spellId = button.dataset.spellId || '';
-        const spellName = button.dataset.spellName || '';
-        handleCastSpell(level, spellId, spellName);
-      });
-    }
+    bindSpellListInteractions(selectors.preparedContainer);
+    bindSpellListInteractions(selectors.autoPreparedContainer);
 
     document.querySelectorAll('[data-grimorio-close]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -256,7 +249,13 @@
                 data-spell-name="${escapeAttr(spell.name)}"
                 data-spell-level="${level}">
               <div class="grimorio-prepared-spell__info">
-                <span class="grimorio-prepared-spell__name">${escapeHtml(spell.name)}</span>
+                <button type="button"
+                        class="grimorio-prepared-spell__name"
+                        data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                        data-spell-name="${escapeAttr(spell.name)}"
+                        data-spell-level="${level}">
+                  ${escapeHtml(spell.name)}
+                </button>
                 ${source}
               </div>
               <button type="button"
@@ -475,11 +474,8 @@
     }
 
     const spell = findSpell(spellId, fallbackName);
-    const context = extractSpellContext(spell);
+    const context = spell ? extractSpellContext(spell) : { concentration: false };
     consumeSlot(level);
-
-    const title = spell ? `Lanzamiento de ${spell.name}` : 'Lanzamiento de conjuro';
-    openInfoModal(title, buildSpellContextHtml(spell, context));
 
     if (context.concentration) {
       setConcentrationState({
@@ -488,6 +484,47 @@
         spell: spell?.name || fallbackName || '',
       });
     }
+  }
+
+  function bindSpellListInteractions(container) {
+    if (!container) return;
+    container.addEventListener('click', (event) => {
+      const infoButton = event.target.closest('.grimorio-prepared-spell__name');
+      if (infoButton) {
+        const infoLevel = parseInt(infoButton.dataset.spellLevel || '0', 10);
+        const infoId = infoButton.dataset.spellId || '';
+        const infoName = infoButton.dataset.spellName || '';
+        openPreparedSpellInfo(infoLevel, infoId, infoName);
+        return;
+      }
+
+      const button = event.target.closest('.grimorio-cast-spell');
+      if (!button) return;
+      const level = parseInt(button.dataset.level || '0', 10);
+      const spellId = button.dataset.spellId || '';
+      const spellName = button.dataset.spellName || '';
+      handleCastSpell(level, spellId, spellName);
+    });
+  }
+
+  function openPreparedSpellInfo(level, spellId, fallbackName) {
+    const spell = findSpell(spellId, fallbackName);
+    if (!spell) {
+      const safeName = fallbackName || 'Detalle del conjuro';
+      const fallbackBody = `
+        <hr class="temp-pv-separator">
+        <p>No se encontró información adicional para ${escapeHtml(safeName)}.</p>
+      `;
+      openInfoModal(safeName, fallbackBody);
+      return;
+    }
+    const context = extractSpellContext(spell);
+    const title = spell.name || fallbackName || 'Detalle del conjuro';
+    const body = `
+      <hr class="temp-pv-separator">
+      ${buildSpellContextHtml(spell, context)}
+    `;
+    openInfoModal(title, body);
   }
 
   function resetSlots() {
@@ -1070,8 +1107,18 @@
       rows.push(`<li><strong>Fuente:</strong> ${escapeHtml(spell.source)}</li>`);
     }
 
-    const summaryText = context.text ? escapeHtml(context.text.split('\n')[0]).slice(0, 400) : '';
-    const summaryParagraph = summaryText ? `<p class="grimorio-cast-summary__text">${summaryText}</p>` : '';
+    let summaryParagraph = '';
+    if (context.text) {
+      const paragraphs = context.text
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => `<p>${escapeHtml(line)}</p>`)
+        .join('');
+      if (paragraphs) {
+        summaryParagraph = `<div class="grimorio-cast-summary__text">${paragraphs}</div>`;
+      }
+    }
 
     return `
       <ul class="grimorio-cast-summary">
