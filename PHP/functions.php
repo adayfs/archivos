@@ -575,6 +575,12 @@ function renderizar_hoja_personaje($post_id) {
             );
         }
 
+        $class_from_post = drak_get_post_value( 'clase', '' );
+        $level_from_post = intval( drak_get_post_value( 'nivel', 0 ) );
+        $raw_theories    = drak_get_post_value( 'apothecary_theories', '' );
+        $selected_theories = drak_sanitize_apothecary_theory_submission( $raw_theories, $class_from_post, $level_from_post );
+        drak_save_apothecary_theory_selection( $post_id, $selected_theories );
+
         $hp_manual_flag = drak_get_post_value( 'cs_hp_manual_override', '' ) === '1' ? '1' : '';
         update_post_meta( $post_id, 'cs_hp_manual_override', $hp_manual_flag );
 
@@ -680,6 +686,13 @@ function renderizar_hoja_personaje($post_id) {
     }
     $datos['skills_expertise'] = get_post_meta($post_id, 'skills_expertise', true);
 
+    $apothecary_selection = drak_get_character_apothecary_theories( $post_id );
+    $apothecary_selection_json = wp_json_encode( $apothecary_selection );
+    if ( ! $apothecary_selection_json ) {
+        $apothecary_selection_json = '[]';
+    }
+    $apothecary_selection_display = drak_format_apothecary_theories_display( $apothecary_selection );
+
     // Definimos grupos de habilidades por característica, ordenados por nº de habilidades (más a menos)
     $skill_groups = [
         'Sabiduría' => [
@@ -718,6 +731,7 @@ function renderizar_hoja_personaje($post_id) {
       <form method="post" class="formulario-hoja-personaje">
         <input type="hidden" id="hoja_guardar" name="hoja_guardar" value="">
         <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>">
+        <input type="hidden" id="apothecary_theories" name="apothecary_theories" value="<?php echo esc_attr( $apothecary_selection_json ); ?>">
 		  
 		      <?php
 	$nivel     = isset($datos['nivel']) ? intval($datos['nivel']) : '';
@@ -771,6 +785,14 @@ function renderizar_hoja_personaje($post_id) {
       <span class="basic-label">Trasfondo</span>
       <p class="basic-text" id="display_background"></p>
     </div>
+  </div>
+
+    <?php $is_mutagenist = ( $sub_val === 'apothecary-mutagenist-scgtd-drakkenheim' ); ?>
+  <div class="basic-item basic-item-wide basic-item-theories<?php echo $is_mutagenist ? '' : ' is-hidden'; ?>">
+    <span class="basic-label">Teorías esotéricas</span>
+    <p class="basic-text" id="display_apothecary_theories">
+      <?php echo $apothecary_selection_display ? esc_html( $apothecary_selection_display ) : '—'; ?>
+    </p>
   </div>
 </div>
 
@@ -1159,6 +1181,14 @@ foreach ($filas as $label => $keys_row) :
             <input type="number" class="basics-modal-input" data-basic="cs_hp">
           </div>
         </div>
+      </section>
+
+      <hr class="temp-pv-separator">
+
+      <section class="sheet-section sheet-section--esoterics<?php echo $is_mutagenist ? '' : ' is-hidden'; ?>" data-theory-section>
+        <h3>Teorías esotéricas</h3>
+        <p class="sheet-section__hint">Gestiona aquí las Esoteric Theories disponibles para la clase Apothecary.</p>
+        <div id="esoteric-theories-container" class="theory-picker"></div>
       </section>
 
       <hr class="temp-pv-separator">
@@ -1732,6 +1762,52 @@ function drak_grimorio_get_prepared( $post_id ) {
     return $clean;
 }
 
+function drak_grimorio_get_transformation_state( $post_id ) {
+    $state = get_post_meta( $post_id, 'grimorio_transformation_state', true );
+    if ( ! is_array( $state ) ) {
+        return [
+            'active'     => false,
+            'slot_level' => null,
+            'started_at' => null,
+        ];
+    }
+
+    $state['active']     = ! empty( $state['active'] );
+    $state['slot_level'] = isset( $state['slot_level'] ) ? intval( $state['slot_level'] ) : null;
+    $state['started_at'] = isset( $state['started_at'] ) ? intval( $state['started_at'] ) : null;
+
+    if ( ! $state['active'] || ! $state['slot_level'] ) {
+        return [
+            'active'     => false,
+            'slot_level' => null,
+            'started_at' => null,
+        ];
+    }
+
+    return $state;
+}
+
+function drak_grimorio_save_transformation_state( $post_id, $state ) {
+    if ( empty( $state['active'] ) || empty( $state['slot_level'] ) ) {
+        delete_post_meta( $post_id, 'grimorio_transformation_state' );
+        return [
+            'active'     => false,
+            'slot_level' => null,
+            'started_at' => null,
+        ];
+    }
+
+    $payload = [
+        'active'     => true,
+        'slot_level' => intval( $state['slot_level'] ),
+        'started_at' => isset( $state['started_at'] ) ? intval( $state['started_at'] ) : time(),
+    ];
+
+    update_post_meta( $post_id, 'grimorio_transformation_state', $payload );
+
+    return $payload;
+}
+
 function drak_get_class_detail_entry( $class_id ) {
     static $class_details = null;
 
@@ -2268,7 +2344,7 @@ function drak_get_class_reference_map( $class_id ) {
     return $cache[ $class_id ];
 }
 
-function drak_get_class_reference_payload( $class_id, $subclass_id = '' ) {
+function drak_get_class_reference_payload( $class_id, $subclass_id = '', $apothecary_theories = [] ) {
     $class_data = drak_get_class_reference_map( $class_id );
     if ( ! $class_data ) {
         return null;
@@ -2293,6 +2369,12 @@ function drak_get_class_reference_payload( $class_id, $subclass_id = '' ) {
                 'prepared'  => drak_collect_prepared_spells_from_additional( $sub_ref['entry']['additionalSpells'] ?? [] ),
             ];
         }
+    }
+
+    if ( drak_is_apothecary_class( $class_id ) ) {
+        $payload['esoteric_theories'] = drak_expand_apothecary_theories( $apothecary_theories );
+    } else {
+        $payload['esoteric_theories'] = [];
     }
 
     return $payload;
@@ -2376,7 +2458,7 @@ function drak_enrich_prepared_spell_map( $spell_map ) {
     return $result;
 }
 
-function drak_get_auto_prepared_spells( $class_id, $subclass_id, $character_level, &$reference_payload = null ) {
+function drak_get_auto_prepared_spells( $class_id, $subclass_id, $character_level, &$reference_payload = null, $options = [] ) {
     $payload = [
         'class'    => [],
         'subclass' => [],
@@ -2398,7 +2480,11 @@ function drak_get_auto_prepared_spells( $class_id, $subclass_id, $character_leve
     }
 
     if ( func_num_args() >= 4 ) {
-        $reference_payload = drak_get_class_reference_payload( $class_id, $subclass_id );
+        $selected_theories = [];
+        if ( is_array( $options ) && isset( $options['apothecary_theories'] ) ) {
+            $selected_theories = $options['apothecary_theories'];
+        }
+        $reference_payload = drak_get_class_reference_payload( $class_id, $subclass_id, $selected_theories );
     }
 
     return $payload;
@@ -2591,6 +2677,7 @@ function renderizar_grimorio_personaje( $post_id ) {
     $concentration_level = isset( $concentration['level'] ) ? intval( $concentration['level'] ) : null;
     $concentration_spell = isset( $concentration['spell'] ) ? (string) $concentration['spell'] : '';
     $concentration_spell_id = isset( $concentration['spell_id'] ) ? (string) $concentration['spell_id'] : '';
+    $transformation_state = drak_grimorio_get_transformation_state( $post_id );
 
     $row = drak_get_class_spell_slots_for_level( $clase_id, $nivel );
     if ( empty( $row ) ) {
@@ -2653,6 +2740,25 @@ function renderizar_grimorio_personaje( $post_id ) {
         </button>
       </section>
     </div>
+
+    <?php
+    $is_mutagenist_apothecary = ( 'apothecary-mutagenist-scgtd-drakkenheim' === $subclass_id );
+    if ( $is_mutagenist_apothecary ) :
+        ?>
+        <section class="grimorio-transformation" id="grimorio-transformation">
+          <div class="grimorio-transformation__head">
+            <h3>Transformación temporal</h3>
+            <p>Usa un espacio de conjuro para adoptar tu forma potenciada.</p>
+          </div>
+          <div class="grimorio-transformation__actions">
+            <button type="button" class="grimorio-transform-start" id="grimorio-transform-start">Activar transformación</button>
+            <button type="button" class="grimorio-transform-finish" id="grimorio-transform-finish" <?php disabled( empty( $transformation_state['active'] ) ); ?>>
+              Finalizar transformación
+            </button>
+          </div>
+          <div class="grimorio-transformation__body" id="grimorio-transformation-display"></div>
+        </section>
+    <?php endif; ?>
 
     <section class="grimorio-prepared">
       <div class="grimorio-prepared__header">
@@ -2746,6 +2852,25 @@ function renderizar_grimorio_personaje( $post_id ) {
         </div>
         <footer class="grimorio-modal__footer">
           <button type="button" class="grimorio-modal__btn grimorio-info-close" data-grimorio-close>Cerrar</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="grimorio-transformation-modal" class="grimorio-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="grimorio-modal__dialog">
+        <header class="grimorio-modal__header">
+          <h3>Seleccionar nivel de slot</h3>
+          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
+        </header>
+        <div class="grimorio-modal__body">
+          <p class="grimorio-spell-picker__hint">Solo puedes transformar si tienes espacios de conjuro disponibles.</p>
+          <div id="grimorio-transformation-levels" class="grimorio-transformation-levels"></div>
+        </div>
+        <footer class="grimorio-modal__footer">
+          <button type="button" class="grimorio-modal__btn" data-grimorio-close>Cancelar</button>
+          <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-transformation-confirm">
+            Activar
+          </button>
         </footer>
       </div>
     </div>
@@ -3127,13 +3252,17 @@ add_action('wp_enqueue_scripts', function () {
         wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => drak_get_admin_ajax_url(),
         ]);
+        $apothecary_theories = array_values( drak_get_apothecary_theories_catalog() );
         wp_localize_script('hoja-personaje-js', 'DND5_STATIC_DATA', [
             'races'        => drak_static_data_uri( 'dnd-races.json' ),
             'backgrounds'  => drak_static_data_uri( 'dnd-backgrounds.json' ),
             'classList'    => drak_static_data_uri( 'dnd-classes.json' ),
             'classDetails' => drak_static_data_uri( 'dnd-class-details.json' ),
             'feats'        => drak_static_data_uri( 'dnd-feats.json' ),
+            'esotericTheories' => drak_static_data_uri( 'esotherics.json' ),
+            'esotericTheoriesData' => $apothecary_theories,
         ]);
+        wp_localize_script('hoja-personaje-js', 'APOTHECARY_THEORY_CATALOG', $apothecary_theories );
 
     }
 
@@ -3155,20 +3284,46 @@ add_action('wp_enqueue_scripts', function () {
         ksort( $slot_row );
         $concentration = get_post_meta( $post_id, 'grimorio_concentration_state', true );
         $concentration = is_array( $concentration ) ? $concentration : [];
+        $apothecary_selection = drak_get_character_apothecary_theories( $post_id );
         $class_reference_payload = null;
-        $auto_prepared = drak_get_auto_prepared_spells( $clase, $subclase, $nivel, $class_reference_payload );
+        $auto_prepared = drak_get_auto_prepared_spells(
+            $clase,
+            $subclase,
+            $nivel,
+            $class_reference_payload,
+            [
+                'apothecary_theories' => $apothecary_selection,
+            ]
+        );
         $prepared_limit = drak_get_class_prepared_limit( $clase, $nivel );
+        $ability_fields = drak_get_ability_field_map();
+        $ability_scores = [];
+        foreach ( $ability_fields as $ability_key => $meta ) {
+            $raw                       = get_field( $meta['field'], $post_id );
+            $ability_scores[ $ability_key ] = ( $raw === '' || $raw === null ) ? null : intval( $raw );
+        }
+        $base_ac_raw    = get_field( 'cs_ac', $post_id );
+        $base_speed_raw = get_field( 'cs_velocidad', $post_id );
+        $base_ac        = ( $base_ac_raw === '' || $base_ac_raw === null ) ? 0 : intval( $base_ac_raw );
+        $base_speed     = is_numeric( $base_speed_raw ) ? intval( $base_speed_raw ) : intval( preg_replace( '/[^0-9]/', '', (string) $base_speed_raw ) );
+        $base_speed     = max( 0, $base_speed );
+        $transformation_state = drak_grimorio_get_transformation_state( $post_id );
+        $transformation_nonce = wp_create_nonce( 'grimorio_transformation_' . $post_id );
 
         wp_enqueue_script('class-reference-js', get_stylesheet_directory_uri() . '/js/class-reference.js', ['jquery'], null, true);
         wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js'], null, true);
         wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', ['jquery', 'class-reference-js', 'hoja-personaje-js'], null, true);
+        $grimorio_apothecary_theories = array_values( drak_get_apothecary_theories_catalog() );
         wp_localize_script('grimorio-js', 'DND5_STATIC_DATA', [
             'races'        => drak_static_data_uri( 'dnd-races.json' ),
             'backgrounds'  => drak_static_data_uri( 'dnd-backgrounds.json' ),
             'classList'    => drak_static_data_uri( 'dnd-classes.json' ),
             'classDetails' => drak_static_data_uri( 'dnd-class-details.json' ),
             'feats'        => drak_static_data_uri( 'dnd-feats.json' ),
+            'esotericTheories' => drak_static_data_uri( 'esotherics.json' ),
+            'esotericTheoriesData' => $grimorio_apothecary_theories,
         ]);
+        wp_localize_script('grimorio-js', 'APOTHECARY_THEORY_CATALOG', $grimorio_apothecary_theories );
         wp_localize_script('grimorio-js', 'DND5_API', [
             'ajax_url' => drak_get_admin_ajax_url(),
         ]);
@@ -3196,17 +3351,28 @@ add_action('wp_enqueue_scripts', function () {
             'concentration_nonce' => $concentration_nonce,
             'auto_prepared_spells' => $auto_prepared,
             'class_reference'   => $class_reference_payload,
+            'esoteric_theories' => $apothecary_selection,
+            'abilities'         => $ability_scores,
+            'base_ac'           => $base_ac,
+            'base_speed'        => $base_speed,
+            'apothecary_level'  => $nivel,
+            'transformation'    => $transformation_state,
+            'transformation_nonce' => $transformation_nonce,
         ]);
         wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => drak_get_admin_ajax_url(),
         ]);
+        $sheet_apothecary_theories = array_values( drak_get_apothecary_theories_catalog() );
         wp_localize_script('hoja-personaje-js', 'DND5_STATIC_DATA', [
             'races'        => drak_static_data_uri( 'dnd-races.json' ),
             'backgrounds'  => drak_static_data_uri( 'dnd-backgrounds.json' ),
             'classList'    => drak_static_data_uri( 'dnd-classes.json' ),
             'classDetails' => drak_static_data_uri( 'dnd-class-details.json' ),
             'feats'        => drak_static_data_uri( 'dnd-feats.json' ),
+            'esotericTheories' => drak_static_data_uri( 'esotherics.json' ),
+            'esotericTheoriesData' => $sheet_apothecary_theories,
         ]);
+        wp_localize_script('hoja-personaje-js', 'APOTHECARY_THEORY_CATALOG', $sheet_apothecary_theories );
     }
 });
 
@@ -3692,6 +3858,164 @@ function drak_get_local_dnd_spells() {
     return $cache;
 }
 
+function drak_get_apothecary_class_ids() {
+    return [ 'apothecary-scgtd-drakkenheim' ];
+}
+
+function drak_is_apothecary_class( $class_id ) {
+    if ( ! $class_id ) {
+        return false;
+    }
+    return in_array( $class_id, drak_get_apothecary_class_ids(), true );
+}
+
+function drak_esoteric_theory_id( $name ) {
+    $base = sanitize_title( $name );
+    if ( ! $base ) {
+        $base = 'theory-' . substr( md5( (string) $name ), 0, 8 );
+    }
+    return 'apothecary-theory-' . $base;
+}
+
+function drak_get_apothecary_theories_catalog() {
+    static $cache = null;
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $cache = [];
+    $path  = drak_locate_theme_data_file( 'esotherics.json' );
+    if ( ! $path ) {
+        return $cache;
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+    if ( ! is_array( $data ) || empty( $data['classFeature'] ) ) {
+        return $cache;
+    }
+
+    foreach ( $data['classFeature'] as $entry ) {
+        if ( empty( $entry['name'] ) ) {
+            continue;
+        }
+        $id = isset( $entry['id'] ) && $entry['id'] !== '' ? $entry['id'] : drak_esoteric_theory_id( $entry['name'] );
+        if ( isset( $cache[ $id ] ) ) {
+            $id .= '-' . substr( md5( $entry['name'] . wp_rand() ), 0, 4 );
+        }
+        $entry['id']    = $id;
+        $entry['level'] = isset( $entry['level'] ) ? intval( $entry['level'] ) : 0;
+        $cache[ $id ]   = $entry;
+    }
+
+    return $cache;
+}
+
+function drak_parse_apothecary_theory_ids( $raw ) {
+    if ( is_array( $raw ) ) {
+        return array_values( array_filter( array_map( 'strval', $raw ) ) );
+    }
+
+    if ( ! is_string( $raw ) || $raw === '' ) {
+        return [];
+    }
+
+    $raw = trim( $raw );
+    if ( $raw === '' ) {
+        return [];
+    }
+
+    if ( $raw[0] === '[' ) {
+        $decoded = json_decode( $raw, true );
+        if ( is_array( $decoded ) ) {
+            return array_values( array_filter( array_map( 'strval', $decoded ) ) );
+        }
+    }
+
+    $parts = array_map( 'trim', explode( ',', $raw ) );
+    return array_values( array_filter( array_map( 'strval', $parts ) ) );
+}
+
+function drak_filter_apothecary_theory_selection( $ids, $class_id, $level ) {
+    if ( ! drak_is_apothecary_class( $class_id ) ) {
+        return [];
+    }
+
+    $level    = max( 0, intval( $level ) );
+    $catalog  = drak_get_apothecary_theories_catalog();
+    $selected = [];
+
+    foreach ( $ids as $id ) {
+        if ( ! isset( $catalog[ $id ] ) ) {
+            continue;
+        }
+        $required_level = intval( $catalog[ $id ]['level'] ?? 0 );
+        if ( $required_level > $level ) {
+            continue;
+        }
+        $selected[ $id ] = true;
+    }
+
+    return array_keys( $selected );
+}
+
+function drak_save_apothecary_theory_selection( $post_id, $ids ) {
+    $ids = array_values( $ids );
+    if ( empty( $ids ) ) {
+        delete_post_meta( $post_id, 'apothecary_theories' );
+        return;
+    }
+
+    update_post_meta( $post_id, 'apothecary_theories', wp_json_encode( $ids ) );
+}
+
+function drak_get_character_apothecary_theories( $post_id ) {
+    if ( ! $post_id ) {
+        return [];
+    }
+    $raw = get_post_meta( $post_id, 'apothecary_theories', true );
+    return drak_parse_apothecary_theory_ids( $raw );
+}
+
+function drak_format_apothecary_theories_display( $ids ) {
+    $catalog = drak_get_apothecary_theories_catalog();
+    $names   = [];
+    foreach ( $ids as $id ) {
+        if ( isset( $catalog[ $id ]['name'] ) ) {
+            $names[] = $catalog[ $id ]['name'];
+        }
+    }
+    return implode( ', ', $names );
+}
+
+function drak_expand_apothecary_theories( $ids ) {
+    $catalog = drak_get_apothecary_theories_catalog();
+    $out     = [];
+    foreach ( $ids as $id ) {
+        if ( ! isset( $catalog[ $id ] ) ) {
+            continue;
+        }
+        $entry = $catalog[ $id ];
+        $out[] = [
+            'id'      => $entry['id'],
+            'name'    => $entry['name'] ?? $entry['id'],
+            'source'  => $entry['source'] ?? '',
+            'page'    => $entry['page'] ?? '',
+            'level'   => intval( $entry['level'] ?? 0 ),
+            'entries' => $entry['entries'] ?? [],
+        ];
+    }
+    return $out;
+}
+
+function drak_sanitize_apothecary_theory_submission( $raw_value, $class_id = '', $level = 0 ) {
+    $ids = drak_parse_apothecary_theory_ids( $raw_value );
+    if ( ! $class_id ) {
+        return $ids;
+    }
+    return drak_filter_apothecary_theory_selection( $ids, $class_id, $level );
+}
+
 /**
  * Devuelve listas de armas, armaduras, herramientas e idiomas para el modal.
  */
@@ -3739,6 +4063,17 @@ function drak_dnd5_get_actions() {
 add_action( 'wp_ajax_drak_dnd5_get_actions', 'drak_dnd5_get_actions' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_actions', 'drak_dnd5_get_actions' );
 
+function drak_dnd5_get_esoteric_theories() {
+    $catalog = drak_get_apothecary_theories_catalog();
+    wp_send_json_success(
+        [
+            'theories' => array_values( $catalog ),
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_get_esoteric_theories', 'drak_dnd5_get_esoteric_theories' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_esoteric_theories', 'drak_dnd5_get_esoteric_theories' );
+
 function drak_dnd5_get_backgrounds() {
     $backgrounds = drak_get_local_dnd_backgrounds();
     wp_send_json_success( [ 'backgrounds' => $backgrounds ] );
@@ -3749,12 +4084,14 @@ add_action( 'wp_ajax_nopriv_drak_dnd5_get_backgrounds', 'drak_dnd5_get_backgroun
 function drak_dnd5_get_class_reference() {
     $class_id    = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
     $subclass_id = isset( $_POST['subclass_id'] ) ? sanitize_text_field( wp_unslash( $_POST['subclass_id'] ) ) : '';
+    $raw_theories = isset( $_POST['apothecary_theories'] ) ? wp_unslash( $_POST['apothecary_theories'] ) : '';
+    $selected_theories = drak_parse_apothecary_theory_ids( $raw_theories );
 
     if ( ! $class_id ) {
         wp_send_json_error( [ 'message' => 'Falta el parámetro class_id.' ], 400 );
     }
 
-    $reference = drak_get_class_reference_payload( $class_id, $subclass_id );
+    $reference = drak_get_class_reference_payload( $class_id, $subclass_id, $selected_theories );
     if ( ! $reference ) {
         $debug = drak_get_class_reference_error();
         drak_set_class_reference_error( sprintf( 'drak_get_class_reference_payload devolvió vacío para class_id=%s subclass_id=%s', $class_id, $subclass_id ) );
@@ -3798,6 +4135,103 @@ function drak_dnd5_get_spells() {
 }
 add_action( 'wp_ajax_drak_dnd5_get_spells', 'drak_dnd5_get_spells' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_spells', 'drak_dnd5_get_spells' );
+
+function drak_dnd5_activate_transformation() {
+    if ( ! isset( $_POST['post_id'], $_POST['slot_level'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id    = intval( $_POST['post_id'] );
+    $slot_level = intval( $_POST['slot_level'] );
+    $nonce      = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( $slot_level <= 0 ) {
+        wp_send_json_error( [ 'message' => 'Nivel de slot inválido.' ], 400 );
+    }
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_transformation_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $current_state = drak_grimorio_get_transformation_state( $post_id );
+    if ( ! empty( $current_state['active'] ) ) {
+        wp_send_json_error( [ 'message' => 'La transformación ya está activa.' ], 400 );
+    }
+
+    $slots_used = drak_grimorio_get_slots( $post_id );
+    $nivel      = intval( get_field( 'nivel', $post_id ) );
+    $clase_id   = get_field( 'clase', $post_id );
+
+    $slot_row = drak_get_class_spell_slots_for_level( $clase_id, $nivel );
+    if ( empty( $slot_row ) ) {
+        $fallback = drak_get_full_caster_slots_table();
+        $slot_row = $fallback[ max( 1, min( 20, $nivel ) ) ] ?? [];
+    }
+
+    $slot_cap = intval( $slot_row[ $slot_level ] ?? 0 );
+    $used     = intval( $slots_used[ $slot_level ] ?? 0 );
+
+    if ( $slot_cap <= 0 ) {
+        wp_send_json_error( [ 'message' => 'No tienes espacios de ese nivel.' ], 400 );
+    }
+
+    if ( $used >= $slot_cap ) {
+        wp_send_json_error( [ 'message' => 'No quedan espacios disponibles en ese nivel.' ], 400 );
+    }
+
+    $slots_used[ $slot_level ] = $used + 1;
+    $clean_slots               = drak_grimorio_save_slots( $post_id, $slots_used );
+
+    $saved_state = drak_grimorio_save_transformation_state(
+        $post_id,
+        [
+            'active'     => true,
+            'slot_level' => $slot_level,
+            'started_at' => time(),
+        ]
+    );
+
+    wp_send_json_success(
+        [
+            'slots_used'     => $clean_slots,
+            'transformation' => $saved_state,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_activate_transformation', 'drak_dnd5_activate_transformation' );
+
+function drak_dnd5_finish_transformation() {
+    if ( ! isset( $_POST['post_id'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_transformation_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $state = drak_grimorio_save_transformation_state(
+        $post_id,
+        [
+            'active'     => false,
+            'slot_level' => null,
+            'started_at' => null,
+        ]
+    );
+
+    wp_send_json_success( [ 'transformation' => $state ] );
+}
+add_action( 'wp_ajax_drak_dnd5_finish_transformation', 'drak_dnd5_finish_transformation' );
 
 function drak_dnd5_save_spell_slots() {
     if ( ! isset( $_POST['post_id'], $_POST['level'], $_POST['value'], $_POST['nonce'] ) ) {
@@ -3902,6 +4336,11 @@ function drak_dnd5_get_feature_traits() {
     $class_id    = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
     $subclass_id = isset( $_POST['subclass_id'] ) ? sanitize_text_field( wp_unslash( $_POST['subclass_id'] ) ) : '';
     $race_id     = isset( $_POST['race_id'] ) ? sanitize_text_field( wp_unslash( $_POST['race_id'] ) ) : '';
+    $raw_theories = isset( $_POST['apothecary_theories'] ) ? wp_unslash( $_POST['apothecary_theories'] ) : '';
+    $selected_theories = drak_parse_apothecary_theory_ids( $raw_theories );
+    if ( ! drak_is_apothecary_class( $class_id ) ) {
+        $selected_theories = [];
+    }
 
     $class_lookup     = drak_get_local_dnd_class_lookup();
     $features_data    = drak_get_local_dnd_class_features_data();
@@ -3910,7 +4349,16 @@ function drak_dnd5_get_feature_traits() {
     $class_entry   = $class_lookup['classes'][ $class_id ] ?? null;
     $subclass_meta = $class_lookup['subclasses'][ $subclass_id ] ?? null;
     if ( $subclass_meta && $class_id && $subclass_meta['class_id'] !== $class_id ) {
-        $subclass_meta = null; // No pertenece a la clase seleccionada.
+        $parent_class_id = $subclass_meta['class_id'];
+        $current_name    = $class_entry['name'] ?? '';
+        $parent_entry    = $class_lookup['classes'][ $parent_class_id ] ?? null;
+        $parent_name     = $parent_entry['name'] ?? '';
+
+        // Algunas clases existen en varias ediciones, así que permitimos la
+        // subclase si el nombre base coincide; de lo contrario se descarta.
+        if ( ! $current_name || ! $parent_name || $current_name !== $parent_name ) {
+            $subclass_meta = null; // No pertenece a la clase seleccionada.
+        }
     }
 
     $race_entry = null;
@@ -3955,6 +4403,7 @@ function drak_dnd5_get_feature_traits() {
         'race'     => $race_payload,
         'class'    => $class_payload,
         'subclass' => $subclass_payload,
+        'esotericTheories' => drak_expand_apothecary_theories( $selected_theories ),
     ]);
 }
 add_action( 'wp_ajax_drak_dnd5_get_feature_traits', 'drak_dnd5_get_feature_traits' );

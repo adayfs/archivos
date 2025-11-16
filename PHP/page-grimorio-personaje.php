@@ -92,7 +92,11 @@ $nav_images = array(
   <?php echo renderizar_grimorio_personaje($personaje->ID); ?>
 
   <?php
-    $auto_prepared = drak_get_auto_prepared_spells( get_field( 'clase', $personaje->ID ), get_field( 'subclase', $personaje->ID ), intval( get_field( 'nivel', $personaje->ID ) ) );
+    $grimorio_class_id    = get_field( 'clase', $personaje->ID );
+    $grimorio_subclass_id = get_field( 'subclase', $personaje->ID );
+    $grimorio_level       = intval( get_field( 'nivel', $personaje->ID ) );
+
+    $auto_prepared = drak_get_auto_prepared_spells( $grimorio_class_id, $grimorio_subclass_id, $grimorio_level );
     $has_auto_prepared = false;
     foreach ( $auto_prepared as $group ) {
         foreach ( $group as $spells ) {
@@ -103,15 +107,18 @@ $nav_images = array(
         }
     }
     if ( $has_auto_prepared ) {
-        echo drak_render_grimorio_auto_prepared_section( $auto_prepared, get_field( 'subclase', $personaje->ID ) );
+        echo drak_render_grimorio_auto_prepared_section( $auto_prepared, $grimorio_subclass_id );
     }
-  ?>
 
-  <section class="class-reference-module" id="class-reference-module" data-class-reference>
-    <div class="class-reference-module__body">
-      <p class="class-reference-module__hint">Selecciona clase y subclase para cargar la información.</p>
-    </div>
-  </section>
+    $grimorio_has_spellcasting = $grimorio_class_id && drak_get_spellcasting_ability_for_class( $grimorio_class_id );
+    if ( $grimorio_has_spellcasting ) :
+  ?>
+    <section class="class-reference-module" id="class-reference-module" data-class-reference>
+      <div class="class-reference-module__body">
+        <p class="class-reference-module__hint">Selecciona clase y subclase para cargar la información.</p>
+      </div>
+    </section>
+  <?php endif; ?>
 </div>
 
 <?php

@@ -13,6 +13,7 @@
     initExpertiseManager();
     initClassReferenceModule();
     initCharacterAutomation();
+    updateTheorySummaryVisibility();
   });
 
   const SELECT_PLACEHOLDERS = Object.freeze({
@@ -76,6 +77,11 @@
   const manualBasicOverrides = new Set();
 
   const STATIC_DATA = window.DND5_STATIC_DATA || null;
+  const PRELOADED_THEORY_CATALOG = Array.isArray(window.APOTHECARY_THEORY_CATALOG)
+    ? window.APOTHECARY_THEORY_CATALOG
+    : null;
+  const APOTHECARY_CLASS_IDS = new Set(['apothecary-scgtd-drakkenheim']);
+  const APOTHECARY_MUTAGENIST_ID = 'apothecary-mutagenist-scgtd-drakkenheim';
 
   const SKILL_FIELD_BY_NAME = Object.freeze({
     'acrobatics': 'cs_skill_acrobacias',
@@ -141,6 +147,8 @@
     promise: null,
     data: null,
   };
+  let apothecaryTheoryCache = null;
+  let apothecaryTheoryPromise = null;
 
   let characterRecalcTimer = null;
 
@@ -157,6 +165,228 @@
   };
 
   let recomputeSkillsAndSaves = () => {};
+
+  function theorySlug(name) {
+    const base = (name || '')
+      .toString()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return base ? `apothecary-theory-${base}` : `apothecary-theory-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function isApothecaryClassId(value) {
+    if (!value) return false;
+    return APOTHECARY_CLASS_IDS.has(value);
+  }
+
+  function isMutagenistSubclassId(value) {
+    return value === APOTHECARY_MUTAGENIST_ID;
+  }
+
+  function shouldEnableApothecaryTheories(classId, subclassId) {
+    return isApothecaryClassId(classId) && isMutagenistSubclassId(subclassId);
+  }
+
+  function parseTheoryValue(raw) {
+    if (!raw) return [];
+    if (Array.isArray(raw)) {
+      return raw.filter((val) => typeof val === 'string' && val.trim() !== '');
+    }
+    if (typeof raw === 'string') {
+      try {
+        const decoded = JSON.parse(raw);
+        if (Array.isArray(decoded)) {
+          return decoded.filter((val) => typeof val === 'string' && val.trim() !== '');
+        }
+      } catch (error) {
+        // fall through to comma parsing
+      }
+      return raw
+        .split(',')
+        .map((part) => part.trim())
+        .filter((part) => part !== '');
+    }
+    return [];
+  }
+
+  function getSelectedEsotericTheories() {
+    const input = document.getElementById('apothecary_theories');
+    if (!input) return [];
+    return parseTheoryValue(input.value);
+  }
+
+  function getStaticEsotericTheoryList() {
+    const raw = STATIC_DATA?.esotericTheoriesData || PRELOADED_THEORY_CATALOG;
+    if (Array.isArray(raw)) return raw;
+    if (raw && typeof raw === 'object') {
+      return Object.values(raw);
+    }
+    return [];
+  }
+
+  function buildEsotericTheoryMap(list) {
+    const map = {};
+    (list || []).forEach((theory) => {
+      if (!theory) return;
+      const id = theory.id || theorySlug(theory.name || '');
+      map[id] = {
+        id,
+        name: theory.name || id,
+        level: Number(theory.level) || 0,
+        entries: Array.isArray(theory.entries) ? theory.entries : [],
+        source: theory.source || '',
+        page: theory.page || '',
+      };
+    });
+    return map;
+  }
+
+  function updateTheoryCacheFromList(list) {
+    const map = buildEsotericTheoryMap(list);
+    if (Object.keys(map).length) {
+      apothecaryTheoryCache = map;
+      if (characterDataStore.data) {
+        characterDataStore.data.esotericTheories = map;
+      }
+    }
+    return apothecaryTheoryCache || {};
+  }
+
+  function ensureEsotericTheoryCatalog() {
+    if (apothecaryTheoryCache && Object.keys(apothecaryTheoryCache).length) {
+      return apothecaryTheoryCache;
+    }
+    const data = characterDataStore.data;
+    if (data && data.esotericTheories && Object.keys(data.esotericTheories).length) {
+      apothecaryTheoryCache = data.esotericTheories;
+      return apothecaryTheoryCache;
+    }
+    updateTheoryCacheFromList(getStaticEsotericTheoryList());
+    return apothecaryTheoryCache || {};
+  }
+
+  function fetchApothecaryTheoryCatalog() {
+    const existing = ensureEsotericTheoryCatalog();
+    if (Object.keys(existing).length) {
+      return Promise.resolve(existing);
+    }
+    if (apothecaryTheoryPromise) {
+      return apothecaryTheoryPromise;
+    }
+
+    apothecaryTheoryPromise = Promise.resolve()
+      .then(() => {
+        // Try direct static JSON if available.
+        if (STATIC_DATA?.esotericTheories) {
+          return fetchStaticJson(STATIC_DATA.esotericTheories)
+            .then((json) => {
+              if (json?.classFeature) {
+                return updateTheoryCacheFromList(json.classFeature);
+              }
+              return null;
+            })
+            .catch(() => null);
+        }
+        return null;
+      })
+      .then((result) => {
+        if (result && Object.keys(result).length) {
+          return result;
+        }
+        if (!window.DND5_API?.ajax_url) {
+          return apothecaryTheoryCache || {};
+        }
+        const payload = new URLSearchParams({
+          action: 'drak_dnd5_get_esoteric_theories',
+        });
+        return fetch(window.DND5_API.ajax_url, {
+          method: 'POST',
+          credentials: 'same-origin',
+          body: payload,
+        })
+          .then((resp) => resp.json())
+          .then((json) => {
+            if (json?.success && Array.isArray(json.data?.theories)) {
+              return updateTheoryCacheFromList(json.data.theories);
+            }
+            return apothecaryTheoryCache || {};
+          })
+          .catch(() => apothecaryTheoryCache || {});
+      })
+      .then((result) => result || apothecaryTheoryCache || {})
+      .finally(() => {
+        apothecaryTheoryPromise = null;
+      });
+
+    return apothecaryTheoryPromise;
+  }
+
+  function clampTheorySelection(ids, level, classId) {
+    if (!isApothecaryClassId(classId) || !Number.isFinite(level) || level < 2) {
+      return [];
+    }
+    const catalog = ensureEsotericTheoryCatalog();
+    return ids.filter((id) => {
+      const entry = catalog[id];
+      if (!entry) return false;
+      const required = Number(entry.level) || 0;
+      return !required || level >= required;
+    });
+  }
+
+  function formatTheoryNames(ids) {
+    if (!ids || !ids.length) return '';
+    const catalog = characterDataStore.data?.esotericTheories || {};
+    const names = ids
+      .map((id) => catalog[id]?.name || '')
+      .filter((name) => name !== '');
+    return names.join(', ');
+  }
+
+  function refreshApothecaryTheoryDisplay() {
+    const display = document.getElementById('display_apothecary_theories');
+    if (!display) return;
+    const names = formatTheoryNames(getSelectedEsotericTheories());
+    display.textContent = names || '—';
+  }
+
+  function updateTheorySummaryVisibility() {
+    const block = document.querySelector('.basic-item-theories');
+    if (!block) return;
+    const currentClass = (document.getElementById('clase')?.value || '').trim();
+    const currentSubclass = (document.getElementById('subclase')?.value || '').trim();
+    const enabled = shouldEnableApothecaryTheories(currentClass, currentSubclass);
+    block.classList.toggle('is-hidden', !enabled);
+  }
+
+  function setSelectedEsotericTheories(ids, options = {}) {
+    const input = document.getElementById('apothecary_theories');
+    if (!input) return;
+    const silent = Boolean(options.silent);
+    const classId = (document.getElementById('clase')?.value || '').trim();
+    const subclassId = (document.getElementById('subclase')?.value || '').trim();
+    const level = getNumberFromInput('nivel');
+    let normalized = Array.isArray(ids)
+      ? Array.from(new Set(ids.filter((val) => typeof val === 'string' && val !== '')))
+      : [];
+    if (!shouldEnableApothecaryTheories(classId, subclassId)) {
+      normalized = [];
+    } else if (characterDataStore.data) {
+      normalized = clampTheorySelection(normalized, level, classId);
+    }
+    input.value = JSON.stringify(normalized);
+    refreshApothecaryTheoryDisplay();
+    updateTheorySummaryVisibility();
+    if (!silent) {
+      if (typeof featureModuleApi.invalidate === 'function') {
+        featureModuleApi.invalidate();
+      }
+      scheduleCharacterRecalc();
+    }
+  }
 
   function qs(selector, scope = document) {
     return scope.querySelector(selector);
@@ -454,11 +684,13 @@
     const statsSection = createStatsSectionController(overlay);
     const basicsSection = createBasicsSectionController(overlay);
     const profsSection = createProficiencySectionController(overlay);
+    const theoriesSection = createEsotericTheoryController(overlay);
 
     function openModal() {
       statsSection.populate();
       basicsSection.populate();
       profsSection.populate();
+      theoriesSection.populate();
       renderExpertiseList();
       populateExpertiseSelect();
       overlay.style.display = 'flex';
@@ -479,6 +711,7 @@
       statsSection.apply();
       basicsSection.apply();
       profsSection.apply();
+      theoriesSection.apply();
       refreshAbilityDisplays();
       recomputeSkillsAndSaves();
       recalculateCharacterSheet();
@@ -742,6 +975,18 @@
       if (hiddenField.id === 'clase') {
         spellsModuleApi.invalidate();
       }
+      if (hiddenField.id === 'clase' || hiddenField.id === 'subclase') {
+        updateTheorySummaryVisibility();
+        const currentClass = hiddenBasics.clase?.value || '';
+        const currentSubclass = hiddenBasics.subclase?.value || '';
+        if (!shouldEnableApothecaryTheories(currentClass, currentSubclass)) {
+          if (getSelectedEsotericTheories().length) {
+            setSelectedEsotericTheories([], { silent: true });
+          }
+        } else {
+          setSelectedEsotericTheories(getSelectedEsotericTheories(), { silent: true });
+        }
+      }
       scheduleCharacterRecalc();
     }
 
@@ -873,6 +1118,150 @@
         loadBackgrounds();
       },
     };
+  }
+
+  function createEsotericTheoryController(root) {
+    const container = root.querySelector('#esoteric-theories-container');
+    const classSelect = root.querySelector('#modal-clase');
+    const subclassSelect = root.querySelector('#modal-subclase');
+    const levelInput = root.querySelector('.basics-modal-input[data-basic="nivel"]');
+    const sectionWrapper = root.querySelector('[data-theory-section]');
+
+    if (!container) {
+      return { populate: () => {}, apply: () => {} };
+    }
+
+    function modalLevel() {
+      const raw = levelInput?.value ?? document.getElementById('nivel')?.value ?? '0';
+      const parsed = parseInt(raw, 10);
+      return Number.isNaN(parsed) ? 0 : parsed;
+    }
+
+    function modalClass() {
+      return (classSelect?.value || document.getElementById('clase')?.value || '').trim();
+    }
+
+    function modalSubclass() {
+      return (subclassSelect?.value || document.getElementById('subclase')?.value || '').trim();
+    }
+
+    function setSectionVisibility(visible) {
+      if (sectionWrapper) {
+        sectionWrapper.classList.toggle('is-hidden', !visible);
+      }
+    }
+
+    function renderEmptyState(message) {
+      container.innerHTML = `<p class="theory-picker__hint">${escapeHtml(message)}</p>`;
+    }
+
+    function bindCheckboxes() {
+      container.querySelectorAll('input[data-theory-id]').forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const ids = new Set(getSelectedEsotericTheories());
+          const theoryId = event.target.dataset.theoryId;
+          if (!theoryId) return;
+          if (event.target.checked) {
+            ids.add(theoryId);
+          } else {
+            ids.delete(theoryId);
+          }
+          setSelectedEsotericTheories(Array.from(ids));
+        });
+      });
+    }
+
+    function renderOptions() {
+      const classId = modalClass();
+      const subclassId = modalSubclass();
+      const level = modalLevel();
+      const enabled = shouldEnableApothecaryTheories(classId, subclassId);
+
+      setSectionVisibility(enabled);
+
+      if (!enabled) {
+        setSelectedEsotericTheories([], { silent: true });
+        renderEmptyState('Disponible únicamente para la subclase Mutagenist.');
+        return;
+      }
+
+      if (level < 2) {
+        setSelectedEsotericTheories([], { silent: true });
+        renderEmptyState('Disponibles a partir de nivel 2 de Apothecary.');
+        return;
+      }
+
+      container.innerHTML = '<p class="theory-picker__hint">Cargando teorías esotéricas…</p>';
+      fetchApothecaryTheoryCatalog()
+        .then((catalog) => {
+          const entries = Object.values(catalog || {});
+          if (!entries.length) {
+            renderEmptyState('No se encontraron teorías.');
+            return;
+          }
+
+          const currentSelection = getSelectedEsotericTheories();
+          const sanitized = clampTheorySelection(currentSelection, level, classId);
+          if (sanitized.length !== currentSelection.length) {
+            setSelectedEsotericTheories(sanitized, { silent: true });
+          } else {
+            refreshApothecaryTheoryDisplay();
+          }
+
+          const selection = new Set(getSelectedEsotericTheories());
+          const sorted = entries.sort((a, b) => {
+            if (a.level !== b.level) {
+              return a.level - b.level;
+            }
+            return (a.name || '').localeCompare(b.name || '');
+          });
+
+          const content = sorted
+            .map((theory) => {
+              const requiredLevel = Number(theory.level) || 0;
+              const unlocked = !requiredLevel || level >= requiredLevel;
+              const checked = unlocked && selection.has(theory.id);
+              const requirement = requiredLevel ? `Requiere nivel ${requiredLevel}` : 'Sin requisito';
+              const disabledAttr = unlocked ? '' : 'disabled';
+              const checkedAttr = checked ? 'checked' : '';
+              return `
+                <label class="theory-picker__option ${unlocked ? '' : 'is-disabled'}">
+                  <input type="checkbox" data-theory-id="${theory.id}" ${checkedAttr} ${disabledAttr}>
+                  <span class="theory-picker__option-name">${escapeHtml(theory.name || theory.id)}</span>
+                  <small class="theory-picker__option-meta">${escapeHtml(requirement)}</small>
+                </label>
+              `;
+            })
+            .join('');
+
+          container.innerHTML = content || '<p class="theory-picker__hint">No hay teorías disponibles.</p>';
+          bindCheckboxes();
+        })
+        .catch(() => {
+          renderEmptyState('No se pudieron cargar las teorías.');
+        });
+    }
+
+    if (classSelect) {
+      classSelect.addEventListener('change', renderOptions);
+    }
+    if (subclassSelect) {
+      subclassSelect.addEventListener('change', renderOptions);
+    }
+    if (levelInput) {
+      levelInput.addEventListener('input', renderOptions);
+    }
+
+    function populate() {
+      refreshApothecaryTheoryDisplay();
+      renderOptions();
+    }
+
+    function apply() {
+      refreshApothecaryTheoryDisplay();
+    }
+
+    return { populate, apply };
   }
 
   function createProficiencySectionController(root) {
@@ -1143,7 +1532,8 @@
     }
 
     function currentKey() {
-      return [readValue('clase'), readValue('subclase'), readValue('raza')].join('|');
+      const theoryKey = JSON.stringify(getSelectedEsotericTheories() || []);
+      return [readValue('clase'), readValue('subclase'), readValue('raza'), theoryKey].join('|');
     }
 
     function showLoading() {
@@ -1166,8 +1556,9 @@
 
       const blocks = [];
 
-      if (data.race && Array.isArray(data.race.entries) && data.race.entries.length) {
-        const content = renderEntries(data.race.entries);
+      if (data.race) {
+        const raceEntries = getLocalizedArrayFrom(data.race, 'entries');
+        const content = renderEntries(raceEntries);
         if (content) {
           blocks.push(`
             <section class="character-extended__section">
@@ -1180,10 +1571,10 @@
 
       if (data.class && Array.isArray(data.class.features) && data.class.features.length) {
         const entries = data.class.features.map((feature) => {
-          const bodyEntries = Array.isArray(feature.entries) && feature.entries.length
-            ? feature.entries
-            : (feature.shortEntries || []);
-          const body = renderEntries(bodyEntries);
+          const bodyEntries = getLocalizedArrayFrom(feature, 'entries');
+          const shortEntries = getLocalizedArrayFrom(feature, 'shortEntries');
+          const contentEntries = bodyEntries.length ? bodyEntries : shortEntries;
+          const body = renderEntries(contentEntries);
           const level = feature.level ? `Nivel ${feature.level}` : '';
           const metaParts = [];
           if (level) metaParts.push(level);
@@ -1213,12 +1604,45 @@
         `);
       }
 
+      if (Array.isArray(data.esotericTheories) && data.esotericTheories.length) {
+        const entries = data.esotericTheories.map((feature) => {
+          const bodyEntries = getLocalizedArrayFrom(feature, 'entries');
+          const body = renderEntries(bodyEntries);
+          const level = feature.level ? `Nivel ${feature.level}` : '';
+          const metaParts = [];
+          if (level) metaParts.push(level);
+          if (feature.source) metaParts.push(escapeHtml(feature.source));
+          const meta = metaParts.length ? `<div class="feature-card__meta">${metaParts.join(' · ')}</div>` : '';
+          return `
+            <article class="feature-card is-collapsed">
+              <header class="feature-card__header">
+                <h5 class="feature-card__title">${escapeHtml(feature.name || 'Teoría')}</h5>
+                <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle">
+                  <span class="feature-card__toggle-icon">▼</span>
+                </button>
+              </header>
+              <div class="feature-card__content">
+                ${meta}
+                <div class="feature-card__body">${body || '<p>Sin descripción.</p>'}</div>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        blocks.push(`
+          <section class="character-extended__section">
+            <h4 class="character-extended__section-title">Teorías esotéricas</h4>
+            ${entries}
+          </section>
+        `);
+      }
+
       if (data.subclass && data.subclass.features && data.subclass.features.length) {
         const entries = data.subclass.features.map((feature) => {
-          const bodyEntries = Array.isArray(feature.entries) && feature.entries.length
-            ? feature.entries
-            : (feature.shortEntries || []);
-          const body = renderEntries(bodyEntries);
+          const bodyEntries = getLocalizedArrayFrom(feature, 'entries');
+          const shortEntries = getLocalizedArrayFrom(feature, 'shortEntries');
+          const contentEntries = bodyEntries.length ? bodyEntries : shortEntries;
+          const body = renderEntries(contentEntries);
           const level = feature.level ? `Nivel ${feature.level}` : '';
           const metaParts = [];
           if (level) metaParts.push(level);
@@ -1326,6 +1750,10 @@
         subclass_id: readValue('subclase'),
         race_id: readValue('raza'),
       });
+      const theoryValue = document.getElementById('apothecary_theories')?.value || '';
+      if (theoryValue) {
+        payload.append('apothecary_theories', theoryValue);
+      }
 
       fetch(window.DND5_API.ajax_url, {
         method: 'POST',
@@ -1568,7 +1996,8 @@
         .map(([label, value]) => (value ? `<p><strong>${label}:</strong> ${value}</p>` : ''))
         .join('');
 
-      const body = renderEntries(spell.entries || []);
+      const bodyEntries = getLocalizedArrayFrom(spell, 'entries');
+      const body = renderEntries(bodyEntries);
 
       return `
         <article class="feature-card spell-card is-collapsed">
@@ -1775,8 +2204,70 @@
     });
   }
 
+  function getLocalizedArrayFrom(obj, key) {
+    if (!obj || typeof obj !== 'object') return Array.isArray(obj) ? obj : [];
+    const esKey = `${key}_es`;
+    const esVal = obj[esKey];
+    if (Array.isArray(esVal) && esVal.length) return esVal;
+    const baseVal = obj[key];
+    return Array.isArray(baseVal) ? baseVal : [];
+  }
+
+  function getLocalizedTextFrom(obj, key) {
+    if (!obj || typeof obj !== 'object') return '';
+    const esKey = `${key}_es`;
+    if (typeof obj[esKey] === 'string' && obj[esKey].trim()) {
+      return obj[esKey];
+    }
+    if (typeof obj[key] === 'string' && obj[key].trim()) {
+      return obj[key];
+    }
+    return '';
+  }
+
+  function localizeEntryNode(entry) {
+    if (!entry || typeof entry !== 'object') {
+      return entry;
+    }
+
+    let shouldClone = false;
+    const replacements = {};
+
+    if (Array.isArray(entry.entries_es) && entry.entries_es.length) {
+      replacements.entries = entry.entries_es;
+      shouldClone = true;
+    }
+
+    if (Array.isArray(entry.items_es) && entry.items_es.length) {
+      replacements.items = entry.items_es;
+      shouldClone = true;
+    }
+
+    if (Array.isArray(entry.rows_es) && entry.rows_es.length) {
+      replacements.rows = entry.rows_es;
+      shouldClone = true;
+    }
+
+    if (Array.isArray(entry.colLabels_es) && entry.colLabels_es.length) {
+      replacements.colLabels = entry.colLabels_es;
+      shouldClone = true;
+    }
+
+    if (typeof entry.entry_es === 'string' && entry.entry_es.trim()) {
+      replacements.entry = entry.entry_es;
+      shouldClone = true;
+    }
+
+    if (typeof entry.caption_es === 'string' && entry.caption_es.trim()) {
+      replacements.caption = entry.caption_es;
+      shouldClone = true;
+    }
+
+    return shouldClone ? { ...entry, ...replacements } : entry;
+  }
+
   function renderEntries(entries) {
-    if (!entries || !entries.length) {
+    if (!Array.isArray(entries) || !entries.length) {
       return '';
     }
     return entries.map((entry) => renderEntryNode(entry)).join('');
@@ -1793,6 +2284,7 @@
       return '';
     }
 
+    entry = localizeEntryNode(entry);
     const type = entry.type || 'entries';
 
     if (type === 'entries') {
@@ -1884,9 +2376,10 @@
         fetchStaticJson(STATIC_DATA.classDetails || STATIC_DATA.classList),
         fetchStaticJson(STATIC_DATA.classList),
         STATIC_DATA.feats ? fetchStaticJson(STATIC_DATA.feats) : Promise.resolve(null),
+        STATIC_DATA.esotericTheories ? fetchStaticJson(STATIC_DATA.esotericTheories) : Promise.resolve(null),
       ];
       characterDataStore.promise = Promise.all(requests)
-        .then(([races, backgrounds, classDetails, classList, feats]) => {
+        .then(([races, backgrounds, classDetails, classList, feats, theories]) => {
           const raceMap = {};
           (races?.races || []).forEach((race) => {
             if (race?.id) raceMap[race.id] = race;
@@ -1910,13 +2403,23 @@
             if (key) featMap[key] = feat;
           });
 
+          const fallbackTheories = getStaticEsotericTheoryList();
+          const rawTheories =
+            Array.isArray(theories?.classFeature) && theories.classFeature.length
+              ? theories.classFeature
+              : fallbackTheories;
+          const theoryMap = buildEsotericTheoryMap(rawTheories);
+
           characterDataStore.data = {
             races: raceMap,
             backgrounds: backgroundMap,
             classes: classListMap,
             classDetails: classDetailMap,
             feats: featMap,
+            esotericTheories: theoryMap,
           };
+          apothecaryTheoryCache = theoryMap;
+          refreshApothecaryTheoryDisplay();
           return characterDataStore.data;
         })
         .finally(() => {
@@ -2012,6 +2515,7 @@
       subclassId: (document.getElementById('subclase')?.value || '').trim(),
       raceId: (document.getElementById('raza')?.value || '').trim(),
       backgroundId: (document.getElementById('background')?.value || '').trim(),
+      esotericTheories: getSelectedEsotericTheories(),
     };
   }
 

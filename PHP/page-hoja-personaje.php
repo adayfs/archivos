@@ -74,15 +74,21 @@ $nav_images = array(
 
   <?php echo renderizar_hoja_personaje($personaje->ID); ?>
 
-  <section class="class-reference-module" id="class-reference-module" data-class-reference>
-    <header class="class-reference-module__header">
-      <h3>Referencia de clase</h3>
-      <p>Consulta la progresión oficial de tu clase y los hechizos preparados por nivel.</p>
-    </header>
-    <div class="class-reference-module__body">
-      <p class="class-reference-module__hint">Selecciona clase y subclase para cargar la información.</p>
-    </div>
-  </section>
+  <?php
+    $hoja_class_id = get_field( 'clase', $personaje->ID );
+    $hoja_has_spellcasting = $hoja_class_id && drak_get_spellcasting_ability_for_class( $hoja_class_id );
+    if ( $hoja_has_spellcasting ) :
+  ?>
+    <section class="class-reference-module" id="class-reference-module" data-class-reference>
+      <header class="class-reference-module__header">
+        <h3>Referencia de clase</h3>
+        <p>Consulta la progresión oficial de tu clase y los hechizos preparados por nivel.</p>
+      </header>
+      <div class="class-reference-module__body">
+        <p class="class-reference-module__hint">Selecciona clase y subclase para cargar la información.</p>
+      </div>
+    </section>
+  <?php endif; ?>
 </div>
 
 
