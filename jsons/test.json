@@ -1,0 +1,12 @@
+{
+  "spells": [
+    {
+      "id": "acid-splash-phb",
+      "name": "Acid Splash",
+      "entries": [
+        "You hurl a bubble of acid.",
+        "Choose one or two creatures you can see within range."
+      ]
+    }
+  ]
+}

@@ -110,6 +110,8 @@ $nav_images = array(
         echo drak_render_grimorio_auto_prepared_section( $auto_prepared, $grimorio_subclass_id );
     }
 
+    echo drak_render_spell_search_module();
+
     $grimorio_has_spellcasting = $grimorio_class_id && drak_get_spellcasting_ability_for_class( $grimorio_class_id );
     if ( $grimorio_has_spellcasting ) :
   ?>

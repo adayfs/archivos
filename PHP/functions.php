@@ -2961,6 +2961,47 @@ function drak_render_grimorio_auto_prepared_section( $auto_prepared, $subclass_i
     return ob_get_clean();
 }
 
+function drak_render_spell_search_module() {
+    if ( empty( drak_get_spellcasting_classes() ) ) {
+        return '';
+    }
+
+    ob_start();
+    ?>
+    <section class="spell-search-module" data-spell-search>
+      <div class="spell-search-module__intro">
+        <h3>Buscador de conjuros</h3>
+        <p>Encuentra rápidamente conjuros por nombre o cada catálogo de clase.</p>
+      </div>
+      <form class="spell-search__form" data-spell-search-form>
+        <label class="spell-search__field">
+          <span class="screen-reader-text">Nombre del conjuro</span>
+          <input type="text" data-spell-search-input placeholder="Escribe el nombre del conjuro" autocomplete="off">
+        </label>
+        <button type="submit" class="spell-search__submit">Buscar</button>
+      </form>
+      <div class="spell-search__filters" data-spell-search-classes></div>
+      <div class="spell-search__suggestions" data-spell-search-suggestions hidden></div>
+
+      <div class="grimorio-modal spell-search-modal" role="dialog" aria-modal="true" aria-hidden="true" data-spell-search-modal>
+        <div class="grimorio-modal__dialog">
+          <header class="grimorio-modal__header">
+            <h3>Resultados del buscador</h3>
+            <button type="button" class="grimorio-modal__close" data-spell-search-close>&times;</button>
+          </header>
+          <div class="grimorio-modal__body" data-spell-search-results>
+            <p>Aún no has realizado ninguna búsqueda.</p>
+          </div>
+          <footer class="grimorio-modal__footer">
+            <button type="button" class="grimorio-modal__btn" data-spell-search-close>Cerrar</button>
+          </footer>
+        </div>
+      </div>
+    </section>
+    <?php
+    return ob_get_clean();
+}
+
 add_action( 'acf/init', function () {
     if ( ! function_exists( 'acf_add_local_field_group' ) ) {
         return;
@@ -3364,6 +3405,16 @@ add_action('wp_enqueue_scripts', function () {
             'transformation'    => $transformation_state,
             'transformation_nonce' => $transformation_nonce,
         ]);
+        wp_enqueue_script('spell-search-js', get_stylesheet_directory_uri() . '/js/spell-search.js', ['jquery'], null, true);
+        wp_localize_script('spell-search-js', 'SPELL_SEARCH_CONFIG', [
+            'ajax_url' => drak_get_admin_ajax_url(),
+            'classes'  => drak_get_spellcasting_classes(),
+            'labels'   => [
+                'placeholder' => __( 'Escribe el nombre del conjuro…', 'grimorio' ),
+                'empty'       => __( 'No se encontraron resultados para tu búsqueda.', 'grimorio' ),
+                'error'       => __( 'No se pudo completar la búsqueda. Inténtalo nuevamente.', 'grimorio' ),
+            ],
+        ]);
         wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => drak_get_admin_ajax_url(),
         ]);
@@ -3603,6 +3654,147 @@ function drak_dnd5_get_weapons() {
 }
 add_action('wp_ajax_drak_dnd5_get_weapons', 'drak_dnd5_get_weapons');
 add_action('wp_ajax_nopriv_drak_dnd5_get_weapons', 'drak_dnd5_get_weapons');
+
+function drak_spell_matches_classes( $spell, $filters ) {
+    if ( empty( $filters ) ) {
+        return true;
+    }
+    if ( empty( $spell['classes'] ) || ! is_array( $spell['classes'] ) ) {
+        return false;
+    }
+    foreach ( $spell['classes'] as $class ) {
+        $id = $class['id'] ?? '';
+        if ( $id && in_array( $id, $filters, true ) ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function drak_collect_spell_text( $entry, &$chunks ) {
+    if ( $entry === null ) {
+        return;
+    }
+    if ( is_string( $entry ) ) {
+        $chunks[] = $entry;
+        return;
+    }
+    if ( is_array( $entry ) ) {
+        foreach ( $entry as $item ) {
+            drak_collect_spell_text( $item, $chunks );
+        }
+    } elseif ( is_object( $entry ) ) {
+        foreach ( get_object_vars( $entry ) as $value ) {
+            drak_collect_spell_text( $value, $chunks );
+        }
+    }
+}
+
+function drak_build_spell_preview( $spell ) {
+    $chunks = [];
+    if ( ! empty( $spell['entries'] ) ) {
+        drak_collect_spell_text( $spell['entries'], $chunks );
+    }
+    $text = trim( implode( ' ', $chunks ) );
+    $text = preg_replace( '/\s+/', ' ', $text );
+    if ( '' === $text ) {
+        return '';
+    }
+    if ( function_exists( 'mb_strlen' ) && mb_strlen( $text ) > 220 ) {
+        return mb_substr( $text, 0, 217 ) . '…';
+    }
+    return strlen( $text ) > 220 ? substr( $text, 0, 217 ) . '…' : $text;
+}
+
+function drak_build_spell_paragraphs( $spell ) {
+    if ( empty( $spell['entries'] ) ) {
+        return [];
+    }
+    $chunks = [];
+    drak_collect_spell_text( $spell['entries'], $chunks );
+    if ( empty( $chunks ) ) {
+        return [];
+    }
+    $text = trim( implode( "\n", $chunks ) );
+    if ( '' === $text ) {
+        return [];
+    }
+    $parts = preg_split( '/\n+/u', $text );
+    $paragraphs = [];
+    foreach ( $parts as $part ) {
+        $part = trim( $part );
+        if ( '' !== $part ) {
+            $paragraphs[] = $part;
+        }
+    }
+    return $paragraphs;
+}
+
+function drak_dnd5_search_spells() {
+    if ( ! isset( $_POST['q'] ) && empty( $_POST['classes'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros faltantes.' ], 400 );
+    }
+
+    $query = isset( $_POST['q'] ) ? sanitize_text_field( wp_unslash( $_POST['q'] ) ) : '';
+    $limit = isset( $_POST['limit'] ) ? intval( $_POST['limit'] ) : 25;
+    $limit = max( 1, min( 50, $limit ) );
+
+    $raw_classes = $_POST['classes'] ?? [];
+    if ( is_string( $raw_classes ) ) {
+        $raw_classes = [ $raw_classes ];
+    }
+    $class_filters = array_filter( array_map( 'sanitize_text_field', (array) $raw_classes ) );
+
+    $needle = trim( strtolower( remove_accents( $query ) ) );
+    $matches = [];
+    $total = 0;
+    foreach ( drak_get_local_dnd_spells() as $spell ) {
+        $name = $spell['name'] ?? '';
+        if ( $needle !== '' ) {
+            $haystack = strtolower( remove_accents( $name ) );
+            if ( strpos( $haystack, $needle ) === false ) {
+                continue;
+            }
+        } elseif ( empty( $class_filters ) ) {
+            continue;
+        }
+
+        if ( ! drak_spell_matches_classes( $spell, $class_filters ) ) {
+            continue;
+        }
+
+        $total++;
+        if ( count( $matches ) >= $limit ) {
+            continue;
+        }
+
+        $matches[] = [
+            'id'       => $spell['id'] ?? '',
+            'name'     => $name,
+            'level'    => intval( $spell['level'] ?? 0 ),
+            'school'   => $spell['school'] ?? '',
+            'source'   => $spell['source'] ?? '',
+            'classes'  => array_map( static function ( $cls ) {
+                return [
+                    'id'   => $cls['id'] ?? '',
+                    'name' => $cls['name'] ?? '',
+                ];
+            }, $spell['classes'] ?? [] ),
+            'preview'    => drak_build_spell_preview( $spell ),
+            'paragraphs' => drak_build_spell_paragraphs( $spell ),
+            'entries'    => $spell['entries'] ?? [],
+        ];
+    }
+
+    wp_send_json_success(
+        [
+            'spells' => $matches,
+            'total'  => $total,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_search_spells', 'drak_dnd5_search_spells' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_search_spells', 'drak_dnd5_search_spells' );
 
 /**
  * Carga el JSON local de razas
@@ -3860,6 +4052,46 @@ function drak_get_local_dnd_spells() {
     }
 
     $cache = $data['spells'];
+    return $cache;
+}
+
+function drak_get_spellcasting_classes() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $data = drak_get_local_dnd_classes_data();
+    if ( ! $data || empty( $data['classes'] ) || ! is_array( $data['classes'] ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $unique = [];
+    foreach ( $data['classes'] as $class ) {
+        $class_id = $class['id'] ?? '';
+        if ( ! $class_id ) {
+            continue;
+        }
+        $details = drak_get_class_detail_entry( $class_id );
+        if ( empty( $details['spellcastingAbility'] ) ) {
+            continue;
+        }
+
+        $slug = sanitize_title( $class['name'] ?? $class_id );
+        if ( isset( $unique[ $slug ] ) ) {
+            continue;
+        }
+
+        $unique[ $slug ] = [
+            'id'    => $class_id,
+            'name'  => $class['name'] ?? $class_id,
+            'short' => $class['shortName'] ?? ( $class['name'] ?? $class_id ),
+        ];
+    }
+
+    $cache = array_values( $unique );
     return $cache;
 }
 
