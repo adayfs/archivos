@@ -1,0 +1,148 @@
+[
+  {
+    "name": "Apothecary Magic",
+    "source": "SCGTD",
+    "page": 135,
+    "className": "Apothecary",
+    "classSource": "SCGTD",
+    "level": 1,
+    "header": 1,
+    "entries": [
+      "Your study of medicine, alchemy, and occult lore has granted you the ability to cast spells. Use the general spellcasting rules from the core game, and the Apothecary spell list from this book, when you cast Apothecary spells.",
+      {
+        "type": "entries",
+        "name": "Formula Book",
+        "entries": [
+          "You keep your notes, discoveries, and occult medical techniques in a formula book. This book is where you record the spells you prepare, your esoteric theories, and the details of your occult practices. You can use your formula book as an arcane focus for your Apothecary spells.",
+          "The physical form of the formula book is up to you. It might be a heavy leather-bound tome, a loose bundle of stained papers tied together, a pristine medical journal, a locked briefcase, a surgeon’s satchel, or another thematically appropriate container.",
+          "If your formula book is lost or destroyed, you can recreate it during a long rest using inks and paper. The new book contains all the information that was in the old one."
+        ]
+      },
+      {
+        "type": "entries",
+        "name": "Cantrips",
+        "entries": [
+          "You know three cantrips of your choice from the Apothecary spell list. You learn additional Apothecary cantrips at higher levels, as shown in the Cantrips Known column of the Apothecary class table.",
+          "Whenever you finish a long rest and consult your formula book, you can replace one Apothecary cantrip you know with another cantrip from the Apothecary spell list. This process is known as Elementary Reformulation."
+        ]
+      },
+      {
+        "type": "entries",
+        "name": "Preparing and Casting Spells",
+        "entries": [
+          "The Apothecary class table shows how many spell slots you have, and what the level of those slots is. All of your spell slots are the same level. To cast an Apothecary spell of 1st level or higher, you expend one of these spell slots. You regain all expended spell slots when you finish a short or long rest.",
+          "You prepare a list of Apothecary spells that you can cast by choosing spells from the Apothecary spell list. When you do so, choose a number of Apothecary spells equal to your Intelligence modifier + your Apothecary level (minimum of one spell). The spells you choose must be of a level you can cast with your spell slots, as shown in the Slot Level column of the class table.",
+          "You can change your list of prepared Apothecary spells when you finish a long rest. Preparing a new list takes at least 1 minute per spell level for each spell on your list."
+        ]
+      },
+      {
+        "type": "entries",
+        "name": "Spellcasting Ability",
+        "entries": [
+          "Intelligence is your spellcasting ability for your Apothecary spells, reflecting the careful study and analysis you use to master them.",
+          "You use your Intelligence modifier when a spell refers to your spellcasting ability, when setting the saving throw DC for an Apothecary spell you cast, and when making an attack roll with one.",
+          "Spell save DC = 8 + your proficiency bonus + your Intelligence modifier.",
+          "Spell attack modifier = your proficiency bonus + your Intelligence modifier."
+        ]
+      },
+      {
+        "type": "entries",
+        "name": "Ritual Casting",
+        "entries": [
+          "You can cast an Apothecary spell as a ritual if that spell has the ritual tag and you have it prepared."
+        ]
+      },
+      {
+        "type": "entries",
+        "name": "Spellcasting Focus",
+        "entries": [
+          "You can use an arcane focus, or your formula book, as a spellcasting focus for your Apothecary spells."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Esoteric Theories",
+    "source": "SCGTD",
+    "page": 137,
+    "className": "Apothecary",
+    "classSource": "SCGTD",
+    "level": 2,
+    "header": 1,
+    "entries": [
+      "Through your studies and experiments you develop esoteric theories: personalized combinations of medical practice and occult technique that enhance your magic.",
+      "When you first gain this feature, you learn a number of esoteric theories as shown in the Esoteric Theories column of the Apothecary class table. You learn additional theories as you gain levels in this class.",
+      "Each esoteric theory’s description explains its benefits and whether it has an Apothecary-level prerequisite. You can’t choose a theory if you don’t meet its prerequisites. Unless a theory states otherwise, you can’t select the same theory more than once.",
+      "When you gain a level in this class, you can replace one esoteric theory you know with another theory for which you qualify.",
+      {
+        "type": "list",
+        "name": "Esoteric Theory Options (Overview)",
+        "items": [
+          "Acquired Tolerance",
+          "Adrenaline Surge",
+          "Anatomical Precision",
+          "Anesthesiology",
+          "Bedside Manner",
+          "Caustic Formulae",
+          "Clinical Conditioning",
+          "Combat Medic",
+          "Corrosive Compound",
+          "Cosmetic Surgery",
+          "Critical Condition",
+          "Diagnosis",
+          "Doctor’s Note",
+          "Double Dose",
+          "Extracurricular Research",
+          "Inoculation",
+          "Interdisciplinary Practice",
+          "Laboratory Assistant",
+          "Liability Insurance",
+          "Medical Expertise",
+          "Medical Lexicon",
+          "Nerve Agent",
+          "Noxious Blood",
+          "Pharmacology",
+          "Physiological Analysis",
+          "Practical Resuscitation",
+          "Putrefaction",
+          "Rapid Response",
+          "Routine Procedure",
+          "Stolen Secrets",
+          "Subject Preparation",
+          "Surgeon’s Instinct",
+          "Surgical Strikes",
+          "Toxicology",
+          "Triage",
+          "Unfailing Focus",
+          "Venomous Instruments",
+          "Virulence",
+          "Vital Signs",
+          "Vivisection"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Apothecary Spell List",
+    "source": "SCGTD",
+    "page": 139,
+    "className": "Apothecary",
+    "classSource": "SCGTD",
+    "level": 1,
+    "header": 2,
+    "entries": [
+      "When you learn or prepare Apothecary spells, you use the Apothecary spell list presented in this book. The list is organized by spell level rather than character level.",
+      "If a spell on the list can be cast as a ritual, that option is indicated with the ritual tag (r).",
+      "Unless noted with an asterisk, each spell on the list appears in the core rules. A spell marked with an asterisk (*) is a new spell described in the Magic chapter of this book.",
+      "Apothecaries may also learn Contaminated Spells, a special category of spells associated with the setting’s magical contamination. These spells are not chosen normally; they must be found during play and recorded in your formula book before you can prepare them.",
+      {
+        "type": "entries",
+        "name": "Spell List Reference",
+        "entries": [
+          "The full list of Apothecary spells by level appears in the Apothecary Spell List section of the book (see page 139 onward). This includes cantrips such as Acid Splash and Spare the Dying, 1st-level spells such as Acrid Orb* and Alarm, and higher-level spells including many toxic, necromantic, and restorative effects thematically linked to medical practice and occult experimentation."
+        ]
+      }
+    ]
+  }
+]
+ 

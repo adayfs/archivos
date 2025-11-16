@@ -608,6 +608,155 @@
     border-color: rgba(255, 255, 255, 0.25);
 }
 
+.grimorio-transformation {
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.grimorio-transformation__head h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.15rem;
+}
+
+.grimorio-transformation__head p {
+    margin: 0;
+    color: #c8c8c8;
+    font-size: 0.9rem;
+}
+
+.grimorio-transformation__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.grimorio-transformation__actions button {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.grimorio-transformation__actions button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+.grimorio-transformation__actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.grimorio-transformation__body {
+    margin-top: 1.25rem;
+}
+
+.grimorio-transformation__empty {
+    margin: 0;
+    color: #c8c8c8;
+    font-style: italic;
+}
+
+.grimorio-transformation-card {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.grimorio-transformation-card__media {
+    border-radius: 0.75rem;
+    min-height: 200px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    background-image: url('https://adayfs.com/wp-content/uploads/2025/11/Vossh.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.grimorio-transformation-card__content header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.grimorio-transformation-card__content header p {
+    margin: 0.2rem 0 0;
+    color: #d9c9ff;
+}
+
+.grimorio-transformation-card__meta {
+    margin: 0.2rem 0 0;
+    font-size: 0.85rem;
+    color: #c8c8c8;
+}
+
+.grimorio-transformation-card__stats {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.4rem 1rem;
+    font-size: 0.9rem;
+}
+
+.grimorio-transformation-card__note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #ffdfa8;
+}
+
+.grimorio-transformation-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grimorio-transformation-level {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.grimorio-transformation-level input {
+    margin: 0;
+}
+
+.grimorio-transformation-level span {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.grimorio-transformation-level small {
+    display: block;
+    font-size: 0.75rem;
+    color: #c8c8c8;
+}
+
+.grimorio-transformation-level input:checked + span {
+    color: #faf1ff;
+    font-weight: 600;
+}
+
+.grimorio-transformation-level input:focus-visible + span {
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 0.4rem;
+}
+
 @media (max-width: 640px) {
     .grimorio-quick-actions {
         flex-direction: column;
@@ -617,5 +766,9 @@
     .grimorio-quick-actions button {
         width: 100%;
         text-align: center;
+    }
+
+    .grimorio-transformation-card {
+        grid-template-columns: 1fr;
     }
 }

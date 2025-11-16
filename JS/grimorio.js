@@ -21,6 +21,11 @@
     spellIndexByName: {},
     spellsLoaded: false,
     concentration: defaultConcentrationState(),
+    transformation: defaultTransformationState(),
+    abilities: {},
+    baseAc: 0,
+    baseSpeed: 0,
+    apothecaryLevel: 1,
   };
 
   const selectors = {};
@@ -38,12 +43,19 @@
     selectors.infoTitle = document.getElementById('grimorio-info-title');
     selectors.infoBody = document.getElementById('grimorio-info-content');
     selectors.finishConcentrationBtn = document.querySelector('.grimorio-finish-concentration');
+    selectors.transformStartBtn = document.getElementById('grimorio-transform-start');
+    selectors.transformFinishBtn = document.getElementById('grimorio-transform-finish');
+    selectors.transformDisplay = document.getElementById('grimorio-transformation-display');
+    selectors.transformModal = document.getElementById('grimorio-transformation-modal');
+    selectors.transformModalLevels = document.getElementById('grimorio-transformation-levels');
+    selectors.transformModalConfirm = document.getElementById('grimorio-transformation-confirm');
 
     hydrateState();
     initSlots();
     renderPreparedView();
     bindEvents();
     fetchSpellList();
+    initTransformationModule();
 
     if (typeof window.initClassReferenceModule === 'function') {
       window.initClassReferenceModule();
@@ -70,6 +82,11 @@
     state.preparedLimit = Number.isFinite(limitValue) && limitValue > 0 ? limitValue : null;
     state.concentration = normalizeConcentrationState(data.concentration);
     state.autoPrepared = data.auto_prepared_spells || { class: {}, subclass: {} };
+    state.transformation = normalizeTransformationState(data.transformation);
+    state.abilities = normalizeAbilities(data.abilities);
+    state.baseAc = parseInt(data.base_ac || '0', 10) || 0;
+    state.baseSpeed = parseInt(data.base_speed || '0', 10) || 0;
+    state.apothecaryLevel = Number.isFinite(data.apothecary_level) && data.apothecary_level > 0 ? data.apothecary_level : state.level || 1;
   }
 
   function bindEvents() {
@@ -120,6 +137,24 @@
     if (selectors.pickerSaveBtn) {
       selectors.pickerSaveBtn.addEventListener('click', saveSpellPickerSelection);
     }
+  }
+
+  function initTransformationModule() {
+    if (!document.getElementById('grimorio-transformation')) return;
+
+    if (selectors.transformStartBtn) {
+      selectors.transformStartBtn.addEventListener('click', openTransformationModal);
+    }
+
+    if (selectors.transformFinishBtn) {
+      selectors.transformFinishBtn.addEventListener('click', finishTransformation);
+    }
+
+    if (selectors.transformModalConfirm) {
+      selectors.transformModalConfirm.addEventListener('click', confirmTransformationSelection);
+    }
+
+    renderTransformationBlock();
   }
 
   function initSlots() {
@@ -531,6 +566,24 @@
     });
   }
 
+  function applyServerSlots(slots) {
+    if (!slots) return;
+    Object.keys(slots).forEach((key) => {
+      const level = parseInt(key, 10);
+      if (Number.isNaN(level)) return;
+      const max = state.slotLimits[level] || 0;
+      const used = clamp(parseInt(slots[key], 10) || 0, 0, max);
+      state.slotsUsed[level] = used;
+      const column = slotColumns.get(level);
+      if (column) {
+        if (column.hidden) {
+          column.hidden.value = used;
+        }
+        updateSlotCheckboxes(level, used);
+      }
+    });
+  }
+
   function scheduleSlotSave(level, used) {
     if (!window.GRIMORIO_DATA.nonce) return;
     if (slotSaveTimers[level]) {
@@ -591,6 +644,239 @@
       });
 
     return spellsPromise;
+  }
+
+  function openTransformationModal() {
+    if (state.transformation.active) {
+      openInfoModal('Transformación activa', '<p>Finaliza la transformación actual antes de iniciar otra.</p>');
+      return;
+    }
+
+    const options = getAvailableTransformationLevels();
+    if (!options.length) {
+      openInfoModal('Sin espacios disponibles', '<p>No quedan espacios de conjuro libres.</p>');
+      return;
+    }
+
+    if (selectors.transformModalLevels) {
+      selectors.transformModalLevels.innerHTML = options
+        .map(
+          (entry) => `
+            <label class="grimorio-transformation-level">
+              <input type="radio" name="grimorio_transform_slot" value="${entry.level}">
+              <span>
+                Nivel ${entry.level}
+                <small>${entry.remaining} de ${entry.max} espacios disponibles</small>
+              </span>
+            </label>
+          `
+        )
+        .join('');
+    }
+
+    showModal(selectors.transformModal);
+  }
+
+  function confirmTransformationSelection() {
+    if (!selectors.transformModalLevels) return;
+    const selected = selectors.transformModalLevels.querySelector('input[name="grimorio_transform_slot"]:checked');
+    if (!selected) {
+      openInfoModal('Selecciona un nivel', '<p>Elige un nivel de slot para activar la transformación.</p>');
+      return;
+    }
+    const level = parseInt(selected.value, 10);
+    if (Number.isNaN(level)) return;
+    activateTransformation(level);
+  }
+
+  function getAvailableTransformationLevels() {
+    const result = [];
+    Object.keys(state.slotLimits).forEach((key) => {
+      const level = parseInt(key, 10);
+      if (Number.isNaN(level) || level <= 0) return;
+      const max = state.slotLimits[level] || 0;
+      if (!max) return;
+      const used = state.slotsUsed[level] || 0;
+      const remaining = max - used;
+      if (remaining > 0) {
+        result.push({ level, remaining, max });
+      }
+    });
+    return result.sort((a, b) => a.level - b.level);
+  }
+
+  function activateTransformation(level) {
+    if (!window.GRIMORIO_DATA.transformation_nonce) {
+      openInfoModal('Acción no disponible', '<p>No se pudo verificar la solicitud. Recarga la página.</p>');
+      return;
+    }
+    if (selectors.transformModalConfirm) {
+      selectors.transformModalConfirm.disabled = true;
+    }
+
+    requestTransformationActivation(level)
+      .then((payload) => {
+        applyServerSlots(payload.slots_used || {});
+        state.transformation = normalizeTransformationState(payload.transformation);
+        renderTransformationBlock();
+        closeModal(selectors.transformModal);
+        openInfoModal('Transformación activada', `<p>Has consumido un slot de nivel ${level}. Recuerda finalizarla tras 1 minuto.</p>`);
+      })
+      .catch((error) => {
+        const message = error?.message || 'No se pudo activar la transformación.';
+        openInfoModal('Error', `<p>${message}</p>`);
+      })
+      .finally(() => {
+        if (selectors.transformModalConfirm) {
+          selectors.transformModalConfirm.disabled = false;
+        }
+      });
+  }
+
+  function finishTransformation() {
+    if (!state.transformation.active) return;
+    if (!window.GRIMORIO_DATA.transformation_nonce) {
+      openInfoModal('Acción no disponible', '<p>No se pudo verificar la solicitud. Recarga la página.</p>');
+      return;
+    }
+    if (selectors.transformFinishBtn) {
+      selectors.transformFinishBtn.disabled = true;
+    }
+    requestTransformationFinish()
+      .then((payload) => {
+        state.transformation = normalizeTransformationState(payload.transformation);
+        renderTransformationBlock();
+      })
+      .catch((error) => {
+        const message = error?.message || 'No se pudo finalizar la transformación.';
+        openInfoModal('Error', `<p>${message}</p>`);
+      })
+      .finally(() => {
+        if (selectors.transformFinishBtn) {
+          selectors.transformFinishBtn.disabled = false;
+        }
+      });
+  }
+
+  function requestTransformationActivation(level) {
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_activate_transformation',
+      nonce: window.GRIMORIO_DATA.transformation_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      slot_level: level,
+    });
+
+    return fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        if (!json || !json.success) {
+          const message = json?.data?.message || 'No se pudo activar la transformación.';
+          throw new Error(message);
+        }
+        return json.data || {};
+      });
+  }
+
+  function requestTransformationFinish() {
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_finish_transformation',
+      nonce: window.GRIMORIO_DATA.transformation_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+    });
+
+    return fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        if (!json || !json.success) {
+          const message = json?.data?.message || 'No se pudo finalizar la transformación.';
+          throw new Error(message);
+        }
+        return json.data || {};
+      });
+  }
+
+  function renderTransformationBlock() {
+    if (!selectors.transformDisplay) return;
+    const active = Boolean(state.transformation.active && state.transformation.slotLevel);
+    if (selectors.transformStartBtn) {
+      selectors.transformStartBtn.disabled = active;
+    }
+    if (selectors.transformFinishBtn) {
+      selectors.transformFinishBtn.disabled = !active;
+    }
+
+    if (!active) {
+      selectors.transformDisplay.innerHTML =
+        '<p class="grimorio-transformation__empty">No hay una transformación activa.</p>';
+      return;
+    }
+
+    const stats = computeTransformationStats(state.transformation.slotLevel);
+    const startedInfo = stats.startedAt ? `<p class="grimorio-transformation-card__meta">Inicio: ${formatTimestamp(stats.startedAt)}</p>` : '';
+    selectors.transformDisplay.innerHTML = `
+      <div class="grimorio-transformation-card">
+        <div class="grimorio-transformation-card__media" aria-hidden="true"></div>
+        <div class="grimorio-transformation-card__content">
+          <header>
+            <h4>Transformación activa</h4>
+            <p>Slot de nivel ${stats.slotLevel}</p>
+            ${startedInfo}
+          </header>
+          <ul class="grimorio-transformation-card__stats">
+            <li><strong>Fuerza:</strong> ${stats.strValue} (${formatMod(stats.strMod)})</li>
+            <li><strong>Inteligencia:</strong> ${stats.intValue} (${formatMod(stats.intMod)})</li>
+            <li><strong>AC:</strong> ${stats.ac}</li>
+            <li><strong>Velocidad:</strong> ${stats.speed} ft</li>
+            <li><strong>Regeneración:</strong> ${stats.regen} por turno</li>
+            <li><strong>Puntos de golpe temporales:</strong> ${stats.tempHp}</li>
+            <li><strong>Ataque natural:</strong> ${stats.attackDamage}</li>
+            <li><strong>Darkvision:</strong> 120 ft</li>
+            <li><strong>Tamaño:</strong> Large (salto x2, carga como un tamaño adicional)</li>
+            <li><strong>Restricciones:</strong> No puede lanzar ni mantener concentración en conjuros.</li>
+          </ul>
+          <p class="grimorio-transformation-card__note">
+            Duración: 1 minuto o hasta caer a 0 PV o quedar incapacitado.
+          </p>
+        </div>
+      </div>
+    `;
+  }
+
+  function computeTransformationStats(slotLevel) {
+    const baseStr = Number.isFinite(state.abilities.str) ? state.abilities.str : 10;
+    const baseInt = Number.isFinite(state.abilities.int) ? state.abilities.int : 10;
+    const swappedStr = Number.isFinite(state.abilities.int) ? state.abilities.int : baseStr;
+    const swappedInt = Number.isFinite(state.abilities.str) ? state.abilities.str : baseInt;
+    const strMod = abilityMod(swappedStr);
+    const intMod = abilityMod(swappedInt);
+    const apothecaryLevel = state.apothecaryLevel || state.level || 1;
+    const tempHp = apothecaryLevel * 5;
+    const speed = (state.baseSpeed || 0) + slotLevel * 5;
+    const ac = 13 + slotLevel;
+    const regen = slotLevel;
+    const attackDamage = `1d10 ${formatMod(strMod)} + ${apothecaryLevel}`;
+
+    return {
+      slotLevel,
+      strValue: swappedStr,
+      intValue: swappedInt,
+      strMod,
+      intMod,
+      tempHp,
+      speed,
+      ac,
+      regen,
+      attackDamage,
+      startedAt: state.transformation.startedAt || null,
+    };
   }
 
   function indexSpells(spells) {
@@ -987,12 +1273,58 @@
     });
   }
 
+  function abilityMod(score) {
+    if (!Number.isFinite(score)) return 0;
+    return Math.floor((score - 10) / 2);
+  }
+
+  function formatMod(value) {
+    const num = Number(value) || 0;
+    return num >= 0 ? `+${num}` : `${num}`;
+  }
+
+  function defaultTransformationState() {
+    return { active: false, slotLevel: null, startedAt: null };
+  }
+
+  function normalizeTransformationState(raw) {
+    if (!raw || !raw.active || !raw.slot_level) {
+      return defaultTransformationState();
+    }
+    return {
+      active: true,
+      slotLevel: parseInt(raw.slot_level, 10),
+      startedAt: raw.started_at ? parseInt(raw.started_at, 10) : null,
+    };
+  }
+
+  function normalizeAbilities(raw) {
+    if (!raw || typeof raw !== 'object') {
+      return {};
+    }
+    const map = {};
+    ['str', 'dex', 'con', 'int', 'wis', 'cha'].forEach((ability) => {
+      const value = raw[ability];
+      const parsed = Number.isFinite(value) ? value : parseInt(value, 10);
+      map[ability] = Number.isNaN(parsed) ? null : parsed;
+    });
+    return map;
+  }
+
+  function formatTimestamp(timestamp) {
+    if (!timestamp) return '';
+    const date = new Date(timestamp * 1000);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleString();
+  }
+
   function collectGrimoireContext() {
     return {
       level: state.level || 1,
       classId: state.classId || (window.GRIMORIO_DATA?.class_id || ''),
       subclassId: window.GRIMORIO_DATA?.subclass_id || '',
       prefetchedReference: window.GRIMORIO_DATA?.class_reference || null,
+      esotericTheories: window.GRIMORIO_DATA?.esoteric_theories || [],
     };
   }
 

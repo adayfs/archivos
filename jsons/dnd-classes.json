@@ -1,6 +1,24 @@
 {
   "classes": [
     {
+      "id": "apothecary-scgtd-drakkenheim",
+      "name": "Apothecary",
+      "source": "SCGTD",
+      "edition": "Drakkenheim",
+      "subclassTitle": "Apothecary Subclass",
+      "subclasses": [
+        {
+          "id": "apothecary-mutagenist-scgtd-drakkenheim",
+          "name": "Mutagenist",
+          "shortName": "Mutagenist",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD"
+        }
+      ]
+    },
+    {
       "id": "artificer-tce-classic",
       "name": "Artificer",
       "source": "TCE",
@@ -186,6 +204,15 @@
           "edition": "one",
           "className": "Barbarian",
           "classSource": "XPHB"
+        },
+        {
+          "id": "barbarian-path-of-the-old-gods-drakkenheim",
+          "name": "Path of the Old Gods",
+          "shortName": "Old Gods",
+          "source": "Drakkenheim",
+          "edition": "homebrew",
+          "className": "Barbarian",
+          "classSource": "PHB"
         }
       ]
     },
@@ -661,6 +688,15 @@
           "shortName": "Wildfire",
           "source": "TCE",
           "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB"
+        },
+        {
+          "id": "druid-circle-of-blood-grimHollow",
+          "name": "Circle of Blood",
+          "shortName": "Circle of Blood",
+          "source": "Grim Hollow",
+          "edition": "homebrew",
           "className": "Druid",
           "classSource": "PHB"
         }
@@ -1517,6 +1553,24 @@
           "edition": "one",
           "className": "Rogue",
           "classSource": "XPHB"
+        },
+        {
+          "id": "rogue-highway-rider-grimHollow",
+          "name": "Highway Rider",
+          "shortName": "Highway Rider",
+          "source": "Grim Hollow",
+          "edition": "homebrew",
+          "className": "Rogue",
+          "classSource": "PHB"
+        },
+        {
+          "id": "rogue-misfortune-bringer-grimHollow",
+          "name": "Misfortune Bringer",
+          "shortName": "Misfortune Bringer",
+          "source": "Grim Hollow",
+          "edition": "homebrew",
+          "className": "Rogue",
+          "classSource": "PHB"
         }
       ]
     },

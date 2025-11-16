@@ -50354,6 +50354,141 @@
           "source": "XPHB"
         }
       ]
+    },
+	{
+  "id": "sense-lifeblood-grimhollow",
+  "name": "Sense Lifeblood",
+  "source": "Grim Hollow",
+  "level": 2,
+  "school": "D",
+  "time": [
+    { "number": 1, "unit": "bonus" }
+  ],
+  "range": {
+    "type": "point",
+    "distance": { "type": "self" }
+  },
+  "components": {
+    "s": true
+  },
+  "duration": [
+    {
+      "type": "timed",
+      "duration": { "type": "minute", "amount": 1 },
+      "concentration": true
     }
+  ],
+  "entries": [
+    "As part of casting this spell, you must expend two hit dice or the spell automatically fails. If you do, you can sense the lifeblood flowing within creatures you can see. For the duration of the spell, you can sense whether and how two or more creatures you can see are related biologically.",
+    "In addition, you know whether a creature’s current hit points are equal to or below half its maximum hit points and, when you deal damage to such a creature, you roll two additional dice to deal bonus damage. The dice rolled to determine this bonus damage are the same as the two hit dice you expended to cast this spell.",
+    "At Higher Levels. When you cast this spell using a 4th- or 5th-level spell slot, you can maintain concentration on this spell for up to 1 hour. When you cast this spell using a 6th-level or higher spell slot, you can maintain concentration on this spell for up to 8 hours."
+  ],
+  "entries_es": [
+    "Como parte del lanzamiento de este conjuro, debes gastar dos dados de golpe o el conjuro falla automáticamente. Si lo haces, puedes percibir la sangre vital que fluye en las criaturas que ves. Mientras dura el conjuro, puedes sentir si dos o más criaturas que ves están emparentadas biológicamente y de qué manera.",
+    "Además, sabes si los puntos de golpe actuales de una criatura son iguales o inferiores a la mitad de sus puntos de golpe máximos y, cuando infliges daño a una criatura en ese estado, tiras dos dados adicionales para infligir daño adicional. Los dados que tiras para determinar este daño adicional son del mismo tipo que los dos dados de golpe que gastaste para lanzar este conjuro.",
+    "A Niveles Superiores. Cuando lanzas este conjuro usando un espacio de conjuro de 4º o 5º nivel, puedes mantener la concentración en él hasta 1 hora. Cuando lo lanzas usando un espacio de 6º nivel o superior, puedes mantener la concentración hasta 8 horas."
+  ],
+  "classes": [
+    {
+      "id": "druid-phb-classic",
+      "name": "Druid",
+      "source": "PHB"
+    }
+  ]
+},
+{
+  "id": "blood-bond-grimhollow",
+  "name": "Blood Bond",
+  "source": "Grim Hollow",
+  "level": 3,
+  "school": "E",
+  "time": [
+    { "number": 1, "unit": "action" }
+  ],
+  "range": {
+    "type": "point",
+    "distance": { "type": "touch" }
+  },
+  "components": {
+    "v": true,
+    "s": true,
+    "m": "a rag soaked in your own blood"
+  },
+  "duration": [
+    {
+      "type": "timed",
+      "duration": { "type": "hour", "amount": 1 }
+    }
+  ],
+  "entries": [
+    "As part of casting this spell, you must expend three hit dice or the spell automatically fails. If you do, roll the expended hit dice, and the target creature gains a number of temporary hit points equal to the total.",
+    "For the duration of the spell, you know the direction and distance to the creature at all times, you and the creature can speak to one another telepathically (provided the creature has an Intelligence score of 3 or higher), and you can target the creature with spells you cast that have a range of self or touch. These benefits are suppressed while you and the creature are not on the same plane.",
+    "At any point, a creature affected by this spell can choose to end the spell early. If it does, the creature loses all remaining temporary hit points granted by this spell and takes necrotic damage equal to the temporary hit points lost.",
+    "At Higher Levels. When you cast this spell using a spell slot of 5th or 6th level, its duration is 8 hours. When you cast this spell using a spell slot of 7th or 8th level, its duration is 24 hours. When you cast this spell using a spell slot of 9th level, its duration is 7 days."
+  ],
+  "entries_es": [
+    "Como parte del lanzamiento de este conjuro, debes gastar tres dados de golpe o el conjuro falla automáticamente. Si lo haces, tira los dados de golpe gastados y la criatura objetivo gana una cantidad de puntos de golpe temporales igual al total obtenido.",
+    "Mientras dure el conjuro, conoces en todo momento la dirección y la distancia hasta la criatura; tú y la criatura podéis hablar telepáticamente entre vosotros (siempre que la criatura tenga una puntuación de Inteligencia de 3 o más); y puedes convertir a esa criatura en objetivo de conjuros que lances con alcance de \"sí mismo\" o \"toque\". Estos beneficios quedan suprimidos mientras tú y la criatura no estéis en el mismo plano de existencia.",
+    "En cualquier momento, una criatura afectada por este conjuro puede elegir finalizarlo antes de tiempo. Si lo hace, la criatura pierde todos los puntos de golpe temporales restantes concedidos por este conjuro y recibe daño necrótico igual a los puntos de golpe temporales perdidos.",
+    "A Niveles Superiores. Cuando lanzas este conjuro usando un espacio de conjuro de 5º o 6º nivel, su duración es de 8 horas. Si lo lanzas usando un espacio de 7º u 8º nivel, su duración es de 24 horas. Si lo lanzas usando un espacio de 9º nivel, su duración es de 7 días."
+  ],
+  "classes": [
+    {
+      "id": "druid-phb-classic",
+      "name": "Druid",
+      "source": "PHB"
+    }
+  ]
+},
+{
+  "id": "sanguine-poppet-grimhollow",
+  "name": "Sanguine Poppet",
+  "source": "Grim Hollow",
+  "level": 3,
+  "school": "T",
+  "time": [
+    { "number": 1, "unit": "minute" }
+  ],
+  "range": {
+    "type": "point",
+    "distance": { "type": "touch" }
+  },
+  "components": {
+    "v": true,
+    "s": true,
+    "m": "an object shaped like a creature worth 1 cp or more"
+  },
+  "duration": [
+    {
+      "type": "timed",
+      "duration": { "type": "hour", "amount": 1 },
+      "concentration": true
+    }
+  ],
+  "entries": [
+    "As part of casting this spell, you must expend three hit dice or the spell automatically fails. When you do, you smear the material component used to cast this spell with your blood. The object shudders and becomes a sanguine poppet under your control.",
+    "Your sanguine poppet has an AC equal to 10 + your proficiency bonus + your spellcasting ability modifier and 30 hit points. If your sanguine poppet is ever reduced to 0 hit points or is more than 1 mile away from you, the spell ends immediately.",
+    "As a bonus action on your turn, your sanguine poppet can walk or climb up to 30 feet, and you can see and hear through it until the start of your next turn.",
+    "As an action, you can cause the poppet to self-destruct in an explosion of blood, ending this spell. Roll the hit dice expended to cast this spell, and each creature within 30 feet of the poppet must succeed on a Constitution saving throw or take necrotic damage equal to the total. Creatures that succeed on the saving throw take half as much damage.",
+    "At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, you can expend an additional hit die for each spell slot level above 3rd. Additionally, the duration of this spell increases by 1 hour for each spell slot level above 3rd."
+  ],
+  "entries_es": [
+    "Como parte del lanzamiento de este conjuro, debes gastar tres dados de golpe o el conjuro falla automáticamente. Cuando lo haces, manchas con tu sangre el componente material utilizado para lanzar este conjuro. El objeto tiembla y se convierte en un muñeco sanguíneo bajo tu control.",
+    "Tu muñeco sanguíneo tiene una CA igual a 10 + tu bonificador de competencia + tu modificador de característica de lanzamiento de conjuros y 30 puntos de golpe. Si tu muñeco sanguíneo se reduce a 0 puntos de golpe o se encuentra a más de 1 milla de ti, el conjuro termina inmediatamente.",
+    "Como acción adicional en tu turno, tu muñeco sanguíneo puede caminar o trepar hasta 30 pies, y tú puedes ver y oír a través de él hasta el inicio de tu siguiente turno.",
+    "Como acción, puedes hacer que el muñeco se autodestruya en una explosión de sangre, terminando este conjuro. Tira los dados de golpe que gastaste al lanzar este conjuro, y cada criatura en un radio de 30 pies del muñeco debe superar una tirada de salvación de Constitución o sufrir daño necrótico igual al total obtenido. Las criaturas que tengan éxito en la tirada de salvación reciben la mitad de daño.",
+    "A Niveles Superiores. Cuando lanzas este conjuro usando un espacio de conjuro de 4º nivel o superior, puedes gastar un dado de golpe adicional por cada nivel de espacio por encima de 3º. Además, la duración de este conjuro aumenta en 1 hora por cada nivel de espacio de conjuro por encima de 3º."
+  ],
+  "classes": [
+    {
+      "id": "druid-phb-classic",
+      "name": "Druid",
+      "source": "PHB"
+    }
+  ]
+}
+
+
+
   ]
 }

@@ -41,7 +41,8 @@
       return;
     }
 
-    const key = [classId, context.subclassId || '', context.level || ''].join('|');
+    const theoryKey = JSON.stringify(context.esotericTheories || []);
+    const key = [classId, context.subclassId || '', context.level || '', theoryKey].join('|');
     const preloaded = context.prefetchedReference;
     if (
       preloaded &&
@@ -50,7 +51,13 @@
         !preloaded.subclass?.id ||
         preloaded.subclass.id === context.subclassId)
     ) {
-      classReferenceState.cache.set(key, preloaded);
+      const preloadedIds = Array.isArray(preloaded.esoteric_theories)
+        ? preloaded.esoteric_theories.map((item) => item.id)
+        : [];
+      const preloadedKey = JSON.stringify(preloadedIds);
+      if (preloadedKey === theoryKey) {
+        classReferenceState.cache.set(key, preloaded);
+      }
     }
     if (classReferenceState.cache.has(key)) {
       classReferenceState.currentKey = key;
@@ -61,7 +68,7 @@
     classReferenceState.currentKey = key;
     target.innerHTML = '<p>Cargando referencia de clase...</p>';
 
-    fetchClassReference(classId, context.subclassId)
+    fetchClassReference(classId, context.subclassId, context.esotericTheories)
       .then((reference) => {
         classReferenceState.cache.set(key, reference);
         if (classReferenceState.currentKey === key) {
@@ -74,7 +81,7 @@
       });
   }
 
-  function fetchClassReference(classId, subclassId) {
+  function fetchClassReference(classId, subclassId, theories) {
     if (!window.DND5_API?.ajax_url) {
       return Promise.reject(new Error('DND5_API no disponible'));
     }
@@ -84,6 +91,9 @@
     });
     if (subclassId) {
       payload.append('subclass_id', subclassId);
+    }
+    if (Array.isArray(theories) && theories.length) {
+      payload.append('apothecary_theories', JSON.stringify(theories));
     }
 
     return fetch(window.DND5_API.ajax_url, {
@@ -119,13 +129,18 @@
     html += formatSlotList(slots);
 
     if (reference.subclass?.meta?.name) {
-      // No longer displaying subclass line in grimorio module per UX request.
+      // Subclase oculta por UX
     }
 
-    const groups = (Array.isArray(reference.table_groups) ? reference.table_groups : []).filter((group) => !shouldSkipTableGroup(group));
+    const groups = (Array.isArray(reference.table_groups) ? reference.table_groups : []).filter(
+      (group) => !shouldSkipTableGroup(group)
+    );
     html += groups.map(renderClassReferenceGroup).join('');
 
     html += renderAlwaysPreparedSection(reference.class_prepared_spells, 'Conjuros siempre preparados de la clase', level);
+    if (Array.isArray(reference.esoteric_theories) && reference.esoteric_theories.length) {
+      html += renderEsotericTheorySummary(reference.esoteric_theories);
+    }
 
     target.innerHTML = html;
   }
@@ -181,6 +196,22 @@
     return `
       <h4>${escapeHtml(title)}</h4>
       ${rows}
+    `;
+  }
+
+  function renderEsotericTheorySummary(theories) {
+    const items = theories
+      .map((theory) => {
+        const requirement = theory.level ? `Nivel ${theory.level}+` : 'Sin requisito';
+        const source = theory.source ? ` · ${escapeHtml(theory.source)}` : '';
+        return `<li><strong>${escapeHtml(theory.name || theory.id)}</strong> <small>${escapeHtml(requirement)}${source}</small></li>`;
+      })
+      .join('');
+    return `
+      <div class="class-reference-module__theories">
+        <h4>Teorías esotéricas seleccionadas</h4>
+        <ul>${items}</ul>
+      </div>
     `;
   }
 

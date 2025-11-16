@@ -1,0 +1,497 @@
+{
+  "_meta": {
+    "internalCopies": []
+  },
+  "class": [],
+  "subclass": [],
+  "classFeature": [
+    {
+      "name": "Acquired Tolerance",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Tienes ventaja en tiradas de salvación contra veneno y resistencia al daño de veneno.",
+        "Siempre superas las tiradas de salvación contra tus propios conjuros de apotecario y nunca sufres daño de ellos."
+      ]
+    },
+    {
+      "name": "Adrenaline Surge",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Cuando una criatura a 0 puntos de golpe recupera puntos de golpe por un conjuro de apotecario que lanzas, hasta el final de su siguiente turno tiene resistencia a todo el daño y ventaja en las tiradas de salvación.",
+        "Además, tiene ventaja en la primera tirada de ataque que haga en su siguiente turno."
+      ]
+    },
+    {
+      "name": "Anatomical Precision",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Cuando haces un ataque con arma, puedes usar tu modificador de Inteligencia en lugar de tu Fuerza o Destreza para las tiradas de ataque y de daño."
+      ]
+    },
+    {
+      "name": "Anesthesiology",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 14,
+      "entries": [
+        "Requisito: apotecario de nivel 14",
+        "Puedes lanzar el conjuro inmovilizar persona sin gastar espacio de conjuro ni componentes materiales.",
+        "No puedes volver a usar esta teoría contra la misma criatura hasta que termines un descanso largo."
+      ]
+    },
+    {
+      "name": "Bedside Manner",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Ganas competencia en las habilidades Perspicacia e Intimidación o Persuasión (ajusta a los nombres de habilidad que uses en tu traducción).",
+        "Tu bonificador por competencia se duplica para las pruebas de habilidad que usen cualquiera de esas habilidades."
+      ]
+    },
+    {
+      "name": "Caustic Formulae",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Una vez por turno, cuando hagas daño a una criatura u objeto con un conjuro de apotecario, puedes gastar un espacio de conjuro de apotecario para aumentar el daño.",
+        "El objetivo recibe 2d4 de daño ácido adicionales, más 2d4 de daño ácido por cada nivel del espacio de conjuro gastado."
+      ]
+    },
+    {
+      "name": "Clinical Conditioning",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Ganas competencia en tiradas de salvación de Constitución."
+      ]
+    },
+    {
+      "name": "Combat Medic",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Ganas competencia con armas marciales y escudos."
+      ]
+    },
+    {
+      "name": "Corrosive Compound",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Cuando un conjuro de apotecario que lanzas inflige daño de veneno, puedes hacer que la mitad del daño sea de veneno y la otra mitad sea de ácido."
+      ]
+    },
+    {
+      "name": "Cosmetic Surgery",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Puedes pasar 8 horas realizando un procedimiento quirúrgico ocultista sobre una criatura voluntaria para cambiar permanentemente su apariencia.",
+        "Decides rasgos como facciones, voz, pelo, coloración y marcas distintivas, pero no cambias su tamaño, forma básica ni ninguna estadística de juego.",
+        "La transformación no es mágica, pero una restauración mayor u otra magia similar puede devolver a la criatura a su aspecto original."
+      ]
+    },
+    {
+      "name": "Critical Condition",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Cuando una criatura saca un 1 natural en una tirada de salvación contra un conjuro de apotecario tuyo que inflige daño, tiras dos veces todos los dados de daño del conjuro y sumas los resultados.",
+        "Luego aplicas los modificadores habituales para determinar el daño total que recibe esa criatura."
+      ]
+    },
+    {
+      "name": "Diagnosis",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Puedes usar la acción Ayudar como acción adicional en tu turno."
+      ]
+    },
+    {
+      "name": "Doctor’s Note",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Puedes lanzar el conjuro enviar mensaje (sending) a voluntad.",
+        "No puedes usar esta teoría para contactar a la misma criatura de nuevo hasta que termines un descanso largo."
+      ]
+    },
+    {
+      "name": "Double Dose",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 10,
+      "entries": [
+        "Requisito: apotecario de nivel 10",
+        "Cuando lanzas un conjuro de apotecario con espacio de conjuro que cura puntos de golpe y tiene como objetivo a una sola criatura, puedes elegir también a una segunda criatura dentro del alcance.",
+        "Ambas criaturas reciben la curación del conjuro."
+      ]
+    },
+    {
+      "name": "Extracurricular Research",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Aprendes dos trucos adicionales a tu elección de cualquier lista de conjuros de clase.",
+        "Estos trucos se consideran trucos de apotecario para ti."
+      ]
+    },
+    {
+      "name": "Inoculation",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Tienes resistencia al daño necrótico y tu máximo de puntos de golpe no puede reducirse.",
+        "Además, eres inmune a las enfermedades."
+      ]
+    },
+    {
+      "name": "Interdisciplinary Practice",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 14,
+      "entries": [
+        "Requisito: apotecario de nivel 14",
+        "Cuando usas tu acción para lanzar un conjuro, puedes hacer un ataque con arma como acción adicional."
+      ]
+    },
+    {
+      "name": "Laboratory Assistant",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Aprendes el conjuro encontrar familiar y siempre lo tienes preparado.",
+        "No cuenta contra el número de conjuros de apotecario que puedes preparar."
+      ]
+    },
+    {
+      "name": "Liability Insurance",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 14,
+      "entries": [
+        "Requisito: apotecario de nivel 14",
+        "Puedes lanzar el conjuro contingencia sobre ti mismo sin componentes materiales.",
+        "No puedes volver a hacerlo hasta que termines un descanso largo."
+      ]
+    },
+    {
+      "name": "Medical Expertise",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Ganas competencia en las habilidades Medicina y Naturaleza.",
+        "Tu bonificador por competencia se duplica en las pruebas que usen cualquiera de esas habilidades."
+      ]
+    },
+    {
+      "name": "Medical Lexicon",
+      "source": "SCGTD",
+      "page": 137,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Aprendes seis idiomas a tu elección.",
+        "Puedes lanzar detectar veneno y enfermedad a voluntad sin gastar espacios de conjuro."
+      ]
+    },
+    {
+      "name": "Nerve Agent",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 14,
+      "entries": [
+        "Requisito: apotecario de nivel 14",
+        "Cuando un conjuro de apotecario que lanzas inflige daño de veneno, puedes hacer que en su lugar inflija daño psíquico."
+      ]
+    },
+    {
+      "name": "Noxious Blood",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Cuando una criatura a 1,5 metros de ti te golpea con un ataque cuerpo a cuerpo, recibe daño de veneno igual a 1d6 + tu modificador de Constitución."
+      ]
+    },
+    {
+      "name": "Pharmacology",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Cuando un conjuro que lanzas con un espacio de conjuro de apotecario o mediante tu rasgo de Fórmula mayor restaura puntos de golpe a una criatura, ésta recupera puntos de golpe adicionales iguales a tu modificador de Inteligencia."
+      ]
+    },
+    {
+      "name": "Physiological Analysis",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Si pasas al menos 1 minuto observando o interactuando con otra criatura fuera de combate, puedes aprender información sobre su fisiología.",
+        "El DJ te revela dos de las siguientes características, a tu elección: una puntuación de característica, Clase de Armadura, puntos de golpe actuales, resistencias, inmunidades o vulnerabilidades.",
+        "Alternativamente, puedes pasar 1 minuto examinando un cadáver para determinar la causa de la muerte."
+      ]
+    },
+    {
+      "name": "Practical Resuscitation",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 10,
+      "entries": [
+        "Requisito: apotecario de nivel 10",
+        "Cuando lanzas un conjuro cuyo único efecto sea devolver la vida a una criatura (pero no crear no-muertos), como resurrección inferior, no necesitas componentes materiales si la criatura ha muerto en la última hora."
+      ]
+    },
+    {
+      "name": "Putrefaction",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Tus conjuros y habilidades de apotecario ignoran la resistencia o inmunidad de las criaturas no muertas al daño de veneno y su inmunidad a la condición envenenado."
+      ]
+    },
+    {
+      "name": "Rapid Response",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Cuando lanzas un conjuro de apotecario que restaura puntos de golpe a una criatura, puedes moverte una distancia igual a tu velocidad antes o después de lanzar el conjuro.",
+        "Este movimiento no provoca ataques de oportunidad."
+      ]
+    },
+    {
+      "name": "Routine Procedure",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 10,
+      "entries": [
+        "Requisito: apotecario de nivel 10",
+        "Puedes lanzar curación menor (lesser restoration) a voluntad sin gastar espacio de conjuro."
+      ]
+    },
+    {
+      "name": "Stolen Secrets",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 10,
+      "entries": [
+        "Requisito: apotecario de nivel 10",
+        "Aprendes un conjuro de la lista de cualquier clase de lanzador.",
+        "Debe ser de un nivel para el que tengas espacios de conjuro de apotecario o inferior.",
+        "Ese conjuro cuenta como conjuro de apotecario para ti y no cuenta contra el número de conjuros de apotecario que conoces o puedes preparar (según cómo gestiones tu sistema)."
+      ]
+    },
+    {
+      "name": "Subject Preparation",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 10,
+      "entries": [
+        "Requisito: apotecario de nivel 10",
+        "Cuando golpeas a una criatura con un ataque cuerpo a cuerpo, esa criatura tiene desventaja en la siguiente tirada de salvación que haga contra un conjuro de apotecario que lances antes del final de tu siguiente turno."
+      ]
+    },
+    {
+      "name": "Surgeon’s Instinct",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Ganas vista ciega con un alcance de 3 metros."
+      ]
+    },
+    {
+      "name": "Surgical Strikes",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Cuando realizas la acción de Atacar en tu turno, puedes hacer dos ataques en lugar de uno.",
+        "Si ya tienes el rasgo de Ataque extra de otra fuente, esta teoría no te otorga ataques adicionales."
+      ]
+    },
+    {
+      "name": "Toxicology",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Añades tu modificador de Inteligencia a las tiradas de daño de los conjuros que lanzas y que infligen daño de veneno."
+      ]
+    },
+    {
+      "name": "Triage",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Aprendes el truco estabilizar moribundo (spare the dying) si aún no lo conoces.",
+        "Cuando lo lanzas, su alcance es de 18 metros."
+      ]
+    },
+    {
+      "name": "Unfailing Focus",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Cuando fallas una tirada de salvación de Constitución para mantener la concentración en un conjuro de apotecario, puedes elegir tener éxito en su lugar.",
+        "Una vez que usas esta teoría, no puedes volver a hacerlo hasta que termines un descanso corto o largo."
+      ]
+    },
+    {
+      "name": "Venomous Instruments",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 10,
+      "entries": [
+        "Requisito: apotecario de nivel 10",
+        "Cuando golpeas a una criatura con un ataque con arma, inflige daño de veneno adicional igual a tu modificador de Inteligencia."
+      ]
+    },
+    {
+      "name": "Virulence",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Cuando sacas un 1 en un dado de daño de un conjuro de apotecario que inflige daño de veneno, puedes volver a tirar ese dado.",
+        "Debes usar el nuevo resultado, incluso si también es un 1."
+      ]
+    },
+    {
+      "name": "Vital Signs",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 2,
+      "entries": [
+        "Cuando una criatura que puedas ver a 9 metros de ti falla una tirada de salvación o una tirada de salvación contra muerte, puedes usar tu reacción para sumar tu modificador de Inteligencia a la tirada, lo que puede convertir un fallo en éxito.",
+        "Debes terminar un descanso corto antes de poder usar esta teoría sobre la misma criatura de nuevo."
+      ]
+    },
+    {
+      "name": "Vivisection",
+      "source": "SCGTD",
+      "page": 138,
+      "className": "Apothecary",
+      "classSource": "SCGTD",
+      "level": 6,
+      "entries": [
+        "Requisito: apotecario de nivel 6",
+        "Tus ataques con arma obtienen un golpe crítico con resultados de 19 o 20 en el dado de ataque."
+      ]
+    }
+  ],
+  "subclassFeature": []
+}

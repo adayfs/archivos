@@ -1,5 +1,44 @@
 {
   "classes": {
+    "apothecary-scgtd-drakkenheim": {
+      "id": "apothecary-scgtd-drakkenheim",
+      "name": "Apothecary",
+      "source": "SCGTD",
+      "edition": "Drakkenheim",
+      "hitDie": 8,
+      "savingThrows": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "int",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium"
+        ],
+        "weapons": [
+          "simple",
+          "shortsword",
+          "hand crossbow"
+        ],
+        "tools": [],
+        "skills": [
+          {
+            "type": "choice",
+            "count": 2,
+            "options": [
+              "arcana",
+              "history",
+              "investigation",
+              "medicine",
+              "nature",
+              "religion"
+            ]
+          }
+        ],
+        "languages": []
+      }
+    },
     "artificer-tce-classic": {
       "id": "artificer-tce-classic",
       "name": "Artificer",

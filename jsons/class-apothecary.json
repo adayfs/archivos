@@ -1,0 +1,865 @@
+{
+  "class": [
+    {
+      "name": "Apothecary",
+      "source": "SCGTD",
+      "page": 56,
+      "srd": true,
+      "basicRules": true,
+      "reprintedAs": [
+        "Apothecary"
+      ],
+      "edition": "Drakkenheim",
+      "hd": {
+        "number": 1,
+        "faces": 8
+      },
+      "proficiency": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "int",
+      "casterProgression": "full",
+      "preparedSpells": "<$level$> + <$int_mod$>",
+      "preparedSpellsChange": "restLong",
+      "cantripProgression": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium"
+        ],
+        "weapons": [
+          "simple",
+          "shortsword",
+          "hand crossbow"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "arcana",
+                "history",
+                "investigation",
+                "medicine",
+                "nature",
+                "religion"
+              ],
+              "count": 2
+            }
+          }
+        ]
+      },
+"startingEquipment": {
+  "additionalFromBackground": true,
+  "default": [
+    "(a) a {@item light crossbow|phb} and {@item Crossbow Bolts (20)|phb|20 bolts}, (b) a {@item shortsword|phb}, or (c) any {@filter simple weapon|items|source=phb|category=basic|type=simple weapon}",
+    "(a) a {@item component pouch|phb} or (b) an arcane focus",
+    "(a) a {@item scholar's pack|phb} or (b) a {@item dungeoneer's pack|phb}",
+    "A {@item hide armor|phb}, any {@filter simple weapon|items|source=phb|category=basic|type=simple weapon}, two {@item daggers|phb}, and a {@item healer's kit|phb}"
+  ],
+  "defaultData": [
+    {
+      "a": [
+        "light crossbow|phb",
+        "crossbow bolts (20)|phb"
+      ],
+      "b": [
+        "shortsword|phb"
+      ],
+      "c": [
+        {
+          "equipmentType": "weaponSimple"
+        }
+      ]
+    },
+    {
+      "a": [
+        "component pouch|phb"
+      ],
+      "b": [
+        {
+          "equipmentType": "focusSpellcastingArcane"
+        }
+      ]
+    },
+    {
+      "a": [
+        "scholar's pack|phb"
+      ],
+      "b": [
+        "dungeoneer's pack|phb"
+      ]
+    },
+    {
+      "_": [
+        "hide armor|phb",
+        {
+          "equipmentType": "weaponSimple"
+        },
+        "dagger|phb",
+        "dagger|phb",
+        "healer's kit|phb"
+      ]
+    }
+  ]
+},
+
+      "multiclassing": {
+        "requirements": {
+          "wis": 13
+        },
+        "proficienciesGained": {
+          "armor": [
+            "light",
+            "medium",
+            "shield"
+          ]
+        }
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "{@filter Cantrips Known|spells|level=0|class=Apothecary}"
+          ],
+          "rows": [
+            [
+              3
+            ],
+            [
+              3
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ],
+            [
+              5
+            ]
+          ]
+        },
+        {
+          "title": "Spell Slots per Spell Level",
+          "colLabels": [
+            "{@filter 1st|spells|level=1|class=Apothecary}",
+            "{@filter 2nd|spells|level=2|class=Apothecary}",
+            "{@filter 3rd|spells|level=3|class=Apothecary}",
+            "{@filter 4th|spells|level=4|class=Apothecary}",
+            "{@filter 5th|spells|level=5|class=Apothecary}",
+            "{@filter 6th|spells|level=6|class=Apothecary}",
+            "{@filter 7th|spells|level=7|class=Apothecary}",
+            "{@filter 8th|spells|level=8|class=Apothecary}",
+            "{@filter 9th|spells|level=9|class=Apothecary}"
+          ],
+          "rowsSpellProgression": [
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+"classFeatures": [
+  "Spellcasting Ability|Apothecary||1",
+  {
+    "classFeature": "Occult Practices|Apothecary||1",
+    "gainSubclassFeature": true
+  },
+  "Esoteric Theories|Apothecary||2",
+  "Ability Score Improvement|Apothecary||4",
+  "Ability Score Improvement|Apothecary||8",
+  "Greater Formula (6th-level)|Apothecary||11",
+  "Ability Score Improvement|Apothecary||12",
+  "Greater Formula (7th-level)|Apothecary||13",
+  "Greater Formula (8th-level)|Apothecary||15",
+  "Ability Score Improvement|Apothecary||16",
+  {
+    "classFeature": "Occult Practice Feature|Apothecary||18",
+    "gainSubclassFeature": true
+  },
+  "Greater Formula (9th-level)|Apothecary||17",
+  "Ability Score Improvement|Apothecary||19",
+  "Greater Formula (additional 6th-level)|Apothecary||19",
+  "Greater Formula (additional 7th-level)|Apothecary||20",
+  "Miraculous Recovery|Apothecary||20"
+],
+
+      "subclassTitle": "Apothecary Subclass"
+	}
+  ],
+  	"subclass": [
+		{
+			"name": "Mutagenist",
+			"shortName": "Mutagenist",
+			"source": "SCGTD",
+			"className": "Apothecary",
+			"classSource": "SCGTD",
+			"page": 144,
+			"edition": "classic",
+			"additionalSpells": [
+				{
+				"prepared": {
+					"1": [
+					"jump",
+					"toxic shield"
+					],
+					"3": [
+					"alter self",
+					"enhance ability"
+					],
+					"5": [
+					"haste",
+					"water breathing"
+					],
+					"7": [
+					"polymorph",
+					"stoneskin"
+					],
+					"9": [
+					"reincarnate",
+					"septic shock"
+					]
+				}
+				}
+			],
+			"subclassFeatures": [
+				"Natural Philosophy|Apothecary||Mutagenist||1",
+				"Mutagenist Spells|Apothecary||Mutagenist||1",
+				"Transmogrifying Elixir|Apothecary||Mutagenist||3",
+				"Extra Attack|Apothecary||Mutagenist||6",
+				"Potent Biology|Apothecary||Mutagenist||6",
+				"Adaptive Genetics|Apothecary||Mutagenist||10",
+				"Unnatural Evolution|Apothecary||Mutagenist||14",
+				"The New Flesh|Apothecary||Mutagenist||18"
+			]
+		}	
+	],
+	"classFeature": [
+	{
+  "name": "Spellcasting Ability",
+  "source": "SCGTD",
+  "page": 136,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "level": 1,
+  "entries": [
+    {
+      "type": "entries",
+      "name": "Spellcasting Ability",
+      "entries": [
+        "La Inteligencia es tu característica de lanzamiento de conjuros para tus conjuros de apotecario, ya que los aprendes mediante estudio dedicado y conocimientos ocultos.",
+        "Usas tu Inteligencia siempre que un conjuro haga referencia a tu característica de lanzamiento. Además, utilizas tu modificador de Inteligencia para determinar la CD de las tiradas de salvación contra tus conjuros de apotecario y para las tiradas de ataque de conjuros que realices.",
+        {
+          "type": "abilityDc",
+          "name": "Spell",
+          "attributes": [
+            "int"
+          ]
+        },
+        {
+          "type": "abilityAttackMod",
+          "name": "Spell",
+          "attributes": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "entries",
+      "name": "Ritual Casting",
+      "entries": [
+        "Puedes lanzar un conjuro de apotecario como ritual si ese conjuro tiene el descriptor de ritual y lo tienes preparado."
+      ]
+    },
+    {
+      "type": "entries",
+      "name": "Spellcasting Focus",
+      "entries": [
+        "Puedes usar un foco arcano (como se describe en el equipo de aventura de las reglas básicas) como foco de lanzamiento de conjuros para tus conjuros de apotecario."
+      ]
+    }
+  ]
+},
+{
+  "name": "Occult Practices",
+  "source": "SCGTD",
+  "page": 136,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "level": 1,
+  "entries": [
+    "En 1er nivel adoptas una de las Occult Practices, una disciplina que define tu investigación continua del cuerpo y el espíritu: Alienist, Chemist, Exorcist, Mutagenist, Pathogenist o Reanimator.",
+    "La práctica que elijas te otorga competencias adicionales y una lista de conjuros ampliada a 1er nivel, así como rasgos de clase adicionales a 3º, 6º, 10º, 14º y 18º nivel."
+  ]
+},
+{
+  "name": "Esoteric Theories",
+  "source": "SCGTD",
+  "page": 136,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "level": 2,
+  "entries": [
+    "Has descubierto teorías esotéricas, fragmentos de saber prohibido que puedes emplear para potenciar tu magia.",
+    "En 2º nivel, aprendes dos teorías esotéricas de tu elección. Las opciones de teoría se detallan al final de la descripción de la clase.",
+    "A medida que subes de nivel como apotecario, obtienes teorías adicionales según se indica en la columna Theories Known de la tabla de apotecario.",
+    "Cuando ganas un nivel en esta clase, puedes sustituir una de las teorías que conoces por otra teoría para la que cumplas los requisitos en ese nivel."
+  ]
+},
+{
+  "name": "Ability Score Improvement",
+  "source": "SCGTD",
+  "page": 136,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "level": 4,
+  "entries": [
+    "Cuando alcanzas el 4º nivel, y de nuevo en los niveles 8, 12, 16 y 19, puedes aumentar una puntuación de característica de tu elección en 2, o bien puedes aumentar dos puntuaciones de característica distintas en 1.",
+    "Como es habitual, no puedes aumentar ninguna puntuación de característica por encima de 20 mediante este rasgo.",
+    "Si utilizas la regla opcional de dotes, puedes renunciar a esta mejora de característica para obtener una dote de tu elección."
+  ]
+},
+{
+  "name": "Greater Formula",
+  "source": "SCGTD",
+  "page": 137,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "level": 11,
+  "entries": [
+    "En 11º nivel descubres un secreto mágico conocido como Greater Formula.",
+    "Elige un conjuro de 6º nivel de la lista de conjuros de apotecario para que sea tu fórmula.",
+    "Puedes lanzar esa Greater Formula una vez sin gastar espacio de conjuro. Recuperas esta capacidad cuando terminas un descanso largo.",
+    "A niveles superiores aprendes fórmulas adicionales de apotecario que puedes lanzar de la misma forma: un conjuro de 7º nivel en 13º nivel, uno de 8º nivel en 15º nivel y uno de 9º nivel en 17º nivel. Aprendes un conjuro adicional de 6º nivel en 19º nivel y uno adicional de 7º nivel en 20º nivel.",
+    "Recuperas todos los usos de este rasgo cuando terminas un descanso largo.",
+    {
+      "type": "entries",
+      "name": "Master Reformulation",
+      "entries": [
+        "Cada vez que terminas un descanso largo y consultas tu libro de fórmulas, puedes reemplazar uno de los conjuros que obtuviste mediante este rasgo por otro conjuro del mismo nivel de la lista de conjuros de apotecario."
+      ]
+    }
+  ]
+},
+{
+  "name": "Miraculous Recovery",
+  "source": "SCGTD",
+  "page": 137,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "level": 20,
+  "entries": [
+    "En 20º nivel puedes canalizar tu poder para facilitar recuperaciones milagrosas.",
+    "Puedes dedicar 5 minutos a atender a un número de criaturas (incluyéndote a ti mismo) igual a tu modificador de Inteligencia para ayudarles a recuperarse de forma anómala.",
+    "Debes cuidar de las criaturas durante ese tiempo usando un {@item healer's kit|phb} con al menos un uso restante. Cada objetivo recupera puntos de golpe, espacios de conjuro, dados de golpe y otras capacidades como si hubiera completado un descanso largo.",
+    "Una criatura solo puede beneficiarse de una Miraculous Recovery en un período de 24 horas.",
+    "Una vez usas este rasgo, no puedes volver a hacerlo hasta que termines un descanso largo."
+  ]
+}
+
+	],	
+		"subclassFeature": [
+		{
+  "name": "Natural Philosophy",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 1,
+  "header": 1,
+  "entries": [
+    "Al elegir la práctica Mutagenist en 1er nivel, profundizas en los misterios alquímicos del cuerpo.",
+    "Ganas competencia con {@item alchemist's supplies|phb} y, además, eliges competencia con un {@item herbalism kit|phb} o un {@item poisoner's kit|phb}.",
+    "También obtienes competencia en la habilidad Naturaleza y en dos idiomas adicionales de tu elección. Si ya eras competente en Naturaleza, puedes elegir otra habilidad distinta para ganar competencia."
+  ]
+},
+{
+  "name": "Mutagenist Spells",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 1,
+  "header": 1,
+  "entries": [
+    "Ciertos conjuros están siempre preparados para ti cuando alcanzas los niveles indicados, según se muestra en la tabla de Mutagenist Spells.",
+    "Estos conjuros cuentan como conjuros de apotecario para ti, pero no cuentan contra el número de conjuros que puedes preparar cada día.",
+    {
+      "type": "table",
+      "caption": "Mutagenist Spells",
+      "colLabels": [
+        "Apothecary Level",
+        "Spells"
+      ],
+      "colStyles": [
+        "col-2 text-center",
+        "col-10"
+      ],
+      "rows": [
+        [
+          "1st",
+          "{@spell jump}, {@spell toxic shield|SCGTD}"
+        ],
+        [
+          "3rd",
+          "{@spell alter self}, {@spell enhance ability}"
+        ],
+        [
+          "5th",
+          "{@spell haste}, {@spell water breathing}"
+        ],
+        [
+          "7th",
+          "{@spell polymorph}, {@spell stoneskin}"
+        ],
+        [
+          "9th",
+          "{@spell reincarnate}, {@spell septic shock|SCGTD}"
+        ]
+      ]
+    }
+  ]
+},
+{
+  "name": "Transmogrifying Elixir",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 3,
+  "header": 1,
+  "entries": [
+    "Como acción adicional, puedes gastar un espacio de conjuro para someterte a una grotesca transformación alquímica.",
+    "La transformación dura 1 minuto o hasta que llegues a 0 puntos de golpe o quedes incapacitado. Conservas tu personalidad, alineamiento y estadísticas de juego básicas, pero tu cuerpo cambia de forma drástica.",
+    {
+      "type": "list",
+      "items": [
+        "Intercambias tus puntuaciones de Fuerza e Inteligencia.",
+        "Tu tamaño pasa a ser Grande, tu distancia de salto se duplica y se te considera una categoría de tamaño mayor para determinar tu capacidad de carga y el peso que puedes empujar, arrastrar o levantar.",
+        "Cada una de tus manos se convierte en un gran puño de carne que puedes usar para realizar ataques de arma cuerpo a cuerpo. Cuenta como un arma simple para ti. En un impacto, tus puños infligen {@damage 1d10} + tu modificador de Fuerza + tu nivel de apotecario de daño contundente.",
+        "No puedes lanzar conjuros ni mantener concentración en conjuros mientras estás transformado.",
+        "Obtienes visión en la oscuridad con un alcance de 120 pies.",
+        "Ganas puntos de golpe temporales iguales a cinco veces tu nivel de apotecario."
+      ]
+    },
+    "La potencia del conjuro que empleas para activar la mutación amplifica aún más tus capacidades:",
+    {
+      "type": "list",
+      "items": [
+        "Tu velocidad aumenta en 5 pies por cada nivel del espacio de conjuro usado.",
+        "Tu CA pasa a ser 13 + el nivel del espacio de conjuro usado.",
+        "Al inicio de cada uno de tus turnos, mientras tengas al menos 1 punto de golpe, recuperas un número de puntos de golpe igual al nivel del espacio de conjuro usado."
+      ]
+    }
+  ]
+},
+{
+  "name": "Extra Attack",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 6,
+  "header": 1,
+  "entries": [
+    "A partir de 6º nivel, cuando realizas la acción de Atacar en tu turno, puedes realizar dos ataques en lugar de uno."
+  ]
+},
+{
+  "name": "Potent Biology",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 6,
+  "header": 1,
+  "entries": [
+    "Cuando estás en tu forma transmogrificada, tus mutaciones refuerzan tus golpes hasta niveles antinaturales.",
+    {
+      "type": "list",
+      "items": [
+        "Tus ataques con los grandes puños de carne se consideran mágicos a efectos de superar resistencia e inmunidad a ataques y daño no mágicos.",
+        "Cuando impactas con un ataque usando tus puños, puedes gastar un espacio de conjuro. El objetivo recibe {@damage 1d8} de daño de fuerza adicional por cada nivel del espacio de conjuro gastado."
+      ]
+    }
+  ]
+},
+{
+  "name": "Adaptive Genetics",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 10,
+  "header": 1,
+  "entries": [
+    "Tu biología alterada está preparada para mantenerte con vida incluso en el filo de la muerte. Cuando te reducen a 0 puntos de golpe, tu “otra versión” está lista para tomar el control.",
+    {
+      "type": "list",
+      "items": [
+        "Cuando estás en tu forma natural y te reducen a 0 puntos de golpe, puedes usar tu reacción para activar inmediatamente tu rasgo Transmogrifying Elixir, gastando un espacio de conjuro como de costumbre. Recuperas puntos de golpe iguales a tu nivel de apotecario y obtienes los puntos de golpe temporales habituales de la transformación.",
+        "Cuando estás en tu forma transmogrificada y te reducen a 0 puntos de golpe, en lugar de caer inconsciente, vuelves a tu forma natural con 1 punto de golpe. Si lo haces, no puedes volver a asumir tu forma transmogrificada hasta que completes un descanso corto o largo."
+      ]
+    }
+  ]
+},
+{
+  "name": "Unnatural Evolution",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 14,
+  "header": 1,
+  "entries": [
+    "Puedes canalizar el poder de tus Fórmulas Mayores para alimentar transformaciones aún más extremas. Cuando usas tu rasgo de Greater Formulas para transmogrificarte, lo haces como si hubieras empleado un espacio de conjuro de ese nivel y, además, obtienes uno de los siguientes genomas mutados:",
+    {
+      "type": "entries",
+      "name": "Draconic Genome",
+      "entries": [
+        "Te brotan alas carnosas de la espalda y tu piel se vuelve escamosa. Obtienes una velocidad de vuelo igual a tu velocidad de movimiento.",
+        "Como acción, puedes escupir bilis corrosiva en un cono de 30 pies. Cada criatura en el área debe hacer una tirada de salvación de Constitución contra la CD de tus conjuros. Una criatura sufre {@damage 8d6} de daño ácido si falla la tirada, o la mitad en un éxito.",
+        "Una vez usas este aliento, no puedes volver a hacerlo hasta terminar un descanso corto o largo."
+      ]
+    },
+    {
+      "type": "entries",
+      "name": "Giant Genome",
+      "entries": [
+        "Tu cuerpo se hipertrofia, convirtiéndote en una masa colosal de músculo. Tu tamaño pasa a ser Enorme y el daño que infliges a objetos y estructuras se duplica.",
+        "Como acción, puedes gastar un espacio de conjuro para golpear el suelo y desencadenar ondas de choque en un radio de 30 pies centrado en ti. Cada criatura en el área debe hacer una tirada de salvación de Destreza contra la CD de tus conjuros. Una criatura sufre {@damage 8d6} de daño contundente y cae derribada si falla la tirada; si tiene éxito, recibe la mitad del daño y no queda derribada."
+      ]
+    },
+    {
+      "type": "entries",
+      "name": "Cerebellum Genome",
+      "entries": [
+        "Logras conservar una parte de tu lucidez cuando cambias de forma. Puedes mantener la concentración en conjuros mientras estás transmogrificado.",
+        "Mientras estás en tu forma transmogrificada, tu concentración no puede romperse como resultado de recibir daño."
+      ]
+    }
+  ]
+},
+	{
+	  "name": "The New Flesh",
+	  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Mutagenist",
+  "subclassSource": "SCGTD",
+  "level": 18,
+  "header": 1,
+  "entries": [
+    "Has perfeccionado tu Transmogrifying Elixir, forzando tu cuerpo hasta lo que consideras el pináculo de la evolución. Mientras estás en tu forma transmogrificada, obtienes los siguientes beneficios:",
+    {
+      "type": "list",
+      "items": [
+        "Mientras tengas al menos 1 punto de golpe, puedes usar una acción adicional y gastar un espacio de conjuro para recuperar un número de puntos de golpe igual a diez veces el nivel del espacio de conjuro gastado.",
+        "Cuando fallas una tirada de salvación, puedes usar tu reacción y gastar un espacio de conjuro para convertir el fallo en éxito.",
+        "Tu puntuación de Fuerza pasa a ser igual a tu puntuación de Inteligencia mientras estás transmogrificado. Además, recuperas la capacidad de lanzar conjuros en tu forma transmogrificada."
+      ]
+    }
+	  ]
+	}
+	
+			]
+}
