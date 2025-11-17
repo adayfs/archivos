@@ -1,0 +1,2301 @@
+{
+  "classes": [
+    {
+      "id": "apothecary-scgtd-drakkenheim",
+      "name": "Apothecary",
+      "source": "SCGTD",
+      "edition": "Drakkenheim",
+      "subclassTitle": "Apothecary Subclass",
+      "subclasses": [
+        {
+          "id": "apothecary-mutagenist-scgtd-drakkenheim",
+          "name": "Mutagenist",
+          "shortName": "Mutagenist",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD",
+          "name_es": "Mutagenist"
+        }
+      ],
+      "name_es": "Apothecary"
+    },
+    {
+      "id": "artificer-tce-classic",
+      "name": "Artificer",
+      "source": "TCE",
+      "edition": "classic",
+      "subclassTitle": "Artificer Specialist",
+      "subclasses": [
+        {
+          "id": "artificer-alchemist-tce-classic",
+          "name": "Alchemist",
+          "shortName": "Alchemist",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Artificer",
+          "classSource": "TCE",
+          "name_es": "Alchemist"
+        },
+        {
+          "id": "artificer-armorer-tce-classic",
+          "name": "Armorer",
+          "shortName": "Armorer",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Artificer",
+          "classSource": "TCE",
+          "name_es": "Armador"
+        },
+        {
+          "id": "artificer-artillerist-tce-classic",
+          "name": "Artillerist",
+          "shortName": "Artillerist",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Artificer",
+          "classSource": "TCE",
+          "name_es": "Artillerist"
+        },
+        {
+          "id": "artificer-battle-smith-tce-classic",
+          "name": "Battle Smith",
+          "shortName": "Battle Smith",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Artificer",
+          "classSource": "TCE",
+          "name_es": "Battle Smith"
+        }
+      ],
+      "name_es": "Artificer"
+    },
+    {
+      "id": "barbarian-phb-classic",
+      "name": "Barbarian",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Primal Path",
+      "subclasses": [
+        {
+          "id": "barbarian-ancestral-guardian-xge-classic",
+          "name": "Path of the Ancestral Guardian",
+          "shortName": "Ancestral Guardian",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Path of the Ancestral Guardian"
+        },
+        {
+          "id": "barbarian-battlerager-scag-classic",
+          "name": "Path of the Battlerager",
+          "shortName": "Battlerager",
+          "source": "SCAG",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Camino del Batallatrager"
+        },
+        {
+          "id": "barbarian-beast-tce-classic",
+          "name": "Path of the Beast",
+          "shortName": "Beast",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Camino de la Bestia"
+        },
+        {
+          "id": "barbarian-berserker-phb-classic",
+          "name": "Path of the Berserker",
+          "shortName": "Berserker",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Sendero del Berserker"
+        },
+        {
+          "id": "barbarian-giant-bgg-classic",
+          "name": "Path of the Giant",
+          "shortName": "Giant",
+          "source": "BGG",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Sendero del gigante"
+        },
+        {
+          "id": "barbarian-juggernaut-tdcsr-classic",
+          "name": "Path of the Juggernaut",
+          "shortName": "Juggernaut",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Camino del Juggernaut"
+        },
+        {
+          "id": "barbarian-storm-herald-xge-classic",
+          "name": "Path of the Storm Herald",
+          "shortName": "Storm Herald",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Path of the Storm Herald"
+        },
+        {
+          "id": "barbarian-totem-warrior-phb-classic",
+          "name": "Path of the Totem Warrior",
+          "shortName": "Totem Warrior",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Camino del Guerrero Totem"
+        },
+        {
+          "id": "barbarian-wild-magic-tce-classic",
+          "name": "Path of Wild Magic",
+          "shortName": "Wild Magic",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Sendero de la magia salvaje"
+        },
+        {
+          "id": "barbarian-zealot-xge-classic",
+          "name": "Path of the Zealot",
+          "shortName": "Zealot",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Camino del Zelote"
+        }
+      ],
+      "name_es": "Barbarian"
+    },
+    {
+      "id": "barbarian-xphb-one",
+      "name": "Barbarian",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Barbarian Subclass",
+      "subclasses": [
+        {
+          "id": "barbarian-berserker-xphb-one",
+          "name": "Path of the Berserker",
+          "shortName": "Berserker",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Barbarian",
+          "classSource": "XPHB",
+          "name_es": "Sendero del Berserker"
+        },
+        {
+          "id": "barbarian-wild-heart-xphb-one",
+          "name": "Path of the Wild Heart",
+          "shortName": "Wild Heart",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Barbarian",
+          "classSource": "XPHB",
+          "name_es": "Camino del Corazón Salvaje"
+        },
+        {
+          "id": "barbarian-world-tree-xphb-one",
+          "name": "Path of the World Tree",
+          "shortName": "World Tree",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Barbarian",
+          "classSource": "XPHB",
+          "name_es": "Sendero del Árbol Mundial"
+        },
+        {
+          "id": "barbarian-zealot-xphb-one",
+          "name": "Path of the Zealot",
+          "shortName": "Zealot",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Barbarian",
+          "classSource": "XPHB",
+          "name_es": "Camino del Zelote"
+        },
+        {
+          "id": "barbarian-path-of-the-old-gods-drakkenheim",
+          "name": "Path of the Old Gods",
+          "shortName": "Old Gods",
+          "source": "Drakkenheim",
+          "edition": "homebrew",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Camino de los dioses antiguos"
+        }
+      ],
+      "name_es": "Barbarian"
+    },
+    {
+      "id": "bard-phb-classic",
+      "name": "Bard",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Bard College",
+      "subclasses": [
+        {
+          "id": "bard-creation-tce-classic",
+          "name": "College of Creation",
+          "shortName": "Creation",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "Colegio de Creación"
+        },
+        {
+          "id": "bard-eloquence-tce-classic",
+          "name": "College of Eloquence",
+          "shortName": "Eloquence",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "Colegio de la Elocuencia"
+        },
+        {
+          "id": "bard-glamour-xge-classic",
+          "name": "College of Glamour",
+          "shortName": "Glamour",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "College of Glamour"
+        },
+        {
+          "id": "bard-lore-phb-classic",
+          "name": "College of Lore",
+          "shortName": "Lore",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "College of Lore"
+        },
+        {
+          "id": "bard-spirits-vrgr-classic",
+          "name": "College of Spirits",
+          "shortName": "Spirits",
+          "source": "VRGR",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "Colegio de Espíritus"
+        },
+        {
+          "id": "bard-swords-xge-classic",
+          "name": "College of Swords",
+          "shortName": "Swords",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "Colegio de Espadas"
+        },
+        {
+          "id": "bard-tragedy-tdcsr-classic",
+          "name": "College of Tragedy",
+          "shortName": "Tragedy",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "College of Tragedy"
+        },
+        {
+          "id": "bard-valor-phb-classic",
+          "name": "College of Valor",
+          "shortName": "Valor",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "College of Valor"
+        },
+        {
+          "id": "bard-whispers-xge-classic",
+          "name": "College of Whispers",
+          "shortName": "Whispers",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Bard",
+          "classSource": "PHB",
+          "name_es": "College of Whispers"
+        }
+      ],
+      "name_es": "Bard"
+    },
+    {
+      "id": "bard-xphb-one",
+      "name": "Bard",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Bard Subclass",
+      "subclasses": [
+        {
+          "id": "bard-dance-xphb-one",
+          "name": "College of Dance",
+          "shortName": "Dance",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Bard",
+          "classSource": "XPHB",
+          "name_es": "College of Dance"
+        },
+        {
+          "id": "bard-glamour-xphb-one",
+          "name": "College of Glamour",
+          "shortName": "Glamour",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Bard",
+          "classSource": "XPHB",
+          "name_es": "College of Glamour"
+        },
+        {
+          "id": "bard-lore-xphb-one",
+          "name": "College of Lore",
+          "shortName": "Lore",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Bard",
+          "classSource": "XPHB",
+          "name_es": "College of Lore"
+        },
+        {
+          "id": "bard-moon-frhof-one",
+          "name": "College of the Moon",
+          "shortName": "Moon",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Bard",
+          "classSource": "XPHB",
+          "name_es": "Colegio de la Luna"
+        },
+        {
+          "id": "bard-valor-xphb-one",
+          "name": "College of Valor",
+          "shortName": "Valor",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Bard",
+          "classSource": "XPHB",
+          "name_es": "College of Valor"
+        }
+      ],
+      "name_es": "Bard"
+    },
+    {
+      "id": "cleric-phb-classic",
+      "name": "Cleric",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Divine Domain",
+      "subclasses": [
+        {
+          "id": "cleric-ambition-psa-psa-classic",
+          "name": "Ambition Domain (PSA)",
+          "shortName": "Ambition (PSA)",
+          "source": "PSA",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Ambition Domain (PSA)"
+        },
+        {
+          "id": "cleric-arcana-scag-classic",
+          "name": "Arcana Domain",
+          "shortName": "Arcana",
+          "source": "SCAG",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Arcana Dominio"
+        },
+        {
+          "id": "cleric-blood-tdcsr-classic",
+          "name": "Blood Domain",
+          "shortName": "Blood",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio de sangre"
+        },
+        {
+          "id": "cleric-death-dmg-classic",
+          "name": "Death Domain",
+          "shortName": "Death",
+          "source": "DMG",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Death Domain"
+        },
+        {
+          "id": "cleric-forge-xge-classic",
+          "name": "Forge Domain",
+          "shortName": "Forge",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Forge Domain"
+        },
+        {
+          "id": "cleric-grave-xge-classic",
+          "name": "Grave Domain",
+          "shortName": "Grave",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Grave Domain"
+        },
+        {
+          "id": "cleric-knowledge-phb-classic",
+          "name": "Knowledge Domain",
+          "shortName": "Knowledge",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio de conocimientos"
+        },
+        {
+          "id": "cleric-knowledge-psa-psa-classic",
+          "name": "Knowledge Domain (PSA)",
+          "shortName": "Knowledge (PSA)",
+          "source": "PSA",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio de Conocimiento (PSA)"
+        },
+        {
+          "id": "cleric-life-phb-classic",
+          "name": "Life Domain",
+          "shortName": "Life",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Life Domain"
+        },
+        {
+          "id": "cleric-light-phb-classic",
+          "name": "Light Domain",
+          "shortName": "Light",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio de luz"
+        },
+        {
+          "id": "cleric-moon-tdcsr-classic",
+          "name": "Moon Domain",
+          "shortName": "Moon",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Moon Domain"
+        },
+        {
+          "id": "cleric-nature-phb-classic",
+          "name": "Nature Domain",
+          "shortName": "Nature",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Nature Domain"
+        },
+        {
+          "id": "cleric-order-tce-classic",
+          "name": "Order Domain",
+          "shortName": "Order",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Orden Dominio"
+        },
+        {
+          "id": "cleric-peace-tce-classic",
+          "name": "Peace Domain",
+          "shortName": "Peace",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Peace Domain"
+        },
+        {
+          "id": "cleric-solidarity-psa-psa-classic",
+          "name": "Solidarity Domain (PSA)",
+          "shortName": "Solidarity (PSA)",
+          "source": "PSA",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Solidarity Domain (PSA)"
+        },
+        {
+          "id": "cleric-strength-psa-psa-classic",
+          "name": "Strength Domain (PSA)",
+          "shortName": "Strength (PSA)",
+          "source": "PSA",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio de fuerza (PSA)"
+        },
+        {
+          "id": "cleric-tempest-phb-classic",
+          "name": "Tempest Domain",
+          "shortName": "Tempest",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio Tempest"
+        },
+        {
+          "id": "cleric-trickery-phb-classic",
+          "name": "Trickery Domain",
+          "shortName": "Trickery",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Trickery Domain"
+        },
+        {
+          "id": "cleric-twilight-tce-classic",
+          "name": "Twilight Domain",
+          "shortName": "Twilight",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Doble dominio"
+        },
+        {
+          "id": "cleric-war-phb-classic",
+          "name": "War Domain",
+          "shortName": "War",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "War Domain"
+        },
+        {
+          "id": "cleric-zeal-psa-psa-classic",
+          "name": "Zeal Domain (PSA)",
+          "shortName": "Zeal (PSA)",
+          "source": "PSA",
+          "edition": "classic",
+          "className": "Cleric",
+          "classSource": "PHB",
+          "name_es": "Dominio de Zeal (PSA)"
+        }
+      ],
+      "name_es": "Cleric"
+    },
+    {
+      "id": "cleric-xphb-one",
+      "name": "Cleric",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Cleric Subclass",
+      "subclasses": [
+        {
+          "id": "cleric-knowledge-frhof-one",
+          "name": "Knowledge Domain",
+          "shortName": "Knowledge",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Cleric",
+          "classSource": "XPHB",
+          "name_es": "Dominio de conocimientos"
+        },
+        {
+          "id": "cleric-life-xphb-one",
+          "name": "Life Domain",
+          "shortName": "Life",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Cleric",
+          "classSource": "XPHB",
+          "name_es": "Life Domain"
+        },
+        {
+          "id": "cleric-light-xphb-one",
+          "name": "Light Domain",
+          "shortName": "Light",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Cleric",
+          "classSource": "XPHB",
+          "name_es": "Dominio de luz"
+        },
+        {
+          "id": "cleric-trickery-xphb-one",
+          "name": "Trickery Domain",
+          "shortName": "Trickery",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Cleric",
+          "classSource": "XPHB",
+          "name_es": "Trickery Domain"
+        },
+        {
+          "id": "cleric-war-xphb-one",
+          "name": "War Domain",
+          "shortName": "War",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Cleric",
+          "classSource": "XPHB",
+          "name_es": "War Domain"
+        }
+      ],
+      "name_es": "Cleric"
+    },
+    {
+      "id": "druid-phb-classic",
+      "name": "Druid",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Druid Circle",
+      "subclasses": [
+        {
+          "id": "druid-blighted-tdcsr-classic",
+          "name": "Circle of the Blighted",
+          "shortName": "Blighted",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Circle of the Blighted"
+        },
+        {
+          "id": "druid-dreams-xge-classic",
+          "name": "Circle of Dreams",
+          "shortName": "Dreams",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Círculo de sueños"
+        },
+        {
+          "id": "druid-land-phb-classic",
+          "name": "Circle of the Land",
+          "shortName": "Land",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Circle of the Land"
+        },
+        {
+          "id": "druid-moon-phb-classic",
+          "name": "Circle of the Moon",
+          "shortName": "Moon",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Círculo de la Luna"
+        },
+        {
+          "id": "druid-shepherd-xge-classic",
+          "name": "Circle of the Shepherd",
+          "shortName": "Shepherd",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Círculo del Pastor"
+        },
+        {
+          "id": "druid-spores-tce-classic",
+          "name": "Circle of Spores",
+          "shortName": "Spores",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Circle of Spores"
+        },
+        {
+          "id": "druid-stars-tce-classic",
+          "name": "Circle of Stars",
+          "shortName": "Stars",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Círculo de estrellas"
+        },
+        {
+          "id": "druid-wildfire-tce-classic",
+          "name": "Circle of Wildfire",
+          "shortName": "Wildfire",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Circle of Wildfire"
+        },
+        {
+          "id": "druid-circle-of-blood-grimHollow",
+          "name": "Circle of Blood",
+          "shortName": "Circle of Blood",
+          "source": "Grim Hollow",
+          "edition": "homebrew",
+          "className": "Druid",
+          "classSource": "PHB",
+          "name_es": "Círculo de sangre"
+        }
+      ],
+      "name_es": "Druid"
+    },
+    {
+      "id": "druid-xphb-one",
+      "name": "Druid",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Druid Subclass",
+      "subclasses": [
+        {
+          "id": "druid-land-xphb-one",
+          "name": "Circle of the Land",
+          "shortName": "Land",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Druid",
+          "classSource": "XPHB",
+          "name_es": "Circle of the Land"
+        },
+        {
+          "id": "druid-moon-xphb-one",
+          "name": "Circle of the Moon",
+          "shortName": "Moon",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Druid",
+          "classSource": "XPHB",
+          "name_es": "Círculo de la Luna"
+        },
+        {
+          "id": "druid-sea-xphb-one",
+          "name": "Circle of the Sea",
+          "shortName": "Sea",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Druid",
+          "classSource": "XPHB",
+          "name_es": "Círculo del Mar"
+        },
+        {
+          "id": "druid-stars-xphb-one",
+          "name": "Circle of the Stars",
+          "shortName": "Stars",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Druid",
+          "classSource": "XPHB",
+          "name_es": "Círculo de las estrellas"
+        }
+      ],
+      "name_es": "Druid"
+    },
+    {
+      "id": "expert-sidekick-tce-classic",
+      "name": "Expert Sidekick",
+      "source": "TCE",
+      "edition": "classic",
+      "subclassTitle": "",
+      "subclasses": [],
+      "name_es": "Expert Sidekick"
+    },
+    {
+      "id": "fighter-phb-classic",
+      "name": "Fighter",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Martial Archetype",
+      "subclasses": [
+        {
+          "id": "fighter-arcane-archer-xge-classic",
+          "name": "Arcane Archer",
+          "shortName": "Arcane Archer",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Arcane Archer"
+        },
+        {
+          "id": "fighter-battle-master-phb-classic",
+          "name": "Battle Master",
+          "shortName": "Battle Master",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Battle Master"
+        },
+        {
+          "id": "fighter-cavalier-xge-classic",
+          "name": "Cavalier",
+          "shortName": "Cavalier",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Cavalier"
+        },
+        {
+          "id": "fighter-champion-phb-classic",
+          "name": "Champion",
+          "shortName": "Champion",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Campeón"
+        },
+        {
+          "id": "fighter-echo-knight-egw-classic",
+          "name": "Echo Knight",
+          "shortName": "Echo Knight",
+          "source": "EGW",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Echo Knight"
+        },
+        {
+          "id": "fighter-eldritch-knight-phb-classic",
+          "name": "Eldritch Knight",
+          "shortName": "Eldritch Knight",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Eldritch Knight"
+        },
+        {
+          "id": "fighter-psi-warrior-tce-classic",
+          "name": "Psi Warrior",
+          "shortName": "Psi Warrior",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Psi Guerrero"
+        },
+        {
+          "id": "fighter-purple-dragon-knight-banneret-scag-classic",
+          "name": "Purple Dragon Knight (Banneret)",
+          "shortName": "Purple Dragon Knight (Banneret)",
+          "source": "SCAG",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Caballero Dragón Púrpura (Banneret)"
+        },
+        {
+          "id": "fighter-rune-knight-tce-classic",
+          "name": "Rune Knight",
+          "shortName": "Rune Knight",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Rune Knight"
+        },
+        {
+          "id": "fighter-samurai-xge-classic",
+          "name": "Samurai",
+          "shortName": "Samurai",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Fighter",
+          "classSource": "PHB",
+          "name_es": "Samurai"
+        }
+      ],
+      "name_es": "Fighter"
+    },
+    {
+      "id": "fighter-xphb-one",
+      "name": "Fighter",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Fighter Subclass",
+      "subclasses": [
+        {
+          "id": "fighter-banneret-frhof-one",
+          "name": "Banneret",
+          "shortName": "Banneret",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Fighter",
+          "classSource": "XPHB",
+          "name_es": "Banneret"
+        },
+        {
+          "id": "fighter-battle-master-xphb-one",
+          "name": "Battle Master",
+          "shortName": "Battle Master",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Fighter",
+          "classSource": "XPHB",
+          "name_es": "Battle Master"
+        },
+        {
+          "id": "fighter-champion-xphb-one",
+          "name": "Champion",
+          "shortName": "Champion",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Fighter",
+          "classSource": "XPHB",
+          "name_es": "Campeón"
+        },
+        {
+          "id": "fighter-eldritch-knight-xphb-one",
+          "name": "Eldritch Knight",
+          "shortName": "Eldritch Knight",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Fighter",
+          "classSource": "XPHB",
+          "name_es": "Eldritch Knight"
+        },
+        {
+          "id": "fighter-psi-warrior-xphb-one",
+          "name": "Psi Warrior",
+          "shortName": "Psi Warrior",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Fighter",
+          "classSource": "XPHB",
+          "name_es": "Psi Guerrero"
+        }
+      ],
+      "name_es": "Fighter"
+    },
+    {
+      "id": "monk-phb-classic",
+      "name": "Monk",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Monastic Tradition",
+      "subclasses": [
+        {
+          "id": "monk-ascendant-dragon-ftd-classic",
+          "name": "Way of the Ascendant Dragon",
+          "shortName": "Ascendant Dragon",
+          "source": "FTD",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino del Dragón Ascendente"
+        },
+        {
+          "id": "monk-astral-self-tce-classic",
+          "name": "Way of the Astral Self",
+          "shortName": "Astral Self",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino del Ser Astral"
+        },
+        {
+          "id": "monk-cobalt-soul-tdcsr-classic",
+          "name": "Way of the Cobalt Soul",
+          "shortName": "Cobalt Soul",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino del Alma Cobalto"
+        },
+        {
+          "id": "monk-drunken-master-xge-classic",
+          "name": "Way of the Drunken Master",
+          "shortName": "Drunken Master",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino del Maestro borracho"
+        },
+        {
+          "id": "monk-four-elements-phb-classic",
+          "name": "Way of the Four Elements",
+          "shortName": "Four Elements",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino de los Cuatro Elementos"
+        },
+        {
+          "id": "monk-kensei-xge-classic",
+          "name": "Way of the Kensei",
+          "shortName": "Kensei",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino del Kensei"
+        },
+        {
+          "id": "monk-long-death-scag-classic",
+          "name": "Way of the Long Death",
+          "shortName": "Long Death",
+          "source": "SCAG",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino de la larga muerte"
+        },
+        {
+          "id": "monk-mercy-tce-classic",
+          "name": "Way of Mercy",
+          "shortName": "Mercy",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino de la misericordia"
+        },
+        {
+          "id": "monk-open-hand-phb-classic",
+          "name": "Way of the Open Hand",
+          "shortName": "Open Hand",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino de la Mano Abierta"
+        },
+        {
+          "id": "monk-shadow-phb-classic",
+          "name": "Way of Shadow",
+          "shortName": "Shadow",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino de la Sombra"
+        },
+        {
+          "id": "monk-sun-soul-xge-classic",
+          "name": "Way of the Sun Soul",
+          "shortName": "Sun Soul",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Monk",
+          "classSource": "PHB",
+          "name_es": "Camino del Alma Sol"
+        }
+      ],
+      "name_es": "Monk"
+    },
+    {
+      "id": "monk-xphb-one",
+      "name": "Monk",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Monk Subclass",
+      "subclasses": [
+        {
+          "id": "monk-elements-xphb-one",
+          "name": "Warrior of the Elements",
+          "shortName": "Elements",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Monk",
+          "classSource": "XPHB",
+          "name_es": "Guerrero de los Elementos"
+        },
+        {
+          "id": "monk-mercy-xphb-one",
+          "name": "Warrior of Mercy",
+          "shortName": "Mercy",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Monk",
+          "classSource": "XPHB",
+          "name_es": "Guerrero de la Merced"
+        },
+        {
+          "id": "monk-open-hand-xphb-one",
+          "name": "Warrior of the Open Hand",
+          "shortName": "Open Hand",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Monk",
+          "classSource": "XPHB",
+          "name_es": "Guerrero de la Mano Abierta"
+        },
+        {
+          "id": "monk-shadow-xphb-one",
+          "name": "Warrior of Shadow",
+          "shortName": "Shadow",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Monk",
+          "classSource": "XPHB",
+          "name_es": "Guerrero de la Sombra"
+        }
+      ],
+      "name_es": "Monk"
+    },
+    {
+      "id": "mystic-uathemysticclass-classic",
+      "name": "Mystic",
+      "source": "UATheMysticClass",
+      "edition": "classic",
+      "subclassTitle": "Mystic Order",
+      "subclasses": [
+        {
+          "id": "mystic-avatar-uathemysticclass-classic",
+          "name": "Order of the Avatar",
+          "shortName": "Avatar",
+          "source": "UATheMysticClass",
+          "edition": "classic",
+          "className": "Mystic",
+          "classSource": "UATheMysticClass",
+          "name_es": "Orden del Avatar"
+        },
+        {
+          "id": "mystic-awakened-uathemysticclass-classic",
+          "name": "Order of the Awakened",
+          "shortName": "Awakened",
+          "source": "UATheMysticClass",
+          "edition": "classic",
+          "className": "Mystic",
+          "classSource": "UATheMysticClass",
+          "name_es": "Orden del Despertar"
+        },
+        {
+          "id": "mystic-immortal-uathemysticclass-classic",
+          "name": "Order of the Immortal",
+          "shortName": "Immortal",
+          "source": "UATheMysticClass",
+          "edition": "classic",
+          "className": "Mystic",
+          "classSource": "UATheMysticClass",
+          "name_es": "Orden del Inmortal"
+        },
+        {
+          "id": "mystic-nomad-uathemysticclass-classic",
+          "name": "Order of the Nomad",
+          "shortName": "Nomad",
+          "source": "UATheMysticClass",
+          "edition": "classic",
+          "className": "Mystic",
+          "classSource": "UATheMysticClass",
+          "name_es": "Orden del nómada"
+        },
+        {
+          "id": "mystic-soul-knife-uathemysticclass-classic",
+          "name": "Order of the Soul Knife",
+          "shortName": "Soul Knife",
+          "source": "UATheMysticClass",
+          "edition": "classic",
+          "className": "Mystic",
+          "classSource": "UATheMysticClass",
+          "name_es": "Orden del cuchillo del alma"
+        },
+        {
+          "id": "mystic-wu-jen-uathemysticclass-classic",
+          "name": "Order of the Wu Jen",
+          "shortName": "Wu Jen",
+          "source": "UATheMysticClass",
+          "edition": "classic",
+          "className": "Mystic",
+          "classSource": "UATheMysticClass",
+          "name_es": "Orden de Wu Jen"
+        }
+      ],
+      "name_es": "Mystic"
+    },
+    {
+      "id": "paladin-phb-classic",
+      "name": "Paladin",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Sacred Oath",
+      "subclasses": [
+        {
+          "id": "paladin-ancients-phb-classic",
+          "name": "Oath of the Ancients",
+          "shortName": "Ancients",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "El juramento de los antiguos"
+        },
+        {
+          "id": "paladin-conquest-xge-classic",
+          "name": "Oath of Conquest",
+          "shortName": "Conquest",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "juramento de conquista"
+        },
+        {
+          "id": "paladin-crown-scag-classic",
+          "name": "Oath of the Crown",
+          "shortName": "Crown",
+          "source": "SCAG",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "El juramento de la corona"
+        },
+        {
+          "id": "paladin-devotion-phb-classic",
+          "name": "Oath of Devotion",
+          "shortName": "Devotion",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "El juramento de la devoción"
+        },
+        {
+          "id": "paladin-glory-tce-classic",
+          "name": "Oath of Glory",
+          "shortName": "Glory",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "juramento de gloria"
+        },
+        {
+          "id": "paladin-oathbreaker-dmg-classic",
+          "name": "Oathbreaker",
+          "shortName": "Oathbreaker",
+          "source": "DMG",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "Oathbreaker"
+        },
+        {
+          "id": "paladin-open-sea-tdcsr-classic",
+          "name": "Oath of the Open Sea",
+          "shortName": "Open Sea",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "juramento del mar abierto"
+        },
+        {
+          "id": "paladin-redemption-xge-classic",
+          "name": "Oath of Redemption",
+          "shortName": "Redemption",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "juramento de redención"
+        },
+        {
+          "id": "paladin-vengeance-phb-classic",
+          "name": "Oath of Vengeance",
+          "shortName": "Vengeance",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "juramento de venganza"
+        },
+        {
+          "id": "paladin-watchers-tce-classic",
+          "name": "Oath of the Watchers",
+          "shortName": "Watchers",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Paladin",
+          "classSource": "PHB",
+          "name_es": "juramento de los vigilantes"
+        }
+      ],
+      "name_es": "Paladin"
+    },
+    {
+      "id": "paladin-xphb-one",
+      "name": "Paladin",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Paladin Subclass",
+      "subclasses": [
+        {
+          "id": "paladin-ancients-xphb-one",
+          "name": "Oath of the Ancients",
+          "shortName": "Ancients",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Paladin",
+          "classSource": "XPHB",
+          "name_es": "El juramento de los antiguos"
+        },
+        {
+          "id": "paladin-devotion-xphb-one",
+          "name": "Oath of Devotion",
+          "shortName": "Devotion",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Paladin",
+          "classSource": "XPHB",
+          "name_es": "El juramento de la devoción"
+        },
+        {
+          "id": "paladin-glory-xphb-one",
+          "name": "Oath of Glory",
+          "shortName": "Glory",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Paladin",
+          "classSource": "XPHB",
+          "name_es": "juramento de gloria"
+        },
+        {
+          "id": "paladin-noble-genies-frhof-one",
+          "name": "Oath of the Noble Genies",
+          "shortName": "Noble Genies",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Paladin",
+          "classSource": "XPHB",
+          "name_es": "El juramento de los genios nobles"
+        },
+        {
+          "id": "paladin-vengeance-xphb-one",
+          "name": "Oath of Vengeance",
+          "shortName": "Vengeance",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Paladin",
+          "classSource": "XPHB",
+          "name_es": "juramento de venganza"
+        }
+      ],
+      "name_es": "Paladin"
+    },
+    {
+      "id": "ranger-phb-classic",
+      "name": "Ranger",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Ranger Archetype",
+      "subclasses": [
+        {
+          "id": "ranger-beast-master-phb-classic",
+          "name": "Beast Master",
+          "shortName": "Beast Master",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Beast Master"
+        },
+        {
+          "id": "ranger-drakewarden-ftd-classic",
+          "name": "Drakewarden",
+          "shortName": "Drakewarden",
+          "source": "FTD",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Drakewarden"
+        },
+        {
+          "id": "ranger-fey-wanderer-tce-classic",
+          "name": "Fey Wanderer",
+          "shortName": "Fey Wanderer",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Fey Wanderer"
+        },
+        {
+          "id": "ranger-gloom-stalker-xge-classic",
+          "name": "Gloom Stalker",
+          "shortName": "Gloom Stalker",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Gloom Stalker"
+        },
+        {
+          "id": "ranger-horizon-walker-xge-classic",
+          "name": "Horizon Walker",
+          "shortName": "Horizon Walker",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Horizon Walker"
+        },
+        {
+          "id": "ranger-hunter-phb-classic",
+          "name": "Hunter",
+          "shortName": "Hunter",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Hunter"
+        },
+        {
+          "id": "ranger-monster-slayer-xge-classic",
+          "name": "Monster Slayer",
+          "shortName": "Monster Slayer",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Monster Slayer"
+        },
+        {
+          "id": "ranger-swarmkeeper-tce-classic",
+          "name": "Swarmkeeper",
+          "shortName": "Swarmkeeper",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Ranger",
+          "classSource": "PHB",
+          "name_es": "Swarmkeeper"
+        }
+      ],
+      "name_es": "Ranger"
+    },
+    {
+      "id": "ranger-xphb-one",
+      "name": "Ranger",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Ranger Subclass",
+      "subclasses": [
+        {
+          "id": "ranger-beast-master-xphb-one",
+          "name": "Beast Master",
+          "shortName": "Beast Master",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Ranger",
+          "classSource": "XPHB",
+          "name_es": "Beast Master"
+        },
+        {
+          "id": "ranger-fey-wanderer-xphb-one",
+          "name": "Fey Wanderer",
+          "shortName": "Fey Wanderer",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Ranger",
+          "classSource": "XPHB",
+          "name_es": "Fey Wanderer"
+        },
+        {
+          "id": "ranger-gloom-stalker-xphb-one",
+          "name": "Gloom Stalker",
+          "shortName": "Gloom Stalker",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Ranger",
+          "classSource": "XPHB",
+          "name_es": "Gloom Stalker"
+        },
+        {
+          "id": "ranger-hunter-xphb-one",
+          "name": "Hunter",
+          "shortName": "Hunter",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Ranger",
+          "classSource": "XPHB",
+          "name_es": "Hunter"
+        },
+        {
+          "id": "ranger-winter-walker-frhof-one",
+          "name": "Winter Walker",
+          "shortName": "Winter Walker",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Ranger",
+          "classSource": "XPHB",
+          "name_es": "Winter Walker"
+        }
+      ],
+      "name_es": "Ranger"
+    },
+    {
+      "id": "rogue-phb-classic",
+      "name": "Rogue",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Roguish Archetype",
+      "subclasses": [
+        {
+          "id": "rogue-arcane-trickster-phb-classic",
+          "name": "Arcane Trickster",
+          "shortName": "Arcane Trickster",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Arcane Trickster"
+        },
+        {
+          "id": "rogue-assassin-phb-classic",
+          "name": "Assassin",
+          "shortName": "Assassin",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Assassin"
+        },
+        {
+          "id": "rogue-inquisitive-xge-classic",
+          "name": "Inquisitive",
+          "shortName": "Inquisitive",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Inquisitivo"
+        },
+        {
+          "id": "rogue-mastermind-xge-classic",
+          "name": "Mastermind",
+          "shortName": "Mastermind",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Mastermind"
+        },
+        {
+          "id": "rogue-phantom-tce-classic",
+          "name": "Phantom",
+          "shortName": "Phantom",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Fantasma"
+        },
+        {
+          "id": "rogue-scout-xge-classic",
+          "name": "Scout",
+          "shortName": "Scout",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Scout"
+        },
+        {
+          "id": "rogue-soulknife-tce-classic",
+          "name": "Soulknife",
+          "shortName": "Soulknife",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Soulknife"
+        },
+        {
+          "id": "rogue-swashbuckler-xge-classic",
+          "name": "Swashbuckler",
+          "shortName": "Swashbuckler",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Swashbuckler"
+        },
+        {
+          "id": "rogue-thief-phb-classic",
+          "name": "Thief",
+          "shortName": "Thief",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Thief"
+        }
+      ],
+      "name_es": "Rogue"
+    },
+    {
+      "id": "rogue-xphb-one",
+      "name": "Rogue",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Rogue Subclass",
+      "subclasses": [
+        {
+          "id": "rogue-arcane-trickster-xphb-one",
+          "name": "Arcane Trickster",
+          "shortName": "Arcane Trickster",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Rogue",
+          "classSource": "XPHB",
+          "name_es": "Arcane Trickster"
+        },
+        {
+          "id": "rogue-assassin-xphb-one",
+          "name": "Assassin",
+          "shortName": "Assassin",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Rogue",
+          "classSource": "XPHB",
+          "name_es": "Assassin"
+        },
+        {
+          "id": "rogue-scion-of-the-three-frhof-one",
+          "name": "Scion of the Three",
+          "shortName": "Scion of the Three",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Rogue",
+          "classSource": "XPHB",
+          "name_es": "Scion of the Three"
+        },
+        {
+          "id": "rogue-soulknife-xphb-one",
+          "name": "Soulknife",
+          "shortName": "Soulknife",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Rogue",
+          "classSource": "XPHB",
+          "name_es": "Soulknife"
+        },
+        {
+          "id": "rogue-thief-xphb-one",
+          "name": "Thief",
+          "shortName": "Thief",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Rogue",
+          "classSource": "XPHB",
+          "name_es": "Thief"
+        },
+        {
+          "id": "rogue-highway-rider-grimHollow",
+          "name": "Highway Rider",
+          "shortName": "Highway Rider",
+          "source": "Grim Hollow",
+          "edition": "homebrew",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Highway Rider"
+        },
+        {
+          "id": "rogue-misfortune-bringer-grimHollow",
+          "name": "Misfortune Bringer",
+          "shortName": "Misfortune Bringer",
+          "source": "Grim Hollow",
+          "edition": "homebrew",
+          "className": "Rogue",
+          "classSource": "PHB",
+          "name_es": "Misfortune Bringer"
+        }
+      ],
+      "name_es": "Rogue"
+    },
+    {
+      "id": "sorcerer-phb-classic",
+      "name": "Sorcerer",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Sorcerous Origin",
+      "subclasses": [
+        {
+          "id": "sorcerer-aberrant-mind-tce-classic",
+          "name": "Aberrant Mind",
+          "shortName": "Aberrant Mind",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Mente aberrante"
+        },
+        {
+          "id": "sorcerer-clockwork-soul-tce-classic",
+          "name": "Clockwork Soul",
+          "shortName": "Clockwork Soul",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Clockwork Soul"
+        },
+        {
+          "id": "sorcerer-divine-soul-xge-classic",
+          "name": "Divine Soul",
+          "shortName": "Divine Soul",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Alma Divina"
+        },
+        {
+          "id": "sorcerer-draconic-phb-classic",
+          "name": "Draconic Bloodline",
+          "shortName": "Draconic",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Draconic Bloodline"
+        },
+        {
+          "id": "sorcerer-lunar-dsotdq-classic",
+          "name": "Lunar Sorcery",
+          "shortName": "Lunar",
+          "source": "DSotDQ",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Sorcería Lunar"
+        },
+        {
+          "id": "sorcerer-pyromancer-psk-psk-classic",
+          "name": "Pyromancer (PSK)",
+          "shortName": "Pyromancer (PSK)",
+          "source": "PSK",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Pyromancer (PSK)"
+        },
+        {
+          "id": "sorcerer-runechild-tdcsr-classic",
+          "name": "Runechild",
+          "shortName": "Runechild",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Runechild"
+        },
+        {
+          "id": "sorcerer-shadow-xge-classic",
+          "name": "Shadow Magic",
+          "shortName": "Shadow",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Shadow Magic"
+        },
+        {
+          "id": "sorcerer-storm-xge-classic",
+          "name": "Storm Sorcery",
+          "shortName": "Storm",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Storm Sorcery"
+        },
+        {
+          "id": "sorcerer-wild-phb-classic",
+          "name": "Wild Magic",
+          "shortName": "Wild",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Sorcerer",
+          "classSource": "PHB",
+          "name_es": "Wild Magic"
+        }
+      ],
+      "name_es": "Hechicero"
+    },
+    {
+      "id": "sorcerer-xphb-one",
+      "name": "Sorcerer",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Sorcerer Subclass",
+      "subclasses": [
+        {
+          "id": "sorcerer-aberrant-xphb-one",
+          "name": "Aberrant Sorcery",
+          "shortName": "Aberrant",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Sorcerer",
+          "classSource": "XPHB",
+          "name_es": "Aberrant Sorcery"
+        },
+        {
+          "id": "sorcerer-clockwork-xphb-one",
+          "name": "Clockwork Sorcery",
+          "shortName": "Clockwork",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Sorcerer",
+          "classSource": "XPHB",
+          "name_es": "Cierre de relojería"
+        },
+        {
+          "id": "sorcerer-draconic-xphb-one",
+          "name": "Draconic Sorcery",
+          "shortName": "Draconic",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Sorcerer",
+          "classSource": "XPHB",
+          "name_es": "Draconic Sorcery"
+        },
+        {
+          "id": "sorcerer-spellfire-frhof-one",
+          "name": "Spellfire Sorcery",
+          "shortName": "Spellfire",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Sorcerer",
+          "classSource": "XPHB",
+          "name_es": "Spellfire Sorcery"
+        },
+        {
+          "id": "sorcerer-wild-magic-xphb-one",
+          "name": "Wild Magic Sorcery",
+          "shortName": "Wild Magic",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Sorcerer",
+          "classSource": "XPHB",
+          "name_es": "Wild Magic Sorcery"
+        }
+      ],
+      "name_es": "Hechicero"
+    },
+    {
+      "id": "spellcaster-sidekick-tce-classic",
+      "name": "Spellcaster Sidekick",
+      "source": "TCE",
+      "edition": "classic",
+      "subclassTitle": "",
+      "subclasses": [],
+      "name_es": "Spellcaster Sidekick"
+    },
+    {
+      "id": "warlock-phb-classic",
+      "name": "Warlock",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Otherworldly Patron",
+      "subclasses": [
+        {
+          "id": "warlock-archfey-phb-classic",
+          "name": "The Archfey",
+          "shortName": "Archfey",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El Archifey"
+        },
+        {
+          "id": "warlock-celestial-xge-classic",
+          "name": "The Celestial",
+          "shortName": "Celestial",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El Celestial"
+        },
+        {
+          "id": "warlock-fathomless-tce-classic",
+          "name": "The Fathomless",
+          "shortName": "Fathomless",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El sinvergüenza"
+        },
+        {
+          "id": "warlock-fiend-phb-classic",
+          "name": "The Fiend",
+          "shortName": "Fiend",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "The Fiend"
+        },
+        {
+          "id": "warlock-genie-tce-classic",
+          "name": "The Genie",
+          "shortName": "Genie",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El genio"
+        },
+        {
+          "id": "warlock-great-old-one-phb-classic",
+          "name": "The Great Old One",
+          "shortName": "Great Old One",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El Gran Viejo"
+        },
+        {
+          "id": "warlock-hexblade-xge-classic",
+          "name": "The Hexblade",
+          "shortName": "Hexblade",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El Hexblade"
+        },
+        {
+          "id": "warlock-undead-vrgr-classic",
+          "name": "The Undead",
+          "shortName": "Undead",
+          "source": "VRGR",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "Los muertos"
+        },
+        {
+          "id": "warlock-undying-scag-classic",
+          "name": "The Undying",
+          "shortName": "Undying",
+          "source": "SCAG",
+          "edition": "classic",
+          "className": "Warlock",
+          "classSource": "PHB",
+          "name_es": "El Undying"
+        }
+      ],
+      "name_es": "Warlock"
+    },
+    {
+      "id": "warlock-xphb-one",
+      "name": "Warlock",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Warlock Subclass",
+      "subclasses": [
+        {
+          "id": "warlock-archfey-xphb-one",
+          "name": "Archfey Patron",
+          "shortName": "Archfey",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Warlock",
+          "classSource": "XPHB",
+          "name_es": "Archfey Patron"
+        },
+        {
+          "id": "warlock-celestial-xphb-one",
+          "name": "Celestial Patron",
+          "shortName": "Celestial",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Warlock",
+          "classSource": "XPHB",
+          "name_es": "Patrón Celestial"
+        },
+        {
+          "id": "warlock-fiend-xphb-one",
+          "name": "Fiend Patron",
+          "shortName": "Fiend",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Warlock",
+          "classSource": "XPHB",
+          "name_es": "Fiend Patron"
+        },
+        {
+          "id": "warlock-great-old-one-xphb-one",
+          "name": "Great Old One Patron",
+          "shortName": "Great Old One",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Warlock",
+          "classSource": "XPHB",
+          "name_es": "Gran Patrono Viejo"
+        }
+      ],
+      "name_es": "Warlock"
+    },
+    {
+      "id": "warrior-sidekick-tce-classic",
+      "name": "Warrior Sidekick",
+      "source": "TCE",
+      "edition": "classic",
+      "subclassTitle": "",
+      "subclasses": [],
+      "name_es": "Guerrero Sidekick"
+    },
+    {
+      "id": "wizard-phb-classic",
+      "name": "Wizard",
+      "source": "PHB",
+      "edition": "classic",
+      "subclassTitle": "Arcane Tradition",
+      "subclasses": [
+        {
+          "id": "wizard-abjuration-phb-classic",
+          "name": "School of Abjuration",
+          "shortName": "Abjuration",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Escuela de Abjuración"
+        },
+        {
+          "id": "wizard-bladesinging-tce-classic",
+          "name": "Bladesinging",
+          "shortName": "Bladesinging",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Bladesing"
+        },
+        {
+          "id": "wizard-blood-magic-tdcsr-classic",
+          "name": "Blood Magic",
+          "shortName": "Blood Magic",
+          "source": "TDCSR",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Blood Magic"
+        },
+        {
+          "id": "wizard-chronurgy-egw-classic",
+          "name": "Chronurgy Magic",
+          "shortName": "Chronurgy",
+          "source": "EGW",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Chronurgy Magic"
+        },
+        {
+          "id": "wizard-conjuration-phb-classic",
+          "name": "School of Conjuration",
+          "shortName": "Conjuration",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Escuela de Conjuración"
+        },
+        {
+          "id": "wizard-divination-phb-classic",
+          "name": "School of Divination",
+          "shortName": "Divination",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "School of Divination"
+        },
+        {
+          "id": "wizard-enchantment-phb-classic",
+          "name": "School of Enchantment",
+          "shortName": "Enchantment",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "School of Enchantment"
+        },
+        {
+          "id": "wizard-evocation-phb-classic",
+          "name": "School of Evocation",
+          "shortName": "Evocation",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "School of Evocation"
+        },
+        {
+          "id": "wizard-graviturgy-egw-classic",
+          "name": "Graviturgy Magic",
+          "shortName": "Graviturgy",
+          "source": "EGW",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Graviturgy Magic"
+        },
+        {
+          "id": "wizard-illusion-phb-classic",
+          "name": "School of Illusion",
+          "shortName": "Illusion",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Escuela de Ilusión"
+        },
+        {
+          "id": "wizard-necromancy-phb-classic",
+          "name": "School of Necromancy",
+          "shortName": "Necromancy",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Escuela de Necromancia"
+        },
+        {
+          "id": "wizard-scribes-tce-classic",
+          "name": "Order of Scribes",
+          "shortName": "Scribes",
+          "source": "TCE",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "Orden de los escribas"
+        },
+        {
+          "id": "wizard-transmutation-phb-classic",
+          "name": "School of Transmutation",
+          "shortName": "Transmutation",
+          "source": "PHB",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "School of Transmutation"
+        },
+        {
+          "id": "wizard-war-xge-classic",
+          "name": "War Magic",
+          "shortName": "War",
+          "source": "XGE",
+          "edition": "classic",
+          "className": "Wizard",
+          "classSource": "PHB",
+          "name_es": "War Magic"
+        }
+      ],
+      "name_es": "Wizard"
+    },
+    {
+      "id": "wizard-xphb-one",
+      "name": "Wizard",
+      "source": "XPHB",
+      "edition": "one",
+      "subclassTitle": "Wizard Subclass",
+      "subclasses": [
+        {
+          "id": "wizard-abjurer-xphb-one",
+          "name": "Abjurer",
+          "shortName": "Abjurer",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Wizard",
+          "classSource": "XPHB",
+          "name_es": "Abjurer"
+        },
+        {
+          "id": "wizard-bladesinger-frhof-one",
+          "name": "Bladesinger",
+          "shortName": "Bladesinger",
+          "source": "FRHoF",
+          "edition": "one",
+          "className": "Wizard",
+          "classSource": "XPHB",
+          "name_es": "Bladesinger"
+        },
+        {
+          "id": "wizard-diviner-xphb-one",
+          "name": "Diviner",
+          "shortName": "Diviner",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Wizard",
+          "classSource": "XPHB",
+          "name_es": "Divinor"
+        },
+        {
+          "id": "wizard-evoker-xphb-one",
+          "name": "Evoker",
+          "shortName": "Evoker",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Wizard",
+          "classSource": "XPHB",
+          "name_es": "Evoker"
+        },
+        {
+          "id": "wizard-illusionist-xphb-one",
+          "name": "Illusionist",
+          "shortName": "Illusionist",
+          "source": "XPHB",
+          "edition": "one",
+          "className": "Wizard",
+          "classSource": "XPHB",
+          "name_es": "Illusionista"
+        }
+      ],
+      "name_es": "Wizard"
+    }
+  ]
+}

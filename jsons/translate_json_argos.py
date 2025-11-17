@@ -4,38 +4,7 @@ import argparse
 import re
 from pathlib import Path
 
-from argostranslate import translate as atranslate
-
-
-# ---------- INICIALIZACIÓN DEL TRADUCTOR (ARGOS) ----------
-
-_translator_cache = {}
-
-
-def get_translator(source="en", target="es"):
-    """
-    Devuelve un traductor Argos de source -> target.
-    Requiere que el modelo de idiomas esté instalado.
-    """
-    global _translator_cache
-    key = (source, target)
-    if key in _translator_cache:
-        return _translator_cache[key]
-
-    installed_languages = atranslate.get_installed_languages()
-    from_lang = next((l for l in installed_languages if l.code == source), None)
-    to_lang = next((l for l in installed_languages if l.code == target), None)
-
-    if not from_lang or not to_lang:
-        print("❌ No se encontró el modelo de idiomas para", source, "->", target)
-        print("   Asegúrate de haber instalado el par de idiomas con:")
-        print("   python -m argostranslate.gui")
-        sys.exit(1)
-
-    translator = from_lang.get_translation(to_lang)
-    _translator_cache[key] = translator
-    return translator
-
+import argostranslate.translate as atranslate
 
 # ---------- TRADUCCIÓN DE TEXTO (OPCIÓN A) ----------
 
@@ -48,9 +17,7 @@ def translate_text(text: str, source="en", target="es") -> str:
     if not isinstance(text, str) or not text.strip():
         return text
 
-    translator = get_translator(source, target)
-
-    # Proteger tags {@...} para que el traductor no los toque
+    # Proteger tags {@...} o {#...} para que el traductor no los toque
     tag_pattern = r"\{[@#][^}]+\}"
     tags = re.findall(tag_pattern, text)
     placeholders = {}
@@ -62,7 +29,8 @@ def translate_text(text: str, source="en", target="es") -> str:
         tmp = tmp.replace(tag, key)
 
     try:
-        translated = translator.translate(tmp)
+        # Usamos directamente la función de ejemplo del README
+        translated = atranslate.translate(tmp, source, target)
     except Exception as e:
         print("⚠️ Error traduciendo texto, se deja el original.")
         print("   Texto:", text[:80], "...")
@@ -79,11 +47,6 @@ def translate_text(text: str, source="en", target="es") -> str:
 # ---------- LÓGICA DE TRADUCCIÓN JSON (OPCIÓN A) ----------
 
 def translate_entries_list(entries, source="en", target="es"):
-    """
-    Crea una versión paralela de entries: entries_es.
-    - Traduce solo strings.
-    - Deja dicts y estructuras tal cual, pero recursivamente se añaden sus propios *_es.
-    """
     out = []
     for item in entries:
         if isinstance(item, str):
@@ -99,19 +62,18 @@ def translate_entries_list(entries, source="en", target="es"):
 
 def translate_json(obj, source="en", target="es"):
     """
-    Recorre el JSON y aplica la Opción A:
-    - Si encuentra "name": añade "name_es" (si no existe).
-    - Si encuentra "entries": añade "entries_es" (si no existe).
-    - NO toca id, className, source, etc.
-    - Mantiene estructura intacta.
+    Opción A:
+    - name -> name_es
+    - entries -> entries_es
+    - NO tocar id, className, source, etc.
     """
     if isinstance(obj, dict):
         new_obj = {}
-        # Primero copiamos todo recursivamente
+        # Copiamos todo recursivamente
         for k, v in obj.items():
             new_obj[k] = translate_json(v, source, target)
 
-        # 1) name -> name_es (si es texto “visible”)
+        # 1) name -> name_es
         if "name" in obj and isinstance(obj["name"], str) and "name_es" not in obj:
             new_obj["name_es"] = translate_text(obj["name"], source, target)
 
@@ -125,28 +87,19 @@ def translate_json(obj, source="en", target="es"):
         return [translate_json(x, source, target) for x in obj]
 
     else:
-        # int, float, str (no envuelto en name/entries), etc.
+        # ints, floats, strings sueltas, etc.
         return obj
 
 
-# ---------- MAIN CLI ----------
+# ---------- MAIN ----------
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Traduce un JSON de 5eTools al español siguiendo la Opción A (Argos offline)."
+        description="Traduce un JSON de 5eTools al español siguiendo la Opción A (Argos)."
     )
-    parser.add_argument(
-        "filename",
-        help="Nombre del archivo JSON a traducir (por ejemplo dnd-spells.json)"
-    )
-    parser.add_argument(
-        "--source-lang", default="en",
-        help="Idioma origen (por defecto: en)"
-    )
-    parser.add_argument(
-        "--target-lang", default="es",
-        help="Idioma destino (por defecto: es)"
-    )
+    parser.add_argument("filename", help="Archivo JSON a traducir, p.ej. dnd-spells.json")
+    parser.add_argument("--source-lang", default="en")
+    parser.add_argument("--target-lang", default="es")
     args = parser.parse_args()
 
     in_path = Path(args.filename)
@@ -158,7 +111,7 @@ def main():
     with in_path.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
-    print("Traduciendo... (esto puede tardar según el tamaño del JSON y del modelo)")
+    print("Traduciendo... (puede tardar según el tamaño del JSON y del modelo)")
     translated = translate_json(data, args.source_lang, args.target_lang)
 
     out_path = in_path.with_name(in_path.stem + f"-{args.target_lang}.json")
@@ -167,7 +120,6 @@ def main():
 
     print("✅ Traducción terminada.")
     print(f"Archivo generado: {out_path}")
-
 
 if __name__ == "__main__":
     main()

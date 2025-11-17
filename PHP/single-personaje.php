@@ -21,7 +21,14 @@ $titulo = get_the_title();
 
     <a class="personaje-boton" href="<?php echo home_url('/grimorio/' . get_post_field('post_name', get_the_ID())); ?>">Grimorio</a>
   </div>
+  </div>
 </div>
+
+<?php if ( function_exists( 'drak_render_gallery_for_post' ) ) : ?>
+  <div class="personaje-galeria">
+    <?php drak_render_gallery_for_post( get_the_ID() ); ?>
+  </div>
+<?php endif; ?>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

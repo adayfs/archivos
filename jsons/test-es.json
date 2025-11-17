@@ -1,0 +1,17 @@
+{
+  "spells": [
+    {
+      "id": "acid-splash-phb",
+      "name": "Acid Splash",
+      "entries": [
+        "You hurl a bubble of acid.",
+        "Choose one or two creatures you can see within range."
+      ],
+      "name_es": "Acid Splash",
+      "entries_es": [
+        "Arruinas una burbuja de ácido.",
+        "Elige una o dos criaturas que puedas ver dentro del rango."
+      ]
+    }
+  ]
+}

@@ -3289,8 +3289,9 @@ add_action('wp_enqueue_scripts', function () {
         $personaje = $personaje_slug ? get_page_by_path($personaje_slug, OBJECT, 'personaje') : null;
         $post_id = $personaje ? $personaje->ID : 0;
 
+        wp_enqueue_script('dnd5-renderer', get_stylesheet_directory_uri() . '/js/dnd5-renderer.js', [], null, true);
         wp_enqueue_script('class-reference-js', get_stylesheet_directory_uri() . '/js/class-reference.js', ['jquery'], null, true);
-        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js'], null, true);
+        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js', 'dnd5-renderer'], null, true);
         wp_localize_script('hoja-personaje-js', 'HP_TEMP_AJAX', [
             'ajax_url' => drak_get_admin_ajax_url(),
             'post_id' => $post_id,
@@ -3309,6 +3310,16 @@ add_action('wp_enqueue_scripts', function () {
             'esotericTheoriesData' => $apothecary_theories,
         ]);
         wp_localize_script('hoja-personaje-js', 'APOTHECARY_THEORY_CATALOG', $apothecary_theories );
+        wp_enqueue_script('spell-search-js', get_stylesheet_directory_uri() . '/js/spell-search.js', ['jquery', 'dnd5-renderer'], null, true);
+        wp_localize_script('spell-search-js', 'SPELL_SEARCH_CONFIG', [
+            'ajax_url' => drak_get_admin_ajax_url(),
+            'classes'  => drak_get_spellcasting_classes(),
+            'labels'   => [
+                'placeholder' => __( 'Escribe el nombre del conjuro…', 'grimorio' ),
+                'empty'       => __( 'No se encontraron resultados para tu búsqueda.', 'grimorio' ),
+                'error'       => __( 'No se pudo completar la búsqueda. Inténtalo nuevamente.', 'grimorio' ),
+            ],
+        ]);
 
     }
 
@@ -3356,9 +3367,10 @@ add_action('wp_enqueue_scripts', function () {
         $transformation_state = drak_grimorio_get_transformation_state( $post_id );
         $transformation_nonce = wp_create_nonce( 'grimorio_transformation_' . $post_id );
 
+        wp_enqueue_script('dnd5-renderer', get_stylesheet_directory_uri() . '/js/dnd5-renderer.js', [], null, true);
         wp_enqueue_script('class-reference-js', get_stylesheet_directory_uri() . '/js/class-reference.js', ['jquery'], null, true);
-        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js'], null, true);
-        wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', ['jquery', 'class-reference-js', 'hoja-personaje-js'], null, true);
+        wp_enqueue_script('hoja-personaje-js', get_stylesheet_directory_uri() . '/js/hoja-personaje.js', ['jquery', 'class-reference-js', 'dnd5-renderer'], null, true);
+        wp_enqueue_script('grimorio-js', get_stylesheet_directory_uri() . '/js/grimorio.js', ['jquery', 'class-reference-js', 'hoja-personaje-js', 'dnd5-renderer'], null, true);
         $grimorio_apothecary_theories = array_values( drak_get_apothecary_theories_catalog() );
         wp_localize_script('grimorio-js', 'DND5_STATIC_DATA', [
             'races'        => drak_static_data_uri( 'dnd-races.json' ),
@@ -3405,7 +3417,7 @@ add_action('wp_enqueue_scripts', function () {
             'transformation'    => $transformation_state,
             'transformation_nonce' => $transformation_nonce,
         ]);
-        wp_enqueue_script('spell-search-js', get_stylesheet_directory_uri() . '/js/spell-search.js', ['jquery'], null, true);
+        wp_enqueue_script('spell-search-js', get_stylesheet_directory_uri() . '/js/spell-search.js', ['jquery', 'dnd5-renderer'], null, true);
         wp_localize_script('spell-search-js', 'SPELL_SEARCH_CONFIG', [
             'ajax_url' => drak_get_admin_ajax_url(),
             'classes'  => drak_get_spellcasting_classes(),
@@ -3474,7 +3486,10 @@ function drak_get_local_dnd_classes_data() {
         return $cached;
     }
 
-    $path = drak_locate_theme_data_file( 'dnd-classes.json' );
+    $path = drak_locate_theme_data_file( 'dnd-classes-es.json' );
+    if ( ! $path ) {
+        $path = drak_locate_theme_data_file( 'dnd-classes.json' );
+    }
     if (!$path) {
         return null;
     }
@@ -3489,8 +3504,40 @@ function drak_get_local_dnd_classes_data() {
         return null;
     }
 
-    $cached = $data;
+    $cached = drak_localize_class_data( $data );
     return $cached;
+}
+
+function drak_localize_class_data( $data ) {
+    if ( ! is_array( $data ) || empty( $data['classes'] ) ) {
+        return $data;
+    }
+
+    $data['classes'] = array_map( static function ( $class ) {
+        if ( isset( $class['name_es'] ) && $class['name_es'] !== '' ) {
+            $class['name'] = $class['name_es'];
+        }
+        if ( isset( $class['shortName_es'] ) && $class['shortName_es'] !== '' ) {
+            $class['shortName'] = $class['shortName_es'];
+        }
+        if ( isset( $class['subclassTitle_es'] ) && $class['subclassTitle_es'] !== '' ) {
+            $class['subclassTitle'] = $class['subclassTitle_es'];
+        }
+        if ( ! empty( $class['subclasses'] ) && is_array( $class['subclasses'] ) ) {
+            $class['subclasses'] = array_map( static function ( $subclass ) {
+                if ( isset( $subclass['name_es'] ) && $subclass['name_es'] !== '' ) {
+                    $subclass['name'] = $subclass['name_es'];
+                }
+                if ( isset( $subclass['shortName_es'] ) && $subclass['shortName_es'] !== '' ) {
+                    $subclass['shortName'] = $subclass['shortName_es'];
+                }
+                return $subclass;
+            }, $class['subclasses'] );
+        }
+        return $class;
+    }, $data['classes'] );
+
+    return $data;
 }
 
 /**
@@ -3954,8 +4001,47 @@ function drak_get_local_dnd_class_features_data() {
         'subclassFeatures' => [],
     ];
 
-    $cache = array_merge( $defaults, $data );
+    $cache = drak_localize_class_features_data( array_merge( $defaults, $data ) );
     return $cache;
+}
+
+function drak_localize_class_features_data( $data ) {
+    foreach ( ['classFeatures', 'subclassFeatures'] as $key ) {
+        if ( empty( $data[ $key ] ) ) {
+            continue;
+        }
+        if ( 'subclassFeatures' === $key ) {
+            foreach ( $data[ $key ] as $subKey => $list ) {
+                if ( ! is_array( $list ) ) {
+                    continue;
+                }
+                $data[ $key ][ $subKey ] = array_map( 'drak_localize_feature_entry', $list );
+            }
+        } else {
+            $data[ $key ] = array_map( 'drak_localize_feature_entry', $data[ $key ] );
+        }
+    }
+    return $data;
+}
+
+function drak_localize_feature_entry( $entry ) {
+    if ( ! is_array( $entry ) ) {
+        return $entry;
+    }
+
+    if ( isset( $entry['name_es'] ) && $entry['name_es'] !== '' ) {
+        $entry['name'] = $entry['name_es'];
+    }
+
+    if ( ! empty( $entry['entries_es'] ) && is_array( $entry['entries_es'] ) ) {
+        $entry['entries'] = $entry['entries_es'];
+    }
+
+    if ( ! empty( $entry['shortEntries_es'] ) && is_array( $entry['shortEntries_es'] ) ) {
+        $entry['shortEntries'] = $entry['shortEntries_es'];
+    }
+
+    return $entry;
 }
 
 /**
@@ -4038,7 +4124,10 @@ function drak_get_local_dnd_spells() {
         return $cache;
     }
 
-    $path = drak_locate_theme_data_file( 'dnd-spells.json' );
+    $path = drak_locate_theme_data_file( 'dnd-spells-es.json' );
+    if ( ! $path ) {
+        $path = drak_locate_theme_data_file( 'dnd-spells.json' );
+    }
     if ( ! $path ) {
         $cache = [];
         return $cache;
@@ -4051,8 +4140,29 @@ function drak_get_local_dnd_spells() {
         return $cache;
     }
 
-    $cache = $data['spells'];
+    $spells = is_array( $data['spells'] ?? null ) ? $data['spells'] : [];
+    $cache = array_map( 'drak_localize_spell_data', $spells );
     return $cache;
+}
+
+function drak_localize_spell_data( $spell ) {
+    if ( ! is_array( $spell ) ) {
+        return $spell;
+    }
+
+    if ( ! empty( $spell['entries_es'] ) && is_array( $spell['entries_es'] ) ) {
+        $spell['entries'] = $spell['entries_es'];
+    }
+
+    if ( ! empty( $spell['entriesHigherLevel_es'] ) && is_array( $spell['entriesHigherLevel_es'] ) ) {
+        $spell['entriesHigherLevel'] = $spell['entriesHigherLevel_es'];
+    }
+
+    if ( ! empty( $spell['entriesAlt_es'] ) && is_array( $spell['entriesAlt_es'] ) ) {
+        $spell['entriesAlt'] = $spell['entriesAlt_es'];
+    }
+
+    return $spell;
 }
 
 function drak_get_spellcasting_classes() {

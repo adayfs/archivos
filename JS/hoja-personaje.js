@@ -255,6 +255,8 @@
     return apothecaryTheoryCache || {};
   }
 
+  apothecaryTheoryCache = updateTheoryCacheFromList(getStaticEsotericTheoryList());
+
   function ensureEsotericTheoryCatalog() {
     if (apothecaryTheoryCache && Object.keys(apothecaryTheoryCache).length) {
       return apothecaryTheoryCache;
@@ -1191,52 +1193,60 @@
         return;
       }
 
+      function renderFromCatalog(catalog) {
+        const entries = Object.values(catalog || {});
+        if (!entries.length) {
+          renderEmptyState('No se encontraron teorías.');
+          return;
+        }
+
+        const currentSelection = getSelectedEsotericTheories();
+        const sanitized = clampTheorySelection(currentSelection, level, classId);
+        if (sanitized.length !== currentSelection.length) {
+          setSelectedEsotericTheories(sanitized, { silent: true });
+        } else {
+          refreshApothecaryTheoryDisplay();
+        }
+
+        const selection = new Set(getSelectedEsotericTheories());
+        const sorted = entries.sort((a, b) => {
+          if (a.level !== b.level) {
+            return a.level - b.level;
+          }
+          return (a.name || '').localeCompare(b.name || '');
+        });
+
+        const content = sorted
+          .map((theory) => {
+            const requiredLevel = Number(theory.level) || 0;
+            const unlocked = !requiredLevel || level >= requiredLevel;
+            const checked = unlocked && selection.has(theory.id);
+            const requirement = requiredLevel ? `Requiere nivel ${requiredLevel}` : 'Sin requisito';
+            const disabledAttr = unlocked ? '' : 'disabled';
+            const checkedAttr = checked ? 'checked' : '';
+            return `
+              <label class="theory-picker__option ${unlocked ? '' : 'is-disabled'}">
+                <input type="checkbox" data-theory-id="${theory.id}" ${checkedAttr} ${disabledAttr}>
+                <span class="theory-picker__option-name">${escapeHtml(theory.name || theory.id)}</span>
+                <small class="theory-picker__option-meta">${escapeHtml(requirement)}</small>
+              </label>
+            `;
+          })
+          .join('');
+
+        container.innerHTML = content || '<p class="theory-picker__hint">No hay teorías disponibles.</p>';
+        bindCheckboxes();
+      }
+
+      const cached = ensureEsotericTheoryCatalog();
+      if (Object.keys(cached).length) {
+        renderFromCatalog(cached);
+        return;
+      }
+
       container.innerHTML = '<p class="theory-picker__hint">Cargando teorías esotéricas…</p>';
       fetchApothecaryTheoryCatalog()
-        .then((catalog) => {
-          const entries = Object.values(catalog || {});
-          if (!entries.length) {
-            renderEmptyState('No se encontraron teorías.');
-            return;
-          }
-
-          const currentSelection = getSelectedEsotericTheories();
-          const sanitized = clampTheorySelection(currentSelection, level, classId);
-          if (sanitized.length !== currentSelection.length) {
-            setSelectedEsotericTheories(sanitized, { silent: true });
-          } else {
-            refreshApothecaryTheoryDisplay();
-          }
-
-          const selection = new Set(getSelectedEsotericTheories());
-          const sorted = entries.sort((a, b) => {
-            if (a.level !== b.level) {
-              return a.level - b.level;
-            }
-            return (a.name || '').localeCompare(b.name || '');
-          });
-
-          const content = sorted
-            .map((theory) => {
-              const requiredLevel = Number(theory.level) || 0;
-              const unlocked = !requiredLevel || level >= requiredLevel;
-              const checked = unlocked && selection.has(theory.id);
-              const requirement = requiredLevel ? `Requiere nivel ${requiredLevel}` : 'Sin requisito';
-              const disabledAttr = unlocked ? '' : 'disabled';
-              const checkedAttr = checked ? 'checked' : '';
-              return `
-                <label class="theory-picker__option ${unlocked ? '' : 'is-disabled'}">
-                  <input type="checkbox" data-theory-id="${theory.id}" ${checkedAttr} ${disabledAttr}>
-                  <span class="theory-picker__option-name">${escapeHtml(theory.name || theory.id)}</span>
-                  <small class="theory-picker__option-meta">${escapeHtml(requirement)}</small>
-                </label>
-              `;
-            })
-            .join('');
-
-          container.innerHTML = content || '<p class="theory-picker__hint">No hay teorías disponibles.</p>';
-          bindCheckboxes();
-        })
+        .then((catalog) => renderFromCatalog(catalog))
         .catch(() => {
           renderEmptyState('No se pudieron cargar las teorías.');
         });

@@ -1,0 +1,962 @@
+.contenido-grimorio {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #fff;
+    --grimorio-accent: #f36aff;
+    --grimorio-concentration-bg: #fe00f1;
+    --grimorio-concentration-text: #9933ff;
+}
+
+.titulo-grimorio {
+    margin-bottom: 1.5rem;
+}
+
+.grimorio-caster-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 1.5rem auto 2.5rem;
+    max-width: 900px;
+}
+
+.grimorio-caster-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 140px;
+}
+
+.grimorio-caster-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c8b3ff;
+}
+
+.grimorio-caster-badge {
+    width: 72px;
+    height: 72px;
+    background-image: none !important;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(153, 51, 255, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.65);
+}
+
+.grimorio-caster-badge span {
+    user-select: none;
+}
+
+.grimorio-caster-value {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--grimorio-accent);
+}
+
+.grimorio-formulario {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 1.5rem;
+}
+
+.grimorio-slot-grid h3,
+.grimorio-prepared h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+.grimorio-slot-grid__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.grimorio-slot-column {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
+
+.grimorio-slot-column header {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.grimorio-slot-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: center;
+}
+
+.grimorio-slot-checkboxes label {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.grimorio-slot-checkboxes input {
+    display: none;
+}
+
+.grimorio-slot-checkboxes label span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.15s ease;
+}
+
+.grimorio-slot-checkboxes input:checked + span {
+    background: #39ff14;
+}
+
+.grimorio-prepared {
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.grimorio-auto-prepared {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(8, 0, 20, 0.85);
+}
+
+.grimorio-auto-prepared__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.grimorio-auto-prepared__header h3 {
+    margin: 0;
+    color: var(--grimorio-accent);
+}
+
+.grimorio-auto-prepared__group + .grimorio-auto-prepared__group {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.grimorio-auto-prepared__level {
+    margin-top: 0.75rem;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 0.85rem;
+    padding: 0.85rem;
+}
+
+.grimorio-auto-prepared__level-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #b8b8b8;
+}
+
+.grimorio-auto-prepared__list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grimorio-prepared-spell--auto {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.grimorio-prepared__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.grimorio-prepared__header h3 {
+    margin: 0;
+    color: var(--grimorio-accent);
+}
+
+.grimorio-prepared__summary {
+    font-size: 0.9rem;
+    color: #c8c8c8;
+}
+
+.grimorio-prepared__edit-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.grimorio-prepared__edit-btn:hover {
+    background: rgba(153, 51, 255, 0.25);
+    border-color: rgba(153, 51, 255, 0.5);
+}
+
+.grimorio-prepared__levels {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(5, 0, 15, 0.65);
+}
+
+.grimorio-prepared-block {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.grimorio-prepared-block__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.grimorio-prepared-block__label {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.grimorio-prepared-block__counter {
+    font-size: 0.9rem;
+    color: #c8c8c8;
+}
+
+.grimorio-prepared-block__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grimorio-prepared-spell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.grimorio-prepared-spell__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.grimorio-prepared-spell__name {
+    font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.grimorio-prepared-spell__name:hover,
+.grimorio-prepared-spell__name:focus-visible {
+    text-decoration: underline;
+}
+
+.grimorio-prepared-spell__name::first-letter {
+    text-transform: uppercase;
+}
+
+.grimorio-prepared-spell__source {
+    font-size: 0.65rem;
+    color: #c8c8c8;
+}
+
+.grimorio-auto-prepared .grimorio-prepared-spell__source {
+    margin-left: -64%;
+}
+
+.grimorio-prepared-spell--concentration {
+    border-color: var(--grimorio-concentration-bg);
+    box-shadow: 0 0 12px rgba(254, 0, 241, 0.45);
+    background: var(--grimorio-concentration-bg);
+    color: var(--grimorio-concentration-text);
+    text-shadow: none;
+}
+
+.grimorio-prepared-spell--empty {
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+.grimorio-cast-spell {
+    border: 1px solid rgba(153, 51, 255, 0.5);
+    background: rgba(153, 51, 255, 0.2);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.35rem 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.grimorio-cast-spell:hover {
+    background: rgba(153, 51, 255, 0.35);
+    transform: translateY(-1px);
+}
+
+.grimorio-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.spell-search-module {
+    margin-top: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.spell-search-module__intro h3 {
+    margin: 0 0 0.35rem;
+    color: var(--grimorio-accent);
+}
+
+.spell-search-module__intro p {
+    margin: 0 0 1rem;
+    color: #c8c8c8;
+}
+
+.spell-search__form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.spell-search__field {
+    flex: 1 1 220px;
+}
+
+.spell-search__field input {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+}
+
+.spell-search__submit {
+    border: 1px solid rgba(153, 51, 255, 0.6);
+    background: rgba(153, 51, 255, 0.25);
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+}
+
+.spell-search__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.spell-search__filters label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: #dcdcdc;
+}
+
+.spell-search__suggestions {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.5rem;
+    background: rgba(5, 0, 15, 0.85);
+    margin-bottom: 0.5rem;
+    padding: 0.35rem 0;
+}
+
+.spell-search__suggestions button {
+    background: none;
+    border: none;
+    color: #fff;
+    width: 100%;
+    text-align: left;
+    padding: 0.4rem 0.85rem;
+    cursor: pointer;
+}
+
+.spell-search__suggestions button:hover {
+    background: rgba(153, 51, 255, 0.25);
+}
+
+.spell-search__result {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 0;
+}
+
+.spell-search__result:last-child {
+    border-bottom: 0;
+}
+
+.spell-search__result header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.spell-search__result h4 {
+    margin: 0;
+}
+
+.spell-search__result-meta {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.85rem;
+    color: #c8c8c8;
+}
+
+.spell-search__result-preview {
+    font-size: 0.9rem;
+    color: #f3f3f3;
+    text-align: left;
+}
+
+.temp-pv-separator {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0.75rem 0 1.25rem;
+}
+
+@media (max-width: 640px) {
+    .grimorio-formulario {
+        padding: 1.25rem;
+    }
+
+    .grimorio-prepared__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.grimorio-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.65);
+    padding: 1rem;
+    z-index: 999;
+    --grimorio-accent: #f36aff;
+}
+
+.grimorio-modal.is-visible {
+    display: flex;
+}
+
+.grimorio-modal__dialog {
+    background: #14001f;
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    width: min(720px, 100%);
+    color: #fff;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.grimorio-modal--small .grimorio-modal__dialog {
+    max-width: 420px;
+}
+
+.grimorio-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.grimorio-modal__header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.grimorio-modal__close {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    line-height: 1;
+}
+
+#grimorio-info-modal .grimorio-modal__header {
+    justify-content: flex-start;
+    text-align: left;
+    padding-right: 0;
+}
+
+#grimorio-info-modal .grimorio-modal__header h3 {
+    width: auto;
+    padding-right: 0;
+}
+
+.grimorio-modal__body {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.grimorio-modal__footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.grimorio-modal__btn {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.45rem 1.1rem;
+    cursor: pointer;
+}
+
+.grimorio-modal__btn--primary {
+    border-color: rgba(153, 51, 255, 0.8);
+    background: rgba(153, 51, 255, 0.3);
+}
+
+.grimorio-spell-picker__levels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.grimorio-spell-picker__hint {
+    margin: 0 0 1rem;
+    color: #c8c8c8;
+    font-size: 0.9rem;
+}
+
+.grimorio-spell-picker__level {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.grimorio-spell-picker__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.grimorio-spell-picker__header h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.grimorio-spell-picker__count {
+    font-size: 0.85rem;
+    color: #c8c8c8;
+}
+
+.grimorio-spell-picker__limit {
+    margin: 0.35rem 0 0.5rem;
+    font-size: 0.85rem;
+    color: #c7a9ff;
+}
+
+.grimorio-spell-picker__slots {
+    display: block;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+    margin-bottom: 0.5rem;
+}
+
+.grimorio-spell-picker__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem;
+}
+
+.grimorio-spell-picker__item {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    align-items: flex-start;
+}
+
+.grimorio-spell-picker__item input {
+    margin-top: 0.25rem;
+}
+
+.grimorio-spell-picker__item span {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0.4rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.grimorio-spell-picker__item input:checked + span {
+    background: var(--grimorio-accent);
+    color: #1c0023;
+}
+
+.grimorio-spell-picker__item small {
+    display: block;
+    color: #c8c8c8;
+    font-size: 0.8rem;
+}
+
+.grimorio-spell-picker__desc {
+    color: #e2d9ff;
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+    line-height: 1.3;
+}
+
+.grimorio-spell-picker__item input:disabled + span {
+    opacity: 0.6;
+}
+
+.grimorio-spell-picker__empty {
+    color: #bbb;
+    margin: 0;
+}
+
+.grimorio-spell-picker__loading {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.grimorio-cast-summary {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    text-align: left;
+    font-size: 0.92rem;
+    color: #dcdcdc;
+    display: block;
+}
+
+.grimorio-cast-summary li {
+    margin-bottom: 0.5rem;
+}
+
+.grimorio-cast-summary__note {
+    font-size: 0.85rem;
+    color: #c8c8c8;
+}
+
+.grimorio-cast-summary__text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.grimorio-cast-summary__text table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.grimorio-cast-summary__text th,
+.grimorio-cast-summary__text td {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.35rem 0.5rem;
+    text-align: left;
+}
+
+.grimorio-cast-summary__text thead {
+    background: rgba(153, 51, 255, 0.3);
+}
+
+.grimorio-tag {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.35rem;
+    background: rgba(153, 51, 255, 0.3);
+    font-size: 0.85rem;
+    margin-right: 0.25rem;
+}
+
+.grimorio-placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+.grimorio-quick-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.grimorio-quick-actions button {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.grimorio-quick-actions button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.grimorio-quick-actions .grimorio-finish-concentration {
+    border-color: var(--grimorio-concentration-bg);
+    background: var(--grimorio-concentration-bg);
+    color: var(--grimorio-concentration-text);
+    text-shadow: none;
+}
+
+.grimorio-quick-actions .grimorio-finish-concentration:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.grimorio-transformation {
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.grimorio-transformation__head h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.15rem;
+}
+
+.grimorio-transformation__head p {
+    margin: 0;
+    color: #c8c8c8;
+    font-size: 0.9rem;
+}
+
+.grimorio-transformation__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.grimorio-transformation__actions button {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.grimorio-transformation__actions button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+.grimorio-transformation__actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.grimorio-transformation__body {
+    margin-top: 1.25rem;
+}
+
+.grimorio-transformation__empty {
+    margin: 0;
+    color: #c8c8c8;
+    font-style: italic;
+}
+
+.grimorio-transformation-card {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.grimorio-transformation-card__media {
+    border-radius: 0.75rem;
+    min-height: 200px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    background-image: url('https://adayfs.com/wp-content/uploads/2025/11/Vossh.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.grimorio-transformation-card__content header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.grimorio-transformation-card__content header p {
+    margin: 0.2rem 0 0;
+    color: #d9c9ff;
+}
+
+.grimorio-transformation-card__meta {
+    margin: 0.2rem 0 0;
+    font-size: 0.85rem;
+    color: #c8c8c8;
+}
+
+.grimorio-transformation-card__stats {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.4rem 1rem;
+    font-size: 0.9rem;
+}
+
+.grimorio-transformation-card__note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #ffdfa8;
+}
+
+.grimorio-transformation-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grimorio-transformation-level {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.grimorio-transformation-level input {
+    margin: 0;
+}
+
+.grimorio-transformation-level span {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.grimorio-transformation-level small {
+    display: block;
+    font-size: 0.75rem;
+    color: #c8c8c8;
+}
+
+.grimorio-transformation-level input:checked + span {
+    color: #faf1ff;
+    font-weight: 600;
+}
+
+.grimorio-transformation-level input:focus-visible + span {
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 0.4rem;
+}
+
+@media (max-width: 640px) {
+    .grimorio-quick-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .grimorio-quick-actions button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .grimorio-transformation-card {
+        grid-template-columns: 1fr;
+    }
+}
