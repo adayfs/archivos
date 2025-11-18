@@ -1670,6 +1670,74 @@ function drak_user_can_manage_personaje( $post_id ) {
     return false;
 }
 
+/**
+ * Determina si la petición actual quiere acceder a un personaje específico.
+ *
+ * @return int ID del personaje o 0 si no aplica.
+ */
+function drak_get_request_personaje_id() {
+    if ( is_singular( 'personaje' ) ) {
+        return get_queried_object_id();
+    }
+
+    if (
+        is_page_template( 'page-hoja-personaje.php' )
+        || is_page_template( 'page-inventario-personaje.php' )
+        || is_page_template( 'page-grimorio-personaje.php' )
+    ) {
+        $slug = get_query_var( 'personaje_slug' );
+        if ( $slug ) {
+            $personaje = get_page_by_path( $slug, OBJECT, 'personaje' );
+            if ( $personaje ) {
+                return (int) $personaje->ID;
+            }
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * Blindaje de acceso para cualquier vista pública de personajes.
+ */
+function drak_enforce_personaje_access_guard() {
+    $personaje_id = drak_get_request_personaje_id();
+    if ( ! $personaje_id ) {
+        return;
+    }
+
+    if ( ! is_user_logged_in() ) {
+        auth_redirect();
+        exit;
+    }
+
+    if ( drak_user_can_manage_personaje( $personaje_id ) ) {
+        return;
+    }
+
+    wp_die(
+        __( 'No tienes permiso para acceder a este personaje.', 'temahijo' ),
+        __( 'Acceso restringido', 'temahijo' ),
+        [ 'response' => 403 ]
+    );
+}
+add_action( 'template_redirect', 'drak_enforce_personaje_access_guard', 0 );
+
+/**
+ * Evita que páginas protegidas se guarden en caché cuando contienen datos de personajes.
+ */
+function drak_disable_personaje_cache() {
+    if ( ! drak_get_request_personaje_id() ) {
+        return;
+    }
+
+    nocache_headers();
+    header_remove( 'Expires' );
+    header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0' );
+    header( 'Pragma: no-cache' );
+}
+add_action( 'send_headers', 'drak_disable_personaje_cache' );
+
 function drak_grimorio_decode_meta_array( $value ) {
     if ( is_array( $value ) ) {
         return $value;
@@ -3095,7 +3163,22 @@ function drak_get_user_personajes_query( $user_id ) {
  * HTML reutilizable de bienvenida para las vistas de personajes del usuario.
  */
 function drak_render_personajes_welcome( WP_User $user ) {
-    return '<div class="bienvenida-usuario">Bienvenido, <strong>' . esc_html( $user->display_name ) . '</strong></div>';
+    $html  = '<div class="bienvenida-usuario">';
+    $html .= 'Bienvenido, <strong>' . esc_html( $user->display_name ) . '</strong>';
+
+    $buttons = [];
+    if ( function_exists( 'drak_gallery_get_upload_page_url' ) ) {
+        $upload_url = drak_gallery_get_upload_page_url();
+        if ( $upload_url ) {
+            $buttons[] = '<a class="boton-subir-galeria" href="' . esc_url( $upload_url ) . '">' . esc_html__( 'Subir imagen a la galería', 'temahijo' ) . '</a>';
+        }
+    }
+    if ( ! empty( $buttons ) ) {
+        $html .= '<div class="bienvenida-acciones">' . implode( '', $buttons ) . '</div>';
+    }
+
+    $html .= '</div>';
+    return $html;
 }
 
 // Shortcode para mostrar personajes asociados a un usuario

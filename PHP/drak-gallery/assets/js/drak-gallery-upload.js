@@ -28,5 +28,14 @@
 		form.on('change', '.drak-gallery-type-checkbox', function () {
 			syncPanels(form);
 		});
+
+		form.on('mousedown', 'select[multiple] option', function (event) {
+			event.preventDefault();
+			var option = $(this);
+			var select = option.closest('select');
+
+			option.prop('selected', !option.prop('selected'));
+			select.trigger('change');
+		});
 	});
 })(jQuery);

@@ -1,6 +1,11 @@
 (function ($) {
 	'use strict';
 
+	var galleryState = {
+		cards: $(),
+		index: -1
+	};
+
 	function parseRel(card) {
 		var data = card.attr('data-rel');
 		if (!data) {
@@ -14,17 +19,26 @@
 		}
 	}
 
-	function toggleModal(show, card) {
-		var modal = $('#drak-gallery-modal');
-		if (!modal.length) {
-			return;
-		}
+	function getModal() {
+		return $('#drak-gallery-modal');
+	}
 
-		if (!show) {
-			modal.removeClass('is-visible').attr('aria-hidden', 'true');
-			return;
-		}
+	function buildGalleryState(card) {
+		var wrapper = card.closest('[data-drak-gallery]');
+		var visible = wrapper.find('.drak-gallery-card').filter(function () {
+			return !$(this).attr('hidden');
+		});
+		galleryState.cards = visible;
+		var currentIndex = visible.index(card);
+		galleryState.index = currentIndex > -1 ? currentIndex : 0;
+	}
 
+	function updateNavButtons(modal) {
+		var disabled = !(galleryState.cards && galleryState.cards.length > 1);
+		modal.find('[data-modal-prev], [data-modal-next]').prop('disabled', disabled);
+	}
+
+	function renderModalContent(card, modal) {
 		var rel = parseRel(card);
 		modal.find('.drak-gallery-modal__image img')
 			.attr('src', card.data('full') || '')
@@ -32,16 +46,17 @@
 
 		var author = card.data('author') || '';
 		var date = card.data('date') || '';
-		var metaText = '';
 
-		if (author && date) {
-			metaText = author + ' · ' + date;
-		} else {
-			metaText = author || date;
+		var metaBar = modal.find('.drak-gallery-modal__meta');
+		metaBar.empty();
+		if (author) {
+			metaBar.append($('<span></span>').text(author));
+		}
+		if (date) {
+			metaBar.append($('<span></span>').text(date));
 		}
 
 		modal.find('.drak-gallery-modal__title').text(card.data('title') || '');
-		modal.find('.drak-gallery-modal__meta').text(metaText);
 		modal.find('.drak-gallery-modal__desc').text(card.data('description') || '');
 
 		var links = modal.find('.drak-gallery-modal__links');
@@ -64,19 +79,64 @@
 
 			rel[type].forEach(function (item) {
 				var li = $('<li></li>');
-				if (item.url) {
-					$('<a></a>').attr('href', item.url).text(item.title || item.url).appendTo(li);
-				} else {
-					li.text(item.title || '');
-				}
+				li.text(item.title || '');
 				list.append(li);
 			});
 
 			group.append(title).append(list);
 			links.append(group);
 		});
+	}
 
+	function toggleModal(show, card) {
+		var modal = getModal();
+		if (!modal.length) {
+			return;
+		}
+
+		if (!show) {
+			modal.removeClass('is-visible').attr('aria-hidden', 'true');
+			galleryState.cards = $();
+			galleryState.index = -1;
+			return;
+		}
+
+		if (!card || !card.length) {
+			return;
+		}
+
+		buildGalleryState(card);
+		renderModalContent(card, modal);
+		updateNavButtons(modal);
 		modal.addClass('is-visible').attr('aria-hidden', 'false');
+	}
+
+	function navigateModal(step) {
+		var modal = getModal();
+		if (!modal.length || !modal.hasClass('is-visible')) {
+			return;
+		}
+
+		var cards = galleryState.cards;
+		var total = cards ? cards.length : 0;
+		if (!total || total < 2) {
+			return;
+		}
+
+		var nextIndex = galleryState.index + step;
+		if (nextIndex < 0) {
+			nextIndex = total - 1;
+		} else if (nextIndex >= total) {
+			nextIndex = 0;
+		}
+
+		var nextCard = cards.eq(nextIndex);
+		if (!nextCard.length) {
+			return;
+		}
+
+		galleryState.index = nextIndex;
+		renderModalContent(nextCard, modal);
 	}
 
 	function applyFilters(wrapper) {
@@ -116,12 +176,8 @@
 	}
 
 	$(function () {
-		var wrapper = $('[data-drak-gallery]');
-		if (!wrapper.length) {
-			return;
-		}
-
-		wrapper.each(function () {
+		var wrappers = $('[data-drak-gallery]');
+		wrappers.each(function () {
 			var block = $(this);
 			applyFilters(block);
 			block.on('input', '.drak-gallery-search', function () {
@@ -130,9 +186,20 @@
 			block.on('change', '[data-filter]', function () {
 				applyFilters(block);
 			});
-			block.on('click', '.drak-gallery-card', function () {
-				toggleModal(true, $(this));
-			});
+		});
+
+		$(document).on('click', '.drak-gallery-card', function () {
+			toggleModal(true, $(this));
+		});
+
+		$(document).on('click', '[data-modal-prev]', function (event) {
+			event.preventDefault();
+			navigateModal(-1);
+		});
+
+		$(document).on('click', '[data-modal-next]', function (event) {
+			event.preventDefault();
+			navigateModal(1);
 		});
 
 		$(document).on('click', '[data-modal-close]', function () {
@@ -141,6 +208,10 @@
 		$(document).on('keyup', function (event) {
 			if (event.key === 'Escape') {
 				toggleModal(false);
+			} else if (event.key === 'ArrowLeft') {
+				navigateModal(-1);
+			} else if (event.key === 'ArrowRight') {
+				navigateModal(1);
 			}
 		});
 	});

@@ -70,6 +70,23 @@
   color: #fff;
 }
 
+.entry-content.clear {
+  background: linear-gradient(145deg, #1a0f2e, #2c0f3d);
+  color: #f7ecff;
+  padding: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.entry-content.clear a {
+  color: #d7a7ff;
+  text-decoration: underline;
+}
+
+.entry-content.clear a:hover {
+  color: #fff;
+}
+
 .personaje-nav {
   display: flex;
   align-items: center;

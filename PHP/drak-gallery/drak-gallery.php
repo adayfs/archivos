@@ -219,6 +219,84 @@ function drak_gallery_register_assets() {
 add_action( 'wp_enqueue_scripts', 'drak_gallery_register_assets' );
 
 /**
+ * Capacidad mínima para subir imágenes.
+ *
+ * @return string
+ */
+function drak_gallery_upload_capability() {
+	$cap = apply_filters( 'drak_gallery_upload_capability', 'read' );
+	return $cap ? $cap : 'read';
+}
+
+/**
+ * Comprueba si el usuario actual puede subir a la galería.
+ *
+ * @return bool
+ */
+function drak_gallery_user_can_upload() {
+	return current_user_can( drak_gallery_upload_capability() );
+}
+
+/**
+ * Asegura que el JS frontal esté cargado y localizado.
+ */
+function drak_gallery_ensure_frontend_script() {
+	static $localized = false;
+
+	wp_enqueue_style( 'drak-gallery' );
+
+	if ( ! $localized ) {
+		wp_localize_script(
+			'drak-gallery-frontend',
+			'drakGalleryData',
+			array(
+				'labels' => drak_gallery_type_labels(),
+			)
+		);
+		$localized = true;
+	}
+
+	wp_enqueue_script( 'drak-gallery-frontend' );
+}
+
+/**
+ * Devuelve el HTML del modal, asegurando que solo se imprima una vez.
+ *
+ * @return string
+ */
+function drak_gallery_get_modal_markup() {
+	static $rendered = false;
+
+	if ( $rendered ) {
+		return '';
+	}
+
+	$rendered = true;
+
+	ob_start();
+	?>
+	<div class="drak-gallery-modal" id="drak-gallery-modal" aria-hidden="true" role="dialog">
+		<div class="drak-gallery-modal__overlay" data-modal-close></div>
+		<div class="drak-gallery-modal__content">
+			<button class="drak-gallery-modal__close" type="button" data-modal-close>&times;</button>
+			<button class="drak-gallery-modal__nav drak-gallery-modal__nav--prev" type="button" data-modal-prev aria-label="<?php esc_attr_e( 'Imagen anterior', 'drak-gallery' ); ?>">&lsaquo;</button>
+			<button class="drak-gallery-modal__nav drak-gallery-modal__nav--next" type="button" data-modal-next aria-label="<?php esc_attr_e( 'Imagen siguiente', 'drak-gallery' ); ?>">&rsaquo;</button>
+			<div class="drak-gallery-modal__image">
+				<img src="" alt="">
+			</div>
+			<div class="drak-gallery-modal__info">
+				<h3 class="drak-gallery-modal__title"></h3>
+				<p class="drak-gallery-modal__desc"></p>
+				<div class="drak-gallery-modal__links"></div>
+				<div class="drak-gallery-modal__meta"></div>
+			</div>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
+/**
  * Obtiene mapa de tipos permitidos.
  */
 function drak_gallery_allowed_types() {
@@ -236,6 +314,173 @@ function drak_gallery_type_labels() {
 		'lugar'     => __( 'Lugar', 'drak-gallery' ),
 		'npc'       => __( 'NPC', 'drak-gallery' ),
 	);
+}
+
+/**
+ * Localiza la URL pública del formulario de subida.
+ *
+ * @return string
+ */
+function drak_gallery_get_upload_page_url() {
+	return drak_gallery_locate_shortcode_page_url(
+		'drak_gallery_upload',
+		'drak_gallery_upload_page_id',
+		'drak_gallery_upload_page_url',
+		'DRAK_GALLERY_UPLOAD_PAGE_ID'
+	);
+}
+
+/**
+ * Localiza la URL pública de la página que contiene la galería global.
+ *
+ * @return string
+ */
+function drak_gallery_get_gallery_page_url() {
+	return drak_gallery_locate_shortcode_page_url(
+		'drak_gallery',
+		'drak_gallery_page_id',
+		'drak_gallery_page_url',
+		'DRAK_GALLERY_PAGE_ID'
+	);
+}
+
+/**
+ * Inserta un botón en la portada hacia la galería completa.
+ */
+function drak_gallery_get_home_button_markup() {
+	$gallery_url = drak_gallery_get_gallery_page_url();
+	if ( ! $gallery_url ) {
+		return '';
+	}
+
+	wp_enqueue_style( 'drak-gallery' );
+
+	$image = apply_filters(
+		'drak_gallery_home_button_image',
+		'https://adayfs.com/wp-content/uploads/2025/11/botongaleria.png'
+	);
+
+	$img_tag = $image ? '<img src="' . esc_url( $image ) . '" alt="' . esc_attr__( 'Ver galería completa', 'drak-gallery' ) . '">' : '';
+
+	return sprintf(
+		'<div class="drak-home-gallery-cta"><a class="drak-home-gallery-cta__button" href="%1$s" aria-label="%2$s">%3$s</a></div>',
+		esc_url( $gallery_url ),
+		esc_attr__( 'Ir a la galería', 'drak-gallery' ),
+		$img_tag
+	);
+}
+
+/**
+ * Inserta el botón de galería al final del contenido de la portada.
+ *
+ * @param string $content Contenido de la página.
+ * @return string
+ */
+function drak_gallery_append_home_button_to_content( $content ) {
+	if ( ! ( is_front_page() || is_home() ) ) {
+		return $content;
+	}
+
+	if ( ! in_the_loop() || ! is_main_query() ) {
+		return $content;
+	}
+
+	$should_render = apply_filters(
+		'drak_gallery_show_home_button',
+		true
+	);
+
+	if ( ! $should_render ) {
+		return $content;
+	}
+
+	$button = drak_gallery_get_home_button_markup();
+	if ( ! $button ) {
+		return $content;
+	}
+
+	return $content . $button;
+}
+add_filter( 'the_content', 'drak_gallery_append_home_button_to_content', 25 );
+
+/**
+ * Reubica el botón dentro del contenedor de Elementor si existe.
+ */
+function drak_gallery_move_home_button() {
+	if ( ! ( is_front_page() || is_home() ) ) {
+		return;
+	}
+	?>
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var target = document.querySelector('.elementor-element.elementor-element-f6f7e27 .e-con-inner, .elementor-element.elementor-element-f6f7e27');
+		var button = document.querySelector('.drak-home-gallery-cta');
+		if (target && button) {
+			target.appendChild(button);
+			button.classList.add('drak-home-gallery-cta--elementor');
+		}
+	});
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'drak_gallery_move_home_button', 60 );
+
+/**
+ * Ayudante para localizar páginas con shortcodes concretos.
+ *
+ * @param string $shortcode    Shortcode a buscar.
+ * @param string $option_name  Nombre de opción donde cachear el ID.
+ * @param string $filter_name  Filtro para permitir override manual.
+ * @param string $constant     Constante opcional con ID de página forzado.
+ *
+ * @return string
+ */
+function drak_gallery_locate_shortcode_page_url( $shortcode, $option_name, $filter_name = '', $constant = '' ) {
+	$shortcode = trim( $shortcode, '[]' );
+
+	if ( $filter_name ) {
+		$filtered = apply_filters( $filter_name, '' );
+		if ( $filtered ) {
+			return esc_url( $filtered );
+		}
+	}
+
+	if ( $constant && defined( $constant ) ) {
+		$forced_id = absint( constant( $constant ) );
+		if ( $forced_id ) {
+			$url = get_permalink( $forced_id );
+			if ( $url ) {
+				return $url;
+			}
+		}
+	}
+
+	$cached_id = absint( get_option( $option_name, 0 ) );
+	if ( $cached_id ) {
+		$page = get_post( $cached_id );
+		if ( $page && 'publish' === $page->post_status && has_shortcode( $page->post_content, $shortcode ) ) {
+			return get_permalink( $page );
+		}
+		delete_option( $option_name );
+	}
+
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 25,
+			's'              => '[' . $shortcode,
+		)
+	);
+
+	foreach ( $pages as $page ) {
+		if ( has_shortcode( $page->post_content, $shortcode ) ) {
+			update_option( $option_name, $page->ID );
+			return get_permalink( $page );
+		}
+	}
+
+	return home_url();
 }
 
 /**
@@ -361,7 +606,7 @@ function drak_gallery_handle_upload() {
 		wp_die( esc_html__( 'Debes iniciar sesión para subir imágenes.', 'drak-gallery' ) );
 	}
 
-	if ( ! current_user_can( 'upload_files' ) ) {
+	if ( ! drak_gallery_user_can_upload() ) {
 		wp_die( esc_html__( 'No tienes permisos para subir archivos.', 'drak-gallery' ) );
 	}
 
@@ -446,7 +691,7 @@ function drak_gallery_handle_upload() {
 	$post_id = wp_insert_post(
 		array(
 			'post_type'   => 'galeria_item',
-			'post_status' => 'pending',
+			'post_status' => 'publish',
 			'post_title'  => $title,
 			'post_author' => get_current_user_id(),
 		)
@@ -496,23 +741,7 @@ function drak_gallery_clean_ids( $raw_ids ) {
  * Shortcode de galería pública.
  */
 function drak_gallery_render_grid() {
-	wp_enqueue_style( 'drak-gallery' );
-
-	static $modal_rendered = false;
-	static $localized      = false;
-
-	if ( ! $localized ) {
-		wp_localize_script(
-			'drak-gallery-frontend',
-			'drakGalleryData',
-			array(
-				'labels' => drak_gallery_type_labels(),
-			)
-		);
-		$localized = true;
-	}
-
-	wp_enqueue_script( 'drak-gallery-frontend' );
+	drak_gallery_ensure_frontend_script();
 
 	$query = new WP_Query(
 		array(
@@ -543,11 +772,24 @@ function drak_gallery_render_grid() {
 			<?php
 			while ( $query->have_posts() ) :
 				$query->the_post();
-				$has = drak_gallery_get_associations( get_the_ID() );
-				$detailed = drak_gallery_get_associations( get_the_ID(), true );
-				$thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
-				$author = get_the_author();
-				$date = get_the_date();
+
+				$thumb_id = get_post_thumbnail_id();
+				if ( ! $thumb_id ) {
+					// Elementos sin imagen destacada no deben renderizar huecos.
+					continue;
+				}
+
+				$thumb = wp_get_attachment_image_url( $thumb_id, 'medium' );
+				$full  = wp_get_attachment_image_url( $thumb_id, 'full' );
+
+				if ( ! $thumb || ! $full ) {
+					continue;
+				}
+
+				$has         = drak_gallery_get_associations( get_the_ID() );
+				$detailed    = drak_gallery_get_associations( get_the_ID(), true );
+				$author      = get_the_author();
+				$date        = get_the_date();
 				$description = wp_strip_all_tags( (string) drak_gallery_get_field( 'gallery_description', get_the_ID() ) );
 				$data_search = strtolower( get_the_title() . ' ' . $description );
 				?>
@@ -560,12 +802,10 @@ function drak_gallery_render_grid() {
 					data-author="<?php echo esc_attr( $author ); ?>"
 					data-date="<?php echo esc_attr( $date ); ?>"
 					data-description="<?php echo esc_attr( $description ); ?>"
-					data-full="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ); ?>"
+					data-full="<?php echo esc_url( $full ); ?>"
 					data-rel="<?php echo esc_attr( wp_json_encode( $detailed ) ); ?>"
 				>
-					<?php if ( $thumb ) : ?>
-						<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
-					<?php endif; ?>
+					<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
 				</div>
 				<?php
 			endwhile;
@@ -575,26 +815,7 @@ function drak_gallery_render_grid() {
 	</div>
 	<?php
 	$content = ob_get_clean();
-
-	if ( ! $modal_rendered ) {
-		$modal_rendered = true;
-		$content       .= '
-	<div class="drak-gallery-modal" id="drak-gallery-modal" aria-hidden="true" role="dialog">
-		<div class="drak-gallery-modal__overlay" data-modal-close></div>
-		<div class="drak-gallery-modal__content">
-			<button class="drak-gallery-modal__close" type="button" data-modal-close>&times;</button>
-			<div class="drak-gallery-modal__image">
-				<img src="" alt="">
-			</div>
-			<div class="drak-gallery-modal__info">
-				<h3 class="drak-gallery-modal__title"></h3>
-				<p class="drak-gallery-modal__meta"></p>
-				<p class="drak-gallery-modal__desc"></p>
-				<div class="drak-gallery-modal__links"></div>
-			</div>
-		</div>
-	</div>';
-	}
+	$content .= drak_gallery_get_modal_markup();
 
 	return $content;
 }
@@ -646,7 +867,6 @@ function drak_gallery_get_associations( $post_id, $detailed = false ) {
 			$result[ $type ][] = array(
 				'id'    => $id,
 				'title' => get_the_title( $id ),
-				'url'   => get_permalink( $id ),
 			);
 		}
 	}
@@ -744,48 +964,41 @@ function drak_render_gallery_for_post( $post_id ) {
 		return;
 	}
 
-	$count = $query->post_count;
-	wp_enqueue_style( 'drak-gallery' );
-
-	if ( $count > 1 ) {
-		wp_enqueue_style( 'swiper' );
-		wp_enqueue_script( 'swiper' );
-		wp_enqueue_script( 'drak-gallery-slider' );
-	}
+	drak_gallery_ensure_frontend_script();
 
 	ob_start();
-	if ( 1 === $count ) {
+	echo '<div class="drak-gallery-grid personaje-galeria-grid">';
+	while ( $query->have_posts() ) {
 		$query->the_post();
-		echo '<figure class="drak-gallery-single">';
-		echo get_the_post_thumbnail( get_the_ID(), 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		if ( get_the_title() ) {
-			echo '<figcaption>' . esc_html( get_the_title() ) . '</figcaption>';
-		}
-		echo '</figure>';
-		wp_reset_postdata();
-	} else {
+		$has        = drak_gallery_get_associations( get_the_ID() );
+		$detailed   = drak_gallery_get_associations( get_the_ID(), true );
+		$thumb      = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+		$author     = get_the_author();
+		$date       = get_the_date();
+		$description = wp_strip_all_tags( (string) drak_gallery_get_field( 'gallery_description', get_the_ID() ) );
+		$data_search = strtolower( get_the_title() . ' ' . $description );
 		?>
-		<div class="swiper drak-gallery-swiper">
-			<div class="swiper-wrapper">
-				<?php
-				while ( $query->have_posts() ) :
-					$query->the_post();
-					?>
-					<div class="swiper-slide">
-						<?php echo get_the_post_thumbnail( get_the_ID(), 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						<span class="drak-slide-caption"><?php echo esc_html( get_the_title() ); ?></span>
-					</div>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-				?>
-			</div>
-			<div class="swiper-pagination"></div>
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div>
+		<div class="drak-gallery-card"
+			data-search="<?php echo esc_attr( $data_search ); ?>"
+			data-has-personaje="<?php echo $has['personaje'] ? '1' : '0'; ?>"
+			data-has-lugar="<?php echo $has['lugar'] ? '1' : '0'; ?>"
+			data-has-npc="<?php echo $has['npc'] ? '1' : '0'; ?>"
+			data-title="<?php echo esc_attr( get_the_title() ); ?>"
+			data-author="<?php echo esc_attr( $author ); ?>"
+			data-date="<?php echo esc_attr( $date ); ?>"
+			data-description="<?php echo esc_attr( $description ); ?>"
+			data-full="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ); ?>"
+			data-rel="<?php echo esc_attr( wp_json_encode( $detailed ) ); ?>"
+		>
+			<?php if ( $thumb ) : ?>
+				<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
+			<?php endif; ?>
 		</div>
 		<?php
 	}
+	echo '</div>';
+	wp_reset_postdata();
 
 	echo ob_get_clean(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo drak_gallery_get_modal_markup(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
