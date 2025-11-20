@@ -1,0 +1,85 @@
+{
+  "acf-field-group": {
+    "key": "group_campaign_assignment",
+    "title": "Asignación de campaña",
+    "fields": [
+      {
+        "key": "field_campaign_relation",
+        "label": "Campaña",
+        "name": "campaign",
+        "type": "post_object",
+        "post_type": [
+          "campaign"
+        ],
+        "return_format": "id",
+        "ui": true,
+        "multiple": false,
+        "required": true,
+        "allow_null": false,
+        "instructions": "Selecciona a qué campaña pertenece este contenido."
+      },
+      {
+        "key": "field_campaign_visibility",
+        "label": "Visibilidad en campaña",
+        "name": "campaign_visibility",
+        "type": "select",
+        "choices": {
+          "public": "Visible para todos los jugadores",
+          "dm_only": "Solo visible para DM y Admin"
+        },
+        "default_value": "public",
+        "ui": true,
+        "allow_null": false
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "post"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "npc"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "lugar"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "faccion"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "lore-entry"
+        }
+      ]
+    ],
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": ""
+  }
+}

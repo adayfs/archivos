@@ -1,0 +1,81 @@
+{
+  "acf-field-group": {
+    "key": "group_campaign_metadata",
+    "title": "Campaña – Metadatos",
+    "fields": [
+      {
+        "key": "field_campaign_short_title",
+        "label": "Título corto",
+        "name": "campaign_short_title",
+        "type": "text",
+        "instructions": "Alias corto para menús o tarjetas."
+      },
+      {
+        "key": "field_campaign_system",
+        "label": "Sistema de juego",
+        "name": "campaign_system",
+        "type": "select",
+        "choices": {
+          "D&D 5e": "D&D 5e",
+          "Drakkenheim": "Drakkenheim",
+          "Otro": "Otro"
+        },
+        "allow_null": true,
+        "ui": true,
+        "return_format": "value",
+        "placeholder": "Selecciona o escribe el sistema"
+      },
+      {
+        "key": "field_campaign_status",
+        "label": "Estado",
+        "name": "campaign_status",
+        "type": "select",
+        "choices": {
+          "active": "En curso",
+          "paused": "En pausa",
+          "finished": "Terminada"
+        },
+        "default_value": "active",
+        "ui": true
+      },
+      {
+        "key": "field_campaign_cover_image",
+        "label": "Imagen de portada",
+        "name": "campaign_cover_image",
+        "type": "image",
+        "return_format": "id",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_campaign_color",
+        "label": "Color de campaña",
+        "name": "campaign_color",
+        "type": "color_picker"
+      },
+      {
+        "key": "field_campaign_summary",
+        "label": "Descripción breve",
+        "name": "campaign_summary",
+        "type": "textarea",
+        "instructions": "Pensada para usar en tarjetas del Hub.",
+        "rows": 3,
+        "new_lines": "br"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "campaign"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": ""
+  }
+}

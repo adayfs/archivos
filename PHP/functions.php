@@ -43,6 +43,77 @@ function enqueue_custom_scripts() {
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
+/**
+ * Define y sincroniza el rol Dungeon Master con capacidades centradas en lectura.
+ */
+function drak_get_dm_capabilities() {
+    return [
+        'read'                 => true,
+        'read_private_pages'   => true,
+        'read_private_posts'   => true,
+        'view_all_personajes'  => true,
+        'edit_posts'           => false,
+        'delete_posts'         => false,
+        'publish_posts'        => false,
+        'manage_options'       => false,
+        'activate_plugins'     => false,
+        'install_plugins'      => false,
+    ];
+}
+
+function drak_register_dm_role() {
+    $caps = drak_get_dm_capabilities();
+    $role = get_role( 'dm' );
+
+    if ( ! $role ) {
+        add_role( 'dm', 'Dungeon Master', $caps );
+        $role = get_role( 'dm' );
+    } else {
+        foreach ( $caps as $cap => $grant ) {
+            if ( $grant && ! $role->has_cap( $cap ) ) {
+                $role->add_cap( $cap );
+            }
+        }
+    }
+
+    if ( $role ) {
+        $restricted_caps = [
+            'edit_posts',
+            'edit_others_posts',
+            'publish_posts',
+            'delete_posts',
+            'delete_others_posts',
+            'delete_published_posts',
+            'delete_private_posts',
+            'edit_published_posts',
+            'edit_private_posts',
+            'activate_plugins',
+            'install_plugins',
+            'manage_options',
+            'create_posts',
+            'upload_files',
+        ];
+
+        foreach ( $restricted_caps as $cap ) {
+            $grant = $caps[ $cap ] ?? false;
+            if ( ! $grant && $role->has_cap( $cap ) ) {
+                $role->remove_cap( $cap );
+            }
+        }
+    }
+
+    $admin_caps = [ 'view_all_personajes' ];
+    $admin      = get_role( 'administrator' );
+    if ( $admin ) {
+        foreach ( $admin_caps as $cap ) {
+            if ( ! $admin->has_cap( $cap ) ) {
+                $admin->add_cap( $cap );
+            }
+        }
+    }
+}
+add_action( 'init', 'drak_register_dm_role' );
+
 // Mover extracto dentro de entry-content
 add_action('wp_footer', function(){
   if (is_category()) : ?>
@@ -282,53 +353,57 @@ function renderizar_inventario_personaje($post_id) {
 
     // Guardado del formulario
     if (isset($_POST['mainpack_guardar']) && isset($_POST['post_id']) && intval($_POST['post_id']) === $post_id) {
-        if (isset($_POST['golden_coins'])) {
-            $oro = max(0, intval(drak_get_post_value('golden_coins', 0)));
-            update_field('golden_coins', $oro, $post_id);
-        }
-
-        if (isset($_POST['arma_principal']) && is_array($_POST['arma_principal'])) {
-            $arma_data = drak_get_post_value('arma_principal', []);
-            update_field('arma_principal', $arma_data, $post_id);
-        }
-
-        $delerium_number_fields = [
-            'delerium_contamination_level' => 6,
-            'delerium_chips'               => null,
-            'delerium_fragments'           => null,
-            'delerium_shards'              => null,
-            'delerium_crystals'            => null,
-            'delerium_geodas'              => null,
-        ];
-
-        foreach ($delerium_number_fields as $field => $max_value) {
-            if (!isset($_POST[$field])) {
-                continue;
+        if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+            echo '<div class="mensaje-confirmacion">❌ No tienes permisos para actualizar este inventario.</div>';
+        } else {
+            if (isset($_POST['golden_coins'])) {
+                $oro = max(0, intval(drak_get_post_value('golden_coins', 0)));
+                update_field('golden_coins', $oro, $post_id);
             }
-            $valor = intval(drak_get_post_value($field, 0));
-            $valor = max(0, $valor);
-            if ($max_value !== null) {
-                $valor = min($valor, $max_value);
+
+            if (isset($_POST['arma_principal']) && is_array($_POST['arma_principal'])) {
+                $arma_data = drak_get_post_value('arma_principal', []);
+                update_field('arma_principal', $arma_data, $post_id);
             }
-            update_field($field, $valor, $post_id);
-        }
 
-        if (isset($_POST['delerium_mutations'])) {
-            $mutations = sanitize_textarea_field(wp_unslash($_POST['delerium_mutations']));
-            update_field('delerium_mutations', $mutations, $post_id);
-        }
+            $delerium_number_fields = [
+                'delerium_contamination_level' => 6,
+                'delerium_chips'               => null,
+                'delerium_fragments'           => null,
+                'delerium_shards'              => null,
+                'delerium_crystals'            => null,
+                'delerium_geodas'              => null,
+            ];
 
-        if (isset($_POST['delerium_madness'])) {
-            $madness = sanitize_textarea_field(wp_unslash($_POST['delerium_madness']));
-            update_field('delerium_madness', $madness, $post_id);
-        }
+            foreach ($delerium_number_fields as $field => $max_value) {
+                if (!isset($_POST[$field])) {
+                    continue;
+                }
+                $valor = intval(drak_get_post_value($field, 0));
+                $valor = max(0, $valor);
+                if ($max_value !== null) {
+                    $valor = min($valor, $max_value);
+                }
+                update_field($field, $valor, $post_id);
+            }
 
-        for ($i = 1; $i <= 8; $i++) {
-            $campo = 'mainpack_slot_' . $i;
-            $valor = drak_get_post_value($campo, '');
-            update_field($campo, $valor, $post_id);
+            if (isset($_POST['delerium_mutations'])) {
+                $mutations = sanitize_textarea_field(wp_unslash($_POST['delerium_mutations']));
+                update_field('delerium_mutations', $mutations, $post_id);
+            }
+
+            if (isset($_POST['delerium_madness'])) {
+                $madness = sanitize_textarea_field(wp_unslash($_POST['delerium_madness']));
+                update_field('delerium_madness', $madness, $post_id);
+            }
+
+            for ($i = 1; $i <= 8; $i++) {
+                $campo = 'mainpack_slot_' . $i;
+                $valor = drak_get_post_value($campo, '');
+                update_field($campo, $valor, $post_id);
+            }
+            echo '<div class="mensaje-confirmacion">✅ Inventario actualizado correctamente.</div>';
         }
-        echo '<div class="mensaje-confirmacion">✅ Inventario actualizado correctamente.</div>';
     }
 
     echo '<div class="mainpack-container">';
@@ -1801,6 +1876,114 @@ updateGoldDisplay();
 <?php
 });
 
+function drak_register_campaign_cpt() {
+    $labels = [
+        'name'               => 'Campañas',
+        'singular_name'      => 'Campaña',
+        'add_new'            => 'Añadir nueva',
+        'add_new_item'       => 'Añadir campaña',
+        'edit_item'          => 'Editar campaña',
+        'new_item'           => 'Nueva campaña',
+        'view_item'          => 'Ver campaña',
+        'search_items'       => 'Buscar campañas',
+        'not_found'          => 'No se encontraron campañas',
+        'not_found_in_trash' => 'No hay campañas en la papelera',
+        'menu_name'          => 'Campañas',
+    ];
+
+    $args = [
+        'labels'             => $labels,
+        'public'             => true,
+        'has_archive'        => true,
+        'rewrite'            => ['slug' => 'campaign'],
+        'show_in_rest'       => true,
+        'supports'           => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'menu_icon'          => 'dashicons-shield-alt',
+        'menu_position'      => 6,
+        'capability_type'    => 'post',
+        'publicly_queryable' => true,
+    ];
+
+    register_post_type( 'campaign', $args );
+}
+add_action( 'init', 'drak_register_campaign_cpt' );
+
+/**
+ * CPT wiki: npc, lugar, faccion (y opcional lore-entry).
+ */
+function drak_register_wiki_cpts() {
+    $shared_supports = [ 'title', 'editor', 'thumbnail', 'excerpt' ];
+    $defs = [
+        'npc' => [
+            'labels' => [
+                'name'          => 'NPCs',
+                'singular_name' => 'NPC',
+                'menu_name'     => 'NPCs',
+            ],
+            'slug' => 'npc',
+        ],
+        'lugar' => [
+            'labels' => [
+                'name'          => 'Lugares',
+                'singular_name' => 'Lugar',
+                'menu_name'     => 'Lugares',
+            ],
+            'slug' => 'lugar',
+        ],
+        'faccion' => [
+            'labels' => [
+                'name'          => 'Facciones',
+                'singular_name' => 'Facción',
+                'menu_name'     => 'Facciones',
+            ],
+            'slug' => 'faccion',
+        ],
+        'lore-entry' => [
+            'labels' => [
+                'name'          => 'Entradas de lore',
+                'singular_name' => 'Entrada de lore',
+                'menu_name'     => 'Lore',
+            ],
+            'slug' => 'lore-entry',
+        ],
+    ];
+
+    foreach ( $defs as $type => $info ) {
+        $args = [
+            'labels'             => $info['labels'],
+            'public'             => true,
+            'show_ui'            => true,
+            'has_archive'        => true,
+            'rewrite'            => [ 'slug' => $info['slug'] ],
+            'supports'           => $shared_supports,
+            'show_in_rest'       => true,
+            'menu_position'      => 7,
+            'capability_type'    => 'post',
+            'publicly_queryable' => true,
+        ];
+        register_post_type( $type, $args );
+    }
+}
+add_action( 'init', 'drak_register_wiki_cpts' );
+
+/**
+ * Endpoints de secciones de campaña: /campaign/{slug}/(pj|diario|wiki|galeria)/
+ */
+function drak_register_campaign_section_rewrites() {
+    $base = 'campaign';
+    add_rewrite_rule(
+        sprintf( '^%s/([^/]+)/(pj|diario|wiki|galeria)/?$', $base ),
+        'index.php?campaign=$matches[1]&campaign_section=$matches[2]',
+        'top'
+    );
+}
+add_action( 'init', 'drak_register_campaign_section_rewrites' );
+
+add_filter( 'query_vars', function ( $vars ) {
+    $vars[] = 'campaign_section';
+    return $vars;
+} );
+
 function drak_register_personaje_cpt() {
     $labels = [
         'name'               => 'Personajes',
@@ -1870,6 +2053,33 @@ function drak_user_can_manage_personaje( $post_id ) {
 }
 
 /**
+ * Checks if current user has DM role (capabilities are synced on init).
+ */
+function drak_current_user_is_dm() {
+    $user = wp_get_current_user();
+    if ( ! $user || ! $user->exists() ) {
+        return false;
+    }
+
+    return in_array( 'dm', (array) $user->roles, true );
+}
+
+/**
+ * Determines if current user can view a personaje (read-only access for DM/admin/owner).
+ */
+function drak_user_can_view_personaje( $post_id ) {
+    if ( drak_user_can_manage_personaje( $post_id ) ) {
+        return true;
+    }
+
+    if ( current_user_can( 'view_all_personajes' ) || drak_current_user_is_dm() ) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * Determina si la petición actual quiere acceder a un personaje específico.
  *
  * @return int ID del personaje o 0 si no aplica.
@@ -1910,7 +2120,7 @@ function drak_enforce_personaje_access_guard() {
         exit;
     }
 
-    if ( drak_user_can_manage_personaje( $personaje_id ) ) {
+    if ( drak_user_can_view_personaje( $personaje_id ) ) {
         return;
     }
 
@@ -3305,6 +3515,167 @@ add_action( 'acf/init', function () {
         'position' => 'normal',
         'style'    => 'default',
     ] );
+
+    acf_add_local_field_group( [
+        'key'    => 'group_campaign_metadata',
+        'title'  => 'Campaña – Metadatos',
+        'fields' => [
+            [
+                'key'          => 'field_campaign_short_title',
+                'label'        => 'Título corto',
+                'name'         => 'campaign_short_title',
+                'type'         => 'text',
+                'instructions' => 'Alias corto para menús o tarjetas.',
+                'required'     => 0,
+            ],
+            [
+                'key'           => 'field_campaign_system',
+                'label'         => 'Sistema de juego',
+                'name'          => 'campaign_system',
+                'type'          => 'select',
+                'choices'       => [
+                    'D&D 5e'      => 'D&D 5e',
+                    'Drakkenheim' => 'Drakkenheim',
+                    'Otro'        => 'Otro',
+                ],
+                'allow_null'    => 1,
+                'ui'            => 1,
+                'return_format' => 'value',
+                'placeholder'   => 'Selecciona o escribe el sistema',
+            ],
+            [
+                'key'           => 'field_campaign_status',
+                'label'         => 'Estado',
+                'name'          => 'campaign_status',
+                'type'          => 'select',
+                'choices'       => [
+                    'active'   => 'En curso',
+                    'paused'   => 'En pausa',
+                    'finished' => 'Terminada',
+                ],
+                'default_value' => 'active',
+                'ui'            => 1,
+            ],
+            [
+                'key'           => 'field_campaign_cover_image',
+                'label'         => 'Imagen de portada',
+                'name'          => 'campaign_cover_image',
+                'type'          => 'image',
+                'return_format' => 'id',
+                'preview_size'  => 'medium',
+                'library'       => 'all',
+            ],
+            [
+                'key'   => 'field_campaign_color',
+                'label' => 'Color de campaña',
+                'name'  => 'campaign_color',
+                'type'  => 'color_picker',
+            ],
+            [
+                'key'          => 'field_campaign_summary',
+                'label'        => 'Descripción breve',
+                'name'         => 'campaign_summary',
+                'type'         => 'textarea',
+                'instructions' => 'Pensada para usar en tarjetas del Hub.',
+                'rows'         => 3,
+                'new_lines'    => 'br',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'campaign',
+                ],
+            ],
+        ],
+        'position'                => 'normal',
+        'style'                   => 'default',
+        'label_placement'         => 'top',
+        'instruction_placement'   => 'label',
+    ] );
+
+    acf_add_local_field_group( [
+        'key'    => 'group_campaign_assignment',
+        'title'  => 'Asignación de campaña',
+        'fields' => [
+            [
+                'key'           => 'field_campaign_relation',
+                'label'         => 'Campaña',
+                'name'          => 'campaign',
+                'type'          => 'post_object',
+                'post_type'     => [ 'campaign' ],
+                'return_format' => 'id',
+                'ui'            => 1,
+                'multiple'      => 0,
+                'required'      => 1,
+                'allow_null'    => 0,
+                'instructions'  => 'Selecciona a qué campaña pertenece este contenido.',
+            ],
+            [
+                'key'           => 'field_campaign_visibility',
+                'label'         => 'Visibilidad en campaña',
+                'name'          => 'campaign_visibility',
+                'type'          => 'select',
+                'choices'       => [
+                    'public'  => 'Visible para todos los jugadores',
+                    'dm_only' => 'Solo visible para DM y Admin',
+                ],
+                'default_value' => 'public',
+                'ui'            => 1,
+                'allow_null'    => 0,
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'personaje',
+                ],
+            ],
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'post',
+                ],
+            ],
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'npc',
+                ],
+            ],
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'lugar',
+                ],
+            ],
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'faccion',
+                ],
+            ],
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'lore-entry',
+                ],
+            ],
+        ],
+        'position'                => 'side',
+        'style'                   => 'default',
+        'label_placement'         => 'top',
+        'instruction_placement'   => 'label',
+    ] );
 } );
 add_action('init', 'drak_register_personaje_cpt');
 
@@ -3510,6 +3881,62 @@ function drak_register_personaje_query_vars( $vars ) {
 }
 add_filter( 'query_vars', 'drak_register_personaje_query_vars' );
 
+function drak_register_campaign_query_var( $vars ) {
+    $vars[] = 'campaign';
+
+    return array_values( array_unique( $vars ) );
+}
+add_filter( 'query_vars', 'drak_register_campaign_query_var' );
+
+/**
+ * Permite filtrar listados por campaña via ?campaign={id o slug}.
+ */
+function drak_filter_queries_by_campaign( WP_Query $query ) {
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    $campaign = $query->get( 'campaign' );
+    if ( ! $campaign ) {
+        return;
+    }
+
+    $campaign_id = is_numeric( $campaign ) ? absint( $campaign ) : 0;
+    if ( ! $campaign_id ) {
+        $campaign_post = get_page_by_path( $campaign, OBJECT, 'campaign' );
+        if ( $campaign_post ) {
+            $campaign_id = $campaign_post->ID;
+        }
+    }
+
+    if ( ! $campaign_id ) {
+        return;
+    }
+
+    $targeted_types = [ 'post', 'personaje', 'npc', 'lugar', 'faccion', 'lore-entry' ];
+    $queried_type   = $query->get( 'post_type' );
+    if ( ! $queried_type ) {
+        $queried_types = $query->is_post_type_archive( 'personaje' ) ? [ 'personaje' ] : [ 'post' ];
+    } else {
+        $queried_types = (array) $queried_type;
+    }
+
+    if ( empty( array_intersect( $queried_types, $targeted_types ) ) ) {
+        return;
+    }
+
+    $meta_query   = $query->get( 'meta_query' );
+    $meta_query   = is_array( $meta_query ) ? $meta_query : [];
+    $meta_query[] = [
+        'key'     => 'campaign',
+        'value'   => $campaign_id,
+        'compare' => '=',
+    ];
+
+    $query->set( 'meta_query', $meta_query );
+}
+add_action( 'pre_get_posts', 'drak_filter_queries_by_campaign' );
+
 function drak_get_static_data_base() {
     static $cache = null;
     if ( null !== $cache ) {
@@ -3554,6 +3981,10 @@ function guardar_hp_temporal() {
     }
     $post_id = intval($_POST['post_id']);
     $valor = intval($_POST['valor']);
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
 
     // Usa ACF para guardar correctamente el campo
     update_field('cs_hp_temp', $valor, $post_id);
