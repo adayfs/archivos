@@ -491,6 +491,149 @@
   cursor: pointer;
 }
 
+.delerium-module {
+  border: 3px solid #40115d;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  color: #1d0b2b;
+}
+
+.delerium-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #350852, #521091);
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+
+.delerium-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.delerium-contamination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.delerium-contamination-track {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.delerium-icon {
+  width: 20px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.35);
+  clip-path: polygon(50% 0%, 85% 100%, 15% 100%);
+  opacity: 0.4;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.delerium-icon.active {
+  background: #ffd983;
+  opacity: 1;
+}
+
+.delerium-contamination-input input {
+  width: 60px;
+  border-radius: 6px;
+  border: none;
+  padding: 0.25rem 0.4rem;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.delerium-slot-summary {
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.delerium-slot-summary strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.delerium-counts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: #f8f0ff;
+  border-top: 1px solid rgba(64, 17, 93, 0.2);
+  border-bottom: 1px solid rgba(64, 17, 93, 0.2);
+}
+
+.delerium-count label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5b267a;
+}
+
+.delerium-count input {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid rgba(64, 17, 93, 0.4);
+  background: #fff;
+}
+
+.delerium-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.delerium-notes label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #40115d;
+}
+
+.delerium-notes textarea {
+  width: 100%;
+  min-height: 110px;
+  border-radius: 8px;
+  border: 1px solid rgba(64, 17, 93, 0.3);
+  padding: 0.6rem;
+  background: rgba(248, 240, 255, 0.75);
+  resize: vertical;
+}
+
+.delerium-contamination-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .delerium-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delerium-slot-summary {
+    text-align: left;
+  }
+}
+
 .inventory-slot[data-slot="oro"] .slot-label {
   font-weight: bold;
   color: #ffd700;
@@ -500,4 +643,3 @@
 #modal-remove-gold .modal-contenido {
   background-color: #1a0827;
 }
-

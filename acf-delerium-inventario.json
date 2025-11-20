@@ -1,0 +1,119 @@
+{
+  "acf-field-group": {
+    "key": "group_delerium_inventario",
+    "title": "Inventario - Delerium",
+    "fields": [
+      {
+        "key": "field_delerium_reference",
+        "label": "Conversión de tamaños",
+        "name": "",
+        "type": "message",
+        "message": "4 chips = 1 slot pequeño · 2 fragments = 1 slot pequeño · 1 shard = 1 slot pequeño · 1 crystal = 2 slots pequeños · 1 geoda = 20 slots pequeños",
+        "esc_html": 0,
+        "new_lines": "wpautop"
+      },
+      {
+        "key": "field_delerium_contamination",
+        "label": "Nivel de contaminación",
+        "name": "delerium_contamination_level",
+        "type": "number",
+        "instructions": "Introduce un valor entero (0-6) para representar los iconos de contaminación.",
+        "required": 0,
+        "default_value": 0,
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "min": 0,
+        "max": 6,
+        "step": 1
+      },
+      {
+        "key": "field_delerium_chip",
+        "label": "Chips",
+        "name": "delerium_chips",
+        "type": "number",
+        "instructions": "4 chips ocupan un slot pequeño.",
+        "required": 0,
+        "default_value": 0,
+        "min": 0,
+        "step": 1
+      },
+      {
+        "key": "field_delerium_fragment",
+        "label": "Fragments",
+        "name": "delerium_fragments",
+        "type": "number",
+        "instructions": "2 fragments ocupan un slot pequeño.",
+        "required": 0,
+        "default_value": 0,
+        "min": 0,
+        "step": 1
+      },
+      {
+        "key": "field_delerium_shard",
+        "label": "Shards",
+        "name": "delerium_shards",
+        "type": "number",
+        "instructions": "1 shard ocupa un slot pequeño.",
+        "required": 0,
+        "default_value": 0,
+        "min": 0,
+        "step": 1
+      },
+      {
+        "key": "field_delerium_crystal",
+        "label": "Crystals",
+        "name": "delerium_crystals",
+        "type": "number",
+        "instructions": "1 crystal ocupa dos slots pequeños.",
+        "required": 0,
+        "default_value": 0,
+        "min": 0,
+        "step": 1
+      },
+      {
+        "key": "field_delerium_geoda",
+        "label": "Geodas",
+        "name": "delerium_geodas",
+        "type": "number",
+        "instructions": "1 geoda ocupa veinte slots pequeños.",
+        "required": 0,
+        "default_value": 0,
+        "min": 0,
+        "step": 1
+      },
+      {
+        "key": "field_delerium_mutations",
+        "label": "Mutaciones",
+        "name": "delerium_mutations",
+        "type": "textarea",
+        "instructions": "Describe las mutaciones causadas por la exposición al delerium.",
+        "rows": 4,
+        "new_lines": ""
+      },
+      {
+        "key": "field_delerium_madness",
+        "label": "Locura",
+        "name": "delerium_madness",
+        "type": "textarea",
+        "instructions": "Registro de síntomas de locura o efectos mentales.",
+        "rows": 4,
+        "new_lines": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": "Campos necesarios para el módulo de piedras de delerium dentro del inventario."
+  }
+}

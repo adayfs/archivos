@@ -292,6 +292,37 @@ function renderizar_inventario_personaje($post_id) {
             update_field('arma_principal', $arma_data, $post_id);
         }
 
+        $delerium_number_fields = [
+            'delerium_contamination_level' => 6,
+            'delerium_chips'               => null,
+            'delerium_fragments'           => null,
+            'delerium_shards'              => null,
+            'delerium_crystals'            => null,
+            'delerium_geodas'              => null,
+        ];
+
+        foreach ($delerium_number_fields as $field => $max_value) {
+            if (!isset($_POST[$field])) {
+                continue;
+            }
+            $valor = intval(drak_get_post_value($field, 0));
+            $valor = max(0, $valor);
+            if ($max_value !== null) {
+                $valor = min($valor, $max_value);
+            }
+            update_field($field, $valor, $post_id);
+        }
+
+        if (isset($_POST['delerium_mutations'])) {
+            $mutations = sanitize_textarea_field(wp_unslash($_POST['delerium_mutations']));
+            update_field('delerium_mutations', $mutations, $post_id);
+        }
+
+        if (isset($_POST['delerium_madness'])) {
+            $madness = sanitize_textarea_field(wp_unslash($_POST['delerium_madness']));
+            update_field('delerium_madness', $madness, $post_id);
+        }
+
         for ($i = 1; $i <= 8; $i++) {
             $campo = 'mainpack_slot_' . $i;
             $valor = drak_get_post_value($campo, '');
@@ -302,6 +333,75 @@ function renderizar_inventario_personaje($post_id) {
 
     echo '<div class="mainpack-container">';
     echo '<form method="post" id="mainpack-formulario" class="formulario-inventario">';
+
+    $delerium_contamination = min(6, max(0, intval(get_field('delerium_contamination_level', $post_id))));
+    $delerium_counts = [
+        'chips'     => max(0, intval(get_field('delerium_chips', $post_id))),
+        'fragments' => max(0, intval(get_field('delerium_fragments', $post_id))),
+        'shards'    => max(0, intval(get_field('delerium_shards', $post_id))),
+        'crystals'  => max(0, intval(get_field('delerium_crystals', $post_id))),
+        'geodas'    => max(0, intval(get_field('delerium_geodas', $post_id))),
+    ];
+    $delerium_mutations = get_field('delerium_mutations', $post_id);
+    $delerium_madness   = get_field('delerium_madness', $post_id);
+
+    $slot_equivalent = (int) ceil($delerium_counts['chips'] / 4);
+    $slot_equivalent += (int) ceil($delerium_counts['fragments'] / 2);
+    $slot_equivalent += $delerium_counts['shards'];
+    $slot_equivalent += $delerium_counts['crystals'] * 2;
+    $slot_equivalent += $delerium_counts['geodas'] * 20;
+
+    echo '<section class="delerium-module">';
+    echo '  <div class="delerium-header">';
+    echo '    <div class="delerium-title">Delerium</div>';
+    echo '    <div class="delerium-contamination">';
+    echo '      <span class="delerium-contamination-label">Nivel de contaminación</span>';
+    echo '      <div class="delerium-contamination-track" id="delerium-contamination-track">';
+    for ($i = 1; $i <= 6; $i++) {
+        $active = $i <= $delerium_contamination ? ' active' : '';
+        echo '<span class="delerium-icon' . $active . '" data-index="' . $i . '"></span>';
+    }
+    echo '      </div>';
+    echo '      <div class="delerium-contamination-input">';
+    echo '        <label for="delerium_contamination" class="screen-reader-text">Nivel de contaminación</label>';
+    echo '        <input type="number" id="delerium_contamination" name="delerium_contamination_level" min="0" max="6" value="' . esc_attr($delerium_contamination) . '">';
+    echo '      </div>';
+    echo '    </div>';
+    echo '    <div class="delerium-slot-summary">';
+    echo '      <span>Equivalente en slots pequeños:</span>';
+    echo '      <strong id="delerium-slot-total">' . esc_html($slot_equivalent) . '</strong>';
+    echo '    </div>';
+    echo '  </div>';
+
+    echo '  <div class="delerium-counts">';
+    $labels = [
+        'chips'     => 'Chip',
+        'fragments' => 'Fragment',
+        'shards'    => 'Shard',
+        'crystals'  => 'Crystal',
+        'geodas'    => 'Geoda',
+    ];
+    foreach ($labels as $key => $label) {
+        $field_name = 'delerium_' . $key;
+        $input_id = 'delerium_' . $key;
+        echo '<div class="delerium-count">';
+        echo '  <label for="' . esc_attr($input_id) . '">' . esc_html($label) . '</label>';
+        echo '  <input type="number" id="' . esc_attr($input_id) . '" name="' . esc_attr($field_name) . '" min="0" value="' . esc_attr($delerium_counts[$key]) . '" class="delerium-amount-input">';
+        echo '</div>';
+    }
+    echo '  </div>';
+
+    echo '  <div class="delerium-notes">';
+    echo '    <div>';
+    echo '      <label for="delerium_mutations">Mutaciones</label>';
+    echo '      <textarea id="delerium_mutations" name="delerium_mutations" rows="3">' . esc_textarea($delerium_mutations) . '</textarea>';
+    echo '    </div>';
+    echo '    <div>';
+    echo '      <label for="delerium_madness">Locura</label>';
+    echo '      <textarea id="delerium_madness" name="delerium_madness" rows="3">' . esc_textarea($delerium_madness) . '</textarea>';
+    echo '    </div>';
+    echo '  </div>';
+    echo '</section>';
 	
 	// Slot especial: Oro
 $gold = get_field('golden_coins', $post_id);
@@ -1259,9 +1359,17 @@ foreach ($filas as $label => $keys_row) :
 
 add_action('wp_footer', function () {
     if (!is_page()) return;
+
+    $personaje_context_id = drak_get_request_personaje_id();
+    $delerium_nonce = $personaje_context_id ? wp_create_nonce('delerium_module_' . $personaje_context_id) : '';
+    $delerium_autosave = [
+        'ajaxUrl' => $personaje_context_id ? esc_url_raw( drak_get_admin_ajax_url() ) : '',
+        'nonce'   => $delerium_nonce,
+        'postId'  => $personaje_context_id,
+    ];
     ?>
 <script>
-	
+window.DELERIUM_AUTOSAVE = <?php echo wp_json_encode( $delerium_autosave ); ?>;
 	
 document.addEventListener('DOMContentLoaded', function () {
   const overlay       = document.getElementById('item-form-overlay');
@@ -1590,6 +1698,97 @@ closeButtons.forEach(btn => {
     btn.closest('.modal-overlay').style.display = 'none';
   });
 });
+
+// ----------------- MODULO DELERIUM -----------------
+const contaminationInput = document.getElementById('delerium_contamination');
+const contaminationIcons = document.querySelectorAll('.delerium-icon');
+const deleriumInputs = document.querySelectorAll('.delerium-amount-input');
+const deleriumSlotTotal = document.getElementById('delerium-slot-total');
+const deleriumTextareas = [
+  document.getElementById('delerium_mutations'),
+  document.getElementById('delerium_madness'),
+].filter(Boolean);
+const deleriumAutosaveConfig = window.DELERIUM_AUTOSAVE || null;
+let deleriumSaveTimer = null;
+
+function syncContaminationIcons(value) {
+  const level = Math.max(0, Math.min(6, Number(value) || 0));
+  contaminationIcons.forEach(icon => {
+    const index = Number(icon.dataset.index || 0);
+    if (index <= level) {
+      icon.classList.add('active');
+    } else {
+      icon.classList.remove('active');
+    }
+  });
+}
+contaminationInput?.addEventListener('input', (event) => {
+  syncContaminationIcons(event.target.value);
+  queueDeleriumSave();
+});
+if (contaminationInput) {
+  syncContaminationIcons(contaminationInput.value);
+}
+
+function calculateDeleriumSlots() {
+  if (!deleriumSlotTotal) return;
+  const values = {
+    chips: Number(document.getElementById('delerium_chips')?.value || 0),
+    fragments: Number(document.getElementById('delerium_fragments')?.value || 0),
+    shards: Number(document.getElementById('delerium_shards')?.value || 0),
+    crystals: Number(document.getElementById('delerium_crystals')?.value || 0),
+    geodas: Number(document.getElementById('delerium_geodas')?.value || 0),
+  };
+  let total = Math.ceil(values.chips / 4);
+  total += Math.ceil(values.fragments / 2);
+  total += values.shards;
+  total += values.crystals * 2;
+  total += values.geodas * 20;
+  deleriumSlotTotal.textContent = total;
+}
+deleriumInputs.forEach(input => {
+  input.addEventListener('input', () => {
+    calculateDeleriumSlots();
+    queueDeleriumSave();
+  });
+});
+deleriumTextareas.forEach(area => {
+  area.addEventListener('input', queueDeleriumSave);
+});
+calculateDeleriumSlots();
+
+function queueDeleriumSave() {
+  if (!deleriumAutosaveConfig?.ajaxUrl || !deleriumAutosaveConfig?.postId || !deleriumAutosaveConfig?.nonce) {
+    return;
+  }
+  if (deleriumSaveTimer) {
+    clearTimeout(deleriumSaveTimer);
+  }
+  deleriumSaveTimer = setTimeout(saveDeleriumModule, 700);
+}
+
+function saveDeleriumModule() {
+  const payload = new FormData();
+  payload.append('action', 'drak_save_delerium_module');
+  payload.append('post_id', deleriumAutosaveConfig.postId);
+  payload.append('nonce', deleriumAutosaveConfig.nonce);
+  payload.append('delerium_contamination_level', contaminationInput?.value || 0);
+  payload.append('delerium_chips', document.getElementById('delerium_chips')?.value || 0);
+  payload.append('delerium_fragments', document.getElementById('delerium_fragments')?.value || 0);
+  payload.append('delerium_shards', document.getElementById('delerium_shards')?.value || 0);
+  payload.append('delerium_crystals', document.getElementById('delerium_crystals')?.value || 0);
+  payload.append('delerium_geodas', document.getElementById('delerium_geodas')?.value || 0);
+  payload.append('delerium_mutations', document.getElementById('delerium_mutations')?.value || '');
+  payload.append('delerium_madness', document.getElementById('delerium_madness')?.value || '');
+
+  fetch(deleriumAutosaveConfig.ajaxUrl, {
+    method: 'POST',
+    credentials: 'same-origin',
+    body: payload,
+  }).catch(() => {
+    // without UI feedback; manual guard remains available
+  });
+}
 
 updateGoldDisplay();
 
@@ -4849,3 +5048,55 @@ function drak_get_admin_ajax_url() {
 
     return $cached;
 }
+
+function drak_save_delerium_module() {
+    if ( ! isset( $_POST['post_id'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! $post_id || ! wp_verify_nonce( $nonce, 'delerium_module_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $number_fields = [
+        'delerium_contamination_level' => 6,
+        'delerium_chips'               => null,
+        'delerium_fragments'           => null,
+        'delerium_shards'              => null,
+        'delerium_crystals'            => null,
+        'delerium_geodas'              => null,
+    ];
+
+    foreach ( $number_fields as $field => $max ) {
+        if ( ! isset( $_POST[ $field ] ) ) {
+            continue;
+        }
+        $value = intval( drak_get_post_value( $field, 0 ) );
+        $value = max( 0, $value );
+        if ( null !== $max ) {
+            $value = min( $value, $max );
+        }
+        update_field( $field, $value, $post_id );
+    }
+
+    if ( isset( $_POST['delerium_mutations'] ) ) {
+        $mutations = sanitize_textarea_field( wp_unslash( $_POST['delerium_mutations'] ) );
+        update_field( 'delerium_mutations', $mutations, $post_id );
+    }
+
+    if ( isset( $_POST['delerium_madness'] ) ) {
+        $madness = sanitize_textarea_field( wp_unslash( $_POST['delerium_madness'] ) );
+        update_field( 'delerium_madness', $madness, $post_id );
+    }
+
+    wp_send_json_success( [ 'message' => 'Delerium actualizado' ] );
+}
+add_action( 'wp_ajax_drak_save_delerium_module', 'drak_save_delerium_module' );
+add_action( 'wp_ajax_nopriv_drak_save_delerium_module', 'drak_save_delerium_module' );
