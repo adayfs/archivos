@@ -134,10 +134,21 @@ $status_labels = [
 .campaign-section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 0;
+  padding: 24px;
   background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.85));
   border-radius: 12px;
   border: 1px solid var(--accent, #261a3a);
+}
+.campaign-main {
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 32px;
+}
+.campaign-main-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 .campaign-section__title {
   margin: 0 0 8px;
@@ -250,14 +261,6 @@ $status_labels = [
 .wiki-card__more {
   margin-top: auto;
   text-align: right;
-}
-.wiki-card__more a {
-  color: var(--accent, #9b5cff);
-  text-decoration: none;
-  font-size: 13px;
-}
-.wiki-card__more a:hover {
-  text-decoration: underline;
 }
 .wiki-archive {
   margin-top: 16px;
@@ -427,9 +430,11 @@ function drak_campaign_render_personajes( $campaign_id ) {
     while ( $query->have_posts() ) {
         $query->the_post();
         $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+        $slug  = get_post_field( 'post_name', get_the_ID() );
+        $sheet_url = home_url( '/hoja-personaje/' . $slug . '/' );
         ?>
         <article class="campaign-card--simple">
-            <a href="<?php the_permalink(); ?>">
+            <a href="<?php echo esc_url( $sheet_url ); ?>">
                 <div class="campaign-card--simple__media"<?php echo $thumb ? ' style="background-image:url(' . esc_url( $thumb ) . ');"' : ''; ?>></div>
                 <h4><?php the_title(); ?></h4>
             </a>
@@ -474,6 +479,8 @@ function drak_campaign_render_diary( $campaign_id ) {
         trailingslashit( get_permalink( $campaign_id ) . 'diario' )
     );
 
+    echo '<main class="campaign-main">';
+    echo '<div class="campaign-main-inner">';
     echo '<div class="wiki-archive">';
     echo '<div class="wiki-archive-layout wiki-archive-layout--no-search">';
 
@@ -492,7 +499,7 @@ function drak_campaign_render_diary( $campaign_id ) {
         if ( $excerpt ) {
             echo '<p class="wiki-card__excerpt">' . esc_html( $excerpt ) . '</p>';
         }
-        echo '<div class="wiki-card__more"><a href="' . esc_url( get_permalink() ) . '">Ver ficha completa</a></div>';
+        echo '<div class="wiki-card__more"><a href="' . esc_url( get_permalink() ) . '"></a></div>';
         echo '</article>';
     }
     echo '</div>'; // list
@@ -511,6 +518,8 @@ function drak_campaign_render_diary( $campaign_id ) {
     if ( $paginate_links ) {
         echo '<div class="wiki-archive__pagination">' . wp_kses_post( $paginate_links ) . '</div>';
     }
+    echo '</div>'; // inner
+    echo '</main>';
     wp_reset_postdata();
 }
 
@@ -634,7 +643,7 @@ function drak_campaign_render_wiki_section( $campaign_id, $section ) {
             if ( $excerpt ) {
                 echo '<p class="wiki-card__excerpt">' . esc_html( $excerpt ) . '</p>';
             }
-            echo '<div class="wiki-card__more"><a href="' . esc_url( $target_link ) . '">Ver ficha completa</a></div>';
+            echo '<div class="wiki-card__more"><a href="' . esc_url( $target_link ) . '"></a></div>';
             echo '</article>';
         }
         echo '</div>'; // list
@@ -706,7 +715,7 @@ function drak_campaign_render_wiki_section( $campaign_id, $section ) {
         if ( $excerpt ) {
             echo '<p class="wiki-card__excerpt">' . esc_html( $excerpt ) . '</p>';
         }
-        echo '<div class="wiki-card__more"><a href="' . esc_url( $target_link ) . '">Ver ficha completa</a></div>';
+        echo '<div class="wiki-card__more"><a href="' . esc_url( $target_link ) . '"></a></div>';
         echo '</article>';
     }
     echo '</div>';
@@ -748,6 +757,11 @@ while ( have_posts() ) :
                 </div>
         </div>
         </div>
+
+        <?php if ( 'pj' === $section ) : ?>
+        <main class="campaign-main">
+            <div class="campaign-main-inner">
+        <?php endif; ?>
 
         <section class="campaign-actions">
             <div class="campaign-actions__grid">
@@ -804,6 +818,11 @@ while ( have_posts() ) :
             }
             ?>
         </section>
+
+        <?php if ( 'pj' === $section ) : ?>
+            </div>
+        </main>
+        <?php endif; ?>
     </article>
 
 <?php endwhile; ?>
