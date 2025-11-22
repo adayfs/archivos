@@ -132,6 +132,12 @@ $status_labels = [
   padding: 0;
   margin: 0 auto;
 }
+.single-campaign .campaign-single {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 .campaign-actions {
   padding: 32px 0 12px;
   background: linear-gradient(180deg, var(--accent-dark, rgba(12, 7, 20, 0.95)), rgba(10, 6, 16, 0.9));
@@ -142,14 +148,17 @@ $status_labels = [
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 14px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 .campaign-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 24px 20px;
   background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.85));
   border-radius: 12px;
   border: 1px solid var(--accent, #261a3a);
+  box-sizing: border-box;
 }
 .campaign-main {
   width: 100%;
@@ -276,6 +285,12 @@ $status_labels = [
 }
 .wiki-archive {
   margin-top: 16px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 .wiki-archive-layout {
   display: grid;
