@@ -36,6 +36,9 @@ $status_labels = [
   --accent-dark: rgba(155, 92, 255, 0.25);
   background: var(--bg);
   color: var(--text);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 .campaign-hero {
   position: relative;
@@ -120,19 +123,28 @@ $status_labels = [
   gap: 16px;
   color: var(--muted);
 }
+.single-campaign .site-content,
+.single-campaign .site-content > .ast-container,
+.single-campaign #primary,
+.single-campaign #main {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0;
+  margin: 0 auto;
+}
 .campaign-actions {
   padding: 32px 0 12px;
   background: linear-gradient(180deg, var(--accent-dark, rgba(12, 7, 20, 0.95)), rgba(10, 6, 16, 0.9));
 }
 .campaign-actions__grid {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 14px;
 }
 .campaign-section {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
   background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.85));
@@ -145,9 +157,9 @@ $status_labels = [
   padding-bottom: 32px;
 }
 .campaign-main-inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 .campaign-section__title {
@@ -758,71 +770,65 @@ while ( have_posts() ) :
         </div>
         </div>
 
-        <?php if ( 'pj' === $section ) : ?>
         <main class="campaign-main">
             <div class="campaign-main-inner">
-        <?php endif; ?>
+                <section class="campaign-actions">
+                    <div class="campaign-actions__grid">
+                        <a class="campaign-action drak-btn<?php echo $section === 'pj' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $pj_url ); ?>">
+                            <span class="campaign-action__title">Personajes</span>
+                        </a>
+                        <a class="campaign-action drak-btn<?php echo $section === 'diario' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $diary_url ); ?>">
+                            <span class="campaign-action__title">Diario</span>
+                        </a>
+                        <a class="campaign-action drak-btn<?php echo $section === 'wiki' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $wiki_url ); ?>">
+                            <span class="campaign-action__title">Wiki</span>
+                        </a>
+                        <a class="campaign-action drak-btn<?php echo $section === 'galeria' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $gallery_url ); ?>">
+                            <span class="campaign-action__title">Galería</span>
+                        </a>
+                    </div>
+                </section>
 
-        <section class="campaign-actions">
-            <div class="campaign-actions__grid">
-                <a class="campaign-action drak-btn<?php echo $section === 'pj' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $pj_url ); ?>">
-                    <span class="campaign-action__title">Personajes</span>
-                </a>
-                <a class="campaign-action drak-btn<?php echo $section === 'diario' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $diary_url ); ?>">
-                    <span class="campaign-action__title">Diario</span>
-                </a>
-                <a class="campaign-action drak-btn<?php echo $section === 'wiki' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $wiki_url ); ?>">
-                    <span class="campaign-action__title">Wiki</span>
-                </a>
-                <a class="campaign-action drak-btn<?php echo $section === 'galeria' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $gallery_url ); ?>">
-                    <span class="campaign-action__title">Galería</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="campaign-section">
-            <?php
-            switch ( $section ) {
-                case 'pj':
-                default:
-                    drak_campaign_section_title( 'Personajes' );
-                    drak_campaign_render_personajes( $campaign_id );
-                    break;
-                case 'diario':
-                    drak_campaign_section_title( 'Diario' );
-                    drak_campaign_render_diary( $campaign_id );
-                    break;
-                case 'wiki':
-                    $wiki_section = isset( $_GET['wiki_section'] ) ? sanitize_key( wp_unslash( $_GET['wiki_section'] ) ) : '';
-                    if ( $wiki_section ) {
-                        drak_campaign_render_wiki_section( $campaign_id, $wiki_section );
-                    } else {
-                        drak_campaign_section_title( 'Wiki' );
-                        drak_campaign_render_wiki_hub( $campaign_id, $wiki_url );
+                <section class="campaign-section">
+                    <?php
+                    switch ( $section ) {
+                        case 'pj':
+                        default:
+                            drak_campaign_section_title( 'Personajes' );
+                            drak_campaign_render_personajes( $campaign_id );
+                            break;
+                        case 'diario':
+                            drak_campaign_section_title( 'Diario' );
+                            drak_campaign_render_diary( $campaign_id );
+                            break;
+                        case 'wiki':
+                            $wiki_section = isset( $_GET['wiki_section'] ) ? sanitize_key( wp_unslash( $_GET['wiki_section'] ) ) : '';
+                            if ( $wiki_section ) {
+                                drak_campaign_render_wiki_section( $campaign_id, $wiki_section );
+                            } else {
+                                drak_campaign_section_title( 'Wiki' );
+                                drak_campaign_render_wiki_hub( $campaign_id, $wiki_url );
+                            }
+                            break;
+                        case 'galeria':
+                            drak_campaign_section_title( 'Galería' );
+                            if ( shortcode_exists( 'drak_gallery' ) ) {
+                                $gallery_html = do_shortcode( '[drak_gallery campaign="' . esc_attr( $campaign_id ) . '"]' );
+                                if ( trim( $gallery_html ) !== '' ) {
+                                    echo $gallery_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                } else {
+                                    echo '<p class="campaign-section__empty">Esta campaña aún no tiene imágenes en la galería.</p>';
+                                }
+                            } else {
+                                $gallery_link = add_query_arg( 'campaign', $campaign_id, home_url( '/galeria/' ) );
+                                echo '<p class="campaign-section__empty">La galería no está disponible en esta vista. Puedes verla aquí: <a href="' . esc_url( $gallery_link ) . '">abrir galería</a>.</p>';
+                            }
+                            break;
                     }
-                    break;
-                case 'galeria':
-                    drak_campaign_section_title( 'Galería' );
-                    if ( shortcode_exists( 'drak_gallery' ) ) {
-                        $gallery_html = do_shortcode( '[drak_gallery campaign="' . esc_attr( $campaign_id ) . '"]' );
-                        if ( trim( $gallery_html ) !== '' ) {
-                            echo $gallery_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                        } else {
-                            echo '<p class="campaign-section__empty">Esta campaña aún no tiene imágenes en la galería.</p>';
-                        }
-                    } else {
-                        $gallery_link = add_query_arg( 'campaign', $campaign_id, home_url( '/galeria/' ) );
-                        echo '<p class="campaign-section__empty">La galería no está disponible en esta vista. Puedes verla aquí: <a href="' . esc_url( $gallery_link ) . '">abrir galería</a>.</p>';
-                    }
-                    break;
-            }
-            ?>
-        </section>
-
-        <?php if ( 'pj' === $section ) : ?>
+                    ?>
+                </section>
             </div>
         </main>
-        <?php endif; ?>
     </article>
 
 <?php endwhile; ?>
