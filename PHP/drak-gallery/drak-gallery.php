@@ -69,9 +69,11 @@ function drak_gallery_register_acf_fields() {
 					'name'              => 'gallery_type',
 					'type'              => 'checkbox',
 					'choices'           => array(
-						'personaje' => __( 'Personaje', 'drak-gallery' ),
-						'lugar'     => __( 'Lugar', 'drak-gallery' ),
-						'npc'       => __( 'NPC', 'drak-gallery' ),
+						'personaje'      => __( 'Personaje', 'drak-gallery' ),
+						'lugar'          => __( 'Lugar', 'drak-gallery' ),
+						'npc'            => __( 'NPC', 'drak-gallery' ),
+						'faccion'        => __( 'Facción', 'drak-gallery' ),
+						'personaje_wiki' => __( 'Personaje (Wiki)', 'drak-gallery' ),
 					),
 					'layout'            => 'horizontal',
 					'required'          => 1,
@@ -102,6 +104,54 @@ function drak_gallery_register_acf_fields() {
 					'return_format'     => 'id',
 					'multiple'          => 1,
 					'filters'           => array( 'search' ),
+				),
+				array(
+					'key'               => 'field_gallery_facciones',
+					'label'             => __( 'Facciones relacionadas', 'drak-gallery' ),
+					'name'              => 'gallery_facciones',
+					'type'              => 'relationship',
+					'post_type'         => array( 'faccion' ),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field'    => 'field_gallery_type',
+								'operator' => '==',
+								'value'    => 'faccion',
+							),
+						),
+					),
+					'return_format'     => 'id',
+					'multiple'          => 1,
+					'filters'           => array( 'search' ),
+				),
+				array(
+					'key'               => 'field_gallery_personajes_wiki',
+					'label'             => __( 'Personajes (Wiki) relacionados', 'drak-gallery' ),
+					'name'              => 'gallery_personajes_wiki',
+					'type'              => 'relationship',
+					'post_type'         => array( 'personaje_wiki', 'personaje-lore', 'personaje_lore', 'personaje-wiki' ),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field'    => 'field_gallery_type',
+								'operator' => '==',
+								'value'    => 'personaje_wiki',
+							),
+						),
+					),
+					'return_format'     => 'id',
+					'multiple'          => 1,
+					'filters'           => array( 'search' ),
+				),
+				array(
+					'key'           => 'field_gallery_campaigns',
+					'label'         => __( 'Campañas asociadas', 'drak-gallery' ),
+					'name'          => 'gallery_campaigns',
+					'type'          => 'relationship',
+					'post_type'     => array( 'campaign' ),
+					'return_format' => 'id',
+					'multiple'      => 1,
+					'filters'       => array( 'search' ),
 				),
 				array(
 					'key'               => 'field_gallery_lugares',
@@ -309,11 +359,66 @@ function drak_gallery_allowed_types() {
  * @return array
  */
 function drak_gallery_type_labels() {
-	return array(
+	$labels = array(
 		'personaje' => __( 'Personaje', 'drak-gallery' ),
 		'lugar'     => __( 'Lugar', 'drak-gallery' ),
 		'npc'       => __( 'NPC', 'drak-gallery' ),
 	);
+
+	if ( post_type_exists( 'faccion' ) ) {
+		$labels['faccion'] = __( 'Facción', 'drak-gallery' );
+	}
+	if ( post_type_exists( 'personaje_wiki' ) || post_type_exists( 'personaje-lore' ) || post_type_exists( 'personaje_lore' ) ) {
+		$labels['personaje_wiki'] = __( 'Personaje (Wiki)', 'drak-gallery' );
+	}
+
+	return $labels;
+}
+
+function drak_gallery_get_current_campaign_id() {
+	$campaign = get_query_var( 'campaign' );
+	if ( $campaign ) {
+		if ( is_numeric( $campaign ) ) {
+			return absint( $campaign );
+		}
+		$post = get_page_by_path( $campaign, OBJECT, 'campaign' );
+		if ( $post ) {
+			return $post->ID;
+		}
+	}
+
+	if ( is_singular( 'campaign' ) ) {
+		return get_queried_object_id();
+	}
+
+	global $post;
+	if ( $post && $post->post_type === 'campaign' ) {
+		return $post->ID;
+	}
+
+	return 0;
+}
+
+function drak_gallery_get_campaign_options() {
+	$campaigns = get_posts(
+		array(
+			'post_type'      => 'campaign',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'fields'         => 'ids',
+		)
+	);
+	$options = '';
+	foreach ( $campaigns as $cid ) {
+		$options .= sprintf(
+			'<option value="%1$d">%2$s</option>',
+			intval( $cid ),
+			esc_html( get_the_title( $cid ) )
+		);
+	}
+	return $options;
 }
 
 /**
@@ -549,6 +654,36 @@ function drak_gallery_render_upload_form() {
 			</select>
 		</div>
 
+		<?php if ( isset( $options['faccion'] ) ) : ?>
+		<div class="drak-field drak-conditional-panel" data-type="faccion">
+			<label for="drak-gallery-facciones"><?php esc_html_e( 'Facciones relacionadas', 'drak-gallery' ); ?></label>
+			<select id="drak-gallery-facciones" name="gallery_facciones[]" multiple>
+				<?php echo $options['faccion']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</select>
+		</div>
+		<?php endif; ?>
+
+		<?php if ( isset( $options['personaje_wiki'] ) ) : ?>
+		<div class="drak-field drak-conditional-panel" data-type="personaje_wiki">
+			<label for="drak-gallery-personajes-wiki"><?php esc_html_e( 'Personajes (Wiki) relacionados', 'drak-gallery' ); ?></label>
+			<select id="drak-gallery-personajes-wiki" name="gallery_personajes_wiki[]" multiple>
+				<?php echo $options['personaje_wiki']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</select>
+		</div>
+		<?php endif; ?>
+
+		<?php $campaign_id = drak_gallery_get_current_campaign_id(); ?>
+		<?php if ( $campaign_id ) : ?>
+			<input type="hidden" name="gallery_campaigns[]" value="<?php echo esc_attr( $campaign_id ); ?>">
+		<?php else : ?>
+		<div class="drak-field">
+			<label for="drak-gallery-campaign"><?php esc_html_e( 'Campaña', 'drak-gallery' ); ?></label>
+			<select id="drak-gallery-campaign" name="gallery_campaigns[]" multiple>
+				<?php echo drak_gallery_get_campaign_options(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</select>
+		</div>
+		<?php endif; ?>
+
 		<div class="drak-field">
 			<label for="drak-gallery-image"><?php esc_html_e( 'Imagen (JPG, PNG, WebP, máximo 8MB)', 'drak-gallery' ); ?> *</label>
 			<input type="file" id="drak-gallery-image" name="drak_gallery_image" accept="image/*" required>
@@ -570,6 +705,13 @@ function drak_gallery_get_selector_options() {
 		'lugar'     => array(),
 		'npc'       => array(),
 	);
+
+	if ( post_type_exists( 'faccion' ) ) {
+		$types['faccion'] = array();
+	}
+	if ( post_type_exists( 'personaje_wiki' ) || post_type_exists( 'personaje-lore' ) || post_type_exists( 'personaje_lore' ) || post_type_exists( 'personaje-wiki' ) ) {
+		$types['personaje_wiki'] = array();
+	}
 
 	foreach ( $types as $post_type => &$html ) {
 		$posts = get_posts(
@@ -626,6 +768,12 @@ function drak_gallery_handle_upload() {
 		'lugar'     => drak_gallery_clean_ids( $_POST['gallery_lugares'] ?? array() ),
 		'npc'       => drak_gallery_clean_ids( $_POST['gallery_npcs'] ?? array() ),
 	);
+	if ( post_type_exists( 'faccion' ) ) {
+		$associations['faccion'] = drak_gallery_clean_ids( $_POST['gallery_facciones'] ?? array() );
+	}
+	if ( post_type_exists( 'personaje_wiki' ) || post_type_exists( 'personaje-lore' ) || post_type_exists( 'personaje_lore' ) || post_type_exists( 'personaje-wiki' ) ) {
+		$associations['personaje_wiki'] = drak_gallery_clean_ids( $_POST['gallery_personajes_wiki'] ?? array() );
+	}
 
 	foreach ( $associations as $type => &$ids ) {
 		$ids = drak_gallery_validate_ids( $ids, $type );
@@ -707,6 +855,16 @@ function drak_gallery_handle_upload() {
 	drak_gallery_update_field( 'gallery_personajes', $associations['personaje'], $post_id );
 	drak_gallery_update_field( 'gallery_lugares', $associations['lugar'], $post_id );
 	drak_gallery_update_field( 'gallery_npcs', $associations['npc'], $post_id );
+	if ( isset( $associations['faccion'] ) ) {
+		drak_gallery_update_field( 'gallery_facciones', $associations['faccion'], $post_id );
+	}
+	if ( isset( $associations['personaje_wiki'] ) ) {
+		drak_gallery_update_field( 'gallery_personajes_wiki', $associations['personaje_wiki'], $post_id );
+	}
+	$campaigns = drak_gallery_clean_ids( $_POST['gallery_campaigns'] ?? array() );
+	if ( ! empty( $campaigns ) ) {
+		drak_gallery_update_field( 'gallery_campaigns', $campaigns, $post_id );
+	}
 	drak_gallery_update_field( 'gallery_description', $description, $post_id );
 
 	$redirect = isset( $_POST['drak_gallery_redirect'] ) ? esc_url_raw( wp_unslash( $_POST['drak_gallery_redirect'] ) ) : '';
@@ -740,18 +898,34 @@ function drak_gallery_clean_ids( $raw_ids ) {
 /**
  * Shortcode de galería pública.
  */
-function drak_gallery_render_grid() {
+function drak_gallery_render_grid( $atts = array() ) {
 	drak_gallery_ensure_frontend_script();
 
-	$query = new WP_Query(
-		array(
-			'post_type'      => 'galeria_item',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-		)
+	$atts        = shortcode_atts( array( 'campaign' => 0 ), $atts );
+	$campaign_id = intval( $atts['campaign'] );
+	if ( ! $campaign_id ) {
+		$campaign_id = drak_gallery_get_current_campaign_id();
+	}
+
+	$args = array(
+		'post_type'      => 'galeria_item',
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
 	);
+
+	if ( $campaign_id ) {
+		$args['meta_query'] = array(
+			array(
+				'key'     => 'gallery_campaigns',
+				'value'   => '"' . $campaign_id . '"',
+				'compare' => 'LIKE',
+			),
+		);
+	}
+
+	$query = new WP_Query( $args );
 
 	if ( ! $query->have_posts() ) {
 		return '<p class="drak-gallery-notice">' . esc_html__( 'No hay imágenes disponibles todavía.', 'drak-gallery' ) . '</p>';
@@ -795,9 +969,9 @@ function drak_gallery_render_grid() {
 				?>
 				<div class="drak-gallery-card"
 					data-search="<?php echo esc_attr( $data_search ); ?>"
-					data-has-personaje="<?php echo $has['personaje'] ? '1' : '0'; ?>"
-					data-has-lugar="<?php echo $has['lugar'] ? '1' : '0'; ?>"
-					data-has-npc="<?php echo $has['npc'] ? '1' : '0'; ?>"
+					<?php foreach ( drak_gallery_type_labels() as $t_key => $t_label ) : ?>
+						data-has-<?php echo esc_attr( $t_key ); ?>="<?php echo ! empty( $has[ $t_key ] ) ? '1' : '0'; ?>"
+					<?php endforeach; ?>
 					data-title="<?php echo esc_attr( get_the_title() ); ?>"
 					data-author="<?php echo esc_attr( $author ); ?>"
 					data-date="<?php echo esc_attr( $date ); ?>"
@@ -833,6 +1007,12 @@ function drak_gallery_get_associations( $post_id, $detailed = false ) {
 		'lugar'     => (array) drak_gallery_get_field( 'gallery_lugares', $post_id ),
 		'npc'       => (array) drak_gallery_get_field( 'gallery_npcs', $post_id ),
 	);
+	if ( drak_gallery_get_field( 'gallery_facciones', $post_id ) !== null ) {
+		$raw['faccion'] = (array) drak_gallery_get_field( 'gallery_facciones', $post_id );
+	}
+	if ( drak_gallery_get_field( 'gallery_personajes_wiki', $post_id ) !== null ) {
+		$raw['personaje_wiki'] = (array) drak_gallery_get_field( 'gallery_personajes_wiki', $post_id );
+	}
 
 	foreach ( $raw as &$ids ) {
 		$ids = array_values(
@@ -934,29 +1114,66 @@ function drak_gallery_validate_ids( $ids, $type ) {
  */
 function drak_render_gallery_for_post( $post_id ) {
 	$post_type = get_post_type( $post_id );
-	$map = array(
-		'personaje' => 'gallery_personajes',
-		'lugar'     => 'gallery_lugares',
-		'npc'       => 'gallery_npcs',
-	);
+	$meta_query = array();
 
-	if ( ! isset( $map[ $post_type ] ) ) {
-		return;
+	if ( $post_type === 'personaje_wiki' ) {
+		$meta_query[] = array(
+			'key'     => 'gallery_personajes_wiki',
+			'value'   => '"' . $post_id . '"',
+			'compare' => 'LIKE',
+		);
+		$campaign_id = (int) get_post_meta( $post_id, 'campaign', true );
+		if ( $campaign_id ) {
+			$meta_query[] = array(
+				'relation' => 'OR',
+				array(
+					'key'     => 'gallery_campaigns',
+					'value'   => '"' . $campaign_id . '"',
+					'compare' => 'LIKE',
+				),
+				array(
+					'key'     => 'gallery_campaigns',
+					'compare' => 'NOT EXISTS',
+				),
+			);
+		}
+	} else {
+		$map = array(
+			'lugar'   => 'gallery_lugares',
+			'npc'     => 'gallery_npcs',
+			'faccion' => 'gallery_facciones',
+		);
+
+		if ( ! isset( $map[ $post_type ] ) ) {
+			return;
+		}
+
+		$meta_query[] = array(
+			'key'     => 'gallery_type',
+			'value'   => $post_type,
+			'compare' => 'LIKE',
+		);
+		$meta_query[] = array(
+			'key'     => $map[ $post_type ],
+			'value'   => '"' . $post_id . '"',
+			'compare' => 'LIKE',
+		);
+		$campaign_id = (int) get_post_meta( $post_id, 'campaign', true );
+		if ( $campaign_id ) {
+			$meta_query[] = array(
+				'key'     => 'gallery_campaigns',
+				'value'   => '"' . $campaign_id . '"',
+				'compare' => 'LIKE',
+			);
+		}
 	}
 
-	$meta_key = $map[ $post_type ];
 	$query = new WP_Query(
 		array(
 			'post_type'      => 'galeria_item',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'meta_query'     => array(
-				array(
-					'key'     => $meta_key,
-					'value'   => '"' . $post_id . '"',
-					'compare' => 'LIKE',
-				),
-			),
+			'meta_query'     => $meta_query,
 		)
 	);
 
@@ -980,9 +1197,9 @@ function drak_render_gallery_for_post( $post_id ) {
 		?>
 		<div class="drak-gallery-card"
 			data-search="<?php echo esc_attr( $data_search ); ?>"
-			data-has-personaje="<?php echo $has['personaje'] ? '1' : '0'; ?>"
-			data-has-lugar="<?php echo $has['lugar'] ? '1' : '0'; ?>"
-			data-has-npc="<?php echo $has['npc'] ? '1' : '0'; ?>"
+			<?php foreach ( drak_gallery_type_labels() as $t_key => $t_label ) : ?>
+				data-has-<?php echo esc_attr( $t_key ); ?>="<?php echo ! empty( $has[ $t_key ] ) ? '1' : '0'; ?>"
+			<?php endforeach; ?>
 			data-title="<?php echo esc_attr( get_the_title() ); ?>"
 			data-author="<?php echo esc_attr( $author ); ?>"
 			data-date="<?php echo esc_attr( $date ); ?>"

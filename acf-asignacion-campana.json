@@ -74,6 +74,20 @@
           "operator": "==",
           "value": "lore-entry"
         }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje_wiki"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "diario"
+        }
       ]
     ],
     "position": "side",

@@ -1,0 +1,30 @@
+{
+  "acf-field-group": {
+    "key": "group_personaje_wiki_meta",
+    "title": "Personaje-Wiki – Metadatos",
+    "fields": [
+      {
+        "key": "field_pw_hero_image",
+        "label": "Imagen principal (hero)",
+        "name": "hero_image",
+        "type": "image",
+        "return_format": "id",
+        "preview_size": "medium"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje_wiki"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": ""
+  }
+}

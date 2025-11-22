@@ -1,0 +1,141 @@
+{
+  "key": "group_drak_gallery",
+  "title": "Asociaciones de galería",
+  "fields": [
+    {
+      "key": "field_gallery_type",
+      "label": "Tipo de asociación",
+      "name": "gallery_type",
+      "type": "checkbox",
+      "choices": {
+        "personaje": "Personaje",
+        "lugar": "Lugar",
+        "npc": "NPC",
+        "faccion": "Facción",
+        "personaje_wiki": "Personaje (Wiki)"
+      },
+      "layout": "horizontal",
+      "return_format": "value",
+      "min": 1,
+      "required": 1
+    },
+    {
+      "key": "field_gallery_personajes",
+      "label": "Personajes relacionados",
+      "name": "gallery_personajes",
+      "type": "relationship",
+      "post_type": ["personaje"],
+      "return_format": "id",
+      "multiple": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_gallery_type",
+            "operator": "==",
+            "value": "personaje"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_gallery_lugares",
+      "label": "Lugares relacionados",
+      "name": "gallery_lugares",
+      "type": "relationship",
+      "post_type": ["lugar"],
+      "return_format": "id",
+      "multiple": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_gallery_type",
+            "operator": "==",
+            "value": "lugar"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_gallery_npcs",
+      "label": "NPCs relacionados",
+      "name": "gallery_npcs",
+      "type": "relationship",
+      "post_type": ["npc"],
+      "return_format": "id",
+      "multiple": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_gallery_type",
+            "operator": "==",
+            "value": "npc"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_gallery_facciones",
+      "label": "Facciones relacionadas",
+      "name": "gallery_facciones",
+      "type": "relationship",
+      "post_type": ["faccion"],
+      "return_format": "id",
+      "multiple": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_gallery_type",
+            "operator": "==",
+            "value": "faccion"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_gallery_personajes_wiki",
+      "label": "Personajes (Wiki) relacionados",
+      "name": "gallery_personajes_wiki",
+      "type": "relationship",
+      "post_type": ["personaje_wiki", "personaje-lore", "personaje_lore", "personaje-wiki"],
+      "return_format": "id",
+      "multiple": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_gallery_type",
+            "operator": "==",
+            "value": "personaje_wiki"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_gallery_description",
+      "label": "Descripción",
+      "name": "gallery_description",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "br"
+    },
+    {
+      "key": "field_gallery_campaigns",
+      "label": "Campañas asociadas",
+      "name": "gallery_campaigns",
+      "type": "relationship",
+      "post_type": ["campaign"],
+      "return_format": "id",
+      "multiple": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "galeria_item"
+      }
+    ]
+  ],
+  "style": "default",
+  "position": "normal"
+}

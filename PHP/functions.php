@@ -44,6 +44,296 @@ function enqueue_custom_scripts() {
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
 /**
+ * Devuelve el ID de campaña en contexto (post de campaña o contenido asociado).
+ *
+ * @return int
+ */
+function drak_get_current_campaign_id() {
+    if ( is_singular( 'campaign' ) ) {
+        return get_the_ID();
+    }
+
+    $related_types = [ 'personaje', 'npc', 'lugar', 'faccion', 'personaje_wiki', 'diario', 'lore-entry' ];
+    if ( is_singular( $related_types ) ) {
+        $campaign = get_field( 'campaign', get_the_ID() );
+        if ( is_array( $campaign ) ) {
+            $campaign = array_filter( $campaign );
+            $campaign = reset( $campaign );
+        }
+        return intval( $campaign );
+    }
+
+    return 0;
+}
+
+/**
+ * Pinta la cabecera de campaña en páginas asociadas (sin mostrar el botón de hub fuera del home de campaña).
+ */
+function drak_render_campaign_header_bar() {
+    // Evita duplicar en el home de campaña, donde ya existe la cabecera original con botón.
+    if ( is_singular( 'campaign' ) ) {
+        return;
+    }
+
+    $campaign_id = drak_get_current_campaign_id();
+    if ( ! $campaign_id ) {
+        return;
+    }
+
+    $cover_id    = get_field( 'campaign_cover_image', $campaign_id );
+    $cover_url   = $cover_id ? wp_get_attachment_image_url( $cover_id, 'full' ) : '';
+    if ( ! $cover_url ) {
+        $cover_url = get_the_post_thumbnail_url( $campaign_id, 'full' );
+    }
+
+    $title      = get_the_title( $campaign_id );
+    $target_url = get_permalink( $campaign_id );
+    $logo_id    = drak_get_campaign_logo_id( $campaign_id );
+    $logo_html  = $logo_id ? wp_get_attachment_image( $logo_id, 'medium', false, [ 'class' => 'campaign-hero__logo-img' ] ) : '';
+
+    ?>
+    <style>
+    .campaign-hero-shell {
+      --campaign-horizontal-padding: 53px;
+      max-width: 1100px;
+      margin: 16px auto 0;
+      padding: 0 var(--campaign-horizontal-padding);
+    }
+    .campaign-hero {
+      position: relative;
+      padding: 154px 53px;
+      background-size: cover;
+      background-position: center;
+      margin-top: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .campaign-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+    }
+    .campaign-hero__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+    .campaign-hero__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 53px;
+      position: relative;
+    }
+    .campaign-hero__content {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 80px;
+    }
+    .campaign-hero-logo {
+      position: absolute;
+      left: 50%;
+      bottom: -140px;
+      transform: translateX(-50%);
+      max-width: 270px;
+    }
+    .campaign-hero-logo-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .campaign-hero__home-link {
+      position: absolute;
+      bottom: -140px;
+      left: -92px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--accent, #9b5cff);
+      background: var(--accent-dark, rgba(155, 92, 255, 0.2));
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 10px;
+    }
+    .campaign-hero__title {
+      margin: 0;
+      font-size: clamp(38px, 6vw, 64px);
+      letter-spacing: -0.02em;
+      color: var(--accent, #9b5cff);
+    }
+    @media (max-width: 640px) {
+      .campaign-hero-shell {
+        margin-top: 8px;
+        padding: 0 12px;
+      }
+      .campaign-hero {
+        padding: 48px 16px;
+      }
+    }
+    </style>
+    <div class="campaign-hero-shell">
+      <div class="campaign-hero"<?php echo $cover_url ? ' style="background-image: url(' . esc_url( $cover_url ) . ');"' : ''; ?>>
+          <a class="campaign-hero__link" href="<?php echo esc_url( $target_url ); ?>" aria-label="<?php echo esc_attr( 'Ir al inicio de la campaña ' . $title ); ?>">
+              <div class="campaign-hero__overlay"></div>
+              <div class="campaign-hero__inner">
+                <div class="campaign-hero__content">
+                    <?php if ( $logo_html ) : ?>
+                      <div class="campaign-hero-logo"><?php echo $logo_html; ?></div>
+                    <?php endif; ?>
+                </div>
+              </div>
+          </a>
+      </div>
+    </div>
+    <?php
+}
+add_action( 'wp_body_open', 'drak_render_campaign_header_bar', 5 );
+
+/**
+ * =========================================================
+ * LOGO DE CAMPAÑA (metadato _campaign_logo_id, sin ACF)
+ * =========================================================
+ */
+
+/**
+ * Añade el metabox "Logo de la campaña" al CPT campaign.
+ */
+add_action( 'add_meta_boxes', 'drak_add_campaign_logo_metabox' );
+
+function drak_add_campaign_logo_metabox() {
+    add_meta_box(
+        'drak_campaign_logo',
+        __( 'Logo de la campaña', 'textdomain' ),
+        'drak_render_campaign_logo_metabox',
+        'campaign',
+        'side',
+        'default'
+    );
+}
+
+/**
+ * Render del metabox con el media uploader.
+ */
+function drak_render_campaign_logo_metabox( $post ) {
+    wp_nonce_field( 'drak_save_campaign_logo', 'drak_campaign_logo_nonce' );
+    wp_enqueue_media();
+
+    $logo_id  = intval( get_post_meta( $post->ID, '_campaign_logo_id', true ) );
+    $logo_img = $logo_id ? wp_get_attachment_image( $logo_id, 'medium', false, [ 'style' => 'max-width:100%;height:auto;display:block;margin-bottom:8px;' ] ) : '';
+    ?>
+    <div id="drak-campaign-logo-wrapper">
+        <div class="drak-campaign-logo-preview">
+            <?php if ( $logo_img ) echo $logo_img; ?>
+        </div>
+
+        <input type="hidden" id="drak_campaign_logo_id" name="drak_campaign_logo_id" value="<?php echo esc_attr( $logo_id ); ?>">
+
+        <p>
+            <button type="button" class="button" id="drak_campaign_logo_upload">
+                <?php echo $logo_id ? esc_html__( 'Cambiar logo', 'textdomain' ) : esc_html__( 'Subir logo', 'textdomain' ); ?>
+            </button>
+            <button type="button" class="button link-button" id="drak_campaign_logo_remove"><?php esc_html_e( 'Quitar logo', 'textdomain' ); ?></button>
+        </p>
+        <p class="description">
+            <?php esc_html_e( 'Imagen que se mostrará como logo centrado en la parte inferior de la cabecera de la campaña.', 'textdomain' ); ?>
+        </p>
+    </div>
+    <script>
+    jQuery(document).ready(function($) {
+        let frame;
+        const $wrapper = $('#drak-campaign-logo-wrapper');
+        const $preview = $wrapper.find('.drak-campaign-logo-preview');
+        const $input   = $('#drak_campaign_logo_id');
+
+        $('#drak_campaign_logo_upload').on('click', function(e) {
+            e.preventDefault();
+            if (frame) {
+                frame.open();
+                return;
+            }
+            frame = wp.media({
+                title: '<?php echo esc_js( __( 'Seleccionar logo de campaña', 'textdomain' ) ); ?>',
+                button: { text: '<?php echo esc_js( __( 'Usar esta imagen', 'textdomain' ) ); ?>' },
+                multiple: false
+            });
+            frame.on('select', function() {
+                const attachment = frame.state().get('selection').first().toJSON();
+                $input.val(attachment.id);
+                $preview.html('<img src="' + attachment.url + '" style="max-width:100%;height:auto;display:block;margin-bottom:8px;" />');
+            });
+            frame.open();
+        });
+
+        $('#drak_campaign_logo_remove').on('click', function(e) {
+            e.preventDefault();
+            $input.val('');
+            $preview.empty();
+        });
+    });
+    </script>
+    <?php
+}
+
+/**
+ * Guardado del metadato _campaign_logo_id.
+ */
+add_action( 'save_post_campaign', 'drak_save_campaign_logo_meta' );
+function drak_save_campaign_logo_meta( $post_id ) {
+    if ( ! isset( $_POST['drak_campaign_logo_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['drak_campaign_logo_nonce'] ) ), 'drak_save_campaign_logo' ) ) {
+        return;
+    }
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+
+    if ( isset( $_POST['drak_campaign_logo_id'] ) ) {
+        $logo_id = intval( $_POST['drak_campaign_logo_id'] );
+        if ( $logo_id > 0 ) {
+            update_post_meta( $post_id, '_campaign_logo_id', $logo_id );
+        } else {
+            delete_post_meta( $post_id, '_campaign_logo_id' );
+        }
+    }
+}
+
+/**
+ * Devuelve el ID del logo de una campaña (metadato _campaign_logo_id).
+ */
+function drak_get_campaign_logo_id( $post_id = null ) {
+    $post_id = $post_id ?: get_the_ID();
+    if ( ! $post_id ) {
+        return 0;
+    }
+    $logo_id = intval( get_post_meta( $post_id, '_campaign_logo_id', true ) );
+    return $logo_id > 0 ? $logo_id : 0;
+}
+
+/**
+ * Renderiza el logo de campaña en la cabecera (si existe).
+ */
+function drak_render_campaign_logo( $post_id = null ) {
+    $logo_id = drak_get_campaign_logo_id( $post_id );
+    if ( ! $logo_id ) {
+        return;
+    }
+    echo '<div class="campaign-hero__logo">';
+    echo wp_get_attachment_image( $logo_id, 'medium', false, [ 'class' => 'campaign-hero__logo-img' ] );
+    echo '</div>';
+}
+
+/**
  * Define y sincroniza el rol Dungeon Master con capacidades centradas en lectura.
  */
 function drak_get_dm_capabilities() {
@@ -1946,6 +2236,30 @@ function drak_register_wiki_cpts() {
             ],
             'slug' => 'lore-entry',
         ],
+        'personaje_wiki' => [
+            'labels' => [
+                'name'          => 'Personajes (Wiki)',
+                'singular_name' => 'Personaje (Wiki)',
+                'menu_name'     => 'Personajes (Wiki)',
+            ],
+            'slug' => 'personaje-wiki',
+        ],
+        'personaje_wiki_entry' => [
+            'labels' => [
+                'name'          => 'Entradas de Personaje-Wiki',
+                'singular_name' => 'Entrada de Personaje-Wiki',
+                'menu_name'     => 'Entradas Personaje-Wiki',
+            ],
+            'slug' => 'personaje-wiki-entry',
+        ],
+        'diario' => [
+            'labels' => [
+                'name'          => 'Diarios',
+                'singular_name' => 'Diario',
+                'menu_name'     => 'Diarios',
+            ],
+            'slug' => 'diario',
+        ],
     ];
 
     foreach ( $defs as $type => $info ) {
@@ -1965,6 +2279,107 @@ function drak_register_wiki_cpts() {
     }
 }
 add_action( 'init', 'drak_register_wiki_cpts' );
+
+/**
+ * Guarda una entrada de Personaje-Wiki desde el front.
+ */
+function drak_handle_personaje_wiki_note() {
+    if ( ! isset( $_POST['pw_note_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['pw_note_nonce'] ) ), 'pw_save_note' ) ) {
+        return;
+    }
+    if ( ! is_user_logged_in() ) {
+        wp_die( 'Debes iniciar sesión para añadir notas.' );
+    }
+
+    $parent_id = isset( $_POST['pw_id'] ) ? absint( $_POST['pw_id'] ) : 0;
+    $section   = isset( $_POST['pw_section'] ) ? sanitize_text_field( wp_unslash( $_POST['pw_section'] ) ) : '';
+    $content   = isset( $_POST['pw_content'] ) ? wp_kses_post( wp_unslash( $_POST['pw_content'] ) ) : '';
+    $title     = isset( $_POST['pw_title'] ) ? sanitize_text_field( wp_unslash( $_POST['pw_title'] ) ) : '';
+    $campaign  = isset( $_POST['campaign'] ) ? absint( $_POST['campaign'] ) : 0;
+
+    if ( ! $parent_id || ! in_array( $section, [ 'origen', 'aventura' ], true ) || empty( $content ) ) {
+        wp_die( 'Datos incompletos.' );
+    }
+
+    $entry_id = wp_insert_post( [
+        'post_type'    => 'personaje_wiki_entry',
+        'post_status'  => 'publish',
+        'post_title'   => $title ? $title : sprintf( 'Nota %s', current_time( 'Y-m-d H:i' ) ),
+        'post_content' => $content,
+        'post_author'  => get_current_user_id(),
+    ] );
+
+    if ( is_wp_error( $entry_id ) ) {
+        wp_die( 'No se pudo guardar la nota.' );
+    }
+
+    update_field( 'parent_personaje_wiki', $parent_id, $entry_id );
+    update_field( 'section', $section, $entry_id );
+    if ( $campaign ) {
+        update_post_meta( $entry_id, 'pw_entry_campaign', $campaign );
+    }
+
+    $redirect = get_permalink( $parent_id );
+    $redirect = add_query_arg( 'pw_note_saved', 1, $redirect );
+    $redirect .= '#' . sanitize_key( $section );
+    wp_safe_redirect( $redirect );
+    exit;
+}
+add_action( 'template_redirect', 'drak_handle_personaje_wiki_note' );
+
+function drak_pw_render_entry_card( $post_id ) {
+    $title   = get_the_title( $post_id );
+    $date    = get_the_date( '', $post_id );
+    $excerpt = get_the_excerpt( $post_id );
+    ob_start();
+    ?>
+    <article class="pw-entry">
+        <h4><?php echo esc_html( $title ); ?></h4>
+        <small><?php echo esc_html( $date ); ?></small>
+        <div><?php echo esc_html( $excerpt ); ?></div>
+        <a class="pw-link" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">Leer más</a>
+    </article>
+    <?php
+    return ob_get_clean();
+}
+
+function drak_pw_ajax_add_entry() {
+    if ( ! isset( $_POST['pw_note_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['pw_note_nonce'] ) ), 'pw_save_note' ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ] );
+    }
+    if ( ! is_user_logged_in() ) {
+        wp_send_json_error( [ 'message' => 'Debes iniciar sesión.' ] );
+    }
+
+    $parent_id = isset( $_POST['pw_id'] ) ? absint( $_POST['pw_id'] ) : 0;
+    $section   = isset( $_POST['pw_section'] ) ? sanitize_text_field( wp_unslash( $_POST['pw_section'] ) ) : '';
+    $content   = isset( $_POST['pw_content'] ) ? wp_kses_post( wp_unslash( $_POST['pw_content'] ) ) : '';
+    $title     = isset( $_POST['pw_title'] ) ? sanitize_text_field( wp_unslash( $_POST['pw_title'] ) ) : '';
+
+    if ( ! $parent_id || ! in_array( $section, [ 'origen', 'aventura' ], true ) || empty( $content ) ) {
+        wp_send_json_error( [ 'message' => 'Datos incompletos.' ] );
+    }
+
+    $entry_id = wp_insert_post( [
+        'post_type'    => 'personaje_wiki_entry',
+        'post_status'  => 'publish',
+        'post_title'   => $title ? $title : sprintf( 'Nota %s', current_time( 'Y-m-d H:i' ) ),
+        'post_content' => $content,
+        'post_author'  => get_current_user_id(),
+    ] );
+
+    if ( is_wp_error( $entry_id ) ) {
+        wp_send_json_error( [ 'message' => 'No se pudo guardar.' ] );
+    }
+
+    update_field( 'parent_personaje_wiki', $parent_id, $entry_id );
+    update_field( 'section', $section, $entry_id );
+
+    $html = drak_pw_render_entry_card( $entry_id );
+    wp_send_json_success( [ 'html' => $html ] );
+}
+add_action( 'wp_ajax_drak_pw_add_entry', 'drak_pw_ajax_add_entry' );
+add_action( 'wp_ajax_nopriv_drak_pw_add_entry', 'drak_pw_ajax_add_entry' );
 
 /**
  * Endpoints de secciones de campaña: /campaign/{slug}/(pj|diario|wiki|galeria)/
@@ -3670,11 +4085,88 @@ add_action( 'acf/init', function () {
                     'value'    => 'lore-entry',
                 ],
             ],
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'personaje_wiki',
+                ],
+            ],
         ],
         'position'                => 'side',
         'style'                   => 'default',
         'label_placement'         => 'top',
         'instruction_placement'   => 'label',
+    ] );
+
+    acf_add_local_field_group( [
+        'key'    => 'group_personaje_wiki_meta',
+        'title'  => 'Personaje-Wiki – Metadatos',
+        'fields' => [
+            [
+                'key'           => 'field_pw_hero_image',
+                'label'         => 'Imagen principal (hero)',
+                'name'          => 'hero_image',
+                'type'          => 'image',
+                'return_format' => 'id',
+                'preview_size'  => 'medium',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'personaje_wiki',
+                ],
+            ],
+        ],
+    ] );
+
+    acf_add_local_field_group( [
+        'key'    => 'group_personaje_wiki_entry',
+        'title'  => 'Personaje-Wiki – Entradas',
+        'fields' => [
+            [
+                'key'           => 'field_pw_parent_personaje_wiki',
+                'label'         => 'Personaje-Wiki',
+                'name'          => 'parent_personaje_wiki',
+                'type'          => 'post_object',
+                'post_type'     => [ 'personaje_wiki' ],
+                'required'      => 1,
+                'return_format' => 'id',
+            ],
+            [
+                'key'           => 'field_pw_section',
+                'label'         => 'Sección',
+                'name'          => 'section',
+                'type'          => 'select',
+                'choices'       => [
+                    'origen'   => 'Origen',
+                    'aventura' => 'Aventura',
+                ],
+                'required'      => 1,
+                'ui'            => 1,
+                'default_value' => 'origen',
+            ],
+            [
+                'key'           => 'field_pw_entry_images',
+                'label'         => 'Imágenes',
+                'name'          => 'entry_images',
+                'type'          => 'gallery',
+                'return_format' => 'id',
+                'preview_size'  => 'medium',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'personaje_wiki_entry',
+                ],
+            ],
+        ],
     ] );
 } );
 add_action('init', 'drak_register_personaje_cpt');
@@ -5531,3 +6023,167 @@ function drak_save_delerium_module() {
 }
 add_action( 'wp_ajax_drak_save_delerium_module', 'drak_save_delerium_module' );
 add_action( 'wp_ajax_nopriv_drak_save_delerium_module', 'drak_save_delerium_module' );
+
+/**
+ * Live search para Wiki de campaña.
+ */
+function drak_wiki_live_search() {
+    check_ajax_referer( 'drak_wiki_live_search', 'nonce' );
+
+    $term        = isset( $_POST['term'] ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
+    $section_key = isset( $_POST['wiki_section'] ) ? sanitize_key( wp_unslash( $_POST['wiki_section'] ) ) : '';
+    $campaign_id = isset( $_POST['campaign_id'] ) ? absint( $_POST['campaign_id'] ) : 0;
+
+    $map = [
+        'npc'            => 'npc',
+        'lugar'          => 'lugar',
+        'faccion'        => 'faccion',
+        'personaje_wiki' => 'personaje_wiki',
+        'diario'         => 'diario',
+    ];
+
+    if ( strlen( $term ) < 2 || ! $campaign_id || ! isset( $map[ $section_key ] ) ) {
+        wp_send_json_success( [] );
+    }
+
+    $query = new WP_Query( [
+        'post_type'      => $map[ $section_key ],
+        'post_status'    => 'publish',
+        'posts_per_page' => 10,
+        's'              => $term,
+        'meta_query'     => [
+            [
+                'key'     => 'campaign',
+                'value'   => $campaign_id,
+                'compare' => '=',
+            ],
+        ],
+    ] );
+
+    $results = [];
+    if ( $query->have_posts() ) {
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            $results[] = [
+                'id'        => get_the_ID(),
+                'title'     => get_the_title(),
+                'excerpt'   => wp_trim_words( wp_strip_all_tags( get_post_field( 'post_content', get_the_ID() ) ), 20, '…' ),
+                'permalink' => get_permalink(),
+            ];
+        }
+        wp_reset_postdata();
+    }
+
+    wp_send_json_success( $results );
+}
+add_action( 'wp_ajax_drak_wiki_live_search', 'drak_wiki_live_search' );
+add_action( 'wp_ajax_nopriv_drak_wiki_live_search', 'drak_wiki_live_search' );
+
+/**
+ * Obtiene la entrada anterior/siguiente dentro de la misma campaña y CPT.
+ *
+ * @param int    $post_id     ID actual.
+ * @param string $direction   'prev' o 'next'.
+ * @param string $post_type   Tipo de post.
+ * @param int    $campaign_id ID de campaña.
+ *
+ * @return WP_Post|null
+ */
+function drak_get_adjacent_wiki_post( $post_id, $direction, $post_type, $campaign_id ) {
+    $direction   = ( $direction === 'next' ) ? 'next' : 'prev';
+    $post_id     = (int) $post_id;
+    $campaign_id = (int) $campaign_id;
+
+    if ( ! $post_id || ! $post_type || ! $campaign_id ) {
+        return null;
+    }
+
+    $current = get_post( $post_id );
+    if ( ! $current ) {
+        return null;
+    }
+
+    $compare = $direction === 'next' ? '>' : '<';
+    $order   = $direction === 'next' ? 'ASC' : 'DESC';
+
+    $query = new WP_Query( [
+        'post_type'      => $post_type,
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'orderby'        => 'date ID',
+        'order'          => $order,
+        'post__not_in'   => [ $post_id ],
+        'meta_query'     => [
+            [
+                'key'     => 'campaign',
+                'value'   => $campaign_id,
+                'compare' => '=',
+            ],
+        ],
+        'date_query'     => [
+            [
+                'column'    => 'post_date',
+                'compare'   => $compare,
+                'after'     => $direction === 'next' ? $current->post_date : '',
+                'before'    => $direction === 'prev' ? $current->post_date : '',
+                'inclusive' => false,
+            ],
+        ],
+    ] );
+
+    return $query->have_posts() ? $query->posts[0] : null;
+}
+
+/**
+ * Encola el JS de búsqueda predictiva en la vista de archivo de Wiki.
+ */
+function drak_enqueue_wiki_search_script() {
+    $allowed     = [ 'npc', 'lugar', 'faccion', 'personaje_wiki', 'diario' ];
+    $section     = '';
+    $campaign_id = 0;
+
+    if ( is_singular( 'campaign' ) ) {
+        $current_section = get_query_var( 'campaign_section' );
+        if ( $current_section === 'diario' ) {
+            $section     = 'diario';
+            $campaign_id = get_the_ID();
+        } else {
+            $section   = isset( $_GET['wiki_section'] ) ? sanitize_key( wp_unslash( $_GET['wiki_section'] ) ) : '';
+            $wiki_view = isset( $_GET['wiki_view'] ) ? sanitize_key( wp_unslash( $_GET['wiki_view'] ) ) : '';
+
+            if ( 'archive' !== $wiki_view || ! in_array( $section, $allowed, true ) || 'personaje_wiki' === $section ) {
+                return;
+            }
+            $campaign_id = get_the_ID();
+        }
+    } elseif ( is_singular( $allowed ) ) {
+        $section     = get_post_type();
+        $campaign_id = (int) get_field( 'campaign', get_the_ID() );
+        if ( ! $campaign_id ) {
+            return;
+        }
+    } else {
+        return;
+    }
+
+    wp_enqueue_script(
+        'drak-wiki-search',
+        get_stylesheet_directory_uri() . '/js/drak-wiki-search.js',
+        [],
+        '1.0.0',
+        true
+    );
+
+    wp_localize_script(
+        'drak-wiki-search',
+        'drakWikiSearchData',
+        [
+            'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
+            'ajaxNonce'   => wp_create_nonce( 'drak_wiki_live_search' ),
+            'wikiSection' => $section,
+            'campaignId'  => $campaign_id,
+            'minChars'    => 2,
+        ]
+    );
+}
+add_action( 'wp_enqueue_scripts', 'drak_enqueue_wiki_search_script', 20 );

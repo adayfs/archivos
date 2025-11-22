@@ -1,0 +1,53 @@
+{
+  "acf-field-group": {
+    "key": "group_personaje_wiki_entry",
+    "title": "Personaje-Wiki – Entradas",
+    "fields": [
+      {
+        "key": "field_pw_parent_personaje_wiki",
+        "label": "Personaje-Wiki",
+        "name": "parent_personaje_wiki",
+        "type": "post_object",
+        "post_type": ["personaje_wiki"],
+        "return_format": "id",
+        "multiple": false,
+        "required": true
+      },
+      {
+        "key": "field_pw_section",
+        "label": "Sección",
+        "name": "section",
+        "type": "select",
+        "choices": {
+          "origen": "Origen",
+          "aventura": "Aventura"
+        },
+        "required": true,
+        "ui": true,
+        "default_value": "origen"
+      },
+      {
+        "key": "field_pw_entry_images",
+        "label": "Imágenes",
+        "name": "entry_images",
+        "type": "gallery",
+        "return_format": "id",
+        "preview_size": "medium"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje_wiki_entry"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": ""
+  }
+}

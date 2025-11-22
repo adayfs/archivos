@@ -1,0 +1,51 @@
+{
+  "acf-field-group": {
+    "key": "group_wiki_header_image",
+    "title": "Wiki \u2013 Imagen de cabecera",
+    "fields": [
+      {
+        "key": "field_wiki_header_image",
+        "label": "Imagen de cabecera",
+        "name": "wiki_header_image",
+        "type": "image",
+        "return_format": "id",
+        "preview_size": "medium"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "npc"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "lugar"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "faccion"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "diario"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": ""
+  }
+}

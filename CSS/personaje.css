@@ -189,3 +189,99 @@
   color: #f36aff;
   font-weight: bold;
 }
+
+@media (max-width: 921px) {
+  #ast-mobile-header,
+  .ast-mobile-header-wrap,
+  #masthead .ast-primary-header-bar.main-header-bar,
+  .ast-mobile-header-wrap .ast-primary-header-bar.main-header-bar {
+    background-color: #000 !important;
+  }
+}
+
+/* Botones globales */
+.drak-btn,
+.wp-block-button__link,
+.button,
+.ast-button,
+input[type="submit"],
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--accent, #9b5cff);
+  background: var(--accent-dark, rgba(155, 92, 255, 0.2));
+  color: var(--text, #f5f5f5);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  box-sizing: border-box;
+}
+.drak-btn:hover,
+.wp-block-button__link:hover,
+.button:hover,
+.ast-button:hover,
+input[type="submit"]:hover,
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  border-color: var(--accent, #b382ff);
+  text-decoration: none;
+}
+.drak-btn:focus,
+.wp-block-button__link:focus,
+.button:focus,
+.ast-button:focus,
+input[type="submit"]:focus,
+button:focus {
+  outline: 2px solid var(--accent, #9b5cff);
+  outline-offset: 2px;
+}
+.drak-btn:active,
+.wp-block-button__link:active,
+.button:active,
+.ast-button:active,
+input[type="submit"]:active,
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+}
+.drak-btn--full {
+  display: inline-flex;
+  width: 100%;
+}
+
+/* Alinear acciones de campaña al estilo drak-btn */
+.campaign-action {
+  text-decoration: none;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--accent, #9b5cff);
+  background: var(--accent-dark, rgba(155, 92, 255, 0.2));
+  color: var(--text, #f5f5f5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: block;
+}
+.campaign-action.is-active {
+  border-color: var(--accent, rgba(155, 92, 255, 0.45));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+.campaign-action:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent, rgba(155, 92, 255, 0.3));
+}
+.campaign-action__title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--accent, #9b5cff);
+  text-align: center;
+}
+.campaign-action__desc {
+  color: var(--muted);
+  font-size: 13px;
+}
