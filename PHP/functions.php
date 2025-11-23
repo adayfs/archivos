@@ -53,7 +53,7 @@ function drak_get_current_campaign_id() {
         return get_the_ID();
     }
 
-    $related_types = [ 'personaje', 'npc', 'lugar', 'faccion', 'personaje_wiki', 'diario', 'lore-entry' ];
+    $related_types = [ 'personaje', 'npc', 'lugar', 'faccion', 'personaje_wiki', 'diario', 'lore-entry', 'homebrew_entry' ];
     if ( is_singular( $related_types ) ) {
         $campaign = get_field( 'campaign', get_the_ID() );
         if ( is_array( $campaign ) ) {
@@ -333,6 +333,24 @@ function drak_render_campaign_logo( $post_id = null ) {
     echo '</div>';
 }
 
+function drak_get_homebrew_capabilities() {
+    return [
+        'edit_post'              => 'edit_homebrew_entry',
+        'read_post'              => 'read_homebrew_entry',
+        'delete_post'            => 'delete_homebrew_entry',
+        'edit_posts'             => 'edit_homebrew_entries',
+        'edit_others_posts'      => 'edit_others_homebrew_entries',
+        'publish_posts'          => 'publish_homebrew_entries',
+        'read_private_posts'     => 'read_private_homebrew_entries',
+        'delete_posts'           => 'delete_homebrew_entries',
+        'delete_private_posts'   => 'delete_private_homebrew_entries',
+        'delete_published_posts' => 'delete_published_homebrew_entries',
+        'delete_others_posts'    => 'delete_others_homebrew_entries',
+        'edit_private_posts'     => 'edit_private_homebrew_entries',
+        'edit_published_posts'   => 'edit_published_homebrew_entries',
+    ];
+}
+
 /**
  * Define y sincroniza el rol Dungeon Master con capacidades centradas en lectura.
  */
@@ -392,7 +410,17 @@ function drak_register_dm_role() {
         }
     }
 
-    $admin_caps = [ 'view_all_personajes' ];
+    $homebrew_caps      = drak_get_homebrew_capabilities();
+    $homebrew_caps_list = array_values( $homebrew_caps );
+    if ( $role ) {
+        foreach ( $homebrew_caps_list as $cap ) {
+            if ( ! $role->has_cap( $cap ) ) {
+                $role->add_cap( $cap );
+            }
+        }
+    }
+
+    $admin_caps = array_merge( [ 'view_all_personajes' ], $homebrew_caps_list );
     $admin      = get_role( 'administrator' );
     if ( $admin ) {
         foreach ( $admin_caps as $cap ) {
@@ -2252,6 +2280,14 @@ function drak_register_wiki_cpts() {
             ],
             'slug' => 'personaje-wiki-entry',
         ],
+        'homebrew_entry' => [
+            'labels' => [
+                'name'          => 'Homebrew',
+                'singular_name' => 'Entrada Homebrew',
+                'menu_name'     => 'Homebrew',
+            ],
+            'slug' => 'homebrew-entry',
+        ],
         'diario' => [
             'labels' => [
                 'name'          => 'Diarios',
@@ -2275,6 +2311,14 @@ function drak_register_wiki_cpts() {
             'capability_type'    => 'post',
             'publicly_queryable' => true,
         ];
+        if ( $type === 'homebrew_entry' ) {
+            $args['capability_type']    = [ 'homebrew_entry', 'homebrew_entries' ];
+            $args['map_meta_cap']       = true;
+            $args['capabilities']       = drak_get_homebrew_capabilities();
+            $args['has_archive']        = false;
+            $args['public']             = true;
+            $args['publicly_queryable'] = true;
+        }
         register_post_type( $type, $args );
     }
 }
@@ -2381,13 +2425,132 @@ function drak_pw_ajax_add_entry() {
 add_action( 'wp_ajax_drak_pw_add_entry', 'drak_pw_ajax_add_entry' );
 add_action( 'wp_ajax_nopriv_drak_pw_add_entry', 'drak_pw_ajax_add_entry' );
 
+function drak_homebrew_user_can_manage() {
+    if ( ! is_user_logged_in() ) {
+        return false;
+    }
+    if ( current_user_can( 'manage_options' ) || drak_current_user_is_dm() ) {
+        return true;
+    }
+    return false;
+}
+
+function drak_homebrew_sections() {
+    return [
+        'reglas'    => 'Reglas',
+        'monstruos' => 'Manual de Monstruos',
+        'forja'     => 'Forja',
+        'tienda'    => 'Tienda',
+    ];
+}
+
+function drak_homebrew_render_entry_card( $post_id ) {
+    $title   = get_the_title( $post_id );
+    $date    = get_the_date( '', $post_id );
+    $excerpt = get_the_excerpt( $post_id );
+    ob_start();
+    ?>
+    <article class="hb-entry">
+        <h4><?php echo esc_html( $title ); ?></h4>
+        <small><?php echo esc_html( $date ); ?></small>
+        <div><?php echo esc_html( $excerpt ); ?></div>
+        <a class="hb-link" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">Leer más</a>
+    </article>
+    <?php
+    return ob_get_clean();
+}
+
+function drak_handle_homebrew_note() {
+    if ( ! isset( $_POST['hb_note_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['hb_note_nonce'] ) ), 'hb_save_note' ) ) {
+        return;
+    }
+    if ( ! drak_homebrew_user_can_manage() ) {
+        wp_die( 'No tienes permiso para añadir notas de Homebrew.' );
+    }
+
+    $campaign_id = isset( $_POST['campaign_id'] ) ? absint( $_POST['campaign_id'] ) : 0;
+    $section     = isset( $_POST['hb_section'] ) ? sanitize_text_field( wp_unslash( $_POST['hb_section'] ) ) : '';
+    $content     = isset( $_POST['hb_content'] ) ? wp_kses_post( wp_unslash( $_POST['hb_content'] ) ) : '';
+    $title       = isset( $_POST['hb_title'] ) ? sanitize_text_field( wp_unslash( $_POST['hb_title'] ) ) : '';
+
+    $sections = drak_homebrew_sections();
+    if ( ! $campaign_id || ! isset( $sections[ $section ] ) || empty( $content ) ) {
+        wp_die( 'Datos incompletos para la nota de Homebrew.' );
+    }
+
+    $entry_id = wp_insert_post( [
+        'post_type'    => 'homebrew_entry',
+        'post_status'  => 'publish',
+        'post_title'   => $title ? $title : sprintf( 'Entrada %s', current_time( 'Y-m-d H:i' ) ),
+        'post_content' => $content,
+        'post_author'  => get_current_user_id(),
+    ] );
+
+    if ( is_wp_error( $entry_id ) ) {
+        wp_die( 'No se pudo guardar la entrada de Homebrew.' );
+    }
+
+    update_field( 'campaign', $campaign_id, $entry_id );
+    update_field( 'homebrew_section', $section, $entry_id );
+
+    $redirect = get_permalink( $campaign_id );
+    $redirect = add_query_arg(
+        [
+            'campaign_section' => 'homebrew',
+            'hb_note_saved'    => 1,
+        ],
+        $redirect
+    );
+    $redirect .= '#' . sanitize_key( $section );
+    wp_safe_redirect( $redirect );
+    exit;
+}
+add_action( 'template_redirect', 'drak_handle_homebrew_note' );
+
+function drak_homebrew_ajax_add_entry() {
+    if ( ! isset( $_POST['hb_note_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['hb_note_nonce'] ) ), 'hb_save_note' ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ] );
+    }
+    if ( ! drak_homebrew_user_can_manage() ) {
+        wp_send_json_error( [ 'message' => 'Sin permisos.' ] );
+    }
+
+    $campaign_id = isset( $_POST['campaign_id'] ) ? absint( $_POST['campaign_id'] ) : 0;
+    $section     = isset( $_POST['hb_section'] ) ? sanitize_text_field( wp_unslash( $_POST['hb_section'] ) ) : '';
+    $content     = isset( $_POST['hb_content'] ) ? wp_kses_post( wp_unslash( $_POST['hb_content'] ) ) : '';
+    $title       = isset( $_POST['hb_title'] ) ? sanitize_text_field( wp_unslash( $_POST['hb_title'] ) ) : '';
+
+    $sections = drak_homebrew_sections();
+    if ( ! $campaign_id || ! isset( $sections[ $section ] ) || empty( $content ) ) {
+        wp_send_json_error( [ 'message' => 'Datos incompletos.' ] );
+    }
+
+    $entry_id = wp_insert_post( [
+        'post_type'    => 'homebrew_entry',
+        'post_status'  => 'publish',
+        'post_title'   => $title ? $title : sprintf( 'Entrada %s', current_time( 'Y-m-d H:i' ) ),
+        'post_content' => $content,
+        'post_author'  => get_current_user_id(),
+    ] );
+
+    if ( is_wp_error( $entry_id ) ) {
+        wp_send_json_error( [ 'message' => 'No se pudo guardar.' ] );
+    }
+
+    update_field( 'campaign', $campaign_id, $entry_id );
+    update_field( 'homebrew_section', $section, $entry_id );
+
+    $html = drak_homebrew_render_entry_card( $entry_id );
+    wp_send_json_success( [ 'html' => $html ] );
+}
+add_action( 'wp_ajax_drak_homebrew_add_entry', 'drak_homebrew_ajax_add_entry' );
 /**
  * Endpoints de secciones de campaña: /campaign/{slug}/(pj|diario|wiki|galeria)/
  */
 function drak_register_campaign_section_rewrites() {
     $base = 'campaign';
     add_rewrite_rule(
-        sprintf( '^%s/([^/]+)/(pj|diario|wiki|galeria)/?$', $base ),
+        sprintf( '^%s/([^/]+)/(pj|diario|wiki|galeria|homebrew)/?$', $base ),
         'index.php?campaign=$matches[1]&campaign_section=$matches[2]',
         'top'
     );
@@ -2546,6 +2709,28 @@ function drak_enforce_personaje_access_guard() {
     );
 }
 add_action( 'template_redirect', 'drak_enforce_personaje_access_guard', 0 );
+
+function drak_enforce_homebrew_access_guard() {
+    if ( ! is_singular( 'homebrew_entry' ) ) {
+        return;
+    }
+
+    if ( ! is_user_logged_in() ) {
+        auth_redirect();
+        exit;
+    }
+
+    if ( drak_homebrew_user_can_manage() ) {
+        return;
+    }
+
+    wp_die(
+        __( 'No tienes permiso para acceder a esta entrada de Homebrew.', 'temahijo' ),
+        __( 'Acceso restringido', 'temahijo' ),
+        [ 'response' => 403 ]
+    );
+}
+add_action( 'template_redirect', 'drak_enforce_homebrew_access_guard', 0 );
 
 /**
  * Evita que páginas protegidas se guarden en caché cuando contienen datos de personajes.
@@ -4164,6 +4349,52 @@ add_action( 'acf/init', function () {
                     'param'    => 'post_type',
                     'operator' => '==',
                     'value'    => 'personaje_wiki_entry',
+                ],
+            ],
+        ],
+    ] );
+
+    acf_add_local_field_group( [
+        'key'    => 'group_homebrew_entry',
+        'title'  => 'Homebrew – Entradas',
+        'fields' => [
+            [
+                'key'           => 'field_hb_campaign',
+                'label'         => 'Campaña',
+                'name'          => 'campaign',
+                'type'          => 'post_object',
+                'post_type'     => [ 'campaign' ],
+                'required'      => 1,
+                'return_format' => 'id',
+            ],
+            [
+                'key'           => 'field_hb_section',
+                'label'         => 'Sección',
+                'name'          => 'homebrew_section',
+                'type'          => 'select',
+                'choices'       => [
+                    'reglas'    => 'Reglas',
+                    'monstruos' => 'Manual de Monstruos',
+                ],
+                'required'      => 1,
+                'ui'            => 1,
+                'default_value' => 'reglas',
+            ],
+            [
+                'key'           => 'field_hb_entry_images',
+                'label'         => 'Imágenes',
+                'name'          => 'entry_images',
+                'type'          => 'gallery',
+                'return_format' => 'id',
+                'preview_size'  => 'medium',
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'homebrew_entry',
                 ],
             ],
         ],
@@ -6080,6 +6311,62 @@ add_action( 'wp_ajax_drak_wiki_live_search', 'drak_wiki_live_search' );
 add_action( 'wp_ajax_nopriv_drak_wiki_live_search', 'drak_wiki_live_search' );
 
 /**
+ * Live search para Homebrew (DM/Admin).
+ */
+function drak_homebrew_live_search() {
+    check_ajax_referer( 'drak_homebrew_live_search', 'nonce' );
+
+    if ( ! drak_homebrew_user_can_manage() ) {
+        wp_send_json_error( [ 'message' => 'Sin permisos.' ], 403 );
+    }
+
+    $term        = isset( $_POST['term'] ) ? sanitize_text_field( wp_unslash( $_POST['term'] ) ) : '';
+    $section_key = isset( $_POST['homebrew_section'] ) ? sanitize_key( wp_unslash( $_POST['homebrew_section'] ) ) : '';
+    $campaign_id = isset( $_POST['campaign_id'] ) ? absint( $_POST['campaign_id'] ) : 0;
+
+    if ( strlen( $term ) < 2 || ! $campaign_id || ! $section_key ) {
+        wp_send_json_success( [] );
+    }
+
+    $query = new WP_Query( [
+        'post_type'      => 'homebrew_entry',
+        'post_status'    => 'publish',
+        'posts_per_page' => 10,
+        's'              => $term,
+        'meta_query'     => [
+            [
+                'key'     => 'campaign',
+                'value'   => $campaign_id,
+                'compare' => '=',
+            ],
+            [
+                'key'     => 'homebrew_section',
+                'value'   => $section_key,
+                'compare' => '=',
+            ],
+        ],
+    ] );
+
+    $results = [];
+    if ( $query->have_posts() ) {
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            $results[] = [
+                'id'        => get_the_ID(),
+                'title'     => get_the_title(),
+                'excerpt'   => wp_trim_words( wp_strip_all_tags( get_post_field( 'post_content', get_the_ID() ) ), 20, '…' ),
+                'permalink' => get_permalink(),
+            ];
+        }
+        wp_reset_postdata();
+    }
+
+    wp_send_json_success( $results );
+}
+add_action( 'wp_ajax_drak_homebrew_live_search', 'drak_homebrew_live_search' );
+add_action( 'wp_ajax_nopriv_drak_homebrew_live_search', 'drak_homebrew_live_search' );
+
+/**
  * Obtiene la entrada anterior/siguiente dentro de la misma campaña y CPT.
  *
  * @param int    $post_id     ID actual.
@@ -6117,6 +6404,67 @@ function drak_get_adjacent_wiki_post( $post_id, $direction, $post_type, $campaig
             [
                 'key'     => 'campaign',
                 'value'   => $campaign_id,
+                'compare' => '=',
+            ],
+        ],
+        'date_query'     => [
+            [
+                'column'    => 'post_date',
+                'compare'   => $compare,
+                'after'     => $direction === 'next' ? $current->post_date : '',
+                'before'    => $direction === 'prev' ? $current->post_date : '',
+                'inclusive' => false,
+            ],
+        ],
+    ] );
+
+    return $query->have_posts() ? $query->posts[0] : null;
+}
+
+/**
+ * Obtiene la entrada anterior/siguiente de Homebrew dentro de la misma campaña y sección.
+ *
+ * @param int    $post_id     ID actual.
+ * @param string $direction   'prev' o 'next'.
+ * @param string $section     Sección de homebrew (reglas/monstruos/forja/tienda).
+ * @param int    $campaign_id ID de campaña.
+ *
+ * @return WP_Post|null
+ */
+function drak_get_adjacent_homebrew_entry( $post_id, $direction, $section, $campaign_id ) {
+    $direction   = ( $direction === 'next' ) ? 'next' : 'prev';
+    $post_id     = (int) $post_id;
+    $campaign_id = (int) $campaign_id;
+    $section     = sanitize_key( $section );
+
+    if ( ! $post_id || ! $campaign_id || ! $section ) {
+        return null;
+    }
+
+    $current = get_post( $post_id );
+    if ( ! $current ) {
+        return null;
+    }
+
+    $compare = $direction === 'next' ? '>' : '<';
+    $order   = $direction === 'next' ? 'ASC' : 'DESC';
+
+    $query = new WP_Query( [
+        'post_type'      => 'homebrew_entry',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'orderby'        => 'date ID',
+        'order'          => $order,
+        'post__not_in'   => [ $post_id ],
+        'meta_query'     => [
+            [
+                'key'     => 'campaign',
+                'value'   => $campaign_id,
+                'compare' => '=',
+            ],
+            [
+                'key'     => 'homebrew_section',
+                'value'   => $section,
                 'compare' => '=',
             ],
         ],

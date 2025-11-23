@@ -423,6 +423,132 @@ $status_labels = [
   .campaign-actions { padding: 24px 16px 8px; }
   .campaign-section { padding: 16px; }
 }
+.hb-wrapper {
+  --accent: #9b5cff;
+  --accent-weak: rgba(155, 92, 255, 0.35);
+  margin-top: 12px;
+  color: #f5f5f5;
+}
+.hb-hero {
+  background: #0d0818;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}
+.hb-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hb-hero__body {
+  padding: 14px 18px 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.9));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hb-hero__title {
+  margin: 0 0 6px;
+  font-size: clamp(26px, 4vw, 38px);
+  color: var(--accent);
+  text-align: center;
+}
+.hb-hero__links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.hb-link {
+  text-decoration: none;
+  font-size: 14px;
+}
+.hb-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 12px 0 18px;
+}
+.hb-tab {
+  text-align: center;
+  padding: 14px 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+}
+.hb-tab.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+.hb-card.hb-section {
+  background: #161224;
+  border-radius: 10px;
+  border: 1px solid var(--accent-weak);
+  padding: 14px;
+}
+.hb-section-title {
+  text-align: center;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+.hb-entry {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: rgba(0,0,0,0.35);
+}
+.hb-entry h4 {
+  margin: 0 0 6px;
+}
+.hb-empty {
+  text-align: center;
+  color: #ccc;
+}
+.hb-sections [data-section] { display: none; }
+.hb-sections [data-section].is-active { display: block; }
+.hb-note-form .hb-field {
+  margin-bottom: 8px;
+}
+.hb-note-form label {
+  display: block;
+  margin-bottom: 4px;
+}
+.hb-note-form select,
+.hb-note-form input[type="text"],
+.hb-note-form textarea,
+.hb-note-form .wp-editor-wrap {
+  width: 100%;
+  background: #161224;
+  border: 1px solid var(--accent);
+  color: #fff;
+  box-sizing: border-box;
+}
+.hb-note-form input[type="text"],
+.hb-note-form select {
+  padding: 10px;
+  border-radius: 8px;
+}
+.hb-note-form .wp-editor-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.hb-section-block {
+  margin-bottom: 12px;
+}
+@media (max-width: 720px) {
+  .hb-tabs {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
 </style>
 <?php
 
@@ -749,6 +875,201 @@ function drak_campaign_render_wiki_section( $campaign_id, $section ) {
     wp_reset_postdata();
 }
 
+function drak_campaign_get_homebrew_entries( $campaign_id, $section, $search = '' ) {
+    return new WP_Query( [
+        'post_type'      => 'homebrew_entry',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        's'              => $search,
+        'meta_query'     => [
+            [
+                'key'   => 'campaign',
+                'value' => $campaign_id,
+            ],
+            [
+                'key'   => 'homebrew_section',
+                'value' => $section,
+            ],
+        ],
+    ] );
+}
+
+function drak_campaign_render_homebrew( $campaign_id, $accent_color = '', $cover_id = 0 ) {
+    $sections      = function_exists( 'drak_homebrew_sections' ) ? drak_homebrew_sections() : [
+        'reglas'    => 'Reglas',
+        'monstruos' => 'Manual de Monstruos',
+        'forja'     => 'Forja',
+        'tienda'    => 'Tienda',
+    ];
+    $tab           = isset( $_GET['hb_tab'] ) ? sanitize_key( wp_unslash( $_GET['hb_tab'] ) ) : 'reglas';
+    $allowed_tabs  = array_merge( array_keys( $sections ), [ 'notas' ] );
+    $tab           = in_array( $tab, $allowed_tabs, true ) ? $tab : 'reglas';
+    $hb_header_url = 'https://adayfs.com/wp-content/uploads/2025/11/cabeceraDM.png';
+    $accent      = $accent_color ?: (string) get_field( 'campaign_color', $campaign_id );
+    $accent      = $accent ?: '#9b5cff';
+    $accent_weak = $accent ? drak_campaign_hex_to_rgba( $accent, 0.35 ) : 'rgba(155, 92, 255, 0.35)';
+    $search       = isset( $_GET['hb_search'] ) ? sanitize_text_field( wp_unslash( $_GET['hb_search'] ) ) : '';
+    ?>
+    <div class="hb-wrapper" style="--accent: <?php echo esc_attr( $accent ); ?>; --accent-weak: <?php echo esc_attr( $accent_weak ); ?>;">
+        <div class="hb-hero">
+            <div class="hb-hero__media">
+                <img src="<?php echo esc_url( $hb_header_url ); ?>" alt="Cabecera Homebrew">
+            </div>
+            <div class="hb-hero__body">
+                <h2 class="hb-hero__title"><?php echo esc_html( get_the_title( $campaign_id ) ); ?> · Homebrew</h2>
+                <div class="hb-hero__links">
+                    <button class="drak-btn" type="button" data-hb-tab="notas">Añadir regla</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hb-tabs">
+            <?php foreach ( $sections as $key => $label ) : ?>
+                <button class="hb-tab drak-btn<?php echo $tab === $key ? ' is-active' : ''; ?>" type="button" data-hb-tab="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?></button>
+            <?php endforeach; ?>
+        </div>
+
+        <section class="hb-card hb-section hb-sections">
+            <?php foreach ( $sections as $key => $label ) : ?>
+                <div class="hb-section-block<?php echo $tab === $key ? ' is-active' : ''; ?>" data-section="<?php echo esc_attr( $key ); ?>">
+                    <h3 class="hb-section-title"><?php echo esc_html( $label ); ?></h3>
+                    <div class="hb-entries" data-section-list="<?php echo esc_attr( $key ); ?>">
+                        <?php
+                        $entries = drak_campaign_get_homebrew_entries( $campaign_id, $key, ( $tab === $key ? $search : '' ) );
+                        if ( $entries->have_posts() ) :
+                            while ( $entries->have_posts() ) :
+                                $entries->the_post();
+                                ?>
+                                <article class="hb-entry">
+                                    <h4><?php the_title(); ?></h4>
+                                    <small><?php echo esc_html( get_the_date() ); ?></small>
+                                    <div><?php the_excerpt(); ?></div>
+                                    <a class="hb-link" href="<?php the_permalink(); ?>">Leer más</a>
+                                </article>
+                                <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            echo '<p class="hb-empty">No hay entradas en esta sección.</p>';
+                        endif;
+                        ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <div class="hb-section-block<?php echo $tab === 'notas' ? ' is-active' : ''; ?>" data-section="notas">
+                <h3 class="hb-section-title" style="margin-bottom:8px;">Notas</h3>
+                <form method="post" class="hb-note-form" data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+                    <input type="hidden" name="action" value="drak_homebrew_add_entry">
+                    <input type="hidden" name="campaign_id" value="<?php echo esc_attr( $campaign_id ); ?>">
+                    <div class="hb-field">
+                        <label for="hb_section">Sección</label>
+                        <select id="hb_section" name="hb_section" required>
+                            <?php foreach ( $sections as $key => $label ) : ?>
+                                <option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="hb-field">
+                        <label for="hb_title">Título</label>
+                        <input type="text" id="hb_title" name="hb_title" maxlength="120" required>
+                    </div>
+                    <div class="hb-field">
+                        <?php
+                        wp_editor(
+                            '',
+                            'drak_hb_content',
+                            [
+                                'textarea_name' => 'hb_content',
+                                'media_buttons' => true,
+                                'teeny'         => false,
+                                'quicktags'     => true,
+                                'editor_height' => 220,
+                            ]
+                        );
+                        ?>
+                    </div>
+                    <?php wp_nonce_field( 'hb_save_note', 'hb_note_nonce' ); ?>
+                    <button type="submit" class="hb-link drak-btn drak-btn--full">Guardar nota</button>
+                    <p class="hb-empty hb-note-feedback" style="display:none;"></p>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script>
+    (function(){
+      const tabs = document.querySelectorAll('.hb-tab');
+      const sections = document.querySelectorAll('.hb-section-block');
+      const addBtn = document.querySelector('.hb-hero__links [data-hb-tab="notas"]');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-hb-tab');
+          tabs.forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          sections.forEach(sec => {
+            sec.classList.toggle('is-active', sec.getAttribute('data-section') === target);
+          });
+          if (history.replaceState) {
+            history.replaceState(null, '', '#' + target);
+          }
+        });
+      });
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          const target = 'notas';
+          tabs.forEach(b => b.classList.remove('is-active'));
+          sections.forEach(sec => {
+            sec.classList.toggle('is-active', sec.getAttribute('data-section') === target);
+          });
+        });
+      }
+      const hash = window.location.hash.replace('#','');
+      if (hash) {
+        const btn = document.querySelector('.hb-tab[data-hb-tab="'+hash+'"]');
+        if (btn) { btn.click(); }
+      }
+
+      const form = document.querySelector('.hb-note-form');
+      if (form) {
+        form.addEventListener('submit', function(ev){
+          ev.preventDefault();
+          const ajaxUrl = form.getAttribute('data-ajax-url');
+          const feedback = form.querySelector('.hb-note-feedback');
+          if (window.tinymce) { tinymce.triggerSave(); }
+          if (!ajaxUrl) { form.submit(); return; }
+          const data = new FormData(form);
+          fetch(ajaxUrl, {
+            method: 'POST',
+            credentials: 'same-origin',
+            body: data
+          }).then(res => res.json()).then(json => {
+            if (json && json.success && json.data && json.data.html) {
+              const section = form.querySelector('[name="hb_section"]').value;
+              const list = document.querySelector('[data-section-list="'+section+'"]');
+              if (list) { list.insertAdjacentHTML('afterbegin', json.data.html); }
+              form.reset();
+              if (window.tinymce) {
+                const ed = tinymce.get('drak_hb_content');
+                if (ed) { ed.setContent(''); }
+              }
+              if (feedback) { feedback.textContent = 'Nota guardada correctamente.'; feedback.style.display = 'block'; }
+              const btnTarget = document.querySelector('.hb-tab[data-hb-tab="'+section+'"]');
+              if (btnTarget) { btnTarget.click(); }
+            } else {
+              if (feedback) { feedback.textContent = (json && json.data && json.data.message) ? json.data.message : 'Error al guardar la nota.'; feedback.style.display = 'block'; }
+            }
+          }).catch(() => {
+            if (feedback) { feedback.textContent = 'Error al guardar la nota.'; feedback.style.display = 'block'; }
+          });
+        });
+      }
+    })();
+    </script>
+    <?php
+}
+
 while ( have_posts() ) :
     the_post();
 
@@ -768,6 +1089,19 @@ while ( have_posts() ) :
     $diary_url    = trailingslashit( $base_url . 'diario' );
     $wiki_url     = trailingslashit( $base_url . 'wiki' );
     $gallery_url  = trailingslashit( $base_url . 'galeria' );
+    $homebrew_url = trailingslashit( $base_url . 'homebrew' );
+    $homebrew_ok  = function_exists( 'drak_homebrew_user_can_manage' ) ? drak_homebrew_user_can_manage() : false;
+    if ( 'homebrew' === $section && ! $homebrew_ok ) {
+        if ( ! is_user_logged_in() ) {
+            auth_redirect();
+            exit;
+        }
+        wp_die(
+            __( 'No tienes permiso para acceder a Homebrew.', 'temahijo' ),
+            __( 'Acceso restringido', 'temahijo' ),
+            [ 'response' => 403 ]
+        );
+    }
     $logo_id      = drak_get_campaign_logo_id( $campaign_id );
     $logo_html    = $logo_id ? wp_get_attachment_image( $logo_id, 'medium', false, [ 'class' => 'campaign-hero__logo-img' ] ) : '';
     ?>
@@ -798,6 +1132,11 @@ while ( have_posts() ) :
                         <a class="campaign-action drak-btn<?php echo $section === 'wiki' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $wiki_url ); ?>">
                             <span class="campaign-action__title">Wiki</span>
                         </a>
+                        <?php if ( $homebrew_ok ) : ?>
+                            <a class="campaign-action drak-btn<?php echo $section === 'homebrew' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $homebrew_url ); ?>">
+                                <span class="campaign-action__title">Homebrew</span>
+                            </a>
+                        <?php endif; ?>
                         <a class="campaign-action drak-btn<?php echo $section === 'galeria' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $gallery_url ); ?>">
                             <span class="campaign-action__title">Galería</span>
                         </a>
@@ -824,6 +1163,9 @@ while ( have_posts() ) :
                                 drak_campaign_section_title( 'Wiki' );
                                 drak_campaign_render_wiki_hub( $campaign_id, $wiki_url );
                             }
+                            break;
+                        case 'homebrew':
+                            drak_campaign_render_homebrew( $campaign_id, $color, $cover_id );
                             break;
                         case 'galeria':
                             drak_campaign_section_title( 'Galería' );
