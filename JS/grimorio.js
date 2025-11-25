@@ -14,6 +14,7 @@
   const state = {
     slotsUsed: {},
     slotLimits: {},
+    baseSlotLimits: {},
     apothecarySlots: null, // { max, current, slotLevel, recovery: 'short_rest' }
     prepared: {},
     cantrips: [],
@@ -33,9 +34,28 @@
     spellModel: 'default',
     greaterFormulas: [], // [{id,name,level,usesMax,usesCurrent}]
     alwaysPrepared: [],
+    sorcery: {
+      isSorcerer: false,
+      pointsMax: 0,
+      pointsCurrent: 0,
+      flexSlots: {},
+      slotCosts: {},
+      metamagicKnown: [],
+      metamagicLimit: 0,
+    },
+    metamagicCatalog: [],
+    pendingCast: null,
   };
 
   const selectors = {};
+  const sorceryFlags = {
+    bound: false,
+    updating: false,
+  };
+  if (typeof window !== 'undefined') {
+    window.__grimorioSorceryFlags = sorceryFlags;
+  }
+  let metamagicCastSelection = new Set();
 
   function initGrimorio() {
     selectors.preparedContainer = document.querySelector('.grimorio-prepared');
@@ -58,9 +78,32 @@
     selectors.transformModal = document.getElementById('grimorio-transformation-modal');
     selectors.transformModalLevels = document.getElementById('grimorio-transformation-levels');
     selectors.transformModalConfirm = document.getElementById('grimorio-transformation-confirm');
+    selectors.sorcerySection = document.getElementById('grimorio-sorcery');
+    selectors.sorceryCounter = document.getElementById('grimorio-sorcery-counter');
+    selectors.sorceryFlex = document.getElementById('grimorio-sorcery-flex');
+    selectors.sorceryKnown = document.getElementById('grimorio-sorcery-known');
+    selectors.sorceryConvertBtn = document.getElementById('grimorio-sorcery-convert');
+    selectors.metamagicManageBtn = document.getElementById('grimorio-metamagic-manage-btn');
+    selectors.sorceryModal = document.getElementById('grimorio-sorcery-modal');
+    selectors.sorcerySlotSelect = document.getElementById('grimorio-sorcery-slot-select');
+    selectors.sorceryCreateSelect = document.getElementById('grimorio-sorcery-create-select');
+    selectors.sorceryCreateHint = document.getElementById('grimorio-sorcery-create-hint');
+    selectors.sorcerySlotConfirm = document.getElementById('grimorio-sorcery-slot-confirm');
+    selectors.sorceryCreateConfirm = document.getElementById('grimorio-sorcery-create-confirm');
+    selectors.metamagicManageModal = document.getElementById('grimorio-metamagic-manage-modal');
+    selectors.metamagicOptionsContainer = document.getElementById('grimorio-metamagic-options');
+    selectors.metamagicLimit = document.getElementById('grimorio-metamagic-limit');
+    selectors.metamagicSave = document.getElementById('grimorio-metamagic-save');
+    selectors.metamagicCastModal = document.getElementById('grimorio-metamagic-cast');
+    selectors.metamagicCastOptions = document.getElementById('grimorio-metamagic-cast-options');
+    selectors.metamagicCastHint = document.getElementById('grimorio-metamagic-cast-hint');
+    selectors.metamagicApply = document.getElementById('grimorio-metamagic-apply');
+    selectors.metamagicKnownList = document.getElementById('grimorio-sorcery-known');
+    selectors.sorceryColumn = document.querySelector('.grimorio-slot-column--sorcery');
 
     hydrateState();
     initSlots();
+    initSorceryModule();
     renderPreparedView();
     bindEvents();
     fetchSpellList();
@@ -78,10 +121,36 @@
     }
   }
 
+  function normalizeCantrips(raw) {
+    if (!raw) return [];
+    if (Array.isArray(raw)) {
+      return raw
+        .map((entry) => {
+          if (entry && typeof entry === 'object') {
+            const name = entry.name || entry;
+            const source = entry.source || '';
+            const id = entry.id || null;
+            return { id, name: String(name), source: String(source), level: 0 };
+          }
+          return { id: null, name: String(entry), source: '', level: 0 };
+        })
+        .filter((c) => c.name.trim().length > 0);
+    }
+    if (typeof raw === 'string' && raw) {
+      return raw
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .map((name) => ({ id: null, name, source: '', level: 0 }));
+    }
+    return [];
+  }
+
   function hydrateState() {
     const data = window.GRIMORIO_DATA;
     state.slotsUsed = cloneObject(data.slots_used || {});
-    state.slotLimits = normalizeSlotLimits(data.slot_limits || {});
+    state.baseSlotLimits = normalizeSlotLimits(data.slot_limits || {});
+    state.slotLimits = { ...state.baseSlotLimits };
     if (data.apothecary_slots) {
       state.apothecarySlots = {
         max: Number.parseInt(data.apothecary_slots.max || '0', 10) || 0,
@@ -91,7 +160,8 @@
       };
     }
     state.prepared = normalizePrepared(data.prepared || {});
-    state.cantrips = state.prepared[0] || [];
+    const rawCantrips = Array.isArray(data.cantrips) && data.cantrips.length ? data.cantrips : (state.prepared[0] || []);
+    state.cantrips = normalizeCantrips(rawCantrips);
     delete state.prepared[0];
     state.level = data.level || 1;
     state.classId = data.class_id || '';
@@ -115,6 +185,31 @@
     const cantripProg = data.class_reference?.cantrip_progression || {};
     const cantripLimit = cantripProg?.[state.level] ?? null;
     state.cantripLimit = Number.isFinite(cantripLimit) && cantripLimit > 0 ? cantripLimit : null;
+    if (!state.cantripLimit && cantripProg) {
+      const fallback = cantripProg[state.level] ?? null;
+      if (Number.isFinite(fallback) && fallback > 0) {
+        state.cantripLimit = fallback;
+      }
+    }
+    const sorcery = data.sorcery || null;
+    if (sorcery) {
+      state.sorcery = {
+        isSorcerer: true,
+        pointsMax: Number.parseInt(sorcery.points_max || '0', 10) || 0,
+        pointsCurrent: Number.parseInt(sorcery.points_current || '0', 10) || 0,
+        flexSlots: normalizeSlotLimits(sorcery.flex_slots || {}),
+        slotCosts: sorcery.slot_costs || {},
+        metamagicKnown: Array.isArray(sorcery.metamagic_known) ? sorcery.metamagic_known : [],
+        metamagicLimit: Number.parseInt(sorcery.metamagic_limit || '0', 10) || 0,
+      };
+      Object.keys(state.sorcery.flexSlots).forEach((lvlKey) => {
+        const lvl = parseInt(lvlKey, 10);
+        if (Number.isNaN(lvl)) return;
+        const extra = state.sorcery.flexSlots[lvl] || 0;
+        state.slotLimits[lvl] = (state.slotLimits[lvl] || 0) + extra;
+      });
+    }
+    state.metamagicCatalog = buildMetamagicCatalog();
   }
 
   function bindEvents() {
@@ -160,6 +255,31 @@
     if (selectors.pickerSaveBtn) {
       selectors.pickerSaveBtn.addEventListener('click', saveSpellPickerSelection);
     }
+
+    if (state.sorcery.isSorcerer) {
+      if (selectors.sorceryConvertBtn) {
+        selectors.sorceryConvertBtn.addEventListener('click', () => openSorceryModal('convert'));
+      }
+      if (selectors.sorcerySlotConfirm) {
+        selectors.sorcerySlotConfirm.addEventListener('click', confirmSlotToPoints);
+      }
+      if (selectors.sorceryCreateConfirm) {
+        selectors.sorceryCreateConfirm.addEventListener('click', confirmCreateSlot);
+      }
+      if (selectors.metamagicManageBtn) {
+        selectors.metamagicManageBtn.addEventListener('click', openMetamagicManageModal);
+      }
+      if (selectors.metamagicKnownList) {
+        selectors.metamagicKnownList.addEventListener('click', handleKnownMetamagicAction);
+      }
+      bindSorceryCheckboxes();
+      if (selectors.metamagicSave) {
+        selectors.metamagicSave.addEventListener('click', saveMetamagicKnown);
+      }
+      if (selectors.metamagicApply) {
+        selectors.metamagicApply.addEventListener('click', applyMetamagicSelection);
+      }
+    }
   }
 
   function initTransformationModule() {
@@ -180,6 +300,11 @@
     renderTransformationBlock();
   }
 
+  function initSorceryModule() {
+    if (!state.sorcery.isSorcerer || !selectors.sorcerySection) return;
+    renderSorceryBlock();
+  }
+
   function initSlots() {
     // Modelo especial: Apotecario usa bloque único de slots
     if (state.spellModel === 'apothecary' && state.apothecarySlots) {
@@ -194,20 +319,26 @@
 
     document.querySelectorAll('.grimorio-slot-column').forEach((column) => {
       const level = parseInt(column.dataset.level || '0', 10);
-      const max = parseInt(column.dataset.max || '0', 10) || 0;
+      const baseMax = parseInt(column.dataset.max || '0', 10) || 0;
+      if (column.dataset.sorcery === '1') {
+        return;
+      }
       if (!level) return;
 
       const checkboxes = Array.from(column.querySelectorAll('.grimorio-slot-toggle'));
       const hidden = column.querySelector(`input[name="grimorio_slots_used[${level}]"]`);
 
-      slotColumns.set(level, { column, checkboxes, hidden, max });
+      slotColumns.set(level, { column, checkboxes, hidden, max: baseMax });
 
-      // Actualiza límites con lo que llega del servidor y lo que exista en el DOM.
-      if (!state.slotLimits[level]) {
-        state.slotLimits[level] = max;
+      if (!state.baseSlotLimits[level]) {
+        state.baseSlotLimits[level] = baseMax;
       }
+      const totalLimit = state.slotLimits[level] || baseMax;
+      state.slotLimits[level] = totalLimit;
+      slotColumns.get(level).max = totalLimit;
+      column.dataset.max = totalLimit;
 
-      const used = clamp(state.slotsUsed[level] || 0, 0, max);
+      const used = clamp(state.slotsUsed[level] || 0, 0, totalLimit);
       state.slotsUsed[level] = used;
       updateSlotCheckboxes(level, used);
 
@@ -220,6 +351,8 @@
         });
       });
     });
+
+    applyFlexSlotsToColumns();
   }
 
   function normalizeSlotLimits(limits) {
@@ -231,6 +364,112 @@
       }
     });
     return normalized;
+  }
+
+  function ensureSlotColumn(level) {
+    if (slotColumns.has(level)) {
+      return slotColumns.get(level);
+    }
+    const grid = document.querySelector('.grimorio-slot-grid__inner');
+    const currentLimit = state.slotLimits[level] || state.baseSlotLimits[level] || 0;
+    if (!grid || currentLimit <= 0) return null;
+
+    const column = document.createElement('div');
+    column.className = 'grimorio-slot-column';
+    column.dataset.level = level;
+    column.dataset.max = currentLimit;
+    const checkboxesHtml = Array.from({ length: currentLimit }, () => `
+      <label>
+        <input type="checkbox" class="grimorio-slot-toggle">
+        <span></span>
+      </label>
+    `).join('');
+    column.innerHTML = `
+      <header>
+        <span>Nivel ${level}</span>
+        <small>${currentLimit} slots</small>
+      </header>
+      <div class="grimorio-slot-checkboxes">${checkboxesHtml}</div>
+      <input type="hidden" name="grimorio_slots_used[${level}]" value="0">
+    `;
+    grid.appendChild(column);
+
+    const checkboxes = Array.from(column.querySelectorAll('.grimorio-slot-toggle'));
+    const hidden = column.querySelector(`input[name="grimorio_slots_used[${level}]"]`);
+    const record = { column, checkboxes, hidden, max: currentLimit };
+    slotColumns.set(level, record);
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        const selected = checkboxes.filter((cb) => cb.checked).length;
+        state.slotsUsed[level] = selected;
+        if (hidden) hidden.value = selected;
+        scheduleSlotSave(level, selected);
+      });
+    });
+
+    return record;
+  }
+
+  function resizeSlotColumn(level, newLimit) {
+    const record = ensureSlotColumn(level);
+    if (!record) return;
+    const { column } = record;
+    const container = column.querySelector('.grimorio-slot-checkboxes');
+    if (!container) return;
+    const used = clamp(state.slotsUsed[level] || 0, 0, newLimit);
+    state.slotsUsed[level] = used;
+
+    while (record.checkboxes.length > newLimit) {
+      const checkbox = record.checkboxes.pop();
+      const label = checkbox.closest('label');
+      if (label && label.parentNode) {
+        label.parentNode.removeChild(label);
+      }
+    }
+    while (record.checkboxes.length < newLimit) {
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.classList.add('grimorio-slot-toggle');
+      const span = document.createElement('span');
+      label.appendChild(input);
+      label.appendChild(span);
+      container.appendChild(label);
+      record.checkboxes.push(input);
+      input.addEventListener('change', () => {
+        const selected = record.checkboxes.filter((cb) => cb.checked).length;
+        state.slotsUsed[level] = selected;
+        if (record.hidden) record.hidden.value = selected;
+        scheduleSlotSave(level, selected);
+      });
+    }
+
+    record.max = newLimit;
+    column.dataset.max = newLimit;
+    const headerSmall = column.querySelector('header small');
+    if (headerSmall) {
+      headerSmall.textContent = `${newLimit} slots`;
+    }
+    updateSlotCheckboxes(level, used);
+    if (record.hidden) {
+      record.hidden.value = used;
+    }
+  }
+
+  function applyFlexSlotsToColumns() {
+    if (!state.sorcery.isSorcerer) return;
+    Object.keys(state.sorcery.flexSlots || {}).forEach((lvlKey) => {
+      const level = parseInt(lvlKey, 10);
+      if (Number.isNaN(level)) return;
+      const extra = state.sorcery.flexSlots[level] || 0;
+      const base = state.baseSlotLimits[level] || 0;
+      const total = base + extra;
+      if (total > 0) {
+        state.slotLimits[level] = total;
+        resizeSlotColumn(level, total);
+      }
+    });
   }
 
   function renderApothecarySlotsBlock() {
@@ -323,7 +562,7 @@
       return;
     }
 
-    document.querySelectorAll('.grimorio-prepared-block').forEach((block) => {
+    document.querySelectorAll('.grimorio-prepared-block[data-level]').forEach((block) => {
       const level = parseInt(block.dataset.level || '0', 10);
       const listEl = block.querySelector('.grimorio-prepared-block__list');
       const counterEl = block.querySelector('[data-counter-for]');
@@ -530,6 +769,627 @@
     return out;
   }
 
+  function buildMetamagicCatalog() {
+    return [
+      { id: 'careful', name: 'Careful Spell', cost: 1, canStack: false, description: 'Aliados superan TS contra tu hechizo (mín. 1 daño).' },
+      { id: 'distant', name: 'Distant Spell', cost: 1, canStack: false, description: 'Duplica alcance o convierte toque en 9 m.' },
+      { id: 'empowered', name: 'Empowered Spell', cost: 1, canStack: true, description: 'Repite dados de daño (hasta mod. de CAR). Se puede combinar.' },
+      { id: 'extended', name: 'Extended Spell', cost: 1, canStack: false, description: 'Duplica la duración (máx. 24h).' },
+      { id: 'heightened', name: 'Heightened Spell', cost: 3, canStack: false, description: 'Desventaja al primer TS contra el hechizo.' },
+      { id: 'quickened', name: 'Quickened Spell', cost: 2, canStack: false, description: 'Convierte tiempo de lanzamiento en acción adicional.' },
+      { id: 'subtle', name: 'Subtle Spell', cost: 1, canStack: false, description: 'Sin componentes verbal ni somático.' },
+      { id: 'twinned', name: 'Twinned Spell', cost: null, canStack: false, description: 'Duplica objetivo; coste = nivel del hechizo (1 para cantrip).' },
+    ];
+  }
+
+  function findMetamagicOption(id) {
+    return state.metamagicCatalog.find((opt) => opt.id === id);
+  }
+
+  function renderSorceryBlock() {
+    if (!state.sorcery.isSorcerer || !selectors.sorcerySection) return;
+    const { pointsCurrent, pointsMax, flexSlots } = state.sorcery;
+    if (selectors.sorceryCounter) {
+      selectors.sorceryCounter.textContent = `${pointsCurrent} / ${pointsMax} puntos`;
+    }
+
+    if (selectors.sorceryFlex) {
+      const entries = Object.keys(flexSlots || {}).filter((lvl) => (flexSlots[lvl] || 0) > 0);
+      if (!entries.length) {
+        selectors.sorceryFlex.innerHTML = '<p class="grimorio-sorcery__note">Sin slots creados con puntos.</p>';
+      } else {
+        selectors.sorceryFlex.innerHTML = entries
+          .map((lvl) => `<span class="grimorio-sorcery__pill">+${flexSlots[lvl]} slot(s) nivel ${lvl}</span>`)
+          .join('');
+      }
+    }
+
+    const sorceryColumn = selectors.sorceryColumn || document.querySelector('.grimorio-slot-column--sorcery');
+    if (sorceryColumn) {
+      const max = Math.max(0, state.sorcery.pointsMax || 0);
+      ensureSorceryCheckboxes(sorceryColumn, max);
+      const spent = Math.max(0, max - (state.sorcery.pointsCurrent || 0));
+      const checkboxes = Array.from(sorceryColumn.querySelectorAll('.grimorio-slot-toggle'));
+      sorceryFlags.updating = true;
+      checkboxes.forEach((cb, idx) => {
+        cb.checked = idx < spent;
+      });
+      sorceryFlags.updating = false;
+      const small = sorceryColumn.querySelector('header small');
+      if (small) {
+        small.textContent = `${max} puntos`;
+      }
+      sorceryColumn.dataset.max = max;
+      bindSorceryCheckboxes();
+    }
+
+    renderMetamagicKnown();
+  }
+
+  function ensureSorceryCheckboxes(column, max) {
+    const container = column.querySelector('.grimorio-slot-checkboxes');
+    if (!container) return;
+    const existing = Array.from(container.querySelectorAll('.grimorio-slot-toggle')).length;
+    if (existing === max && max > 0) {
+      return;
+    }
+
+    // Rebuild checkbox grid to match max
+    container.innerHTML = '';
+    for (let i = 0; i < max; i += 1) {
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.classList.add('grimorio-slot-toggle');
+      const span = document.createElement('span');
+      label.appendChild(input);
+      label.appendChild(span);
+      container.appendChild(label);
+    }
+    sorceryFlags.bound = false; // force rebind after rebuild
+  }
+
+  function renderMetamagicKnown() {
+    if (!selectors.sorceryKnown) return;
+    const known = state.sorcery.metamagicKnown || [];
+    if (!known.length) {
+      selectors.sorceryKnown.innerHTML = '<p class="grimorio-sorcery__note">Aún no has añadido opciones de Metamagia.</p>';
+      return;
+    }
+    const items = known
+      .map((id) => {
+        const opt = findMetamagicOption(id);
+        const label = opt ? opt.name : id;
+        const cost = opt ? (opt.cost === null ? 'Coste variable' : `${opt.cost} ptos`) : 'Coste variable';
+        const desc = escapeHtml(opt?.description || 'Sin descripción.');
+        return `
+          <li class="grimorio-prepared-spell grimorio-metamagic-item" data-metamagic-id="${escapeAttr(id)}">
+            <div class="grimorio-prepared-spell__info">
+              <button type="button"
+                      class="grimorio-prepared-spell__name grimorio-metamagic-name"
+                      data-metamagic-id="${escapeAttr(id)}">
+                ${escapeHtml(label)}
+              </button>
+              <small class="grimorio-prepared-spell__source">${escapeHtml(cost)}</small>
+            </div>
+            <button type="button"
+                    class="grimorio-cast-spell grimorio-metamagic-use"
+                    data-metamagic-id="${escapeAttr(id)}">
+              Usar Metamagia
+            </button>
+            <div class="grimorio-prepared-spell__detail grimorio-metamagic-detail" hidden>
+              <p>${desc}</p>
+            </div>
+          </li>
+        `;
+      })
+      .join('');
+
+    selectors.sorceryKnown.innerHTML = `
+      <ul class="grimorio-prepared-block__list grimorio-metamagic-list">
+        ${items}
+      </ul>
+    `;
+  }
+
+  function openSorceryModal(mode) {
+    if (!selectors.sorceryModal) return;
+    populateSorceryModal(mode);
+    showModal(selectors.sorceryModal);
+  }
+
+  function populateSorceryModal(mode) {
+    if (!state.sorcery.isSorcerer) return;
+    const availableSlots = [];
+    Object.keys(state.slotLimits).forEach((lvlKey) => {
+      const lvl = parseInt(lvlKey, 10);
+      if (Number.isNaN(lvl) || lvl === 0) return;
+      const total = state.slotLimits[lvl] || 0;
+      const used = state.slotsUsed[lvl] || 0;
+      const remaining = Math.max(0, total - used);
+      if (remaining > 0) {
+        availableSlots.push({ level: lvl, remaining, total });
+      }
+    });
+
+    if (selectors.sorcerySlotSelect) {
+      selectors.sorcerySlotSelect.innerHTML = availableSlots.length
+        ? availableSlots
+            .sort((a, b) => a.level - b.level)
+            .map((entry) => `<option value="${entry.level}">Nivel ${entry.level} · ${entry.remaining} disponibles</option>`)
+            .join('')
+        : '<option value="">Sin espacios disponibles</option>';
+      selectors.sorcerySlotSelect.disabled = !availableSlots.length;
+    }
+
+    const costs = state.sorcery.slotCosts || {};
+    if (selectors.sorceryCreateSelect) {
+      const options = Object.keys(costs)
+        .map((lvlKey) => parseInt(lvlKey, 10))
+        .filter((lvl) => lvl >= 1 && lvl <= 5)
+        .sort((a, b) => a - b)
+        .map((lvl) => {
+          const cost = costs[lvl];
+          const disabled = state.sorcery.pointsCurrent < cost;
+          return `<option value="${lvl}" ${disabled ? 'disabled' : ''}>Nivel ${lvl} · Coste ${cost} ptos</option>`;
+        })
+        .join('');
+      selectors.sorceryCreateSelect.innerHTML = options || '<option value="">Sin opciones</option>';
+      selectors.sorceryCreateSelect.disabled = !options;
+    }
+
+    if (selectors.sorceryCreateHint) {
+      selectors.sorceryCreateHint.textContent = `Puntos actuales: ${state.sorcery.pointsCurrent} / ${state.sorcery.pointsMax}`;
+    }
+
+    if (selectors.sorcerySlotSelect) {
+      selectors.sorcerySlotSelect.focus();
+    }
+  }
+
+  function confirmSlotToPoints() {
+    if (!window.GRIMORIO_DATA.sorcery_nonce) return;
+    const level = parseInt(selectors.sorcerySlotSelect?.value || '0', 10);
+    if (!level) {
+      openInfoModal('Sin selección', '<p>Elige un espacio para convertir en puntos de hechicería.</p>');
+      return;
+    }
+    const gain = level;
+    const max = state.sorcery.pointsMax || 0;
+    const current = state.sorcery.pointsCurrent || 0;
+    if (max > 0 && current >= max) {
+      openInfoModal('Sin efecto', '<p>Ya tienes el máximo de Puntos de Hechicería. No puedes convertir más slots ahora.</p>');
+      return;
+    }
+    const projected = Math.min(max, current + gain);
+    if (projected === current) {
+      openInfoModal('Sin efecto', '<p>Convertir este slot no te daría puntos adicionales.</p>');
+      return;
+    }
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_sorcery_slot_to_points',
+      nonce: window.GRIMORIO_DATA.sorcery_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      level,
+    });
+    fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        const data = unwrapJson(json);
+        if (!data || (json && json.success === false)) {
+          openInfoModal('No se pudo convertir', '<p>Verifica tus espacios disponibles.</p>');
+          return;
+        }
+        applySorceryStateFromResponse(data);
+        if (data.slots) {
+          applyServerSlots(data.slots);
+        } else if (data.slots_used) {
+          applyServerSlots(data.slots_used);
+        }
+        populateSorceryModal('slot_to_points');
+        renderSorceryBlock();
+      })
+      .catch(() => {
+        openInfoModal('Error', '<p>No se pudo convertir el slot en puntos.</p>');
+      });
+  }
+
+  function confirmCreateSlot() {
+    if (!window.GRIMORIO_DATA.sorcery_nonce) return;
+    const level = parseInt(selectors.sorceryCreateSelect?.value || '0', 10);
+    if (!level) {
+      openInfoModal('Sin selección', '<p>Elige el nivel del slot que quieres crear.</p>');
+      return;
+    }
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_sorcery_points_to_slot',
+      nonce: window.GRIMORIO_DATA.sorcery_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      level,
+    });
+    fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        const data = unwrapJson(json);
+        if (!data || (json && json.success === false)) {
+          openInfoModal('No se pudo crear', '<p>Revisa que tengas puntos suficientes.</p>');
+          return;
+        }
+        applySorceryStateFromResponse(data);
+        if (data.level && data.slot_limit) {
+          state.slotLimits[data.level] = data.slot_limit;
+          resizeSlotColumn(data.level, data.slot_limit);
+        }
+        populateSorceryModal('points_to_slot');
+        renderSorceryBlock();
+      })
+      .catch(() => {
+        openInfoModal('Error', '<p>No se pudo crear el slot con puntos.</p>');
+      });
+  }
+
+  function applySorceryStateFromResponse(data) {
+    const payload = data || {};
+    if (!state.sorcery.isSorcerer) return;
+    if (typeof payload.points_max !== 'undefined') {
+      state.sorcery.pointsMax = parseInt(payload.points_max, 10) || state.sorcery.pointsMax;
+    }
+    if (typeof payload.points_current !== 'undefined') {
+      state.sorcery.pointsCurrent = parseInt(payload.points_current, 10) || 0;
+    }
+    if (payload.flex_slots) {
+      state.sorcery.flexSlots = normalizeSlotLimits(payload.flex_slots);
+      Object.keys(state.baseSlotLimits).forEach((lvlKey) => {
+        const lvl = parseInt(lvlKey, 10);
+        if (Number.isNaN(lvl)) return;
+        const base = state.baseSlotLimits[lvl] || 0;
+        const extra = state.sorcery.flexSlots[lvl] || 0;
+        state.slotLimits[lvl] = base + extra;
+        resizeSlotColumn(lvl, state.slotLimits[lvl]);
+      });
+    }
+    renderSorceryBlock();
+  }
+
+  function resetSorceryResources() {
+    if (!state.sorcery.isSorcerer || !window.GRIMORIO_DATA.sorcery_nonce) return;
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_sorcery_reset',
+      nonce: window.GRIMORIO_DATA.sorcery_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+    });
+    fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        const data = unwrapJson(json);
+        if (!data || (json && json.success === false)) return;
+        applySorceryStateFromResponse(data);
+        if (data.slot_limits) {
+          state.baseSlotLimits = normalizeSlotLimits(data.slot_limits);
+          state.slotLimits = { ...state.baseSlotLimits };
+          applyFlexSlotsToColumns();
+          applyServerSlots(state.slotsUsed);
+        }
+      })
+      .catch(() => {
+        console.warn('No se pudo resetear los Puntos de Hechicería.');
+      });
+  }
+
+  function openMetamagicManageModal() {
+    if (!selectors.metamagicManageModal) return;
+    const knownSet = new Set(state.sorcery.metamagicKnown || []);
+    const limit = state.sorcery.metamagicLimit || 0;
+    if (selectors.metamagicOptionsContainer) {
+      selectors.metamagicOptionsContainer.innerHTML = state.metamagicCatalog
+        .map((opt) => {
+          const checked = knownSet.has(opt.id) ? 'checked' : '';
+          const disabled = !checked && knownSet.size >= limit ? 'disabled' : '';
+          const costLabel = opt.cost === null ? 'Coste = nivel del hechizo' : `${opt.cost} punto(s)`;
+          return `
+            <article class="grimorio-spell-picker__level grimorio-metamagic-option" data-meta-id="${escapeAttr(opt.id)}">
+              <header class="grimorio-spell-picker__header">
+                <div>
+                  <h4>${escapeHtml(opt.name)}</h4>
+                  <small class="grimorio-metamagic-option__cost">${escapeHtml(costLabel)}</small>
+                </div>
+                <button type="button"
+                        class="grimorio-modal__btn grimorio-modal__btn--primary grimorio-metamagic-option__select"
+                        data-meta-id="${escapeAttr(opt.id)}"
+                        ${disabled}>
+                  ${checked ? 'Seleccionado' : 'Seleccionar'}
+                </button>
+              </header>
+              <div class="grimorio-spell-picker__list">
+                <p class="grimorio-metamagic-card__body">${escapeHtml(opt.description || '')}</p>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+    }
+    if (selectors.metamagicLimit) {
+      selectors.metamagicLimit.textContent = `Límite disponible: ${limit}`;
+    }
+    selectors.metamagicOptionsContainer?.removeEventListener('click', handleMetamagicSelectionClick);
+    showModal(selectors.metamagicManageModal);
+    selectors.metamagicOptionsContainer?.querySelector('button.grimorio-metamagic-option__select')?.focus();
+    selectors.metamagicOptionsContainer?.addEventListener('click', handleMetamagicSelectionClick);
+  }
+
+  function handleMetamagicSelectionClick(event) {
+    const btn = event.target.closest('.grimorio-metamagic-option__select');
+    if (!btn) return;
+    const metaId = btn.dataset.metaId;
+    if (!metaId) return;
+
+    const limit = state.sorcery.metamagicLimit || 0;
+    const current = new Set(state.sorcery.metamagicKnown || []);
+    const isSelected = current.has(metaId);
+    if (!isSelected && current.size >= limit) {
+      openInfoModal('Límite de Metamagia', `<p>Solo puedes conocer ${limit} opciones a tu nivel.</p>`);
+      return;
+    }
+
+    if (isSelected) {
+      current.delete(metaId);
+      btn.textContent = 'Seleccionar';
+    } else {
+      current.add(metaId);
+      btn.textContent = 'Seleccionado';
+    }
+
+    state.sorcery.metamagicKnown = Array.from(current);
+    Array.from(selectors.metamagicOptionsContainer.querySelectorAll('.grimorio-metamagic-option__select')).forEach((button) => {
+      const id = button.dataset.metaId;
+      const selected = current.has(id);
+      const shouldDisable = !selected && current.size >= limit;
+      button.disabled = shouldDisable && !selected;
+      button.textContent = selected ? 'Seleccionado' : 'Seleccionar';
+    });
+  }
+
+  function handleMetamagicCastClick(event) {
+    const btn = event.target.closest('.grimorio-metamagic-option__select');
+    if (!btn) return;
+    const metaId = btn.dataset.metaId;
+    if (!metaId) return;
+
+    const isSelected = metamagicCastSelection.has(metaId);
+    const hasEmpowered = metamagicCastSelection.has('empowered');
+
+    if (isSelected) {
+      metamagicCastSelection.delete(metaId);
+    } else {
+      if (metamagicCastSelection.size >= 1 && !hasEmpowered && metaId !== 'empowered') {
+        openInfoModal('Regla de combinación', '<p>Solo puedes aplicar una opción de Metamagia por conjuro (Empowered puede combinarse con otra).</p>');
+        return;
+      }
+      if (metamagicCastSelection.size >= 2) {
+        openInfoModal('Regla de combinación', '<p>No puedes aplicar más de dos opciones, y solo si una es Empowered.</p>');
+        return;
+      }
+      metamagicCastSelection.add(metaId);
+    }
+
+    Array.from(selectors.metamagicCastOptions.querySelectorAll('.grimorio-metamagic-option__select')).forEach((button) => {
+      const id = button.dataset.metaId;
+      const selected = metamagicCastSelection.has(id);
+      button.textContent = selected ? 'Seleccionado' : 'Seleccionar';
+    });
+  }
+
+  function saveMetamagicKnown() {
+    if (!window.GRIMORIO_DATA.sorcery_nonce) return;
+    const selected = Array.from(new Set(state.sorcery.metamagicKnown || []));
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_save_metamagic_known',
+      nonce: window.GRIMORIO_DATA.sorcery_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      known: JSON.stringify(selected),
+    });
+    fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        const data = unwrapJson(json);
+        if (!data || (json && json.success === false)) {
+          openInfoModal('Error', '<p>No se pudo guardar la Metamagia conocida.</p>');
+          return;
+        }
+        state.sorcery.metamagicKnown = data.known || [];
+        renderMetamagicKnown();
+        closeModal(selectors.metamagicManageModal);
+      })
+      .catch(() => openInfoModal('Error', '<p>No se pudo guardar la Metamagia conocida.</p>'));
+  }
+
+  function openMetamagicCastModal(level, spellId, fallbackName) {
+    if (!state.sorcery.metamagicKnown.length || !selectors.metamagicCastModal) {
+      finalizeCastWithMetamagic(level, spellId, fallbackName, []);
+      return;
+    }
+    metamagicCastSelection = new Set();
+    state.pendingCast = { level, spellId, fallbackName };
+    const knownSet = new Set(state.sorcery.metamagicKnown || []);
+    const options = state.metamagicCatalog.filter((opt) => knownSet.has(opt.id));
+    const availablePoints = state.sorcery.pointsCurrent || 0;
+    if (!options.length) {
+      finalizeCastWithMetamagic(level, spellId, fallbackName, []);
+      return;
+    }
+    if (selectors.metamagicCastOptions) {
+      selectors.metamagicCastOptions.innerHTML = options
+        .map((opt) => {
+          const cost = opt.id === 'twinned' ? 'Coste = nivel del hechizo' : `${opt.cost} punto(s)`;
+          const disabled = opt.cost !== null && opt.cost > availablePoints ? 'disabled' : '';
+          return `
+            <article class="grimorio-spell-picker__level grimorio-metamagic-option" data-meta-id="${escapeAttr(opt.id)}">
+              <header class="grimorio-spell-picker__header">
+                <div>
+                  <h4>${escapeHtml(opt.name)}</h4>
+                  <small class="grimorio-metamagic-option__cost">${escapeHtml(cost)}</small>
+                </div>
+                <button type="button"
+                        class="grimorio-modal__btn grimorio-modal__btn--primary grimorio-metamagic-option__select"
+                        data-meta-id="${escapeAttr(opt.id)}"
+                        ${disabled}>
+                  Seleccionar
+                </button>
+              </header>
+              <div class="grimorio-spell-picker__list">
+                <p class="grimorio-metamagic-card__body">${escapeHtml(opt.description || '')}</p>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+      selectors.metamagicCastOptions.removeEventListener('click', handleMetamagicCastClick);
+      selectors.metamagicCastOptions.addEventListener('click', handleMetamagicCastClick);
+    }
+    if (selectors.metamagicCastHint) {
+      selectors.metamagicCastHint.textContent = `Puntos disponibles: ${availablePoints}`;
+    }
+    const anyEnabled = selectors.metamagicCastOptions?.querySelector('.grimorio-metamagic-option__select:not([disabled])');
+    if (!anyEnabled) {
+      finalizeCastWithMetamagic(level, spellId, fallbackName, []);
+      return;
+    }
+    showModal(selectors.metamagicCastModal);
+  }
+
+  function applyMetamagicSelection() {
+    if (!state.pendingCast) {
+      closeModal(selectors.metamagicCastModal);
+      return;
+    }
+    const level = state.pendingCast.level;
+    const spellId = state.pendingCast.spellId;
+    const fallbackName = state.pendingCast.fallbackName;
+    const selected = Array.from(metamagicCastSelection);
+    if (selected.length > 1 && !selected.includes('empowered')) {
+      openInfoModal('Regla de combinación', '<p>Solo puedes aplicar una opción de Metamagia por conjuro (Empowered es la excepción).</p>');
+      return;
+    }
+    const totalCost = selected.reduce((sum, id) => {
+      if (id === 'twinned') {
+        return sum + (level || 1);
+      }
+      const opt = findMetamagicOption(id);
+      return sum + (opt && opt.cost !== null ? opt.cost : 0);
+    }, 0);
+    if (totalCost > (state.sorcery.pointsCurrent || 0)) {
+      openInfoModal('Sin puntos suficientes', '<p>No tienes suficientes Puntos de Hechicería para esa Metamagia.</p>');
+      return;
+    }
+
+    if (totalCost > 0) {
+      spendSorceryPoints(totalCost)
+        .then(() => {
+          finalizeCastWithMetamagic(level, spellId, fallbackName, selected);
+          closeModal(selectors.metamagicCastModal);
+        })
+        .catch(() => {
+          openInfoModal('Error', '<p>No se pudieron gastar los puntos de hechicería.</p>');
+        });
+    } else {
+      finalizeCastWithMetamagic(level, spellId, fallbackName, selected);
+      closeModal(selectors.metamagicCastModal);
+    }
+  }
+
+  function spendSorceryPoints(cost) {
+    if (!window.GRIMORIO_DATA.sorcery_nonce) return Promise.reject();
+    const current = state.sorcery.pointsCurrent || 0;
+    if (cost > current) {
+      return Promise.reject(new Error('Insufficient points'));
+    }
+    const next = Math.max(0, current - cost);
+    return persistSorceryPoints(next);
+  }
+
+  function finalizeCastWithMetamagic(level, spellId, fallbackName, metamagicIds) {
+    const spell = findSpell(spellId, fallbackName);
+    const context = spell ? extractSpellContext(spell) : { concentration: false };
+    consumeSlot(level);
+    if (context.concentration) {
+      setConcentrationState({
+        level,
+        spell_id: spell?.id || '',
+        spell: spell?.name || fallbackName || '',
+      });
+    }
+    if (spell) {
+      openPreparedSpellInfo(level, spellId, fallbackName);
+    }
+    state.pendingCast = null;
+  }
+
+  function handleKnownMetamagicAction(event) {
+    const toggleBtn = event.target.closest('.grimorio-metamagic-name');
+    if (toggleBtn) {
+      const item = toggleBtn.closest('.grimorio-metamagic-item');
+      if (item) {
+        const detail = item.querySelector('.grimorio-metamagic-detail');
+        if (detail) {
+          const isHidden = detail.hasAttribute('hidden');
+          if (isHidden) {
+            detail.removeAttribute('hidden');
+          } else {
+            detail.setAttribute('hidden', '');
+          }
+        }
+      }
+      return;
+    }
+
+    const btn = event.target.closest('.grimorio-metamagic-use');
+    if (!btn) return;
+    const metaId = btn.dataset.metamagicId;
+    if (!metaId) return;
+    const opt = findMetamagicOption(metaId);
+    if (!opt) return;
+
+    let cost = opt.cost || 0;
+    if (metaId === 'twinned') {
+      const levelInput = window.prompt('Coste de Twinned: introduce el nivel del hechizo (1-9)', '1');
+      const lvl = parseInt(levelInput || '1', 10);
+      if (Number.isNaN(lvl) || lvl < 1 || lvl > 9) {
+        openInfoModal('Nivel inválido', '<p>Introduce un nivel de 1 a 9.</p>');
+        return;
+      }
+      cost = lvl;
+    }
+
+    if (cost > (state.sorcery.pointsCurrent || 0)) {
+      openInfoModal('Sin puntos suficientes', '<p>No tienes Puntos de Hechicería suficientes para esta Metamagia.</p>');
+      return;
+    }
+
+    spendSorceryPoints(cost)
+      .then(() => {
+        openInfoModal('Metamagia usada', `<p>Has gastado ${cost} punto(s) de hechicería en ${escapeHtml(opt.name)}.</p>`);
+      })
+      .catch(() => {
+        openInfoModal('Error', '<p>No se pudieron gastar los Puntos de Hechicería.</p>');
+      });
+  }
+
   function openSpellPicker() {
     if (!selectors.pickerModal) return;
 
@@ -602,9 +1462,6 @@
       }
       return [];
     }
-    if (state.spellsByLevel[0]?.length) {
-      levels.add(0);
-    }
 
     if (state.spellModel === 'apothecary' && state.apothecarySlots) {
       const maxLevel = Math.max(1, state.apothecarySlots.slotLevel || 1);
@@ -648,9 +1505,9 @@
             const checked = selectedIds.has(identifier);
             const shouldDisable = disabledAll || (!checked && limitReached);
             const summary = spell.source ? `<small>${escapeHtml(spell.source)}</small>` : '';
-            const description = getSpellSummary(spell);
+            const description = getSpellSummaryHtml(spell);
             const descriptionBlock = description
-              ? `<small class="grimorio-spell-picker__desc">${escapeHtml(description)}</small>`
+              ? `<small class="grimorio-spell-picker__desc">${description}</small>`
               : '';
             return `
               <label class="grimorio-spell-picker__item">
@@ -721,6 +1578,8 @@
         : (state.slotLimits[level] || 0);
     let current = pickerState[level] ? [...pickerState[level]] : [];
     const currentTotal = isCantrip ? current.length : getTotalPreparedCount(pickerState);
+    const currentLevelCount = current.length;
+    const levelCap = !isCantrip && state.spellModel !== 'apothecary' ? (state.slotLimits[level] || 0) : null;
 
     const spellData = findSpellById(spellId) || { id: spellId, name: spellName, source: '', level };
 
@@ -738,6 +1597,14 @@
         openInfoModal(
           'Límite de cantrips',
           `<p>No puedes aprender más de ${state.cantripLimit} cantrips a tu nivel actual.</p>`
+        );
+        return;
+      }
+      if (!isCantrip && levelCap && currentLevelCount >= levelCap) {
+        input.checked = false;
+        openInfoModal(
+          'Sin huecos en este nivel',
+          `<p>No puedes preparar más de ${levelCap} conjuros de nivel ${level}.</p>`
         );
         return;
       }
@@ -759,8 +1626,24 @@
       return;
     }
 
+    if (pickerOnlyCantrips) {
+      const nextCantrips = pickerState[0] || [];
+      const previousCantrips = state.cantrips ? [...state.cantrips] : [];
+      state.cantrips = nextCantrips;
+      renderPreparedView();
+      closeModal(selectors.pickerModal);
+      pickerOnlyCantrips = false;
+      persistPreparedSpells({ ...state.prepared, 0: nextCantrips }).catch(() => {
+        state.cantrips = previousCantrips;
+        renderPreparedView();
+        openInfoModal('Error al guardar', '<p>No se pudo guardar la lista de cantrips. Intenta de nuevo.</p>');
+      });
+      return;
+    }
+
     const nextState = clonePrepared(pickerState);
-    const nextCantrips = nextState[0] || [];
+    const hasCantripSlice = Object.prototype.hasOwnProperty.call(nextState, 0);
+    const nextCantrips = hasCantripSlice ? (nextState[0] || []) : (state.cantrips ? [...state.cantrips] : []);
     delete nextState[0];
     const previousState = clonePrepared(state.prepared);
     const previousCantrips = state.cantrips ? [...state.cantrips] : [];
@@ -835,6 +1718,11 @@
       return;
     }
 
+    if (state.sorcery.isSorcerer) {
+      openMetamagicCastModal(level, spellId, fallbackName);
+      return;
+    }
+
     const spell = findSpell(spellId, fallbackName);
     const context = spell ? extractSpellContext(spell) : { concentration: false };
     consumeSlot(level);
@@ -906,6 +1794,8 @@
       updateSlotCheckboxes(level, 0);
       persistSlot(level, 0);
     });
+
+    resetSorceryResources();
   }
 
   function resetPreparedSpells() {
@@ -935,9 +1825,9 @@
   }
 
   function consumeSlot(level) {
-    const column = slotColumns.get(level);
+    const column = slotColumns.get(level) || ensureSlotColumn(level);
     if (!column) return;
-    const max = column.max || 0;
+    const max = state.slotLimits[level] || column.max || 0;
     const used = clamp((state.slotsUsed[level] || 0) + 1, 0, max);
     state.slotsUsed[level] = used;
     if (column.hidden) {
@@ -948,7 +1838,7 @@
   }
 
   function updateSlotCheckboxes(level, used) {
-    const record = slotColumns.get(level);
+    const record = slotColumns.get(level) || ensureSlotColumn(level);
     if (!record) return;
     record.checkboxes.forEach((checkbox, index) => {
       checkbox.checked = index < used;
@@ -1037,13 +1927,12 @@
       const max = state.slotLimits[level] || 0;
       const used = clamp(parseInt(slots[key], 10) || 0, 0, max);
       state.slotsUsed[level] = used;
-      const column = slotColumns.get(level);
-      if (column) {
-        if (column.hidden) {
-          column.hidden.value = used;
-        }
-        updateSlotCheckboxes(level, used);
+      const column = slotColumns.get(level) || ensureSlotColumn(level);
+      if (!column) return;
+      if (column.hidden) {
+        column.hidden.value = used;
       }
+      updateSlotCheckboxes(level, used);
     });
   }
 
@@ -1398,6 +2287,7 @@
       }
       return mapSpellForState(ref, 0);
     });
+    renderCantripBlock();
   }
 
   function findSpell(spellId, fallbackName) {
@@ -1429,7 +2319,7 @@
       return Promise.resolve();
     }
 
-    const serialized = serializePrepared(prepared);
+    const serialized = serializePrepared({ ...prepared, 0: prepared[0] || state.cantrips || [] });
     const payload = new URLSearchParams({
       action: 'drak_dnd5_save_prepared_spells',
       nonce: window.GRIMORIO_DATA.prepared_nonce,
@@ -1453,8 +2343,9 @@
 
   function serializePrepared(prepared) {
     const result = {};
-    if (!prepared[0] && state.cantrips) {
-      result[0] = state.cantrips.map((spell) => spell.name).filter(Boolean);
+    const cantripList = prepared[0] || state.cantrips || [];
+    if (cantripList && cantripList.length) {
+      result[0] = cantripList.map((spell) => spell.name || spell).filter(Boolean);
     }
     Object.keys(prepared).forEach((key) => {
       const level = parseInt(key, 10);
@@ -1517,14 +2408,92 @@
     }
   }
 
-  function getSpellSummary(spell) {
+  function stripSpellTag(tagged) {
+    return tagged.replace(/^\{@[a-zA-Z0-9_]+\s+/, '').replace(/\}$/, '');
+  }
+
+  function truncateSpellText(raw, limit = 180) {
+    const tokens = raw.match(/(\(?\[{1,2}[^\]]+\]+?\)?)|\{@[^\}]+\}|[^{}]+/g) || [];
+    const kept = [];
+    let total = 0;
+    let truncated = false;
+
+    tokens.forEach((token) => {
+      if (truncated) return;
+      let display = token;
+      if (token.startsWith('{@')) {
+        display = stripSpellTag(token);
+      } else if (token.includes('[')) {
+        display = token.replace(/[()\[\]]/g, '');
+      }
+      const nextTotal = total + display.length;
+      if (nextTotal > limit) {
+        truncated = true;
+        return;
+      }
+      kept.push(token);
+      total = nextTotal;
+    });
+
+    let result = kept.join('');
+    if (truncated) {
+      result = `${result.trim()}...`;
+    }
+    return result;
+  }
+
+  function formatSpellNotation(text) {
+    if (!text) return '';
+    const regex = /\{@([a-zA-Z0-9_]+)\s+([^}]+)\}|(\(?\[{1,2}([^\]]+)\]+?\)?)/g;
+    let result = '';
+    let lastIndex = 0;
+    let match;
+
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        result += escapeHtml(text.slice(lastIndex, match.index));
+      }
+      // Brace-based {@tag content}
+      if (match[0].startsWith('{@')) {
+        const tag = match[1].toLowerCase();
+        const content = stripSpellTag(match[0]);
+        const label = escapeHtml(content.split('|')[0].trim());
+        const classes = ['grimorio-spell-tag'];
+        if (tag === 'damage' || tag === 'dice') {
+          classes.push('grimorio-spell-tag--dice');
+        } else if (tag === 'condition' || tag === 'status') {
+          classes.push('grimorio-spell-tag--condition');
+        } else if (tag === 'dc') {
+          classes.push('grimorio-spell-tag--dc');
+        } else {
+          classes.push('grimorio-spell-tag--ref');
+        }
+        result += `<span class="${classes.join(' ')}">${label}</span>`;
+      } else {
+        // [[TAGx]] or [TAGx] placeholder tokens (with optional parens)
+        const bracketContent = (match[4] || '').replace(/[()\[\]]/g, '').trim();
+        const label = escapeHtml(bracketContent || 'REF');
+        result += `<span class="grimorio-spell-tag grimorio-spell-tag--placeholder">${label}</span>`;
+      }
+      lastIndex = regex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      result += escapeHtml(text.slice(lastIndex));
+    }
+
+    return result;
+  }
+
+  function getSpellSummaryHtml(spell) {
     if (!spell || !spell.entries) return '';
     const chunks = [];
     flattenSpellEntry(spell.entries, chunks);
     if (!chunks.length) return '';
     const text = chunks.join(' ').replace(/\s+/g, ' ').trim();
     if (!text) return '';
-    return text.length > 180 ? `${text.slice(0, 177).trim()}...` : text;
+    const truncated = truncateSpellText(text);
+    return formatSpellNotation(truncated);
   }
 
   function extractMatches(text, regex) {
@@ -1567,7 +2536,7 @@
         .split('\n')
         .map((line) => line.trim())
         .filter(Boolean)
-        .map((line) => `<p>${escapeHtml(line)}</p>`)
+        .map((line) => `<p>${formatSpellNotation(line)}</p>`)
         .join('');
       if (paragraphs) {
         summaryParagraph = `<div class="grimorio-cast-summary__text">${paragraphs}</div>`;
@@ -1634,6 +2603,9 @@
     if (modal === selectors.pickerModal) {
       pickerState = null;
     }
+    if (modal === selectors.metamagicCastModal) {
+      state.pendingCast = null;
+    }
   }
 
   function clonePrepared(prepared) {
@@ -1646,6 +2618,13 @@
 
   function cloneObject(obj) {
     return JSON.parse(JSON.stringify(obj || {}));
+  }
+
+  function unwrapJson(json) {
+    if (json && typeof json.data !== 'undefined') {
+      return json.data;
+    }
+    return json;
   }
 
   function getTotalPreparedCount(map) {
@@ -1856,4 +2835,54 @@
         refreshClassReferenceModule(context);
       });
   }
+
+  function bindSorceryCheckboxes() {
+    if (sorceryFlags.bound) return;
+    const column = selectors.sorceryColumn || document.querySelector('.grimorio-slot-column--sorcery');
+    if (!column) return;
+    const checkboxes = Array.from(column.querySelectorAll('.grimorio-slot-toggle'));
+    if (!checkboxes.length) return;
+    checkboxes.forEach((cb) => {
+      cb.addEventListener('change', () => {
+        if (sorceryFlags.updating) return;
+        const spent = checkboxes.filter((c) => c.checked).length;
+        const max = state.sorcery.pointsMax || 0;
+        const nextPoints = Math.max(0, max - spent);
+        persistSorceryPoints(nextPoints);
+      });
+    });
+    sorceryFlags.bound = true;
+  }
+
+  function persistSorceryPoints(value) {
+    if (!window.GRIMORIO_DATA.sorcery_nonce) {
+      return Promise.resolve();
+    }
+    const clamped = Math.max(0, Math.min(value, state.sorcery.pointsMax || 0));
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_sorcery_set_points',
+      nonce: window.GRIMORIO_DATA.sorcery_nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      value: clamped,
+    });
+    return fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        const data = unwrapJson(json);
+        if (json && json.success === false) {
+          return Promise.reject();
+        }
+        applySorceryStateFromResponse(data);
+        return data;
+      })
+      .catch(() => {
+        console.warn('No se pudieron actualizar los Puntos de Hechicería.');
+        return Promise.reject();
+      });
+  }
+
 })();

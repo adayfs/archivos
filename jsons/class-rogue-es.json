@@ -2319,11 +2319,11 @@
       "classSource": "PHB",
       "level": 7,
       "entries": [
-        "Beginning at 7th level, you can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an {@spell ice storm} spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
+        "Beginning at 7th level, you can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an {@spell ice storm} spell. When you are subjected to an effect that allows you to make a Destreza saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
       ],
       "name_es": "Evasión",
       "entries_es": [
-        "A partir del séptimo nivel, se puede limpiar de forma humilde del camino de ciertos efectos del área, como el aliento ardiente de un dragón rojo o un hechizo {@spell ice storm}. Cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de Dexterity para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en el lanzamiento de ahorro, y sólo medio daño si usted falla."
+        "A partir del séptimo nivel, se puede limpiar de forma humilde del camino de ciertos efectos del área, como el aliento ardiente de un dragón rojo o un hechizo {@spell ice storm}. Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en eltirada de salvación, y sólo medio daño si usted falla."
       ]
     },
     {
@@ -2714,7 +2714,7 @@
       "level": 5,
       "entries": [
         "You've developed cunning ways to use your Sneak Attack. When you deal Sneak Attack damage, you can add one of the following Cunning Strike effects. Each effect has a die cost, which is the number of Sneak Attack damage dice you must forgo to add the effect. You remove the die before rolling, and the effect occurs immediately after the attack's damage is dealt. For example, if you add the Poison effect, remove {@dice 1d6} from the Sneak Attack's damage before rolling.",
-        "If a Cunning Strike effect requires a saving throw, the DC equals 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+        "If a Cunning Strike effect requires a saving throw, the DC equals 8 plus your Destreza modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
         {
           "type": "entries",
           "entries": [
@@ -2750,7 +2750,7 @@
       "name_es": "Cunning Strike",
       "entries_es": [
         "Has desarrollado formas astutas de usar tu ataque Sneak. Cuando se trata de daño Sneak Attack, puede añadir uno de los siguientes efectos de Cunning Strike. Cada efecto tiene un costo de muerte, que es el número de dados de daño Sneak Attack que debe renunciar a añadir el efecto. Usted elimina la muerte antes de rodar, y el efecto ocurre inmediatamente después de que el daño del ataque sea tratado. Por ejemplo, si agrega el efecto veneno, retire {@dice 1d6} del daño del Ataque Sneak antes de rodar.",
-        "Si un efecto Strike Cunning requiere un lanzamiento de ahorro, el DC equivale a 8 más su modificador de Dexterity y {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+        "Si un efecto Strike Cunning requiere una tirada de salvación, el DC equivale a 8 más su modificador de Destreza y {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
         {
           "type": "entries",
           "entries": [
@@ -2799,7 +2799,7 @@
       ],
       "name_es": "Veneno (Costo: 1d6)",
       "entries_es": [
-        "Usted agrega una toxina a su huelga, obligando al objetivo a hacer un lanzamiento de ahorro de la Constitución. En un ahorro fallido, el objetivo tiene la condición [[TAG0] por 1 minuto. Al final de cada uno de sus turnos, el objetivo {@condition Poisoned|XPHB} repite el ahorro, terminando el efecto sobre sí mismo en un éxito.",
+        "Usted agrega una toxina a su huelga, obligando al objetivo a hacer una tirada de salvación de Constitución. En un ahorro fallido, el objetivo tiene la condición [[TAG0] por 1 minuto. Al final de cada uno de sus turnos, el objetivo {@condition Poisoned|XPHB} repite el ahorro, terminando el efecto sobre sí mismo en un éxito.",
         "Para utilizar este efecto, usted debe tener un {@item Poisoner's Kit|XPHB} en su persona."
       ]
     },
@@ -2813,11 +2813,11 @@
       "classSource": "XPHB",
       "level": 5,
       "entries": [
-        "If the target is Large or smaller, it must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition."
+        "If the target is Large or smaller, it must succeed on a Destreza saving throw or have the {@condition Prone|XPHB} condition."
       ],
       "name_es": "Viaje (Costo: 1d6)",
       "entries_es": [
-        "Si el objetivo es grande o menor, debe tener éxito en un lanzamiento de ahorro de Dexterity o tener la condición [[TAG0]."
+        "Si el objetivo es grande o menor, debe tener éxito en una tirada de salvación de Destreza o tener la condición [[TAG0]."
       ]
     },
     {
@@ -2881,11 +2881,11 @@
       "classSource": "XPHB",
       "level": 7,
       "entries": [
-        "You can nimbly dodge out of the way of certain dangers. When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. You can't use this feature if you have the {@condition Incapacitated|XPHB} condition."
+        "You can nimbly dodge out of the way of certain dangers. When you're subjected to an effect that allows you to make a Destreza saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. You can't use this feature if you have the {@condition Incapacitated|XPHB} condition."
       ],
       "name_es": "Evasión",
       "entries_es": [
-        "Usted puede burlarse de la manera de ciertos peligros. Cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de Dexterity para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en el lanzamiento de ahorro y sólo medio daño si falla. No puedes usar esta característica si tienes la condición [[TAG0]."
+        "Usted puede burlarse de la manera de ciertos peligros. Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en eltirada de salvación y sólo medio daño si falla. No puedes usar esta característica si tienes la condición [[TAG0]."
       ]
     },
     {
@@ -3021,7 +3021,7 @@
       ],
       "name_es": "Daze (Costo: 2d6)",
       "entries_es": [
-        "El objetivo debe tener éxito en un lanzamiento de la Constitución, o en su próximo giro, sólo puede hacer uno de los siguientes: mover o tomar una acción o una {@variantrule Bonus Action|XPHB}."
+        "El objetivo debe tener éxito en un lanzamiento de Constitución, o en su próximo giro, sólo puede hacer uno de los siguientes: mover o tomar una acción o una {@variantrule Bonus Action|XPHB}."
       ]
     },
     {
@@ -3117,7 +3117,7 @@
       ],
       "name_es": "Knock Out (Cost: 6d6)",
       "entries_es": [
-        "El objetivo debe tener éxito en un lanzamiento de ahorro de la Constitución, o tiene la condición [[TAG0] por 1 minuto o hasta que tome cualquier daño. El objetivo {@condition Unconscious|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+        "El objetivo debe tener éxito en una tirada de salvación de Constitución, o tiene la condición [[TAG0] por 1 minuto o hasta que tome cualquier daño. El objetivo {@condition Unconscious|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
       ]
     },
     {
@@ -3130,11 +3130,11 @@
       "classSource": "XPHB",
       "level": 14,
       "entries": [
-        "The target must succeed on a Dexterity saving throw, or it has the {@condition Blinded|XPHB} condition until the end of its next turn."
+        "The target must succeed on a Destreza saving throw, or it has the {@condition Blinded|XPHB} condition until the end of its next turn."
       ],
       "name_es": "Obscure (Costo: 3d6)",
       "entries_es": [
-        "El objetivo debe tener éxito en un lanzamiento de ahorro de Dexterity, o tiene la condición {@condition Blinded|XPHB} hasta el final de su próximo turno."
+        "El objetivo debe tener éxito en una tirada de salvación de Destreza, o tiene la condición {@condition Blinded|XPHB} hasta el final de su próximo turno."
       ]
     },
     {
@@ -3296,7 +3296,7 @@
             "You can use {@item thieves' tools|phb} to pick locks and disarm traps at range."
           ]
         },
-        "You can perform one of these tasks without being noticed by a creature if you succeed on a Dexterity ({@skill Sleight of Hand}) check contested by the creature's Wisdom ({@skill Perception}) check.",
+        "You can perform one of these tasks without being noticed by a creature if you succeed on a Destreza ({@skill Sleight of Hand}) check contested by the creature's Wisdom ({@skill Perception}) check.",
         "In addition, you can use the bonus action granted by your Cunning Action to control the hand."
       ],
       "name_es": "Legerdemain",
@@ -3310,7 +3310,7 @@
             "You can use {@item thieves' tools|phb} to pick locks and disarm traps at range."
           ]
         },
-        "Puedes realizar una de estas tareas sin ser notado por una criatura si tienes éxito en un cheque de Dexterity ([TAG0]]) impugnado por la sabiduría de la criatura ([TAG1]).",
+        "Puedes realizar una de estas tareas sin ser notado por una criatura si tienes éxito en un cheque de Destreza ([TAG0]]) impugnado por la sabiduría de la criatura ([TAG1]).",
         "Además, puede utilizar la acción de bonificación otorgada por su Acción de Cunning para controlar la mano."
       ]
     },
@@ -3456,7 +3456,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3501,7 +3501,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3656,7 +3656,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3701,7 +3701,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3778,7 +3778,7 @@
       "name_es": "Spell Thief",
       "entries_es": [
         "A nivel 17, usted gana la capacidad de robar mágicamente el conocimiento de cómo lanzar un hechizo de otra máquina de hechizos.",
-        "Inmediatamente después de que una criatura emita un hechizo que te apunta o te incluye en su área de efecto, puedes usar tu reacción para obligar a la criatura a hacer un lanzamiento de ahorro con su modificador de habilidad de deletrear. El DC iguala tu hechizo salvo DC. En un fallido ahorro, usted niega el efecto del hechizo contra usted, y usted roba el conocimiento del hechizo si es al menos el primer nivel y de un nivel que usted puede lanzar (no necesita ser un hechizo mago). Durante las próximas 8 horas, usted conoce el hechizo y puede lanzarlo usando sus ranuras de hechizo. La criatura no puede lanzar ese hechizo hasta que hayan pasado las 8 horas.",
+        "Inmediatamente después de que una criatura emita un hechizo que te apunta o te incluye en su área de efecto, puedes usar tu reacción para obligar a la criatura a hacer una tirada de salvación con su modificador de habilidad de deletrear. El DC iguala tu hechizo salvo DC. En un fallido ahorro, usted niega el efecto del hechizo contra usted, y usted roba el conocimiento del hechizo si es al menos el primer nivel y de un nivel que usted puede lanzar (no necesita ser un hechizo mago). Durante las próximas 8 horas, usted conoce el hechizo y puede lanzarlo usando sus ranuras de hechizo. La criatura no puede lanzar ese hechizo hasta que hayan pasado las 8 horas.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -3904,11 +3904,11 @@
       "level": 17,
       "header": 2,
       "entries": [
-        "Starting at 17th level, you become a master of instant death. When you attack and hit a creature that is {@status surprised}, it must make a Constitution saving throw ({@dc 8} + your Dexterity modifier + your proficiency bonus). On a failed save, double the damage of your attack against the creature."
+        "Starting at 17th level, you become a master of instant death. When you attack and hit a creature that is {@status surprised}, it must make a Constitution saving throw ({@dc 8} + your Destreza modifier + your proficiency bonus). On a failed save, double the damage of your attack against the creature."
       ],
       "name_es": "Death Strike",
       "entries_es": [
-        "A partir del nivel 17, te conviertes en un maestro de muerte instantánea. Cuando atacas y golpeas a una criatura que es {@status surprised}, debe hacer un lanzamiento de ahorro de la Constitución ([TAG1]] + tu modificador de Dexteridad + tu bonificación de competencia). En un fallido ahorro, dobla el daño de tu ataque contra la criatura."
+        "A partir del nivel 17, te conviertes en un maestro de muerte instantánea. Cuando atacas y golpeas a una criatura que es {@status surprised}, debe hacer una tirada de salvación de Constitución ([TAG1]] + tu modificador de Dexteridad + tu bonificación de competencia). En un fallido ahorro, dobla el daño de tu ataque contra la criatura."
       ]
     },
     {
@@ -3959,7 +3959,7 @@
       "level": 3,
       "header": 1,
       "entries": [
-        "Starting at 3rd level, you can use the bonus action granted by your Cunning Action to make a Dexterity ({@skill Sleight of Hand}) check, use your {@item thieves' tools|phb} to disarm a trap or open a lock, or take the {@action Use an Object} action."
+        "Starting at 3rd level, you can use the bonus action granted by your Cunning Action to make a Destreza ({@skill Sleight of Hand}) check, use your {@item thieves' tools|phb} to disarm a trap or open a lock, or take the {@action Use an Object} action."
       ],
       "name_es": "Manos rápidas",
       "entries_es": [
@@ -3980,12 +3980,12 @@
       "header": 1,
       "entries": [
         "When you choose this archetype at 3rd level, you gain the ability to climb faster than normal; climbing no longer costs you extra movement.",
-        "In addition, when you make a running jump, the distance you cover increases by a number of feet equal to your Dexterity modifier."
+        "In addition, when you make a running jump, the distance you cover increases by a number of feet equal to your Destreza modifier."
       ],
       "name_es": "Trabajo de segundo nivel",
       "entries_es": [
         "Cuando usted elige este arquetipo a 3o nivel, usted gana la capacidad de escalar más rápido de lo normal; escalar ya no cuesta su movimiento extra.",
-        "Además, cuando haces un salto en marcha, la distancia que cubres aumenta por un número de pies igual a tu modificador de Dexterity."
+        "Además, cuando haces un salto en marcha, la distancia que cubres aumenta por un número de pies igual a tu modificador de Destreza."
       ]
     },
     {
@@ -4001,11 +4001,11 @@
       "level": 9,
       "header": 2,
       "entries": [
-        "Starting at 9th level, you have advantage on a Dexterity ({@skill Stealth}) check if you move no more than half your speed on the same turn."
+        "Starting at 9th level, you have advantage on a Destreza ({@skill Stealth}) check if you move no more than half your speed on the same turn."
       ],
       "name_es": "Sneak Supremo",
       "entries_es": [
-        "A partir del noveno nivel, usted tiene ventaja en un cheque de Dexterity ([TAG0]) si se mueve no más de la mitad de su velocidad en el mismo turno."
+        "A partir del noveno nivel, usted tiene ventaja en un cheque de Destreza ([TAG0]) si se mueve no más de la mitad de su velocidad en el mismo turno."
       ]
     },
     {
@@ -4526,13 +4526,13 @@
       "header": 2,
       "entries": [
         "{@i 17th-level Soulknife feature}",
-        "You can sweep your Psychic Blades directly through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Dexterity modifier). If the save fails, the target is {@condition stunned} for 1 minute. The {@condition stunned} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+        "You can sweep your Psychic Blades directly through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Destreza modifier). If the save fails, the target is {@condition stunned} for 1 minute. The {@condition stunned} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
         "Once you use this feature, you can't do so again until you finish a long rest, unless you expend three Psionic Energy dice to use it again."
       ],
       "name_es": "Rend Mind",
       "entries_es": [
         "[[TAG0]",
-        "Puedes barrer tus Psic Blades directamente a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer un lanzamiento de ahorro de Sabiduría (DC igual a 8 + tu bonificación de competencia + tu modificador de Dexterity). Si el ahorro falla, el objetivo es {@condition stunned} por 1 minuto. El objetivo {@condition stunned} puede repetir el lanzamiento de ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+        "Puedes barrer tus Psic Blades directamente a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + tu modificador de Destreza). Si el ahorro falla, el objetivo es {@condition stunned} por 1 minuto. El objetivo {@condition stunned} puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo, a menos que expulse tres dados Psionic Energy para usarlo de nuevo."
       ]
     },
@@ -5067,11 +5067,11 @@
       "level": 13,
       "header": 2,
       "entries": [
-        "Starting at 13th level, you can use a bonus action on your turn to gain advantage on the next Dexterity ({@skill Acrobatics}) or Strength ({@skill Athletics}) check you make during the same turn."
+        "Starting at 13th level, you can use a bonus action on your turn to gain advantage on the next Destreza ({@skill Acrobatics}) or Strength ({@skill Athletics}) check you make during the same turn."
       ],
       "name_es": "Maniobra elegante",
       "entries_es": [
-        "A partir del 13o nivel, puede utilizar una acción de bonificación en su turno para ganar ventaja en la siguiente Dexterity ([TAG0]) o Strength ({@skill Athletics}) comprobar que hace durante el mismo turno."
+        "A partir del 13o nivel, puede utilizar una acción de bonificación en su turno para ganar ventaja en la siguiente Destreza ([TAG0]) o Strength ({@skill Athletics}) comprobar que hace durante el mismo turno."
       ]
     },
     {
@@ -5243,7 +5243,7 @@
           ],
           "name_es": "Terrify (Cost: {@dice 1d6})",
           "entries_es": [
-            "El objetivo debe tener éxito en un lanzamiento de ahorro de Sabiduría, o tiene la condición [[TAG0] por 1 minuto. Mientras el objetivo está asustado de esta manera, usted tiene {@variantrule Advantage|XPHB} en los rollos de ataque contra el objetivo.",
+            "El objetivo debe tener éxito en una tirada de salvación de Sabiduría, o tiene la condición [[TAG0] por 1 minuto. Mientras el objetivo está asustado de esta manera, usted tiene {@variantrule Advantage|XPHB} en los rollos de ataque contra el objetivo.",
             "El objetivo {@condition Frightened|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
           ]
         }
@@ -5261,7 +5261,7 @@
           ],
           "name_es": "Terrify (Cost: {@dice 1d6})",
           "entries_es": [
-            "El objetivo debe tener éxito en un lanzamiento de ahorro de Sabiduría, o tiene la condición [[TAG0] por 1 minuto. Mientras el objetivo está asustado de esta manera, usted tiene {@variantrule Advantage|XPHB} en los rollos de ataque contra el objetivo.",
+            "El objetivo debe tener éxito en una tirada de salvación de Sabiduría, o tiene la condición [[TAG0] por 1 minuto. Mientras el objetivo está asustado de esta manera, usted tiene {@variantrule Advantage|XPHB} en los rollos de ataque contra el objetivo.",
             "El objetivo {@condition Frightened|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
           ]
         }
@@ -5394,7 +5394,7 @@
       "subclassSource": "XPHB",
       "level": 3,
       "entries": [
-        "When you cast {@spell Mage Hand|XPHB}, you can cast it as a {@variantrule Bonus Action|XPHB}, and you can make the spectral hand {@condition Invisible|XPHB}. You can control the hand as a {@variantrule Bonus Action|XPHB}, and through it, you can make Dexterity ({@skill Sleight of Hand|XPHB}) checks."
+        "When you cast {@spell Mage Hand|XPHB}, you can cast it as a {@variantrule Bonus Action|XPHB}, and you can make the spectral hand {@condition Invisible|XPHB}. You can control the hand as a {@variantrule Bonus Action|XPHB}, and through it, you can make Destreza ({@skill Sleight of Hand|XPHB}) checks."
       ],
       "name_es": "Legerdemain",
       "entries_es": [
@@ -5577,7 +5577,7 @@
       ],
       "name_es": "Magical Ambush",
       "entries_es": [
-        "Si usted tiene la condición [[TAG0] cuando usted lanza un hechizo a una criatura, tiene {@variantrule Disadvantage|XPHB} en cualquier lanzamiento de ahorro que hace contra el hechizo en el mismo turno."
+        "Si usted tiene la condición [[TAG0] cuando usted lanza un hechizo a una criatura, tiene {@variantrule Disadvantage|XPHB} en cualquiertirada de salvación que hace contra el hechizo en el mismo turno."
       ]
     },
     {
@@ -5940,11 +5940,11 @@
       "level": 17,
       "header": 2,
       "entries": [
-        "When you hit with your Sneak Attack on the first round of a combat, the target must succeed on a Constitution saving throw ({@dc 8} plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}), or the attack's damage is doubled against the target."
+        "When you hit with your Sneak Attack on the first round of a combat, the target must succeed on a Constitution saving throw ({@dc 8} plus your Destreza modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}), or the attack's damage is doubled against the target."
       ],
       "name_es": "Death Strike",
       "entries_es": [
-        "Cuando usted golpea con su ataque Sneak en la primera ronda de un combate, el objetivo debe tener éxito en un lanzamiento de ahorro de la Constitución ([TAG0]] más su modificador de Dexteridad y {@variantrule Proficiency|XPHB|Proficiency Bonus}), o el daño del ataque se duplica contra el objetivo."
+        "Cuando usted golpea con su ataque Sneak en la primera ronda de un combate, el objetivo debe tener éxito en una tirada de salvación de Constitución ([TAG0]] más su modificador de Dexteridad y {@variantrule Proficiency|XPHB|Proficiency Bonus}), o el daño del ataque se duplica contra el objetivo."
       ]
     },
     {
@@ -6307,12 +6307,12 @@
       "level": 17,
       "header": 2,
       "entries": [
-        "You can sweep your Psychic Blades through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw ({@dc 8} plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). If the save fails, the target has the {@condition Stunned|XPHB} condition for 1 minute. The {@condition Stunned|XPHB} target repeats the save at the end of each of its turns, ending the effect on itself on a success.",
+        "You can sweep your Psychic Blades through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw ({@dc 8} plus your Destreza modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). If the save fails, the target has the {@condition Stunned|XPHB} condition for 1 minute. The {@condition Stunned|XPHB} target repeats the save at the end of each of its turns, ending the effect on itself on a success.",
         "Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you expend three Psionic Energy Dice (no action required) to restore your use of it."
       ],
       "name_es": "Rend Mind",
       "entries_es": [
-        "Puedes barrer tus Psic Blades a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer un lanzamiento de ahorro de Sabiduría ([TAG0]] más tu modificador de Dexteridad y {@variantrule Proficiency|XPHB|Proficiency Bonus}). Si el ahorro falla, el objetivo tiene la condición {@condition Stunned|XPHB} por 1 minuto. El objetivo {@condition Stunned|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+        "Puedes barrer tus Psic Blades a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría ([TAG0]] más tu modificador de Dexteridad y {@variantrule Proficiency|XPHB|Proficiency Bonus}). Si el ahorro falla, el objetivo tiene la condición {@condition Stunned|XPHB} por 1 minuto. El objetivo {@condition Stunned|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que expulse tres Psionic Energy Dice (no se requiere acción) para restaurar su uso de ella."
       ]
     },
@@ -6336,11 +6336,11 @@
               "type": "entries",
               "name": "Sleight of Hand",
               "entries": [
-                "Make a Dexterity ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
+                "Make a Destreza ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
               ],
               "name_es": "Altura de la mano",
               "entries_es": [
-                "Haga un cheque de Dexterity ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
+                "Haga un cheque de Destreza ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
               ]
             },
             {
@@ -6360,11 +6360,11 @@
               "type": "entries",
               "name": "Sleight of Hand",
               "entries": [
-                "Make a Dexterity ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
+                "Make a Destreza ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
               ],
               "name_es": "Altura de la mano",
               "entries_es": [
-                "Haga un cheque de Dexterity ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
+                "Haga un cheque de Destreza ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
               ]
             },
             {
@@ -6391,11 +6391,11 @@
               "type": "entries",
               "name": "Sleight of Hand",
               "entries": [
-                "Make a Dexterity ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
+                "Make a Destreza ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
               ],
               "name_es": "Altura de la mano",
               "entries_es": [
-                "Haga un cheque de Dexterity ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
+                "Haga un cheque de Destreza ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
               ]
             },
             {
@@ -6415,11 +6415,11 @@
               "type": "entries",
               "name": "Sleight of Hand",
               "entries": [
-                "Make a Dexterity ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
+                "Make a Destreza ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
               ],
               "name_es": "Altura de la mano",
               "entries_es": [
-                "Haga un cheque de Dexterity ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
+                "Haga un cheque de Destreza ([TAG0]) para recoger una cerradura o desarmar una trampa con {@item Thieves' Tools|XPHB} o para recoger un bolsillo."
               ]
             },
             {
@@ -6468,11 +6468,11 @@
               "type": "entries",
               "name": "Jumper",
               "entries": [
-                "You can determine your jump distance using your Dexterity rather than your Strength."
+                "You can determine your jump distance using your Destreza rather than your Strength."
               ],
               "name_es": "Jumper",
               "entries_es": [
-                "Puedes determinar tu distancia de salto usando tu Dexterity en lugar de tu Fuerza."
+                "Puedes determinar tu distancia de salto usando tu Destreza en lugar de tu Fuerza."
               ]
             }
           ],
@@ -6492,11 +6492,11 @@
               "type": "entries",
               "name": "Jumper",
               "entries": [
-                "You can determine your jump distance using your Dexterity rather than your Strength."
+                "You can determine your jump distance using your Destreza rather than your Strength."
               ],
               "name_es": "Jumper",
               "entries_es": [
-                "Puedes determinar tu distancia de salto usando tu Dexterity en lugar de tu Fuerza."
+                "Puedes determinar tu distancia de salto usando tu Destreza en lugar de tu Fuerza."
               ]
             }
           ]
@@ -6523,11 +6523,11 @@
               "type": "entries",
               "name": "Jumper",
               "entries": [
-                "You can determine your jump distance using your Dexterity rather than your Strength."
+                "You can determine your jump distance using your Destreza rather than your Strength."
               ],
               "name_es": "Jumper",
               "entries_es": [
-                "Puedes determinar tu distancia de salto usando tu Dexterity en lugar de tu Fuerza."
+                "Puedes determinar tu distancia de salto usando tu Destreza en lugar de tu Fuerza."
               ]
             }
           ],
@@ -6547,11 +6547,11 @@
               "type": "entries",
               "name": "Jumper",
               "entries": [
-                "You can determine your jump distance using your Dexterity rather than your Strength."
+                "You can determine your jump distance using your Destreza rather than your Strength."
               ],
               "name_es": "Jumper",
               "entries_es": [
-                "Puedes determinar tu distancia de salto usando tu Dexterity en lugar de tu Fuerza."
+                "Puedes determinar tu distancia de salto usando tu Destreza en lugar de tu Fuerza."
               ]
             }
           ]
@@ -6923,8 +6923,8 @@
       ],
       "name_es": "True Grit",
       "entries_es": [
-        "A 13o nivel, usted gana la competencia en ahorros de la Constitución.",
-        "Además, cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de la Constitución para tomar sólo medio daño, en lugar de ello no se dañe si tiene éxito en el lanzamiento de ahorro, y sólo medio daño si falla."
+        "A 13o nivel, usted gana la competencia en ahorros de Constitución.",
+        "Además, cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Constitución para tomar sólo medio daño, en lugar de ello no se dañe si tiene éxito en eltirada de salvación, y sólo medio daño si falla."
       ]
     },
     {
@@ -7004,7 +7004,7 @@
       "name_es": "Evil Eye",
       "entries_es": [
         "Cuando usted elige este arquetipo a 3o nivel, usted gana la capacidad de colocar una maldición menor en otros con un vistazo.",
-        "Como una acción de bonificación en tu turno, elige una criatura que puedes ver dentro de 60 pies. La criatura elegida debe tener éxito en un tiro de ahorro de Charisma contra tu desgracia salvar a DC o estar marcada por tu mal ojo.",
+        "Como una acción de bonificación en tu turno, elige una criatura que puedes ver dentro de 60 pies. La criatura elegida debe tener éxito en una tirada de salvación de Charisma contra tu desgracia salvar a DC o estar marcada por tu mal ojo.",
         "Mientras una criatura está marcada por tu mal ojo, puedes usar tu Ataque Sneak contra la criatura incluso si no tienes ventaja en el rollo de ataque, pero no si tienes desventaja en él.",
         "La criatura permanece marcada por tu mal ojo durante 1 minuto o hasta que marcas una criatura diferente con tu mal ojo, cualquiera que venga primero."
       ]
@@ -7057,7 +7057,7 @@
           ],
           "name_es": "Tirantes de ahorro",
           "entries_es": [
-            "Tu mal ojo, y algunas de tus desgracias, requieren tu objetivo para hacer un lanzamiento de ahorro para resistir sus efectos. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+            "Tu mal ojo, y algunas de tus desgracias, requieren tu objetivo para hacer una tirada de salvación para resistir sus efectos. Eltirada de salvación DC se calcula de la siguiente manera:",
             {
               "type": "formula",
               "formula": "Misfortune save DC = 8 + your proficiency bonus + your Charisma modifier"
@@ -7106,7 +7106,7 @@
           ],
           "name_es": "Tirantes de ahorro",
           "entries_es": [
-            "Tu mal ojo, y algunas de tus desgracias, requieren tu objetivo para hacer un lanzamiento de ahorro para resistir sus efectos. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+            "Tu mal ojo, y algunas de tus desgracias, requieren tu objetivo para hacer una tirada de salvación para resistir sus efectos. Eltirada de salvación DC se calcula de la siguiente manera:",
             {
               "type": "formula",
               "formula": "Misfortune save DC = 8 + your proficiency bonus + your Charisma modifier"
@@ -7187,7 +7187,7 @@
           "name_es": "La maldición del miedo",
           "entries_es": [
             "Como acción, puedes pasar 2 puntos jinx, y la criatura marcada por tu mal ojo te asusta por 1 minuto.",
-            "Cuando lo haces, la criatura ya no está marcada por tu mal ojo, y puede hacer un lanzamiento de salvación de la Sabiduría al final de cada uno de sus turnos, terminando esta desgracia temprano en un éxito."
+            "Cuando lo haces, la criatura ya no está marcada por tu mal ojo, y puede hacer un lanzamiento de salvación de Sabiduría al final de cada uno de sus turnos, terminando esta desgracia temprano en un éxito."
           ]
         },
         {
@@ -7261,7 +7261,7 @@
           ],
           "name_es": "Maldición del Ruined",
           "entries_es": [
-            "Después de que una criatura marcada por tu mal ojo hace un lanzamiento de ahorro, pero antes de que el DM declare si es o no exitoso, puedes usar tu reacción y gastar 2 puntos jinx para hacer que la criatura rerolle y use el resultado inferior."
+            "Después de que una criatura marcada por tu mal ojo hace una tirada de salvación, pero antes de que el DM declare si es o no exitoso, puedes usar tu reacción y gastar 2 puntos jinx para hacer que la criatura rerolle y use el resultado inferior."
           ]
         },
         {
@@ -7362,7 +7362,7 @@
           "name_es": "La maldición del miedo",
           "entries_es": [
             "Como acción, puedes pasar 2 puntos jinx, y la criatura marcada por tu mal ojo te asusta por 1 minuto.",
-            "Cuando lo haces, la criatura ya no está marcada por tu mal ojo, y puede hacer un lanzamiento de salvación de la Sabiduría al final de cada uno de sus turnos, terminando esta desgracia temprano en un éxito."
+            "Cuando lo haces, la criatura ya no está marcada por tu mal ojo, y puede hacer un lanzamiento de salvación de Sabiduría al final de cada uno de sus turnos, terminando esta desgracia temprano en un éxito."
           ]
         },
         {
@@ -7436,7 +7436,7 @@
           ],
           "name_es": "Maldición del Ruined",
           "entries_es": [
-            "Después de que una criatura marcada por tu mal ojo hace un lanzamiento de ahorro, pero antes de que el DM declare si es o no exitoso, puedes usar tu reacción y gastar 2 puntos jinx para hacer que la criatura rerolle y use el resultado inferior."
+            "Después de que una criatura marcada por tu mal ojo hace una tirada de salvación, pero antes de que el DM declare si es o no exitoso, puedes usar tu reacción y gastar 2 puntos jinx para hacer que la criatura rerolle y use el resultado inferior."
           ]
         },
         {
@@ -7489,7 +7489,7 @@
       ],
       "name_es": "Steal Luck",
       "entries_es": [
-        "A partir del 9o nivel, cuando una criatura que puedes ver a menos de 30 pies de ti hace un cheque de habilidad, un rollo de ataque o un tiro de ahorro con ventaja, puedes usar tu reacción para quitar ventaja del rollo.",
+        "A partir del 9o nivel, cuando una criatura que puedes ver a menos de 30 pies de ti hace un cheque de habilidad, un rollo de ataque o una tirada de salvación con ventaja, puedes usar tu reacción para quitar ventaja del rollo.",
         "Cuando lo haces, recuperas un punto de jinx gastado.",
         "Una vez que utilice esta característica, debe terminar un breve o largo descanso antes de que pueda hacerlo de nuevo.",
         "A nivel 17, puede utilizar esta característica tres veces, recuperando todos los usos cuando termine un breve o largo descanso."

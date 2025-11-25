@@ -2411,7 +2411,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer el lanzamiento de ahorro DC para un hechizo de hechicero que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2508,7 +2508,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer el lanzamiento de ahorro DC para un hechizo de hechicero que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -5103,11 +5103,11 @@
               "type": "item",
               "name": "New Moon",
               "entries": [
-                "You have advantage on Dexterity ({@skill Stealth}) checks. In addition, while you are entirely in darkness, attack rolls have disadvantage against you."
+                "You have advantage on Destreza ({@skill Stealth}) checks. In addition, while you are entirely in darkness, attack rolls have disadvantage against you."
               ],
               "name_es": "Luna nueva",
               "entries_es": [
-                "Usted tiene ventaja en los cheques de Dexterity ([TAG0]). Además, mientras estás completamente en la oscuridad, los rollos de ataque tienen desventaja contra ti."
+                "Usted tiene ventaja en los cheques de Destreza ([TAG0]). Además, mientras estás completamente en la oscuridad, los rollos de ataque tienen desventaja contra ti."
               ]
             },
             {
@@ -5147,11 +5147,11 @@
               "type": "item",
               "name": "New Moon",
               "entries": [
-                "You have advantage on Dexterity ({@skill Stealth}) checks. In addition, while you are entirely in darkness, attack rolls have disadvantage against you."
+                "You have advantage on Destreza ({@skill Stealth}) checks. In addition, while you are entirely in darkness, attack rolls have disadvantage against you."
               ],
               "name_es": "Luna nueva",
               "entries_es": [
-                "Usted tiene ventaja en los cheques de Dexterity ([TAG0]). Además, mientras estás completamente en la oscuridad, los rollos de ataque tienen desventaja contra ti."
+                "Usted tiene ventaja en los cheques de Destreza ([TAG0]). Además, mientras estás completamente en la oscuridad, los rollos de ataque tienen desventaja contra ti."
               ]
             },
             {
@@ -5194,18 +5194,18 @@
               ],
               "name_es": "Luna Llena",
               "entries_es": [
-                "Usted irradia luz de luna por un momento. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en un lanzamiento de ahorro de la Constitución contra su hechizo salvo DC o ser {@condition blinded} hasta el final de su próximo turno. Además, una criatura de su elección en esa zona recupera puntos de éxito [[TAG1]."
+                "Usted irradia luz de luna por un momento. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Constitución contra su hechizo salvo DC o ser {@condition blinded} hasta el final de su próximo turno. Además, una criatura de su elección en esa zona recupera puntos de éxito [[TAG1]."
               ]
             },
             {
               "type": "item",
               "name": "New Moon",
               "entries": [
-                "You momentarily emanate gloom. Each creature of your choice within 30 feet of you must succeed on a Dexterity saving throw against your spell save DC or take {@damage 3d10} necrotic damage and have its speed reduced to 0 until the end of its next turn. In addition, you become {@condition invisible} until the end of your next turn, or until immediately after you make an attack roll or cast a spell."
+                "You momentarily emanate gloom. Each creature of your choice within 30 feet of you must succeed on a Destreza saving throw against your spell save DC or take {@damage 3d10} necrotic damage and have its speed reduced to 0 until the end of its next turn. In addition, you become {@condition invisible} until the end of your next turn, or until immediately after you make an attack roll or cast a spell."
               ],
               "name_es": "Luna nueva",
               "entries_es": [
-                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en un lanzamiento de ahorro de Dexterity contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un rollo de ataque o lanzar un hechizo."
+                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Destreza contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un rollo de ataque o lanzar un hechizo."
               ]
             },
             {
@@ -5239,18 +5239,18 @@
               ],
               "name_es": "Luna Llena",
               "entries_es": [
-                "Usted irradia luz de luna por un momento. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en un lanzamiento de ahorro de la Constitución contra su hechizo salvo DC o ser {@condition blinded} hasta el final de su próximo turno. Además, una criatura de su elección en esa zona recupera puntos de éxito [[TAG1]."
+                "Usted irradia luz de luna por un momento. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Constitución contra su hechizo salvo DC o ser {@condition blinded} hasta el final de su próximo turno. Además, una criatura de su elección en esa zona recupera puntos de éxito [[TAG1]."
               ]
             },
             {
               "type": "item",
               "name": "New Moon",
               "entries": [
-                "You momentarily emanate gloom. Each creature of your choice within 30 feet of you must succeed on a Dexterity saving throw against your spell save DC or take {@damage 3d10} necrotic damage and have its speed reduced to 0 until the end of its next turn. In addition, you become {@condition invisible} until the end of your next turn, or until immediately after you make an attack roll or cast a spell."
+                "You momentarily emanate gloom. Each creature of your choice within 30 feet of you must succeed on a Destreza saving throw against your spell save DC or take {@damage 3d10} necrotic damage and have its speed reduced to 0 until the end of its next turn. In addition, you become {@condition invisible} until the end of your next turn, or until immediately after you make an attack roll or cast a spell."
               ],
               "name_es": "Luna nueva",
               "entries_es": [
-                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en un lanzamiento de ahorro de Dexterity contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un rollo de ataque o lanzar un hechizo."
+                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Destreza contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un rollo de ataque o lanzar un hechizo."
               ]
             },
             {
@@ -5316,12 +5316,12 @@
       "header": 1,
       "entries": [
         "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.",
-        "Additionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals 13 + your Dexterity modifier."
+        "Additionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals 13 + your Destreza modifier."
       ],
       "name_es": "Resiliencia dramática",
       "entries_es": [
         "A medida que la magia fluye a través de su cuerpo, causa rasgos físicos de sus antepasados dragón emerger. A primer nivel, su punto de impacto aumenta al máximo en 1 y aumenta en 1 cada vez que usted gana un nivel en esta clase.",
-        "Además, partes de tu piel están cubiertas por una fina capa de escamas parecidas a un dragón. Cuando no estés usando armadura, tu AC es igual a 13 + tu modificador de Dexterity."
+        "Además, partes de tu piel están cubiertas por una fina capa de escamas parecidas a un dragón. Cuando no estés usando armadura, tu AC es igual a 13 + tu modificador de Destreza."
       ]
     },
     {
@@ -5518,7 +5518,7 @@
       ],
       "name_es": "Presencia dramática",
       "entries_es": [
-        "A partir del 18o nivel, se puede canalizar la presencia de terror de su antepasado de dragón, causando que los que están a su alrededor se vuelvan aterradores o {@condition frightened}. Como acción, puede pasar 5 puntos de brujería para aprovechar este poder y exudar un aura de temor o temor (su elección) a una distancia de 60 pies. Por 1 minuto o hasta que pierdas tu {@status concentration}] (como si estuvieras emitiendo un {@status concentration} hechizo), cada criatura hostil que comienza su turno en este aura debe tener éxito en un tiro de ahorro de Sabiduría o ser {@condition charmed} (si eliges asombro) o {@condition frightened} (si eliges el miedo) hasta que el aura termina. Una criatura que tiene éxito en este tiro de ahorro es inmune a su aura durante 24 horas."
+        "A partir del 18o nivel, se puede canalizar la presencia de terror de su antepasado de dragón, causando que los que están a su alrededor se vuelvan aterradores o {@condition frightened}. Como acción, puede pasar 5 puntos de brujería para aprovechar este poder y exudar un aura de temor o temor (su elección) a una distancia de 60 pies. Por 1 minuto o hasta que pierdas tu {@status concentration}] (como si estuvieras emitiendo un {@status concentration} hechizo), cada criatura hostil que comienza su turno en este aura debe tener éxito en una tirada de salvación de Sabiduría o ser {@condition charmed} (si eliges asombro) o {@condition frightened} (si eliges el miedo) hasta que el aura termina. Una criatura que tiene éxito en este tiro de ahorro es inmune a su aura durante 24 horas."
       ]
     },
     {
@@ -6052,7 +6052,7 @@
       ],
       "name_es": "Bend Luck",
       "entries_es": [
-        "A partir del sexto nivel, tienes la capacidad de retorcer el destino usando tu magia salvaje. Cuando otra criatura que puedes ver hace un rollo de ataque, un cheque de habilidad, o un tiro de ahorro, puedes usar tu reacción y gastar 2 puntos de brujería para rodar {@dice 1d4} y aplicar el número rodado como un bono o penal (su elección) al rollo de la criatura. Puedes hacerlo después de los rollos de la criatura pero antes de que ocurran efectos del rollo."
+        "A partir del sexto nivel, tienes la capacidad de retorcer el destino usando tu magia salvaje. Cuando otra criatura que puedes ver hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, puedes usar tu reacción y gastar 2 puntos de brujería para rodar {@dice 1d4} y aplicar el número rodado como un bono o penal (su elección) al rollo de la criatura. Puedes hacerlo después de los rollos de la criatura pero antes de que ocurran efectos del rollo."
       ]
     },
     {
@@ -6509,7 +6509,7 @@
       "name_es": "Implosión de calentamiento",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede desencadenar su poder aberrante como una anomalía en el calentamiento del espacio. Como acción, se puede teletransportar a un espacio no ocupado que se puede ver a menos de 120 pies de usted. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer un lanzamiento de ahorro de fuerza contra tu hechizo salvo DC. En un fallido ahorro, una criatura toma {@damage 3d10} daño de fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un ahorro exitoso, la criatura toma la mitad de los daños y no es tirada.",
+        "Usted puede desencadenar su poder aberrante como una anomalía en el calentamiento del espacio. Como acción, se puede teletransportar a un espacio no ocupado que se puede ver a menos de 120 pies de usted. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. En un fallido ahorro, una criatura toma {@damage 3d10} daño de fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un ahorro exitoso, la criatura toma la mitad de los daños y no es tirada.",
         "Una vez que utilices esta característica, no puedes hacerlo de nuevo hasta que termines un largo descanso, a menos que gastes 5 puntos de brujería para usarlo de nuevo."
       ]
     },
@@ -6780,7 +6780,7 @@
       "name_es": "Trance of Order",
       "entries_es": [
         "[[TAG0]",
-        "Ganas la habilidad de alinear tu conciencia a los interminables cálculos de Mechanus. Como una acción de bonificación, puede entrar en este estado por 1 minuto. Durante la duración, los rollos de ataque contra usted no pueden beneficiarse de la ventaja, y cuando usted hace un rollo de ataque, un cheque de habilidad, o un tiro de ahorro, usted puede tratar un rollo de 9 o más bajo en el [[TAG0] como un 10.",
+        "Ganas la habilidad de alinear tu conciencia a los interminables cálculos de Mechanus. Como una acción de bonificación, puede entrar en este estado por 1 minuto. Durante la duración, los rollos de ataque contra usted no pueden beneficiarse de la ventaja, y cuando usted hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, usted puede tratar un rollo de 9 o más bajo en el [[TAG0] como un 10.",
         "Una vez que usas esta acción de bonificación, no puedes usarla de nuevo hasta que termines un descanso largo, a menos que gastes 5 puntos de brujería para usarlo de nuevo."
       ]
     },
@@ -7047,12 +7047,12 @@
       "level": 6,
       "header": 2,
       "entries": [
-        "At 6th level, you can channel your runes to temporarily bolster your physical capabilities. When you make a Strength, Dexterity, or Constitution ability check, you can expend a charged rune as a reaction to gain {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the roll.",
-        "In addition, when you are forced to make a Strength, Dexterity, or Constitution {@quickref saving throws|PHB|2|1|saving throw}, you can use your reaction and expend a charged rune to gain {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the {@quickref saving throws|PHB|2|1|saving throw}. Once you use this feature in this way, you can't use it in this way again until you complete a {@quickref resting|PHB|2|0|long rest}."
+        "At 6th level, you can channel your runes to temporarily bolster your physical capabilities. When you make a Strength, Destreza, or Constitution ability check, you can expend a charged rune as a reaction to gain {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the roll.",
+        "In addition, when you are forced to make a Strength, Destreza, or Constitution {@quickref saving throws|PHB|2|1|saving throw}, you can use your reaction and expend a charged rune to gain {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the {@quickref saving throws|PHB|2|1|saving throw}. Once you use this feature in this way, you can't use it in this way again until you complete a {@quickref resting|PHB|2|0|long rest}."
       ],
       "name_es": "Aumentación sigilica",
       "entries_es": [
-        "A 6o nivel, puede canalizar sus runas para reforzar temporalmente sus capacidades físicas. Cuando usted hace un control de fuerza, destreza o capacidad de la Constitución, puede expulsar una runa cargada como una reacción a ganar {@quickref Advantage and Disadvantage|PHB|2|0|advantage} en el rollo.",
+        "A 6o nivel, puede canalizar sus runas para reforzar temporalmente sus capacidades físicas. Cuando usted hace un control de fuerza, destreza o capacidad de Constitución, puede expulsar una runa cargada como una reacción a ganar {@quickref Advantage and Disadvantage|PHB|2|0|advantage} en el rollo.",
         "Además, cuando usted se ve obligado a hacer una fuerza, destreza o Constitución {@quickref saving throws|PHB|2|1|saving throw}, puede utilizar su reacción y expulsar una runa cargada para ganar {@quickref Advantage and Disadvantage|PHB|2|0|advantage} en el {@quickref saving throws|PHB|2|1|saving throw}. Una vez que utilice esta característica de esta manera, no puede utilizarla de esta manera hasta que complete un {@quickref resting|PHB|2|0|long rest}."
       ]
     },
@@ -7274,7 +7274,7 @@
       ],
       "name_es": "Favorecido por los dioses",
       "entries_es": [
-        "A partir del primer nivel, el poder divino protege tu destino. Si fallas un tiro de ahorro o pierdes con un rollo de ataque, puedes rodar {@dice 2d4} y añadirlo al total, posiblemente cambiando el resultado. Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
+        "A partir del primer nivel, el poder divino protege tu destino. Si fallas una tirada de salvación o pierdes con un rollo de ataque, puedes rodar {@dice 2d4} y añadirlo al total, posiblemente cambiando el resultado. Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
     {
@@ -7486,8 +7486,8 @@
       ],
       "name_es": "Fuerza de la Gravedad",
       "entries_es": [
-        "A partir del primer nivel, tu existencia en un estado de crepúsculo entre la vida y la muerte te hace difícil de derrotar. Cuando el daño le reduce a 0 puntos de impacto, puede hacer un tiro de ahorro de Charisma ([TAG0]] + el daño tomado). En un éxito, en su lugar caes a 1 punto. No puede utilizar esta característica si se reduce a 0 puntos de impacto por daño radiante o por un impacto crítico.",
-        "Después de que el lanzamiento de ahorro tenga éxito, no puedes usar esta característica de nuevo hasta que termines un largo descanso."
+        "A partir del primer nivel, tu existencia en un estado de crepúsculo entre la vida y la muerte te hace difícil de derrotar. Cuando el daño le reduce a 0 puntos de impacto, puede hacer una tirada de salvación de Charisma ([TAG0]] + el daño tomado). En un éxito, en su lugar caes a 1 punto. No puede utilizar esta característica si se reduce a 0 puntos de impacto por daño radiante o por un impacto crítico.",
+        "Después de que eltirada de salvación tenga éxito, no puedes usar esta característica de nuevo hasta que termines un largo descanso."
       ]
     },
     {
@@ -7702,7 +7702,7 @@
       ],
       "name_es": "Furia de la tormenta",
       "entries_es": [
-        "A partir del nivel 14, cuando usted es golpeado por un ataque de melee, usted puede utilizar su reacción para tratar daños de relámpago al atacante. El daño equivale a su nivel de hechicero. El atacante también debe hacer un lanzamiento de ahorro de fuerza contra su hechizo de hechicero salvar a DC. En un fallido ahorro, el atacante es empujado en una línea recta hasta 20 pies de distancia de usted."
+        "A partir del nivel 14, cuando usted es golpeado por un ataque de melee, usted puede utilizar su reacción para tratar daños de relámpago al atacante. El daño equivale a su nivel de hechicero. El atacante también debe hacer una tirada de salvación de fuerza contra su hechizo de hechicero salvar a DC. En un fallido ahorro, el atacante es empujado en una línea recta hasta 20 pies de distancia de usted."
       ]
     },
     {
@@ -7938,7 +7938,7 @@
       "name_es": "Absorb Spells",
       "entries_es": [
         "Siempre has [[TAG0] preparado.",
-        "Además, cada vez que un objetivo falla el lanzamiento de ahorro contra un [[TAG0] que usted lanza, usted recupera {@dice 1d4} Puntos de brujería."
+        "Además, cada vez que un objetivo falla eltirada de salvación contra un [[TAG0] que usted lanza, usted recupera {@dice 1d4} Puntos de brujería."
       ]
     },
     {
@@ -8007,7 +8007,7 @@
           ],
           "name_es": "Spell Evitation",
           "entries_es": [
-            "Cuando usted está sujeto a un hechizo o efecto mágico que le permite hacer un lanzamiento de ahorro para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en el lanzamiento de ahorro y sólo medio daño si falla. No puedes usar este beneficio si tienes la condición [[TAG0]."
+            "Cuando usted está sujeto a un hechizo o efecto mágico que le permite hacer una tirada de salvación para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en eltirada de salvación y sólo medio daño si falla. No puedes usar este beneficio si tienes la condición [[TAG0]."
           ]
         }
       ],
@@ -8047,7 +8047,7 @@
           ],
           "name_es": "Spell Evitation",
           "entries_es": [
-            "Cuando usted está sujeto a un hechizo o efecto mágico que le permite hacer un lanzamiento de ahorro para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en el lanzamiento de ahorro y sólo medio daño si falla. No puedes usar este beneficio si tienes la condición [[TAG0]."
+            "Cuando usted está sujeto a un hechizo o efecto mágico que le permite hacer una tirada de salvación para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en eltirada de salvación y sólo medio daño si falla. No puedes usar este beneficio si tienes la condición [[TAG0]."
           ]
         }
       ]
@@ -8660,7 +8660,7 @@
       ],
       "name_es": "Implosión de calentamiento",
       "entries_es": [
-        "Puedes desencadenar una anomalía espacial. Como una acción {@action Magic|XPHB}, te teletransportas a un espacio no ocupado que puedes ver dentro de 120 pies de ti mismo. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer un lanzamiento de ahorro de fuerza contra tu hechizo salvo DC. En una salvación fallida, una criatura toma {@damage 3d10} Daño de la fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un ahorro exitoso, la criatura toma la mitad del daño sólo.",
+        "Puedes desencadenar una anomalía espacial. Como una acción {@action Magic|XPHB}, te teletransportas a un espacio no ocupado que puedes ver dentro de 120 pies de ti mismo. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. En una salvación fallida, una criatura toma {@damage 3d10} Daño de la fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un ahorro exitoso, la criatura toma la mitad del daño sólo.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que gaste 5 Puntos de brujería (no se requiere acción) para restaurar su uso de ella."
       ]
     },
@@ -9226,7 +9226,7 @@
       "header": 2,
       "entries": [
         "The magic in your body manifests physical traits of your draconic gift. Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 3, and it increases by 1 whenever you gain another Sorcerer level.",
-        "Parts of you are also covered by dragon-like scales. While you aren't wearing armor, your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Charisma modifiers."
+        "Parts of you are also covered by dragon-like scales. While you aren't wearing armor, your base {@variantrule Armor Class|XPHB} equals 10 plus your Destreza and Charisma modifiers."
       ],
       "name_es": "Resiliencia dramática",
       "entries_es": [

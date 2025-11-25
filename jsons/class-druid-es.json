@@ -2158,7 +2158,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer el lanzamiento de ahorro DC para un hechizo druido que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de deletrear para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2255,7 +2255,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer el lanzamiento de ahorro DC para un hechizo druido que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de deletrear para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -5093,7 +5093,7 @@
       ],
       "name_es": "Santuario de la naturaleza",
       "entries_es": [
-        "Cuando alcanzas el nivel 14, las criaturas del mundo natural sienten tu conexión con la naturaleza y se vuelven vacilantes para atacarte. Cuando una bestia o criatura de planta te ataca, esa criatura debe hacer un tiro de la Sabiduría salvando contra tu hechizo druido salvo DC. En un fallido ahorro, la criatura debe elegir un objetivo diferente, o el ataque automáticamente falla. En un ahorro exitoso, la criatura es inmune a este efecto durante 24 horas.",
+        "Cuando alcanzas el nivel 14, las criaturas del mundo natural sienten tu conexión con la naturaleza y se vuelven vacilantes para atacarte. Cuando una bestia o criatura de planta te ataca, esa criatura debe hacer un tiro de Sabiduría salvando contra tu hechizo druido salvo DC. En un fallido ahorro, la criatura debe elegir un objetivo diferente, o el ataque automáticamente falla. En un ahorro exitoso, la criatura es inmune a este efecto durante 24 horas.",
         "La criatura es consciente de este efecto antes de que haga su ataque contra usted."
       ]
     },
@@ -5501,7 +5501,7 @@
       ],
       "name_es": "Halo of Spores",
       "entries_es": [
-        "A partir del segundo nivel, estás rodeado de esporas invisibles y necrotas que son inofensivas hasta que las desatas en una criatura cercana. Cuando una criatura que se puede ver se mueve en un espacio dentro de 10 pies de usted o comienza su turno allí, usted puede utilizar su reacción para tratar {@damage 1d4} daño necrótico a esa criatura a menos que tenga éxito en un lanzamiento de ahorro de la Constitución contra su hechizo salvo DC. El daño necrótico aumenta a {@damage 1d6} a 6o nivel, {@damage 1d8} a 10o nivel, y {@damage 1d10} a 14o nivel."
+        "A partir del segundo nivel, estás rodeado de esporas invisibles y necrotas que son inofensivas hasta que las desatas en una criatura cercana. Cuando una criatura que se puede ver se mueve en un espacio dentro de 10 pies de usted o comienza su turno allí, usted puede utilizar su reacción para tratar {@damage 1d4} daño necrótico a esa criatura a menos que tenga éxito en una tirada de salvación de Constitución contra su hechizo salvo DC. El daño necrótico aumenta a {@damage 1d6} a 6o nivel, {@damage 1d8} a 10o nivel, y {@damage 1d10} a 14o nivel."
       ]
     },
     {
@@ -5600,7 +5600,7 @@
       "name_es": "Spreading Spores",
       "entries_es": [
         "A nivel 10, usted gana la capacidad de sembrar un área con esporas mortales. Como una acción de bonificación mientras que su característica de la Entidad Symbiótica está activa, usted puede hurl esporas hasta 30 pies de distancia, donde giran en un cubo de 10 pies por 1 minuto. Las esporas desaparecen temprano si usas esta característica de nuevo, si los desestimas como una acción de bonificación, o si tu característica de la Entidad Simbiótica ya no está activa.",
-        "Cada vez que una criatura se mueve en el cubo o comienza su turno allí, esa criatura toma su Halo de Spores daño, a menos que la criatura tenga éxito en un lanzamiento de la Constitución que salva contra su hechizo salvo DC. Una criatura puede tomar este daño no más de una vez por turno.",
+        "Cada vez que una criatura se mueve en el cubo o comienza su turno allí, esa criatura toma su Halo de Spores daño, a menos que la criatura tenga éxito en un lanzamiento de Constitución que salva contra su hechizo salvo DC. Una criatura puede tomar este daño no más de una vez por turno.",
         "Mientras persiste el cubo de las esporas, no puedes usar tu reacción Halo de Spores."
       ]
     },
@@ -5882,7 +5882,7 @@
       ],
       "name_es": "Dragon",
       "entries_es": [
-        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o un lanzamiento de ahorro de la Constitución para mantener {@status concentration} en un hechizo, usted puede tratar un rollo de 9 o inferior en el [[TAG1] como un 10."
+        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o una tirada de salvación de Constitución para mantener {@status concentration} en un hechizo, usted puede tratar un rollo de 9 o inferior en el [[TAG1] como un 10."
       ]
     },
     {
@@ -6125,7 +6125,7 @@
       "entries": [
         "{@i 2nd-level Circle of Wildfire feature}",
         "You can summon the primal spirit bound to your soul. As an action, you can expend one use of your Wild Shape feature to summon your wildfire spirit, rather than assuming a beast form.",
-        "The spirit appears in an unoccupied space of your choice that you can see within 30 feet of you. Each creature within 10 feet of the spirit (other than you) when it appears must succeed on a Dexterity saving throw against your spell save DC or take {@damage 2d6} fire damage.",
+        "The spirit appears in an unoccupied space of your choice that you can see within 30 feet of you. Each creature within 10 feet of the spirit (other than you) when it appears must succeed on a Destreza saving throw against your spell save DC or take {@damage 2d6} fire damage.",
         "The spirit is friendly to you and your companions and obeys your commands. See this creature's game statistics in the {@creature Wildfire Spirit|TCE} stat block, which uses your proficiency bonus (PB) in several places. You determine the spirit's appearance. Some spirits take the form of a humanoid figure made of gnarled branches covered in flame, while others look like beasts wreathed in fire.",
         "In combat, the spirit shares your initiative count, but it takes its turn immediately after yours. The only action it takes on its turn is the {@action Dodge} action, unless you take a bonus action on your turn to command it to take another action. That action can be one in its stat block or some other action. If you are {@condition incapacitated}, the spirit can take any action of its choice, not just {@action Dodge}.",
         "The spirit manifests for 1 hour, until it is reduced to 0 hit points, until you use this feature to summon the spirit again, or until you die."
@@ -6134,7 +6134,7 @@
       "entries_es": [
         "[[TAG0]",
         "Puedes llamar al espíritu primario atado a tu alma. Como acción, usted puede gastar un uso de su característica de Forma Salvaje para convocar su espíritu de fuego salvaje, en lugar de asumir una forma de bestia.",
-        "El espíritu aparece en un espacio inocupado de su elección que usted puede ver dentro de 30 pies de usted. Cada criatura dentro de 10 pies del espíritu (excepto usted) cuando aparece debe tener éxito en un lanzamiento de ahorro de la Dexteridad contra su hechizo salvar DC o tomar {@damage 2d6} daño al fuego.",
+        "El espíritu aparece en un espacio inocupado de su elección que usted puede ver dentro de 30 pies de usted. Cada criatura dentro de 10 pies del espíritu (excepto usted) cuando aparece debe tener éxito en una tirada de salvación de la Dexteridad contra su hechizo salvar DC o tomar {@damage 2d6} daño al fuego.",
         "El espíritu es amistoso para ti y tus compañeros y obedece tus mandamientos. Vea las estadísticas de juego de esta criatura en el bloque [[TAG0] de estatura, que utiliza su bonificación de competencia (PB) en varios lugares. Tú determinas la apariencia del espíritu. Algunos espíritus toman la forma de una figura humanoide hecha de ramas gruñidas cubiertas de llama, mientras que otros parecen bestias coronadas de fuego.",
         "En combate, el espíritu comparte su cuenta de iniciativa, pero toma su turno inmediatamente después de la suya. La única acción que toma en su turno es la acción {@action Dodge}, a menos que tome una acción de bonificación en su turno para mandarla a tomar otra acción. Esa acción puede ser una en su bloque de puestos o alguna otra acción. Si usted es {@condition incapacitated}, el espíritu puede tomar cualquier acción de su elección, no sólo {@action Dodge}.",
         "El espíritu se manifiesta durante 1 hora, hasta que se reduce a 0 puntos de impacto, hasta que usted utiliza esta característica para convocar al espíritu de nuevo, o hasta que usted muera."
@@ -6623,7 +6623,7 @@
       "header": 2,
       "entries": [
         "At 6th level, home can be wherever you are. During a short or long rest, you can invoke the shadowy power of the Gloaming Court to help guard your respite. At the start of the rest, you touch a point in space, and an invisible, 30-foot-radius sphere of magic appears, centered on that point. {@quickref Cover||3||Total cover} blocks the sphere.",
-        "While within the sphere, you and your allies gain a +5 bonus to Dexterity ({@skill Stealth}) and Wisdom ({@skill Perception}) checks, and any light from open flames in the sphere (a campfire, torches, or the like) isn't visible outside it.",
+        "While within the sphere, you and your allies gain a +5 bonus to Destreza ({@skill Stealth}) and Wisdom ({@skill Perception}) checks, and any light from open flames in the sphere (a campfire, torches, or the like) isn't visible outside it.",
         "The sphere vanishes at the end of the rest or when you leave the sphere."
       ],
       "name_es": "Hearth of Moonlight and Shadow",
@@ -7390,7 +7390,7 @@
       ],
       "name_es": "Land's Aid",
       "entries_es": [
-        "Como acción {@action Magic|XPHB}, usted puede gastar un uso de su Forma Salvaje y elegir un punto dentro de 60 pies de usted mismo. Flores y espinas que dan vida aparecen por un momento en unradius de 10 pies {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centrado en ese punto. Cada criatura de su elección en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer un lanzamiento de ahorro de la Constitución contra su hechizo salvo DC, tomando {@damage 2d6}] Daño necrótico en un ahorro fallido o la mitad de daño en uno exitoso. Una criatura de su elección en ese área recupera {@dice 2d6} {@variantrule Hit Points|XPHB}.",
+        "Como acción {@action Magic|XPHB}, usted puede gastar un uso de su Forma Salvaje y elegir un punto dentro de 60 pies de usted mismo. Flores y espinas que dan vida aparecen por un momento en unradius de 10 pies {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centrado en ese punto. Cada criatura de su elección en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer una tirada de salvación de Constitución contra su hechizo salvo DC, tomando {@damage 2d6}] Daño necrótico en un ahorro fallido o la mitad de daño en uno exitoso. Una criatura de su elección en ese área recupera {@dice 2d6} {@variantrule Hit Points|XPHB}.",
         "El daño y el aumento de la curación por {@dice 1d6} cuando alcanza los niveles de Druid 10 ([TAG1]) y 14 ([TAG2])."
       ]
     },
@@ -8259,7 +8259,7 @@
       "name_es": "La ira del mar",
       "entries_es": [
         "Como un {@variantrule Bonus Action|XPHB}, usted puede gastar un uso de su Forma Salvaje para manifestar un 5 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} que toma la forma de spray del océano que le rodea durante 10 minutos. Termina temprano si usted lo desestima (no se requiere acción), manéjelo de nuevo, o tiene la condición {@condition Incapacitated|XPHB}.",
-        "Cuando manifiestas el {@variantrule Emanation [Area of Effect]|XPHB|Emanation} y como un {@variantrule Bonus Action|XPHB} en tus turnos posteriores, puedes elegir otra criatura que puedas ver en el {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. El objetivo debe tener éxito en un lanzamiento de la Constitución contra su hechizo salvar a DC o tomar el daño frío y, si la criatura es grande o menor, ser empujado hasta 15 pies de distancia de usted. Para determinar este daño, enrolle un número de d6 iguales a su modificador de Sabiduría (mínimo de una muerte)."
+        "Cuando manifiestas el {@variantrule Emanation [Area of Effect]|XPHB|Emanation} y como un {@variantrule Bonus Action|XPHB} en tus turnos posteriores, puedes elegir otra criatura que puedas ver en el {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. El objetivo debe tener éxito en un lanzamiento de Constitución contra su hechizo salvar a DC o tomar el daño frío y, si la criatura es grande o menor, ser empujado hasta 15 pies de distancia de usted. Para determinar este daño, enrolle un número de d6 iguales a su modificador de Sabiduría (mínimo de una muerte)."
       ]
     },
     {
@@ -8598,7 +8598,7 @@
       ],
       "name_es": "Dragon",
       "entries_es": [
-        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de la Sabiduría o un lanzamiento de ahorro de la Constitución para mantener {@status Concentration|XPHB}, usted puede tratar un rollo de 9 o inferior en el {@dice d20} como un 10."
+        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o una tirada de salvación de Constitución para mantener {@status Concentration|XPHB}, usted puede tratar un rollo de 9 o inferior en el {@dice d20} como un 10."
       ]
     },
     {

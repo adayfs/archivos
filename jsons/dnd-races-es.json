@@ -656,7 +656,7 @@
                   ],
                   "name_es": "Necrotic Shroud",
                   "entries_es": [
-                    "Tus ojos se convierten brevemente en estanques de oscuridad, y alas sin vuelo brotan de tu espalda temporalmente. Las criaturas que no sean sus aliados a menos de 10 pies de ustedes deben tener éxito en un lanzamiento de ahorro de Charisma ([TAG0]] más su modificador de Charisma y {@variantrule Proficiency|XPHB|Proficiency Bonus}) o tener la condición {@condition Frightened|XPHB} hasta el final de su próximo turno."
+                    "Tus ojos se convierten brevemente en estanques de oscuridad, y alas sin vuelo brotan de tu espalda temporalmente. Las criaturas que no sean sus aliados a menos de 10 pies de ustedes deben tener éxito en una tirada de salvación de Charisma ([TAG0]] más su modificador de Charisma y {@variantrule Proficiency|XPHB|Proficiency Bonus}) o tener la condición {@condition Frightened|XPHB} hasta el final de su próximo turno."
                   ]
                 }
               ]
@@ -701,7 +701,7 @@
                   ],
                   "name_es": "Necrotic Shroud",
                   "entries_es": [
-                    "Tus ojos se convierten brevemente en estanques de oscuridad, y alas sin vuelo brotan de tu espalda temporalmente. Las criaturas que no sean sus aliados a menos de 10 pies de ustedes deben tener éxito en un lanzamiento de ahorro de Charisma ([TAG0]] más su modificador de Charisma y {@variantrule Proficiency|XPHB|Proficiency Bonus}) o tener la condición {@condition Frightened|XPHB} hasta el final de su próximo turno."
+                    "Tus ojos se convierten brevemente en estanques de oscuridad, y alas sin vuelo brotan de tu espalda temporalmente. Las criaturas que no sean sus aliados a menos de 10 pies de ustedes deben tener éxito en una tirada de salvación de Charisma ([TAG0]] más su modificador de Charisma y {@variantrule Proficiency|XPHB|Proficiency Bonus}) o tener la condición {@condition Frightened|XPHB} hasta el final de su próximo turno."
                   ]
                 }
               ]
@@ -993,7 +993,7 @@
           "type": "entries",
           "name": "Armored Casing",
           "entries": [
-            "You are encased in thin metal or some other durable material. While you aren't wearing armor, your base Armor Class is 13 + your Dexterity modifier."
+            "You are encased in thin metal or some other durable material. While you aren't wearing armor, your base Armor Class is 13 + your Destreza modifier."
           ],
           "name_es": "Casquillo blindado",
           "entries_es": [
@@ -1020,7 +1020,7 @@
           ],
           "name_es": "Máquina de sanación",
           "entries_es": [
-            "Si el hechizo {@spell mending} es lanzado en usted, usted puede pasar un Hit Die, rodarlo, y recuperar un número de puntos de éxito igual al rollo más su modificador de la Constitución (mínimo de 1 punto de impacto).",
+            "Si el hechizo {@spell mending} es lanzado en usted, usted puede pasar un Hit Die, rodarlo, y recuperar un número de puntos de éxito igual al rollo más su modificador de Constitución (mínimo de 1 punto de impacto).",
             "Además, su creador le diseñó para beneficiarse de varios hechizos que preservan la vida pero que normalmente no afectan a Constructos: {@spell cure wounds}, {@spell healing word}], {@spell mass cure wounds}, {@spell mass healing word}], y {@spell spare the dying}]."
           ]
         },
@@ -1676,11 +1676,11 @@
           "name": "Swamp Camouflage",
           "type": "entries",
           "entries": [
-            "You have advantage on Dexterity ({@skill Stealth}) checks made to hide in swampy terrain."
+            "You have advantage on Destreza ({@skill Stealth}) checks made to hide in swampy terrain."
           ],
           "name_es": "Camuflaje de pantano",
           "entries_es": [
-            "Usted tiene ventaja en Dexterity ({@skill Stealth}) cheques hechos para ocultar en terreno pantanoso."
+            "Usted tiene ventaja en Destreza ({@skill Stealth}) cheques hechos para ocultar en terreno pantanoso."
           ]
         },
         {
@@ -2337,11 +2337,11 @@
           "type": "entries",
           "name": "Svirfneblin Camouflage",
           "entries": [
-            "When you make a Dexterity ({@skill Stealth}) check, you can make the check with advantage. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+            "When you make a Destreza ({@skill Stealth}) check, you can make the check with advantage. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
           ],
           "name_es": "Svirfneblin Camouflage",
           "entries_es": [
-            "Cuando usted hace un cheque de Dexterity ( {@skill Stealth}) puede hacer el cheque con ventaja. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Cuando usted hace un cheque de Destreza ( {@skill Stealth}) puede hacer el cheque con ventaja. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
       ]
@@ -2441,7 +2441,7 @@
           ],
           "name_es": "Vampiric Bite",
           "entries_es": [
-            "Su mordedura ahumada es un arma natural, que cuenta como un simple arma de meleo con el que usted es competente. Usted agrega su modificador de la Constitución, en lugar de su modificador de fuerza, a los rollos de ataque y daño cuando ataca con esta mordida. Trata {@damage 1d4} perforando daños en un golpe. Mientras te estás perdiendo la mitad o más de tus puntos de éxito, tienes ventaja en los rollos de ataque que haces con esta mordida.",
+            "Su mordedura ahumada es un arma natural, que cuenta como un simple arma de meleo con el que usted es competente. Usted agrega su modificador de Constitución, en lugar de su modificador de fuerza, a los rollos de ataque y daño cuando ataca con esta mordida. Trata {@damage 1d4} perforando daños en un golpe. Mientras te estás perdiendo la mitad o más de tus puntos de éxito, tienes ventaja en los rollos de ataque que haces con esta mordida.",
             "Cuando atacas con esta mordedura y golpeas a una criatura que no es un Construct o un Undead, puedes empoderarte en una de las siguientes formas de tu elección:",
             {
               "type": "list",
@@ -2664,7 +2664,7 @@
           "name_es": "Guión de respiración",
           "entries_es": [
             "Puedes usar tu acción para exhalar energía destructiva. Su ascendencia dracónica determina el tamaño, la forma y el tipo de daño de la exhalación.",
-            "Cuando usted utiliza su arma de aliento, cada criatura en el área de la exhalación debe hacer un tiro de ahorro, el tipo de que se determina por su ascendencia dracónica. El DC para este lanzamiento de ahorro equivale a 8 + su Modificador de Constitución + su bonificación de competencia. Una criatura toma [[TAG0] daño en un ahorro fallido, y la mitad de daño en uno exitoso. El daño aumenta a {@damage 3d6} a 6o nivel, {@damage 4d6} a 11o nivel, y {@damage 5d6} a 16o nivel.",
+            "Cuando usted utiliza su arma de aliento, cada criatura en el área de la exhalación debe hacer una tirada de salvación, el tipo de que se determina por su ascendencia dracónica. El DC para estetirada de salvación equivale a 8 + su Modificador de Constitución + su bonificación de competencia. Una criatura toma [[TAG0] daño en un ahorro fallido, y la mitad de daño en uno exitoso. El daño aumenta a {@damage 3d6} a 6o nivel, {@damage 4d6} a 11o nivel, y {@damage 5d6} a 16o nivel.",
             "Después de utilizar su arma de aliento, no puede utilizarla de nuevo hasta que complete un breve o largo descanso."
           ]
         },
@@ -2832,12 +2832,12 @@
           "type": "entries",
           "name": "Breath Weapon",
           "entries": [
-            "When you take the {@action Attack|XPHB} action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone} or a 30-foot {@variantrule Line [Area of Effect]|XPHB|Line} that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw ({@dc 8} plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, a creature takes {@damage 1d10} damage of the type determined by your Draconic Ancestry trait. On a successful save, a creature takes half as much damage. This damage increases by {@damage 1d10} when you reach character levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10}).",
+            "When you take the {@action Attack|XPHB} action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone} or a 30-foot {@variantrule Line [Area of Effect]|XPHB|Line} that is 5 feet wide (choose the shape each time). Each creature in that area must make a Destreza saving throw ({@dc 8} plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, a creature takes {@damage 1d10} damage of the type determined by your Draconic Ancestry trait. On a successful save, a creature takes half as much damage. This damage increases by {@damage 1d10} when you reach character levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10}).",
             "You can use this Breath Weapon a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes reemplazar uno de tus ataques con una exhalación de energía mágica en una potencia de 15 pies {@variantrule Cone [Area of Effect]|XPHB|Cone} o de 30 pies [[TAG2] que es de 5 pies de ancho (escoge la forma cada vez). Cada criatura en esa área debe hacer un lanzamiento de ahorro de la Dexteridad ([TAG3]] más su modificador de la Constitución y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, una criatura toma {@damage 1d10} daño del tipo determinado por su rasgo de ascendencia Dracónica. En un ahorro exitoso, una criatura toma la mitad de daño. Este daño aumenta {@damage 1d10} cuando alcanza los niveles de caracteres 5 ([TAG7]]), 11 ([TAG8]]) y 17 ({@damage 4d10}).",
+            "Cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes reemplazar uno de tus ataques con una exhalación de energía mágica en una potencia de 15 pies {@variantrule Cone [Area of Effect]|XPHB|Cone} o de 30 pies [[TAG2] que es de 5 pies de ancho (escoge la forma cada vez). Cada criatura en esa área debe hacer una tirada de salvación de la Dexteridad ([TAG3]] más su modificador de Constitución y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, una criatura toma {@damage 1d10} daño del tipo determinado por su rasgo de ascendencia Dracónica. En un ahorro exitoso, una criatura toma la mitad de daño. Este daño aumenta {@damage 1d10} cuando alcanza los niveles de caracteres 5 ([TAG7]]), 11 ([TAG8]]) y 17 ({@damage 4d10}).",
             "Puede utilizar este arma de respiración un número de veces igual a su {@variantrule Proficiency|XPHB|Proficiency Bonus}, y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
           ]
         },
@@ -2972,12 +2972,12 @@
           "type": "entries",
           "name": "Breath Weapon",
           "entries": [
-            "When you take the {@action Attack} action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 30-foot line that is 5 feet wide. Each creature in that area must make a Dexterity saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes {@damage 1d10} damage of the type associated with your Chromatic Ancestry. On a successful save, it takes half as much damage. This damage increases by {@damage 1d10} when you reach 5th level ({@damage 2d10}), 11th level ({@damage 3d10}), and 17th level ({@damage 4d10}).",
+            "When you take the {@action Attack} action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 30-foot line that is 5 feet wide. Each creature in that area must make a Destreza saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes {@damage 1d10} damage of the type associated with your Chromatic Ancestry. On a successful save, it takes half as much damage. This damage increases by {@damage 1d10} when you reach 5th level ({@damage 2d10}), 11th level ({@damage 3d10}), and 17th level ({@damage 4d10}).",
             "You can use your Breath Weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en una línea de 30 pies que es de 5 pies de ancho. Cada criatura en ese área debe hacer un lanzamiento de ahorro de Dexteridad (DC = 8 + su modificador de la Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia cromática. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
+            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en una línea de 30 pies que es de 5 pies de ancho. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia cromática. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
             "Puede utilizar su Arma de Respiración un número de veces igual a su bonificación de competencia, y recuperar todos los usos gastados cuando termine un descanso largo."
           ]
         },
@@ -3101,12 +3101,12 @@
           "type": "entries",
           "name": "Breath Weapon",
           "entries": [
-            "When you take the {@action Attack} action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes {@damage 1d10} damage of the type associated with your Gem Ancestry. On a successful save, it takes half as much damage. This damage increases by {@damage 1d10} when you reach 5th level ({@damage 2d10}), 11th level ({@damage 3d10}), and 17th level ({@damage 4d10}).",
+            "When you take the {@action Attack} action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 15-foot cone. Each creature in that area must make a Destreza saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes {@damage 1d10} damage of the type associated with your Gem Ancestry. On a successful save, it takes half as much damage. This damage increases by {@damage 1d10} when you reach 5th level ({@damage 2d10}), 11th level ({@damage 3d10}), and 17th level ({@damage 4d10}).",
             "You can use your Breath Weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer un lanzamiento de ahorro de Dexteridad (DC = 8 + su modificador de la Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia gema. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
+            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia gema. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
             "Puede utilizar su Arma de Respiración un número de veces igual a su bonificación de competencia, y recuperar todos los usos gastados cuando termine un descanso largo."
           ]
         },
@@ -3241,12 +3241,12 @@
           "type": "entries",
           "name": "Breath Weapon",
           "entries": [
-            "When you take the {@action Attack} action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 15-foot cone. Each creature in that area must make a Dexterity saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes {@damage 1d10} damage of the type associated with your Metallic Ancestry. On a successful save, it takes half as much damage. This damage increases by {@damage 1d10} when you reach 5th level ({@damage 2d10}), 11th level ({@damage 3d10}), and 17th level ({@damage 4d10}).",
+            "When you take the {@action Attack} action on your turn, you can replace one of your attacks with an exhalation of magical energy in a 15-foot cone. Each creature in that area must make a Destreza saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes {@damage 1d10} damage of the type associated with your Metallic Ancestry. On a successful save, it takes half as much damage. This damage increases by {@damage 1d10} when you reach 5th level ({@damage 2d10}), 11th level ({@damage 3d10}), and 17th level ({@damage 4d10}).",
             "You can use your Breath Weapon a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer un lanzamiento de ahorro de Dexteridad (DC = 8 + su modificador de la Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia metálica. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
+            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia metálica. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
             "Puede utilizar su Arma de Respiración un número de veces igual a su bonificación de competencia, y recuperar todos los usos gastados cuando termine un descanso largo."
           ]
         },
@@ -3278,7 +3278,7 @@
                   ],
                   "name_es": "Respiración inervatoria",
                   "entries_es": [
-                    "Cada criatura en el cono debe tener éxito en un lanzamiento de ahorro de la Constitución o convertirse {@condition incapacitated} hasta el comienzo de su próximo giro."
+                    "Cada criatura en el cono debe tener éxito en una tirada de salvación de Constitución o convertirse {@condition incapacitated} hasta el comienzo de su próximo giro."
                   ]
                 },
                 {
@@ -3289,7 +3289,7 @@
                   ],
                   "name_es": "Respiración de repulsión",
                   "entries_es": [
-                    "Cada criatura en el cono debe tener éxito en un tiro de ahorro de fuerza o ser empujado a 20 pies de distancia de usted y ser llamado {@condition prone}."
+                    "Cada criatura en el cono debe tener éxito en una tirada de salvación de fuerza o ser empujado a 20 pies de distancia de usted y ser llamado {@condition prone}."
                   ]
                 }
               ]
@@ -3311,7 +3311,7 @@
                   ],
                   "name_es": "Respiración inervatoria",
                   "entries_es": [
-                    "Cada criatura en el cono debe tener éxito en un lanzamiento de ahorro de la Constitución o convertirse {@condition incapacitated} hasta el comienzo de su próximo giro."
+                    "Cada criatura en el cono debe tener éxito en una tirada de salvación de Constitución o convertirse {@condition incapacitated} hasta el comienzo de su próximo giro."
                   ]
                 },
                 {
@@ -3322,7 +3322,7 @@
                   ],
                   "name_es": "Respiración de repulsión",
                   "entries_es": [
-                    "Cada criatura en el cono debe tener éxito en un tiro de ahorro de fuerza o ser empujado a 20 pies de distancia de usted y ser llamado {@condition prone}."
+                    "Cada criatura en el cono debe tener éxito en una tirada de salvación de fuerza o ser empujado a 20 pies de distancia de usted y ser llamado {@condition prone}."
                   ]
                 }
               ]
@@ -3831,7 +3831,7 @@
           "name_es": "Fey Step",
           "entries_es": [
             "Como una acción de bonificación, puedes teletransportar mágicamente hasta 30 pies a un espacio no ocupado que puedas ver. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo.",
-            "Cuando alcanzas el tercer nivel, tu Fey Step obtiene un efecto adicional basado en tu temporada; si el efecto requiere un lanzamiento de ahorro, el DC es igual a 8 + tu bonificación de competencia + tu modificador de Inteligencia, Sabiduría o Charisma (elegir cuando seleccionas esta carrera):",
+            "Cuando alcanzas el tercer nivel, tu Fey Step obtiene un efecto adicional basado en tu temporada; si el efecto requiere una tirada de salvación, el DC es igual a 8 + tu bonificación de competencia + tu modificador de Inteligencia, Sabiduría o Charisma (elegir cuando seleccionas esta carrera):",
             {
               "type": "list",
               "items": [
@@ -4573,7 +4573,7 @@
           ],
           "name_es": "Paso oculto",
           "entries_es": [
-            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un rollo de daño, o obligue a alguien a hacer un tiro de ahorro. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un rollo de daño, o obligue a alguien a hacer una tirada de salvación. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         },
         {
@@ -4675,7 +4675,7 @@
           "type": "entries",
           "name_es": "Paso oculto",
           "entries_es": [
-            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un rollo de daño, o obligue a alguien a hacer un tiro de ahorro. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un rollo de daño, o obligue a alguien a hacer una tirada de salvación. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -5389,12 +5389,12 @@
         {
           "name": "Stone Camouflage",
           "entries": [
-            "You have advantage on Dexterity ({@skill Stealth}) checks to hide in rocky terrain."
+            "You have advantage on Destreza ({@skill Stealth}) checks to hide in rocky terrain."
           ],
           "type": "entries",
           "name_es": "Stone Camouflage",
           "entries_es": [
-            "Usted tiene ventaja sobre Dexterity ({@skill Stealth}) cheques para ocultar en terreno rocoso."
+            "Usted tiene ventaja sobre Destreza ({@skill Stealth}) cheques para ocultar en terreno rocoso."
           ]
         },
         {
@@ -5845,7 +5845,7 @@
           ],
           "name_es": "Resistencia de Stone",
           "entries_es": [
-            "Usted puede dibujar sobrenaturalmente sobre piedra inflexible para sacar el daño. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d12}. Agregue su modificador de la Constitución al número rodado y reduzca el daño por ese total.",
+            "Usted puede dibujar sobrenaturalmente sobre piedra inflexible para sacar el daño. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total.",
             "Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
@@ -5930,7 +5930,7 @@
           "type": "entries",
           "name_es": "Resistencia de Stone",
           "entries_es": [
-            "Usted puede enfocarse a ocasionalmente arruinar la lesión. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d12}. Agregue su modificador de la Constitución al número rodado, y reduzca el daño por ese total. Después de usar este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Usted puede enfocarse a ocasionalmente arruinar la lesión. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d12}. Agregue su modificador de Constitución al número rodado, y reduzca el daño por ese total. Después de usar este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -6048,7 +6048,7 @@
                   ],
                   "name_es": "Stone's Endurance (Stone Giant)",
                   "entries_es": [
-                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para rodar {@dice 1d12}. Agregue su modificador de la Constitución al número rodado y reduzca el daño por ese total."
+                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para rodar {@dice 1d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total."
                   ]
                 },
                 {
@@ -6124,7 +6124,7 @@
                   ],
                   "name_es": "Stone's Endurance (Stone Giant)",
                   "entries_es": [
-                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para rodar {@dice 1d12}. Agregue su modificador de la Constitución al número rodado y reduzca el daño por ese total."
+                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para rodar {@dice 1d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total."
                   ]
                 },
                 {
@@ -6218,11 +6218,11 @@
           "type": "entries",
           "name": "Stone Camouflage",
           "entries": [
-            "You have advantage on Dexterity ({@skill Stealth}) checks made to hide in rocky terrain."
+            "You have advantage on Destreza ({@skill Stealth}) checks made to hide in rocky terrain."
           ],
           "name_es": "Stone Camouflage",
           "entries_es": [
-            "Usted tiene ventaja en Dexterity ({@skill Stealth}) cheques hechos para ocultar en terreno rocoso."
+            "Usted tiene ventaja en Destreza ({@skill Stealth}) cheques hechos para ocultar en terreno rocoso."
           ]
         },
         {
@@ -6347,7 +6347,7 @@
           ],
           "name_es": "Poisonous Skin",
           "entries_es": [
-            "Cualquier criatura que te pegue o de otro modo entra en contacto directo con tu piel debe tener éxito en un {@dc 12} Constitución ahorrando lanzamiento o convirtiéndose {@condition poisoned} por 1 minuto. Una {@condition poisoned} criatura ya no en contacto directo con usted puede repetir el lanzamiento de ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+            "Cualquier criatura que te pegue o de otro modo entra en contacto directo con tu piel debe tener éxito en un {@dc 12} Constitución ahorrando lanzamiento o convirtiéndose {@condition poisoned} por 1 minuto. Una {@condition poisoned} criatura ya no en contacto directo con usted puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
             "También puede aplicar este veneno a cualquier arma perforadora como parte de un ataque con ese arma, aunque cuando golpeó el veneno reacciona de manera diferente. El objetivo debe tener éxito en un {@dc 12} Constitución salvando la lanza o tomar {@damage 2d4} daño venenoso."
           ]
         },
@@ -6744,7 +6744,7 @@
           "type": "entries",
           "name_es": "Suerte",
           "entries_es": [
-            "Al rodar un 1 en un rollo de ataque, control de habilidad o lanzamiento de ahorro, puede rerollar el die y debe utilizar el nuevo rollo."
+            "Al rodar un 1 en un rollo de ataque, control de habilidad otirada de salvación, puede rerollar el die y debe utilizar el nuevo rollo."
           ]
         },
         {
@@ -6900,11 +6900,11 @@
           "type": "entries",
           "name": "Lucky Footwork",
           "entries": [
-            "When you fail a Dexterity saving throw, you can use your reaction to roll a {@dice d4} and add it to the save, potentially turning the failure into a success. You can't use this reaction if you're {@condition prone} or your speed is 0."
+            "When you fail a Destreza saving throw, you can use your reaction to roll a {@dice d4} and add it to the save, potentially turning the failure into a success. You can't use this reaction if you're {@condition prone} or your speed is 0."
           ],
           "name_es": "Lucky Footwork",
           "entries_es": [
-            "Cuando fallas un lanzamiento de ahorro de Dexterity, puedes usar tu reacción para rodar un {@dice d4} y añadirlo al ahorro, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
+            "Cuando fallas una tirada de salvación de Destreza, puedes usar tu reacción para rodar un {@dice d4} y añadirlo al ahorro, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
           ]
         },
         {
@@ -6976,11 +6976,11 @@
           "type": "entries",
           "name": "Lucky Footwork",
           "entries": [
-            "When you fail a Dexterity saving throw, you can use your reaction to roll a {@dice d4} and add it to the save, potentially turning the failure into a success. You can't use this reaction if you're {@condition prone} or your speed is 0."
+            "When you fail a Destreza saving throw, you can use your reaction to roll a {@dice d4} and add it to the save, potentially turning the failure into a success. You can't use this reaction if you're {@condition prone} or your speed is 0."
           ],
           "name_es": "Lucky Footwork",
           "entries_es": [
-            "Cuando fallas un lanzamiento de ahorro de Dexterity, puedes usar tu reacción para rodar un {@dice d4} y añadirlo al ahorro, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
+            "Cuando fallas una tirada de salvación de Destreza, puedes usar tu reacción para rodar un {@dice d4} y añadirlo al ahorro, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
           ]
         },
         {
@@ -7338,7 +7338,7 @@
           ],
           "name_es": "La fortuna de los muchos",
           "entries_es": [
-            "Si te pierdes con un rollo de ataque o fallas un cheque de habilidad o un tiro de ahorro, puedes sacar tus bonos de reciprocidad para ganar un bono al rollo igual que el número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +3). Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Si te pierdes con un rollo de ataque o fallas un cheque de habilidad o una tirada de salvación, puedes sacar tus bonos de reciprocidad para ganar un bono al rollo igual que el número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +3). Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
       ]
@@ -7429,7 +7429,7 @@
           "type": "entries",
           "name_es": "Saving Face",
           "entries_es": [
-            "Los Hobgoblins tienen cuidado de no mostrar debilidad frente a sus aliados, por miedo a perder el estatus. Si te pierdes con un rollo de ataque o fallas un cheque de habilidad o un tiro de ahorro, puedes ganar un bono al rollo igual al número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +5). Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Los Hobgoblins tienen cuidado de no mostrar debilidad frente a sus aliados, por miedo a perder el estatus. Si te pierdes con un rollo de ataque o fallas un cheque de habilidad o una tirada de salvación, puedes ganar un bono al rollo igual al número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +5). Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -7968,7 +7968,7 @@
           ],
           "name_es": "Sin miedo",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition frightened} en usted mismo. Cuando fallas un tiro de ahorro para evitar o terminar la condición {@condition frightened} en ti mismo, puedes elegir tener éxito en su lugar. Una vez que tienes éxito en un lanzamiento de ahorro de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso."
+            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition frightened} en usted mismo. Cuando fallas una tirada de salvación para evitar o terminar la condición {@condition frightened} en ti mismo, puedes elegir tener éxito en su lugar. Una vez que tienes éxito en una tirada de salvación de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso."
           ]
         },
         {
@@ -7991,7 +7991,7 @@
           ],
           "name_es": "Taunt",
           "entries_es": [
-            "Tienes una habilidad extraordinaria para agitar criaturas. Como una acción de bonificación, usted puede desencadenar una cadena de palabras que provocan a una criatura dentro de 60 pies de usted mismo que puede escuchar y entender. El objetivo debe tener éxito en un lanzamiento de ahorro de Sabiduría, o tiene desventaja en los rollos de ataque contra objetivos distintos de usted hasta el comienzo de su próximo turno. El DC es igual a 8 + su prima de competencia + su modificador de Inteligencia, Sabiduría o Charisma (elegir cuando selecciona esta carrera).",
+            "Tienes una habilidad extraordinaria para agitar criaturas. Como una acción de bonificación, usted puede desencadenar una cadena de palabras que provocan a una criatura dentro de 60 pies de usted mismo que puede escuchar y entender. El objetivo debe tener éxito en una tirada de salvación de Sabiduría, o tiene desventaja en los rollos de ataque contra objetivos distintos de usted hasta el comienzo de su próximo turno. El DC es igual a 8 + su prima de competencia + su modificador de Inteligencia, Sabiduría o Charisma (elegir cuando selecciona esta carrera).",
             "Usted puede utilizar esta acción de bonificación un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
@@ -8221,7 +8221,7 @@
           "type": "entries",
           "name_es": "Mimicry",
           "entries_es": [
-            "Puedes imitar sonidos que has oído, incluyendo voces. Una criatura que oye los sonidos puede decir que son imitaciones con un cheque exitoso de la Sabiduría ([TAG0]]) opuesto por su cheque de Charisma ({@skill Deception})."
+            "Puedes imitar sonidos que has oído, incluyendo voces. Una criatura que oye los sonidos puede decir que son imitaciones con un cheque exitoso de Sabiduría ([TAG0]]) opuesto por su cheque de Charisma ({@skill Deception})."
           ]
         },
         {
@@ -8744,7 +8744,7 @@
           "type": "entries",
           "name_es": "Suerte",
           "entries_es": [
-            "Al rodar un 1 en el {@dice d20} para un rollo de ataque, control de habilidad, o lanzamiento de ahorro, puede rerollar el die y debe utilizar el nuevo rollo."
+            "Al rodar un 1 en el {@dice d20} para un rollo de ataque, control de habilidad, otirada de salvación, puede rerollar el die y debe utilizar el nuevo rollo."
           ]
         }
       ]
@@ -8963,7 +8963,7 @@
           "type": "entries",
           "name_es": "Daunting Roar",
           "entries_es": [
-            "Como una acción de bonificación, usted puede dejar fuera un rugido especialmente amenazador. Las criaturas de su elección dentro de 10 pies de usted que puede escuchar debe tener éxito en un lanzamiento de ahorro de Sabiduría o convertirse {@condition frightened} de usted hasta el final de su próximo turno. El DC del ahorro equivale a 8 + su prima de competencia + su modificador de la Constitución. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Como una acción de bonificación, usted puede dejar fuera un rugido especialmente amenazador. Las criaturas de su elección dentro de 10 pies de usted que puede escuchar debe tener éxito en una tirada de salvación de Sabiduría o convertirse {@condition frightened} de usted hasta el final de su próximo turno. El DC del ahorro equivale a 8 + su prima de competencia + su modificador de Constitución. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -9127,7 +9127,7 @@
           "type": "entries",
           "name": "Natural Armor",
           "entries": [
-            "You have tough, scaly skin. When you aren't wearing armor, your base AC is 13 + Dexterity modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
+            "You have tough, scaly skin. When you aren't wearing armor, your base AC is 13 + Destreza modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
           ],
           "name_es": "Armadura natural",
           "entries_es": [
@@ -9278,12 +9278,12 @@
         {
           "name": "Natural Armor",
           "entries": [
-            "You have tough, scaly skin. When you aren't wearing armor, your AC is 13 + your Dexterity modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
+            "You have tough, scaly skin. When you aren't wearing armor, your AC is 13 + your Destreza modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
           ],
           "type": "entries",
           "name_es": "Armadura natural",
           "entries_es": [
-            "Tienes piel dura y escamosa. Cuando no estés usando armadura, tu AC es 13 + tu modificador de Dexterity. Puede utilizar su armadura natural para determinar su AC si la armadura que lleva le dejaría con un AC inferior. Los beneficios de un escudo se aplican como normales mientras usas tu armadura natural."
+            "Tienes piel dura y escamosa. Cuando no estés usando armadura, tu AC es 13 + tu modificador de Destreza. Puede utilizar su armadura natural para determinar su AC si la armadura que lleva le dejaría con un AC inferior. Los beneficios de un escudo se aplican como normales mientras usas tu armadura natural."
           ]
         },
         {
@@ -9294,7 +9294,7 @@
           "type": "entries",
           "name_es": "Hungry Jaws",
           "entries_es": [
-            "En la batalla, puedes arrojarte a un feroz de alimentación. Como una acción de bonificación, usted puede hacer un ataque especial con su mordedura. Si el ataque golpea, se trata de su daño normal, y usted gana puntos temporales iguales a su modificador de la Constitución (mínimo de 1), y no puede utilizar este rasgo de nuevo hasta que termine un breve o largo descanso."
+            "En la batalla, puedes arrojarte a un feroz de alimentación. Como una acción de bonificación, usted puede hacer un ataque especial con su mordedura. Si el ataque golpea, se trata de su daño normal, y usted gana puntos temporales iguales a su modificador de Constitución (mínimo de 1), y no puede utilizar este rasgo de nuevo hasta que termine un breve o largo descanso."
           ]
         },
         {
@@ -9372,12 +9372,12 @@
         {
           "name": "Natural Armor",
           "entries": [
-            "You have tough, scaly skin. When you aren't wearing armor, your AC is 12 + your Dexterity modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
+            "You have tough, scaly skin. When you aren't wearing armor, your AC is 12 + your Destreza modifier. You can use your natural armor to determine your AC if the armor you wear would leave you with a lower AC. A shield's benefits apply as normal while you use your natural armor."
           ],
           "type": "entries",
           "name_es": "Armadura natural",
           "entries_es": [
-            "Tienes piel dura y escamosa. Cuando no estés usando armadura, tu AC es 12 + tu modificador de Dexterity. Puede utilizar su armadura natural para determinar su AC si la armadura que lleva le dejaría con un AC inferior. Los beneficios de un escudo se aplican como normales mientras usas tu armadura natural."
+            "Tienes piel dura y escamosa. Cuando no estés usando armadura, tu AC es 12 + tu modificador de Destreza. Puede utilizar su armadura natural para determinar su AC si la armadura que lleva le dejaría con un AC inferior. Los beneficios de un escudo se aplican como normales mientras usas tu armadura natural."
           ]
         },
         {
@@ -9479,7 +9479,7 @@
           ],
           "name_es": "Edad",
           "entries_es": [
-            "Los loxodons maduran físicamente al mismo ritmo que los humanos, pero viven cerca de 450 años. Valoran mucho el peso de la sabiduría y la experiencia y se consideran jóvenes hasta alcanzar los 60 años."
+            "Los loxodons maduran físicamente al mismo ritmo que los humanos, pero viven cerca de 450 años. Valoran mucho el peso de Sabiduría y la experiencia y se consideran jóvenes hasta alcanzar los 60 años."
           ]
         },
         {
@@ -9858,7 +9858,7 @@
           "type": "entries",
           "name_es": "Hammering Horns",
           "entries_es": [
-            "Inmediatamente después de golpear a una criatura con un simple ataque como parte de la acción {@action Attack} en su turno, usted puede utilizar una acción de bonificación para intentar empujar ese objetivo con sus cuernos. El objetivo no debe ser más de un tamaño más grande que tú y a menos de 5 pies de ti. A menos que tenga éxito en un lanzamiento de ahorro de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de fuerza, usted lo empuja hasta 10 pies de distancia de usted."
+            "Inmediatamente después de golpear a una criatura con un simple ataque como parte de la acción {@action Attack} en su turno, usted puede utilizar una acción de bonificación para intentar empujar ese objetivo con sus cuernos. El objetivo no debe ser más de un tamaño más grande que tú y a menos de 5 pies de ti. A menos que tenga éxito en una tirada de salvación de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de fuerza, usted lo empuja hasta 10 pies de distancia de usted."
           ]
         },
         {
@@ -9939,7 +9939,7 @@
           ],
           "name_es": "Hammering Horns",
           "entries_es": [
-            "Inmediatamente después de golpear a una criatura con un simple ataque como parte de la acción {@action Attack} en su turno, usted puede utilizar una acción de bonificación para intentar empujar ese objetivo con sus cuernos. El objetivo debe estar a 5 pies de ti y no más de un tamaño más grande que tú. A menos que tenga éxito en un lanzamiento de ahorro de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de fuerza, puede empujarlo hasta 10 pies de distancia de usted."
+            "Inmediatamente después de golpear a una criatura con un simple ataque como parte de la acción {@action Attack} en su turno, usted puede utilizar una acción de bonificación para intentar empujar ese objetivo con sus cuernos. El objetivo debe estar a 5 pies de ti y no más de un tamaño más grande que tú. A menos que tenga éxito en una tirada de salvación de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de fuerza, puede empujarlo hasta 10 pies de distancia de usted."
           ]
         },
         {
@@ -10160,7 +10160,7 @@
           "name_es": "Armas naturales",
           "entries_es": [
             "Tu mandíbula fanfarroneada y tu cuerpo constrictivo son armas naturales que puedes usar para hacer huelgas desarmadas.",
-            "Si usted golpea con su mordedura, usted trata el daño perforante igual a {@damage 1d4} + su modificador de fuerza, y su objetivo debe hacer un lanzamiento de ahorro de la Constitución ([TAG1]] + su bonificación de competencia + su modificador de la Constitución. En un ahorro fallido, el objetivo toma [[TAG0] daño venenoso.",
+            "Si usted golpea con su mordedura, usted trata el daño perforante igual a {@damage 1d4} + su modificador de fuerza, y su objetivo debe hacer una tirada de salvación de Constitución ([TAG1]] + su bonificación de competencia + su modificador de Constitución. En un ahorro fallido, el objetivo toma [[TAG0] daño venenoso.",
             "Si usted golpea con su ataque constricto, usted trata el daño de la mancha igual a {@damage 1d6}] + su modificador de fuerza, y el objetivo es {@condition grappled}] (escape {@dc 8}] + su bonificación de competencia + su modificador de fuerza). Hasta que este grapple termine, el objetivo es {@condition restrained}, y no se puede restringir otro objetivo."
           ]
         },
@@ -11600,7 +11600,7 @@
           ],
           "name_es": "Cambio",
           "entries_es": [
-            "Como una acción de bonificación, usted puede asumir una apariencia más bestial. Esta transformación dura 1 minuto, hasta que mueras, o hasta que vuelvas a tu apariencia normal como una acción de bonificación. Cuando usted cambia, usted gana puntos temporales iguales a su nivel + su modificador de la Constitución (mínimo de 1 punto de impacto temporal). También obtiene beneficios adicionales que dependen de su subrace de cambio, descrito a continuación.",
+            "Como una acción de bonificación, usted puede asumir una apariencia más bestial. Esta transformación dura 1 minuto, hasta que mueras, o hasta que vuelvas a tu apariencia normal como una acción de bonificación. Cuando usted cambia, usted gana puntos temporales iguales a su nivel + su modificador de Constitución (mínimo de 1 punto de impacto temporal). También obtiene beneficios adicionales que dependen de su subrace de cambio, descrito a continuación.",
             "Una vez que cambies, no puedes hacerlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
@@ -11892,7 +11892,7 @@
                 {
                   "type": "item",
                   "name": "Acid Spit",
-                  "entry": "As an action, you can spray acid from glands in your mouth, targeting one creature or object you can see within 30 feet of you. The target takes {@damage 2d10} acid damage unless it succeeds on a Dexterity saving throw against a DC equal to 8 + your Constitution modifier + your proficiency bonus. This damage increases by {@damage 1d10} when you reach 11th level ({@damage 3d10}) and 17th level ({@damage 4d10}). You can use this trait a number of times equal to your Constitution modifier (minimum of once), and you regain all expended uses of it when you finish a long rest.",
+                  "entry": "As an action, you can spray acid from glands in your mouth, targeting one creature or object you can see within 30 feet of you. The target takes {@damage 2d10} acid damage unless it succeeds on a Destreza saving throw against a DC equal to 8 + your Constitution modifier + your proficiency bonus. This damage increases by {@damage 1d10} when you reach 11th level ({@damage 3d10}) and 17th level ({@damage 4d10}). You can use this trait a number of times equal to your Constitution modifier (minimum of once), and you regain all expended uses of it when you finish a long rest.",
                   "name_es": "Acid Spit"
                 }
               ]
@@ -11946,7 +11946,7 @@
                 {
                   "type": "item",
                   "name": "Acid Spit",
-                  "entry": "As an action, you can spray acid from glands in your mouth, targeting one creature or object you can see within 30 feet of you. The target takes {@damage 2d10} acid damage unless it succeeds on a Dexterity saving throw against a DC equal to 8 + your Constitution modifier + your proficiency bonus. This damage increases by {@damage 1d10} when you reach 11th level ({@damage 3d10}) and 17th level ({@damage 4d10}). You can use this trait a number of times equal to your Constitution modifier (minimum of once), and you regain all expended uses of it when you finish a long rest.",
+                  "entry": "As an action, you can spray acid from glands in your mouth, targeting one creature or object you can see within 30 feet of you. The target takes {@damage 2d10} acid damage unless it succeeds on a Destreza saving throw against a DC equal to 8 + your Constitution modifier + your proficiency bonus. This damage increases by {@damage 1d10} when you reach 11th level ({@damage 3d10}) and 17th level ({@damage 4d10}). You can use this trait a number of times equal to your Constitution modifier (minimum of once), and you regain all expended uses of it when you finish a long rest.",
                   "name_es": "Acid Spit"
                 }
               ]
@@ -12387,13 +12387,13 @@
           "type": "entries",
           "name": "Chameleon Carapace",
           "entries": [
-            "While you aren't wearing armor, your carapace gives you a base Armor Class of 13 + your Dexterity modifier.",
-            "As an action, you can change the color of your carapace to match the color and texture of your surroundings, giving you advantage on Dexterity ({@skill Stealth}) checks made to {@action hide} in those surroundings."
+            "While you aren't wearing armor, your carapace gives you a base Armor Class of 13 + your Destreza modifier.",
+            "As an action, you can change the color of your carapace to match the color and texture of your surroundings, giving you advantage on Destreza ({@skill Stealth}) checks made to {@action hide} in those surroundings."
           ],
           "name_es": "Chameleon Carapace",
           "entries_es": [
             "Mientras no llevas armadura, tu carapace te da una clase de armadura base de 13 + tu modificador de destreza.",
-            "Como acción, usted puede cambiar el color de su carapace para que coincida con el color y la textura de su entorno, dándole ventaja en las comprobaciones de Dexterity ([TAG0]) hechas a {@action hide} en esos alrededores."
+            "Como acción, usted puede cambiar el color de su carapace para que coincida con el color y la textura de su entorno, dándole ventaja en las comprobaciones de Destreza ([TAG0]) hechas a {@action hide} en esos alrededores."
           ]
         },
         {
@@ -12740,7 +12740,7 @@
           "type": "entries",
           "name": "Natural Armor",
           "entries": [
-            "Your shell provides you a base AC of 17 (your Dexterity modifier doesn't affect this number). You can't wear light, medium, or heavy armor, but if you are using a shield, you can apply the shield's bonus as normal."
+            "Your shell provides you a base AC of 17 (your Destreza modifier doesn't affect this number). You can't wear light, medium, or heavy armor, but if you are using a shield, you can apply the shield's bonus as normal."
           ],
           "name_es": "Armadura natural",
           "entries_es": [
@@ -12762,11 +12762,11 @@
           "type": "entries",
           "name": "Shell Defense",
           "entries": [
-            "You can withdraw into your shell as an action. Until you emerge, you gain a +4 bonus to your AC, and you have advantage on Strength and Constitution saving throws. While in your shell, you are {@condition prone}, your speed is 0 and can't increase, you have disadvantage on Dexterity saving throws, you can't take reactions, and the only action you can take is a bonus action to emerge from your shell."
+            "You can withdraw into your shell as an action. Until you emerge, you gain a +4 bonus to your AC, and you have advantage on Strength and Constitution saving throws. While in your shell, you are {@condition prone}, your speed is 0 and can't increase, you have disadvantage on Destreza saving throws, you can't take reactions, and the only action you can take is a bonus action to emerge from your shell."
           ],
           "name_es": "Shell Defense",
           "entries_es": [
-            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a su AC, y usted tiene ventaja en la fuerza y la Constitución ahorro lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de ahorro de la destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
+            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a su AC, y usted tiene ventaja en la fuerza y la Constitución ahorro lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de ahorro de Destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
           ]
         }
       ]
@@ -12871,23 +12871,23 @@
         {
           "name": "Natural Armor",
           "entries": [
-            "Due to your shell and the shape of your body, you are ill-suited to wearing armor. Your shell provides ample protection, however; it gives you a base AC of 17 (your Dexterity modifier doesn't affect this number). You gain no benefit from wearing armor, but if you are using a shield, you can apply the shield's bonus as normal."
+            "Due to your shell and the shape of your body, you are ill-suited to wearing armor. Your shell provides ample protection, however; it gives you a base AC of 17 (your Destreza modifier doesn't affect this number). You gain no benefit from wearing armor, but if you are using a shield, you can apply the shield's bonus as normal."
           ],
           "type": "entries",
           "name_es": "Armadura natural",
           "entries_es": [
-            "Debido a su cáscara y la forma de su cuerpo, usted está mal adaptado para llevar armadura. Su cáscara proporciona una amplia protección, sin embargo, le da un AC base de 17 (su modificador de Dexterity no afecta este número). Usted no obtiene ningún beneficio de usar armadura, pero si usted está usando un escudo, usted puede aplicar el bono del escudo como normal."
+            "Debido a su cáscara y la forma de su cuerpo, usted está mal adaptado para llevar armadura. Su cáscara proporciona una amplia protección, sin embargo, le da un AC base de 17 (su modificador de Destreza no afecta este número). Usted no obtiene ningún beneficio de usar armadura, pero si usted está usando un escudo, usted puede aplicar el bono del escudo como normal."
           ]
         },
         {
           "name": "Shell Defense",
           "entries": [
-            "You can withdraw into your shell as an action. Until you emerge, you gain a +4 bonus to AC, and you have advantage on Strength and Constitution saving throws. While in your shell, you are {@condition prone}, your speed is 0 and can't increase, you have disadvantage on Dexterity saving throws, you can't take reactions, and the only action you can take is a bonus action to emerge from your shell."
+            "You can withdraw into your shell as an action. Until you emerge, you gain a +4 bonus to AC, and you have advantage on Strength and Constitution saving throws. While in your shell, you are {@condition prone}, your speed is 0 and can't increase, you have disadvantage on Destreza saving throws, you can't take reactions, and the only action you can take is a bonus action to emerge from your shell."
           ],
           "type": "entries",
           "name_es": "Shell Defense",
           "entries_es": [
-            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a AC, y usted tiene ventaja en la fuerza y la Constitución ahorro lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de ahorro de la destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
+            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a AC, y usted tiene ventaja en la fuerza y la Constitución ahorro lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de ahorro de Destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
           ]
         },
         {
@@ -13186,11 +13186,11 @@
           "name": "Chameleon Skin",
           "type": "entries",
           "entries": [
-            "You have advantage on Dexterity ({@skill Stealth}) checks made to hide."
+            "You have advantage on Destreza ({@skill Stealth}) checks made to hide."
           ],
           "name_es": "Chameleon Skin",
           "entries_es": [
-            "Usted tiene ventaja en Dexterity ({@skill Stealth}) cheques hechos para ocultar."
+            "Usted tiene ventaja en Destreza ({@skill Stealth}) cheques hechos para ocultar."
           ]
         },
         {
@@ -13201,7 +13201,7 @@
           ],
           "name_es": "Stench",
           "entries_es": [
-            "Cualquier criatura que no sea un troglodita que comience su turno dentro de 5 pies de usted debe tener éxito en un {@dc 12} La Constitución salvando el lanzamiento o ser {@condition poisoned} hasta el comienzo del siguiente turno de la criatura. En un exitoso lanzamiento de ahorro, la criatura es inmune al hedor de todos los trogloditas durante 1 hora."
+            "Cualquier criatura que no sea un troglodita que comience su turno dentro de 5 pies de usted debe tener éxito en un {@dc 12} La Constitución salvando el lanzamiento o ser {@condition poisoned} hasta el comienzo del siguiente turno de la criatura. En un exitosotirada de salvación, la criatura es inmune al hedor de todos los trogloditas durante 1 hora."
           ]
         },
         {
@@ -14107,7 +14107,7 @@
           ],
           "name_es": "Undead Fortitude",
           "entries_es": [
-            "Si el daño le reduce a 0 puntos de impacto, debe hacer un lanzamiento de ahorro de la Constitución con un DC de 5+ los daños tomados, a menos que el daño sea radiante o de un golpe crítico. En un éxito, caes a 1 punto de encuentro."
+            "Si el daño le reduce a 0 puntos de impacto, debe hacer una tirada de salvación de Constitución con un DC de 5+ los daños tomados, a menos que el daño sea radiante o de un golpe crítico. En un éxito, caes a 1 punto de encuentro."
           ]
         },
         {

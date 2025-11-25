@@ -1288,7 +1288,7 @@
       "classSource": "PHB",
       "level": 1,
       "entries": [
-        "While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit."
+        "While you are not wearing any armor, your Armor Class equals 10 + your Destreza modifier + your Constitution modifier. You can use a shield and still gain this benefit."
       ],
       "name_es": "Defensa no blindada",
       "entries_es": [
@@ -1304,11 +1304,11 @@
       "classSource": "PHB",
       "level": 2,
       "entries": [
-        "At 2nd level, you gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and spells. To gain this benefit, you can't be {@condition blinded}, {@condition deafened}, or {@condition incapacitated}."
+        "At 2nd level, you gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Destreza saving throws against effects that you can see, such as traps and spells. To gain this benefit, you can't be {@condition blinded}, {@condition deafened}, or {@condition incapacitated}."
       ],
       "name_es": "Danger Sense",
       "entries_es": [
-        "A 2o nivel, usted gana un sentido incierto de cuando las cosas cercanas no son como deberían ser, dándole un borde cuando usted se aleja del peligro. Usted tiene ventaja en los lanzamientos de ahorro de la destreza contra efectos que se pueden ver, como trampas y hechizos. Para obtener este beneficio, no puede ser {@condition blinded}, {@condition deafened}, o {@condition incapacitated}]."
+        "A 2o nivel, usted gana un sentido incierto de cuando las cosas cercanas no son como deberían ser, dándole un borde cuando usted se aleja del peligro. Usted tiene ventaja en los lanzamientos de ahorro de Destreza contra efectos que se pueden ver, como trampas y hechizos. Para obtener este beneficio, no puede ser {@condition blinded}, {@condition deafened}, o {@condition incapacitated}]."
       ]
     },
     {
@@ -1860,7 +1860,7 @@
       "classSource": "XPHB",
       "level": 1,
       "entries": [
-        "While you aren't wearing any armor, your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Constitution modifiers. You can use a {@item Shield|XPHB} and still gain this benefit."
+        "While you aren't wearing any armor, your base {@variantrule Armor Class|XPHB} equals 10 plus your Destreza and Constitution modifiers. You can use a {@item Shield|XPHB} and still gain this benefit."
       ],
       "name_es": "Defensa no blindada",
       "entries_es": [
@@ -1896,11 +1896,11 @@
       "classSource": "XPHB",
       "level": 2,
       "entries": [
-        "You gain an uncanny sense of when things aren't as they should be, giving you an edge when you dodge perils. You have {@variantrule Advantage|XPHB} on Dexterity saving throws unless you have the {@condition Incapacitated|XPHB} condition."
+        "You gain an uncanny sense of when things aren't as they should be, giving you an edge when you dodge perils. You have {@variantrule Advantage|XPHB} on Destreza saving throws unless you have the {@condition Incapacitated|XPHB} condition."
       ],
       "name_es": "Danger Sense",
       "entries_es": [
-        "Ganas un sentido insensato de cuando las cosas no son como deberían ser, dándote ventaja cuando haces peligros. Usted tiene {@variantrule Advantage|XPHB} en los lanzamientos de ahorro de la destreza a menos que tenga la condición {@condition Incapacitated|XPHB}."
+        "Ganas un sentido insensato de cuando las cosas no son como deberían ser, dándote ventaja cuando haces peligros. Usted tiene {@variantrule Advantage|XPHB} en los lanzamientos de ahorro de Destreza a menos que tenga la condición {@condition Incapacitated|XPHB}."
       ]
     },
     {
@@ -2269,7 +2269,7 @@
               ],
               "name_es": "Flujo acelerado",
               "entries_es": [
-                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximo lanzamiento de ahorro que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
+                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximotirada de salvación que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
               ]
             },
             {
@@ -2293,7 +2293,7 @@
               ],
               "name_es": "Flujo acelerado",
               "entries_es": [
-                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximo lanzamiento de ahorro que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
+                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximotirada de salvación que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
               ]
             },
             {
@@ -2324,7 +2324,7 @@
               ],
               "name_es": "Flujo acelerado",
               "entries_es": [
-                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximo lanzamiento de ahorro que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
+                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximotirada de salvación que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
               ]
             },
             {
@@ -2348,7 +2348,7 @@
               ],
               "name_es": "Flujo acelerado",
               "entries_es": [
-                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximo lanzamiento de ahorro que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
+                "El objetivo tiene {@variantrule Disadvantage|XPHB} en el próximotirada de salvación que hace, y no puede hacer {@action Opportunity Attack|XPHB|Opportunity Attacks} hasta el comienzo de su próximo turno."
               ]
             },
             {
@@ -2450,7 +2450,7 @@
       ],
       "name_es": "Indomitable Might",
       "entries_es": [
-        "Si su total para un control de fuerza o un lanzamiento de ahorro de fuerza es inferior a su puntuación de fuerza, puede utilizar esa puntuación en lugar del total."
+        "Si su total para un control de fuerza o una tirada de salvación de fuerza es inferior a su puntuación de fuerza, puede utilizar esa puntuación en lugar del total."
       ]
     },
     {
@@ -2638,7 +2638,7 @@
       "name_es": "Poderoso Impel",
       "entries_es": [
         "[[TAG0]",
-        "Su conexión con la fuerza gigante le permite abrazar tanto a los aliados como a los enemigos en el campo de batalla. Como una acción de bonificación durante el raging, usted puede elegir una criatura mediana o menor dentro de su alcance y moverla a un espacio no ocupado que se puede ver dentro de 30 pies de usted mismo. Una criatura no deseada debe tener éxito en un lanzamiento de ahorro de fuerza (DC es igual a 8 + su bonificación de competencia + su modificador de fuerza) para evitar el efecto.",
+        "Su conexión con la fuerza gigante le permite abrazar tanto a los aliados como a los enemigos en el campo de batalla. Como una acción de bonificación durante el raging, usted puede elegir una criatura mediana o menor dentro de su alcance y moverla a un espacio no ocupado que se puede ver dentro de 30 pies de usted mismo. Una criatura no deseada debe tener éxito en una tirada de salvación de fuerza (DC es igual a 8 + su bonificación de competencia + su modificador de fuerza) para evitar el efecto.",
         "Si, al final de este movimiento, la criatura lanzada no está sobre una superficie o líquido que puede soportarlo, la criatura cae, tomando daño como normal y aterrizando {@condition prone}."
       ]
     },
@@ -2745,8 +2745,8 @@
       ],
       "name_es": "Intimidando la Presencia",
       "entries_es": [
-        "Empezando a nivel 10, puedes usar tu acción para asustar a alguien con tu presencia amenazante. Cuando lo haces, elige una criatura que puedes ver a menos de 30 pies de ti. Si la criatura puede ver o escuchar, debe tener éxito en un lanzamiento de ahorro de Sabiduría (DC igual a 8 + su bonificación de competencia + su modificador de Charisma) o ser [[TAG0] de ustedes hasta el final de su próximo turno. En turnos posteriores, puede utilizar su acción para extender la duración de este efecto en la criatura {@condition frightened} hasta el final de su siguiente turno. Este efecto termina si la criatura termina su salida de la línea de la vista o más de 60 pies de distancia de usted.",
-        "Si la criatura tiene éxito en su lanzamiento de ahorro, no puedes usar esta característica de nuevo en esa criatura durante 24 horas."
+        "Empezando a nivel 10, puedes usar tu acción para asustar a alguien con tu presencia amenazante. Cuando lo haces, elige una criatura que puedes ver a menos de 30 pies de ti. Si la criatura puede ver o escuchar, debe tener éxito en una tirada de salvación de Sabiduría (DC igual a 8 + su bonificación de competencia + su modificador de Charisma) o ser [[TAG0] de ustedes hasta el final de su próximo turno. En turnos posteriores, puede utilizar su acción para extender la duración de este efecto en la criatura {@condition frightened} hasta el final de su siguiente turno. Este efecto termina si la criatura termina su salida de la línea de la vista o más de 60 pies de distancia de usted.",
+        "Si la criatura tiene éxito en sutirada de salvación, no puedes usar esta característica de nuevo en esa criatura durante 24 horas."
       ]
     },
     {
@@ -3287,7 +3287,7 @@
       ],
       "name_es": "Elk",
       "entries_es": [
-        "Mientras que raging, puede utilizar una acción de bonificación durante su movimiento para pasar por el espacio de una criatura grande o menor. Esa criatura debe tener éxito en un lanzamiento de ahorro de fuerza ([TAG0]] + su bonificación de fuerza + su bonificación de competencia) o ser llamado {@condition prone} y tomar el daño de la mancha igual a {@damage 1d12}] + su modificador de fuerza."
+        "Mientras que raging, puede utilizar una acción de bonificación durante su movimiento para pasar por el espacio de una criatura grande o menor. Esa criatura debe tener éxito en una tirada de salvación de fuerza ([TAG0]] + su bonificación de fuerza + su bonificación de competencia) o ser llamado {@condition prone} y tomar el daño de la mancha igual a {@damage 1d12}] + su modificador de fuerza."
       ]
     },
     {
@@ -3787,7 +3787,7 @@
       "name_es": "Furia infecciosa",
       "entries_es": [
         "[[TAG0]",
-        "Cuando golpeas a una criatura con tus armas naturales mientras estás furioso, la bestia dentro de ti puede maldecir tu objetivo con furia rabia. El objetivo debe tener éxito en un lanzamiento de ahorro de Sabiduría (DC igual a 8 + su modificador de Constitución + su prima de competencia) o sufrir uno de los siguientes efectos (su elección):",
+        "Cuando golpeas a una criatura con tus armas naturales mientras estás furioso, la bestia dentro de ti puede maldecir tu objetivo con furia rabia. El objetivo debe tener éxito en una tirada de salvación de Sabiduría (DC igual a 8 + su modificador de Constitución + su prima de competencia) o sufrir uno de los siguientes efectos (su elección):",
         {
           "type": "list",
           "items": [
@@ -3817,7 +3817,7 @@
       "name_es": "Llama a la Caza",
       "entries_es": [
         "[[TAG0]",
-        "La bestia dentro de usted crece tan poderoso que usted puede difundir su ferocidad a otros y ganar resiliencia de ellos unirse a su caza. Cuando entres en tu rabia, puedes elegir una serie de otras criaturas dispuestas que puedes ver a menos de 30 pies de ti igual a tu modificador de la Constitución (mínimo de una criatura).",
+        "La bestia dentro de usted crece tan poderoso que usted puede difundir su ferocidad a otros y ganar resiliencia de ellos unirse a su caza. Cuando entres en tu rabia, puedes elegir una serie de otras criaturas dispuestas que puedes ver a menos de 30 pies de ti igual a tu modificador de Constitución (mínimo de una criatura).",
         "Ganas 5 puntos de éxito temporales para cada criatura que acepta esta característica. Hasta que finalice la rabia, las criaturas elegidas pueden utilizar el siguiente beneficio una vez en cada uno de sus turnos: cuando la criatura golpea a un objetivo con un rollo de ataque y daña, la criatura puede rodar un {@dice d6} y ganar un bono al daño igual al número rodado.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
       ]
@@ -3913,7 +3913,7 @@
             ],
             [
               "3",
-              "An intangible spirit, which looks like a {@creature flumph} or a {@creature pixie} (your choice), appears within 5 feet of one creature of your choice that you can see within 30 feet of you. At the end of the current turn, the spirit explodes, and each creature within 5 feet of it must succeed on a Dexterity saving throw or take {@damage 1d6} force damage. Until your rage ends, you can use this effect again, summoning another spirit, on each of your turns as a bonus action."
+              "An intangible spirit, which looks like a {@creature flumph} or a {@creature pixie} (your choice), appears within 5 feet of one creature of your choice that you can see within 30 feet of you. At the end of the current turn, the spirit explodes, and each creature within 5 feet of it must succeed on a Destreza saving throw or take {@damage 1d6} force damage. Until your rage ends, you can use this effect again, summoning another spirit, on each of your turns as a bonus action."
             ],
             [
               "4",
@@ -3947,7 +3947,7 @@
       "entries_es": [
         "[[TAG0]",
         "La energía mágica rugiendo dentro de ti a veces brota de ti. Cuando entres en tu rabia, enrolla sobre la mesa Wild Magic para determinar el efecto mágico producido.",
-        "Si el efecto requiere un lanzamiento de ahorro, el DC equivale a 8 + su bonificación de competencia + su modificador de la Constitución.",
+        "Si el efecto requiere una tirada de salvación, el DC equivale a 8 + su bonificación de competencia + su modificador de Constitución.",
         {
           "type": "table",
           "caption": "Wild Magic",
@@ -3970,7 +3970,7 @@
             ],
             [
               "3",
-              "An intangible spirit, which looks like a {@creature flumph} or a {@creature pixie} (your choice), appears within 5 feet of one creature of your choice that you can see within 30 feet of you. At the end of the current turn, the spirit explodes, and each creature within 5 feet of it must succeed on a Dexterity saving throw or take {@damage 1d6} force damage. Until your rage ends, you can use this effect again, summoning another spirit, on each of your turns as a bonus action."
+              "An intangible spirit, which looks like a {@creature flumph} or a {@creature pixie} (your choice), appears within 5 feet of one creature of your choice that you can see within 30 feet of you. At the end of the current turn, the spirit explodes, and each creature within 5 feet of it must succeed on a Destreza saving throw or take {@damage 1d6} force damage. Until your rage ends, you can use this effect again, summoning another spirit, on each of your turns as a bonus action."
             ],
             [
               "4",
@@ -4054,7 +4054,7 @@
       "name_es": "Retroceso inestable",
       "entries_es": [
         "[[TAG0]",
-        "Cuando usted está impermeado durante su rabia, la magia dentro de usted puede lavarse; inmediatamente después de tomar el daño o fallar un tiro de ahorro mientras que la rabia, usted puede utilizar su reacción a rodar en la mesa de Wild Magic y producir inmediatamente el efecto rodado. Este efecto reemplaza el efecto Wild Magic actual."
+        "Cuando usted está impermeado durante su rabia, la magia dentro de usted puede lavarse; inmediatamente después de tomar el daño o fallar una tirada de salvación mientras que la rabia, usted puede utilizar su reacción a rodar en la mesa de Wild Magic y producir inmediatamente el efecto rodado. Este efecto reemplaza el efecto Wild Magic actual."
       ]
     },
     {
@@ -4427,11 +4427,11 @@
       "subclassSource": "XGE",
       "level": 3,
       "entries": [
-        "When this effect is activated, you can choose one other creature you can see in your aura. The target must make a Dexterity saving throw. The target takes {@damage 1d6} lightning damage on a failed save, or half as much damage on a successful one. The damage increases when you reach certain levels in this class, increasing to {@damage 2d6} at 10th level, {@damage 3d6} at 15th level, and {@damage 4d6} at 20th level."
+        "When this effect is activated, you can choose one other creature you can see in your aura. The target must make a Destreza saving throw. The target takes {@damage 1d6} lightning damage on a failed save, or half as much damage on a successful one. The damage increases when you reach certain levels in this class, increasing to {@damage 2d6} at 10th level, {@damage 3d6} at 15th level, and {@damage 4d6} at 20th level."
       ],
       "name_es": "Mar",
       "entries_es": [
-        "Cuando este efecto se activa, puedes elegir otra criatura que puedas ver en tu aura. El objetivo debe hacer un lanzamiento de ahorro de Dexterity. El objetivo toma [[TAG0] un daño relámpago en un ahorro fallido, o la mitad del daño en uno exitoso. El daño aumenta cuando alcanza ciertos niveles en esta clase, aumentando a {@damage 2d6} a nivel 10, {@damage 3d6} a nivel 15, y {@damage 4d6} a nivel 20."
+        "Cuando este efecto se activa, puedes elegir otra criatura que puedas ver en tu aura. El objetivo debe hacer una tirada de salvación de Destreza. El objetivo toma [[TAG0] un daño relámpago en un ahorro fallido, o la mitad del daño en uno exitoso. El daño aumenta cuando alcanza ciertos niveles en esta clase, aumentando a {@damage 2d6} a nivel 10, {@damage 3d6} a nivel 15, y {@damage 4d6} a nivel 20."
       ]
     },
     {
@@ -4501,7 +4501,7 @@
       "entries_es": [
         "A partir del tercer nivel, emanas un aura tormentoso y mágico mientras rabias. El aura se extiende a 10 pies de ti en cada dirección, pero no a través {@quickref Cover||3||total cover}.",
         "Tu aura tiene un efecto que se activa cuando entras en tu rabia, y puedes activar el efecto de nuevo en cada uno de tus turnos como una acción de bonificación. Elige desierto, mar o tundra. El efecto de su aura depende del entorno elegido, como se detalla a continuación. Usted puede cambiar su elección del medio ambiente cuando usted gana un nivel en esta clase.",
-        "Si los efectos de su aura requieren un lanzamiento de ahorro, el DC equivale a 8 + su bonificación de competencia + su modificador de la Constitución.",
+        "Si los efectos de su aura requieren una tirada de salvación, el DC equivale a 8 + su bonificación de competencia + su modificador de Constitución.",
         {
           "type": "options",
           "entries": [
@@ -4694,11 +4694,11 @@
       "subclassSource": "XGE",
       "level": 14,
       "entries": [
-        "Immediately after a creature in your aura hits you with an attack, you can use your reaction to force that creature to make a Dexterity saving throw. On a failed save, the creature takes fire damage equal to half your barbarian level."
+        "Immediately after a creature in your aura hits you with an attack, you can use your reaction to force that creature to make a Destreza saving throw. On a failed save, the creature takes fire damage equal to half your barbarian level."
       ],
       "name_es": "Desierto",
       "entries_es": [
-        "Inmediatamente después de que una criatura en tu aura te golpee con un ataque, puedes usar tu reacción para obligar a esa criatura a hacer un lanzamiento de ahorro de Dexterity. En un fallido ahorro, la criatura toma daño de fuego igual a la mitad de su nivel bárbaro."
+        "Inmediatamente después de que una criatura en tu aura te golpee con un ataque, puedes usar tu reacción para obligar a esa criatura a hacer una tirada de salvación de Destreza. En un fallido ahorro, la criatura toma daño de fuego igual a la mitad de su nivel bárbaro."
       ]
     },
     {
@@ -4715,7 +4715,7 @@
       ],
       "name_es": "Mar",
       "entries_es": [
-        "Cuando golpeas a una criatura en tu aura con un ataque, puedes usar tu reacción para obligar a esa criatura a hacer un lanzamiento de ahorro de fuerza. En un fallido ahorro, la criatura es golpeada {@condition prone}, como si fuera golpeada por una ola."
+        "Cuando golpeas a una criatura en tu aura con un ataque, puedes usar tu reacción para obligar a esa criatura a hacer una tirada de salvación de fuerza. En un fallido ahorro, la criatura es golpeada {@condition prone}, como si fuera golpeada por una ola."
       ]
     },
     {
@@ -4732,7 +4732,7 @@
       ],
       "name_es": "Tundra",
       "entries_es": [
-        "Cada vez que el efecto de su Storm Aura se activa, usted puede elegir una criatura que se puede ver en el aura. Esa criatura debe tener éxito en un lanzamiento de ahorro de fuerza, o su velocidad se reduce a 0 hasta el comienzo de su próximo turno, ya que la helada mágica lo cubre."
+        "Cada vez que el efecto de su Storm Aura se activa, usted puede elegir una criatura que se puede ver en el aura. Esa criatura debe tener éxito en una tirada de salvación de fuerza, o su velocidad se reduce a 0 hasta el comienzo de su próximo turno, ya que la helada mágica lo cubre."
       ]
     },
     {
@@ -4901,7 +4901,7 @@
       ],
       "name_es": "Enfoque Fanático",
       "entries_es": [
-        "A partir del sexto nivel, el poder divino que alimenta tu rabia puede protegerte. Si fallas un tiro de ahorro mientras estás en raging, puedes rerollarlo, y debes usar el nuevo rollo. Usted puede utilizar esta habilidad sólo una vez por rabia."
+        "A partir del sexto nivel, el poder divino que alimenta tu rabia puede protegerte. Si fallas una tirada de salvación mientras estás en raging, puedes rerollarlo, y debes usar el nuevo rollo. Usted puede utilizar esta habilidad sólo una vez por rabia."
       ]
     },
     {
@@ -5046,7 +5046,7 @@
       ],
       "name_es": "Intimidando la Presencia",
       "entries_es": [
-        "Como un {@variantrule Bonus Action|XPHB}, usted puede golpear el terror hacia otros con su presencia amenazante y el poder primario. Cuando lo hace, cada criatura de su elección en un 30 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originaria de usted debe hacer un lanzamiento de ahorro de sabiduría ([TAG2]] más su modificador de fuerza y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, una criatura tiene la condición [[TAG4] por 1 minuto. Al final de cada uno de los turnos de la criatura {@condition Frightened|XPHB}, la criatura repite el ahorro, terminando el efecto sobre sí misma en un éxito.",
+        "Como un {@variantrule Bonus Action|XPHB}, usted puede golpear el terror hacia otros con su presencia amenazante y el poder primario. Cuando lo hace, cada criatura de su elección en un 30 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originaria de usted debe hacer una tirada de salvación de sabiduría ([TAG2]] más su modificador de fuerza y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, una criatura tiene la condición [[TAG4] por 1 minuto. Al final de cada uno de los turnos de la criatura {@condition Frightened|XPHB}, la criatura repite el ahorro, terminando el efecto sobre sí misma en un éxito.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse un uso de su Rage (no se requiere acción) para restaurar su uso de ella."
       ]
     },
@@ -5535,7 +5535,7 @@
       ],
       "name_es": "Ramas del Árbol",
       "entries_es": [
-        "Cada vez que una criatura que puedes ver comienza su turno a menos de 30 pies de ti mientras tu Rage está activo, puedes tomar un {@variantrule Reaction|XPHB} para convocar ramas espectrales del Árbol Mundial a su alrededor. El objetivo debe tener éxito en un lanzamiento de ahorro de fuerza ([TAG1]] más su modificador de fuerza y {@variantrule Proficiency|XPHB|Proficiency Bonus}) o ser teletransportado a un espacio no ocupado se puede ver dentro de 5 pies de ti mismo o en el espacio no ocupado más cercano que se puede ver. Después de los telepuertos de destino, puede reducir su [[TAG3] a 0 hasta el final del turno actual."
+        "Cada vez que una criatura que puedes ver comienza su turno a menos de 30 pies de ti mientras tu Rage está activo, puedes tomar un {@variantrule Reaction|XPHB} para convocar ramas espectrales del Árbol Mundial a su alrededor. El objetivo debe tener éxito en una tirada de salvación de fuerza ([TAG1]] más su modificador de fuerza y {@variantrule Proficiency|XPHB|Proficiency Bonus}) o ser teletransportado a un espacio no ocupado se puede ver dentro de 5 pies de ti mismo o en el espacio no ocupado más cercano que se puede ver. Después de los telepuertos de destino, puede reducir su [[TAG3] a 0 hasta el final del turno actual."
       ]
     },
     {
@@ -5666,7 +5666,7 @@
       ],
       "name_es": "Enfoque Fanático",
       "entries_es": [
-        "Una vez por Rage activo, si fallas un lanzamiento de ahorro, puedes inscribirlo con un bono igual a tu Rage Damage bonus, y debes usar el nuevo rollo."
+        "Una vez por Rage activo, si fallas una tirada de salvación, puedes inscribirlo con un bono igual a tu Rage Damage bonus, y debes usar el nuevo rollo."
       ]
     },
     {

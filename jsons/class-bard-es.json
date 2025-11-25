@@ -2074,7 +2074,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer el lanzamiento de ahorro DC para un hechizo desnudo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2182,7 +2182,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer el lanzamiento de ahorro DC para un hechizo desnudo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -3327,7 +3327,7 @@
       ],
       "name_es": "Countercharm",
       "entries_es": [
-        "Puede utilizar notas musicales o palabras de poder para interrumpir los efectos de influencia mental. Si usted o una criatura dentro de 30 pies de usted falla un lanzamiento de ahorro contra un efecto que aplica la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} para hacer que el ahorro sea rerollado, y el nuevo rollo tiene {@variantrule Advantage|XPHB}]."
+        "Puede utilizar notas musicales o palabras de poder para interrumpir los efectos de influencia mental. Si usted o una criatura dentro de 30 pies de usted falla una tirada de salvación contra un efecto que aplica la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} para hacer que el ahorro sea rerollado, y el nuevo rollo tiene {@variantrule Advantage|XPHB}]."
       ]
     },
     {
@@ -3784,7 +3784,7 @@
       "entries_es": [
         "[[TAG0]",
         "Cada vez que le das a una criatura una Inspiración Bardica muere, puedes pronunciar una nota de la Canción de la Creación para crear un pequeño mudo de potencial, que orbita dentro de 5 pies de esa criatura. El mudo es intangible e invulnerable, y dura hasta que la Inspiración Bardica muera se pierde. El mudo parece una nota musical, una estrella, una flor u otro símbolo de arte o vida que elijas.",
-        "Cuando la criatura utiliza la Inspiración Bardica muere, el mudo proporciona un efecto adicional basado en si el die beneficia un cheque de habilidad, un rollo de ataque o un tiro de ahorro, como se detalla a continuación:",
+        "Cuando la criatura utiliza la Inspiración Bardica muere, el mudo proporciona un efecto adicional basado en si el die beneficia un cheque de habilidad, un rollo de ataque o una tirada de salvación, como se detalla a continuación:",
         {
           "type": "list",
           "style": "list-hang-notitle",
@@ -3953,7 +3953,7 @@
       "name_es": "Palabras inquietantes",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede hacer girar palabras lazadas con la magia que unsettle a una criatura y hacerla dudar de sí misma. Como una acción de bonificación, usted puede gastar un uso de su Inspiración Bardica y elegir una criatura que usted puede ver dentro de 60 pies de usted. Muere la Inspiración Bardica. La criatura debe restar el número rodado desde el próximo lanzamiento de ahorro que hace antes del comienzo de su próximo turno."
+        "Usted puede hacer girar palabras lazadas con la magia que unsettle a una criatura y hacerla dudar de sí misma. Como una acción de bonificación, usted puede gastar un uso de su Inspiración Bardica y elegir una criatura que usted puede ver dentro de 60 pies de usted. Muere la Inspiración Bardica. La criatura debe restar el número rodado desde el próximotirada de salvación que hace antes del comienzo de su próximo turno."
       ]
     },
     {
@@ -3973,7 +3973,7 @@
       "name_es": "Inspiración infalible",
       "entries_es": [
         "[[TAG0]",
-        "Sus palabras inspiradoras son tan persuasivas que otros se sienten impulsados a tener éxito. Cuando una criatura agrega uno de sus dados de Inspiración Bardica a su control de habilidad, lanzamiento de ataque o lanzamiento de ahorro y el rollo falla, la criatura puede mantener la Inspiración Bardica morir."
+        "Sus palabras inspiradoras son tan persuasivas que otros se sienten impulsados a tener éxito. Cuando una criatura agrega uno de sus dados de Inspiración Bardica a su control de habilidad, lanzamiento de ataque otirada de salvación y el rollo falla, la criatura puede mantener la Inspiración Bardica morir."
       ]
     },
     {
@@ -4016,7 +4016,7 @@
       "name_es": "Inspiración infecciosa",
       "entries_es": [
         "[[TAG0]",
-        "Cuando inspiras con éxito a alguien, el poder de tu elocuencia ahora puede extenderse a otra persona. Cuando una criatura dentro de 60 pies de usted agrega uno de sus dados de Inspiración Bardica a su control de habilidad, lanzamiento de ataque, o lanzamiento de ahorro y el rollo tiene éxito, usted puede utilizar su reacción para alentar a una criatura diferente (excepto usted mismo) que puede escuchar dentro de 60 pies de usted, dándole una Inspiración Bardica muere sin gastar ninguno de sus usos de Inspiración Bardica.",
+        "Cuando inspiras con éxito a alguien, el poder de tu elocuencia ahora puede extenderse a otra persona. Cuando una criatura dentro de 60 pies de usted agrega uno de sus dados de Inspiración Bardica a su control de habilidad, lanzamiento de ataque, otirada de salvación y el rollo tiene éxito, usted puede utilizar su reacción para alentar a una criatura diferente (excepto usted mismo) que puede escuchar dentro de 60 pies de usted, dándole una Inspiración Bardica muere sin gastar ninguno de sus usos de Inspiración Bardica.",
         "Puede utilizar esta reacción varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un descanso largo."
       ]
     },
@@ -4336,7 +4336,7 @@
             ],
             [
               "10",
-              "Tale of the Dragon. The target spews fire from the mouth in a 30-foot cone. Each creature in that area must make a Dexterity saving throw, taking fire damage equal to four rolls of your Bardic Inspiration die on a failed save, or half as much damage on a successful one."
+              "Tale of the Dragon. The target spews fire from the mouth in a 30-foot cone. Each creature in that area must make a Destreza saving throw, taking fire damage equal to four rolls of your Bardic Inspiration die on a failed save, or half as much damage on a successful one."
             ],
             [
               "11",
@@ -4360,7 +4360,7 @@
         "Llegas a los espíritus que cuentan sus cuentos a través de ti. Mientras estás sosteniendo tu Enfoque Espiritual, puedes usar una acción de bonificación para gastar un uso de tu Inspiración Bardica y rodar en la mesa de Tales Espirituales usando tu Inspiración Bardica muere para determinar el relato que los espíritus te dirigen a contar. Retienes el relato en mente hasta que otorgas el efecto del cuento o terminas un breve o largo descanso.",
         "Usted puede utilizar una acción para elegir una criatura que puede ver dentro de 30 pies de usted (esto puede ser usted) para ser el objetivo del efecto del relato. Una vez que lo haces, no puedes otorgar el efecto de la historia de nuevo hasta que vuelvas a rodar.",
         "Usted puede retener sólo uno de estos cuentos en la mente a la vez, y rodar en la tabla Spirit Tales inmediatamente termina el efecto de la historia anterior.",
-        "Si el cuento requiere un lanzamiento de ahorro, el DC iguala su hechizo a salvo DC.",
+        "Si el cuento requiere una tirada de salvación, el DC iguala su hechizo a salvo DC.",
         {
           "type": "table",
           "caption": "Spirit Tales",
@@ -4411,7 +4411,7 @@
             ],
             [
               "10",
-              "Tale of the Dragon. The target spews fire from the mouth in a 30-foot cone. Each creature in that area must make a Dexterity saving throw, taking fire damage equal to four rolls of your Bardic Inspiration die on a failed save, or half as much damage on a successful one."
+              "Tale of the Dragon. The target spews fire from the mouth in a 30-foot cone. Each creature in that area must make a Destreza saving throw, taking fire damage equal to four rolls of your Bardic Inspiration die on a failed save, or half as much damage on a successful one."
             ],
             [
               "11",
@@ -4550,8 +4550,8 @@
       "name_es": "Enthralling Performance",
       "entries_es": [
         "A partir del tercer nivel, puede cargar su rendimiento con magia seductora y fey.",
-        "Si realizas durante al menos 1 minuto, puedes intentar inspirarte en tu público cantando, recitando un poema o bailando. Al final de la actuación, elija un número de humanoides a menos de 60 pies de ustedes que lo vieron y escucharon todo, hasta un número igual a su modificador de Charisma (mínimo de uno). Cada objetivo debe tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC o ser {@condition charmed} por usted. Mientras {@condition charmed} de esta manera, el objetivo te idolatra, habla brillantemente de ti a cualquiera que habla con ella, y obstaculiza a cualquiera que se oponga a ti, aunque evita la violencia a menos que ya estuviera inclinado a luchar en tu nombre. Este efecto termina en un blanco después de 1 hora, si toma algún daño, si lo atacas, o si te da testimonio de atacar o dañar a alguno de sus aliados.",
-        "Si un objetivo tiene éxito en su lanzamiento de ahorro, el objetivo no tiene ninguna pista de que usted trató de encantarlo.",
+        "Si realizas durante al menos 1 minuto, puedes intentar inspirarte en tu público cantando, recitando un poema o bailando. Al final de la actuación, elija un número de humanoides a menos de 60 pies de ustedes que lo vieron y escucharon todo, hasta un número igual a su modificador de Charisma (mínimo de uno). Cada objetivo debe tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC o ser {@condition charmed} por usted. Mientras {@condition charmed} de esta manera, el objetivo te idolatra, habla brillantemente de ti a cualquiera que habla con ella, y obstaculiza a cualquiera que se oponga a ti, aunque evita la violencia a menos que ya estuviera inclinado a luchar en tu nombre. Este efecto termina en un blanco después de 1 hora, si toma algún daño, si lo atacas, o si te da testimonio de atacar o dañar a alguno de sus aliados.",
+        "Si un objetivo tiene éxito en sutirada de salvación, el objetivo no tiene ninguna pista de que usted trató de encantarlo.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -4595,7 +4595,7 @@
       "name_es": "Mantle of Majesty",
       "entries_es": [
         "A 6o nivel, usted gana la capacidad de taparse en una magia fey que hace que otros quieran servirle. Como una acción de bonificación, usted lanza {@spell command}], sin gastar una tragaperras de hechizo, y usted toma una apariencia de belleza descaradamente durante 1 minuto o hasta que sus [[TAG1] fines (como si estuviera {@status concentration||concentrating} en un hechizo). Durante este tiempo, usted puede lanzar {@spell command} como una acción de bonificación en cada uno de sus turnos, sin gastar una ranura de hechizo.",
-        "Cualquier criatura [[TAG0] por usted automáticamente falla su lanzamiento de ahorro en contra del {@spell command} que usted lanzó con esta característica.",
+        "Cualquier criatura [[TAG0] por usted automáticamente falla sutirada de salvación en contra del {@spell command} que usted lanzó con esta característica.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -4617,7 +4617,7 @@
       "name_es": "Unbreakable Majestad",
       "entries_es": [
         "A nivel 14, tu apariencia gana permanentemente un aspecto de otro mundo que te hace parecer más encantador y feroz.",
-        "Además, como una acción de bonificación, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que esté {@condition incapacitated}. Por la duración, cuando cualquier criatura trata de atacarte por primera vez en un turno, el atacante debe hacer un tiro de ahorro de Charisma contra tu hechizo excepto DC. En un fallido ahorro, no puede atacarte en este turno, y debe elegir un nuevo objetivo para su ataque o el ataque se desperdicia. En un ahorro exitoso, puede atacarte en este turno, pero tiene desventaja en cualquier lanzamiento de ahorro que hace contra tus hechizos en tu próximo turno.",
+        "Además, como una acción de bonificación, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que esté {@condition incapacitated}. Por la duración, cuando cualquier criatura trata de atacarte por primera vez en un turno, el atacante debe hacer una tirada de salvación de Charisma contra tu hechizo excepto DC. En un fallido ahorro, no puede atacarte en este turno, y debe elegir un nuevo objetivo para su ataque o el ataque se desperdicia. En un ahorro exitoso, puede atacarte en este turno, pero tiene desventaja en cualquiertirada de salvación que hace contra tus hechizos en tu próximo turno.",
         "Una vez que asumas esta presencia majestuosa, no puedes hacerlo de nuevo hasta que termines un breve o largo descanso."
       ]
     },
@@ -4997,8 +4997,8 @@
       "name_es": "Palabras del terror",
       "entries_es": [
         "A 3o nivel, aprendes a infundir palabras inocentes con una magia insidiosa que puede inspirar el terror.",
-        "Si hablas solo con un humanoide por lo menos 1 minuto, puedes intentar sembrar paranoia en su mente. Al final de la conversación, el objetivo debe tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC o ser [[TAG0] de usted u otra criatura de su elección. El objetivo es {@condition frightened} de esta manera durante 1 hora, hasta que sea atacado o dañado, o hasta que testifique que sus aliados sean atacados o dañados.",
-        "Si el objetivo tiene éxito en su lanzamiento de ahorro, el objetivo no tiene ninguna pista de que usted trató de asustarlo.",
+        "Si hablas solo con un humanoide por lo menos 1 minuto, puedes intentar sembrar paranoia en su mente. Al final de la conversación, el objetivo debe tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC o ser [[TAG0] de usted u otra criatura de su elección. El objetivo es {@condition frightened} de esta manera durante 1 hora, hasta que sea atacado o dañado, o hasta que testifique que sus aliados sean atacados o dañados.",
+        "Si el objetivo tiene éxito en sutirada de salvación, el objetivo no tiene ninguna pista de que usted trató de asustarlo.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -5049,8 +5049,8 @@
       "name_es": "Shadow Lore",
       "entries_es": [
         "A nivel 14, usted gana la capacidad de tejer magia oscura en sus palabras y tocar en los miedos más profundos de una criatura.",
-        "Como acción, mágicamente susurras una frase que sólo una criatura de tu elección dentro de 30 pies de ti puede escuchar. El objetivo debe hacer un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC. Sucede automáticamente si no comparte un idioma contigo o si no te oye. En un exitoso lanzamiento de ahorros, tus susurros suenan como mumbling ininteligible y no tienen efecto.",
-        "En un tiro de ahorro fallido, el objetivo es {@condition charmed} por usted durante las próximas 8 horas o hasta que usted o sus aliados lo ataquen, lo dañen o lo obliguen a hacer un tiro de ahorro. Interpreta los susurros como una descripción de su secreto más mortificante. No tienes conocimiento de este secreto, pero el objetivo está convencido de que lo sabes.",
+        "Como acción, mágicamente susurras una frase que sólo una criatura de tu elección dentro de 30 pies de ti puede escuchar. El objetivo debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. Sucede automáticamente si no comparte un idioma contigo o si no te oye. En un exitosotirada de salvacións, tus susurros suenan como mumbling ininteligible y no tienen efecto.",
+        "En una tirada de salvación fallido, el objetivo es {@condition charmed} por usted durante las próximas 8 horas o hasta que usted o sus aliados lo ataquen, lo dañen o lo obliguen a hacer una tirada de salvación. Interpreta los susurros como una descripción de su secreto más mortificante. No tienes conocimiento de este secreto, pero el objetivo está convencido de que lo sabes.",
         "La criatura [[TAG0] obedece tus mandamientos por temor a revelar su secreto. No arriesgará su vida por ti ni luchará por ti, a menos que ya esté inclinado a hacerlo. Te otorga favores y regalos que ofrecería a un amigo cercano.",
         "Cuando el efecto termina, la criatura no tiene comprensión de por qué te mantuvo en tal temor.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
@@ -5306,11 +5306,11 @@
       "level": 3,
       "header": 2,
       "entries": [
-        "You can use Dexterity instead of Strength for the attack rolls of your Unarmed Strikes. When you deal damage with an {@variantrule Unarmed Strike|XPHB}, you can deal Bludgeoning damage equal to a roll of your Bardic Inspiration die plus your Dexterity modifier, instead of the strike's normal damage. This roll doesn't expend the die."
+        "You can use Destreza instead of Strength for the attack rolls of your Unarmed Strikes. When you deal damage with an {@variantrule Unarmed Strike|XPHB}, you can deal Bludgeoning damage equal to a roll of your Bardic Inspiration die plus your Destreza modifier, instead of the strike's normal damage. This roll doesn't expend the die."
       ],
       "name_es": "Daños bárdicos",
       "entries_es": [
-        "Puedes usar Dexterity en lugar de Strength para los rollos de ataque de tus huelgas desarmadas. Cuando se hace daño con un {@variantrule Unarmed Strike|XPHB}, se puede tratar el daño Bludgeoning igual a un rollo de su Bardic Inspiration morir más su modificador de Dexterity, en lugar del daño normal de la huelga. Este rollo no gasta la muerte."
+        "Puedes usar Destreza en lugar de Strength para los rollos de ataque de tus huelgas desarmadas. Cuando se hace daño con un {@variantrule Unarmed Strike|XPHB}, se puede tratar el daño Bludgeoning igual a un rollo de su Bardic Inspiration morir más su modificador de Destreza, en lugar del daño normal de la huelga. Este rollo no gasta la muerte."
       ]
     },
     {
@@ -5392,11 +5392,11 @@
       "level": 3,
       "header": 2,
       "entries": [
-        "Your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Charisma modifiers."
+        "Your base {@variantrule Armor Class|XPHB} equals 10 plus your Destreza and Charisma modifiers."
       ],
       "name_es": "Defensa no blindada",
       "entries_es": [
-        "Su base {@variantrule Armor Class|XPHB} equivale a 10 más sus modificadores Dexterity y Charisma."
+        "Su base {@variantrule Armor Class|XPHB} equivale a 10 más sus modificadores Destreza y Charisma."
       ]
     },
     {
@@ -5448,12 +5448,12 @@
       "level": 14,
       "header": 2,
       "entries": [
-        "When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. If any creatures within 5 feet of you are making the same Dexterity saving throw, you can share this benefit with them for that save.",
+        "When you are subjected to an effect that allows you to make a Destreza saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. If any creatures within 5 feet of you are making the same Destreza saving throw, you can share this benefit with them for that save.",
         "You can't use this feature if you have the {@condition Incapacitated|XPHB} condition."
       ],
       "name_es": "Evasión líder",
       "entries_es": [
-        "Cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de Dexterity para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en el lanzamiento de ahorro y sólo medio daño si usted falla. Si cualquier criatura a 5 pies de usted está haciendo el mismo lanzamiento de ahorro de Dexterity, usted puede compartir este beneficio con ellos para ese ahorro.",
+        "Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en eltirada de salvación y sólo medio daño si usted falla. Si cualquier criatura a 5 pies de usted está haciendo el mismotirada de salvación de Destreza, usted puede compartir este beneficio con ellos para ese ahorro.",
         "No puedes usar esta característica si tienes la condición [[TAG0]."
       ]
     },
@@ -5510,7 +5510,7 @@
       "name_es": "Magia guiada",
       "entries_es": [
         "Siempre tienes los hechizos {@spell Charm Person|XPHB} y {@spell Mirror Image|XPHB} preparados.",
-        "Además, inmediatamente después de lanzar un hechizo de encantamiento o ilusión usando una ranura de hechizo, usted puede causar una criatura que puede ver dentro de 60 pies de usted mismo para hacer un lanzamiento de ahorro de sabiduría contra su hechizo salvo DC. En un ahorro fallido, el objetivo tiene la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) durante 1 minuto. El objetivo repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+        "Además, inmediatamente después de lanzar un hechizo de encantamiento o ilusión usando una ranura de hechizo, usted puede causar una criatura que puede ver dentro de 60 pies de usted mismo para hacer una tirada de salvación de sabiduría contra su hechizo salvo DC. En un ahorro fallido, el objetivo tiene la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) durante 1 minuto. El objetivo repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
         "Una vez que utilice este beneficio, no puede utilizarlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. También puede restaurar su uso de él expendiendo de un uso de su Inspiración Bardica (sin necesidad de acción)."
       ]
     },
@@ -5552,7 +5552,7 @@
       "entries_es": [
         "Siempre tienes el hechizo [[TAG0] preparado.",
         "Como un {@variantrule Bonus Action|XPHB}, usted lanza {@spell Command|XPHB} sin gastar una ranura de hechizo, y usted toma una apariencia descaradamente durante 1 minuto o hasta que su [[TAG2] termina. Durante este tiempo, se puede fundir {@spell Command|XPHB} como un {@variantrule Bonus Action|XPHB} sin gastar una ranura de hechizo.",
-        "Cualquier criatura [[TAG0] por usted automáticamente falla su lanzamiento de ahorro en contra del {@spell Command|XPHB} que usted lanzó con esta característica.",
+        "Cualquier criatura [[TAG0] por usted automáticamente falla sutirada de salvación en contra del {@spell Command|XPHB} que usted lanzó con esta característica.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. También puede restaurar su uso de la misma mediante el gasto de un nivel 3+ ranura de hechizo (no se requiere acción)."
       ]
     },
@@ -5572,7 +5572,7 @@
       ],
       "name_es": "Unbreakable Majestad",
       "entries_es": [
-        "Como {@variantrule Bonus Action|XPHB}, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que tenga la condición [[TAG1]. Por la duración, cuando cualquier criatura te golpee con un rollo de ataque por primera vez en un turno, el atacante debe tener éxito en un tiro de ahorro de Charisma contra tu hechizo salvo DC, o el ataque falla en su lugar, ya que la criatura retrocede de tu majestad.",
+        "Como {@variantrule Bonus Action|XPHB}, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que tenga la condición [[TAG1]. Por la duración, cuando cualquier criatura te golpee con un rollo de ataque por primera vez en un turno, el atacante debe tener éxito en una tirada de salvación de Charisma contra tu hechizo salvo DC, o el ataque falla en su lugar, ya que la criatura retrocede de tu majestad.",
         "Una vez que asuma esta presencia majestuosa, no puede hacerlo de nuevo hasta que termine un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}."
       ]
     },

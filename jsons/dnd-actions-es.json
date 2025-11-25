@@ -295,14 +295,14 @@
       ],
       "entries": [
         "If one creature wants to jump onto another creature, it can do so by {@action grapple||grappling}. A small or Medium creature has little chance of making a successful grapple against a Huge or Gargantuan creature, however, unless magic has granted the grappler supernatural might.",
-        "As an alternative, a suitably large opponent can be treated as terrain for the purpose of jumping onto its back or clinging to a limb. After making any ability checks necessary to get into position and onto the larger creature, the smaller creature uses its action to make a Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check contested by the target's Dexterity ({@skill Acrobatics}) check. If it wins the contest, the smaller creature successfully moves into the target creature's space, the smaller creature moves with the target and has advantage on attack rolls against it.",
-        "The smaller creature can move around within the larger creature's space, treating the space as {@quickref difficult terrain||3}. The larger creature's ability to attack the smaller creature depends on the smaller creature's location, and is left to your discretion. The larger creature can dislodge the smaller creature as an action—knocking it off, scraping it against a wall, or grabbing and throwing it—by making a Strength ({@skill Athletics}) check contested by the smaller creature's Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check. The smaller creature chooses which ability to use."
+        "As an alternative, a suitably large opponent can be treated as terrain for the purpose of jumping onto its back or clinging to a limb. After making any ability checks necessary to get into position and onto the larger creature, the smaller creature uses its action to make a Strength ({@skill Athletics}) or Destreza ({@skill Acrobatics}) check contested by the target's Destreza ({@skill Acrobatics}) check. If it wins the contest, the smaller creature successfully moves into the target creature's space, the smaller creature moves with the target and has advantage on attack rolls against it.",
+        "The smaller creature can move around within the larger creature's space, treating the space as {@quickref difficult terrain||3}. The larger creature's ability to attack the smaller creature depends on the smaller creature's location, and is left to your discretion. The larger creature can dislodge the smaller creature as an action—knocking it off, scraping it against a wall, or grabbing and throwing it—by making a Strength ({@skill Athletics}) check contested by the smaller creature's Strength ({@skill Athletics}) or Destreza ({@skill Acrobatics}) check. The smaller creature chooses which ability to use."
       ],
       "name_es": "Sube a una criatura más grande",
       "entries_es": [
         "Si una criatura quiere saltar sobre otra criatura, puede hacerlo por {@action grapple||grappling}. Una criatura pequeña o Mediana tiene pocas posibilidades de hacer un grapple exitoso contra una criatura de Huge o Gargantua, sin embargo, a menos que la magia haya concedido el poder sobrenatural del grappler.",
         "Como alternativa, un oponente convenientemente grande puede ser tratado como terreno con el propósito de saltar sobre su espalda o aferrarse a un miembro. Después de hacer cualquier verificación de habilidad necesaria para entrar en posición y sobre la criatura más grande, la criatura más pequeña utiliza su acción para hacer una fuerza ([TAG0]) o Dexteridad ({@skill Acrobatics}) cheque impugnado por la Dexteridad del objetivo ([TAG1]]) cheque. Si gana el concurso, la criatura más pequeña se mueve exitosamente en el espacio de la criatura objetivo, la criatura más pequeña se mueve con el objetivo y tiene ventaja en los rollos de ataque contra él.",
-        "La criatura más pequeña puede moverse dentro del espacio de la criatura más grande, tratando el espacio como {@quickref difficult terrain||3}. La capacidad de la criatura más grande para atacar a la criatura más pequeña depende de la ubicación de la criatura más pequeña, y se deja a su discreción. La criatura más grande puede deslegar a la criatura más pequeña como una acción, tocándola, raspándola contra una pared, o agarrarla y arrojarla, haciendo una comprobación de fuerza ([TAG1]) impugnada por la fuerza de la criatura más pequeña ([TAG1]) o Dexterity ({@skill Acrobatics}). La criatura más pequeña elige qué habilidad usar."
+        "La criatura más pequeña puede moverse dentro del espacio de la criatura más grande, tratando el espacio como {@quickref difficult terrain||3}. La capacidad de la criatura más grande para atacar a la criatura más pequeña depende de la ubicación de la criatura más pequeña, y se deja a su discreción. La criatura más grande puede deslegar a la criatura más pequeña como una acción, tocándola, raspándola contra una pared, o agarrarla y arrojarla, haciendo una comprobación de fuerza ([TAG1]) impugnada por la fuerza de la criatura más pequeña ([TAG1]) o Destreza ({@skill Acrobatics}). La criatura más pequeña elige qué habilidad usar."
       ]
     },
     {
@@ -362,12 +362,12 @@
         }
       ],
       "entries": [
-        "A creature can use a weapon attack to knock a weapon or another item from a target's grasp. The attacker makes an attack roll contested by the target's Strength ({@skill Athletics}) check or Dexterity ({@skill Acrobatics}) check. If the attacker wins the contest, the attack causes no damage or other ill effect, but the defender drops the item.",
+        "A creature can use a weapon attack to knock a weapon or another item from a target's grasp. The attacker makes an attack roll contested by the target's Strength ({@skill Athletics}) check or Destreza ({@skill Acrobatics}) check. If the attacker wins the contest, the attack causes no damage or other ill effect, but the defender drops the item.",
         "The attacker has disadvantage on its attack roll if the target is holding the item with two or more hands. The target has advantage on its ability check if it is larger than the attacking creature, or disadvantage if it is smaller."
       ],
       "name_es": "Trastorno",
       "entries_es": [
-        "Una criatura puede usar un ataque de arma para golpear un arma u otro elemento del alcance de un objetivo. El atacante hace un rollo de ataque impugnado por la fuerza del objetivo ([TAG0]]) cheque o Dexterity ({@skill Acrobatics}). Si el atacante gana el concurso, el ataque no causa ningún daño u otro efecto mal, pero el defensor deja caer el artículo.",
+        "Una criatura puede usar un ataque de arma para golpear un arma u otro elemento del alcance de un objetivo. El atacante hace un rollo de ataque impugnado por la fuerza del objetivo ([TAG0]]) cheque o Destreza ({@skill Acrobatics}). Si el atacante gana el concurso, el ataque no causa ningún daño u otro efecto mal, pero el defensor deja caer el artículo.",
         "El atacante tiene desventaja en su rollo de ataque si el objetivo está sosteniendo el artículo con dos o más manos. El objetivo tiene ventaja en su control de habilidad si es más grande que la criatura atacante, o desventaja si es más pequeño."
       ]
     },
@@ -424,11 +424,11 @@
         }
       ],
       "entries": [
-        "When you take the Dodge action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack roll made against you has disadvantage if you can see the attacker, and you make Dexterity saving throws with advantage. You lose this benefit if you are incapacitated (as explained in the appendix) or if your speed drops to 0."
+        "When you take the Dodge action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack roll made against you has disadvantage if you can see the attacker, and you make Destreza saving throws with advantage. You lose this benefit if you are incapacitated (as explained in the appendix) or if your speed drops to 0."
       ],
       "name_es": "Dodge",
       "entries_es": [
-        "Cuando tomas la acción Dodge, te centras completamente en evitar ataques. Hasta el comienzo de su próximo turno, cualquier rollo de ataque hecho contra usted tiene desventaja si usted puede ver el atacante, y usted hace Dexterity ahorro tira con ventaja. Usted pierde este beneficio si está incapacitado (como se explica en el apéndice) o si su velocidad baja a 0."
+        "Cuando tomas la acción Dodge, te centras completamente en evitar ataques. Hasta el comienzo de su próximo turno, cualquier rollo de ataque hecho contra usted tiene desventaja si usted puede ver el atacante, y usted hace Destreza ahorro tira con ventaja. Usted pierde este beneficio si está incapacitado (como se explica en el apéndice) o si su velocidad baja a 0."
       ]
     },
     {
@@ -444,12 +444,12 @@
         }
       ],
       "entries": [
-        "lf you take the Dodge action, you gain the following benefits: until the start of your next turn, any attack roll made against you has {@variantrule Disadvantage|XPHB} if you can see the attacker, and you make Dexterity {@variantrule Saving Throw|XPHB|saving throws} with {@variantrule Advantage|XPHB}.",
+        "lf you take the Dodge action, you gain the following benefits: until the start of your next turn, any attack roll made against you has {@variantrule Disadvantage|XPHB} if you can see the attacker, and you make Destreza {@variantrule Saving Throw|XPHB|saving throws} with {@variantrule Advantage|XPHB}.",
         "You lose these benefits if you have the {@condition Incapacitated|XPHB} condition or if your {@variantrule Speed|XPHB} is 0."
       ],
       "name_es": "Dodge",
       "entries_es": [
-        "Si usted toma la acción Dodge, usted gana los siguientes beneficios: hasta el comienzo de su próximo turno, cualquier rollo de ataque hecho contra usted tiene {@variantrule Disadvantage|XPHB} si usted puede ver el atacante, y usted hace Dexterity {@variantrule Saving Throw|XPHB|saving throws} con {@variantrule Advantage|XPHB}].",
+        "Si usted toma la acción Dodge, usted gana los siguientes beneficios: hasta el comienzo de su próximo turno, cualquier rollo de ataque hecho contra usted tiene {@variantrule Disadvantage|XPHB} si usted puede ver el atacante, y usted hace Destreza {@variantrule Saving Throw|XPHB|saving throws} con {@variantrule Advantage|XPHB}].",
         "Usted pierde estos beneficios si usted tiene la condición {@condition Incapacitated|XPHB} o si su {@variantrule Speed|XPHB} es 0."
       ]
     },
@@ -540,7 +540,7 @@
         }
       ],
       "entries": [
-        "A {@condition grappled} creature can use its action to escape. To do so, it must succeed on a Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check contested by your Strength ({@skill Athletics}) check."
+        "A {@condition grappled} creature can use its action to escape. To do so, it must succeed on a Strength ({@skill Athletics}) or Destreza ({@skill Acrobatics}) check contested by your Strength ({@skill Athletics}) check."
       ],
       "name_es": "Escapar de un pezón",
       "entries_es": [
@@ -560,11 +560,11 @@
         }
       ],
       "entries": [
-        "A Grappled creature can use its action to make a Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check against the grapple's escape DC, ending the {@variantrule Condition|XPHB|condition} on itself on a success. The {@variantrule Condition|XPHB|condition} also ends if the grappler has the {@condition Incapacitated|XPHB} condition or if the distance between the Grappled target and the grappler exceeds the grapple's range."
+        "A Grappled creature can use its action to make a Strength ({@skill Athletics|XPHB}) or Destreza ({@skill Acrobatics|XPHB}) check against the grapple's escape DC, ending the {@variantrule Condition|XPHB|condition} on itself on a success. The {@variantrule Condition|XPHB|condition} also ends if the grappler has the {@condition Incapacitated|XPHB} condition or if the distance between the Grappled target and the grappler exceeds the grapple's range."
       ],
       "name_es": "Escapar de un pezón",
       "entries_es": [
-        "Una criatura poblada puede utilizar su acción para hacer un Strength ([TAG0]]) o Dexterity ([TAG1]) comprobar contra el escape del grapple DC, terminando el [[TAG2] en sí mismo en un éxito. La {@variantrule Condition|XPHB|condition} también termina si el grappler tiene la condición {@condition Incapacitated|XPHB} o si la distancia entre el objetivo de Grappled y el grappler excede el rango del grapple."
+        "Una criatura poblada puede utilizar su acción para hacer un Strength ([TAG0]]) o Destreza ([TAG1]) comprobar contra el escape del grapple DC, terminando el [[TAG2] en sí mismo en un éxito. La {@variantrule Condition|XPHB|condition} también termina si el grappler tiene la condición {@condition Incapacitated|XPHB} o si la distancia entre el objetivo de Grappled y el grappler excede el rango del grapple."
       ]
     },
     {
@@ -581,7 +581,7 @@
       ],
       "entries": [
         "When you want to grab a creature or wrestle with it, you can use the {@action Attack} action to make a special melee attack, a grapple. If you're able to make multiple attacks with the {@action Attack} action, this attack replaces one of them. The target of your grapple must be no more than one size larger than you, and it must be within your reach.",
-        "Using at least one free hand, you try to seize the target by making a grapple check, a Strength ({@skill Athletics}) check contested by the target's Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check (the target chooses the ability to use). You succeed automatically if the target is {@condition incapacitated}. If you succeed, you subject the target to the {@condition grappled} condition (see the appendix). The condition specifies the things that end it, and you can release the target whenever you like (no action required).",
+        "Using at least one free hand, you try to seize the target by making a grapple check, a Strength ({@skill Athletics}) check contested by the target's Strength ({@skill Athletics}) or Destreza ({@skill Acrobatics}) check (the target chooses the ability to use). You succeed automatically if the target is {@condition incapacitated}. If you succeed, you subject the target to the {@condition grappled} condition (see the appendix). The condition specifies the things that end it, and you can release the target whenever you like (no action required).",
         {
           "type": "entries",
           "name": "Moving a Grappled Target",
@@ -597,7 +597,7 @@
       "name_es": "Grapple",
       "entries_es": [
         "Cuando usted quiere agarrar una criatura o lucha con ella, usted puede utilizar la acción {@action Attack} para hacer un ataque de melee especial, un grapple. Si usted es capaz de hacer múltiples ataques con la acción {@action Attack}, este ataque reemplaza a uno de ellos. El objetivo de tu grapa debe ser no más de un tamaño más grande que tú, y debe estar a tu alcance.",
-        "Usando por lo menos una mano libre, intenta aprovechar el objetivo haciendo un cheque de grapple, un cheque de fuerza ([TAG0]]) impugnado por la fuerza del objetivo ([TAG0]) o Dexterity ({@skill Acrobatics}) (el objetivo elige la capacidad de uso). Usted tiene éxito automáticamente si el objetivo es {@condition incapacitated}. Si tienes éxito, sujetas el objetivo a la condición {@condition grappled} (ver el apéndice). La condición especifica las cosas que lo terminan, y usted puede liberar el objetivo cuando quiera (no se requiere acción).",
+        "Usando por lo menos una mano libre, intenta aprovechar el objetivo haciendo un cheque de grapple, un cheque de fuerza ([TAG0]]) impugnado por la fuerza del objetivo ([TAG0]) o Destreza ({@skill Acrobatics}) (el objetivo elige la capacidad de uso). Usted tiene éxito automáticamente si el objetivo es {@condition incapacitated}. Si tienes éxito, sujetas el objetivo a la condición {@condition grappled} (ver el apéndice). La condición especifica las cosas que lo terminan, y usted puede liberar el objetivo cuando quiera (no se requiere acción).",
         {
           "type": "entries",
           "name": "Moving a Grappled Target",
@@ -629,7 +629,7 @@
       ],
       "name_es": "Cirujano de sanación",
       "entries_es": [
-        "Como acción, un personaje puede usar una oleada de sanación y gastar hasta la mitad de sus dados de éxito. Para cada Hit Die gastado de esta manera, el jugador roda el die y añade el modificador de la Constitución del personaje. El personaje recupera puntos de éxito iguales al total. El jugador puede decidir gastar un Hit Die adicional después de cada rollo.",
+        "Como acción, un personaje puede usar una oleada de sanación y gastar hasta la mitad de sus dados de éxito. Para cada Hit Die gastado de esta manera, el jugador roda el die y añade el modificador de Constitución del personaje. El personaje recupera puntos de éxito iguales al total. El jugador puede decidir gastar un Hit Die adicional después de cada rollo.",
         "Un personaje que usa una cirugía de curación no puede hacerlo de nuevo hasta que termine un breve o largo descanso. Bajo esta regla opcional, un personaje recupera todos los dados gastados al final de un largo descanso. Con un breve descanso, un personaje recupera Hit Dice igual a su nivel dividido por cuatro (mínimo de un dado)."
       ]
     },
@@ -790,11 +790,11 @@
         }
       ],
       "entries": [
-        "When you take the Hide action, you make a Dexterity ({@skill Stealth}) check in an attempt to hide, following the rules in {@book chapter 7 |phb|7|hiding} for hiding. If you succeed, you gain certain benefits, as described in the \"{@book Unseen Attackers and Targets|PHB|9|unseen attackers and targets}\" section in the Player's Handbook."
+        "When you take the Hide action, you make a Destreza ({@skill Stealth}) check in an attempt to hide, following the rules in {@book chapter 7 |phb|7|hiding} for hiding. If you succeed, you gain certain benefits, as described in the \"{@book Unseen Attackers and Targets|PHB|9|unseen attackers and targets}\" section in the Player's Handbook."
       ],
       "name_es": "Oculto",
       "entries_es": [
-        "Cuando usted toma la acción de Ocultar, usted hace un Dexterity ([TAG0]) comprobar en un intento de ocultar, siguiendo las reglas en {@book chapter 7 |phb|7|hiding} para ocultar. Si tienes éxito, obtendrás ciertos beneficios, como se describe en la sección \"[TAG2]\" del Manual del Jugador."
+        "Cuando usted toma la acción de Ocultar, usted hace un Destreza ([TAG0]) comprobar en un intento de ocultar, siguiendo las reglas en {@book chapter 7 |phb|7|hiding} para ocultar. Si tienes éxito, obtendrás ciertos beneficios, como se describe en la sección \"[TAG2]\" del Manual del Jugador."
       ]
     },
     {
@@ -810,7 +810,7 @@
         }
       ],
       "entries": [
-        "With the Hide action, you try to conceal yourself. To do so, you must succeed on a {@dc 15} Dexterity ({@skill Stealth|XPHB}) check while you're {@variantrule Heavily Obscured|XPHB} or behind {@variantrule Cover|XPHB|Three-Quarters Cover or Total Cover}, and you must be out of any enemy's line of sight; if you can see a creature, you can discern whether it can see you.",
+        "With the Hide action, you try to conceal yourself. To do so, you must succeed on a {@dc 15} Destreza ({@skill Stealth|XPHB}) check while you're {@variantrule Heavily Obscured|XPHB} or behind {@variantrule Cover|XPHB|Three-Quarters Cover or Total Cover}, and you must be out of any enemy's line of sight; if you can see a creature, you can discern whether it can see you.",
         "On a successful check, you have the {@condition Invisible|XPHB} condition. Make note of your check's total, which is the DC for a creature to find you with a Wisdom ({@skill Perception|XPHB}) check.",
         "You stop being hidden immediately after any of the following occurs: you make a sound louder than a whisper, an enemy finds you, you make an attack roll, or you cast a spell with a Verbal component."
       ],
@@ -1566,7 +1566,7 @@
       ],
       "name_es": "Búsqueda",
       "entries_es": [
-        "Cuando usted toma la acción de búsqueda, usted hace un cheque de la Sabiduría para discernir algo que no es obvio. La tabla de búsqueda sugiere qué habilidades son aplicables cuando usted toma esta acción, dependiendo de lo que usted está tratando de detectar.",
+        "Cuando usted toma la acción de búsqueda, usted hace un cheque de Sabiduría para discernir algo que no es obvio. La tabla de búsqueda sugiere qué habilidades son aplicables cuando usted toma esta acción, dependiendo de lo que usted está tratando de detectar.",
         {
           "type": "table",
           "caption": "Search",
@@ -1613,7 +1613,7 @@
       ],
       "entries": [
         "Using the {@action Attack} action, you can make a special melee attack to shove a creature, either to knock it {@condition prone} or push it away from you. If you're able to make multiple attacks with the {@action Attack} action, this attack replaces one of them.",
-        "The target of your shove must be no more than one size larger than you, and it must be within your reach. You make a Strength ({@skill Athletics}) check contested by the target's Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check (the target chooses the ability to use). You succeed automatically if the target is {@condition incapacitated}. If you succeed, you either knock the target {@condition prone} or push it 5 feet away from you."
+        "The target of your shove must be no more than one size larger than you, and it must be within your reach. You make a Strength ({@skill Athletics}) check contested by the target's Strength ({@skill Athletics}) or Destreza ({@skill Acrobatics}) check (the target chooses the ability to use). You succeed automatically if the target is {@condition incapacitated}. If you succeed, you either knock the target {@condition prone} or push it 5 feet away from you."
       ],
       "name_es": "Shove",
       "entries_es": [
@@ -1770,7 +1770,7 @@
         }
       ],
       "entries": [
-        "A creature can try to tumble through a hostile creature's space, ducking and weaving past the opponent. As an action or a bonus action, the tumbler makes a Dexterity ({@skill Acrobatics}) check contested by the hostile creature's Dexterity ({@skill Acrobatics}) check. If the tumbler wins the contest, it can move through the hostile creature's space once this turn."
+        "A creature can try to tumble through a hostile creature's space, ducking and weaving past the opponent. As an action or a bonus action, the tumbler makes a Destreza ({@skill Acrobatics}) check contested by the hostile creature's Destreza ({@skill Acrobatics}) check. If the tumbler wins the contest, it can move through the hostile creature's space once this turn."
       ],
       "name_es": "Tumble",
       "entries_es": [
@@ -1812,7 +1812,7 @@
         }
       ],
       "entries": [
-        "When you take the {@action Attack|XPHB} action on your turn and attack with a Light weapon, you can make one extra attack as a {@variantrule Bonus Action|XPHB} later on the same turn. That extra attack must be made with a different Light weapon, and you don't add your ability modifier to the extra attack's damage unless that modifier is negative. For example, you can attack with a {@item Shortsword|XPHB} in one hand and a {@item Dagger|XPHB} in the other using the {@action Attack|XPHB} action and a {@variantrule Bonus Action|XPHB}, but you don't add your Strength or Dexterity modifier to the damage roll of the {@variantrule Bonus Action|XPHB} unless that modifier is negative."
+        "When you take the {@action Attack|XPHB} action on your turn and attack with a Light weapon, you can make one extra attack as a {@variantrule Bonus Action|XPHB} later on the same turn. That extra attack must be made with a different Light weapon, and you don't add your ability modifier to the extra attack's damage unless that modifier is negative. For example, you can attack with a {@item Shortsword|XPHB} in one hand and a {@item Dagger|XPHB} in the other using the {@action Attack|XPHB} action and a {@variantrule Bonus Action|XPHB}, but you don't add your Strength or Destreza modifier to the damage roll of the {@variantrule Bonus Action|XPHB} unless that modifier is negative."
       ],
       "name_es": "Lucha contra dos armas",
       "entries_es": [

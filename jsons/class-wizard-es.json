@@ -2159,7 +2159,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2593,7 +2593,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -4110,7 +4110,7 @@
       "name_es": "Cambio cronal",
       "entries_es": [
         "[[TAG0]",
-        "Puedes ejercer mágicamente un control limitado sobre el flujo del tiempo alrededor de una criatura. Como reacción, después de que usted o una criatura puede ver dentro de 30 pies de usted hace un rollo de ataque, un cheque de habilidad, o un tiro de ahorro, usted puede obligar a la criatura a rerollar. Usted toma esta decisión después de ver si el rollo tiene éxito o falla. El objetivo debe utilizar el resultado del segundo rollo.",
+        "Puedes ejercer mágicamente un control limitado sobre el flujo del tiempo alrededor de una criatura. Como reacción, después de que usted o una criatura puede ver dentro de 30 pies de usted hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, usted puede obligar a la criatura a rerollar. Usted toma esta decisión después de ver si el rollo tiene éxito o falla. El objetivo debe utilizar el resultado del segundo rollo.",
         "Puede utilizar esta habilidad dos veces, y recuperar cualquier uso gastado cuando termine un descanso largo."
       ]
     },
@@ -4152,7 +4152,7 @@
       "name_es": "Estasis momentaria",
       "entries_es": [
         "[[TAG0]",
-        "Como acción, puedes forzar mágicamente a una criatura grande o más pequeña que puedas ver a menos de 60 pies de ti para hacer un lanzamiento de ahorro de la Constitución contra tu hechizo salvo DC. A menos que el lanzamiento de ahorro sea un éxito, la criatura está envuelta en un campo de energía mágica hasta el final de su próximo turno o hasta que la criatura tome cualquier daño. Mientras está encasillada de esta manera, la criatura es {@condition incapacitated} y tiene una velocidad de 0.",
+        "Como acción, puedes forzar mágicamente a una criatura grande o más pequeña que puedas ver a menos de 60 pies de ti para hacer una tirada de salvación de Constitución contra tu hechizo salvo DC. A menos que eltirada de salvación sea un éxito, la criatura está envuelta en un campo de energía mágica hasta el final de su próximo turno o hasta que la criatura tome cualquier daño. Mientras está encasillada de esta manera, la criatura es {@condition incapacitated} y tiene una velocidad de 0.",
         "Puede utilizar esta característica varias veces igual a su modificador de Inteligencia (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
@@ -4198,7 +4198,7 @@
       "name_es": "Convergent Future",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede mirar a través de posibles futuros y mágicamente tirar uno de ellos en eventos alrededor de usted, asegurando un resultado particular. Cuando usted o una criatura puede ver dentro de 60 pies de usted hace un rollo de ataque, un cheque de habilidad, o un tiro de ahorro, puede utilizar su reacción para ignorar el rollo de la muerte y decidir si el número rodado es el mínimo necesario para tener éxito o uno menos que ese número (su elección).",
+        "Usted puede mirar a través de posibles futuros y mágicamente tirar uno de ellos en eventos alrededor de usted, asegurando un resultado particular. Cuando usted o una criatura puede ver dentro de 60 pies de usted hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, puede utilizar su reacción para ignorar el rollo de la muerte y decidir si el número rodado es el mínimo necesario para tener éxito o uno menos que ese número (su elección).",
         "Cuando usas esta característica, obtienes un nivel de {@condition exhaustion}. Sólo al terminar un descanso largo se puede eliminar un nivel de [[TAG0] ganado de esta manera."
       ]
     },
@@ -4270,7 +4270,7 @@
       "name_es": "Gravity Well",
       "entries_es": [
         "[[TAG0]",
-        "Usted ha aprendido a manipular la gravedad alrededor de un ser viviente: cada vez que usted lanza un hechizo sobre una criatura, usted puede mover el objetivo 5 pies a un espacio no ocupado de su elección si el objetivo está dispuesto a moverse, el hechizo lo golpea con un ataque, o falla un tiro de ahorro contra el hechizo."
+        "Usted ha aprendido a manipular la gravedad alrededor de un ser viviente: cada vez que usted lanza un hechizo sobre una criatura, usted puede mover el objetivo 5 pies a un espacio no ocupado de su elección si el objetivo está dispuesto a moverse, el hechizo lo golpea con un ataque, o falla una tirada de salvación contra el hechizo."
       ]
     },
     {
@@ -4315,7 +4315,7 @@
       "name_es": "Evento Horizonte",
       "entries_es": [
         "[[TAG0]",
-        "Como acción, se puede emitir mágicamente un poderoso campo de energía gravitacional que agita a otras criaturas por hasta 1 minuto o hasta que su {@status concentration} termina (como si estuviera {@status concentration||concentrating} en un hechizo). Por la duración, cada vez que una criatura hostil a usted comienza su turno a menos de 30 pies de usted, debe hacer un lanzamiento de ahorro de fuerza contra su hechizo salvo DC. En un ahorro fallido, toma {@damage 2d10} daño de fuerza, y su velocidad se reduce a 0 hasta el comienzo de su próximo turno. En un ahorro exitoso, toma la mitad del daño, y cada pie que mueve este giro cuesta 2 pies adicionales de movimiento.",
+        "Como acción, se puede emitir mágicamente un poderoso campo de energía gravitacional que agita a otras criaturas por hasta 1 minuto o hasta que su {@status concentration} termina (como si estuviera {@status concentration||concentrating} en un hechizo). Por la duración, cada vez que una criatura hostil a usted comienza su turno a menos de 30 pies de usted, debe hacer una tirada de salvación de fuerza contra su hechizo salvo DC. En un ahorro fallido, toma {@damage 2d10} daño de fuerza, y su velocidad se reduce a 0 hasta el comienzo de su próximo turno. En un ahorro exitoso, toma la mitad del daño, y cada pie que mueve este giro cuesta 2 pies adicionales de movimiento.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo o hasta que expende una ranura de hechizo de 3er nivel o superior en él."
       ]
     },
@@ -4960,7 +4960,7 @@
       ],
       "name_es": "Hipnotic Gaze",
       "entries_es": [
-        "Comenzando en el segundo nivel cuando eliges esta escuela, tus palabras suaves y una mirada encantadora pueden mágicamente entristar a otra criatura. Como acción, elige una criatura que puedes ver a menos de 5 pies de ti. Si el objetivo puede verlo o escucharlo, debe tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo mago excepto DC o ser {@condition charmed} por usted hasta el final de su próximo turno. La velocidad de la criatura [[TAG0] cae a 0, y la criatura es {@condition incapacitated} y visiblemente aturdida.",
+        "Comenzando en el segundo nivel cuando eliges esta escuela, tus palabras suaves y una mirada encantadora pueden mágicamente entristar a otra criatura. Como acción, elige una criatura que puedes ver a menos de 5 pies de ti. Si el objetivo puede verlo o escucharlo, debe tener éxito en una tirada de salvación de Sabiduría contra su hechizo mago excepto DC o ser {@condition charmed} por usted hasta el final de su próximo turno. La velocidad de la criatura [[TAG0] cae a 0, y la criatura es {@condition incapacitated} y visiblemente aturdida.",
         "En turnos posteriores, puede utilizar su acción para mantener este efecto, prolongando su duración hasta el final de su próximo turno. Sin embargo, el efecto termina si te alejas más de 5 pies de la criatura, si la criatura no puede ver ni oírte, o si la criatura toma daño.",
         "Una vez que el efecto termina, o si la criatura tiene éxito en su lanzamiento inicial de ahorro contra este efecto, no puedes usar esta característica en esa criatura de nuevo hasta que termines un descanso largo."
       ]
@@ -4981,7 +4981,7 @@
       ],
       "name_es": "Instintivo Charm",
       "entries_es": [
-        "Comenzando en el sexto nivel, cuando una criatura que puedes ver dentro de 30 pies de ti hace un rollo de ataque contra ti, puedes usar tu reacción para desviar el ataque, siempre y cuando otra criatura esté dentro del alcance del ataque. El atacante debe hacer un lanzamiento de la Sabiduría contra su hechizo mago salvar a DC. En un fallido ahorro, el atacante debe apuntar a la criatura que está más cercana a ella, no incluyendo a usted o a sí mismo. Si múltiples criaturas son más cercanas, el atacante elige cuál a apuntar. En un ahorro exitoso, no puedes usar esta característica en el atacante de nuevo hasta que termines un descanso largo.",
+        "Comenzando en el sexto nivel, cuando una criatura que puedes ver dentro de 30 pies de ti hace un rollo de ataque contra ti, puedes usar tu reacción para desviar el ataque, siempre y cuando otra criatura esté dentro del alcance del ataque. El atacante debe hacer un lanzamiento de Sabiduría contra su hechizo mago salvar a DC. En un fallido ahorro, el atacante debe apuntar a la criatura que está más cercana a ella, no incluyendo a usted o a sí mismo. Si múltiples criaturas son más cercanas, el atacante elige cuál a apuntar. En un ahorro exitoso, no puedes usar esta característica en el atacante de nuevo hasta que termines un descanso largo.",
         "Usted debe elegir utilizar esta característica antes de saber si el ataque golpea o falla. Las criaturas que no pueden ser {@condition charmed} son inmunes a este efecto."
       ]
     },
@@ -5429,7 +5429,7 @@
       "name_es": "Command Undead",
       "entries_es": [
         "A partir del nivel 14, puedes usar la magia para llevar a los muertos bajo tu control, incluso los creados por otros magos. Como acción, puedes elegir un no muerto que puedas ver a menos de 60 pies de ti. Esa criatura debe hacer un lanzamiento de Charisma contra tu hechizo mago salvar a DC. Si tiene éxito, no puedes usar esta característica de nuevo. Si falla, se vuelve amigable contigo y obedece tus mandamientos hasta que vuelvas a usar esta característica.",
-        "Los muertos inteligentes son más difíciles de controlar de esta manera. Si el objetivo tiene una Inteligencia de 8 o más, tiene ventaja en el lanzamiento de ahorro. Si falla el lanzamiento de ahorro y tiene una inteligencia de 12 o más, puede repetir el lanzamiento de ahorro al final de cada hora hasta que tenga éxito y se desprenda."
+        "Los muertos inteligentes son más difíciles de controlar de esta manera. Si el objetivo tiene una Inteligencia de 8 o más, tiene ventaja en eltirada de salvación. Si falla eltirada de salvación y tiene una inteligencia de 12 o más, puede repetir eltirada de salvación al final de cada hora hasta que tenga éxito y se desprenda."
       ]
     },
     {
@@ -5938,7 +5938,7 @@
           "items": [
             "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).",
             "Your walking speed increases by 10 feet.",
-            "You have advantage on Dexterity ({@skill Acrobatics}) checks.",
+            "You have advantage on Destreza ({@skill Acrobatics}) checks.",
             "You gain a bonus to any Constitution saving throws you make to maintain {@status concentration} on a spell. The bonus equals your Intelligence modifier (minimum of +1)."
           ]
         },
@@ -5954,7 +5954,7 @@
           "items": [
             "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).",
             "Your walking speed increases by 10 feet.",
-            "You have advantage on Dexterity ({@skill Acrobatics}) checks.",
+            "You have advantage on Destreza ({@skill Acrobatics}) checks.",
             "You gain a bonus to any Constitution saving throws you make to maintain {@status concentration} on a spell. The bonus equals your Intelligence modifier (minimum of +1)."
           ]
         },
@@ -6457,7 +6457,7 @@
       ],
       "name_es": "Deflexión Arcane",
       "entries_es": [
-        "En el segundo nivel, usted ha aprendido a tejer su magia para fortificarse contra el daño. Cuando eres golpeado por un ataque o fallas un tiro de ahorro, puedes usar tu reacción para ganar un bono +2 a tu AC contra ese ataque o un bono +4 a ese lanzamiento de ahorro.",
+        "En el segundo nivel, usted ha aprendido a tejer su magia para fortificarse contra el daño. Cuando eres golpeado por un ataque o fallas una tirada de salvación, puedes usar tu reacción para ganar un bono +2 a tu AC contra ese ataque o un bono +4 a esetirada de salvación.",
         "Cuando usas esta función, no puedes lanzar hechizos que no sean cantrips hasta el final de tu próximo turno."
       ]
     },
@@ -6635,22 +6635,22 @@
           "type": "entries",
           "name": "Agility",
           "entries": [
-            "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your {@variantrule Speed|XPHB} increases by 10 feet. In addition, you have {@variantrule Advantage|XPHB} on Dexterity ({@skill Acrobatics|XPHB}) checks."
+            "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your {@variantrule Speed|XPHB} increases by 10 feet. In addition, you have {@variantrule Advantage|XPHB} on Destreza ({@skill Acrobatics|XPHB}) checks."
           ],
           "name_es": "Agilidad",
           "entries_es": [
-            "Usted gana un bono a su AC igual a su modificador de Inteligencia (mínimo de +1), y su [[TAG0] aumenta en 10 pies. Además, usted tiene {@variantrule Advantage|XPHB} en cheques Dexterity ([TAG2]])."
+            "Usted gana un bono a su AC igual a su modificador de Inteligencia (mínimo de +1), y su [[TAG0] aumenta en 10 pies. Además, usted tiene {@variantrule Advantage|XPHB} en cheques Destreza ([TAG2]])."
           ]
         },
         {
           "type": "entries",
           "name": "Bladework",
           "entries": [
-            "Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Dexterity."
+            "Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Destreza."
           ],
           "name_es": "Bladework",
           "entries_es": [
-            "Cada vez que atacas con un arma con la que tienes competencia, puedes usar tu modificador de Inteligencia para los rodillos de ataque y daño en lugar de usar Strength o Dexterity."
+            "Cada vez que atacas con un arma con la que tienes competencia, puedes usar tu modificador de Inteligencia para los rodillos de ataque y daño en lugar de usar Strength o Destreza."
           ]
         },
         {
@@ -6661,7 +6661,7 @@
           ],
           "name_es": "Focus",
           "entries_es": [
-            "Cuando usted hace un lanzamiento de ahorro de la Constitución para mantener {@status Concentration|XPHB}, puede añadir su modificador de Inteligencia al total."
+            "Cuando usted hace una tirada de salvación de Constitución para mantener {@status Concentration|XPHB}, puede añadir su modificador de Inteligencia al total."
           ]
         }
       ],
@@ -6674,22 +6674,22 @@
           "type": "entries",
           "name": "Agility",
           "entries": [
-            "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your {@variantrule Speed|XPHB} increases by 10 feet. In addition, you have {@variantrule Advantage|XPHB} on Dexterity ({@skill Acrobatics|XPHB}) checks."
+            "You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your {@variantrule Speed|XPHB} increases by 10 feet. In addition, you have {@variantrule Advantage|XPHB} on Destreza ({@skill Acrobatics|XPHB}) checks."
           ],
           "name_es": "Agilidad",
           "entries_es": [
-            "Usted gana un bono a su AC igual a su modificador de Inteligencia (mínimo de +1), y su [[TAG0] aumenta en 10 pies. Además, usted tiene {@variantrule Advantage|XPHB} en cheques Dexterity ([TAG2]])."
+            "Usted gana un bono a su AC igual a su modificador de Inteligencia (mínimo de +1), y su [[TAG0] aumenta en 10 pies. Además, usted tiene {@variantrule Advantage|XPHB} en cheques Destreza ([TAG2]])."
           ]
         },
         {
           "type": "entries",
           "name": "Bladework",
           "entries": [
-            "Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Dexterity."
+            "Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Destreza."
           ],
           "name_es": "Bladework",
           "entries_es": [
-            "Cada vez que atacas con un arma con la que tienes competencia, puedes usar tu modificador de Inteligencia para los rodillos de ataque y daño en lugar de usar Strength o Dexterity."
+            "Cada vez que atacas con un arma con la que tienes competencia, puedes usar tu modificador de Inteligencia para los rodillos de ataque y daño en lugar de usar Strength o Destreza."
           ]
         },
         {
@@ -6700,7 +6700,7 @@
           ],
           "name_es": "Focus",
           "entries_es": [
-            "Cuando usted hace un lanzamiento de ahorro de la Constitución para mantener {@status Concentration|XPHB}, puede añadir su modificador de Inteligencia al total."
+            "Cuando usted hace una tirada de salvación de Constitución para mantener {@status Concentration|XPHB}, puede añadir su modificador de Inteligencia al total."
           ]
         }
       ]
@@ -7536,7 +7536,7 @@
       ],
       "name_es": "Potent Cantrip",
       "entries_es": [
-        "Tus tiras dañinas afectan incluso a criaturas que evitan el hematoma del efecto. Cuando lanzas un bote a una criatura y te pierdes con el rollo de ataque o el objetivo tiene éxito en un tiro de ahorro contra el cantrip, el objetivo toma la mitad del daño del cantrip (si hay) pero no sufre ningún efecto adicional del cantrip."
+        "Tus tiras dañinas afectan incluso a criaturas que evitan el hematoma del efecto. Cuando lanzas un bote a una criatura y te pierdes con el rollo de ataque o el objetivo tiene éxito en una tirada de salvación contra el cantrip, el objetivo toma la mitad del daño del cantrip (si hay) pero no sufre ningún efecto adicional del cantrip."
       ]
     },
     {

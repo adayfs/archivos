@@ -856,7 +856,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo artificio que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -988,7 +988,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo artificio que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -1281,7 +1281,7 @@
       "name_es": "Flash of Genius",
       "entries_es": [
         "[[TAG0]",
-        "Has ganado la capacidad de encontrar soluciones bajo presión. Cuando usted u otra criatura puede ver dentro de 30 pies de usted hace un cheque de habilidad o un tiro de ahorro, puede utilizar su reacción para añadir su modificador de inteligencia al rollo.",
+        "Has ganado la capacidad de encontrar soluciones bajo presión. Cuando usted u otra criatura puede ver dentro de 30 pies de usted hace un cheque de habilidad o una tirada de salvación, puede utilizar su reacción para añadir su modificador de inteligencia al rollo.",
         "Puede utilizar esta característica varias veces igual a su modificador de Inteligencia (mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
@@ -2021,11 +2021,11 @@
       "level": 3,
       "type": "item",
       "entries": [
-        "You have advantage on Dexterity ({@skill Stealth}) checks. If the armor normally imposes disadvantage on such checks, the advantage and disadvantage cancel each other, as normal."
+        "You have advantage on Destreza ({@skill Stealth}) checks. If the armor normally imposes disadvantage on such checks, the advantage and disadvantage cancel each other, as normal."
       ],
       "name_es": "Campo de amortiguación",
       "entries_es": [
-        "Usted tiene ventaja en los cheques de Dexterity ([TAG0]). Si la armadura normalmente impone desventaja en tales cheques, la ventaja y desventaja se cancelan, como normal."
+        "Usted tiene ventaja en los cheques de Destreza ([TAG0]). Si la armadura normalmente impone desventaja en tales cheques, la ventaja y desventaja se cancelan, como normal."
       ]
     },
     {
@@ -2153,7 +2153,7 @@
       "entries": [
         "{@i 3rd-level Armorer feature}",
         "You can customize your Arcane Armor. When you do so, choose one of the following armor models: Guardian or Infiltrator. The model you choose gives you special benefits while you wear it.",
-        "Each model includes a special weapon. When you attack with that weapon, you can add your Intelligence modifier, instead of Strength or Dexterity, to the attack and damage rolls.",
+        "Each model includes a special weapon. When you attack with that weapon, you can add your Intelligence modifier, instead of Strength or Destreza, to the attack and damage rolls.",
         "You can change the armor's model whenever you finish a short or long rest, provided you have {@item smith's tools|PHB} in hand.",
         {
           "type": "entries",
@@ -2686,7 +2686,7 @@
       ],
       "name_es": "Guardian",
       "entries_es": [
-        "Cuando una criatura enorme o pequeña puede ver termina su turno a menos de 30 pies de usted, puede utilizar su reacción para forzarla mágicamente para hacer un lanzamiento de ahorro de fuerza contra su hechizo salvo DC. En un fallido ahorro, usted tira de la criatura hasta 25 pies directamente a un espacio no ocupado. Si tiras el blanco a un espacio a 5 pies de ti, puedes hacer un ataque de arma melee contra él como parte de esta reacción.",
+        "Cuando una criatura enorme o pequeña puede ver termina su turno a menos de 30 pies de usted, puede utilizar su reacción para forzarla mágicamente para hacer una tirada de salvación de fuerza contra su hechizo salvo DC. En un fallido ahorro, usted tira de la criatura hasta 25 pies directamente a un espacio no ocupado. Si tiras el blanco a un espacio a 5 pies de ti, puedes hacer un ataque de arma melee contra él como parte de esta reacción.",
         "Usted puede utilizar esta reacción un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados de ella cuando termina un descanso largo."
       ]
     },
@@ -2920,7 +2920,7 @@
           "rows": [
             [
               "{@object Eldritch Cannon, Flamethrower|TCE|Flamethrower}",
-              "The cannon exhales fire in an adjacent 15-foot cone that you designate. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
+              "The cannon exhales fire in an adjacent 15-foot cone that you designate. Each creature in that area must make a Destreza saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
             ],
             [
               "{@object Eldritch Cannon, Force Ballista|TCE|Force Ballista}",
@@ -2937,7 +2937,7 @@
       "entries_es": [
         "A 3o nivel, aprendes a crear un cañón mágico. Utilizando {@item woodcarver's tools|PHB} o {@item smith's tools|PHB}, puedes tomar una acción para crear mágicamente un cañón de eldritch pequeño o pequeño en un espacio no ocupado en una superficie horizontal a 5 pies de ti. Un pequeño cañón de eldritch ocupa su espacio, y un pequeño se puede sostener en una mano.",
         "Una vez que creas un cañón, no puedes hacerlo de nuevo hasta que termines un descanso largo o hasta que expongas una ranura de hechizo de primer nivel o superior. Usted puede tener sólo un cañón a la vez y no puede crear uno mientras su cañón está presente.",
-        "El cañón es un objeto mágico. Independientemente de su tamaño, el cañón tiene un AC de 18 y un número de puntos de éxito igual a cinco veces su nivel de artificio. Es inmune al daño venenoso y al daño psíquico, y todas las condiciones. Si se ve obligado a hacer un cheque de habilidad o un lanzamiento de ahorro, trate todas sus puntuaciones de habilidad como 10 (+0). Si el hechizo {@spell mending} es lanzado en él, recupera {@dice 2d6} puntos de éxito. Desaparece si se reduce a 0 puntos de impacto o después de 1 hora. Puedes descartarlo temprano como una acción.",
+        "El cañón es un objeto mágico. Independientemente de su tamaño, el cañón tiene un AC de 18 y un número de puntos de éxito igual a cinco veces su nivel de artificio. Es inmune al daño venenoso y al daño psíquico, y todas las condiciones. Si se ve obligado a hacer un cheque de habilidad o una tirada de salvación, trate todas sus puntuaciones de habilidad como 10 (+0). Si el hechizo {@spell mending} es lanzado en él, recupera {@dice 2d6} puntos de éxito. Desaparece si se reduce a 0 puntos de impacto o después de 1 hora. Puedes descartarlo temprano como una acción.",
         "Cuando creas el cañón, determinas su apariencia y si tiene piernas. Usted también decide qué tipo es, eligiendo de las opciones en la tabla Eldritch Cannons. En cada uno de sus turnos, puede tomar una acción de bonificación para hacer que el cañón se active si usted está a menos de 60 pies de ella. Como parte de la misma acción de bonificación, puede dirigir el cañón para caminar o subir hasta 15 pies a un espacio no ocupado, siempre que tenga piernas.",
         {
           "type": "table",
@@ -2953,7 +2953,7 @@
           "rows": [
             [
               "{@object Eldritch Cannon, Flamethrower|TCE|Flamethrower}",
-              "The cannon exhales fire in an adjacent 15-foot cone that you designate. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
+              "The cannon exhales fire in an adjacent 15-foot cone that you designate. Each creature in that area must make a Destreza saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
             ],
             [
               "{@object Eldritch Cannon, Force Ballista|TCE|Force Ballista}",
@@ -3039,7 +3039,7 @@
           "type": "list",
           "items": [
             "The cannon's damage rolls all increase by {@damage 1d8}.",
-            "As an action, you can command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Dexterity saving throw against your spell save DC, taking {@damage 3d8} force damage on a failed save or half as much damage on a successful one."
+            "As an action, you can command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Destreza saving throw against your spell save DC, taking {@damage 3d8} force damage on a failed save or half as much damage on a successful one."
           ]
         }
       ],
@@ -3050,7 +3050,7 @@
           "type": "list",
           "items": [
             "The cannon's damage rolls all increase by {@damage 1d8}.",
-            "As an action, you can command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Dexterity saving throw against your spell save DC, taking {@damage 3d8} force damage on a failed save or half as much damage on a successful one."
+            "As an action, you can command the cannon to detonate if you are within 60 feet of it. Doing so destroys the cannon and forces each creature within 20 feet of it to make a Destreza saving throw against your spell save DC, taking {@damage 3d8} force damage on a failed save or half as much damage on a successful one."
           ]
         }
       ]
@@ -3172,7 +3172,7 @@
           "type": "list",
           "items": [
             "You gain proficiency with {@filter martial weapons|items|type=martial weapon}.",
-            "When you attack with a magic weapon, you can use your Intelligence modifier, instead of Strength or Dexterity modifier, for the attack and damage rolls."
+            "When you attack with a magic weapon, you can use your Intelligence modifier, instead of Strength or Destreza modifier, for the attack and damage rolls."
           ]
         }
       ],
@@ -3183,7 +3183,7 @@
           "type": "list",
           "items": [
             "You gain proficiency with {@filter martial weapons|items|type=martial weapon}.",
-            "When you attack with a magic weapon, you can use your Intelligence modifier, instead of Strength or Dexterity modifier, for the attack and damage rolls."
+            "When you attack with a magic weapon, you can use your Intelligence modifier, instead of Strength or Destreza modifier, for the attack and damage rolls."
           ]
         }
       ]

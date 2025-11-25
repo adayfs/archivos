@@ -1703,7 +1703,7 @@
         {
           "type": "list",
           "items": [
-            "You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.",
+            "You can use Destreza instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.",
             "You can roll a {@dice d4} in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table.",
             "When you use the {@action Attack} action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the {@action Attack} action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn."
           ]
@@ -1717,7 +1717,7 @@
         {
           "type": "list",
           "items": [
-            "You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.",
+            "You can use Destreza instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.",
             "You can roll a {@dice d4} in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table.",
             "When you use the {@action Attack} action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the {@action Attack} action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn."
           ]
@@ -1734,7 +1734,7 @@
       "classSource": "PHB",
       "level": 1,
       "entries": [
-        "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier."
+        "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Destreza modifier + your Wisdom modifier."
       ],
       "name_es": "Defensa no blindada",
       "entries_es": [
@@ -1856,7 +1856,7 @@
         "A partir del segundo nivel, su entrenamiento le permite aprovechar la energía mística de ki. Su acceso a esta energía está representado por varios puntos de ki. Su nivel monje determina el número de puntos que tiene, como se muestra en la columna Ki Points de la tabla Monk.",
         "Puedes gastar estos puntos para alimentar varias características de ki. Empiezas a conocer tres características tales: Flurry of Blows, Patient Defense y Step of the Wind. Usted aprende más características de ki mientras usted gana niveles en esta clase.",
         "Cuando pasas un punto de qui, no está disponible hasta que termines un breve o largo descanso, al final de lo cual sacas todo tu ki gastado de nuevo en ti mismo. Debes pasar al menos 30 minutos del resto meditando para recuperar tus puntos de ki.",
-        "Algunas de sus características de ki requieren que su objetivo haga un lanzamiento de ahorro para resistir los efectos de la característica. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+        "Algunas de sus características de ki requieren que su objetivo haga una tirada de salvación para resistir los efectos de la característica. Eltirada de salvación DC se calcula de la siguiente manera:",
         {
           "type": "abilityDc",
           "name": "Ki",
@@ -1967,7 +1967,7 @@
       "classSource": "PHB",
       "level": 3,
       "entries": [
-        "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by {@dice 1d10} + your Dexterity modifier + your monk level.",
+        "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by {@dice 1d10} + your Destreza modifier + your monk level.",
         "If you reduce the damage to 0, you can catch the missile if it is small enough for you to hold in one hand and you have at least one hand free. If you catch a missile in this way, you can spend 1 ki point to make a ranged attack (range 20/60 feet) with the weapon or piece of ammunition you just caught, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the missile counts as a monk weapon for the attack."
       ],
       "name_es": "Desvío Misiles",
@@ -2119,7 +2119,7 @@
       ],
       "name_es": "Strike impresionante",
       "entries_es": [
-        "A partir del quinto nivel, puede interferir con el flujo de ki en el cuerpo de un oponente. Cuando golpeas a otra criatura con un simple ataque de armas, puedes pasar 1 punto de ki para intentar una huelga impresionante. El objetivo debe tener éxito en un lanzamiento de la Constitución o ser {@condition stunned} hasta el final de su próximo turno."
+        "A partir del quinto nivel, puede interferir con el flujo de ki en el cuerpo de un oponente. Cuando golpeas a otra criatura con un simple ataque de armas, puedes pasar 1 punto de ki para intentar una huelga impresionante. El objetivo debe tener éxito en un lanzamiento de Constitución o ser {@condition stunned} hasta el final de su próximo turno."
       ]
     },
     {
@@ -2163,11 +2163,11 @@
       "classSource": "PHB",
       "level": 7,
       "entries": [
-        "At 7th level, your instinctive agility lets you dodge out of the way of certain area effects, such as a blue dragon's lightning breath or a {@spell fireball} spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
+        "At 7th level, your instinctive agility lets you dodge out of the way of certain area effects, such as a blue dragon's lightning breath or a {@spell fireball} spell. When you are subjected to an effect that allows you to make a Destreza saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
       ],
       "name_es": "Evasión",
       "entries_es": [
-        "En el séptimo nivel, su agilidad instintiva le permite alejarse del camino de ciertos efectos de la zona, como el rayo de un dragón azul o un hechizo {@spell fireball}. Cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de Dexterity para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en el lanzamiento de ahorro, y sólo medio daño si usted falla."
+        "En el séptimo nivel, su agilidad instintiva le permite alejarse del camino de ciertos efectos de la zona, como el rayo de un dragón azul o un hechizo {@spell fireball}. Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en eltirada de salvación, y sólo medio daño si usted falla."
       ]
     },
     {
@@ -2306,7 +2306,7 @@
       "name_es": "Diamond Soul",
       "entries_es": [
         "Comenzando a nivel 14, su dominio de ki te otorga competencia en todos los lanzamientos de ahorro.",
-        "Además, cada vez que haces un lanzamiento de ahorro y fallas, puedes pasar 1 punto ki para rerollarlo y tomar el segundo resultado."
+        "Además, cada vez que haces una tirada de salvación y fallas, puedes pasar 1 punto ki para rerollarlo y tomar el segundo resultado."
       ]
     },
     {
@@ -2445,11 +2445,11 @@
       "level": 1,
       "header": 2,
       "entries": [
-        "You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your {@variantrule Unarmed Strike|XPHB}, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC."
+        "You can use your Destreza modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your {@variantrule Unarmed Strike|XPHB}, you can use your Destreza modifier instead of your Strength modifier to determine the save DC."
       ],
       "name_es": "Dexterous Attacks",
       "entries_es": [
-        "Puede utilizar su modificador de Dexterity en lugar de su modificador de Strength para los rodillos de ataque y daño de sus huelgas desarmadas y armas Monk. Además, cuando utiliza la opción Grapple o Shove de su [[TAG0], puede utilizar su modificador de Dexterity en lugar de su modificador de Strength para determinar el DC guardado."
+        "Puede utilizar su modificador de Destreza en lugar de su modificador de Strength para los rodillos de ataque y daño de sus huelgas desarmadas y armas Monk. Además, cuando utiliza la opción Grapple o Shove de su [[TAG0], puede utilizar su modificador de Destreza en lugar de su modificador de Strength para determinar el DC guardado."
       ]
     },
     {
@@ -2575,7 +2575,7 @@
       "classSource": "XPHB",
       "level": 1,
       "entries": [
-        "While you aren't wearing armor or wielding a {@item Shield|XPHB}, your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Wisdom modifiers."
+        "While you aren't wearing armor or wielding a {@item Shield|XPHB}, your base {@variantrule Armor Class|XPHB} equals 10 plus your Destreza and Wisdom modifiers."
       ],
       "name_es": "Defensa no blindada",
       "entries_es": [
@@ -2655,7 +2655,7 @@
         "Su enfoque y entrenamiento marcial le permiten aprovechar un pozo de energía extraordinaria dentro de usted mismo. Esta energía está representada por Focus Points. Su nivel Monk determina el número de puntos que tiene, como se muestra en la columna Focus Points de la tabla Características Monk.",
         "Usted puede gastar estos puntos para mejorar o alimentar ciertas características Monk. Empiezas a conocer tres características tales: Flurry of Blows, Patient Defense y Step of the Wind, cada una de las cuales se detalla a continuación.",
         "Cuando usted expulsa un punto focal, no está disponible hasta que termine un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}], al final de lo cual usted recupera todos sus puntos gastados.",
-        "Algunas características que usan Focus Points requieren que tu objetivo haga un lanzamiento de ahorro. El DC ahorra igual a 8 más su modificador de Sabiduría y {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+        "Algunas características que usan Focus Points requieren que tu objetivo haga una tirada de salvación. El DC ahorra igual a 8 más su modificador de Sabiduría y {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
         {
           "type": "entries",
           "entries": [
@@ -2783,13 +2783,13 @@
         "name_es": "Focus Point"
       },
       "entries": [
-        "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to reduce the attack's total damage against you. The reduction equals {@dice 1d10} plus your Dexterity modifier and Monk level.",
-        "If you reduce the damage to 0, you can expend 1 Focus Point to redirect some of the attack's force. If you do so, choose a creature you can see within 5 feet of yourself if the attack was a melee attack or a creature you can see within 60 feet of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover} if the attack was a ranged attack. That creature must succeed on a Dexterity saving throw or take damage equal to two rolls of your Martial Arts die plus your Dexterity modifier. The damage is the same type dealt by the attack."
+        "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to reduce the attack's total damage against you. The reduction equals {@dice 1d10} plus your Destreza modifier and Monk level.",
+        "If you reduce the damage to 0, you can expend 1 Focus Point to redirect some of the attack's force. If you do so, choose a creature you can see within 5 feet of yourself if the attack was a melee attack or a creature you can see within 60 feet of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover} if the attack was a ranged attack. That creature must succeed on a Destreza saving throw or take damage equal to two rolls of your Martial Arts die plus your Destreza modifier. The damage is the same type dealt by the attack."
       ],
       "name_es": "Deflect Attacks",
       "entries_es": [
-        "Cuando un rollo de ataque te golpea y su daño incluye Bludgeoning, Piercing o Slashing daño, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño total del ataque contra ti. La reducción es igual {@dice 1d10} más su modificador de Dexterity y nivel de Monk.",
-        "Si reduce el daño a 0, puede enviar 1 punto focal para redirigir parte de la fuerza del ataque. Si lo haces, elige una criatura que puedes ver a menos de 5 pies de ti mismo si el ataque fue un simple ataque o una criatura que puedes ver dentro de 60 pies de ti mismo que no está detrás {@variantrule Cover|XPHB|Total Cover} si el ataque fue un ataque extendido. Esa criatura debe tener éxito en un lanzamiento de ahorro de Dexterity o tomar el daño igual a dos rollos de sus Artes Marciales mueren más su modificador de Dexterity. El daño es el mismo tipo que el ataque."
+        "Cuando un rollo de ataque te golpea y su daño incluye Bludgeoning, Piercing o Slashing daño, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño total del ataque contra ti. La reducción es igual {@dice 1d10} más su modificador de Destreza y nivel de Monk.",
+        "Si reduce el daño a 0, puede enviar 1 punto focal para redirigir parte de la fuerza del ataque. Si lo haces, elige una criatura que puedes ver a menos de 5 pies de ti mismo si el ataque fue un simple ataque o una criatura que puedes ver dentro de 60 pies de ti mismo que no está detrás {@variantrule Cover|XPHB|Total Cover} si el ataque fue un ataque extendido. Esa criatura debe tener éxito en una tirada de salvación de Destreza o tomar el daño igual a dos rollos de sus Artes Marciales mueren más su modificador de Destreza. El daño es el mismo tipo que el ataque."
       ]
     },
     {
@@ -2878,7 +2878,7 @@
       ],
       "name_es": "Strike impresionante",
       "entries_es": [
-        "Una vez por turno cuando golpeas a una criatura con un arma Monk o un {@variantrule Unarmed Strike|XPHB}, puedes enviar 1 punto focal para intentar una huelga impresionante. El objetivo debe hacer un lanzamiento de la Constitución. En un ahorro fallido, el objetivo tiene la condición {@condition Stunned|XPHB} hasta el comienzo de su próximo turno. En un ahorro exitoso, el objetivo {@variantrule Speed|XPHB} se reduce a la mitad hasta el comienzo de su próximo turno, y el próximo lanzamiento de ataque hecho contra el objetivo antes de entonces tiene {@variantrule Advantage|XPHB}."
+        "Una vez por turno cuando golpeas a una criatura con un arma Monk o un {@variantrule Unarmed Strike|XPHB}, puedes enviar 1 punto focal para intentar una huelga impresionante. El objetivo debe hacer un lanzamiento de Constitución. En un ahorro fallido, el objetivo tiene la condición {@condition Stunned|XPHB} hasta el comienzo de su próximo turno. En un ahorro exitoso, el objetivo {@variantrule Speed|XPHB} se reduce a la mitad hasta el comienzo de su próximo turno, y el próximo lanzamiento de ataque hecho contra el objetivo antes de entonces tiene {@variantrule Advantage|XPHB}."
       ]
     },
     {
@@ -2925,12 +2925,12 @@
       "classSource": "XPHB",
       "level": 7,
       "entries": [
-        "When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail.",
+        "When you're subjected to an effect that allows you to make a Destreza saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail.",
         "You don't benefit from this feature if you have the {@condition Incapacitated|XPHB} condition."
       ],
       "name_es": "Evasión",
       "entries_es": [
-        "Cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de Dexterity para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en el lanzamiento de ahorro y sólo medio daño si falla.",
+        "Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si tiene éxito en eltirada de salvación y sólo medio daño si falla.",
         "No te beneficias de esta característica si tienes la condición [[TAG0]."
       ]
     },
@@ -3225,7 +3225,7 @@
       "name_es": "Survivor disciplinado",
       "entries_es": [
         "Su disciplina física y mental le otorga competencia en todos los lanzamientos de ahorro.",
-        "Además, cada vez que haces un lanzamiento de ahorro y fallas, puedes enviar 1 Focus Point para rerollarlo, y debes usar el nuevo rollo."
+        "Además, cada vez que haces una tirada de salvación y fallas, puedes enviar 1 Focus Point para rerollarlo, y debes usar el nuevo rollo."
       ]
     },
     {
@@ -3328,7 +3328,7 @@
       "classSource": "XPHB",
       "level": 20,
       "entries": [
-        "You have developed your body and mind to new heights. Your Dexterity and Wisdom scores increase by 4, to a maximum of 25."
+        "You have developed your body and mind to new heights. Your Destreza and Wisdom scores increase by 4, to a maximum of 25."
       ],
       "name_es": "Cuerpo y mente",
       "entries_es": [
@@ -3460,14 +3460,14 @@
       "header": 1,
       "entries": [
         "{@i 3rd-level Way of the Ascendant Dragon feature}",
-        "You can channel destructive waves of energy, like those created by the dragons you emulate. When you take the {@action Attack} action on your turn, you can replace one of the attacks with an exhalation of draconic energy in either a 20-foot cone or a 30-foot line that is 5 feet wide (your choice). Choose a damage type: acid, cold, fire, lightning, or poison. Each creature in that area must make a Dexterity saving throw against your ki save DC, taking damage of the chosen type equal to two rolls of your Martial Arts die on a failed save, or half as much damage on a successful one.",
+        "You can channel destructive waves of energy, like those created by the dragons you emulate. When you take the {@action Attack} action on your turn, you can replace one of the attacks with an exhalation of draconic energy in either a 20-foot cone or a 30-foot line that is 5 feet wide (your choice). Choose a damage type: acid, cold, fire, lightning, or poison. Each creature in that area must make a Destreza saving throw against your ki save DC, taking damage of the chosen type equal to two rolls of your Martial Arts die on a failed save, or half as much damage on a successful one.",
         "At 11th level, the damage of this feature increases to three rolls of your Martial Arts die.",
         "You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest. While you have no uses available, you can spend 2 ki points to use this feature again."
       ],
       "name_es": "Respiración del Dragón",
       "entries_es": [
         "[[TAG0]",
-        "Puedes canalizar ondas destructivas de energía, como las creadas por los dragones que emulas. Cuando usted toma la acción [[TAG0] en su turno, puede reemplazar uno de los ataques con una exhalación de energía dracónica en un cono de 20 pies o una línea de 30 pies de ancho (su elección). Elija un tipo de daño: ácido, frío, fuego, relámpago o veneno. Cada criatura en ese área debe hacer un lanzamiento de ahorro de Dexterity contra su ki ahorre DC, tomando el daño del tipo elegido igual a dos rollos de sus Artes Marciales muere en un ahorro fallido, o la mitad de daño en un éxito.",
+        "Puedes canalizar ondas destructivas de energía, como las creadas por los dragones que emulas. Cuando usted toma la acción [[TAG0] en su turno, puede reemplazar uno de los ataques con una exhalación de energía dracónica en un cono de 20 pies o una línea de 30 pies de ancho (su elección). Elija un tipo de daño: ácido, frío, fuego, relámpago o veneno. Cada criatura en ese área debe hacer una tirada de salvación de Destreza contra su ki ahorre DC, tomando el daño del tipo elegido igual a dos rollos de sus Artes Marciales muere en un ahorro fallido, o la mitad de daño en un éxito.",
         "A 11o nivel, el daño de esta característica aumenta a tres rollos de sus Artes Marciales mueren.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo. Si bien no tiene usos disponibles, puede pasar 2 puntos ki para usar esta característica de nuevo."
       ]
@@ -3652,7 +3652,7 @@
             {
               "type": "item",
               "name": "Explosive Fury",
-              "entry": "When you activate your Aspect of the Wyrm, draconic fury explodes from you. Choose any number of creatures you can see in your aura. Each of those creatures must succeed on a Dexterity saving throw against your ki save DC or take {@damage 3d10} acid, cold, fire, lightning, or poison damage (your choice).",
+              "entry": "When you activate your Aspect of the Wyrm, draconic fury explodes from you. Choose any number of creatures you can see in your aura. Each of those creatures must succeed on a Destreza saving throw against your ki save DC or take {@damage 3d10} acid, cold, fire, lightning, or poison damage (your choice).",
               "name_es": "Furia explosiva"
             }
           ]
@@ -3681,7 +3681,7 @@
             {
               "type": "item",
               "name": "Explosive Fury",
-              "entry": "When you activate your Aspect of the Wyrm, draconic fury explodes from you. Choose any number of creatures you can see in your aura. Each of those creatures must succeed on a Dexterity saving throw against your ki save DC or take {@damage 3d10} acid, cold, fire, lightning, or poison damage (your choice).",
+              "entry": "When you activate your Aspect of the Wyrm, draconic fury explodes from you. Choose any number of creatures you can see in your aura. Each of those creatures must succeed on a Destreza saving throw against your ki save DC or take {@damage 3d10} acid, cold, fire, lightning, or poison damage (your choice).",
               "name_es": "Furia explosiva"
             }
           ]
@@ -4387,7 +4387,7 @@
         {
           "type": "list",
           "items": [
-            "It must succeed on a Dexterity saving throw or be knocked {@condition prone}.",
+            "It must succeed on a Destreza saving throw or be knocked {@condition prone}.",
             "It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.",
             "It can't take reactions until the end of your next turn."
           ]
@@ -4399,7 +4399,7 @@
         {
           "type": "list",
           "items": [
-            "It must succeed on a Dexterity saving throw or be knocked {@condition prone}.",
+            "It must succeed on a Destreza saving throw or be knocked {@condition prone}.",
             "It must make a Strength saving throw. If it fails, you can push it up to 15 feet away from you.",
             "It can't take reactions until the end of your next turn."
           ]
@@ -4441,7 +4441,7 @@
       ],
       "name_es": "Tranquility",
       "entries_es": [
-        "A partir del 11o nivel, puedes entrar en una meditación especial que te rodea con un aura de paz. Al final de un largo descanso, usted gana el efecto de un [[TAG0] hechizo que dura hasta el comienzo de su próximo descanso largo (el hechizo puede terminar temprano como normal). El lanzamiento de ahorro DC para el hechizo es igual a 8 + su modificador de Sabiduría + su bonificación de competencia."
+        "A partir del 11o nivel, puedes entrar en una meditación especial que te rodea con un aura de paz. Al final de un largo descanso, usted gana el efecto de un [[TAG0] hechizo que dura hasta el comienzo de su próximo descanso largo (el hechizo puede terminar temprano como normal). Eltirada de salvación DC para el hechizo es igual a 8 + su modificador de Sabiduría + su bonificación de competencia."
       ]
     },
     {
@@ -4466,7 +4466,7 @@
       ],
       "name_es": "Palmera descarada",
       "entries_es": [
-        "Ganas la habilidad de establecer vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con una huelga desarmada, puedes pasar 3 puntos de ki para comenzar estas vibraciones imperceptibles, que duran varios días igual a tu nivel monje. Las vibraciones son inofensivas a menos que utilices tu acción para terminarlas. Para hacerlo, usted y el objetivo deben estar en el mismo plano de la existencia. Cuando usas esta acción, la criatura debe hacer un lanzamiento de la Constitución. Si falla, se reduce a 0 puntos de éxito. Si tiene éxito, se necesita [[TAG0] daño necrótico.",
+        "Ganas la habilidad de establecer vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con una huelga desarmada, puedes pasar 3 puntos de ki para comenzar estas vibraciones imperceptibles, que duran varios días igual a tu nivel monje. Las vibraciones son inofensivas a menos que utilices tu acción para terminarlas. Para hacerlo, usted y el objetivo deben estar en el mismo plano de la existencia. Cuando usas esta acción, la criatura debe hacer un lanzamiento de Constitución. Si falla, se reduce a 0 puntos de éxito. Si tiene éxito, se necesita [[TAG0] daño necrótico.",
         "Usted puede tener sólo una criatura bajo el efecto de esta característica a la vez. Usted puede elegir terminar las vibraciones inofensivamente sin usar una acción."
       ]
     },
@@ -4630,7 +4630,7 @@
       ],
       "name_es": "Hora de Reaping",
       "entries_es": [
-        "A 6o nivel, usted gana la capacidad de desatar o aterrorizar a los que están a su alrededor como una acción, porque su alma ha sido tocada por la sombra de la muerte. Cuando usted toma esta acción, cada criatura dentro de 30 pies de usted que puede ver usted debe tener éxito en un lanzamiento de ahorro de la Sabiduría o ser {@condition frightened} de usted hasta el final de su próximo turno."
+        "A 6o nivel, usted gana la capacidad de desatar o aterrorizar a los que están a su alrededor como una acción, porque su alma ha sido tocada por la sombra de la muerte. Cuando usted toma esta acción, cada criatura dentro de 30 pies de usted que puede ver usted debe tener éxito en una tirada de salvación de Sabiduría o ser {@condition frightened} de usted hasta el final de su próximo turno."
       ]
     },
     {
@@ -4674,7 +4674,7 @@
       ],
       "name_es": "Touch of the Long Death",
       "entries_es": [
-        "A partir del nivel 17, tu tacto puede canalizar la energía de la muerte en una criatura. Como acción, tocas a una criatura a 5 pies de ti, y gastas 1 a 10 puntos de qui. El objetivo debe hacer un lanzamiento de ahorro de la Constitución, y toma [[TAG0] daño necroético por punto ki gastado en un ahorro fallido, o la mitad del daño en un éxito."
+        "A partir del nivel 17, tu tacto puede canalizar la energía de la muerte en una criatura. Como acción, tocas a una criatura a 5 pies de ti, y gastas 1 a 10 puntos de qui. El objetivo debe hacer una tirada de salvación de Constitución, y toma [[TAG0] daño necroético por punto ki gastado en un ahorro fallido, o la mitad del daño en un éxito."
       ]
     },
     {
@@ -4726,7 +4726,7 @@
       },
       "entries": [
         "{@i 3rd-level Way of the Astral Self feature}",
-        "Your mastery of your ki allows you to summon a portion of your astral self. As a bonus action, you can spend 1 ki point to summon the arms of your astral self. When you do so, each creature of your choice that you can see within 10 feet of you must succeed on a Dexterity saving throw or take force damage equal to two rolls of your Martial Arts die.",
+        "Your mastery of your ki allows you to summon a portion of your astral self. As a bonus action, you can spend 1 ki point to summon the arms of your astral self. When you do so, each creature of your choice that you can see within 10 feet of you must succeed on a Destreza saving throw or take force damage equal to two rolls of your Martial Arts die.",
         "For 10 minutes, these spectral arms hover near your shoulders or surround your arms (your choice). You determine the arms' appearance, and they vanish early if you are {@condition incapacitated} or die.",
         "While the spectral arms are present, you gain the following benefits:",
         {
@@ -4735,14 +4735,14 @@
             "You can use your Wisdom modifier in place of your Strength modifier when making Strength checks and Strength saving throws.",
             "You can use the spectral arms to make unarmed strikes.",
             "When you make an unarmed strike with the arms on your turn, your reach for it is 5 feet greater than normal.",
-            "The unarmed strikes you make with the arms can use your Wisdom modifier in place of your Strength or Dexterity modifier for the attack and damage rolls, and their damage type is force."
+            "The unarmed strikes you make with the arms can use your Wisdom modifier in place of your Strength or Destreza modifier for the attack and damage rolls, and their damage type is force."
           ]
         }
       ],
       "name_es": "Armas del Ser Astral",
       "entries_es": [
         "[[TAG0]",
-        "Su dominio de su ki le permite convocar una parte de su ser astral. Como una acción de bonificación, usted puede pasar 1 punto ki para convocar los brazos de su ser astral. Cuando lo hace, cada criatura de su elección que puede ver dentro de 10 pies de usted debe tener éxito en un tiro de ahorro de la Dexteridad o tomar el daño de la fuerza igual a dos rollos de sus Artes Marciales muere.",
+        "Su dominio de su ki le permite convocar una parte de su ser astral. Como una acción de bonificación, usted puede pasar 1 punto ki para convocar los brazos de su ser astral. Cuando lo hace, cada criatura de su elección que puede ver dentro de 10 pies de usted debe tener éxito en una tirada de salvación de la Dexteridad o tomar el daño de la fuerza igual a dos rollos de sus Artes Marciales muere.",
         "Durante 10 minutos, estos brazos espectrales se agitan cerca de sus hombros o rodean sus brazos (su elección). Usted determina la apariencia de los brazos, y desaparecen temprano si usted es {@condition incapacitated} o muere.",
         "Mientras los brazos espectrales están presentes, usted obtiene los siguientes beneficios:",
         {
@@ -4751,7 +4751,7 @@
             "You can use your Wisdom modifier in place of your Strength modifier when making Strength checks and Strength saving throws.",
             "You can use the spectral arms to make unarmed strikes.",
             "When you make an unarmed strike with the arms on your turn, your reach for it is 5 feet greater than normal.",
-            "The unarmed strikes you make with the arms can use your Wisdom modifier in place of your Strength or Dexterity modifier for the attack and damage rolls, and their damage type is force."
+            "The unarmed strikes you make with the arms can use your Wisdom modifier in place of your Strength or Destreza modifier for the attack and damage rolls, and their damage type is force."
           ]
         }
       ]
@@ -5642,7 +5642,7 @@
       ],
       "name_es": "La suerte de borracho",
       "entries_es": [
-        "A partir del 11o nivel, siempre pareces tener un rebote afortunado en el momento adecuado. Cuando usted hace un cheque de habilidad, un rollo de ataque, o un tiro de ahorro y tiene desventaja en el rollo, puede pasar 2 puntos de ki para cancelar la desventaja para ese rollo."
+        "A partir del 11o nivel, siempre pareces tener un rebote afortunado en el momento adecuado. Cuando usted hace un cheque de habilidad, un rollo de ataque, o una tirada de salvación y tiene desventaja en el rollo, puede pasar 2 puntos de ki para cancelar la desventaja para ese rollo."
       ]
     },
     {
@@ -5972,13 +5972,13 @@
       "header": 1,
       "entries": [
         "Starting when you choose this tradition at 3rd level, you can hurl searing bolts of magical radiance.",
-        "You gain a new attack option that you can use with the {@action Attack} action. The special attack is a ranged spell attack with a range of 30 feet. You are proficient with it, and you add your Dexterity modifier to its attack and damage rolls. Its damage is radiant, and its damage die is a {@damage d4}. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table.",
+        "You gain a new attack option that you can use with the {@action Attack} action. The special attack is a ranged spell attack with a range of 30 feet. You are proficient with it, and you add your Destreza modifier to its attack and damage rolls. Its damage is radiant, and its damage die is a {@damage d4}. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table.",
         "When you take the {@action Attack} action on your turn and use this special attack as part of it, you can spend 1 ki point to make the special attack twice as a bonus action. When you gain the Extra Attack feature, this special attack can be used for any of the attacks you make as part of the {@action Attack} action."
       ],
       "name_es": "Sol radiante Bolt",
       "entries_es": [
         "Comenzando cuando eliges esta tradición a 3o nivel, puedes hurl sellando pernos de brillo mágico.",
-        "Usted gana una nueva opción de ataque que puede utilizar con la acción {@action Attack}. El ataque especial es un ataque de hechizos con una gama de 30 pies. Usted es competente con él, y añade su modificador de Dexterity a su ataque y rollos de daño. Su daño es radiante, y su daño muere es un {@damage d4}. Esta muerte cambia a medida que usted gana niveles de monje, como se muestra en la columna de las Artes Marciales de la tabla Monk.",
+        "Usted gana una nueva opción de ataque que puede utilizar con la acción {@action Attack}. El ataque especial es un ataque de hechizos con una gama de 30 pies. Usted es competente con él, y añade su modificador de Destreza a su ataque y rollos de daño. Su daño es radiante, y su daño muere es un {@damage d4}. Esta muerte cambia a medida que usted gana niveles de monje, como se muestra en la columna de las Artes Marciales de la tabla Monk.",
         "Cuando usted toma la [[TAG0] acción en su turno y utilizar este ataque especial como parte de él, usted puede pasar 1 punto de qui para hacer el ataque especial dos veces como una acción de bonificación. Cuando usted gana la característica de ataque extra, este ataque especial se puede utilizar para cualquiera de los ataques que usted hace como parte de la acción {@action Attack}."
       ]
     },
@@ -6025,7 +6025,7 @@
       "name_es": "Searing Sunburst",
       "entries_es": [
         "A 11o nivel, usted gana la capacidad de crear un orbe de luz que erupta en una explosión devastadora. Como acción, creas mágicamente un orbe y lo abrazas en un punto que eliges a menos de 150 pies, donde estalla en una esfera de luz radiante para un instante breve pero mortal.",
-        "Cada criatura en esa esfera de 20 pies-radius debe tener éxito en un lanzamiento de ahorro de la Constitución o tomar {@damage 2d6} daño radiante. Una criatura no necesita hacer la salvación si la criatura está detrás {@quickref Cover||3||total cover} que es opaco.",
+        "Cada criatura en esa esfera de 20 pies-radius debe tener éxito en una tirada de salvación de Constitución o tomar {@damage 2d6} daño radiante. Una criatura no necesita hacer la salvación si la criatura está detrás {@quickref Cover||3||total cover} que es opaco.",
         "Puedes aumentar el daño de la esfera gastando puntos de ki. Cada punto que gastas, hasta un máximo de 3, aumenta el daño por {@damage 2d6}."
       ]
     },
@@ -6086,7 +6086,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer un lanzamiento de ahorro de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ],
@@ -6110,7 +6110,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer un lanzamiento de ahorro de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ]
@@ -6141,7 +6141,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer un lanzamiento de ahorro de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ],
@@ -6165,7 +6165,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer un lanzamiento de ahorro de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ]
@@ -6241,12 +6241,12 @@
       },
       "entries": [
         "As a {@action Magic|XPHB} action, you can expend 2 Focus Points to cause elemental energy to burst in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within 120 feet of yourself. Choose a damage type: Acid, Cold, Fire, Lightning, or Thunder.",
-        "Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must make a Dexterity saving throw. On a failed save, a creature takes damage of the chosen type equal to three rolls of your Martial Arts die. On a successful save, a creature takes half as much damage."
+        "Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must make a Destreza saving throw. On a failed save, a creature takes damage of the chosen type equal to three rolls of your Martial Arts die. On a successful save, a creature takes half as much damage."
       ],
       "name_es": "Elemental Burst",
       "entries_es": [
         "Como acción {@action Magic|XPHB}, se puede expulsar 2 puntos focales para hacer que la energía elemental estalle en un radio de 20 pies {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centrado en un punto dentro de 120 pies de usted mismo. Elija un tipo de daño: Ácido, frío, fuego, relámpago o Trueno.",
-        "Cada criatura en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer un lanzamiento de ahorro de Dexterity. En un fallido ahorro, una criatura toma el daño del tipo elegido igual a tres rollos de sus Artes Marciales muere. En un ahorro exitoso, una criatura toma la mitad de daño."
+        "Cada criatura en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer una tirada de salvación de Destreza. En un fallido ahorro, una criatura toma el daño del tipo elegido igual a tres rollos de sus Artes Marciales muere. En un ahorro exitoso, una criatura toma la mitad de daño."
       ]
     },
     {
@@ -6655,18 +6655,18 @@
           ],
           "name_es": "Empuja",
           "entries_es": [
-            "El objetivo debe tener éxito en un lanzamiento de ahorro de fuerza o ser empujado hasta 15 pies lejos de usted."
+            "El objetivo debe tener éxito en una tirada de salvación de fuerza o ser empujado hasta 15 pies lejos de usted."
           ]
         },
         {
           "type": "entries",
           "name": "Topple",
           "entries": [
-            "The target must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition."
+            "The target must succeed on a Destreza saving throw or have the {@condition Prone|XPHB} condition."
           ],
           "name_es": "Topple",
           "entries_es": [
-            "El objetivo debe tener éxito en un lanzamiento de ahorro de Dexterity o tener la condición [[TAG0]."
+            "El objetivo debe tener éxito en una tirada de salvación de Destreza o tener la condición [[TAG0]."
           ]
         }
       ],
@@ -6692,18 +6692,18 @@
           ],
           "name_es": "Empuja",
           "entries_es": [
-            "El objetivo debe tener éxito en un lanzamiento de ahorro de fuerza o ser empujado hasta 15 pies lejos de usted."
+            "El objetivo debe tener éxito en una tirada de salvación de fuerza o ser empujado hasta 15 pies lejos de usted."
           ]
         },
         {
           "type": "entries",
           "name": "Topple",
           "entries": [
-            "The target must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition."
+            "The target must succeed on a Destreza saving throw or have the {@condition Prone|XPHB} condition."
           ],
           "name_es": "Topple",
           "entries_es": [
-            "El objetivo debe tener éxito en un lanzamiento de ahorro de Dexterity o tener la condición [[TAG0]."
+            "El objetivo debe tener éxito en una tirada de salvación de Destreza o tener la condición [[TAG0]."
           ]
         }
       ]
@@ -6802,7 +6802,7 @@
       ],
       "name_es": "Palmera descarada",
       "entries_es": [
-        "Ganas la habilidad de establecer vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con un {@variantrule Unarmed Strike|XPHB}, puedes gastar 4 Puntos de Focus para iniciar estas vibraciones imperceptibles, que duran varios días iguales a tu nivel de Monk. Las vibraciones son inofensivas a menos que tomes una acción para terminarlas. Alternativamente, cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes renunciar a uno de los ataques para acabar con las vibraciones. Para acabar con ellos, usted y el objetivo deben estar en el mismo plano de la existencia. Cuando los termines, el objetivo debe hacer un lanzamiento de ahorro de la Constitución, tomando {@damage 10d12} Daño de la fuerza en un ahorro fallido o la mitad de daño en uno exitoso.",
+        "Ganas la habilidad de establecer vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con un {@variantrule Unarmed Strike|XPHB}, puedes gastar 4 Puntos de Focus para iniciar estas vibraciones imperceptibles, que duran varios días iguales a tu nivel de Monk. Las vibraciones son inofensivas a menos que tomes una acción para terminarlas. Alternativamente, cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes renunciar a uno de los ataques para acabar con las vibraciones. Para acabar con ellos, usted y el objetivo deben estar en el mismo plano de la existencia. Cuando los termines, el objetivo debe hacer una tirada de salvación de Constitución, tomando {@damage 10d12} Daño de la fuerza en un ahorro fallido o la mitad de daño en uno exitoso.",
         "Usted puede tener sólo una criatura bajo el efecto de esta característica a la vez. Usted puede terminar las vibraciones inofensivamente (sin necesidad de acción)."
       ]
     },

@@ -1919,7 +1919,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer el lanzamiento de ahorro DC para un hechizo ranger que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de deletrear para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -1994,7 +1994,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer el lanzamiento de ahorro DC para un hechizo ranger que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de deletrear para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2365,12 +2365,12 @@
       "level": 10,
       "entries": [
         "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage.",
-        "Once you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Dexterity ({@skill Stealth}) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit."
+        "Once you are camouflaged in this way, you can try to hide by pressing yourself up against a solid surface, such as a tree or wall, that is at least as tall and wide as you are. You gain a +10 bonus to Destreza ({@skill Stealth}) checks as long as you remain there without moving or taking actions. Once you move or take an action or a reaction, you must camouflage yourself again to gain this benefit."
       ],
       "name_es": "Esconder en la vista de la llanura",
       "entries_es": [
         "A partir del nivel 10, puedes pasar 1 minuto creando camuflaje para ti mismo. Usted debe tener acceso a barro fresco, suciedad, plantas, hollín, y otros materiales naturales con los que crear su camuflaje.",
-        "Una vez camuflados de esta manera, puedes tratar de esconderte presionando contra una superficie sólida, como un árbol o una pared, que es al menos tan alto y ancho como tú. Usted gana un bono +10 a Dexterity ([TAG0]) cheques mientras permanezca allí sin moverse o tomar acciones. Una vez que se mueva o tome una acción o una reacción, debe camuflarse de nuevo para ganar este beneficio."
+        "Una vez camuflados de esta manera, puedes tratar de esconderte presionando contra una superficie sólida, como un árbol o una pared, que es al menos tan alto y ancho como tú. Usted gana un bono +10 a Destreza ([TAG0]) cheques mientras permanezca allí sin moverse o tomar acciones. Una vez que se mueva o tome una acción o una reacción, debe camuflarse de nuevo para ganar este beneficio."
       ]
     },
     {
@@ -3749,14 +3749,14 @@
       "header": 2,
       "entries": [
         "{@i 11th-level Drakewarden feature}",
-        "As an action, you can exhale a 30-foot cone of damaging breath or cause your drake to exhale it. Choose acid, cold, fire, lightning, or poison damage (your choice doesn't have to match your drake's Draconic Essence). Each creature in the cone must make a Dexterity saving throw against your spell save DC, taking {@damage 8d6} damage on a failed save, or half as much damage on a successful one.",
+        "As an action, you can exhale a 30-foot cone of damaging breath or cause your drake to exhale it. Choose acid, cold, fire, lightning, or poison damage (your choice doesn't have to match your drake's Draconic Essence). Each creature in the cone must make a Destreza saving throw against your spell save DC, taking {@damage 8d6} damage on a failed save, or half as much damage on a successful one.",
         "This damage increases to {@damage 10d6} when you reach 15th level in this class.",
         "Once you use this feature, you can't do so again until you finish a long rest, unless you expend a spell slot of 3rd level or higher to use it again."
       ],
       "name_es": "Respiración de Drake",
       "entries_es": [
         "[[TAG0]",
-        "Como acción, puede exhalar un cono de 30 pies de aliento dañino o causar que su drake exhale. Elija ácido, frío, fuego, relámpago o daño venenoso (su elección no tiene que coincidir con la esencia Draconic de su Drake). Cada criatura en el cono debe hacer un lanzamiento de ahorro de Dexteridad contra su hechizo salvo DC, tomando [[TAG0] daño en un ahorro fallido, o la mitad de daño en un éxito.",
+        "Como acción, puede exhalar un cono de 30 pies de aliento dañino o causar que su drake exhale. Elija ácido, frío, fuego, relámpago o daño venenoso (su elección no tiene que coincidir con la esencia Draconic de su Drake). Cada criatura en el cono debe hacer una tirada de salvación de Dexteridad contra su hechizo salvo DC, tomando [[TAG0] daño en un ahorro fallido, o la mitad de daño en un éxito.",
         "Este daño aumenta a [[TAG0] cuando alcanza el nivel 15 en esta clase.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo, a menos que expende una ranura de hechizo de 3er nivel o superior para utilizarlo de nuevo."
       ]
@@ -4422,11 +4422,11 @@
       "level": 15,
       "header": 2,
       "entries": [
-        "You can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or a {@spell lightning bolt} spell. When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
+        "You can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or a {@spell lightning bolt} spell. When you are subjected to an effect that allows you to make a Destreza saving throw to take only half damage, you instead take no damage if you succeed on the saving throw, and only half damage if you fail."
       ],
       "name_es": "Evasión",
       "entries_es": [
-        "Usted puede nimbly esquivar fuera del camino de ciertos efectos de área, como el aliento ardiente de un dragón rojo o un hechizo {@spell lightning bolt}. Cuando usted está sujeto a un efecto que le permite hacer un lanzamiento de ahorro de Dexterity para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en el lanzamiento de ahorro, y sólo medio daño si usted falla."
+        "Usted puede nimbly esquivar fuera del camino de ciertos efectos de área, como el aliento ardiente de un dragón rojo o un hechizo {@spell lightning bolt}. Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en eltirada de salvación, y sólo medio daño si usted falla."
       ]
     },
     {
@@ -4820,7 +4820,7 @@
       "entries_es": [
         "[[TAG0]",
         "La magia del Feywild protege tu mente. Usted tiene ventaja en ahorrar lanzamientos contra ser {@condition charmed} o {@condition frightened}.",
-        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en un lanzamiento de ahorro contra ser {@condition charmed} o {@condition frightened}, usted puede utilizar su reacción para forzar una criatura diferente que puede ver dentro de 120 pies de usted para hacer un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC. Si el ahorro falla, el objetivo es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto. El objetivo puede repetir el lanzamiento de ahorro al final de cada uno de sus turnos, terminando el efecto en sí mismo en un ahorro exitoso."
+        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en una tirada de salvación contra ser {@condition charmed} o {@condition frightened}, usted puede utilizar su reacción para forzar una criatura diferente que puede ver dentro de 120 pies de usted para hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. Si el ahorro falla, el objetivo es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto. El objetivo puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto en sí mismo en un ahorro exitoso."
       ]
     },
     {
@@ -5824,7 +5824,7 @@
       ],
       "name_es": "Supernatural Defense",
       "entries_es": [
-        "En el séptimo nivel, usted gana una resistencia adicional contra los ataques de su presa en su mente y cuerpo. Cada vez que el objetivo de la presa de su asesino le obliga a hacer un tiro de ahorro y cada vez que usted hace un cheque de habilidad para escapar del grapple de ese objetivo, añadir {@dice 1d6} a su rollo."
+        "En el séptimo nivel, usted gana una resistencia adicional contra los ataques de su presa en su mente y cuerpo. Cada vez que el objetivo de la presa de su asesino le obliga a hacer una tirada de salvación y cada vez que usted hace un cheque de habilidad para escapar del grapple de ese objetivo, añadir {@dice 1d6} a su rollo."
       ]
     },
     {
@@ -5843,7 +5843,7 @@
       ],
       "name_es": "Nemesis del usuario mágico",
       "entries_es": [
-        "A 11o nivel, ganas la habilidad de frustrar la magia de alguien más. Cuando ves a una criatura lanzando un hechizo o teletransportando a menos de 60 pies de ti, puedes usar tu reacción para intentar engañarla mágicamente. La criatura debe tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC, o su hechizo o teleport falla y se desperdicia.",
+        "A 11o nivel, ganas la habilidad de frustrar la magia de alguien más. Cuando ves a una criatura lanzando un hechizo o teletransportando a menos de 60 pies de ti, puedes usar tu reacción para intentar engañarla mágicamente. La criatura debe tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC, o su hechizo o teleport falla y se desperdicia.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -5862,7 +5862,7 @@
       ],
       "name_es": "Slayer's Counter",
       "entries_es": [
-        "A nivel 15, usted gana la capacidad de contraatacar cuando su presa trata de sabotearlo. Si el objetivo de la presa de su asesino le obliga a hacer un tiro de ahorro, puede utilizar su reacción para hacer un ataque de arma contra la cantera. Haces este ataque inmediatamente antes de hacer el lanzamiento de ahorros. Si su ataque golpea, su ahorro tiene éxito automáticamente, además de los efectos normales del ataque."
+        "A nivel 15, usted gana la capacidad de contraatacar cuando su presa trata de sabotearlo. Si el objetivo de la presa de su asesino le obliga a hacer una tirada de salvación, puede utilizar su reacción para hacer un ataque de arma contra la cantera. Haces este ataque inmediatamente antes de hacer eltirada de salvacións. Si su ataque golpea, su ahorro tiene éxito automáticamente, además de los efectos normales del ataque."
       ]
     },
     {
@@ -6129,7 +6129,7 @@
       ],
       "name_es": "Retribución de Chilling",
       "entries_es": [
-        "Cuando una criatura te golpea con un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} para obligar a la criatura a hacer un lanzamiento de ahorro de Sabiduría contra tu hechizo salvo DC. En un ahorro fallido, el objetivo tiene la condición de Stunned hasta el final de su próximo turno. Mientras que el objetivo es Stunned, su {@variantrule Speed|XPHB} se reduce a 0 pies.",
+        "Cuando una criatura te golpea con un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} para obligar a la criatura a hacer una tirada de salvación de Sabiduría contra tu hechizo salvo DC. En un ahorro fallido, el objetivo tiene la condición de Stunned hasta el final de su próximo turno. Mientras que el objetivo es Stunned, su {@variantrule Speed|XPHB} se reduce a 0 pies.",
         "Puede utilizar esta característica varias veces igual a su modificador de Sabiduría (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -6674,7 +6674,7 @@
       "name_es": "Twist.",
       "entries_es": [
         "La magia del Feywild protege tu mente. Usted tiene [[TAG0] en lanzamientos de ahorro para evitar o terminar la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}.",
-        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en un lanzamiento de ahorro para evitar o terminar la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} fuerza una criatura diferente que puede ver dentro de 120 pies de usted mismo para hacer una Sabiduría salvo contra su hechizo salvo DC. En un ahorro fallido, el objetivo es {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) por 1 minuto. El objetivo repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en una tirada de salvación para evitar o terminar la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} fuerza una criatura diferente que puede ver dentro de 120 pies de usted mismo para hacer una Sabiduría salvo contra su hechizo salvo DC. En un ahorro fallido, el objetivo es {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) por 1 minuto. El objetivo repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
       ]
     },
     {
@@ -6996,7 +6996,7 @@
           ],
           "name_es": "Miedo de Masa",
           "entries_es": [
-            "El objetivo y cada criatura dentro de 10 pies de él debe hacer un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
+            "El objetivo y cada criatura dentro de 10 pies de él debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
           ]
         }
       ],
@@ -7022,7 +7022,7 @@
           ],
           "name_es": "Miedo de Masa",
           "entries_es": [
-            "El objetivo y cada criatura dentro de 10 pies de él debe hacer un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
+            "El objetivo y cada criatura dentro de 10 pies de él debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
           ]
         }
       ]

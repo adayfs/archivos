@@ -1904,7 +1904,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer el lanzamiento de ahorro DC para un hechizo de bloqueo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2001,7 +2001,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer el lanzamiento de ahorro DC para un hechizo de bloqueo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un rollo de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -3784,7 +3784,7 @@
       ],
       "name_es": "Contacto Patron",
       "entries_es": [
-        "En el pasado, generalmente contactó a su patrón a través de intermediarios. Ahora puedes comunicarte directamente; siempre tienes preparado el hechizo {@spell Contact Other Plane|XPHB}. Con esta característica, puede lanzar el hechizo sin gastar una ranura de hechizo para ponerse en contacto con su patrón, y tiene éxito automáticamente en el lanzamiento de ahorro del hechizo.",
+        "En el pasado, generalmente contactó a su patrón a través de intermediarios. Ahora puedes comunicarte directamente; siempre tienes preparado el hechizo {@spell Contact Other Plane|XPHB}. Con esta característica, puede lanzar el hechizo sin gastar una ranura de hechizo para ponerse en contacto con su patrón, y tiene éxito automáticamente en eltirada de salvación del hechizo.",
         "Una vez que usted lanzó el hechizo con esta característica, no puede hacerlo de esta manera de nuevo hasta que termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -4165,7 +4165,7 @@
       ],
       "name_es": "Fey Presence",
       "entries_es": [
-        "A partir del primer nivel, su patrono le otorga la capacidad de proyectar la presencia engañosa y temible de la fey. Como acción, usted puede hacer que cada criatura en un cubo de 10 pies que se origina de usted para hacer un tiro de ahorro de la Sabiduría contra su hechizo de bloqueo salvar DC. Las criaturas que fallan sus lanzamientos de ahorro son todas {@condition charmed} o {@condition frightened} por usted (su elección) hasta el final de su próximo turno.",
+        "A partir del primer nivel, su patrono le otorga la capacidad de proyectar la presencia engañosa y temible de la fey. Como acción, usted puede hacer que cada criatura en un cubo de 10 pies que se origina de usted para hacer una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvar DC. Las criaturas que fallan sus lanzamientos de ahorro son todas {@condition charmed} o {@condition frightened} por usted (su elección) hasta el final de su próximo turno.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -4204,7 +4204,7 @@
       ],
       "name_es": "Beguiling Defenses",
       "entries_es": [
-        "Empezando a nivel 10, tu patrono te enseña cómo convertir la magia de tus enemigos en su contra. Eres inmune a ser {@condition charmed}, y cuando otra criatura intenta encantarte, puedes usar tu reacción para intentar devolver el encanto a esa criatura. La criatura debe tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo de bloqueo salvo DC o ser {@condition charmed} por usted durante 1 minuto o hasta que la criatura tome cualquier daño."
+        "Empezando a nivel 10, tu patrono te enseña cómo convertir la magia de tus enemigos en su contra. Eres inmune a ser {@condition charmed}, y cuando otra criatura intenta encantarte, puedes usar tu reacción para intentar devolver el encanto a esa criatura. La criatura debe tener éxito en una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvo DC o ser {@condition charmed} por usted durante 1 minuto o hasta que la criatura tome cualquier daño."
       ]
     },
     {
@@ -4224,7 +4224,7 @@
       ],
       "name_es": "Dark Delirium",
       "entries_es": [
-        "A partir del nivel 14, puedes sumergir a una criatura en un reino ilusorio. Como acción, elige una criatura que puedes ver a menos de 60 pies de ti. Debe hacer un lanzamiento de ahorro de Sabiduría contra su hechizo de bloqueo salvo DC. En un ahorro fallido, es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto o hasta que su {@status concentration}] se rompe (como si usted está {@status concentration||concentrating} en un hechizo). Este efecto termina temprano si la criatura toma algún daño.",
+        "A partir del nivel 14, puedes sumergir a una criatura en un reino ilusorio. Como acción, elige una criatura que puedes ver a menos de 60 pies de ti. Debe hacer una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvo DC. En un ahorro fallido, es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto o hasta que su {@status concentration}] se rompe (como si usted está {@status concentration||concentrating} en un hechizo). Este efecto termina temprano si la criatura toma algún daño.",
         "Hasta que termine esta ilusión, la criatura piensa que se pierde en un reino despiadado, la apariencia de la que eliges. La criatura puede ver y escuchar solo a sí misma, a ti y a la ilusión.",
         "Usted debe terminar un breve o largo descanso antes de que pueda utilizar esta característica de nuevo."
       ]
@@ -4449,7 +4449,7 @@
       ],
       "name_es": "La propia suerte del Oscuro",
       "entries_es": [
-        "A partir del sexto nivel, puede llamar a su patrón para alterar el destino a su favor. Cuando haces un cheque de habilidad o un lanzamiento de ahorro, puedes usar esta función para añadir un {@dice d10} a tu rollo. Puedes hacerlo después de ver el rollo inicial pero antes de que ocurra alguno de los efectos del rollo.",
+        "A partir del sexto nivel, puede llamar a su patrón para alterar el destino a su favor. Cuando haces un cheque de habilidad o una tirada de salvación, puedes usar esta función para añadir un {@dice d10} a tu rollo. Puedes hacerlo después de ver el rollo inicial pero antes de que ocurra alguno de los efectos del rollo.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -4956,7 +4956,7 @@
       "name_es": "Entre los muertos",
       "entries_es": [
         "A partir del primer nivel, usted aprende el [[TAG0] cantrip, que cuenta como un cantrip de guerra para usted. También tiene ventaja en salvar los tiros contra cualquier enfermedad.",
-        "Además, los no muertos tienen dificultad para hacerte daño. Si un no-muerto te apunta directamente con un ataque o un hechizo dañino, esa criatura debe hacer un lanzamiento de ahorro de Sabiduría contra tu hechizo salvo DC (un no-muerto no necesita hacer el ahorro cuando te incluye en un efecto de área, como la explosión de {@spell fireball}). En un ahorro fallido, la criatura debe elegir un nuevo objetivo o falsificación apuntando a alguien en lugar de usted, potencialmente desperdiciando el ataque o el hechizo. En un ahorro exitoso, la criatura es inmune a este efecto durante 24 horas. Un no-muerto también es inmune a este efecto durante 24 horas si lo apuntas con un ataque o un hechizo dañino."
+        "Además, los no muertos tienen dificultad para hacerte daño. Si un no-muerto te apunta directamente con un ataque o un hechizo dañino, esa criatura debe hacer una tirada de salvación de Sabiduría contra tu hechizo salvo DC (un no-muerto no necesita hacer el ahorro cuando te incluye en un efecto de área, como la explosión de {@spell fireball}). En un ahorro fallido, la criatura debe elegir un nuevo objetivo o falsificación apuntando a alguien en lugar de usted, potencialmente desperdiciando el ataque o el hechizo. En un ahorro exitoso, la criatura es inmune a este efecto durante 24 horas. Un no-muerto también es inmune a este efecto durante 24 horas si lo apuntas con un ataque o un hechizo dañino."
       ]
     },
     {
@@ -4975,7 +4975,7 @@
       ],
       "name_es": "Muerte desafiante",
       "entries_es": [
-        "A partir del sexto nivel, puedes darte vitalidad cuando engañas a la muerte o cuando ayudas a alguien más a engañarla. Usted puede recuperar puntos de éxito iguales a {@dice 1d8} + su modificador de la Constitución (mínimo de 1 punto de impacto) cuando usted tiene éxito en un lanzamiento de ahorro de muerte o cuando se estabiliza una criatura con [[TAG1].",
+        "A partir del sexto nivel, puedes darte vitalidad cuando engañas a la muerte o cuando ayudas a alguien más a engañarla. Usted puede recuperar puntos de éxito iguales a {@dice 1d8} + su modificador de Constitución (mínimo de 1 punto de impacto) cuando usted tiene éxito en una tirada de salvación de muerte o cuando se estabiliza una criatura con [[TAG1].",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -6607,7 +6607,7 @@
       ],
       "name_es": "Searing Vengeance",
       "entries_es": [
-        "A partir del nivel 14, la energía radiante que canaliza permite resistir la muerte. Cuando usted tiene que hacer un lanzamiento de ahorro de muerte al comienzo de su turno, en lugar de ello puede volver a sus pies con una explosión de energía radiante. Recuperas puntos de éxito igual a la mitad de tu punto de éxito máximo, y luego te levantas si así lo eliges. Cada criatura de su elección que está a menos de 30 pies de usted toma daño radiante igual a {@dice 2d8} + su modificador de Charisma, y es {@condition blinded} hasta el final del turno actual.",
+        "A partir del nivel 14, la energía radiante que canaliza permite resistir la muerte. Cuando usted tiene que hacer una tirada de salvación de muerte al comienzo de su turno, en lugar de ello puede volver a sus pies con una explosión de energía radiante. Recuperas puntos de éxito igual a la mitad de tu punto de éxito máximo, y luego te levantas si así lo eliges. Cada criatura de su elección que está a menos de 30 pies de usted toma daño radiante igual a {@dice 2d8} + su modificador de Charisma, y es {@condition blinded} hasta el final del turno actual.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -6816,7 +6816,7 @@
       "header": 1,
       "entries": [
         "At 1st level, you acquire the training necessary to effectively arm yourself for battle. You gain proficiency with medium armor, shields, and martial weapons.",
-        "The influence of your patron also allows you to mystically channel your will through a particular weapon. Whenever you finish a long rest, you can touch one weapon that you are proficient with and that lacks the two-handed property. When you attack with that weapon, you can use your Charisma modifier, instead of Strength or Dexterity, for the attack and damage rolls. This benefit lasts until you finish a long rest. If you later gain the Pact of the Blade feature, this benefit extends to every pact weapon you conjure with that feature, no matter the weapon's type."
+        "The influence of your patron also allows you to mystically channel your will through a particular weapon. Whenever you finish a long rest, you can touch one weapon that you are proficient with and that lacks the two-handed property. When you attack with that weapon, you can use your Charisma modifier, instead of Strength or Destreza, for the attack and damage rolls. This benefit lasts until you finish a long rest. If you later gain the Pact of the Blade feature, this benefit extends to every pact weapon you conjure with that feature, no matter the weapon's type."
       ],
       "name_es": "Guerrero Hex",
       "entries_es": [
@@ -7274,7 +7274,7 @@
               ],
               "name_es": "Paso de encuentro",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en un lanzamiento de ahorro de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
+                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en una tirada de salvación de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
               ]
             }
           ],
@@ -7298,7 +7298,7 @@
               ],
               "name_es": "Paso de encuentro",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en un lanzamiento de ahorro de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
+                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en una tirada de salvación de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
               ]
             }
           ]
@@ -7330,7 +7330,7 @@
               ],
               "name_es": "Paso de encuentro",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en un lanzamiento de ahorro de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
+                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en una tirada de salvación de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
               ]
             }
           ],
@@ -7354,7 +7354,7 @@
               ],
               "name_es": "Paso de encuentro",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en un lanzamiento de ahorro de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
+                "Las criaturas a menos de 5 pies del espacio que dejaste deben tener éxito en una tirada de salvación de Sabiduría contra tu hechizo excepto DC o tener {@variantrule Disadvantage|XPHB} en rollos de ataque contra criaturas distintas de ti hasta el comienzo de tu próximo turno."
               ]
             }
           ]
@@ -7396,7 +7396,7 @@
               ],
               "name_es": "Paso terrible",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
+                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
               ]
             }
           ],
@@ -7420,7 +7420,7 @@
               ],
               "name_es": "Paso terrible",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
+                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
               ]
             }
           ]
@@ -7452,7 +7452,7 @@
               ],
               "name_es": "Paso terrible",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
+                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
               ]
             }
           ],
@@ -7476,7 +7476,7 @@
               ],
               "name_es": "Paso terrible",
               "entries_es": [
-                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
+                "Las criaturas a menos de 5 pies del espacio que dejaste o el espacio que aparece en (su elección) deben tener éxito en una tirada de salvación de Sabiduría contra su hechizo salvo DC o tomar {@damage 2d10} Daño psíquico."
               ]
             }
           ]
@@ -7500,7 +7500,7 @@
       "name_es": "Beguiling Defenses",
       "entries_es": [
         "Su patrón le enseña cómo cuidar su mente y cuerpo. Eres inmune a la condición [[TAG0].",
-        "Además, inmediatamente después de que una criatura puede ver le golpea con un rollo de ataque, usted puede tomar un {@variantrule Reaction|XPHB} para reducir el daño que usted toma por la mitad (redondo hacia abajo), y usted puede obligar al atacante a hacer un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC. En un ahorro fallido, el atacante toma daño Psíquico igual al daño que usted toma. Una vez que utilice este {@variantrule Reaction|XPHB}, no puede utilizarlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse una ranura de hechizos Pact Magic (no se requiere acción) para restaurar su uso de él."
+        "Además, inmediatamente después de que una criatura puede ver le golpea con un rollo de ataque, usted puede tomar un {@variantrule Reaction|XPHB} para reducir el daño que usted toma por la mitad (redondo hacia abajo), y usted puede obligar al atacante a hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un ahorro fallido, el atacante toma daño Psíquico igual al daño que usted toma. Una vez que utilice este {@variantrule Reaction|XPHB}, no puede utilizarlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse una ranura de hechizos Pact Magic (no se requiere acción) para restaurar su uso de él."
       ]
     },
     {
@@ -7865,7 +7865,7 @@
       ],
       "name_es": "La propia suerte del Oscuro",
       "entries_es": [
-        "Puedes llamar a tu patrono para alterar el destino a tu favor. Cuando haces un cheque de habilidad o un lanzamiento de ahorro, puedes usar esta función para añadir {@dice 1d10} a tu rollo. Puedes hacerlo después de ver el rollo pero antes de que ocurra alguno de los efectos del rollo.",
+        "Puedes llamar a tu patrono para alterar el destino a tu favor. Cuando haces un cheque de habilidad o una tirada de salvación, puedes usar esta función para añadir {@dice 1d10} a tu rollo. Puedes hacerlo después de ver el rollo pero antes de que ocurra alguno de los efectos del rollo.",
         "Puede utilizar esta característica varias veces igual a su modificador de Charisma (mínimo de una vez), pero no puede utilizarla más de una vez por rollo. Usted recupera todos los usos gastados cuando termina un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -7907,7 +7907,7 @@
       ],
       "name_es": "Hurl A través del infierno",
       "entries_es": [
-        "Una vez por turno cuando golpeas a una criatura con un rollo de ataque, puedes tratar de transportar instantáneamente el objetivo a través de los Planes inferiores. El objetivo debe tener éxito en un tiro de ahorro de Charisma contra su hechizo salvar a DC, o el objetivo desaparece y duele a través de un paisaje de pesadilla. El objetivo toma {@damage 8d10} Daño psíquico si no es un Fiend, y tiene la condición {@condition Incapacitated|XPHB} hasta el final de su próximo turno, cuando regresa al espacio que ocupó anteriormente o el espacio no ocupado más cercano.",
+        "Una vez por turno cuando golpeas a una criatura con un rollo de ataque, puedes tratar de transportar instantáneamente el objetivo a través de los Planes inferiores. El objetivo debe tener éxito en una tirada de salvación de Charisma contra su hechizo salvar a DC, o el objetivo desaparece y duele a través de un paisaje de pesadilla. El objetivo toma {@damage 8d10} Daño psíquico si no es un Fiend, y tiene la condición {@condition Incapacitated|XPHB} hasta el final de su próximo turno, cuando regresa al espacio que ocupó anteriormente o el espacio no ocupado más cercano.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse una ranura del hechizo Pact Magic (no se requiere acción) para restaurar su uso de él."
       ]
     },
@@ -8086,7 +8086,7 @@
       ],
       "name_es": "Clairvoyant Combatant",
       "entries_es": [
-        "Cuando usted forma un vínculo telepático con una criatura usando su Mente Despertada, usted puede obligar a esa criatura a hacer un lanzamiento de ahorro de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, la criatura tiene {@variantrule Disadvantage|XPHB} sobre los rollos de ataque contra usted, y usted tiene [[TAG1] en los rollos de ataque contra esa criatura durante la duración del vínculo.",
+        "Cuando usted forma un vínculo telepático con una criatura usando su Mente Despertada, usted puede obligar a esa criatura a hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, la criatura tiene {@variantrule Disadvantage|XPHB} sobre los rollos de ataque contra usted, y usted tiene [[TAG1] en los rollos de ataque contra esa criatura durante la duración del vínculo.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}] a menos que usted expulse un Pact {@action Magic|XPHB} deletreo (no se requiere acción) para restaurar su uso."
       ]
     },

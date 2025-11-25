@@ -2752,7 +2752,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Intelligence",
+              "entry": "Strength, Destreza, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -2805,7 +2805,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Intelligence",
+              "entry": "Strength, Destreza, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -11521,7 +11521,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Charisma",
+              "entry": "Destreza, Constitution, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -11574,7 +11574,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Charisma",
+              "entry": "Destreza, Constitution, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -11618,7 +11618,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Wisdom",
+              "entry": "Strength, Destreza, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -11671,7 +11671,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Wisdom",
+              "entry": "Strength, Destreza, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -14823,7 +14823,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Intelligence",
+              "entry": "Destreza, Constitution, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -14876,7 +14876,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Intelligence",
+              "entry": "Destreza, Constitution, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -17822,7 +17822,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Intelligence",
+              "entry": "Destreza, Constitution, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -17875,7 +17875,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Intelligence",
+              "entry": "Destreza, Constitution, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -19786,7 +19786,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Charisma",
+              "entry": "Strength, Destreza, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -19839,7 +19839,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Charisma",
+              "entry": "Strength, Destreza, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -28024,7 +28024,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Wisdom, Charisma",
+              "entry": "Destreza, Wisdom, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -28077,7 +28077,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Wisdom, Charisma",
+              "entry": "Destreza, Wisdom, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -32289,7 +32289,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Wisdom",
+              "entry": "Destreza, Constitution, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -32342,7 +32342,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Wisdom",
+              "entry": "Destreza, Constitution, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -34339,7 +34339,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Intelligence, Charisma",
+              "entry": "Destreza, Intelligence, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -34392,7 +34392,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Intelligence, Charisma",
+              "entry": "Destreza, Intelligence, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -39630,7 +39630,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Constitution",
+              "entry": "Strength, Destreza, Constitution",
               "name_es": "Ability Scores:"
             },
             {
@@ -39683,7 +39683,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Constitution",
+              "entry": "Strength, Destreza, Constitution",
               "name_es": "Ability Scores:"
             },
             {
@@ -48483,7 +48483,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Intelligence",
+              "entry": "Destreza, Constitution, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -48536,7 +48536,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Constitution, Intelligence",
+              "entry": "Destreza, Constitution, Intelligence",
               "name_es": "Ability Scores:"
             },
             {
@@ -64399,7 +64399,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Wisdom",
+              "entry": "Strength, Destreza, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -64452,7 +64452,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Wisdom",
+              "entry": "Strength, Destreza, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -64496,7 +64496,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Intelligence, Wisdom",
+              "entry": "Destreza, Intelligence, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -64549,7 +64549,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Intelligence, Wisdom",
+              "entry": "Destreza, Intelligence, Wisdom",
               "name_es": "Ability Scores:"
             },
             {
@@ -67616,7 +67616,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Intelligence, Charisma",
+              "entry": "Destreza, Intelligence, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -67669,7 +67669,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Intelligence, Charisma",
+              "entry": "Destreza, Intelligence, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -72768,7 +72768,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Constitution",
+              "entry": "Strength, Destreza, Constitution",
               "name_es": "Ability Scores:"
             },
             {
@@ -72821,7 +72821,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Constitution",
+              "entry": "Strength, Destreza, Constitution",
               "name_es": "Ability Scores:"
             },
             {
@@ -78287,7 +78287,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Wisdom, Charisma",
+              "entry": "Destreza, Wisdom, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -78340,7 +78340,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Dexterity, Wisdom, Charisma",
+              "entry": "Destreza, Wisdom, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -81472,7 +81472,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Charisma",
+              "entry": "Strength, Destreza, Charisma",
               "name_es": "Ability Scores:"
             },
             {
@@ -81525,7 +81525,7 @@
             {
               "type": "item",
               "name": "Ability Scores:",
-              "entry": "Strength, Dexterity, Charisma",
+              "entry": "Strength, Destreza, Charisma",
               "name_es": "Ability Scores:"
             },
             {

@@ -4009,6 +4009,56 @@ function renderizar_grimorio_personaje( $post_id ) {
     }
     ?>
     <div class="grimorio-formulario">
+      <?php if ( drak_is_sorcerer_class( $clase_id ) ) : ?>
+        <?php
+          $sorcery_points_max     = isset( $sorcery_state['points_max'] ) ? intval( $sorcery_state['points_max'] ) : 0;
+          $sorcery_points_current = isset( $sorcery_state['points_current'] ) ? intval( $sorcery_state['points_current'] ) : 0;
+          $sorcery_flex_slots     = isset( $sorcery_state['flex_slots'] ) && is_array( $sorcery_state['flex_slots'] ) ? $sorcery_state['flex_slots'] : [];
+          $sorcery_known          = isset( $sorcery_state['metamagic_known'] ) && is_array( $sorcery_state['metamagic_known'] ) ? $sorcery_state['metamagic_known'] : [];
+        ?>
+        <section class="grimorio-sorcery" id="grimorio-sorcery">
+          <div class="grimorio-sorcery__head">
+            <h3>Metamagia y Puntos de Hechicería</h3>
+          </div>
+          <div class="grimorio-sorcery__points-grid">
+            <div class="grimorio-slot-column grimorio-slot-column--sorcery" data-sorcery="1" data-level="sp" data-max="<?php echo esc_attr( max( 0, $sorcery_points_max ) ); ?>">
+              <header>
+                <span>Puntos de Hechicería</span>
+                <small><?php echo esc_html( max( 0, $sorcery_points_max ) ); ?> puntos</small>
+              </header>
+              <?php
+                $spent_points = max( 0, $sorcery_points_max - $sorcery_points_current );
+                $max_points   = max( 0, $sorcery_points_max );
+              ?>
+              <div class="grimorio-slot-checkboxes">
+                <?php for ( $i = 1; $i <= $max_points; $i++ ) : ?>
+                  <label>
+                    <input type="checkbox" class="grimorio-slot-toggle" <?php checked( $i <= $spent_points ); ?>>
+                    <span></span>
+                  </label>
+                <?php endfor; ?>
+              </div>
+            </div>
+          </div>
+          <div class="grimorio-sorcery__actions">
+            <button type="button" id="grimorio-sorcery-convert">Convertir slots/puntos</button>
+            <button type="button" id="grimorio-metamagic-manage-btn">Metamagia conocida</button>
+          </div>
+          <div class="grimorio-sorcery__metamagic" id="grimorio-sorcery-known">
+            <?php if ( empty( $sorcery_known ) ) : ?>
+              <p class="grimorio-sorcery__note">Aún no has añadido opciones de Metamagia.</p>
+            <?php else : ?>
+              <?php foreach ( $sorcery_known as $meta_id ) : ?>
+                <span class="grimorio-sorcery__pill"><?php echo esc_html( $meta_id ); ?></span>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </div>
+          <p class="grimorio-sorcery__hint">
+            Los puntos de hechicería se restauran al finalizar un descanso largo. Los espacios creados con Flexible Casting también se pierden al hacerlo.
+          </p>
+        </section>
+      <?php endif; ?>
+
       <section class="grimorio-slot-grid">
         <h3>Espacios de conjuro</h3>
         <div class="grimorio-slots">
@@ -4140,6 +4190,19 @@ function renderizar_grimorio_personaje( $post_id ) {
           </div>
 
           <div class="grimorio-prepared__levels">
+            <article class="grimorio-prepared-block grimorio-prepared-block--cantrips">
+              <div class="grimorio-prepared-block__head">
+                <div>
+                  <span class="grimorio-prepared-block__label">Cantrips</span>
+                </div>
+                <span class="grimorio-prepared-block__counter" data-counter-for="0"></span>
+                <button type="button" class="grimorio-prepared__edit-btn grimorio-cantrip-edit-btn" id="grimorio-cantrip-edit">Editar cantrips</button>
+              </div>
+              <ul class="grimorio-prepared-block__list" data-list-level="0">
+                <li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Aún no hay cantrips.</li>
+              </ul>
+            </article>
+
           <?php foreach ( $row as $lvl => $max_slots ) :
               if ( intval( $max_slots ) <= 0 ) {
                   continue;
@@ -4210,6 +4273,70 @@ function renderizar_grimorio_personaje( $post_id ) {
           <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-spell-picker-save">
             Guardar y cerrar
           </button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="grimorio-sorcery-modal" class="grimorio-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="grimorio-modal__dialog">
+        <header class="grimorio-modal__header">
+          <h3>Flexible Casting</h3>
+          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
+        </header>
+        <div class="grimorio-modal__body grimorio-sorcery-modal__body">
+          <section class="grimorio-sorcery-modal__section">
+            <h4>Convertir slot en puntos</h4>
+            <p class="grimorio-spell-picker__hint">Ganas puntos iguales al nivel del slot gastado.</p>
+            <select id="grimorio-sorcery-slot-select"></select>
+            <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-sorcery-slot-confirm">Convertir</button>
+          </section>
+          <hr>
+          <section class="grimorio-sorcery-modal__section">
+            <h4>Crear slot con puntos</h4>
+            <p class="grimorio-spell-picker__hint">Solo puedes crear slots de nivel 1 a 5.</p>
+            <select id="grimorio-sorcery-create-select"></select>
+            <div class="grimorio-sorcery-cost" id="grimorio-sorcery-create-hint"></div>
+            <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-sorcery-create-confirm">Crear slot</button>
+          </section>
+        </div>
+        <footer class="grimorio-modal__footer">
+          <button type="button" class="grimorio-modal__btn" data-grimorio-close>Listo</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="grimorio-metamagic-manage-modal" class="grimorio-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="grimorio-modal__dialog">
+        <header class="grimorio-modal__header">
+          <h3>Metamagia conocida</h3>
+          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
+        </header>
+        <div class="grimorio-modal__body">
+          <p class="grimorio-spell-picker__hint">Elige tus opciones de Metamagia según tu nivel.</p>
+          <div id="grimorio-metamagic-options" class="grimorio-metamagic-options"></div>
+          <div class="grimorio-metamagic-limit" id="grimorio-metamagic-limit"></div>
+        </div>
+        <footer class="grimorio-modal__footer">
+          <button type="button" class="grimorio-modal__btn" data-grimorio-close>Cancelar</button>
+          <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-metamagic-save">Guardar</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="grimorio-metamagic-cast" class="grimorio-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="grimorio-modal__dialog">
+        <header class="grimorio-modal__header">
+          <h3>Aplicar Metamagia</h3>
+          <button type="button" class="grimorio-modal__close" data-grimorio-close>&times;</button>
+        </header>
+        <div class="grimorio-modal__body">
+          <p class="grimorio-spell-picker__hint">Selecciona una opción (Empowered puede combinarse con otra).</p>
+          <div id="grimorio-metamagic-cast-options" class="grimorio-metamagic-options"></div>
+          <div class="grimorio-metamagic-limit" id="grimorio-metamagic-cast-hint"></div>
+        </div>
+        <footer class="grimorio-modal__footer">
+          <button type="button" class="grimorio-modal__btn" data-grimorio-close>Cancelar</button>
+          <button type="button" class="grimorio-modal__btn grimorio-modal__btn--primary" id="grimorio-metamagic-apply">Lanzar con Metamagia</button>
         </footer>
       </div>
     </div>
@@ -5152,6 +5279,19 @@ add_action('wp_enqueue_scripts', function () {
         $base_speed     = max( 0, $base_speed );
         $transformation_state = drak_grimorio_get_transformation_state( $post_id );
         $transformation_nonce = wp_create_nonce( 'grimorio_transformation_' . $post_id );
+        $sorcery_nonce        = wp_create_nonce( 'grimorio_sorcery_' . $post_id );
+        $sorcery_state        = null;
+        if ( drak_is_sorcerer_class( $clase ) ) {
+            $sorcery_state = [
+                'points_max'     => drak_get_sorcery_points_max( $post_id, $clase, $nivel ),
+                'points_current' => 0,
+                'flex_slots'     => drak_get_sorcery_flexible_slots( $post_id ),
+                'metamagic_known'=> drak_get_sorcerer_metamagic_known( $post_id ),
+                'metamagic_limit'=> drak_get_sorcerer_metamagic_limit( $nivel ),
+                'slot_costs'     => drak_get_sorcery_slot_costs(),
+            ];
+            $sorcery_state['points_current'] = drak_get_sorcery_points_current( $post_id, $sorcery_state['points_max'] );
+        }
 
         wp_enqueue_script('dnd5-renderer', get_stylesheet_directory_uri() . '/js/dnd5-renderer.js', [], null, true);
         wp_localize_script('dnd5-renderer', 'DND5_LINK_BASES', $dnd5_link_bases);
@@ -5207,6 +5347,8 @@ add_action('wp_enqueue_scripts', function () {
             'apothecary_level'  => $nivel,
             'transformation'    => $transformation_state,
             'transformation_nonce' => $transformation_nonce,
+            'sorcery'           => $sorcery_state,
+            'sorcery_nonce'     => $sorcery_nonce,
         ];
 
         if ( $apothecary_spell_model && $apothecary_slots ) {
@@ -5215,6 +5357,7 @@ add_action('wp_enqueue_scripts', function () {
             $grimorio_data['always_prepared']  = $apothecary_always_prepared;
             $grimorio_data['greater_formulas'] = $apothecary_formulas;
         }
+        $grimorio_data['cantrips'] = isset( $spells[0] ) && is_array( $spells[0] ) ? $spells[0] : [];
 
         wp_localize_script('grimorio-js', 'GRIMORIO_DATA', $grimorio_data);
         wp_enqueue_script('spell-search-js', get_stylesheet_directory_uri() . '/js/spell-search.js', ['jquery', 'dnd5-renderer'], null, true);
@@ -6237,6 +6380,186 @@ function drak_is_apothecary_class( $class_id ) {
     return strpos( $class_id, 'apothecary' ) === 0;
 }
 
+function drak_is_sorcerer_class( $class_id ) {
+    if ( ! $class_id ) {
+        return false;
+    }
+    $id = strtolower( $class_id );
+    if ( strpos( $id, 'sorcerer' ) === 0 ) {
+        return true;
+    }
+    $details = drak_get_class_detail_entry( $class_id );
+    $name    = strtolower( $details['name'] ?? '' );
+    return in_array( $name, [ 'sorcerer', 'hechicero' ], true );
+}
+
+function drak_get_sorcery_slot_costs() {
+    return [
+        1 => 2,
+        2 => 3,
+        3 => 5,
+        4 => 6,
+        5 => 7,
+    ];
+}
+
+function drak_get_sorcery_points_max( $post_id, $class_id = '', $level = 0 ) {
+    $class_id = $class_id ?: get_field( 'clase', $post_id );
+    if ( ! drak_is_sorcerer_class( $class_id ) ) {
+        return 0;
+    }
+    $lvl = $level ?: intval( get_field( 'nivel', $post_id ) );
+    $lvl = max( 1, intval( $lvl ) );
+    return min( 20, $lvl );
+}
+
+function drak_get_sorcery_points_current( $post_id, $max = null ) {
+    $max = ( null === $max ) ? drak_get_sorcery_points_max( $post_id ) : intval( $max );
+    if ( $max <= 0 ) {
+        return 0;
+    }
+    $raw     = get_post_meta( $post_id, 'grimorio_sorcery_points', true );
+    $current = is_numeric( $raw ) ? intval( $raw ) : $max;
+    return max( 0, min( $current, $max ) );
+}
+
+function drak_save_sorcery_points_current( $post_id, $value, $max = null ) {
+    $max     = ( null === $max ) ? drak_get_sorcery_points_max( $post_id ) : intval( $max );
+    $current = max( 0, min( intval( $value ), $max ) );
+    update_post_meta( $post_id, 'grimorio_sorcery_points', $current );
+    return $current;
+}
+
+function drak_get_sorcery_flexible_slots( $post_id ) {
+    $raw = get_post_meta( $post_id, 'grimorio_sorcery_flex_slots', true );
+    if ( is_string( $raw ) && $raw !== '' ) {
+        $decoded = json_decode( $raw, true );
+    } else {
+        $decoded = is_array( $raw ) ? $raw : [];
+    }
+    $clean = [];
+    foreach ( (array) $decoded as $level => $count ) {
+        $lvl = intval( $level );
+        if ( $lvl < 1 || $lvl > 9 ) {
+            continue;
+        }
+        $clean[ $lvl ] = max( 0, intval( $count ) );
+    }
+    ksort( $clean );
+    return $clean;
+}
+
+function drak_save_sorcery_flexible_slots( $post_id, $slots ) {
+    $clean = [];
+    foreach ( (array) $slots as $level => $count ) {
+        $lvl = intval( $level );
+        if ( $lvl < 1 || $lvl > 9 ) {
+            continue;
+        }
+        $clean[ $lvl ] = max( 0, intval( $count ) );
+    }
+    ksort( $clean );
+    $payload = empty( $clean ) ? '' : wp_json_encode( $clean, JSON_UNESCAPED_UNICODE );
+    update_post_meta( $post_id, 'grimorio_sorcery_flex_slots', $payload );
+    return $clean;
+}
+
+function drak_reset_sorcery_resources( $post_id, $class_id = '', $level = 0 ) {
+    $max_points = drak_get_sorcery_points_max( $post_id, $class_id, $level );
+    if ( $max_points <= 0 ) {
+        return [
+            'points_current' => 0,
+            'points_max'     => 0,
+            'flex_slots'     => [],
+        ];
+    }
+
+    drak_save_sorcery_points_current( $post_id, $max_points, $max_points );
+    drak_save_sorcery_flexible_slots( $post_id, [] );
+
+    $slots_used = drak_grimorio_get_slots( $post_id );
+    $slot_row   = drak_get_class_spell_slots_for_level( $class_id, $level );
+    if ( empty( $slot_row ) ) {
+        $fallback = drak_get_full_caster_slots_table();
+        $slot_row = $fallback[ max( 1, min( 20, $level ) ) ] ?? [];
+    }
+    $updated = false;
+    foreach ( $slots_used as $lvl => $used ) {
+        $base_cap = intval( $slot_row[ $lvl ] ?? 0 );
+        if ( $base_cap <= 0 ) {
+            continue;
+        }
+        if ( $used > $base_cap ) {
+            $slots_used[ $lvl ] = $base_cap;
+            $updated            = true;
+        }
+    }
+    if ( $updated ) {
+        drak_grimorio_save_slots( $post_id, $slots_used );
+    }
+
+    return [
+        'points_current' => $max_points,
+        'points_max'     => $max_points,
+        'flex_slots'     => [],
+    ];
+}
+
+function drak_get_sorcerer_metamagic_known( $post_id ) {
+    $raw = get_post_meta( $post_id, 'grimorio_metamagic_known', true );
+    if ( is_string( $raw ) && $raw !== '' ) {
+        $decoded = json_decode( $raw, true );
+    } else {
+        $decoded = is_array( $raw ) ? $raw : [];
+    }
+    $clean = [];
+    foreach ( (array) $decoded as $id ) {
+        $id = sanitize_key( $id );
+        if ( $id === '' ) {
+            continue;
+        }
+        if ( ! in_array( $id, $clean, true ) ) {
+            $clean[] = $id;
+        }
+    }
+    return $clean;
+}
+
+function drak_save_sorcerer_metamagic_known( $post_id, $list, $limit = null ) {
+    $clean = [];
+    $limit = ( null === $limit ) ? PHP_INT_MAX : max( 0, intval( $limit ) );
+    foreach ( (array) $list as $id ) {
+        $id = sanitize_key( $id );
+        if ( $id === '' ) {
+            continue;
+        }
+        if ( in_array( $id, $clean, true ) ) {
+            continue;
+        }
+        $clean[] = $id;
+        if ( count( $clean ) >= $limit ) {
+            break;
+        }
+    }
+    $payload = empty( $clean ) ? '' : wp_json_encode( $clean, JSON_UNESCAPED_UNICODE );
+    update_post_meta( $post_id, 'grimorio_metamagic_known', $payload );
+    return $clean;
+}
+
+function drak_get_sorcerer_metamagic_limit( $level ) {
+    $level = intval( $level );
+    if ( $level < 3 ) {
+        return 0;
+    }
+    if ( $level >= 17 ) {
+        return 4;
+    }
+    if ( $level >= 10 ) {
+        return 3;
+    }
+    return 2;
+}
+
 /**
  * Progresión tipo warlock: array nivel => [ 'slots' => n, 'slot_level' => m ].
  */
@@ -6844,6 +7167,237 @@ function drak_dnd5_reset_apothecary_resources() {
     );
 }
 add_action( 'wp_ajax_drak_dnd5_reset_apothecary_resources', 'drak_dnd5_reset_apothecary_resources' );
+
+function drak_dnd5_sorcery_slot_to_points() {
+    if ( ! isset( $_POST['post_id'], $_POST['level'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $level   = max( 1, intval( $_POST['level'] ) );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_sorcery_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $class_id = get_field( 'clase', $post_id );
+    $nivel    = intval( get_field( 'nivel', $post_id ) );
+    if ( ! drak_is_sorcerer_class( $class_id ) ) {
+        wp_send_json_error( [ 'message' => 'El personaje no es un Hechicero.' ], 400 );
+    }
+
+    $points_max     = drak_get_sorcery_points_max( $post_id, $class_id, $nivel );
+    $points_current = drak_get_sorcery_points_current( $post_id, $points_max );
+    if ( $points_max <= 0 ) {
+        wp_send_json_error( [ 'message' => 'No hay puntos de hechicería configurados.' ], 400 );
+    }
+
+    $slot_row = drak_get_class_spell_slots_for_level( $class_id, $nivel );
+    if ( empty( $slot_row ) ) {
+        $fallback = drak_get_full_caster_slots_table();
+        $slot_row = $fallback[ max( 1, min( 20, $nivel ) ) ] ?? [];
+    }
+    $base_cap   = intval( $slot_row[ $level ] ?? 0 );
+    $flex_slots = drak_get_sorcery_flexible_slots( $post_id );
+    $extra      = intval( $flex_slots[ $level ] ?? 0 );
+    $total_cap  = $base_cap + $extra;
+    if ( $total_cap <= 0 ) {
+        wp_send_json_error( [ 'message' => 'No tienes espacios disponibles en ese nivel.' ], 400 );
+    }
+
+    $slots_used = drak_grimorio_get_slots( $post_id );
+    $used       = intval( $slots_used[ $level ] ?? 0 );
+    if ( $used >= $total_cap ) {
+        wp_send_json_error( [ 'message' => 'No quedan espacios de ese nivel para convertir.' ], 400 );
+    }
+
+    $slots_used[ $level ] = $used + 1;
+    $clean_slots          = drak_grimorio_save_slots( $post_id, $slots_used );
+
+    $points_current = min( $points_max, $points_current + $level );
+    $points_current = drak_save_sorcery_points_current( $post_id, $points_current, $points_max );
+
+    wp_send_json_success(
+        [
+            'points_current' => $points_current,
+            'points_max'     => $points_max,
+            'flex_slots'     => $flex_slots,
+            'slots_used'     => $clean_slots,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_sorcery_slot_to_points', 'drak_dnd5_sorcery_slot_to_points' );
+
+function drak_dnd5_sorcery_points_to_slot() {
+    if ( ! isset( $_POST['post_id'], $_POST['level'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $level   = max( 1, intval( $_POST['level'] ) );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_sorcery_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+    if ( $level > 5 ) {
+        wp_send_json_error( [ 'message' => 'Solo puedes crear espacios hasta nivel 5.' ], 400 );
+    }
+
+    $class_id = get_field( 'clase', $post_id );
+    $nivel    = intval( get_field( 'nivel', $post_id ) );
+    if ( ! drak_is_sorcerer_class( $class_id ) ) {
+        wp_send_json_error( [ 'message' => 'El personaje no es un Hechicero.' ], 400 );
+    }
+
+    $points_max     = drak_get_sorcery_points_max( $post_id, $class_id, $nivel );
+    $points_current = drak_get_sorcery_points_current( $post_id, $points_max );
+    $costs          = drak_get_sorcery_slot_costs();
+    $cost           = $costs[ $level ] ?? 0;
+    if ( $cost <= 0 ) {
+        wp_send_json_error( [ 'message' => 'Coste no definido para ese nivel.' ], 400 );
+    }
+    if ( $points_current < $cost ) {
+        wp_send_json_error( [ 'message' => 'No tienes suficientes puntos de hechicería.' ], 400 );
+    }
+
+    $flex_slots               = drak_get_sorcery_flexible_slots( $post_id );
+    $flex_slots[ $level ]     = max( 0, intval( $flex_slots[ $level ] ?? 0 ) ) + 1;
+    $saved_flex               = drak_save_sorcery_flexible_slots( $post_id, $flex_slots );
+    $points_current           = drak_save_sorcery_points_current( $post_id, $points_current - $cost, $points_max );
+    $slot_row                 = drak_get_class_spell_slots_for_level( $class_id, $nivel );
+    if ( empty( $slot_row ) ) {
+        $fallback = drak_get_full_caster_slots_table();
+        $slot_row = $fallback[ max( 1, min( 20, $nivel ) ) ] ?? [];
+    }
+    $base_cap    = intval( $slot_row[ $level ] ?? 0 );
+    $total_limit = $base_cap + intval( $saved_flex[ $level ] ?? 0 );
+
+    wp_send_json_success(
+        [
+            'points_current' => $points_current,
+            'points_max'     => $points_max,
+            'flex_slots'     => $saved_flex,
+            'slot_limit'     => $total_limit,
+            'level'          => $level,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_sorcery_points_to_slot', 'drak_dnd5_sorcery_points_to_slot' );
+
+function drak_dnd5_sorcery_reset() {
+    if ( ! isset( $_POST['post_id'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_sorcery_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $class_id = get_field( 'clase', $post_id );
+    $nivel    = intval( get_field( 'nivel', $post_id ) );
+    if ( ! drak_is_sorcerer_class( $class_id ) ) {
+        wp_send_json_error( [ 'message' => 'El personaje no es un Hechicero.' ], 400 );
+    }
+
+    $state      = drak_reset_sorcery_resources( $post_id, $class_id, $nivel );
+    $slot_row   = drak_get_class_spell_slots_for_level( $class_id, $nivel );
+    if ( empty( $slot_row ) ) {
+        $fallback = drak_get_full_caster_slots_table();
+        $slot_row = $fallback[ max( 1, min( 20, $nivel ) ) ] ?? [];
+    }
+
+    wp_send_json_success(
+        [
+            'points_current' => $state['points_current'],
+            'points_max'     => $state['points_max'],
+            'flex_slots'     => $state['flex_slots'],
+            'slot_limits'    => array_map( 'intval', $slot_row ),
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_sorcery_reset', 'drak_dnd5_sorcery_reset' );
+
+function drak_dnd5_sorcery_set_points() {
+    if ( ! isset( $_POST['post_id'], $_POST['value'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+    $post_id = intval( $_POST['post_id'] );
+    $value   = intval( $_POST['value'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_sorcery_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+    $class_id = get_field( 'clase', $post_id );
+    $nivel    = intval( get_field( 'nivel', $post_id ) );
+    if ( ! drak_is_sorcerer_class( $class_id ) ) {
+        wp_send_json_error( [ 'message' => 'El personaje no es un Hechicero.' ], 400 );
+    }
+
+    $max     = drak_get_sorcery_points_max( $post_id, $class_id, $nivel );
+    $current = drak_save_sorcery_points_current( $post_id, $value, $max );
+
+    wp_send_json_success(
+        [
+            'points_current' => $current,
+            'points_max'     => $max,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_sorcery_set_points', 'drak_dnd5_sorcery_set_points' );
+
+function drak_dnd5_save_metamagic_known() {
+    if ( ! isset( $_POST['post_id'], $_POST['known'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! wp_verify_nonce( $nonce, 'grimorio_sorcery_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $class_id = get_field( 'clase', $post_id );
+    $nivel    = intval( get_field( 'nivel', $post_id ) );
+    if ( ! drak_is_sorcerer_class( $class_id ) ) {
+        wp_send_json_error( [ 'message' => 'El personaje no es un Hechicero.' ], 400 );
+    }
+
+    $known_raw = json_decode( wp_unslash( $_POST['known'] ), true );
+    if ( ! is_array( $known_raw ) ) {
+        wp_send_json_error( [ 'message' => 'Formato inválido.' ], 400 );
+    }
+
+    $limit = drak_get_sorcerer_metamagic_limit( $nivel );
+    $clean = drak_save_sorcerer_metamagic_known( $post_id, $known_raw, $limit );
+
+    wp_send_json_success(
+        [
+            'known' => $clean,
+            'limit' => $limit,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_save_metamagic_known', 'drak_dnd5_save_metamagic_known' );
 
 function drak_dnd5_save_concentration_state() {
     if ( ! isset( $_POST['post_id'], $_POST['state'], $_POST['nonce'] ) ) {

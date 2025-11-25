@@ -2288,7 +2288,7 @@
       ],
       "name_es": "Indomitable",
       "entries_es": [
-        "Comenzando en el noveno nivel, puedes rerollar un lanzamiento de ahorro que fallas. Si lo hace, debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un largo descanso.",
+        "Comenzando en el noveno nivel, puedes rerollar una tirada de salvación que fallas. Si lo hace, debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un largo descanso.",
         "Puede utilizar esta característica dos veces entre los descansos largos que comienzan a nivel 13 y tres veces entre los descansos largos que comienzan a nivel 17."
       ]
     },
@@ -2733,7 +2733,7 @@
       ],
       "name_es": "Indomitable",
       "entries_es": [
-        "Si fallas un tiro de ahorro, puedes rerollarlo con un bono igual a tu nivel de Combatiente. Usted debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un {@variantrule Long Rest|XPHB}.",
+        "Si fallas una tirada de salvación, puedes rerollarlo con un bono igual a tu nivel de Combatiente. Usted debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un {@variantrule Long Rest|XPHB}.",
         "Puede utilizar esta característica dos veces antes de un {@variantrule Long Rest|XPHB} que comience en el nivel 13 y tres veces antes de un {@variantrule Long Rest|XPHB} que comience en el nivel 17."
       ]
     },
@@ -2820,7 +2820,7 @@
       ],
       "name_es": "Indomitable",
       "entries_es": [
-        "Si fallas un tiro de ahorro, puedes rerollarlo con un bono igual a tu nivel de Combatiente. Usted debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un {@variantrule Long Rest|XPHB}.",
+        "Si fallas una tirada de salvación, puedes rerollarlo con un bono igual a tu nivel de Combatiente. Usted debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un {@variantrule Long Rest|XPHB}.",
         "Puede utilizar esta característica dos veces antes de un {@variantrule Long Rest|XPHB} que comience en el nivel 13 y tres veces antes de un {@variantrule Long Rest|XPHB} que comience en el nivel 17."
       ]
     },
@@ -2926,7 +2926,7 @@
       ],
       "name_es": "Indomitable",
       "entries_es": [
-        "Si fallas un tiro de ahorro, puedes rerollarlo con un bono igual a tu nivel de Combatiente. Usted debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un {@variantrule Long Rest|XPHB}.",
+        "Si fallas una tirada de salvación, puedes rerollarlo con un bono igual a tu nivel de Combatiente. Usted debe utilizar el nuevo rollo, y no puede utilizar esta característica de nuevo hasta que termine un {@variantrule Long Rest|XPHB}.",
         "Puede utilizar esta característica dos veces antes de un {@variantrule Long Rest|XPHB} que comience en el nivel 13 y tres veces antes de un {@variantrule Long Rest|XPHB} que comience en el nivel 17."
       ]
     },
@@ -3044,7 +3044,7 @@
       "entries_es": [
         "[[TAG0]",
         "Puedes usar una acción de bonificación para manifestar mágicamente un eco de ti mismo en un espacio no ocupado que puedes ver a menos de 15 pies de ti. Este eco es una imagen mágica, translúcida y gris de ustedes que dura hasta que se destruye, hasta que ustedes lo desestiman como una acción de bonificación, hasta que ustedes manifiestan otro eco, o hasta que estén [[TAG0].",
-        "Su eco tiene AC 14 + su prima de competencia, 1 punto de encuentro, e inmunidad a todas las condiciones. Si tiene que hacer un lanzamiento de ahorro, utiliza su bono de lanzamiento de ahorro para el rollo. Es el mismo tamaño que tú, y ocupa su espacio. En su turno, puede ordenar mentalmente que el eco se mueva hasta 30 pies en cualquier dirección (sin necesidad de acción). Si tu eco es cada vez más de 30 pies de ti al final de tu turno, es destruido.",
+        "Su eco tiene AC 14 + su prima de competencia, 1 punto de encuentro, e inmunidad a todas las condiciones. Si tiene que hacer una tirada de salvación, utiliza su bono detirada de salvación para el rollo. Es el mismo tamaño que tú, y ocupa su espacio. En su turno, puede ordenar mentalmente que el eco se mueva hasta 30 pies en cualquier dirección (sin necesidad de acción). Si tu eco es cada vez más de 30 pies de ti al final de tu turno, es destruido.",
         "Puede utilizar el eco de las siguientes maneras:",
         {
           "type": "list",
@@ -3075,7 +3075,7 @@
       "entries_es": [
         "[[TAG0]",
         "Puedes aumentar la furia de tu eco. Cada vez que toma la acción {@action Attack}, puede hacer un ataque de melee adicional desde la posición del eco.",
-        "Puede utilizar esta característica varias veces igual a su modificador de la Constitución (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
+        "Puede utilizar esta característica varias veces igual a su modificador de Constitución (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
     {
@@ -3138,8 +3138,8 @@
       "name_es": "Reclamar potencial",
       "entries_es": [
         "[[TAG0]",
-        "Has aprendido a absorber la magia fugaz de tu eco. Cuando un eco del suyo es destruido por el daño, usted puede ganar un número de puntos temporales iguales a {@dice 2d6} + su modificador de la Constitución, siempre que usted no tiene ya puntos de éxito temporales.",
-        "Puede utilizar esta característica varias veces igual a su modificador de la Constitución (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
+        "Has aprendido a absorber la magia fugaz de tu eco. Cuando un eco del suyo es destruido por el daño, usted puede ganar un número de puntos temporales iguales a {@dice 2d6} + su modificador de Constitución, siempre que usted no tiene ya puntos de éxito temporales.",
+        "Puede utilizar esta característica varias veces igual a su modificador de Constitución (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
     {
@@ -3311,7 +3311,7 @@
               ],
               "name_es": "Tirantes de ahorro",
               "entries_es": [
-                "Algunas de sus maniobras requieren que su objetivo haga un lanzamiento de ahorro para resistir los efectos de la maniobra. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+                "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
                   "type": "abilityDc",
                   "name": "Maneuver",
@@ -3342,7 +3342,7 @@
               ],
               "name_es": "Tirantes de ahorro",
               "entries_es": [
-                "Algunas de sus maniobras requieren que su objetivo haga un lanzamiento de ahorro para resistir los efectos de la maniobra. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+                "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
                   "type": "abilityDc",
                   "name": "Maneuver",
@@ -3446,7 +3446,7 @@
               ],
               "name_es": "Tirantes de ahorro",
               "entries_es": [
-                "Algunas de sus maniobras requieren que su objetivo haga un lanzamiento de ahorro para resistir los efectos de la maniobra. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+                "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
                   "type": "abilityDc",
                   "name": "Maneuver",
@@ -3477,7 +3477,7 @@
               ],
               "name_es": "Tirantes de ahorro",
               "entries_es": [
-                "Algunas de sus maniobras requieren que su objetivo haga un lanzamiento de ahorro para resistir los efectos de la maniobra. El lanzamiento de ahorro DC se calcula de la siguiente manera:",
+                "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
                   "type": "abilityDc",
                   "name": "Maneuver",
@@ -4140,7 +4140,7 @@
           "type": "list",
           "items": [
             "Strength score",
-            "Dexterity score",
+            "Destreza score",
             "Constitution score",
             "Armor Class",
             "Current hit points",
@@ -4156,7 +4156,7 @@
           "type": "list",
           "items": [
             "Strength score",
-            "Dexterity score",
+            "Destreza score",
             "Constitution score",
             "Armor Class",
             "Current hit points",
@@ -4334,7 +4334,7 @@
       "level": 7,
       "header": 2,
       "entries": [
-        "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus.",
+        "Starting at 7th level, you can add half your proficiency bonus (round up) to any Strength, Destreza, or Constitution check you make that doesn't already use your proficiency bonus.",
         "In addition, when you make a running long jump, the distance you can cover increases by a number of feet equal to your Strength modifier."
       ],
       "name_es": "Atleta notable",
@@ -4400,7 +4400,7 @@
       ],
       "name_es": "Supervivencia",
       "entries_es": [
-        "A nivel 18, alcanzas el pináculo de la resistencia en la batalla. Al comienzo de cada uno de tus turnos, recuperas puntos de éxito iguales a 5 + tu modificador de la Constitución si no te queda más de la mitad de tus puntos de éxito. No ganas este beneficio si tienes 0 puntos de éxito."
+        "A nivel 18, alcanzas el pináculo de la resistencia en la batalla. Al comienzo de cada uno de tus turnos, recuperas puntos de éxito iguales a 5 + tu modificador de Constitución si no te queda más de la mitad de tus puntos de éxito. No ganas este beneficio si tienes 0 puntos de éxito."
       ]
     },
     {
@@ -4560,7 +4560,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4605,7 +4605,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4742,7 +4742,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4787,7 +4787,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer el lanzamiento de ahorro DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4865,7 +4865,7 @@
       ],
       "name_es": "Eldritch Strike",
       "entries_es": [
-        "A 10o nivel, aprendes a hacer que tus ataques de arma atacan la resistencia de una criatura a tus hechizos. Cuando golpeas a una criatura con un ataque de arma, esa criatura tiene desventaja en el siguiente lanzamiento de ahorro que hace contra un hechizo que lanzas antes del final de tu próximo turno."
+        "A 10o nivel, aprendes a hacer que tus ataques de arma atacan la resistencia de una criatura a tus hechizos. Cuando golpeas a una criatura con un ataque de arma, esa criatura tiene desventaja en el siguientetirada de salvación que hace contra un hechizo que lanzas antes del final de tu próximo turno."
       ]
     },
     {
@@ -5038,7 +5038,7 @@
       ],
       "name_es": "Bulwark",
       "entries_es": [
-        "A partir del 15o nivel, usted puede extender el beneficio de su característica indomable a un aliado. Cuando usted decide utilizar Indomitable para rerollar una Inteligencia, una Sabiduría, o un tiro de ahorro de Charisma y usted no es {@condition incapacitated}, usted puede elegir un aliado dentro de 60 pies de usted que también falló su lanzamiento de ahorro contra el mismo efecto. Si esa criatura puede verte o escucharte, puede rerollar su lanzamiento de ahorro y debe usar el nuevo rollo."
+        "A partir del 15o nivel, usted puede extender el beneficio de su característica indomable a un aliado. Cuando usted decide utilizar Indomitable para rerollar una Inteligencia, una Sabiduría, o una tirada de salvación de Charisma y usted no es {@condition incapacitated}, usted puede elegir un aliado dentro de 60 pies de usted que también falló sutirada de salvación contra el mismo efecto. Si esa criatura puede verte o escucharte, puede rerollar sutirada de salvación y debe usar el nuevo rollo."
       ]
     },
     {
@@ -5266,7 +5266,7 @@
       ],
       "name_es": "Trono telequinético",
       "entries_es": [
-        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer un lanzamiento de ahorro de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de inteligencia. Si el ahorro falla, puede golpear el objetivo {@condition prone} o moverlo hasta 10 pies en cualquier dirección horizontal."
+        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer una tirada de salvación de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de inteligencia. Si el ahorro falla, puede golpear el objetivo {@condition prone} o moverlo hasta 10 pies en cualquier dirección horizontal."
       ]
     },
     {
@@ -5645,7 +5645,7 @@
             ]
           ]
         },
-        "Las siguientes runas están disponibles para usted cuando usted aprende una runa. Si una runa tiene un requisito de nivel, debe ser al menos ese nivel en esta clase para aprender la runa. Si una runa requiere un lanzamiento de ahorro, su Rune Magic Save DC equivale a 8 + su bonificación de competencia + su modificador de la Constitución.",
+        "Las siguientes runas están disponibles para usted cuando usted aprende una runa. Si una runa tiene un requisito de nivel, debe ser al menos ese nivel en esta clase para aprender la runa. Si una runa requiere una tirada de salvación, su Rune Magic Save DC equivale a 8 + su bonificación de competencia + su modificador de Constitución.",
         {
           "type": "options",
           "count": 2,
@@ -6034,7 +6034,7 @@
       "name_es": "Opciones de disparo de Arcane",
       "entries_es": [
         "La función Arcane Shot le permite elegir opciones para ella en ciertos niveles. Las opciones se presentan aquí en orden alfabético. Todos son efectos mágicos, y cada uno está asociado con una de las escuelas de magia.",
-        "Si una opción requiere un lanzamiento de ahorro, su Arcane Shot Save DC se calcula de la siguiente manera:",
+        "Si una opción requiere una tirada de salvación, su Arcane Shot Save DC se calcula de la siguiente manera:",
         {
           "type": "abilityDc",
           "name": "Arcane Shot",
@@ -6363,7 +6363,7 @@
       "name_es": "Warding Maneuver",
       "entries_es": [
         "En el séptimo nivel, aprendes a hacer frente a las huelgas dirigidas a ti, tu monte u otras criaturas cercanas. Si usted o una criatura puede ver dentro de 5 pies de usted es golpeado por un ataque, usted puede rodar {@dice 1d8} como una reacción si usted está manipulando un arma de meleo o un escudo. Roll the die, and add the number rolled to the target's AC against that attack. Si el ataque sigue golpeando, el objetivo tiene resistencia contra el daño del ataque.",
-        "Puede utilizar esta característica varias veces igual a su modificador de la Constitución (mínimo de una vez), y recuperar todos los usos gastados de ella cuando termine un descanso largo."
+        "Puede utilizar esta característica varias veces igual a su modificador de Constitución (mínimo de una vez), y recuperar todos los usos gastados de ella cuando termine un descanso largo."
       ]
     },
     {
@@ -6399,7 +6399,7 @@
       ],
       "name_es": "Cargador feroz",
       "entries_es": [
-        "A partir del 15o nivel, puedes correr por tus enemigos, ya sea que estés montado o no. Si te mueves al menos 10 pies en una línea recta justo antes de atacar a una criatura y lo golpeas con el ataque, ese objetivo debe tener éxito en un lanzamiento de ahorro de fuerza ([TAG0]] + tu bonificación de competencia + tu modificador de fuerza) o ser llamado {@condition prone}. Puedes usar esta función sólo una vez en cada turno."
+        "A partir del 15o nivel, puedes correr por tus enemigos, ya sea que estés montado o no. Si te mueves al menos 10 pies en una línea recta justo antes de atacar a una criatura y lo golpeas con el ataque, ese objetivo debe tener éxito en una tirada de salvación de fuerza ([TAG0]] + tu bonificación de competencia + tu modificador de fuerza) o ser llamado {@condition prone}. Puedes usar esta función sólo una vez en cada turno."
       ]
     },
     {
@@ -6793,7 +6793,7 @@
       ],
       "name_es": "Resiliencia compartida",
       "entries_es": [
-        "Cuando un aliado se puede ver dentro de 60 pies de usted falla un tiro de ahorro, usted puede tomar un {@variantrule Reaction|XPHB} para gastar un uso de su característica indomable. El aliado puede rerollar inmediatamente el lanzamiento de ahorro con un bono igual a su nivel de Fighter; el aliado debe utilizar el nuevo rollo."
+        "Cuando un aliado se puede ver dentro de 60 pies de usted falla una tirada de salvación, usted puede tomar un {@variantrule Reaction|XPHB} para gastar un uso de su característica indomable. El aliado puede rerollar inmediatamente eltirada de salvación con un bono igual a su nivel de Fighter; el aliado debe utilizar el nuevo rollo."
       ]
     },
     {
@@ -6942,11 +6942,11 @@
           "type": "entries",
           "name": "Saving Throws",
           "entries": [
-            "If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Dexterity modifier (your choice) and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+            "If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Destreza modifier (your choice) and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ],
           "name_es": "Tirantes de ahorro",
           "entries_es": [
-            "Si una maniobra requiere un lanzamiento de ahorro, el DC es igual a 8 más su modificador de fuerza o de destreza (su elección) y {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+            "Si una maniobra requiere una tirada de salvación, el DC es igual a 8 más su modificador de fuerza o de destreza (su elección) y {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ]
         }
       ],
@@ -6983,11 +6983,11 @@
           "type": "entries",
           "name": "Saving Throws",
           "entries": [
-            "If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Dexterity modifier (your choice) and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+            "If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Destreza modifier (your choice) and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ],
           "name_es": "Tirantes de ahorro",
           "entries_es": [
-            "Si una maniobra requiere un lanzamiento de ahorro, el DC es igual a 8 más su modificador de fuerza o de destreza (su elección) y {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+            "Si una maniobra requiere una tirada de salvación, el DC es igual a 8 más su modificador de fuerza o de destreza (su elección) y {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ]
         }
       ]
@@ -7610,7 +7610,7 @@
           ],
           "name_es": "Heroic Rally",
           "entries_es": [
-            "Al comienzo de cada uno de sus turnos, usted recupera {@variantrule Hit Points|XPHB} igual a 5 más su modificador de la Constitución si usted es {@status Bloodied|XPHB} y tiene al menos 1 {@variantrule Hit Points|XPHB|Hit Point}."
+            "Al comienzo de cada uno de sus turnos, usted recupera {@variantrule Hit Points|XPHB} igual a 5 más su modificador de Constitución si usted es {@status Bloodied|XPHB} y tiene al menos 1 {@variantrule Hit Points|XPHB|Hit Point}."
           ]
         }
       ],
@@ -7636,7 +7636,7 @@
           ],
           "name_es": "Heroic Rally",
           "entries_es": [
-            "Al comienzo de cada uno de sus turnos, usted recupera {@variantrule Hit Points|XPHB} igual a 5 más su modificador de la Constitución si usted es {@status Bloodied|XPHB} y tiene al menos 1 {@variantrule Hit Points|XPHB|Hit Point}."
+            "Al comienzo de cada uno de sus turnos, usted recupera {@variantrule Hit Points|XPHB} igual a 5 más su modificador de Constitución si usted es {@status Bloodied|XPHB} y tiene al menos 1 {@variantrule Hit Points|XPHB|Hit Point}."
           ]
         }
       ]
@@ -8073,7 +8073,7 @@
       ],
       "name_es": "Eldritch Strike",
       "entries_es": [
-        "Aprendes a hacer que tus ataques de arma atenten contra la habilidad de una criatura para soportar tus hechizos. Cuando golpeas a una criatura con un ataque usando un arma, esa criatura tiene [[TAG0] en el próximo lanzamiento de ahorro hace contra un hechizo que lanzas antes del final de tu próximo turno."
+        "Aprendes a hacer que tus ataques de arma atenten contra la habilidad de una criatura para soportar tus hechizos. Cuando golpeas a una criatura con un ataque usando un arma, esa criatura tiene [[TAG0] en el próximotirada de salvación hace contra un hechizo que lanzas antes del final de tu próximo turno."
       ]
     },
     {
@@ -8415,7 +8415,7 @@
       ],
       "name_es": "Trono telequinético",
       "entries_es": [
-        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer un tiro de ahorro de fuerza ([TAG0]] más su modificador de inteligencia y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, puede dar al objetivo la condición {@condition Prone|XPHB} o transportarlo hasta 10 pies horizontalmente."
+        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer una tirada de salvación de fuerza ([TAG0]] más su modificador de inteligencia y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, puede dar al objetivo la condición {@condition Prone|XPHB} o transportarlo hasta 10 pies horizontalmente."
       ]
     },
     {
