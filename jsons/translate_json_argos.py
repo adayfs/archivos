@@ -81,6 +81,16 @@ def translate_json(obj, source="en", target="es"):
         if "entries" in obj and isinstance(obj["entries"], list) and "entries_es" not in obj:
             new_obj["entries_es"] = translate_entries_list(obj["entries"], source, target)
 
+        # 3) additionalEntries / additionalEntries_en -> additionalEntries_es
+        add_entries_src = None
+        if "additionalEntries_es" not in obj:
+            if isinstance(obj.get("additionalEntries"), list):
+                add_entries_src = obj["additionalEntries"]
+            elif isinstance(obj.get("additionalEntries_en"), list):
+                add_entries_src = obj["additionalEntries_en"]
+            if add_entries_src is not None:
+                new_obj["additionalEntries_es"] = translate_entries_list(add_entries_src, source, target)
+
         return new_obj
 
     elif isinstance(obj, list):

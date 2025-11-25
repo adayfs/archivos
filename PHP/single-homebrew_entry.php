@@ -18,6 +18,9 @@ $search_placeholder = isset( $sections[ $section ] ) ? 'Buscar en ' . $sections[
 $color       = $campaign_id ? (string) get_field( 'campaign_color', $campaign_id ) : '';
 $accent      = $color ?: '#9b5cff';
 $accent_dark = $color ? drak_campaign_hex_to_rgba( $color, 0.25 ) : 'rgba(155, 92, 255, 0.25)';
+$can_manage  = function_exists( 'drak_homebrew_user_can_manage' ) ? drak_homebrew_user_can_manage() : false;
+$edit_link   = ( $can_manage && current_user_can( 'edit_post', $entry_id ) ) ? get_edit_post_link( $entry_id ) : '';
+$delete_link = ( $can_manage && current_user_can( 'delete_post', $entry_id ) ) ? get_delete_post_link( $entry_id, '', true ) : '';
 
 $header_image_id   = get_post_thumbnail_id( $entry_id );
 $header_image_html = $header_image_id ? wp_get_attachment_image( $header_image_id, 'large', false, [ 'class' => 'hb-entry__image-media' ] ) : '';
@@ -102,6 +105,33 @@ $next_post = drak_get_adjacent_homebrew_entry( $entry_id, 'next', $section, $cam
   font-size: clamp(26px, 4vw, 36px);
   text-align: center;
   color: var(--accent, #9b5cff);
+}
+.hb-entry__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.hb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.hb-btn--ghost {
+  border-color: var(--accent, #9b5cff);
+  color: #f5f5f5;
+  background: rgba(155, 92, 255, 0.15);
+}
+.hb-btn--danger {
+  border-color: #ff6b6b;
+  color: #fff;
+  background: rgba(255, 107, 107, 0.2);
 }
 .hb-entry__image {
   border-radius: 14px;
@@ -267,6 +297,16 @@ $next_post = drak_get_adjacent_homebrew_entry( $entry_id, 'next', $section, $cam
   <div class="hb-entry-grid">
     <main class="hb-entry-main">
       <h1 class="hb-entry__title"><?php the_title(); ?></h1>
+      <?php if ( $edit_link || $delete_link ) : ?>
+        <div class="hb-entry__actions">
+          <?php if ( $edit_link ) : ?>
+            <a class="hb-btn hb-btn--ghost" href="<?php echo esc_url( $edit_link ); ?>">Editar</a>
+          <?php endif; ?>
+          <?php if ( $delete_link ) : ?>
+            <a class="hb-btn hb-btn--danger" href="<?php echo esc_url( $delete_link ); ?>" onclick="return confirm('¿Enviar esta entrada a la papelera?');">Borrar</a>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
       <div class="hb-entry__content">
         <?php the_content(); ?>
       </div>

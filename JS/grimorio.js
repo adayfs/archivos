@@ -7,14 +7,18 @@
   const slotSaveTimers = {};
   const slotColumns = new Map();
   let pickerState = null;
+  let pickerOnlyCantrips = false;
   let spellsPromise = null;
   let classReferenceInitialized = false;
 
   const state = {
     slotsUsed: {},
     slotLimits: {},
+    apothecarySlots: null, // { max, current, slotLevel, recovery: 'short_rest' }
     prepared: {},
+    cantrips: [],
     preparedLimit: null,
+    cantripLimit: null,
     autoPrepared: { class: {}, subclass: {} },
     spellsByLevel: {},
     spellIndexById: {},
@@ -26,6 +30,9 @@
     baseAc: 0,
     baseSpeed: 0,
     apothecaryLevel: 1,
+    spellModel: 'default',
+    greaterFormulas: [], // [{id,name,level,usesMax,usesCurrent}]
+    alwaysPrepared: [],
   };
 
   const selectors = {};
@@ -40,6 +47,7 @@
     selectors.pickerLevels = document.getElementById('grimorio-spell-picker-levels');
     selectors.pickerLoading = document.getElementById('grimorio-spell-picker-loading');
     selectors.pickerSaveBtn = document.getElementById('grimorio-spell-picker-save');
+    selectors.cantripEditBtn = document.getElementById('grimorio-cantrip-edit');
     selectors.infoModal = document.getElementById('grimorio-info-modal');
     selectors.infoTitle = document.getElementById('grimorio-info-title');
     selectors.infoBody = document.getElementById('grimorio-info-content');
@@ -74,7 +82,17 @@
     const data = window.GRIMORIO_DATA;
     state.slotsUsed = cloneObject(data.slots_used || {});
     state.slotLimits = normalizeSlotLimits(data.slot_limits || {});
+    if (data.apothecary_slots) {
+      state.apothecarySlots = {
+        max: Number.parseInt(data.apothecary_slots.max || '0', 10) || 0,
+        current: Number.parseInt(data.apothecary_slots.current || '0', 10) || 0,
+        slotLevel: Number.parseInt(data.apothecary_slots.slot_level || '1', 10) || 1,
+        recovery: data.apothecary_slots.recovery || 'short_rest',
+      };
+    }
     state.prepared = normalizePrepared(data.prepared || {});
+    state.cantrips = state.prepared[0] || [];
+    delete state.prepared[0];
     state.level = data.level || 1;
     state.classId = data.class_id || '';
     const limitValue = Number.isFinite(data.prepared_limit)
@@ -88,11 +106,23 @@
     state.baseAc = parseInt(data.base_ac || '0', 10) || 0;
     state.baseSpeed = parseInt(data.base_speed || '0', 10) || 0;
     state.apothecaryLevel = Number.isFinite(data.apothecary_level) && data.apothecary_level > 0 ? data.apothecary_level : state.level || 1;
+    state.spellModel = data.spell_model || 'default';
+    if (state.spellModel === 'apothecary') {
+      state.preparedLimit = computeApothecaryPreparedLimit(state.apothecaryLevel, state.abilities.int);
+    }
+    state.greaterFormulas = Array.isArray(data.greater_formulas) ? data.greater_formulas : [];
+    state.alwaysPrepared = Array.isArray(data.always_prepared) ? data.always_prepared : [];
+    const cantripProg = data.class_reference?.cantrip_progression || {};
+    const cantripLimit = cantripProg?.[state.level] ?? null;
+    state.cantripLimit = Number.isFinite(cantripLimit) && cantripLimit > 0 ? cantripLimit : null;
   }
 
   function bindEvents() {
     if (selectors.editButton) {
       selectors.editButton.addEventListener('click', openSpellPicker);
+    }
+    if (selectors.cantripEditBtn) {
+      selectors.cantripEditBtn.addEventListener('click', openCantripPicker);
     }
 
     if (selectors.resetSlotsBtn) {
@@ -151,6 +181,17 @@
   }
 
   function initSlots() {
+    // Modelo especial: Apotecario usa bloque único de slots
+    if (state.spellModel === 'apothecary' && state.apothecarySlots) {
+      // Limpia cualquier grid estándar que venga renderizado desde el servidor.
+      const grid = document.querySelector('.grimorio-slot-grid__inner');
+      if (grid) {
+        grid.remove();
+      }
+      renderApothecarySlotsBlock();
+      return;
+    }
+
     document.querySelectorAll('.grimorio-slot-column').forEach((column) => {
       const level = parseInt(column.dataset.level || '0', 10);
       const max = parseInt(column.dataset.max || '0', 10) || 0;
@@ -192,6 +233,56 @@
     return normalized;
   }
 
+  function renderApothecarySlotsBlock() {
+    const container = document.querySelector('.grimorio-slots');
+    if (!container) return;
+    const slots = state.apothecarySlots;
+    const current = Math.max(0, Math.min(slots.current, slots.max));
+    const level = slots.slotLevel || 1;
+    const used = clamp(slots.max - current, 0, slots.max);
+
+    const boxes = Array.from({ length: slots.max }, (_, idx) => {
+      const checked = idx < used ? 'checked' : '';
+      return `
+        <label>
+          <input type="checkbox" class="grimorio-slot-toggle" ${checked}>
+          <span></span>
+        </label>
+      `;
+    }).join('');
+
+    container.innerHTML = `
+      <div class="grimorio-slot-grid__inner">
+        <div class="grimorio-slot-column" data-level="${level}" data-max="${slots.max}">
+          <header>
+            <span>Nivel ${level}</span>
+            <small>${slots.max} espacios</small>
+          </header>
+          <div class="grimorio-slot-checkboxes">
+            ${boxes}
+          </div>
+          <input type="hidden" class="grimorio-apothecary-hidden" value="${used}">
+          <div class="grimorio-apothecary-slots__hint">Se recuperan al terminar un descanso corto o largo</div>
+        </div>
+      </div>
+    `;
+
+    const column = container.querySelector('.grimorio-slot-column');
+    if (column) {
+      const checkboxes = Array.from(column.querySelectorAll('.grimorio-slot-toggle'));
+      const hidden = column.querySelector('.grimorio-apothecary-hidden');
+      checkboxes.forEach((cb) => {
+        cb.addEventListener('change', () => {
+          const selected = checkboxes.filter((c) => c.checked).length;
+          const remaining = Math.max(0, slots.max - selected);
+          state.apothecarySlots.current = remaining;
+          if (hidden) hidden.value = selected;
+          persistApothecarySlots(remaining);
+        });
+      });
+    }
+  }
+
   function normalizePrepared(prepared) {
     const result = {};
     Object.keys(prepared).forEach((key) => {
@@ -214,11 +305,22 @@
     const totalPrepared = getTotalPreparedCount(state.prepared);
     const summary = document.getElementById('grimorio-prepared-total');
     if (summary) {
-      if (state.preparedLimit) {
+      if (state.spellModel === 'apothecary') {
+        // Apotecario usa preparación única 1–5, mostramos el rótulo especial.
+        summary.textContent = 'Preparados (1–5)';
+      } else if (state.preparedLimit) {
         summary.textContent = `Total: ${totalPrepared} / ${state.preparedLimit}`;
       } else {
         summary.textContent = `Total preparados: ${totalPrepared}`;
       }
+    }
+
+    renderCantripBlock();
+
+    if (state.spellModel === 'apothecary') {
+      renderApothecaryPrepared();
+      updateConcentrationControls();
+      return;
     }
 
     document.querySelectorAll('.grimorio-prepared-block').forEach((block) => {
@@ -273,10 +375,169 @@
     updateConcentrationControls();
   }
 
+  function renderCantripBlock() {
+    const block = document.querySelector('.grimorio-prepared-block--cantrips');
+    if (!block) return;
+    const listEl = block.querySelector('.grimorio-prepared-block__list');
+    const limitEl = block.querySelector('.grimorio-prepared-block__counter');
+    const cantrips = state.cantrips || [];
+
+    if (limitEl && state.cantripLimit) {
+      limitEl.textContent = `${cantrips.length} / ${state.cantripLimit}`;
+    } else if (limitEl) {
+      limitEl.textContent = `${cantrips.length}`;
+    }
+
+    if (!listEl) return;
+
+    if (!cantrips.length) {
+      listEl.innerHTML = '<li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Aún no hay cantrips.</li>';
+      return;
+    }
+
+    listEl.innerHTML = cantrips
+      .map((spell) => {
+        const source = spell.source ? `<small class="grimorio-prepared-spell__source">${escapeHtml(spell.source)}</small>` : '';
+        return `
+          <li class="grimorio-prepared-spell"
+              data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+              data-spell-name="${escapeAttr(spell.name)}"
+              data-spell-level="0">
+            <div class="grimorio-prepared-spell__info">
+              <button type="button"
+                      class="grimorio-prepared-spell__name"
+                      data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                      data-spell-name="${escapeAttr(spell.name)}"
+                      data-spell-level="0">
+                ${escapeHtml(spell.name)}
+              </button>
+              ${source}
+            </div>
+            <button type="button"
+                    class="grimorio-cast-spell"
+                    data-level="0"
+                    data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                    data-spell-name="${escapeAttr(spell.name)}">
+              Lanzar cantrip
+            </button>
+          </li>
+        `;
+      })
+      .join('');
+  }
+
+  function renderApothecaryPrepared() {
+    const manualList = document.querySelector('.grimorio-prepared-block--apothecary .grimorio-prepared-block__list');
+    if (manualList) {
+      const allPrepared = flattenPrepared(state.prepared);
+      if (!allPrepared.length) {
+        manualList.innerHTML = '<li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Aún no hay conjuros preparados.</li>';
+      } else {
+        manualList.innerHTML = allPrepared
+          .map((spell) => {
+            const source = spell.source ? `<small class="grimorio-prepared-spell__source">${escapeHtml(spell.source)}</small>` : '';
+            const concentrationClass = isSpellConcentration(spell, spell.level) ? ' grimorio-prepared-spell--concentration' : '';
+            return `
+              <li class="grimorio-prepared-spell${concentrationClass}"
+                  data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                  data-spell-name="${escapeAttr(spell.name)}"
+                  data-spell-level="${spell.level}">
+                <div class="grimorio-prepared-spell__info">
+                  <button type="button"
+                          class="grimorio-prepared-spell__name"
+                          data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                          data-spell-name="${escapeAttr(spell.name)}"
+                          data-spell-level="${spell.level}">
+                    ${escapeHtml(spell.name)}
+                  </button>
+                  ${source}
+                </div>
+                <button type="button"
+                        class="grimorio-cast-spell"
+                        data-level="${spell.level}"
+                        data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                        data-spell-name="${escapeAttr(spell.name)}">
+                  Lanzar spell
+                </button>
+              </li>
+            `;
+          })
+          .join('');
+      }
+    }
+
+    const alwaysList = document.querySelector('.grimorio-prepared-always .grimorio-prepared-block__list');
+    if (alwaysList) {
+      const always = state.alwaysPrepared || [];
+      if (!always.length) {
+        alwaysList.innerHTML = '<li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Sin conjuros siempre preparados.</li>';
+      } else {
+        alwaysList.innerHTML = always
+          .map((spell) => {
+            const lvl = spell.level ?? '';
+            return `
+              <li class="grimorio-prepared-spell grimorio-prepared-spell--auto"
+                  data-spell-id="${spell.id ? escapeAttr(spell.id) : ''}"
+                  data-spell-name="${escapeAttr(spell.name)}"
+                  data-spell-level="${lvl}">
+                <div class="grimorio-prepared-spell__info">
+                  <button type="button" class="grimorio-prepared-spell__name" disabled>
+                    ${escapeHtml(spell.name)}
+                  </button>
+                  <small class="grimorio-prepared-spell__source">Siempre preparado</small>
+                </div>
+              </li>`;
+          })
+          .join('');
+      }
+    }
+
+    const formulaList = document.querySelector('.grimorio-formulas-block .grimorio-prepared-block__list');
+    if (formulaList) {
+      const formulas = state.greaterFormulas || [];
+      if (!formulas.length) {
+        formulaList.innerHTML = '<li class="grimorio-prepared-spell grimorio-prepared-spell--empty">Sin fórmulas mayores.</li>';
+      } else {
+        formulaList.innerHTML = formulas
+          .map((f) => {
+            const uses = `${Math.max(0, f.usesCurrent || 0)} / ${f.usesMax || 0}`;
+            return `
+              <li class="grimorio-prepared-spell grimorio-prepared-spell--formula"
+                  data-formula-id="${escapeAttr(f.id || '')}">
+                <div class="grimorio-prepared-spell__info">
+                  <button type="button" class="grimorio-prepared-spell__name" data-spell-name="${escapeAttr(f.name || '')}">
+                    ${escapeHtml(f.name || '')} (Nivel ${escapeHtml(f.level || '')})
+                  </button>
+                  <small class="grimorio-prepared-spell__source">Usos: ${uses}</small>
+                </div>
+              </li>`;
+          })
+          .join('');
+      }
+    }
+  }
+
+  function flattenPrepared(prepared) {
+    const out = [];
+    Object.keys(prepared).forEach((lvlKey) => {
+      const lvl = parseInt(lvlKey, 10);
+      if (Number.isNaN(lvl)) return;
+      (prepared[lvlKey] || []).forEach((spell) => {
+        if (!spell || !spell.name) return;
+        out.push({ ...spell, level: lvl });
+      });
+    });
+    return out;
+  }
+
   function openSpellPicker() {
     if (!selectors.pickerModal) return;
 
+    pickerOnlyCantrips = false;
     pickerState = clonePrepared(state.prepared);
+    if (state.cantrips && state.cantrips.length) {
+      pickerState[0] = state.cantrips.map((spell) => ({ ...spell, level: 0 }));
+    }
     showModal(selectors.pickerModal);
     if (!state.spellsLoaded) {
       showPickerLoading(true);
@@ -286,6 +547,21 @@
       return;
     }
 
+    buildSpellPickerUI();
+  }
+
+  function openCantripPicker() {
+    if (!selectors.pickerModal) return;
+    pickerOnlyCantrips = true;
+    pickerState = { 0: state.cantrips ? state.cantrips.map((spell) => ({ ...spell, level: 0 })) : [] };
+    showModal(selectors.pickerModal);
+    if (!state.spellsLoaded) {
+      showPickerLoading(true);
+      fetchSpellList().then(() => {
+        buildSpellPickerUI();
+      });
+      return;
+    }
     buildSpellPickerUI();
   }
 
@@ -319,21 +595,52 @@
   }
 
   function getRelevantLevels() {
-    return Object.keys(state.slotLimits)
-      .map((key) => parseInt(key, 10))
-      .filter((lvl) => !Number.isNaN(lvl) && state.slotLimits[lvl] > 0)
-      .sort((a, b) => a - b);
+    const levels = new Set();
+    if (pickerOnlyCantrips) {
+      if (state.spellsByLevel[0]?.length) {
+        return [0];
+      }
+      return [];
+    }
+    if (state.spellsByLevel[0]?.length) {
+      levels.add(0);
+    }
+
+    if (state.spellModel === 'apothecary' && state.apothecarySlots) {
+      const maxLevel = Math.max(1, state.apothecarySlots.slotLevel || 1);
+      for (let i = 1; i <= maxLevel; i += 1) {
+        levels.add(i);
+      }
+    } else {
+      Object.keys(state.slotLimits)
+        .map((key) => parseInt(key, 10))
+        .filter((lvl) => !Number.isNaN(lvl) && state.slotLimits[lvl] > 0)
+        .forEach((lvl) => levels.add(lvl));
+    }
+
+    return Array.from(levels).sort((a, b) => a - b);
   }
 
   function renderPickerLevel(level) {
-    const levelSlots = state.slotLimits[level] || 0;
+    const isCantrip = level === 0;
+    const levelSlots = isCantrip
+      ? state.cantripLimit
+      : state.spellModel === 'apothecary'
+        ? state.preparedLimit
+        : (state.slotLimits[level] || 0);
     const spells = (state.spellsByLevel[level] || []).slice().sort((a, b) => a.name.localeCompare(b.name));
     const selected = pickerState[level] || [];
     const selectedIds = new Set(selected.map((spell) => spell.id || spell.name));
-    const totalSelected = getTotalPreparedCount(pickerState);
-    const limitReached = state.preparedLimit ? totalSelected >= state.preparedLimit : false;
+    const totalSelected = isCantrip ? selected.length : getTotalPreparedCount(pickerState);
+    const limitReached = isCantrip
+      ? (state.cantripLimit ? totalSelected >= state.cantripLimit : false)
+      : (state.preparedLimit ? totalSelected >= state.preparedLimit : false);
 
-    const disabledAll = levelSlots === 0;
+    const disabledAll = isCantrip
+      ? false
+      : state.spellModel === 'apothecary'
+        ? false
+        : levelSlots === 0;
     const listContent = spells.length
       ? spells
           .map((spell) => {
@@ -365,19 +672,28 @@
           .join('')
       : '<p class="grimorio-spell-picker__empty">No hay conjuros de este nivel para tu clase.</p>';
 
-    const limitNote = state.preparedLimit
-      ? `<p class="grimorio-spell-picker__limit">Total preparados: ${totalSelected} / ${state.preparedLimit}</p>`
-      : `<p class="grimorio-spell-picker__limit">Conjuros preparados en este nivel: ${selected.length}</p>`;
+    const limitNote = isCantrip
+      ? `<p class="grimorio-spell-picker__limit">Cantrips: ${selected.length}${state.cantripLimit ? ' / ' + state.cantripLimit : ''}</p>`
+      : (state.spellModel === 'apothecary'
+          ? `<p class="grimorio-spell-picker__limit">Preparados (1–5)</p>`
+          : (state.preparedLimit
+              ? `<p class="grimorio-spell-picker__limit">Total preparados: ${totalSelected} / ${state.preparedLimit}</p>`
+              : `<p class="grimorio-spell-picker__limit">Conjuros preparados en este nivel: ${selected.length}</p>`));
 
-    const slotNote = levelSlots
-      ? `<small class="grimorio-spell-picker__slots">Espacios de nivel ${level}: ${levelSlots}</small>`
-      : '<small class="grimorio-spell-picker__slots">Sin espacios de este nivel.</small>';
+    let slotNote = '';
+    if (state.spellModel === 'apothecary' && state.apothecarySlots) {
+      slotNote = `<small class="grimorio-spell-picker__slots">Espacios de Apotecario: ${state.apothecarySlots.current || state.apothecarySlots.max || 0} / ${state.apothecarySlots.max || 0} · Todos los conjuros se lanzan a nivel ${state.apothecarySlots.slotLevel}</small>`;
+    } else {
+      slotNote = levelSlots
+        ? `<small class="grimorio-spell-picker__slots">Espacios de nivel ${level}: ${levelSlots}</small>`
+        : '<small class="grimorio-spell-picker__slots">Sin espacios de este nivel.</small>';
+    }
 
     return `
-      <article class="grimorio-spell-picker__level" data-picker-level="${level}" data-max="${state.preparedLimit || ''}">
+      <article class="grimorio-spell-picker__level" data-picker-level="${level}" data-max="${isCantrip ? (state.cantripLimit || '') : (state.preparedLimit || '')}">
         <header class="grimorio-spell-picker__header">
-          <h4>Nivel ${level}</h4>
-          <span class="grimorio-spell-picker__count">${selected.length}</span>
+          <h4>${isCantrip ? 'Cantrips' : `Nivel ${level}`}</h4>
+          <span class="grimorio-spell-picker__count">${isCantrip ? selected.length : (state.spellModel === 'apothecary' ? '' : selected.length)}</span>
         </header>
         ${limitNote}
         ${slotNote}
@@ -397,14 +713,19 @@
     const spellId = input.dataset.spellId || identifier;
     const spellName = input.dataset.spellName || identifier;
     const isChecked = input.checked;
-    const max = state.slotLimits[level] || 0;
+    const isCantrip = level === 0;
+    const max = isCantrip
+      ? state.cantripLimit || 0
+      : state.spellModel === 'apothecary'
+        ? state.preparedLimit || 0
+        : (state.slotLimits[level] || 0);
     let current = pickerState[level] ? [...pickerState[level]] : [];
-    const currentTotal = getTotalPreparedCount(pickerState);
+    const currentTotal = isCantrip ? current.length : getTotalPreparedCount(pickerState);
 
     const spellData = findSpellById(spellId) || { id: spellId, name: spellName, source: '', level };
 
     if (isChecked) {
-      if (state.preparedLimit && currentTotal >= state.preparedLimit) {
+      if (!isCantrip && state.preparedLimit && currentTotal >= state.preparedLimit) {
         input.checked = false;
         openInfoModal(
           'Límite alcanzado',
@@ -412,10 +733,12 @@
         );
         return;
       }
-
-      if (max === 0) {
+      if (isCantrip && state.cantripLimit && currentTotal >= state.cantripLimit) {
         input.checked = false;
-        openInfoModal('Sin espacios disponibles', `<p>No tienes espacios de nivel ${level}.</p>`);
+        openInfoModal(
+          'Límite de cantrips',
+          `<p>No puedes aprender más de ${state.cantripLimit} cantrips a tu nivel actual.</p>`
+        );
         return;
       }
 
@@ -437,10 +760,14 @@
     }
 
     const nextState = clonePrepared(pickerState);
+    const nextCantrips = nextState[0] || [];
+    delete nextState[0];
     const previousState = clonePrepared(state.prepared);
+    const previousCantrips = state.cantrips ? [...state.cantrips] : [];
     const previousConcentration = { ...state.concentration };
 
     state.prepared = nextState;
+    state.cantrips = nextCantrips;
     if (!hasConcentrationSpell(nextState, previousConcentration)) {
       state.concentration = defaultConcentrationState();
     }
@@ -448,10 +775,11 @@
     closeModal(selectors.pickerModal);
 
     Promise.all([
-      persistPreparedSpells(nextState),
+      persistPreparedSpells({ ...nextState, 0: nextCantrips }),
       persistConcentration(state.concentration),
     ]).catch(() => {
       state.prepared = previousState;
+      state.cantrips = previousCantrips;
       state.concentration = previousConcentration;
       renderPreparedView();
       openInfoModal('Error al guardar', '<p>No se pudo guardar la lista de conjuros. Intenta de nuevo.</p>');
@@ -459,7 +787,41 @@
   }
 
   function handleCastSpell(level, spellId, fallbackName) {
+    if (level === 0) {
+      const spell = findSpell(spellId, fallbackName);
+      const context = spell ? extractSpellContext(spell) : { concentration: false };
+      if (context.concentration) {
+        setConcentrationState({
+          level: 0,
+          spell_id: spell?.id || '',
+          spell: spell?.name || fallbackName || '',
+        });
+      }
+      openPreparedSpellInfo(level, spellId, fallbackName);
+      return;
+    }
     if (!level) return;
+    if (state.spellModel === 'apothecary' && state.apothecarySlots) {
+      if (state.apothecarySlots.current <= 0) {
+        openInfoModal('Sin espacios', '<p>Ya has usado todos tus espacios de Apotecario.</p>');
+        return;
+      }
+      const spell = findSpell(spellId, fallbackName);
+      const context = spell ? extractSpellContext(spell) : { concentration: false };
+      state.apothecarySlots.current = Math.max(0, state.apothecarySlots.current - 1);
+      renderApothecarySlotsBlock();
+      persistApothecarySlots(state.apothecarySlots.current);
+      if (context.concentration) {
+        setConcentrationState({
+          level: state.apothecarySlots.slotLevel || level,
+          spell_id: spell?.id || '',
+          spell: spell?.name || fallbackName || '',
+        });
+      }
+      openPreparedSpellInfo(level, spellId, fallbackName);
+      return;
+    }
+
     const max = state.slotLimits[level] || 0;
     const used = state.slotsUsed[level] || 0;
 
@@ -528,6 +890,12 @@
   }
 
   function resetSlots() {
+    // Apotecario / warlock-like
+    if (state.spellModel === 'apothecary' && state.apothecarySlots) {
+      resetApothecaryResources(true);
+      return;
+    }
+
     state.slotsUsed = Object.keys(state.slotLimits).reduce((acc, level) => {
       acc[level] = 0;
       return acc;
@@ -546,17 +914,20 @@
       empty[key] = [];
     });
     const previousPrepared = clonePrepared(state.prepared);
+    const previousCantrips = state.cantrips ? [...state.cantrips] : [];
     const previousConcentration = { ...state.concentration };
 
     state.prepared = empty;
+    state.cantrips = [];
     state.concentration = defaultConcentrationState();
     renderPreparedView();
 
     Promise.all([
-      persistPreparedSpells(state.prepared),
+      persistPreparedSpells({ ...state.prepared, 0: [] }),
       persistConcentration(state.concentration),
     ]).catch(() => {
       state.prepared = previousPrepared;
+      state.cantrips = previousCantrips;
       state.concentration = previousConcentration;
       renderPreparedView();
       openInfoModal('Error al reiniciar', '<p>No se pudo reiniciar el grimorio. Intenta de nuevo.</p>');
@@ -601,6 +972,61 @@
     }).catch(() => {
       console.warn('No se pudo guardar el estado de los slots de conjuro.');
     });
+  }
+
+  function persistApothecarySlots(current) {
+    if (!window.GRIMORIO_DATA.nonce) return;
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_save_apothecary_slots',
+      nonce: window.GRIMORIO_DATA.nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      current,
+    });
+    fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    }).catch(() => {
+      console.warn('No se pudo guardar el estado de slots de Apotecario.');
+    });
+  }
+
+  function resetApothecaryResources(isLongRest) {
+    if (!window.GRIMORIO_DATA.nonce) return;
+    if (state.apothecarySlots) {
+      // Optimista: restaura slots en cliente mientras llega la respuesta.
+      state.apothecarySlots.current = state.apothecarySlots.max;
+      renderApothecarySlotsBlock();
+    }
+    const payload = new URLSearchParams({
+      action: 'drak_dnd5_reset_apothecary_resources',
+      nonce: window.GRIMORIO_DATA.nonce,
+      post_id: window.GRIMORIO_DATA.post_id,
+      is_long: isLongRest ? '1' : '',
+    });
+    fetch(window.GRIMORIO_DATA.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: payload,
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        if (!json || !json.success) return;
+        if (json.apothecary_slots) {
+          state.apothecarySlots = {
+            ...state.apothecarySlots,
+            ...json.apothecary_slots,
+          };
+          renderApothecarySlotsBlock();
+        }
+        if (json.greater_formulas) {
+          state.greaterFormulas = json.greater_formulas;
+          renderPreparedView();
+        }
+      })
+      .catch(() => {
+        console.warn('No se pudo resetear recursos de Apotecario.');
+      });
   }
 
   function applyServerSlots(slots) {
@@ -727,6 +1153,15 @@
   }
 
   function getAvailableTransformationLevels() {
+    if (state.spellModel === 'apothecary' && state.apothecarySlots) {
+      const remaining = Math.max(0, (state.apothecarySlots.current || 0));
+      if (remaining > 0) {
+        const lvl = state.apothecarySlots.slotLevel || 1;
+        return [{ level: lvl, remaining, max: state.apothecarySlots.max || remaining }];
+      }
+      return [];
+    }
+
     const result = [];
     Object.keys(state.slotLimits).forEach((key) => {
       const level = parseInt(key, 10);
@@ -753,7 +1188,15 @@
 
     requestTransformationActivation(level)
       .then((payload) => {
-        applyServerSlots(payload.slots_used || {});
+        if (state.spellModel === 'apothecary' && payload.apothecary_slots) {
+          state.apothecarySlots = {
+            ...state.apothecarySlots,
+            ...payload.apothecary_slots,
+          };
+          renderApothecarySlotsBlock();
+        } else {
+          applyServerSlots(payload.slots_used || {});
+        }
         state.transformation = normalizeTransformationState(payload.transformation);
         renderTransformationBlock();
         closeModal(selectors.transformModal);
@@ -947,6 +1390,14 @@
         return mapSpellForState(ref, level);
       });
     });
+
+    state.cantrips = (state.cantrips || []).map((spell) => {
+      const ref = findSpell(spell.id, spell.name);
+      if (!ref) {
+        return spell;
+      }
+      return mapSpellForState(ref, 0);
+    });
   }
 
   function findSpell(spellId, fallbackName) {
@@ -1002,6 +1453,9 @@
 
   function serializePrepared(prepared) {
     const result = {};
+    if (!prepared[0] && state.cantrips) {
+      result[0] = state.cantrips.map((spell) => spell.name).filter(Boolean);
+    }
     Object.keys(prepared).forEach((key) => {
       const level = parseInt(key, 10);
       if (Number.isNaN(level)) return;
@@ -1196,7 +1650,10 @@
 
   function getTotalPreparedCount(map) {
     const source = map || state.prepared;
-    return Object.values(source).reduce((sum, list) => sum + (Array.isArray(list) ? list.length : 0), 0);
+    return Object.entries(source).reduce((sum, [lvl, list]) => {
+      if (parseInt(lvl, 10) === 0) return sum;
+      return sum + (Array.isArray(list) ? list.length : 0);
+    }, 0);
   }
 
   function clamp(value, min, max) {
@@ -1323,6 +1780,12 @@
   function abilityMod(score) {
     if (!Number.isFinite(score)) return 0;
     return Math.floor((score - 10) / 2);
+  }
+
+  function computeApothecaryPreparedLimit(level, intScore) {
+    const lvl = Number.isFinite(level) ? level : 1;
+    const intMod = abilityMod(intScore);
+    return Math.max(1, lvl + intMod);
   }
 
   function formatMod(value) {

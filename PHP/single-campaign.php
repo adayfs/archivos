@@ -206,6 +206,32 @@ $status_labels = [
 .campaign-card--simple h4 {
   margin: 12px 12px 14px;
 }
+.campaign-create-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--accent, #9b5cff);
+  background: var(--accent-dark, rgba(155, 92, 255, 0.2));
+  color: var(--text, #fff);
+  text-decoration: none;
+  font-weight: 600;
+}
+.campaign-create-btn:hover {
+  border-color: var(--accent, #9b5cff);
+}
+.campaign-create-btn:focus-visible {
+  outline: 2px solid var(--accent, #9b5cff);
+  outline-offset: 2px;
+}
+@media (max-width: 720px) {
+  .campaign-create-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 .campaign-posts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -560,6 +586,14 @@ function drak_campaign_section_title( $text ) {
 }
 
 function drak_campaign_render_personajes( $campaign_id ) {
+    $wizard_page = get_page_by_path( 'crear-personaje' );
+    $wizard_url  = $wizard_page ? add_query_arg( 'campaign_id', $campaign_id, get_permalink( $wizard_page->ID ) ) : '';
+    if ( is_user_logged_in() && $wizard_url ) {
+        echo '<div class="campaign-create-wrapper">';
+        echo '<a class="campaign-create-btn drak-btn" href="' . esc_url( $wizard_url ) . '">CREAR PERSONAJE</a>';
+        echo '</div>';
+    }
+
     $query = new WP_Query( [
         'post_type'      => 'personaje',
         'post_status'    => 'publish',
@@ -691,6 +725,15 @@ function drak_campaign_render_wiki_hub( $campaign_id, $base_url ) {
         'lugar'          => [ 'title' => 'Lugares' ],
         'faccion'        => [ 'title' => 'Facciones' ],
         'personaje_wiki' => [ 'title' => 'Personajes' ],
+        'static-weapons'     => [ 'title' => 'Armas' ],
+        'static-armor'       => [ 'title' => 'Armaduras' ],
+        'static-actions'     => [ 'title' => 'Acciones' ],
+        'static-spells'      => [ 'title' => 'Hechizos' ],
+        'static-races'       => [ 'title' => 'Razas' ],
+        'static-languages'   => [ 'title' => 'Idiomas' ],
+        'static-feats'       => [ 'title' => 'Dotes' ],
+        'static-backgrounds' => [ 'title' => 'Trasfondos' ],
+        'static-tools'       => [ 'title' => 'Herramientas' ],
     ];
 
     echo '<div class="wiki-list">';
@@ -710,6 +753,26 @@ function drak_campaign_render_wiki_hub( $campaign_id, $base_url ) {
 }
 
 function drak_campaign_render_wiki_section( $campaign_id, $section ) {
+    $static_sections = [
+        'static-weapons'     => [ 'title' => 'Armas',       'file' => 'dnd-weapons.json',       'file_es' => 'dnd-weapons-es.json',       'root' => 'weapons' ],
+        'static-armor'       => [ 'title' => 'Armaduras',   'file' => 'dnd-armors.json',        'file_es' => 'dnd-armors-es.json',        'root' => 'armors' ],
+        'static-actions'     => [ 'title' => 'Acciones',    'file' => 'dnd-actions.json',       'file_es' => 'dnd-actions-es.json',       'root' => 'actions' ],
+        'static-spells'      => [ 'title' => 'Hechizos',    'file' => 'dnd-spells.json',        'file_es' => 'dnd-spells-es.json',        'root' => 'spells' ],
+        'static-races'       => [ 'title' => 'Razas',       'file' => 'dnd-races.json',         'file_es' => 'dnd-races-es.json',         'root' => 'races' ],
+        'static-languages'   => [ 'title' => 'Idiomas',     'file' => 'dnd-languages.json',     'file_es' => 'dnd-languages-es.json',     'root' => 'languages' ],
+        'static-feats'       => [ 'title' => 'Dotes',       'file' => 'dnd-feats.json',         'file_es' => 'dnd-feats-es.json',         'root' => 'feats' ],
+        'static-backgrounds' => [ 'title' => 'Trasfondos',  'file' => 'dnd-backgrounds.json',   'file_es' => 'dnd-backgrounds-es.json',   'root' => 'backgrounds' ],
+        'static-tools'       => [ 'title' => 'Herramientas','file' => 'dnd-tools.json',         'file_es' => 'dnd-tools-es.json',         'root' => 'tools' ],
+    ];
+
+    if ( isset( $static_sections[ $section ] ) ) {
+        if ( function_exists( 'wp_enqueue_script' ) ) {
+            wp_enqueue_script( 'dnd5-renderer', get_stylesheet_directory_uri() . '/js/dnd5-renderer.js', [], null, true );
+        }
+        drak_campaign_render_static_wiki_section( $section, $static_sections[ $section ] );
+        return;
+    }
+
     $post_types = drak_campaign_get_wiki_post_types();
     if ( ! in_array( $section, $post_types, true ) ) {
         echo '<p class="campaign-section__empty">Sección no disponible.</p>';
@@ -873,6 +936,534 @@ function drak_campaign_render_wiki_section( $campaign_id, $section ) {
     }
     echo '</div>';
     wp_reset_postdata();
+}
+
+function drak_campaign_static_find_file( $filename ) {
+    $dirs = [
+        trailingslashit( get_stylesheet_directory() ) . 'data/',
+        trailingslashit( get_stylesheet_directory() ) . 'jsons/',
+    ];
+    foreach ( $dirs as $dir ) {
+        $path = $dir . ltrim( $filename, '/\\' );
+        if ( file_exists( $path ) ) {
+            return $path;
+        }
+    }
+    return '';
+}
+
+function drak_campaign_static_pick_file( array $candidates ) {
+    foreach ( $candidates as $file ) {
+        if ( ! $file ) {
+            continue;
+        }
+        $path = drak_campaign_static_find_file( $file );
+        if ( $path ) {
+            return $path;
+        }
+    }
+    return '';
+}
+
+function drak_campaign_static_load_json( $path ) {
+    if ( ! $path || ! file_exists( $path ) ) {
+        return [];
+    }
+    $data = json_decode( file_get_contents( $path ), true );
+    return is_array( $data ) ? $data : [];
+}
+
+function drak_campaign_static_get_name( $item ) {
+    if ( isset( $item['name'] ) && is_array( $item['name'] ) ) {
+        return $item['name']['es'] ?? $item['name']['en'] ?? '';
+    }
+    return $item['name'] ?? '';
+}
+
+function drak_campaign_render_static_card_meta( $item, $section_key ) {
+    $meta = [];
+    switch ( $section_key ) {
+        case 'static-weapons':
+            $meta[] = $item['category'] ?? '';
+            $meta[] = trim( ( $item['dmg1'] ?? '' ) . ' ' . ( $item['dmgType'] ?? '' ) );
+            break;
+        case 'static-armor':
+            $meta[] = $item['type'] ?? '';
+            $meta[] = isset( $item['ac'] ) ? 'CA ' . $item['ac'] : '';
+            if ( ! empty( $item['stealthDisadvantage'] ) ) {
+                $meta[] = 'Desventaja sigilo';
+            }
+            break;
+        case 'static-spells':
+            $meta[] = 'Nivel ' . ( $item['level'] ?? 0 );
+            $meta[] = $item['school'] ?? '';
+            break;
+        case 'static-races':
+            if ( isset( $item['size'] ) && is_array( $item['size'] ) ) {
+                $meta[] = implode( ', ', $item['size'] );
+            }
+            if ( isset( $item['speed']['walk'] ) ) {
+                $meta[] = 'Vel ' . $item['speed']['walk'];
+            }
+            break;
+        case 'static-languages':
+            if ( isset( $item['type'] ) ) {
+                $meta[] = $item['type'];
+            }
+            if ( isset( $item['script'] ) ) {
+                $meta[] = 'Escritura: ' . $item['script'];
+            }
+            break;
+        case 'static-feats':
+            if ( ! empty( $item['prerequisite'] ) ) {
+                $meta[] = 'Requisitos';
+            }
+            if ( ! empty( $item['ability'] ) ) {
+                $meta[] = 'Atributos';
+            }
+            break;
+        case 'static-backgrounds':
+            if ( ! empty( $item['skillProficiencies'] ) ) {
+                $meta[] = 'Pericias';
+            }
+            if ( ! empty( $item['languageProficiencies'] ) ) {
+                $meta[] = 'Idiomas';
+            }
+            break;
+        case 'static-tools':
+            if ( isset( $item['category'] ) ) {
+                $meta[] = $item['category'];
+            }
+            if ( isset( $item['type'] ) ) {
+                $meta[] = $item['type'];
+            }
+            break;
+        case 'static-actions':
+            if ( isset( $item['group'] ) ) {
+                $meta[] = $item['group'];
+            }
+            break;
+    }
+    return implode( ' · ', array_filter( $meta ) );
+}
+
+function drak_campaign_render_static_wiki_section( $section_key, $config ) {
+    $title     = $config['title'] ?? ucfirst( $section_key );
+    $file      = drak_campaign_static_pick_file( [ $config['file_es'] ?? '', $config['file'] ?? '' ] );
+    $root      = $config['root'] ?? '';
+    $search    = isset( $_GET['wiki_search'] ) ? sanitize_text_field( wp_unslash( $_GET['wiki_search'] ) ) : '';
+    $paged     = max( 1, (int) get_query_var( 'paged' ) ?: (int) ( $_GET['paged'] ?? 1 ) );
+    $per_page  = 24;
+
+    echo '<h3 class="campaign-section__title" style="text-align:center;">Wiki · ' . esc_html( $title ) . '</h3>';
+
+    if ( ! $file || ! $root ) {
+        echo '<p class="campaign-section__empty">Datos no disponibles.</p>';
+        return;
+    }
+
+    $data = drak_campaign_static_load_json( $file );
+    $items = $data[ $root ] ?? [];
+    if ( ! is_array( $items ) || empty( $items ) ) {
+        echo '<p class="campaign-section__empty">No hay datos para esta sección.</p>';
+        return;
+    }
+
+    if ( $search ) {
+        $items = array_values( array_filter( $items, function ( $item ) use ( $search ) {
+            $name = strtolower( drak_campaign_static_get_name( $item ) );
+            return strpos( $name, strtolower( $search ) ) !== false;
+        } ) );
+    }
+
+    $total     = count( $items );
+    $offset    = ( $paged - 1 ) * $per_page;
+    $page_items = array_slice( $items, $offset, $per_page );
+    $base_link = add_query_arg(
+        array_filter(
+            [
+                'wiki_section' => $section_key,
+                'wiki_view'    => 'archive',
+                'wiki_search'  => $search ?: null,
+            ]
+        )
+    );
+
+    echo '<div class="wiki-archive" data-static-section="' . esc_attr( $section_key ) . '">';
+    echo '<div class="wiki-archive-layout wiki-archive-layout--no-search">';
+    echo '<div class="wiki-archive-cards"><div class="wiki-archive__list">';
+
+    $detail_payload = [];
+    foreach ( $page_items as $item ) {
+        $name = drak_campaign_static_get_name( $item );
+        $source = $item['source'] ?? '';
+        $id = drak_campaign_static_get_id( $item, $name );
+        $meta = drak_campaign_render_static_card_meta( $item, $section_key );
+        if ( $id ) {
+            $detail_payload[ $id ] = $item;
+        }
+        echo '<article class="wiki-card">';
+        echo '<h3 class="wiki-card__title"><button type="button" class="wiki-card__title-btn" data-static-detail="' . esc_attr( $id ) . '">' . esc_html( $name ) . '</button></h3>';
+        if ( $meta ) {
+            echo '<p class="wiki-card__excerpt">' . esc_html( $meta ) . '</p>';
+        }
+        if ( $source ) {
+            echo '<p class="wiki-card__excerpt"><strong>Fuente:</strong> ' . esc_html( $source ) . '</p>';
+        }
+        echo '</article>';
+    }
+
+    echo '</div></div>'; // list/cards
+    echo '</div>'; // layout
+
+    $total_pages = (int) ceil( $total / $per_page );
+    if ( $total_pages > 1 ) {
+        $paginate_links = paginate_links( [
+            'total'   => $total_pages,
+            'current' => $paged,
+            'base'    => add_query_arg( 'paged', '%#%', $base_link ),
+            'format'  => '',
+        ] );
+        if ( $paginate_links ) {
+            echo '<div class="wiki-archive__pagination">' . wp_kses_post( $paginate_links ) . '</div>';
+        }
+    }
+
+    echo '</div>'; // archive
+
+    if ( ! empty( $detail_payload ) ) {
+        echo '<script>';
+        echo 'window.DND5_STATIC_DETAIL = window.DND5_STATIC_DETAIL || {};';
+        echo 'window.DND5_STATIC_DETAIL[' . wp_json_encode( $section_key ) . '] = ' . wp_json_encode( $detail_payload ) . ';';
+        echo '</script>';
+    }
+
+    ?>
+    <div class="wiki-static-modal" id="wiki-static-modal" hidden>
+        <div class="wiki-static-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="wiki-static-modal-title">
+            <button type="button" class="wiki-static-modal__close" aria-label="Cerrar">&times;</button>
+            <div class="wiki-static-modal__content">
+                <h3 id="wiki-static-modal-title"></h3>
+                <div class="wiki-static-modal__meta"></div>
+                <div class="wiki-static-modal__body"></div>
+            </div>
+        </div>
+        <div class="wiki-static-modal__backdrop"></div>
+    </div>
+    <style>
+    .wiki-card__title-btn { background:none; border:none; color:inherit; padding:0; cursor:pointer; text-decoration:none; font:inherit; }
+    .wiki-card__title-btn:hover { text-decoration:underline; }
+    .wiki-static-modal { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; }
+    .wiki-static-modal[hidden] { display:none; }
+    .wiki-static-modal__backdrop { position:absolute; inset:0; background:rgba(0,0,0,0.75); }
+    .wiki-static-modal__dialog { position:relative; z-index:1; max-width:880px; width:94%; max-height:92vh; overflow:auto; background:#0f0b1a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:18px; color:#f5f3ff; box-shadow:0 10px 40px rgba(0,0,0,0.45); }
+    .wiki-static-modal__close { position:absolute; top:10px; right:10px; border:none; background:transparent; color:#fff; font-size:22px; cursor:pointer; }
+    .wiki-static-modal__meta { color:#d0cde3; margin-bottom:10px; display:flex; flex-wrap:wrap; gap:6px; }
+    .wiki-static-chip { display:inline-flex; align-items:center; padding:2px 8px; border-radius:999px; background:rgba(155,92,255,0.25); color:#f7f2ff; font-size:0.85rem; border:1px solid rgba(155,92,255,0.35); }
+    .wiki-static-panel { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:12px; margin-bottom:12px; }
+    .wiki-static-panel h4 { margin:0 0 8px; font-size:1rem; color:#f0d7ff; }
+    .wiki-static-panel table { width:100%; border-collapse:collapse; font-size:0.9rem; margin:6px 0; }
+    .wiki-static-panel th, .wiki-static-panel td { border:1px solid rgba(255,255,255,0.12); padding:6px 8px; text-align:left; }
+    .wiki-static-panel ul { margin:0 0 0 18px; line-height:1.45; }
+    .wiki-static-modal__body .dnd5-entry-block h4 { margin:0.5rem 0; font-size:1rem; color:#f0d7ff; }
+    .wiki-static-modal__body .dnd5-entry-block p { line-height:1.5; margin:0.4rem 0; }
+    .wiki-static-modal__body .dnd5-entry-block ul { margin:0.4rem 0 0.4rem 1.2rem; line-height:1.45; }
+    .dnd5-tag { display:inline-block; padding:0 0.35rem; border-radius:0.35rem; background:rgba(153,51,255,0.25); color:#fff; font-size:0.85em; margin:0 0.1rem; }
+    .dnd5-tag-spell, .dnd5-tag-action { background:rgba(57,255,20,0.25); color:#e6ffe1; }
+    .wiki-static-meta-title { font-weight:700; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.03em; color:#d7d2e8; margin-right:6px; }
+    </style>
+    <script>
+    (function() {
+      const initWhenReady = () => {
+        const detailData = window.DND5_STATIC_DETAIL || {};
+        const modal = document.getElementById('wiki-static-modal');
+        if (!modal) return;
+        const titleEl = modal.querySelector('#wiki-static-modal-title');
+        const metaEl = modal.querySelector('.wiki-static-modal__meta');
+        const bodyEl = modal.querySelector('.wiki-static-modal__body');
+        const closeBtn = modal.querySelector('.wiki-static-modal__close');
+        const backdrop = modal.querySelector('.wiki-static-modal__backdrop');
+
+        function pickEntries(obj, section) {
+          if (!obj || typeof obj !== 'object') return [];
+          const res = [];
+          // Para herramientas, si existe additionalEntries_es es el texto correcto.
+          if (section === 'static-tools' && Array.isArray(obj.additionalEntries_es) && obj.additionalEntries_es.length) {
+            return [...obj.additionalEntries_es];
+          }
+          // Prioridad ES general
+          if (Array.isArray(obj.entries_es) && obj.entries_es.length) res.push(...obj.entries_es);
+          if (Array.isArray(obj.additionalEntries_es) && obj.additionalEntries_es.length) res.push(...obj.additionalEntries_es);
+          // Si no hay ES, usar base o EN
+          if (!res.length && Array.isArray(obj.entries) && obj.entries.length) res.push(...obj.entries);
+          if (!res.length && Array.isArray(obj.entries_en) && obj.entries_en.length) res.push(...obj.entries_en);
+          if (!res.length && Array.isArray(obj.additionalEntries) && obj.additionalEntries.length) res.push(...obj.additionalEntries);
+          if (!res.length && Array.isArray(obj.additionalEntries_en) && obj.additionalEntries_en.length) res.push(...obj.additionalEntries_en);
+          return res;
+        }
+        function pickName(obj) {
+          if (!obj) return '';
+          if (obj.name && typeof obj.name === 'object') {
+            return obj.name.es || obj.name.en || '';
+          }
+          return obj.name || '';
+        }
+        function escapeHtml(str) {
+          return String(str || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        }
+        function toList(val) {
+          if (val == null) return [];
+          if (Array.isArray(val)) return val;
+          if (typeof val === 'object') return Object.keys(val);
+          return [val];
+        }
+        function renderChips(values) {
+          return values.filter(Boolean).map((v) => `<span class="wiki-static-chip">${escapeHtml(v)}</span>`).join('');
+        }
+        function formatAbility(abilityArr) {
+          if (!Array.isArray(abilityArr) || !abilityArr.length) return '';
+          const parts = [];
+          abilityArr.forEach((obj) => {
+            if (!obj || typeof obj !== 'object') return;
+            Object.entries(obj).forEach(([k, v]) => {
+              parts.push(`${k.toUpperCase()} ${v >= 0 ? '+' : ''}${v}`);
+            });
+          });
+          return parts.join(', ');
+        }
+        function formatPrereq(pr) {
+          if (!pr) return '';
+          if (Array.isArray(pr)) {
+            return pr.map((p) => formatPrereq(p)).filter(Boolean).join('; ');
+          }
+          if (typeof pr === 'string') return pr;
+          if (pr.ability) return formatAbility(pr.ability);
+          if (pr.level) return `Nivel ${pr.level}`;
+          return '';
+        }
+        function formatTime(times) {
+          if (!Array.isArray(times)) return '';
+          return times.map((t) => {
+            if (typeof t === 'string') return t;
+            const num = t.number ? `${t.number} ` : '';
+            return `${num}${t.unit || ''}`.trim();
+          }).filter(Boolean).join(', ');
+        }
+        function formatRange(range) {
+          if (!range) return '';
+          if (typeof range === 'string') return range;
+          if (range.distance) {
+            if (typeof range.distance === 'object') {
+              return `${range.distance.amount || ''} ${range.distance.type || ''}`.trim();
+            }
+            return String(range.distance);
+          }
+          return range.type || '';
+        }
+        function formatDuration(durations) {
+          if (!Array.isArray(durations)) return '';
+          return durations.map((d) => d.type || '').filter(Boolean).join(', ');
+        }
+        function formatComponents(components) {
+          if (!components || typeof components !== 'object') return '';
+          const list = [];
+          if (components.v) list.push('V');
+          if (components.s) list.push('S');
+          if (components.m) list.push('M' + (typeof components.m === 'string' ? ` (${components.m})` : ''));
+          return list.join(', ');
+        }
+        function renderMetaChips(section, item) {
+          const chips = [];
+          if (item.source) chips.push('Fuente: ' + item.source);
+          switch(section) {
+            case 'static-weapons':
+              if (item.category) chips.push('Categoría: ' + item.category);
+              if (item.dmg1) chips.push('Daño: ' + item.dmg1 + (item.dmgType ? ' ' + item.dmgType : ''));
+              if (item.properties && item.properties.length) chips.push('Propiedades: ' + item.properties.join(', '));
+              break;
+            case 'static-armor':
+              if (item.type) chips.push('Tipo: ' + item.type);
+              if (item.ac) chips.push('CA: ' + item.ac);
+              if (item.stealthDisadvantage) chips.push('Desventaja sigilo');
+              break;
+            case 'static-spells':
+              chips.push('Nivel: ' + (item.level ?? 0));
+              if (item.school) chips.push('Escuela: ' + item.school);
+              break;
+            case 'static-races':
+              if (item.size) chips.push('Tamaño: ' + [].concat(item.size).join(', '));
+              if (item.speed && item.speed.walk) chips.push('Velocidad: ' + item.speed.walk);
+              break;
+            case 'static-languages':
+              if (item.type) chips.push('Tipo: ' + item.type);
+              if (item.script) chips.push('Escritura: ' + item.script);
+              break;
+            case 'static-feats':
+              if (item.prerequisite && item.prerequisite.length) chips.push('Requisitos: ' + formatPrereq(item.prerequisite));
+              break;
+            case 'static-backgrounds':
+              if (item.skillProficiencies && item.skillProficiencies.length) chips.push('Pericias');
+              if (item.languageProficiencies && item.languageProficiencies.length) chips.push('Idiomas');
+              break;
+            case 'static-tools':
+              if (item.category) chips.push('Categoría: ' + item.category);
+              if (item.type) chips.push('Tipo: ' + item.type);
+              break;
+            case 'static-actions':
+              if (item.group) chips.push('Grupo: ' + item.group);
+              break;
+          }
+          return renderChips(chips);
+        }
+
+        function renderTable(section, item) {
+          const rows = [];
+          const addRow = (label, value) => {
+            if (!value && value !== 0) return;
+            rows.push(`<tr><th>${escapeHtml(label)}</th><td>${value}</td></tr>`);
+          };
+          switch(section) {
+            case 'static-weapons':
+              addRow('Tipo', escapeHtml(item.type || ''));
+              addRow('Categoría', escapeHtml(item.category || ''));
+              addRow('Daño (1M)', escapeHtml(item.dmg1 || ''));
+              addRow('Daño (2M)', escapeHtml(item.dmg2 || ''));
+              addRow('Tipo de daño', escapeHtml(item.dmgType || ''));
+              addRow('Alcance', escapeHtml(item.range || ''));
+              addRow('Munición', escapeHtml(item.ammoType || ''));
+              if (item.properties && item.properties.length) {
+                addRow('Propiedades', renderChips(item.properties));
+              }
+              addRow('Peso', escapeHtml(item.weight || ''));
+              addRow('Valor', escapeHtml(item.value || ''));
+              break;
+            case 'static-armor':
+              addRow('Tipo', escapeHtml(item.type || ''));
+              addRow('CA', escapeHtml(item.ac ?? ''));
+              addRow('Fuerza', escapeHtml(item.strength ?? ''));
+              addRow('Sigilo', item.stealthDisadvantage ? 'Desventaja' : '—');
+              addRow('Peso', escapeHtml(item.weight || ''));
+              addRow('Valor', escapeHtml(item.value || ''));
+              break;
+            case 'static-spells':
+              addRow('Nivel', escapeHtml(item.level ?? ''));
+              addRow('Escuela', escapeHtml(item.school || ''));
+              addRow('Tiempo', formatTime(item.time));
+              addRow('Alcance', escapeHtml(formatRange(item.range)));
+              addRow('Duración', escapeHtml(formatDuration(item.duration)));
+              if (item.components) addRow('Componentes', escapeHtml(formatComponents(item.components)));
+              if (item.classes) addRow('Clases', renderChips(item.classes.map((c) => c.name || c)));
+              break;
+            case 'static-races':
+              if (item.ability) addRow('Atributos', escapeHtml(formatAbility(item.ability)));
+              if (item.languageProficiencies) addRow('Idiomas', renderChips(item.languageProficiencies.map((l) => Object.keys(l)[0] || '')) );
+              if (item.traitTags) addRow('Rasgos', renderChips(item.traitTags));
+              break;
+            case 'static-languages':
+              addRow('Tipo', escapeHtml(item.type || ''));
+              addRow('Escritura', escapeHtml(item.script || ''));
+              if (item.typicalSpeakers) addRow('Hablantes típicos', renderChips(item.typicalSpeakers));
+              break;
+            case 'static-feats':
+              if (item.prerequisite) addRow('Requisitos', escapeHtml(formatPrereq(item.prerequisite)));
+              if (item.ability) addRow('Atributos', escapeHtml(formatAbility(item.ability)));
+              break;
+            case 'static-backgrounds':
+              if (item.skillProficiencies) addRow('Pericias', renderChips(toList(item.skillProficiencies)));
+              if (item.toolProficiencies) addRow('Herramientas', renderChips(toList(item.toolProficiencies)));
+              if (item.languageProficiencies) addRow('Idiomas', renderChips(toList(item.languageProficiencies)));
+              break;
+            case 'static-tools':
+              addRow('Categoría', escapeHtml(item.category || ''));
+              addRow('Tipo', escapeHtml(item.type || ''));
+              break;
+            case 'static-actions':
+              addRow('Grupo', escapeHtml(item.group || ''));
+              if (item.time) addRow('Tiempo', renderChips(item.time));
+              break;
+          }
+          if (!rows.length) return '';
+          return `<div class="wiki-static-panel"><h4>Detalles</h4><table>${rows.join('')}</table></div>`;
+        }
+
+        function renderEntriesSafe(entries) {
+          const r = window.DND5Render;
+          if (r && typeof r.renderEntries === 'function') {
+            return r.renderEntries(entries);
+          }
+          // Fallback simple
+          if (!Array.isArray(entries)) return '';
+          return entries.map((e) => {
+            if (typeof e === 'string') return `<p>${escapeHtml(e)}</p>`;
+            if (e && typeof e === 'object' && e.entry) return `<p>${escapeHtml(e.entry)}</p>`;
+            return '';
+          }).join('');
+        }
+
+        function openDetail(section, id) {
+          const store = detailData[section] || {};
+          const item = store[id];
+          if (!item) return;
+          titleEl.textContent = pickName(item) || id;
+          metaEl.innerHTML = renderMetaChips(section, item);
+          let entries = pickEntries(item, section);
+          if ((!entries || !entries.length) && Array.isArray(item.typicalSpeakers) && item.typicalSpeakers.length) {
+            entries = [
+              {
+                type: 'list',
+                name: 'Hablantes típicos',
+                items: item.typicalSpeakers,
+              },
+            ];
+          }
+          const entriesHtml = renderEntriesSafe(entries);
+          const tableHtml = renderTable(section, item);
+          bodyEl.innerHTML = tableHtml + (entriesHtml || '');
+          modal.hidden = false;
+        }
+        function closeDetail() { modal.hidden = true; }
+        document.addEventListener('click', function(evt) {
+          const btn = evt.target.closest('[data-static-detail]');
+          if (!btn) return;
+          const section = btn.closest('[data-static-section]')?.getAttribute('data-static-section');
+          const id = btn.getAttribute('data-static-detail');
+          if (section && id) {
+            evt.preventDefault();
+            openDetail(section, id);
+          }
+        });
+        closeBtn?.addEventListener('click', closeDetail);
+        backdrop?.addEventListener('click', closeDetail);
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && !modal.hidden) {
+            closeDetail();
+          }
+        });
+      };
+
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initWhenReady();
+      } else {
+        document.addEventListener('DOMContentLoaded', initWhenReady);
+      }
+    })();
+    </script>
+    <?php
+}
+
+function drak_campaign_static_get_id( $item, $fallback = '' ) {
+    if ( isset( $item['id'] ) && $item['id'] ) {
+        return $item['id'];
+    }
+    if ( $fallback ) {
+        return sanitize_title( $fallback );
+    }
+    return '';
 }
 
 function drak_campaign_get_homebrew_entries( $campaign_id, $section, $search = '' ) {

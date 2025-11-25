@@ -83,6 +83,38 @@
     gap: 1rem;
 }
 
+.grimorio-slots {
+    margin-bottom: 1rem;
+}
+
+.grimorio-apothecary-slots {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    display: grid;
+    gap: 0.35rem;
+    text-align: left;
+    color: #fff;
+}
+
+.grimorio-apothecary-slots__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.grimorio-apothecary-slots__row strong {
+    color: var(--grimorio-accent, #f36aff);
+}
+
+.grimorio-apothecary-slots__hint {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
 .grimorio-slot-column {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -361,6 +393,7 @@
     border-radius: 1rem;
     padding: 1.25rem;
     background: rgba(0, 0, 0, 0.35);
+    margin-bottom: 25px;
 }
 
 .spell-search-module__intro h3 {
@@ -816,10 +849,12 @@
 }
 
 .grimorio-transformation__actions {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin: 1rem auto 0;
+    align-items: center;
+    justify-content: center;
 }
 
 .grimorio-transformation__actions button {

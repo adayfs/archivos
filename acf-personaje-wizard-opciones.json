@@ -1,0 +1,94 @@
+{
+  "acf-field-group": {
+    "key": "group_personaje_wizard_opciones",
+    "title": "Personaje – Opciones de creación",
+    "fields": [
+      {
+        "key": "field_personaje_feat_list",
+        "label": "Dotes iniciales",
+        "name": "feat_list",
+        "type": "repeater",
+        "layout": "table",
+        "button_label": "Añadir dote",
+        "instructions": "Dotes obtenidas en la creación (origen/raza/clase). Guarda id y nombre tal como aparecen en dnd-feats.json.",
+        "sub_fields": [
+          {
+            "key": "field_personaje_feat_id",
+            "label": "ID",
+            "name": "feat_id",
+            "type": "text",
+            "required": 1
+          },
+          {
+            "key": "field_personaje_feat_name",
+            "label": "Nombre",
+            "name": "feat_name",
+            "type": "text",
+            "required": 1
+          },
+          {
+            "key": "field_personaje_feat_source",
+            "label": "Fuente",
+            "name": "feat_source",
+            "type": "text",
+            "required": 0
+          }
+        ]
+      },
+      {
+        "key": "field_personaje_feature_choices",
+        "label": "Opciones de rasgos",
+        "name": "feature_choices",
+        "type": "repeater",
+        "layout": "table",
+        "button_label": "Añadir opción",
+        "instructions": "Guarda elecciones de rasgos configurables (p.ej. Fighting Style, herramienta de trasfondo, idioma extra, cantrip innato).",
+        "sub_fields": [
+          {
+            "key": "field_personaje_choice_key",
+            "label": "Clave/rasgo",
+            "name": "choice_key",
+            "type": "text",
+            "required": 1
+          },
+          {
+            "key": "field_personaje_choice_value",
+            "label": "Elección",
+            "name": "choice_value",
+            "type": "text",
+            "required": 1
+          },
+          {
+            "key": "field_personaje_choice_source",
+            "label": "Fuente",
+            "name": "choice_source",
+            "type": "text",
+            "required": 0
+          },
+          {
+            "key": "field_personaje_choice_notes",
+            "label": "Notas",
+            "name": "choice_notes",
+            "type": "textarea",
+            "rows": 2,
+            "required": 0
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "description": "Campos auxiliares para el asistente de creación de personaje (nivel 1)."
+  }
+}

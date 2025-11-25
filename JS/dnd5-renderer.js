@@ -12,6 +12,7 @@
     'subclassfeature',
     'feat',
   ]);
+  let tagLinkResolver = null;
 
   function getLocalizedArrayFrom(obj, key) {
     if (!obj || typeof obj !== 'object') return Array.isArray(obj) ? obj : [];
@@ -56,6 +57,10 @@
     }
     if (Array.isArray(entry.colLabels_es) && entry.colLabels_es.length) {
       replacements.colLabels = entry.colLabels_es;
+      shouldClone = true;
+    }
+    if (Array.isArray(entry.colStyles_es) && entry.colStyles_es.length) {
+      replacements.colStyles = entry.colStyles_es;
       shouldClone = true;
     }
 
@@ -130,13 +135,31 @@
     if (type === 'table') {
       const caption = entry.caption || entry.name || '';
       const colLabels = getLocalizedArrayFrom(entry, 'colLabels');
+      const colStyles = getLocalizedArrayFrom(entry, 'colStyles');
       const rows = getLocalizedArrayFrom(entry, 'rows');
+
       const header = colLabels.length
-        ? `<thead><tr>${colLabels.map((label) => `<th>${format5eText(label)}</th>`).join('')}</tr></thead>`
+        ? `<thead><tr>${colLabels
+            .map((label, idx) => {
+              const colClass = colStyles[idx] ? ` class="${escapeHtml(colStyles[idx])}"` : '';
+              return `<th${colClass}>${format5eText(label)}</th>`;
+            })
+            .join('')}</tr></thead>`
         : '';
+
       const body = rows
-        .map((row) => `<tr>${row.map((cell) => `<td>${format5eText(cell)}</td>`).join('')}</tr>`)
+        .map((row) => {
+          const cells = Array.isArray(row) ? row : [];
+          const tds = cells
+            .map((cell, idx) => {
+              const colClass = colStyles[idx] ? ` class="${escapeHtml(colStyles[idx])}"` : '';
+              return `<td${colClass}>${renderTableCell(cell)}</td>`;
+            })
+            .join('');
+          return `<tr>${tds}</tr>`;
+        })
         .join('');
+
       return `
         <div class="dnd5-entry-block">
           ${caption ? `<h4>${format5eText(caption)}</h4>` : ''}
@@ -146,6 +169,18 @@
           </table>
         </div>
       `;
+    }
+
+    if (type === 'quote') {
+      const body = renderEntries(entry.entries || []);
+      const by = entry.by ? `<footer>${format5eText(entry.by)}</footer>` : '';
+      return `<blockquote class="dnd5-quote">${body}${by}</blockquote>`;
+    }
+
+    if (type === 'inset') {
+      const title = entry.name ? `<h4>${escapeHtml(entry.name)}</h4>` : '';
+      const body = renderEntries(entry.entries || []);
+      return `<div class="dnd5-entry-block dnd5-inset">${title}${body}</div>`;
     }
 
     if (type === 'refOptionalfeature') {
@@ -163,6 +198,22 @@
     return '';
   }
 
+  function renderTableCell(cell) {
+    if (cell == null) return '';
+    if (Array.isArray(cell)) {
+      return cell.map((c) => renderTableCell(c)).join('<br>');
+    }
+    if (typeof cell === 'object') {
+      if (cell.type) {
+        return renderEntryNode(cell);
+      }
+      if (cell.entry) {
+        return format5eText(cell.entry);
+      }
+    }
+    return format5eText(cell);
+  }
+
   function format5eText(text) {
     if (!text) return '';
     let safe = escapeHtml(String(text));
@@ -177,7 +228,8 @@
 
     const tag = innerRaw.slice(0, spaceIndex).toLowerCase();
     const body = innerRaw.slice(spaceIndex + 1);
-    const label = body.split('|')[0] || body;
+    const parts = body.split('|');
+    const label = parts[0] || body;
 
     if (textualTags.has(tag)) {
       return tag === 'bold' || tag === 'b'
@@ -191,10 +243,41 @@
 
     if (chipTags.has(tag)) {
       const modifier = ['spell', 'action', 'skill'].includes(tag) ? ` dnd5-tag-${tag}` : '';
-      return `<span class="dnd5-tag${modifier}">${label}</span>`;
+      const link = resolveTagLink(tag, parts, label);
+      const content = escapeHtml(link?.label || label);
+      if (link && link.href) {
+        const attrs = [
+          `href="${escapeHtml(link.href)}"`,
+          `class="dnd5-tag${modifier} dnd5-link dnd5-link-${tag}"`,
+          `data-dnd5-tag="${escapeHtml(tag)}"`,
+          `data-dnd5-ref="${escapeHtml(parts.join('|'))}"`,
+          link.target ? `target="${escapeHtml(link.target)}"` : '',
+          link.rel ? `rel="${escapeHtml(link.rel)}"` : '',
+        ]
+          .filter(Boolean)
+          .join(' ');
+        return `<a ${attrs}>${content}</a>`;
+      }
+      return `<span class="dnd5-tag${modifier}">${content}</span>`;
     }
 
-    return label;
+    const link = resolveTagLink(tag, parts, label);
+    if (link && link.href) {
+      const content = escapeHtml(link.label || label);
+      const attrs = [
+        `href="${escapeHtml(link.href)}"`,
+        `class="dnd5-link dnd5-link-${tag}"`,
+        `data-dnd5-tag="${escapeHtml(tag)}"`,
+        `data-dnd5-ref="${escapeHtml(parts.join('|'))}"`,
+        link.target ? `target="${escapeHtml(link.target)}"` : '',
+        link.rel ? `rel="${escapeHtml(link.rel)}"` : '',
+      ]
+        .filter(Boolean)
+        .join(' ');
+      return `<a ${attrs}>${content}</a>`;
+    }
+
+    return escapeHtml(label);
   }
 
   function escapeHtml(str) {
@@ -206,6 +289,43 @@
       .replace(/'/g, '&#39;');
   }
 
+  function slugify(value) {
+    return String(value || '')
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function resolveTagLink(tag, parts, label) {
+    if (typeof tagLinkResolver === 'function') {
+      const resolved = tagLinkResolver({ tag, parts, label });
+      if (resolved && resolved.href) {
+        return resolved;
+      }
+    }
+
+    const baseMap = typeof window !== 'undefined' ? window.DND5_LINK_BASES || {} : {};
+    if (baseMap[tag]) {
+      const slug = slugify(parts[0]);
+      if (slug) {
+        const base = String(baseMap[tag]).replace(/\/$/, '');
+        return { href: `${base}/${slug}`, label };
+      }
+    }
+
+    const slug = slugify(parts[0]);
+    if (slug) {
+      return { href: `#${tag}-${slug}`, label };
+    }
+
+    return null;
+  }
+
+  function setTagLinkResolver(resolver) {
+    tagLinkResolver = typeof resolver === 'function' ? resolver : null;
+  }
+
   window.DND5Render = {
     renderEntries,
     renderEntryNode,
@@ -214,5 +334,7 @@
     getLocalizedTextFrom,
     format5eText,
     render5eTag,
+    renderTableCell,
+    setTagLinkResolver,
   };
 })();
