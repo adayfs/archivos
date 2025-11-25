@@ -12,6 +12,7 @@
  * Define Constants
  */
 define( 'CHILD_THEME_TEMAHIJO_VERSION', '1.0.0' );
+require_once __DIR__ . '/recursos-clase.php';
 
 
 /**
@@ -660,9 +661,9 @@ add_action( 'init', function () {
  * Sanitiza valores provenientes de $_POST (strings o arrays) con soporte para defaults.
  */
 function drak_get_post_value( $key, $default = '' ) {
-    if ( ! isset( $_POST[ $key ] ) ) {
-        return $default;
-    }
+	if ( ! isset( $_POST[ $key ] ) ) {
+		return $default;
+	}
 
     $value = wp_unslash( $_POST[ $key ] );
 
@@ -670,7 +671,46 @@ function drak_get_post_value( $key, $default = '' ) {
         return array_map( 'sanitize_text_field', $value );
     }
 
-    return sanitize_text_field( $value );
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Normaliza el campo ACF `arma_principal` a un payload limpio para JS.
+ */
+function drak_get_weapon_main_payload( int $post_id ): array {
+	$raw = function_exists( 'get_field' ) ? get_field( 'arma_principal', $post_id ) : null;
+	if ( ! is_array( $raw ) ) {
+		return [];
+	}
+
+	$props = [];
+	if ( isset( $raw['properties'] ) ) {
+		$prop_raw = $raw['properties'];
+		if ( is_string( $prop_raw ) ) {
+			$prop_raw = array_map( 'trim', explode( ',', $prop_raw ) );
+		}
+		if ( is_array( $prop_raw ) ) {
+			foreach ( $prop_raw as $prop ) {
+				if ( $prop === '' || $prop === null ) {
+					continue;
+				}
+				$props[] = sanitize_text_field( $prop );
+			}
+		}
+	}
+
+	return [
+		'name'                 => sanitize_text_field( $raw['name'] ?? '' ),
+		'slug'                 => sanitize_title( $raw['slug'] ?? '' ),
+		'category'             => sanitize_text_field( $raw['category'] ?? '' ),
+		'damage_dice'          => sanitize_text_field( $raw['damage_dice'] ?? '' ),
+		'damage_type'          => sanitize_text_field( $raw['damage_type'] ?? '' ),
+		'weight'               => sanitize_text_field( $raw['weight'] ?? '' ),
+		'properties'           => $props,
+		'is_magical'           => ! empty( $raw['es_magica'] ),
+		'requires_attunement'  => ! empty( $raw['requiere_attunement'] ),
+		'description'          => sanitize_text_field( $raw['descripcion'] ?? '' ),
+	];
 }
 
 // RENDERIZAR INVENTARIO DE PERSONAJE____________________________________________________________________
@@ -1127,6 +1167,13 @@ function renderizar_hoja_personaje($post_id) {
 
         drak_update_spellcasting_fields($post_id);
 
+        $combat_attack_extra = intval( drak_get_post_value( 'combat_attack_extra', 0 ) );
+        $combat_damage_extra = intval( drak_get_post_value( 'combat_damage_extra', 0 ) );
+        $combat_notes        = drak_get_post_value( 'combat_notes', '' );
+        update_post_meta( $post_id, 'combat_attack_extra', $combat_attack_extra );
+        update_post_meta( $post_id, 'combat_damage_extra', $combat_damage_extra );
+        update_post_meta( $post_id, 'combat_notes', sanitize_text_field( $combat_notes ) );
+
         echo '<div class="mensaje-confirmacion">✅ Hoja de personaje actualizada.</div>';
     }
 
@@ -1293,6 +1340,10 @@ function renderizar_hoja_personaje($post_id) {
 	$armaduras_val    = isset($datos['prof_armors'])    ? $datos['prof_armors']    : '';
 	$herramientas_val = isset($datos['prof_tools']) ? $datos['prof_tools'] : '';
 	$idiomas_val      = isset($datos['prof_languages'])      ? $datos['prof_languages']      : '';
+    $weapon_main      = drak_get_weapon_main_payload( $post_id );
+    $combat_attack_extra = intval( get_post_meta( $post_id, 'combat_attack_extra', true ) );
+    $combat_damage_extra = intval( get_post_meta( $post_id, 'combat_damage_extra', true ) );
+    $combat_notes        = sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) );
 
 
     ?>
@@ -1357,30 +1408,6 @@ function renderizar_hoja_personaje($post_id) {
           <p class="basic-circle" id="display_cs_hp"></p>
         </div>
       </div>
-		      <!-- BLOQUE: Nivel / Clase / Subclase (solo lectura) -->
-
-
-
-<hr class="temp-pv-separator">
-
-<div class="temp-pv-block">
-<div>
-  <h3 class="subtitulo-hoja-personaje">PV TEMPORALES</h3>
-</div>
-
-
-  <p id="display_cs_temp_hp" class="basic-circle" contenteditable="true" spellcheck="false"><?php echo esc_html($hp_temp); ?></p>
-
-  <div class="temp-pv-slider-wrapper">
-    <input type="range" id="slider_temp_hp" min="0" max="<?php echo esc_attr($hp); ?>" value="<?php echo esc_attr($hp_temp); ?>">
-  </div>
-<button type="button" id="btn-reset-temp-pv" class="btn-reset-temp-pv">RESET TEMP.PV</button>
-
-</div>
-
-<hr class="temp-pv-separator">
-
-
     </div>
 
     <!-- Hidden que se guardan en ACF -->
@@ -1793,6 +1820,191 @@ foreach ($filas as $label => $keys_row) :
 
 
 //FIN RENDERIZAR HOJA DE PERSONAJE____________________________________________________________________
+
+/**
+ * Render del módulo de combate en una página dedicada.
+ */
+function renderizar_combate_personaje( $post_id ) {
+	if ( ! $post_id ) {
+		return '';
+	}
+
+	if ( isset( $_POST['combate_guardar'] ) && intval( $_POST['post_id'] ) === $post_id ) {
+		if ( drak_user_can_manage_personaje( $post_id ) ) {
+			$attack_extra = intval( drak_get_post_value( 'combat_attack_extra', 0 ) );
+			$damage_extra = intval( drak_get_post_value( 'combat_damage_extra', 0 ) );
+			$notes        = drak_get_post_value( 'combat_notes', '' );
+			update_post_meta( $post_id, 'combat_attack_extra', $attack_extra );
+			update_post_meta( $post_id, 'combat_damage_extra', $damage_extra );
+			update_post_meta( $post_id, 'combat_notes', sanitize_text_field( $notes ) );
+			echo '<div class="mensaje-confirmacion">✅ Módulo de combate actualizado.</div>';
+		} else {
+			echo '<div class="mensaje-confirmacion">❌ No tienes permisos para actualizar este personaje.</div>';
+		}
+	}
+
+	$fields = [
+		'cs_fuerza', 'cs_fuerza_mod',
+		'cs_destreza', 'cs_destreza_mod',
+		'cs_constitucion', 'cs_constitucion_mod',
+		'cs_inteligencia', 'cs_inteligencia_mod',
+		'cs_sabiduria', 'cs_sabiduria_mod',
+		'cs_carisma', 'cs_carisma_mod',
+		'cs_proeficiencia',
+		'nivel', 'clase', 'subclase', 'raza', 'background',
+		'cs_iniciativa', 'cs_ac', 'cs_velocidad', 'cs_hp', 'cs_hp_temp',
+		'prof_weapons', 'prof_armors', 'prof_tools', 'prof_languages',
+	];
+	$datos = [];
+	foreach ( $fields as $field ) {
+		$datos[ $field ] = get_field( $field, $post_id );
+	}
+
+	$hp                = isset( $datos['cs_hp'] ) ? $datos['cs_hp'] : '';
+	$hp_temp           = isset( $datos['cs_hp_temp'] ) ? $datos['cs_hp_temp'] : '';
+	$hp_manual_override = get_post_meta( $post_id, 'cs_hp_manual_override', true ) ? '1' : '';
+	$weapon_main       = drak_get_weapon_main_payload( $post_id );
+	$attack_extra      = intval( get_post_meta( $post_id, 'combat_attack_extra', true ) );
+	$damage_extra      = intval( get_post_meta( $post_id, 'combat_damage_extra', true ) );
+	$notes             = sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) );
+
+	ob_start();
+	?>
+	<div class="hoja-personaje-container">
+	  <form method="post" class="formulario-hoja-personaje">
+	    <input type="hidden" name="combate_guardar" value="1">
+	    <input type="hidden" name="post_id" value="<?php echo esc_attr( $post_id ); ?>">
+
+	    <section id="combat-module" class="combat-module">
+	      <h3 class="subtitulo-hoja-personaje">Módulo de combate</h3>
+	      <div class="combat-module__grid">
+	        <div class="combat-card combat-card--temp">
+	          <div class="temp-pv-block">
+	            <div class="temp-pv-header">
+	              <h4 class="combat-card__title">PV temporales</h4>
+	              <button type="button" id="btn-reset-temp-pv" class="btn-reset-temp-pv">RESET</button>
+	            </div>
+	            <p id="display_cs_temp_hp" class="basic-circle" contenteditable="true" spellcheck="false"><?php echo esc_html( $hp_temp ); ?></p>
+	            <div class="temp-pv-slider-wrapper">
+	              <input type="range" id="slider_temp_hp" min="0" max="<?php echo esc_attr( $hp ); ?>" value="<?php echo esc_attr( $hp_temp ); ?>">
+	            </div>
+	          </div>
+	        </div>
+
+	        <div class="combat-card combat-card--resources">
+	          <?php if ( function_exists( 'drak_recursos_render_block' ) ) : ?>
+	            <?php echo drak_recursos_render_block( $post_id ); ?>
+	          <?php endif; ?>
+	        </div>
+
+	        <div
+	          class="combat-card combat-card--attack"
+	          id="combat-attack-card"
+	          data-weapon="<?php echo esc_attr( wp_json_encode( $weapon_main ) ); ?>"
+	        >
+	          <div class="combat-card__header">
+	            <div>
+	              <p class="combat-card__eyebrow">Arma principal</p>
+	              <h4 id="combat-weapon-name"><?php echo ! empty( $weapon_main['name'] ) ? esc_html( $weapon_main['name'] ) : 'Sin arma asignada'; ?></h4>
+	              <p class="combat-weapon-meta" id="combat-weapon-meta"></p>
+	            </div>
+	          </div>
+
+	          <div class="combat-attack-grid">
+	            <div class="combat-attack-box">
+	              <span class="combat-label">Tirada de ataque</span>
+	              <p id="combat-attack-value" class="combat-value">—</p>
+	              <small id="combat-attack-breakdown" class="combat-breakdown">Selecciona un arma en el inventario.</small>
+	            </div>
+	            <div class="combat-attack-box">
+	              <span class="combat-label">Daño</span>
+	              <p id="combat-damage-value" class="combat-value">—</p>
+	              <small id="combat-damage-breakdown" class="combat-breakdown"></small>
+	            </div>
+	          </div>
+
+	          <div class="combat-modifiers">
+	            <div class="combat-modifiers__row">
+	              <label for="combat_attack_extra">Bonificador extra al ataque</label>
+	              <input
+	                type="number"
+	                id="combat_attack_extra"
+	                name="combat_attack_extra"
+	                value="<?php echo esc_attr( $attack_extra ); ?>"
+	                inputmode="numeric"
+	              >
+	            </div>
+	            <div class="combat-modifiers__row">
+	              <label for="combat_damage_extra">Bonificador extra al daño</label>
+	              <input
+	                type="number"
+	                id="combat_damage_extra"
+	                name="combat_damage_extra"
+	                value="<?php echo esc_attr( $damage_extra ); ?>"
+	                inputmode="numeric"
+	              >
+	            </div>
+	            <div class="combat-modifiers__row">
+	              <label for="combat_notes">Notas de talentos/maestrías</label>
+	              <textarea
+	                id="combat_notes"
+	                name="combat_notes"
+	                rows="2"
+	                placeholder="Añade aquí dotes o rasgos que modifiquen el ataque con esta arma."
+	              ><?php echo esc_textarea( $notes ); ?></textarea>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+
+	    </section>
+
+	    <div style="display:none;">
+	      <?php
+	      $abilities = [
+		      'cs_fuerza', 'cs_destreza', 'cs_constitucion', 'cs_inteligencia', 'cs_sabiduria', 'cs_carisma',
+	      ];
+	      foreach ( $abilities as $field ) :
+		      $mod_field = "{$field}_mod";
+		      $val       = isset( $datos[ $field ] ) ? $datos[ $field ] : '';
+		      $mod       = isset( $datos[ $mod_field ] ) ? $datos[ $mod_field ] : '';
+		      ?>
+	        <p id="display_<?php echo esc_attr( $field ); ?>"></p>
+	        <p id="display_<?php echo esc_attr( $mod_field ); ?>"></p>
+	        <input type="hidden" id="<?php echo esc_attr( $field ); ?>" name="<?php echo esc_attr( $field ); ?>" value="<?php echo esc_attr( $val ); ?>">
+	        <input type="hidden" id="<?php echo esc_attr( $mod_field ); ?>" name="<?php echo esc_attr( $mod_field ); ?>" value="<?php echo esc_attr( $mod ); ?>">
+	      <?php endforeach; ?>
+
+	      <p id="display_cs_proeficiencia"></p>
+	      <input type="hidden" id="cs_proeficiencia" name="cs_proeficiencia" value="<?php echo esc_attr( isset( $datos['cs_proeficiencia'] ) ? $datos['cs_proeficiencia'] : '' ); ?>">
+
+	      <p id="display_cs_iniciativa"></p>
+	      <p id="display_cs_ac"></p>
+	      <p id="display_cs_velocidad"></p>
+	      <p id="display_cs_hp"></p>
+
+	      <input type="hidden" id="cs_iniciativa" name="cs_iniciativa" value="<?php echo esc_attr( isset( $datos['cs_iniciativa'] ) ? $datos['cs_iniciativa'] : '' ); ?>">
+	      <input type="hidden" id="cs_ac" name="cs_ac" value="<?php echo esc_attr( isset( $datos['cs_ac'] ) ? $datos['cs_ac'] : '' ); ?>">
+	      <input type="hidden" id="cs_velocidad" name="cs_velocidad" value="<?php echo esc_attr( isset( $datos['cs_velocidad'] ) ? $datos['cs_velocidad'] : '' ); ?>">
+	      <input type="hidden" id="cs_hp" name="cs_hp" value="<?php echo esc_attr( $hp ); ?>">
+	      <input type="hidden" id="cs_hp_temp" name="cs_hp_temp" value="<?php echo esc_attr( $hp_temp ); ?>">
+	      <input type="hidden" id="cs_hp_manual_override" name="cs_hp_manual_override" value="<?php echo esc_attr( $hp_manual_override ); ?>">
+
+	      <input type="hidden" id="nivel" name="nivel" value="<?php echo esc_attr( isset( $datos['nivel'] ) ? $datos['nivel'] : '' ); ?>">
+	      <input type="hidden" id="clase" name="clase" value="<?php echo esc_attr( isset( $datos['clase'] ) ? $datos['clase'] : '' ); ?>">
+	      <input type="hidden" id="subclase" name="subclase" value="<?php echo esc_attr( isset( $datos['subclase'] ) ? $datos['subclase'] : '' ); ?>">
+	      <input type="hidden" id="raza" name="raza" value="<?php echo esc_attr( isset( $datos['raza'] ) ? $datos['raza'] : '' ); ?>">
+	      <input type="hidden" id="background" name="background" value="<?php echo esc_attr( isset( $datos['background'] ) ? $datos['background'] : '' ); ?>">
+	      <input type="hidden" id="prof_weapons" name="prof_weapons" value="<?php echo esc_attr( isset( $datos['prof_weapons'] ) ? $datos['prof_weapons'] : '' ); ?>">
+	      <input type="hidden" id="prof_armors" name="prof_armors" value="<?php echo esc_attr( isset( $datos['prof_armors'] ) ? $datos['prof_armors'] : '' ); ?>">
+	      <input type="hidden" id="prof_tools" name="prof_tools" value="<?php echo esc_attr( isset( $datos['prof_tools'] ) ? $datos['prof_tools'] : '' ); ?>">
+	      <input type="hidden" id="prof_languages" name="prof_languages" value="<?php echo esc_attr( isset( $datos['prof_languages'] ) ? $datos['prof_languages'] : '' ); ?>">
+	    </div>
+	  </form>
+	</div>
+	<?php
+	return ob_get_clean();
+}
 
 
 
@@ -2830,6 +3042,7 @@ function drak_get_request_personaje_id() {
         is_page_template( 'page-hoja-personaje.php' )
         || is_page_template( 'page-inventario-personaje.php' )
         || is_page_template( 'page-grimorio-personaje.php' )
+        || is_page_template( 'page-combate-personaje.php' )
     ) {
         $slug = get_query_var( 'personaje_slug' );
         if ( $slug ) {
@@ -5002,12 +5215,14 @@ function drak_register_personaje_rewrites() {
     $inventory_page = drak_locate_existing_page_slug( ['inventario-personaje', 'inventario'], 'inventario-personaje' );
     $sheet_page     = drak_locate_existing_page_slug( ['hoja-personaje'], 'hoja-personaje' );
     $grimorio_page  = drak_locate_existing_page_slug( ['grimorio'], 'grimorio' );
+    $combate_page   = drak_locate_existing_page_slug( ['combate'], 'combate' );
 
     $rules = [
         '^personaje/([^/]+)/inventario/?' => 'index.php?personaje=$matches[1]&inventario_personaje=1',
         '^inventario/([^/]+)/?$'          => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $inventory_page ),
         '^hoja-personaje/([^/]+)/?$'      => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $sheet_page ),
         '^grimorio/([^/]+)/?$'            => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $grimorio_page ),
+        '^combate/([^/]+)/?$'             => sprintf( 'index.php?pagename=%s&personaje_slug=$matches[1]', $combate_page ),
     ];
 
     foreach ( $rules as $regex => $query ) {
@@ -5142,6 +5357,38 @@ add_action('wp_ajax_guardar_hp_temporal', 'guardar_hp_temporal');
 add_action('wp_ajax_nopriv_guardar_hp_temporal', 'guardar_hp_temporal');
 
 /**
+ * Guardado AJAX del módulo de combate (bonos y notas).
+ */
+function drak_guardar_modulo_combate() {
+    if ( ! isset( $_POST['post_id'] ) ) {
+        wp_send_json_error( [ 'message' => 'Falta post_id' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $attack_extra = isset( $_POST['attack_extra'] ) ? intval( $_POST['attack_extra'] ) : 0;
+    $damage_extra = isset( $_POST['damage_extra'] ) ? intval( $_POST['damage_extra'] ) : 0;
+    $notes        = isset( $_POST['notes'] ) ? sanitize_text_field( wp_unslash( $_POST['notes'] ) ) : '';
+
+    update_post_meta( $post_id, 'combat_attack_extra', $attack_extra );
+    update_post_meta( $post_id, 'combat_damage_extra', $damage_extra );
+    update_post_meta( $post_id, 'combat_notes', $notes );
+
+    wp_send_json_success(
+        [
+            'attack_extra' => $attack_extra,
+            'damage_extra' => $damage_extra,
+            'notes'        => $notes,
+        ]
+    );
+}
+add_action( 'wp_ajax_guardar_modulo_combate', 'drak_guardar_modulo_combate' );
+add_action( 'wp_ajax_nopriv_guardar_modulo_combate', 'drak_guardar_modulo_combate' );
+
+/**
  * Evita que WordPress elimine el parámetro `paged` en las secciones estáticas de wiki
  * (static-*) dentro de la campaña, lo que provocaba redirección 301 y pérdida de página.
  */
@@ -5195,7 +5442,7 @@ function drak_get_dnd5_link_bases() {
 add_action('wp_enqueue_scripts', function () {
     $dnd5_link_bases = drak_get_dnd5_link_bases();
 
-    if (is_page_template('page-hoja-personaje.php')) {
+    if (is_page_template('page-hoja-personaje.php') || is_page_template('page-combate-personaje.php')) {
         $personaje_slug = get_query_var('personaje_slug');
         $personaje = $personaje_slug ? get_page_by_path($personaje_slug, OBJECT, 'personaje') : null;
         $post_id = $personaje ? $personaje->ID : 0;
@@ -5208,6 +5455,13 @@ add_action('wp_enqueue_scripts', function () {
             'ajax_url' => drak_get_admin_ajax_url(),
             'post_id' => $post_id,
         ]);
+        $combat_config = [
+            'weapon_main'  => drak_get_weapon_main_payload( $post_id ),
+            'attack_extra' => intval( get_post_meta( $post_id, 'combat_attack_extra', true ) ),
+            'damage_extra' => intval( get_post_meta( $post_id, 'combat_damage_extra', true ) ),
+            'notes'        => sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) ),
+        ];
+        wp_localize_script( 'hoja-personaje-js', 'COMBAT_CONFIG', $combat_config );
         wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => drak_get_admin_ajax_url(),
         ]);

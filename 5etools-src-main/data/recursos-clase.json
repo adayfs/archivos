@@ -1,0 +1,425 @@
+{
+  "resources": [
+    {
+      "id": "monk-ki",
+      "name": "Ki Points",
+      "classId": "monk",
+      "subclassId": null,
+      "type": "points",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "formula": "classLevel"
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Monk",
+        "order": 10
+      },
+      "notes": "Recarga completa en descanso corto o largo."
+    },
+    {
+      "id": "fighter-action-surge",
+      "name": "Action Surge",
+      "classId": "fighter",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 2, "value": 1 },
+          { "level": 17, "value": 2 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Fighter",
+        "order": 10
+      },
+      "notes": "Usos por descanso corto o largo."
+    },
+    {
+      "id": "fighter-second-wind",
+      "name": "Second Wind",
+      "classId": "fighter",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 1, "value": 1 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Fighter",
+        "order": 15
+      },
+      "notes": "1 uso por descanso corto o largo."
+    },
+    {
+      "id": "fighter-indomitable",
+      "name": "Indomitable",
+      "classId": "fighter",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 9, "value": 1 },
+          { "level": 13, "value": 2 },
+          { "level": 17, "value": 3 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Fighter",
+        "order": 18
+      },
+      "notes": "Recarga en descanso largo."
+    },
+    {
+      "id": "fighter-superiority-dice",
+      "name": "Superiority Dice",
+      "classId": "fighter",
+      "subclassId": "battle-master",
+      "type": "dice",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 3, "value": 4 },
+          { "level": 7, "value": 5 },
+          { "level": 15, "value": 6 }
+        ]
+      },
+      "dice": {
+        "dieSizeProgression": [
+          { "level": 3, "die": "d8" },
+          { "level": 10, "die": "d10" },
+          { "level": 18, "die": "d12" }
+        ]
+      },
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Fighter",
+        "order": 20
+      },
+      "notes": "Pool compartido por maniobras. Al recargar, restaurar numero de dados y ajustar tamano de dado segun nivel."
+    },
+    {
+      "id": "barbarian-rage",
+      "name": "Rages",
+      "classId": "barbarian",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 1, "value": 2 },
+          { "level": 3, "value": 3 },
+          { "level": 6, "value": 4 },
+          { "level": 12, "value": 5 },
+          { "level": 17, "value": 6 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Barbarian",
+        "order": 10
+      },
+      "notes": "Usos por descanso largo."
+    },
+    {
+      "id": "bard-bardic-inspiration",
+      "name": "Bardic Inspiration",
+      "classId": "bard",
+      "subclassId": null,
+      "type": "dice",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "formula": "max(1, chaMod)"
+      },
+      "dice": {
+        "dieSizeProgression": [
+          { "level": 1, "die": "d6" },
+          { "level": 5, "die": "d8" },
+          { "level": 10, "die": "d10" },
+          { "level": 15, "die": "d12" }
+        ]
+      },
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Bard",
+        "order": 10
+      },
+      "notes": "Usos = mod de CAR (min 1). En versiones modernas puede recargar en corto; ajustar recharge si se adopta."
+    },
+    {
+      "id": "cleric-channel-divinity",
+      "name": "Channel Divinity",
+      "classId": "cleric",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 2, "value": 1 },
+          { "level": 6, "value": 2 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": "channel-divinity",
+      "source": "core-2014",
+      "display": {
+        "group": "Cleric",
+        "order": 10
+      },
+      "notes": "Pool compartido por dominio. mergeKey permite fusion con Paladin si se desea."
+    },
+    {
+      "id": "paladin-lay-on-hands",
+      "name": "Lay on Hands",
+      "classId": "paladin",
+      "subclassId": null,
+      "type": "points",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "formula": "5 * classLevel"
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Paladin",
+        "order": 10
+      },
+      "notes": "Recarga completa en descanso largo."
+    },
+    {
+      "id": "paladin-channel-divinity",
+      "name": "Channel Divinity",
+      "classId": "paladin",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 3, "value": 1 },
+          { "level": 6, "value": 2 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": "channel-divinity",
+      "source": "core-2014",
+      "display": {
+        "group": "Paladin",
+        "order": 20
+      },
+      "notes": "Comparte mergeKey con Cleric para permitir fusion opcional."
+    },
+    {
+      "id": "druid-wild-shape",
+      "name": "Wild Shape",
+      "classId": "druid",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 2, "value": 2 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Druid",
+        "order": 10
+      },
+      "notes": "Recarga en descanso corto."
+    },
+    {
+      "id": "sorcerer-sorcery-points",
+      "name": "Sorcery Points",
+      "classId": "sorcerer",
+      "subclassId": null,
+      "type": "points",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 1, "value": 0 },
+          { "level": 2, "value": 2 },
+          { "level": 3, "value": 3 },
+          { "level": 4, "value": 4 },
+          { "level": 5, "value": 5 },
+          { "level": 6, "value": 6 },
+          { "level": 7, "value": 7 },
+          { "level": 8, "value": 8 },
+          { "level": 9, "value": 9 },
+          { "level": 10, "value": 10 },
+          { "level": 11, "value": 11 },
+          { "level": 12, "value": 12 },
+          { "level": 13, "value": 13 },
+          { "level": 14, "value": 14 },
+          { "level": 15, "value": 15 },
+          { "level": 16, "value": 16 },
+          { "level": 17, "value": 17 },
+          { "level": 18, "value": 18 },
+          { "level": 19, "value": 19 },
+          { "level": 20, "value": 20 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Sorcerer",
+        "order": 10
+      },
+      "notes": "Recarga en descanso largo. Tabla explicita para cubrir nivel 1 (0 puntos)."
+    },
+    {
+      "id": "warlock-mystic-arcanum-6",
+      "name": "Mystic Arcanum (6th)",
+      "classId": "warlock",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 11, "value": 1 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Warlock",
+        "order": 10
+      },
+      "notes": "1 uso por descanso largo."
+    },
+    {
+      "id": "warlock-mystic-arcanum-7",
+      "name": "Mystic Arcanum (7th)",
+      "classId": "warlock",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 13, "value": 1 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Warlock",
+        "order": 12
+      },
+      "notes": "1 uso por descanso largo."
+    },
+    {
+      "id": "warlock-mystic-arcanum-8",
+      "name": "Mystic Arcanum (8th)",
+      "classId": "warlock",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 15, "value": 1 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Warlock",
+        "order": 14
+      },
+      "notes": "1 uso por descanso largo."
+    },
+    {
+      "id": "warlock-mystic-arcanum-9",
+      "name": "Mystic Arcanum (9th)",
+      "classId": "warlock",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          { "level": 17, "value": 1 }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Warlock",
+        "order": 16
+      },
+      "notes": "1 uso por descanso largo."
+    }
+  ]
+}

@@ -5,6 +5,7 @@
     }
     initManualOverrideState();
     initTempHpControls();
+    initCombatModule();
     initSheetModal();
     refreshAbilityDisplays();
     initSkillSaveSystem();
@@ -69,6 +70,14 @@
     'cs_carisma',
     'cs_proeficiencia',
   ];
+  const ABILITY_LABELS = Object.freeze({
+    str: 'FUE',
+    dex: 'DES',
+    con: 'CON',
+    int: 'INT',
+    wis: 'SAB',
+    cha: 'CAR',
+  });
 
   const manualOverrideConfig = Object.freeze({
     cs_hp: 'cs_hp_manual_override',
@@ -77,6 +86,7 @@
   const manualBasicOverrides = new Set();
 
   const STATIC_DATA = window.DND5_STATIC_DATA || null;
+  const COMBAT_CONFIG = window.COMBAT_CONFIG || {};
   const PRELOADED_THEORY_CATALOG = Array.isArray(window.APOTHECARY_THEORY_CATALOG)
     ? window.APOTHECARY_THEORY_CATALOG
     : null;
@@ -147,6 +157,13 @@
     promise: null,
     data: null,
   };
+  const combatModuleState = {
+    weapon: COMBAT_CONFIG.weapon_main || null,
+    attackExtra: Number(COMBAT_CONFIG.attack_extra || 0) || 0,
+    damageExtra: Number(COMBAT_CONFIG.damage_extra || 0) || 0,
+    notes: COMBAT_CONFIG.notes || '',
+  };
+  let lastCombatContext = null;
   let apothecaryTheoryCache = null;
   let apothecaryTheoryPromise = null;
 
@@ -675,6 +692,54 @@
     }
 
     syncTempHp(parseInt(hidden.value || '0', 10));
+  }
+
+  function initCombatModule() {
+    const attackCard = document.getElementById('combat-attack-card');
+    if (!attackCard) return;
+
+    const weaponFromDataset = parseWeaponData(attackCard.dataset.weapon);
+    if (weaponFromDataset) {
+      combatModuleState.weapon = weaponFromDataset;
+    } else if (combatModuleState.weapon) {
+      combatModuleState.weapon = normalizeWeaponData(combatModuleState.weapon);
+    }
+
+    const attackExtraInput = document.getElementById('combat_attack_extra');
+    const damageExtraInput = document.getElementById('combat_damage_extra');
+    const notesInput = document.getElementById('combat_notes');
+
+    if (attackExtraInput) {
+      attackExtraInput.value = combatModuleState.attackExtra;
+      attackExtraInput.addEventListener('input', () => {
+        combatModuleState.attackExtra = parseInt(attackExtraInput.value || '0', 10) || 0;
+        refreshCombatFromCache();
+        scheduleCombatSave();
+      });
+    }
+
+    if (damageExtraInput) {
+      damageExtraInput.value = combatModuleState.damageExtra;
+      damageExtraInput.addEventListener('input', () => {
+        combatModuleState.damageExtra = parseInt(damageExtraInput.value || '0', 10) || 0;
+        refreshCombatFromCache();
+        scheduleCombatSave();
+      });
+    }
+
+    if (notesInput) {
+      notesInput.value = combatModuleState.notes || '';
+      notesInput.addEventListener('input', () => {
+        combatModuleState.notes = notesInput.value;
+        scheduleCombatSave();
+      });
+    }
+
+    renderCombatWeaponInfo(combatModuleState.weapon);
+    const fallbackContext = collectCombatContextOnly();
+    const fallbackDerived = buildFallbackDerived(fallbackContext);
+    updateCombatCard(fallbackDerived, fallbackContext);
+    refreshCombatFromCache();
   }
 
   function initSheetModal() {
@@ -2546,6 +2611,280 @@
     console.debug('[Hoja] Contexto calculado', context, derived);
     applyDerivedCharacter(derived);
     refreshClassReferenceModule(context);
+    updateCombatCard(derived, context);
+  }
+
+  function refreshCombatFromCache() {
+    if (lastCombatContext) {
+      updateCombatCard(lastCombatContext.derived, lastCombatContext.context);
+    }
+  }
+
+  let combatSaveTimer = null;
+  function scheduleCombatSave() {
+    clearTimeout(combatSaveTimer);
+    combatSaveTimer = setTimeout(persistCombatState, 400);
+  }
+
+  function persistCombatState() {
+    if (!window.DND5_API || !window.HP_TEMP_AJAX?.post_id) return;
+    const formData = new FormData();
+    formData.append('action', 'guardar_modulo_combate');
+    formData.append('post_id', window.HP_TEMP_AJAX.post_id);
+    formData.append('attack_extra', combatModuleState.attackExtra || 0);
+    formData.append('damage_extra', combatModuleState.damageExtra || 0);
+    formData.append('notes', combatModuleState.notes || '');
+
+    fetch(window.DND5_API.ajax_url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: formData,
+    }).catch((error) => console.error('Error al guardar módulo de combate', error));
+  }
+
+  function parseWeaponData(raw) {
+    if (!raw) return null;
+    if (typeof raw === 'string') {
+      try {
+        const parsed = JSON.parse(raw);
+        return normalizeWeaponData(parsed);
+      } catch (e) {
+        return null;
+      }
+    }
+    if (typeof raw === 'object') {
+      return normalizeWeaponData(raw);
+    }
+    return null;
+  }
+
+  function normalizeWeaponData(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    const propsRaw = Array.isArray(value.properties)
+      ? value.properties
+      : typeof value.properties === 'string'
+        ? value.properties.split(',')
+        : [];
+    const props = propsRaw
+      .map((prop) => (prop == null ? '' : prop.toString().trim()))
+      .filter((prop) => prop !== '');
+
+    return {
+      name: value.name || '',
+      slug: value.slug || '',
+      category: value.category || '',
+      damageDice: value.damage_dice || value.damageDice || '',
+      damageType: value.damage_type || value.damageType || '',
+      properties: props,
+      isMagical: Boolean(value.is_magical || value.es_magica),
+      description: value.description || value.descripcion || '',
+    };
+  }
+
+  function renderCombatWeaponInfo(weapon) {
+    const nameEl = document.getElementById('combat-weapon-name');
+    const metaEl = document.getElementById('combat-weapon-meta');
+    if (!nameEl || !metaEl) return;
+
+    if (!weapon) {
+      nameEl.textContent = 'Sin arma asignada';
+      metaEl.textContent = 'Selecciona un arma en el inventario.';
+      return;
+    }
+
+    nameEl.textContent = weapon.name || 'Arma principal';
+
+    const parts = [];
+    if (weapon.damageDice) parts.push(weapon.damageDice);
+    if (weapon.damageType) parts.push(weapon.damageType);
+    if (weapon.category) parts.push(weapon.category);
+    if (weapon.properties?.length) parts.push(weapon.properties.join(', '));
+    metaEl.textContent = parts.filter(Boolean).join(' · ') || '—';
+  }
+
+  function updateCombatCard(derived, context) {
+    const card = document.getElementById('combat-attack-card');
+    if (!card) return;
+    lastCombatContext = { derived, context };
+
+    const weapon = normalizeWeaponData(combatModuleState.weapon);
+    renderCombatWeaponInfo(weapon);
+
+    const attackEl = document.getElementById('combat-attack-value');
+    const damageEl = document.getElementById('combat-damage-value');
+    const attackBreakEl = document.getElementById('combat-attack-breakdown');
+    const damageBreakEl = document.getElementById('combat-damage-breakdown');
+
+    if (!weapon) {
+      if (attackEl) attackEl.textContent = '—';
+      if (damageEl) damageEl.textContent = '—';
+      if (attackBreakEl) attackBreakEl.textContent = 'Selecciona un arma en el inventario.';
+      if (damageBreakEl) damageBreakEl.textContent = '';
+      return;
+    }
+
+    const abilityInfo = pickWeaponAbility(weapon, derived);
+    const proficiencySet = buildWeaponProficiencySet(context);
+    const isProficient = isProficientWithWeapon(weapon, proficiencySet);
+    const profBonus = isProficient ? derived.proficiencyBonus : 0;
+    const attackTotal = abilityInfo.mod + profBonus + (combatModuleState.attackExtra || 0);
+
+    if (attackEl) attackEl.textContent = formatMod(attackTotal);
+    if (attackBreakEl) {
+      const parts = [];
+      parts.push(`${ABILITY_LABELS[abilityInfo.ability] || abilityInfo.ability}: ${formatMod(abilityInfo.mod)}`);
+      if (isProficient) {
+        parts.push(`Competencia ${formatMod(derived.proficiencyBonus)}`);
+      }
+      if (combatModuleState.attackExtra) {
+        parts.push(`Extra ${formatMod(combatModuleState.attackExtra)}`);
+      }
+      attackBreakEl.textContent = parts.join(' · ');
+    }
+
+    const damageMod = abilityInfo.mod + (combatModuleState.damageExtra || 0);
+    if (damageEl) damageEl.textContent = formatDamageString(weapon.damageDice, damageMod, weapon.damageType);
+    if (damageBreakEl) {
+      const parts = [];
+      parts.push(`Mod (${ABILITY_LABELS[abilityInfo.ability] || abilityInfo.ability}): ${formatMod(abilityInfo.mod)}`);
+      if (combatModuleState.damageExtra) {
+        parts.push(`Extra ${formatMod(combatModuleState.damageExtra)}`);
+      }
+      damageBreakEl.textContent = parts.join(' · ');
+    }
+  }
+
+  function pickWeaponAbility(weapon, derived) {
+    const props = new Set((weapon?.properties || []).map((prop) => prop.toString().trim().toLowerCase()));
+    const category = (weapon?.category || '').toLowerCase();
+    const strMod = derived?.abilityMods?.str ?? 0;
+    const dexMod = derived?.abilityMods?.dex ?? 0;
+
+    const hasThrown = Array.from(props).some((p) => p.includes('thrown') || p.includes('arrojadiza'));
+    const hasAmmo = Array.from(props).some((p) => p.includes('ammunition') || p.includes('municion'));
+    const hasFinesse = Array.from(props).some((p) => p.includes('finesse') || p.includes('sutileza'));
+    const isRanged = category.includes('ranged') || category.includes('distancia') || hasAmmo;
+    const isThrown = hasThrown;
+
+    if (isRanged) {
+      return { ability: 'dex', mod: dexMod, reason: 'Arma a distancia' };
+    }
+    if (hasFinesse) {
+      if (dexMod >= strMod) {
+        return { ability: 'dex', mod: dexMod, reason: 'Arma sutil' };
+      }
+      return { ability: 'str', mod: strMod, reason: 'Arma sutil (FUE)' };
+    }
+    if (isThrown) {
+      return { ability: 'str', mod: strMod, reason: 'Arma arrojadiza' };
+    }
+    return { ability: 'str', mod: strMod, reason: 'Arma cuerpo a cuerpo' };
+  }
+
+  function buildWeaponProficiencySet(context) {
+    const set = new Set();
+    const manualWeapons = parseIds(document.getElementById('prof_weapons')?.value || '');
+    manualWeapons.forEach((id) => addWeaponTokenVariants(set, id));
+
+    const classDef = characterDataStore.data?.classDetails?.[context.classId];
+    addWeaponEntriesToSet(set, classDef?.startingProficiencies?.weapons);
+
+    const raceDef = characterDataStore.data?.races?.[context.raceId];
+    if (raceDef?.weaponProficiencies) {
+      addWeaponEntriesToSet(set, raceDef.weaponProficiencies);
+    }
+
+    const backgroundDef = characterDataStore.data?.backgrounds?.[context.backgroundId];
+    if (backgroundDef?.weaponProficiencies) {
+      addWeaponEntriesToSet(set, backgroundDef.weaponProficiencies);
+    }
+
+    return set;
+  }
+
+  function addWeaponEntriesToSet(set, entries) {
+    if (!entries) return;
+    const list = Array.isArray(entries) ? entries : [entries];
+    list.forEach((entry) => {
+      if (!entry) return;
+      if (typeof entry === 'string') {
+        addWeaponTokenVariants(set, entry);
+      } else if (entry.type === 'fixed' && Array.isArray(entry.items)) {
+        entry.items.forEach((item) => addWeaponTokenVariants(set, item));
+      } else if (entry.choose && Array.isArray(entry.choose.from)) {
+        entry.choose.from.forEach((item) => addWeaponTokenVariants(set, item));
+      }
+    });
+  }
+
+  function addWeaponTokenVariants(set, value) {
+    const slug = slugifyWeaponId(value);
+    if (!slug) return;
+    set.add(slug);
+    const trimmed = slug.replace(/-(phb|dmg|tce|xge|scag|ua|lvl).*$/, '');
+    if (trimmed && trimmed !== slug) {
+      set.add(trimmed);
+    }
+    const simplified = slug.replace(/-weapons?/, '');
+    if (simplified) {
+      set.add(simplified);
+    }
+  }
+
+  function slugifyWeaponId(value) {
+    return (value || '')
+      .toString()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function isProficientWithWeapon(weapon, proficiencySet) {
+    if (!weapon) return false;
+    const tokens = new Set();
+    [weapon.slug, weapon.name].forEach((val) => {
+      const slug = slugifyWeaponId(val);
+      if (slug) {
+        tokens.add(slug);
+        tokens.add(slug.replace(/-(phb|dmg|tce|xge|scag|ua|lvl).*$/, ''));
+      }
+    });
+
+    const categorySlug = slugifyWeaponId(weapon.category || '');
+    if (categorySlug) {
+      tokens.add(categorySlug);
+      if (categorySlug.includes('martial')) tokens.add('martial');
+      if (categorySlug.includes('simple')) tokens.add('simple');
+      if (categorySlug.includes('firearm')) tokens.add('firearm');
+      if (categorySlug.includes('ranged')) tokens.add('ranged');
+      if (categorySlug.includes('melee')) tokens.add('melee');
+    }
+
+    for (const token of tokens) {
+      if (proficiencySet.has(token)) return true;
+    }
+    return false;
+  }
+
+  function formatDamageString(dice, mod, type) {
+    const pieces = [];
+    if (dice) pieces.push(dice);
+    if (mod) pieces.push(formatMod(mod));
+    const joined = pieces.join(' ').trim();
+    const typeLabel = type ? ` ${type}` : '';
+    return (joined || '—') + typeLabel;
+  }
+
+  function buildFallbackDerived(context) {
+    const pbHidden = getNumberFromInput('cs_proeficiencia');
+    const level = Math.max(1, context.level || 1);
+    const pb = Number.isFinite(pbHidden) && pbHidden > 0 ? pbHidden : Math.max(2, 2 + Math.floor((level - 1) / 4));
+    return {
+      abilityMods: context.abilityMods || {},
+      proficiencyBonus: pb,
+    };
   }
 
   function collectCharacterContext() {
@@ -2577,6 +2916,11 @@
       backgroundId: (document.getElementById('background')?.value || '').trim(),
       esotericTheories: getSelectedEsotericTheories(),
     };
+  }
+
+  function collectCombatContextOnly() {
+    const ctx = collectCharacterContext();
+    return ctx;
   }
 
   function buildDerivedCharacter(context, data) {

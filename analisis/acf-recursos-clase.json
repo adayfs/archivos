@@ -1,0 +1,140 @@
+[
+  {
+    "key": "group_recursos_clase",
+    "title": "Recursos de Clase",
+    "fields": [
+      {
+        "key": "field_recursos_repeater",
+        "label": "Recursos de Clase",
+        "name": "recursos_de_clase",
+        "type": "repeater",
+        "instructions": "Instancias de recursos calculadas desde data/recursos-clase.json",
+        "required": 0,
+        "conditional_logic": 0,
+        "collapsed": "",
+        "min": 0,
+        "max": 0,
+        "layout": "row",
+        "button_label": "Añadir recurso",
+        "sub_fields": [
+          {
+            "key": "field_resource_id",
+            "label": "Resource ID",
+            "name": "resource_id",
+            "type": "text",
+            "instructions": "Slug del catálogo",
+            "required": 1,
+            "readonly": 1
+          },
+          {
+            "key": "field_class_id",
+            "label": "Class ID",
+            "name": "class_id",
+            "type": "text",
+            "required": 0,
+            "readonly": 1
+          },
+          {
+            "key": "field_subclass_id",
+            "label": "Subclass ID",
+            "name": "subclass_id",
+            "type": "text",
+            "required": 0,
+            "readonly": 1
+          },
+          {
+            "key": "field_type",
+            "label": "Tipo",
+            "name": "type",
+            "type": "select",
+            "required": 1,
+            "choices": {
+              "points": "Puntos",
+              "uses": "Usos",
+              "dice": "Dados"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": "",
+            "readonly": 1
+          },
+          {
+            "key": "field_current",
+            "label": "Actual",
+            "name": "current",
+            "type": "number",
+            "required": 1,
+            "default_value": 0,
+            "min": 0
+          },
+          {
+            "key": "field_max",
+            "label": "Máximo",
+            "name": "max",
+            "type": "number",
+            "required": 1,
+            "default_value": 0,
+            "min": 0
+          },
+          {
+            "key": "field_die_size",
+            "label": "Die Size",
+            "name": "die_size",
+            "type": "text",
+            "required": 0,
+            "placeholder": "d6/d8/d10/d12",
+            "readonly": 1
+          },
+          {
+            "key": "field_merge_key",
+            "label": "Merge Key",
+            "name": "merge_key",
+            "type": "text",
+            "required": 0,
+            "readonly": 1
+          },
+          {
+            "key": "field_source",
+            "label": "Fuente",
+            "name": "source",
+            "type": "text",
+            "required": 0,
+            "readonly": 1
+          },
+          {
+            "key": "field_level_snapshot",
+            "label": "Level Snapshot",
+            "name": "level_snapshot",
+            "type": "number",
+            "required": 0,
+            "default_value": 0,
+            "min": 0,
+            "instructions": "Nivel de clase usado para calcular max."
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "personaje"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Instancias de recursos de clase con consumo/restauración manual.",
+    "show_in_rest": 1
+  }
+]

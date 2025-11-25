@@ -1,0 +1,199 @@
+{
+  "$schema": "draft-07",
+  "$comment": "Schema orientativo + ejemplos para Recursos de Clase. Todos los strings y claves deben ser ASCII.",
+  "resourceSchema": {
+    "id": "unique slug (p.ej. monk-ki)",
+    "name": "display name",
+    "classId": "class slug (coincidir con Data/classes.json)",
+    "subclassId": "subclass slug o null",
+    "type": "points | uses | dice",
+    "recharge": {
+      "rest": ["short", "long"], 
+      "mode": "full | custom" 
+    },
+    "max": {
+      "formula": "expresion; inputs: classLevel, chaMod, wisMod, prof, etc.",
+      "progression": [
+        {
+          "level": 1,
+          "value": 4
+        }
+      ]
+    },
+    "dice": {
+      "dieSizeProgression": [
+        {
+          "level": 1,
+          "die": "d6"
+        }
+      ]
+    },
+    "mergeKey": "opcional; une pools homonimos (p.ej. channel-divinity)",
+    "source": "core-2014 | core-2024 | homebrew",
+    "display": {
+      "group": "texto libre (p.ej. Monk)",
+      "order": 10
+    },
+    "notes": "texto libre"
+  },
+  "resources": [
+    {
+      "id": "monk-ki",
+      "name": "Ki Points",
+      "classId": "monk",
+      "subclassId": null,
+      "type": "points",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "formula": "classLevel"
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Monk",
+        "order": 10
+      },
+      "notes": "Recarga completa en descanso corto o largo."
+    },
+    {
+      "id": "fighter-action-surge",
+      "name": "Action Surge",
+      "classId": "fighter",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          {
+            "level": 2,
+            "value": 1
+          },
+          {
+            "level": 17,
+            "value": 2
+          }
+        ]
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Fighter",
+        "order": 10
+      },
+      "notes": "Usos por descanso corto o largo."
+    },
+    {
+      "id": "fighter-superiority-dice",
+      "name": "Superiority Dice",
+      "classId": "fighter",
+      "subclassId": "battle-master",
+      "type": "dice",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          {
+            "level": 3,
+            "value": 4
+          },
+          {
+            "level": 7,
+            "value": 5
+          },
+          {
+            "level": 15,
+            "value": 6
+          }
+        ]
+      },
+      "dice": {
+        "dieSizeProgression": [
+          {
+            "level": 3,
+            "die": "d8"
+          },
+          {
+            "level": 10,
+            "die": "d10"
+          },
+          {
+            "level": 18,
+            "die": "d12"
+          }
+        ]
+      },
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Fighter",
+        "order": 20
+      },
+      "notes": "Pool compartido por maniobras. Al recargar, restaurar numero de dados y respetar el tamano segun nivel."
+    },
+    {
+      "id": "paladin-lay-on-hands",
+      "name": "Lay on Hands",
+      "classId": "paladin",
+      "subclassId": null,
+      "type": "points",
+      "recharge": {
+        "rest": [
+          "long"
+        ],
+        "mode": "full"
+      },
+      "max": {
+        "formula": "5 * classLevel"
+      },
+      "dice": null,
+      "mergeKey": null,
+      "source": "core-2014",
+      "display": {
+        "group": "Paladin",
+        "order": 10
+      },
+      "notes": "Recarga completa en descanso largo."
+    },
+    {
+      "id": "paladin-channel-divinity",
+      "name": "Channel Divinity",
+      "classId": "paladin",
+      "subclassId": null,
+      "type": "uses",
+      "recharge": {
+        "rest": ["short", "long"],
+        "mode": "full"
+      },
+      "max": {
+        "progression": [
+          {
+            "level": 3,
+            "value": 1
+          },
+          {
+            "level": 6,
+            "value": 2
+          }
+        ]
+      },
+      "dice": null,
+      "mergeKey": "channel-divinity",
+      "source": "core-2014",
+      "display": {
+        "group": "Paladin",
+        "order": 20
+      },
+      "notes": "mergeKey permite unificar con Channel Divinity de Cleric si se desea."
+    }
+  ]
+}

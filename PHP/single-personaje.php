@@ -9,7 +9,7 @@ $titulo = get_the_title();
   <div class="personaje-imagen" style="background-image: url('<?php echo esc_url($imagen_url); ?>');"></div>
 
   <div class="personaje-botones">
-    <a class="personaje-boton" href="<?php echo home_url('/hoja-personaje/' . get_post_field('post_name', get_the_ID())); ?>">
+<a class="personaje-boton" href="<?php echo home_url('/hoja-personaje/' . get_post_field('post_name', get_the_ID())); ?>">
   Hoja de Personaje
 </a>
 
@@ -20,6 +20,7 @@ $titulo = get_the_title();
 
 
     <a class="personaje-boton" href="<?php echo home_url('/grimorio/' . get_post_field('post_name', get_the_ID())); ?>">Grimorio</a>
+    <a class="personaje-boton" href="<?php echo home_url('/combate/' . get_post_field('post_name', get_the_ID())); ?>">Mod Combate</a>
   </div>
   </div>
 </div>

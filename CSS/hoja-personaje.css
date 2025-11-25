@@ -802,6 +802,126 @@
   background: linear-gradient(to right, transparent, #9933ff, transparent);
 }
 
+.combat-module {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid #1f2a3b;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #0d101b, #0b0d15);
+}
+
+.combat-module__grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.combat-card {
+  background: #111627;
+  border: 1px solid #1f2a3b;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.combat-card--resources {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.combat-card--resources .recursos-clase-block {
+  margin: 0;
+}
+
+.combat-card__eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca7c2;
+}
+
+.combat-card__title {
+  margin: 0 0 0.25rem;
+}
+
+.combat-weapon-meta {
+  margin: 0;
+  color: #9ca7c2;
+  font-size: 0.92rem;
+}
+
+.combat-attack-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-top: 12px;
+}
+
+.combat-attack-box {
+  background: #0b0f1b;
+  border: 1px solid #1f2940;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.combat-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.82rem;
+  color: #9ca7c2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.combat-value {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #f3f6ff;
+}
+
+.combat-breakdown {
+  display: block;
+  margin-top: 4px;
+  color: #b3bdd4;
+  line-height: 1.25;
+}
+
+.combat-modifiers {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.combat-modifiers__row label {
+  display: block;
+  margin-bottom: 4px;
+  color: #c7d2f2;
+  font-size: 0.92rem;
+}
+
+.combat-modifiers__row input,
+.combat-modifiers__row textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #26334a;
+  background: #0b0f1b;
+  color: #f3f6ff;
+  padding: 8px 10px;
+}
+
+.combat-modifiers__row textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.combat-card--temp .temp-pv-block {
+  margin: 0;
+}
+
 /* Segundo circulito para Expertise (misma pinta que el de proeficiencia) */
 .skill-expertise-toggle {
     padding: 0;
