@@ -1189,6 +1189,25 @@
 				"Brutal Kills|Barbarian||Path of the Old Gods||10",
 				"Gifts of the Gods|Barbarian||Path of the Old Gods||14"
 			]
+		},
+		{
+			"name": "Path of the Haze Rager",
+			"shortName": "Haze Rager",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"edition": "Drakkenheim",
+			"subclassFeatures": [
+				"Path of the Haze Rager|Barbarian||Haze Rager||3",
+				"Contaminated Fury|Barbarian||Haze Rager||3",
+				"Inured to Corruption|Barbarian||Haze Rager||3",
+				"Octarine Blood|Barbarian||Haze Rager||6",
+				"Already a Monster|Barbarian||Haze Rager||6",
+				"Consume Corruption|Barbarian||Haze Rager||10",
+				"Voices In Your Head|Barbarian||Haze Rager||10",
+				"One with the Mists|Barbarian||Haze Rager||14",
+				"Breath of the Haze|Barbarian||Haze Rager||14"
+			]
 		}
 	],
 	"classFeature": [
@@ -3891,6 +3910,119 @@
 						"When a creature within 30 feet of you would drop to 0 {@variantrule Hit Points|XPHB}, you can take a {@variantrule Reaction|XPHB} to expend a use of your Rage to instead change the target's {@variantrule Hit Points|XPHB} to a number equal to your Barbarian level."
 					]
 				}
+			]
+		},
+		{
+			"name": "Path of the Haze Rager",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"The first warriors who ventured into Drakkenheim were forever changed by the Haze. Haze Ragers channel that corruption through their rage and thrive amid delirium.",
+				"Each time you gain a level in this class, you may replace one of your class features with a feature from this path, following your DM's guidance."
+			]
+		},
+		{
+			"name": "Contaminated Fury",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 3,
+			"entries": [
+				"Once per turn while you are raging, you can deal an extra {@damage 1d8} necrotic damage to one target you hit with a weapon attack or unarmed strike (2d8 at 10th level, 3d8 at 14th level).",
+				"When you hit a creature with a melee weapon attack, you can choose to gain one or more levels of contamination to deal an extra {@damage 2d8} necrotic damage per contamination level gained."
+			]
+		},
+		{
+			"name": "Inured to Corruption",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 3,
+			"entries": [
+				"If a spell has the sole effect of removing Contamination Levels from you (such as {@spell purge contamination|SCGTD}), the caster does not need material components to cast it on you. You also ignore any exhaustion that spell would normally inflict on you."
+			]
+		},
+		{
+			"name": "Octarine Blood",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 6,
+			"entries": [
+				"You gain resistance to necrotic, poison, psychic, and radiant damage, and your hit point maximum can’t be reduced."
+			]
+		},
+		{
+			"name": "Already a Monster",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 6,
+			"entries": [
+				"While raging, you ignore the Symptoms of any Contamination Levels you have, except for a Monstrous Transformation.",
+				"Whenever you would suffer a Mutation from contamination, you can roll twice and choose which Mutation you gain."
+			]
+		},
+		{
+			"name": "Consume Corruption",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 10,
+			"entries": [
+				"You can cast {@spell purge contamination|SCGTD} a number of times per day equal to your proficiency bonus without material components. You can’t use this ability on yourself."
+			]
+		},
+		{
+			"name": "Voices In Your Head",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 10,
+			"entries": [
+				"Once per day you can cast {@spell contact other plane}. If you fail the Intelligence saving throw, you can choose to gain one Contamination Level instead of being driven mad."
+			]
+		},
+		{
+			"name": "One with the Mists",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 14,
+			"entries": [
+				"You can cast {@spell gaseous form} on yourself a number of times equal to your proficiency bonus, regaining all expended uses when you finish a long rest."
+			]
+		},
+		{
+			"name": "Breath of the Haze",
+			"source": "SCGTD",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"subclassShortName": "Haze Rager",
+			"subclassSource": "SCGTD",
+			"level": 14,
+			"entries": [
+				"When you enter your rage, you wreathe yourself in a 15-foot-radius sphere of haze that moves with you and is lightly obscured. Creatures that start their turn in the mists must make an Intelligence saving throw (DC 8 + your proficiency bonus + your Constitution modifier). On a failed save, a creature takes {@damage 3d8} psychic damage, its speed is halved, and it can’t take reactions until the start of its next turn.",
+				"When you manifest the mists, you can designate any number of creatures you can see to be unaffected."
 			]
 		}
 	]

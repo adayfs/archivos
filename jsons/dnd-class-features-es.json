@@ -408,6 +408,618 @@
         "entries": [
           "Creatures that fail against your Exorcism: Expel Evil take +4d8 radiant damage; creatures aided by your Exorcism: Purge Corruption gain 4d8 temporary hit points."
         ]
+      },
+      {
+        "name": "Advanced Psychology",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Aprendes el truco {@spell eldritch blast} y obtienes competencia en la habilidad Arcana (o cualquier otra si ya eras competente). Empiezas con cuatro Puntos Psíquicos, ganas dos adicionales a niveles 6, 10 y 14, y recuperas todos los puntos gastados al finalizar un descanso corto o largo."
+        ]
+      },
+      {
+        "name": "Alienist Spells",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Ciertos conjuros están siempre preparados para ti cuando alcanzas los niveles indicados, según se muestra en la tabla de Alienist Spells. Cuentan como conjuros de apotecario para ti y no cuentan contra los conjuros que puedes preparar.",
+          {
+            "type": "table",
+            "caption": "Alienist Spells",
+            "colLabels": [
+              "Apothecary Level",
+              "Spells"
+            ],
+            "rows": [
+              [
+                "1st",
+                "{@spell charm person}, {@spell hideous laughter}"
+              ],
+              [
+                "3rd",
+                "{@spell detect thoughts}, {@spell suggestion}"
+              ],
+              [
+                "5th",
+                "{@spell hypnotic pattern}, {@spell major image}"
+              ],
+              [
+                "7th",
+                "{@spell arcane eye}, {@spell dimension door}"
+              ],
+              [
+                "9th",
+                "{@spell animate objects}, {@spell modify memory}"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mental Influence",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "Puedes gastar Puntos Psíquicos para potenciar tus conjuros:",
+          {
+            "type": "list",
+            "items": [
+              "Ruptura cerebral: al lanzar un conjuro que inflige daño, gasta 1 punto para repetir cualquier número de dados de daño (usas los nuevos resultados).",
+              "Mente sobre materia: cuando recibes daño, usa tu reacción y 1 punto para reducirlo en una cantidad igual a tu nivel de apotecario.",
+              "Susurrador mental: cuando lanzas un conjuro que no inflige daño, gasta 1 punto para lanzarlo sin componentes somáticos ni verbales."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Metaphysical Tether",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "Como acción, tocas a una criatura dispuesta para crear un vínculo psíquico que dura horas iguales a tu nivel de apotecario o hasta que lo termines. Puedes mantener vínculos con tantas criaturas como tu bonificación de competencia, permitiendo comunicación telepática entre ellas mientras estén a 100 pies."
+        ]
+      },
+      {
+        "name": "Force Manipulation",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Como acción adicional, puedes gastar 1 Punto Psíquico para obtener velocidad de vuelo igual a tu velocidad de caminar durante 1 minuto; puedes flotar mientras dure."
+        ]
+      },
+      {
+        "name": "Mental Magic",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 10,
+        "entries": [
+          "Nuevas formas de gastar Puntos Psíquicos:",
+          {
+            "type": "list",
+            "items": [
+              "Efectos prescritos: una vez por turno, cuando una criatura a 30 pies supere una salvación de Int, Sab o Car contra un conjuro tuyo, gasta 1 punto para que repita el d20 y use el resultado inferior.",
+              "Mentalmente preparado: una vez por turno, cuando una criatura a 30 pies falle una salvación de Int, Sab o Car, gasta 1 punto para añadir tu modificador de Inteligencia a la tirada.",
+              "Respuesta huir o luchar: como acción adicional, gasta 1 punto para teletransportarte hasta 30 pies a un espacio que veas y obtén PG temporales iguales al doble de tu modificador de Inteligencia."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Self-Diagnosis",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 14,
+        "entries": [
+          "Si no te quedan Puntos Psíquicos, puedes usar una acción adicional y gastar un espacio de conjuro para recuperar {@dice 1d4} puntos. Además:",
+          {
+            "type": "list",
+            "items": [
+              "Examen cuidadoso: cuando un conjuro que lanzas cura, puedes gastar 1 punto para que todos los objetivos recuperen PG adicionales iguales al doble de tu modificador de Inteligencia.",
+              "Cerebelo mejorado: puedes lanzar conjuros de Alienist Spells gastando un número de puntos igual a su nivel en lugar de un espacio de conjuro."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Impenetrable Mind",
+        "source": "SCGTD",
+        "page": 141,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Alienist",
+        "subclassSource": "SCGTD",
+        "level": 18,
+        "entries": [
+          "Tienes resistencia al daño psíquico e inmunidad a ser encantado o asustado; la magia no puede dormirte y tienes ventaja en salvaciones contra efectos que lean o controlen tu mente. Al usar Self-Diagnosis con un espacio de conjuro, recuperas Puntos Psíquicos iguales al nivel del espacio."
+        ]
+      },
+      {
+        "name": "Chemical Compound",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Obtienes competencia con {@item alchemist's supplies|phb} si no la tenías, aprendes {@spell fire bolt} y un truco de evocación de mago adicional de tu elección (cuentan como trucos de apotecario y no cuentan contra tus trucos conocidos)."
+        ]
+      },
+      {
+        "name": "Chemist Spells",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Ciertos conjuros están siempre preparados para ti cuando alcanzas los niveles indicados, según la tabla de Chemist Spells. Cuentan como conjuros de apotecario para ti y no cuentan contra los conjuros que puedes preparar.",
+          {
+            "type": "table",
+            "caption": "Chemist Spells",
+            "colLabels": [
+              "Apothecary Level",
+              "Spells"
+            ],
+            "rows": [
+              [
+                "1st",
+                "{@spell burning hands}, {@spell grease}"
+              ],
+              [
+                "3rd",
+                "{@spell acid arrow}, {@spell flaming sphere}"
+              ],
+              [
+                "5th",
+                "{@spell fireball}, {@spell stinking cloud}"
+              ],
+              [
+                "7th",
+                "{@spell ice storm}, {@spell wall of fire}"
+              ],
+              [
+                "9th",
+                "{@spell cloudkill}, {@spell cone of cold}"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Precise Application",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "Cuando lanzas un conjuro que inflige daño de ácido, frío, fuego, relámpago o veneno, puedes elegir criaturas iguales a tu modificador de Inteligencia; superan automáticamente la salvación y no reciben daño."
+        ]
+      },
+      {
+        "name": "Chain Reaction",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Cuando lanzas un truco de apotecario de objetivo único que inflige uno de esos tipos de daño, puede tener como objetivo a dos criaturas dentro del alcance."
+        ]
+      },
+      {
+        "name": "Chemical Conditioning",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Como acción, tocas a una criatura y le otorgas resistencia a ácido, frío, fuego, relámpago o veneno durante 1 hora. El efecto finaliza si usas este rasgo de nuevo."
+        ]
+      },
+      {
+        "name": "Bottled Spells",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 10,
+        "entries": [
+          "Puedes almacenar un conjuro de tu rasgo Chemist Spells como líquido en un vial cuando lo lanzas; permanece almacenado hasta que alguien abra el vial. Al usar este rasgo, cualquier conjuro embotellado anterior queda inerte y no puedes embotellar otro hasta un descanso corto. Quien abra el vial gasta su acción para lanzar el conjuro usando tu CD y bonificador de ataque, pero se considera el lanzador a todos los demás efectos."
+        ]
+      },
+      {
+        "name": "Elemental Adjustment",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 14,
+        "entries": [
+          "Cuando lanzas un conjuro de apotecario que inflija daño de ácido, frío, fuego, relámpago o veneno, puedes cambiar ese tipo de daño por otro de la misma lista."
+        ]
+      },
+      {
+        "name": "Chemical Cataclysm",
+        "source": "SCGTD",
+        "page": 142,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Chemist",
+        "subclassSource": "SCGTD",
+        "level": 18,
+        "entries": [
+          "Cuando lanzas un conjuro que inflige uno de esos tipos de daño usando un espacio de apotecario, se trata como si se hubiera lanzado con un espacio de 7º nivel."
+        ]
+      },
+      {
+        "name": "Plague Proficiency",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Aprendes {@spell chill touch} y obtienes competencia con {@item herbalism kit|phb}; si ya la tenías, eliges otra herramienta de artesano."
+        ]
+      },
+      {
+        "name": "Pathogenist Spells",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Ciertos conjuros están siempre preparados para ti cuando alcanzas los niveles indicados, según la tabla de Pathogenist Spells. Cuentan como conjuros de apotecario para ti y no cuentan contra los conjuros que puedes preparar.",
+          {
+            "type": "table",
+            "caption": "Pathogenist Spells",
+            "colLabels": [
+              "Apothecary Level",
+              "Spells"
+            ],
+            "rows": [
+              [
+                "1st",
+                "infect*, {@spell inflict wounds}"
+              ],
+              [
+                "3rd",
+                "{@spell blindness/deafness}, biohazard*"
+              ],
+              [
+                "5th",
+                "pestilence*, venomous aura*"
+              ],
+              [
+                "7th",
+                "{@spell blight}, blood worm*"
+              ],
+              [
+                "9th",
+                "{@spell contagion}, {@spell insect plague}"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Pernicious Pathogens",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "Cuando alguien intenta curar o eliminar una de tus enfermedades, debe superar una prueba con su característica de lanzamiento (o Carisma) contra tu CD de conjuros. Si falla, el efecto no funciona y los recursos se pierden."
+        ]
+      },
+      {
+        "name": "Mutant Strain",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "Aprendes cepas mutantes para añadir efectos a tus enfermedades. Aprendes dos cepas, ganas más según la tabla Mutant Strains Known y puedes sustituirlas al subir de nivel.",
+          {
+            "type": "table",
+            "caption": "Mutant Strains Known",
+            "colLabels": [
+              "Apothecary Level",
+              "Number of Strains"
+            ],
+            "rows": [
+              [
+                "3rd",
+                "2"
+              ],
+              [
+                "9th",
+                "3"
+              ],
+              [
+                "15th",
+                "4"
+              ]
+            ]
+          },
+          "Cuando lances un conjuro que inflija enfermedad, puedes aplicar un efecto de cepa a un objetivo. Cepas disponibles:",
+          {
+            "type": "list",
+            "items": [
+              "Mareos: no puede usar reacciones.",
+              "Fatiga: al fallar la salvación, su velocidad es 5 pies hasta el inicio de su siguiente turno.",
+              "Ataques de tos: al inicio de su turno hace una salvación de Constitución o no puede hablar hasta el inicio del siguiente turno.",
+              "Temblores: al inicio de cada turno suelta lo que tenga en las manos.",
+              "Debilidad (9º): inflige la mitad de daño con ataques de arma cuerpo a cuerpo.",
+              "Ojos secos (9º): al fallar la salvación queda cegado hasta el inicio de su siguiente turno.",
+              "Fiebre intensa (9º): no puede recuperar puntos de golpe.",
+              "Lesiones (9º): pierde cualquier resistencia al daño.",
+              "Náuseas (15º): al fallar la salvación queda incapacitado hasta el inicio de su siguiente turno.",
+              "Distrofia (15º): se vuelve vulnerable al daño contundente, perforante y cortante."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Breakthrough Infection",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Tus conjuros que causan enfermedad ignoran la inmunidad a enfermedades; esas criaturas hacen las salvaciones con ventaja en lugar de ser inmunes."
+        ]
+      },
+      {
+        "name": "Outbreak",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Cuando una criatura infectada por ti muere, puedes usar tu reacción para propagar la enfermedad a otra criatura que veas a 30 pies."
+        ]
+      },
+      {
+        "name": "Insidious Incubation",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 10,
+        "entries": [
+          "Al comenzar a lanzar {@spell infect*|SCGTD}, puedes hacerlo sin concentración; si lo haces, la duración pasa a ser 1 minuto. Una vez usado, no puedes repetirlo hasta un descanso corto o largo."
+        ]
+      },
+      {
+        "name": "Immunocompromised",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 14,
+        "entries": [
+          "Una criatura infectada por tus enfermedades tiene desventaja en las tiradas de salvación contra tus conjuros de apotecario."
+        ]
+      },
+      {
+        "name": "Rapid Evolution",
+        "source": "SCGTD",
+        "page": 146,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Pathogenist",
+        "subclassSource": "SCGTD",
+        "level": 18,
+        "entries": [
+          "Cuando lanzas un conjuro que cause enfermedades, puedes aplicar dos efectos de tu Mutant Strain a un objetivo del conjuro en lugar de uno."
+        ]
+      },
+      {
+        "name": "Spark of Life",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Aprendes {@spell shocking grasp} y {@spell spare the dying}; cuentan como conjuros de apotecario y no cuentan contra tus trucos conocidos."
+        ]
+      },
+      {
+        "name": "Reanimator Spells",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Ciertos conjuros están siempre preparados para ti cuando alcanzas los niveles indicados, según la tabla de Reanimator Spells. Cuentan como conjuros de apotecario para ti y no cuentan contra los conjuros que puedes preparar.",
+          {
+            "type": "table",
+            "caption": "Reanimator Spells",
+            "colLabels": [
+              "Apothecary Level",
+              "Spells"
+            ],
+            "rows": [
+              [
+                "1st",
+                "{@spell false life}, {@spell inflict wounds}"
+              ],
+              [
+                "3rd",
+                "{@spell gentle repose}, invigorate*"
+              ],
+              [
+                "5th",
+                "{@spell lightning bolt}, {@spell revivify}"
+              ],
+              [
+                "7th",
+                "{@spell death ward}, corpse explosion*"
+              ],
+              [
+                "9th",
+                "{@spell raise dead}, nerve gas*"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Corpsewrought Creature",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "Creas una criatura cadavérica obediente. Comparte tu iniciativa, actúa tras ti y solo se desvía de Esquivar si usas una acción adicional para mandarle otra acción. Si muere en la última hora, puedes revivirla con tu botiquín de curandero y un espacio de conjuro; también puedes crear una nueva al final de un descanso largo (la anterior perece).",
+          "Estadísticas: constructo Mediano, CA 14 + PB; PG 5 + 5 × tu nivel de apotecario (dados d12 iguales a tu nivel); velocidad 30 pies; Fue 18, Des 10, Con 16, Int 8, Sab 12, Car 8; TS Con +3 + PB, Sab +1 + PB; Atletismo +4 + PB; inmunidad a daño de veneno y relámpago y a la condición envenenado; visión en la oscuridad 60 pies; entiende tus idiomas; PB = tu PB.",
+          "Absorción de relámpagos: cuando sufre daño de relámpago, en vez de daño recupera PG iguales al daño. Slam: ataque de arma cuerpo a cuerpo +4 + PB al ataque, alcance 5 pies, 1 objetivo, daño {@damage 1d8 + 4} contundente."
+        ]
+      },
+      {
+        "name": "Bodyguard",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Cuando una criatura a 5 pies de tu creación te ataque, puede usar su reacción para golpear con un ataque cuerpo a cuerpo. Su Slam cuenta como mágico. Además, puedes lanzar {@spell animate dead} una vez con un espacio de apotecario por descanso largo."
+        ]
+      },
+      {
+        "name": "Reanimated Head",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "Tienes una cabeza reanimada que sirve como foco de conjuro y habla Común y otro idioma a elección. En pruebas de Inteligencia con competencia, tratas resultados de 9 o menos como 10 y ganas competencia en Arcana e Investigación. Puedes lanzar {@spell speak with dead} con la cabeza sin gastar espacio de conjuro una vez por descanso corto o largo."
+        ]
+      },
+      {
+        "name": "Behold, My Creation",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 10,
+        "entries": [
+          "Tu criatura aumenta a tamaño Grande, velocidad 40 pies, y cuando impacta puede agarrar al objetivo inmediatamente (CD escape 8 + 4 + tu PB)."
+        ]
+      },
+      {
+        "name": "Berserk Fury",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 14,
+        "entries": [
+          "Cuando ordenas a tu criatura cadavérica que haga la acción de Ataque, puede hacer dos ataques."
+        ]
+      },
+      {
+        "name": "I Can't Stop The Monster I Created",
+        "source": "SCGTD",
+        "page": 147,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Reanimator",
+        "subclassSource": "SCGTD",
+        "level": 18,
+        "entries": [
+          "Tu criatura aumenta a tamaño Enorme, alcanza 10 pies, velocidad 50 pies y su Slam inflige {@dice 1d8} contundente adicional; además, duplica el peso que puede empujar o levantar."
+        ]
       }
     ],
     "artificer-tce-classic": [
@@ -1457,6 +2069,122 @@
         "name_es": "Primal Champion",
         "entries_es": [
           "A nivel 20, encarnas el poder de los salvajes. Su fuerza y Constitución aumentan en 4. Su máximo para esas puntuaciones es ahora 24."
+        ]
+      },
+      {
+        "name": "Path of the Haze Rager",
+        "level": 3,
+        "source": "SCGTD",
+        "entries": [
+          "The first warriors who braved Drakkenheim's Haze were forever altered; some learned to channel that corruption through their rage as Haze Ragers.",
+          "Work with your DM to replace subclass features appropriately if needed when you adopt this path."
+        ],
+        "name_es": "Path of the Haze Rager",
+        "entries_es": [
+          "Los primeros guerreros que se atrevieron con la Niebla de Drakkenheim quedaron cambiados para siempre; algunos aprendieron a canalizar esa corrupción a través de su furia como Haze Ragers.",
+          "Coordina con tu DM cómo reemplazar rasgos de subclase si es necesario al adoptar este camino."
+        ]
+      },
+      {
+        "name": "Contaminated Fury",
+        "level": 3,
+        "source": "SCGTD",
+        "entries": [
+          "Once per turn while you are raging, you can deal an extra {@damage 1d8} necrotic damage to a target you hit with a weapon attack or unarmed strike (2d8 at 10th level, 3d8 at 14th level).",
+          "When you hit a creature with a melee weapon attack, you can choose to gain one or more Contamination Levels to deal an extra {@damage 2d8} necrotic damage per level gained."
+        ],
+        "name_es": "Furia contaminada",
+        "entries_es": [
+          "Una vez por turno mientras estás en furia, puedes infligir {@damage 1d8} de daño necrótico adicional a un objetivo al que impactes con un ataque de arma o un golpe sin armas (2d8 al nivel 10 y 3d8 al nivel 14).",
+          "Cuando impactas con un ataque de arma cuerpo a cuerpo, puedes elegir ganar uno o más Niveles de Contaminación para infligir {@damage 2d8} de daño necrótico adicional por cada nivel aceptado."
+        ]
+      },
+      {
+        "name": "Inured to Corruption",
+        "level": 3,
+        "source": "SCGTD",
+        "entries": [
+          "If a spell has the sole effect of removing Contamination Levels from you (such as {@spell purge contamination|SCGTD}), the caster does not need material components to cast it on you, and you do not gain exhaustion from the spell."
+        ],
+        "name_es": "Curtido a la corrupción",
+        "entries_es": [
+          "Si un conjuro tiene como único efecto eliminar Niveles de Contaminación de ti (como {@spell purge contamination|SCGTD}), el lanzador no necesita componentes materiales para lanzarlo sobre ti y no sufres agotamiento por ese conjuro."
+        ]
+      },
+      {
+        "name": "Octarine Blood",
+        "level": 6,
+        "source": "SCGTD",
+        "entries": [
+          "You gain resistance to necrotic, poison, psychic, and radiant damage, and your hit point maximum can’t be reduced."
+        ],
+        "name_es": "Sangre octarina",
+        "entries_es": [
+          "Obtienes resistencia al daño necrótico, veneno, psíquico y radiante, y tu máximo de puntos de golpe no puede reducirse."
+        ]
+      },
+      {
+        "name": "Already a Monster",
+        "level": 6,
+        "source": "SCGTD",
+        "entries": [
+          "While raging, you ignore the Symptoms of any Contamination Levels you have, except for a Monstrous Transformation.",
+          "Whenever you would suffer a Mutation from contamination, you can roll twice and choose which Mutation you gain."
+        ],
+        "name_es": "Ya eres un monstruo",
+        "entries_es": [
+          "Mientras estás en furia, ignoras los Síntomas de cualquier Nivel de Contaminación que tengas, excepto una Transformación monstruosa.",
+          "Cuando fueras a sufrir una Mutación por contaminación, puedes tirar dos veces y elegir qué Mutación recibes."
+        ]
+      },
+      {
+        "name": "Consume Corruption",
+        "level": 10,
+        "source": "SCGTD",
+        "entries": [
+          "You can cast {@spell purge contamination|SCGTD} a number of times per day equal to your proficiency bonus without material components. You can’t use this ability on yourself."
+        ],
+        "name_es": "Consume la corrupción",
+        "entries_es": [
+          "Puedes lanzar {@spell purge contamination|SCGTD} un número de veces al día igual a tu bonificación de competencia sin componentes materiales. No puedes usar esta capacidad sobre ti mismo."
+        ]
+      },
+      {
+        "name": "Voices In Your Head",
+        "level": 10,
+        "source": "SCGTD",
+        "entries": [
+          "Once per day you can cast {@spell contact other plane}. If you fail the Intelligence saving throw, you can choose to gain one Contamination Level instead of being driven mad."
+        ],
+        "name_es": "Voces en tu cabeza",
+        "entries_es": [
+          "Una vez al día puedes lanzar {@spell contact other plane}. Si fallas la tirada de salvación de Inteligencia, puedes elegir ganar un Nivel de Contaminación en lugar de quedar enloquecido."
+        ]
+      },
+      {
+        "name": "One with the Mists",
+        "level": 14,
+        "source": "SCGTD",
+        "entries": [
+          "You can cast {@spell gaseous form} on yourself a number of times equal to your proficiency bonus, regaining all expended uses when you finish a long rest."
+        ],
+        "name_es": "Uno con la bruma",
+        "entries_es": [
+          "Puedes lanzar {@spell gaseous form} sobre ti mismo un número de veces igual a tu bonificación de competencia, recuperando todos los usos al terminar un descanso largo."
+        ]
+      },
+      {
+        "name": "Breath of the Haze",
+        "level": 14,
+        "source": "SCGTD",
+        "entries": [
+          "When you enter your rage, a 15-foot-radius sphere of haze surrounds you, moves with you, and is lightly obscured. Creatures that start their turn in the mists must succeed on an Intelligence saving throw (DC 8 + your proficiency bonus + your Constitution modifier) or take {@damage 3d8} psychic damage, have their speed halved, and can’t take reactions until the start of their next turn.",
+          "When you manifest the mists, you can designate any number of creatures you can see to be unaffected."
+        ],
+        "name_es": "Aliento de la Niebla",
+        "entries_es": [
+          "Cuando entras en furia, te envuelve una esfera de 15 pies de radio de niebla que se mueve contigo y está ligeramente oscurecida. Las criaturas que comiencen su turno en la niebla deben superar una tirada de salvación de Inteligencia (CD 8 + tu bonificación de competencia + tu modificador de Constitución) o sufrir {@damage 3d8} de daño psíquico, tener su velocidad reducida a la mitad y no poder realizar reacciones hasta el inicio de su siguiente turno.",
+          "Cuando manifiestas la niebla, puedes designar cualquier número de criaturas que veas para que no se vean afectadas."
         ]
       }
     ],

@@ -101,6 +101,7 @@
 
     function resolveAjaxUrl() {
       if (window.DND5_API?.ajax_url) return window.DND5_API.ajax_url;
+      if (window.DELERIUM_AUTOSAVE?.ajaxUrl) return window.DELERIUM_AUTOSAVE.ajaxUrl;
       if (window.ajaxurl) return window.ajaxurl;
       return '/wp-admin/admin-ajax.php';
     }

@@ -1,0 +1,70 @@
+Chemist
+A Chemist is a studied scientist whose advanced research in to
+chemical compounds has granted them the ability to terrorize their
+enemies with alchemical explosions, devastating gasses, and other
+horrific concoctions. Chemists love testing their new compounds in
+the field, and are always keen to advance their study and research
+further, finding new combinations to combust their foes with.
+Chemical Compound
+1st-level Chemist feature
+You gain proficiency in alchemist’s supplies if you do not already
+have it. You also learn the firebolt cantrip and one additional
+evocation cantrip of your choice from the wizard spell list. These
+cantrips count as apothecary cantrips for you, but do not count
+against your cantrips known.
+Chemist Spells
+1st-level Chemist feature
+You always have certain spells prepared after you reach particular
+levels in this class, as shown in the Chemist Spells table. These
+spells count as apothecary spells for you, but they don’t count
+against the number of apothecary spells you prepare.
+Chemist Spells
+Apothecary Level Spell
+1st burning hands, grease
+3rd acid arrow, flaming sphere
+5th fireball, stinking cloud
+7th ice storm, wall of fire
+9th cloudkill, cone of cold
+142 Guide to Drakkenheim
+Precise Application
+3rd-level Chemist feature
+When you cast a spell that deals acid, cold, fire, lightning, or
+poison damage to other creatures that you can see, you can
+choose a number of them equal to your Intelligence modifier.
+The chosen creatures automatically succeed on their saving
+throws against the spell, and they take no damage if they would
+normally take half damage on a successful save.
+Chain Reaction
+6th-level Chemist feature
+When you cast an apothecary cantrip that normally targets
+only one creature and deals acid, cold, fire, lightning, or poison
+damage, the spell can instead target two creatures that are
+within the spell’s range.
+Chemical Conditioning
+6th-level Chemist feature
+As an action, you give one creature you touch (including possibly yourself) resistance to acid, cold, fire, lightning, or poison
+damage for 1 hour. This benefit ends immediately if you use this
+feature again.
+Bottled Spells
+10th-level Chemist feature
+You can store a spell from your Chemist Spells feature as a liquid
+in a small vial or bottle you touch when you cast the spell. The spell
+has no effect other than to be stored in the bottle. The spell
+remains stored inside until a creature opens the bottle. Once you
+use this feature, any unused bottled spell you previously created
+becomes inert, and you can’t bottle another spell until you finish
+a short rest. Any creature holding the bottle may spend an action
+to open it and cast the spell inside. The spell uses your spell attack
+bonus and save DC, but the spell treats the creature who released
+it as the caster in all other respects.
+Elemental Adjustment
+14th-level Chemist feature
+When you cast a spell using an apothecary spell slot which deals
+a type of damage from the following list, you can change that
+damage type to one of the other listed types: acid, cold, fire,
+lightning, or poison.
+Chemical Cataclysm
+18th-level Chemist feature
+When you cast a spell that deals acid, cold, fire, lighting, or
+poison damage using an apothecary spell slot, it is treated as if it
+was cast using a 7th-level spell slot.

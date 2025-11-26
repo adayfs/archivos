@@ -1,0 +1,107 @@
+Pathogenist
+The study of diseases opens doorways to many dangerous scientific
+discoveries. As experts in both ridding the body of sickness and the
+mutations of infectious disease, Pathogenists bring their study to
+the battlefield by using monsters and enemies as test subjects for
+their infections. Long years spent carefully monitoring the causes
+and effects of such plagues allows them to be experts at disease
+mutation, allowing their sickness to spread in a terrifying manner
+and riddle their foes with debilitating symptoms, crippling their
+bodies and rattling their minds.
+Plague Proficiency
+1st-level Pathogenist feature
+You learn the chill touch cantrip. You gain proficiency with the
+herbalism kit. If you already have this proficiency, you gain
+proficiency with one other type of artisan’s tools of your choice.
+Pathogenist Spells
+1st-level Pathogenist feature
+You always have certain spells prepared after you reach particular levels in this class, as shown in the Pathogenist Spells table.
+These spells count as apothecary spells for you, but they don’t
+count against the number of apothecary spells you prepare.
+Pathogenist Spells
+Apothecary Level Spell
+1st infect*, inflict wounds
+3rd blindness/deafness, biohazard*
+5th pestilence*, venomous aura*
+7th blight, blood worm*
+9th contagion, insect plague
+Pernicious Pathogens
+3rd-level Pathogenist feature
+Whenever a creature casts a spell or uses a trait or feature that
+would cure or remove one of your diseases (such as casting
+lesser restoration to remove your infect* spell), the creature must
+first make an ability check using its spellcasting ability (or its
+Charisma modifier, if the spell or special ability does not specify
+a spellcasting ability score). The DC equals your spell save DC.
+On a failed check, the creature’s spell, trait, or feature fails and
+has no effect. Any material components used are expended, and
+any spell slot expended is wasted.
+Mutant Strain
+3rd-level Pathogenist feature
+You can evolve your diseases to cause new symptoms. You learn
+two mutant strains of your choice, and each time you gain a
+level in this class, you can replace one mutant strain you know
+with a different one from this feature. When you reach certain
+levels in this class, you learn additional mutant strains, as shown
+in the Mutant Strains Known table.
+Mutant Strains Known
+Apothecary Level Number of Strains
+3rd 2
+9th 3
+15th 4
+Whenever you cast a spell which inflicts diseases (such as infect*
+or contagion) you can apply an additional effect from your
+mutant strain to one of the targets of the spell, which lasts for
+the duration of that spell.
+The following mutant strains are available to you when you
+learn a mutant strain. If a strain has a level requirement, you
+must be at least that level in this class to learn the strain.
+146 Guide to Drakkenheim
+h Dizziness. The target can’t take reactions.
+h Fatigue. Each time the target fails a saving throw against
+your disease, its speed is reduced to five feet until the start
+of its next turn.
+h Coughing Fits. At the start of each of the target’s turns, it must
+make a Constitution saving throw against your spell save DC. On
+a failed save, it is unable to speak until the start of its next turn.
+h Shivers. The target shakes uncontrollably. At the start of each
+of the target’s turns, it drops whatever it is holding in its hands.
+h Weakness (9th level). The target deals half damage with
+melee weapon attacks.
+h Dry Eyes (9th level). Each time the target fails a saving
+throw against your disease, it becomes blinded until the start
+of its next turn.
+h Intense Fever (9th level). The target can’t regain hit points.
+h Lesions (9th level). The target loses any damage resistances.
+h Nausea (15th level). Each time a target fails a saving
+throw against your disease, it becomes incapacitated until
+the start of its next turn.
+h Dystrophy (15th level). The target becomes vulnerable to
+bludgeoning, piercing, and slashing damage.
+Breakthrough Infection
+6th-level Pathogenist feature
+When you cast a spell using an apothecary spell slot or your
+Greater Formula feature that causes disease, that spell ignores
+any creature’s immunity to disease. Such creatures instead make
+any saving throws against your diseases with advantage.
+Outbreak
+6th-level Pathogenist feature
+When a creature infected by one of your diseases dies, you can
+use your reaction to spread the disease to a different creature
+you can see within 30 feet of that creature.
+Insidious Incubation
+10th-level Pathogenist feature
+When you start casting infect*, you can modify it so that it
+doesn’t require concentration. If you do so, the spell’s duration
+becomes 1 minute for that casting. You must finish a short or
+long rest before using this feature again.
+Immunocompromised
+14th-level Pathogenist feature
+A creature infected with one of your diseases (such as infect*
+or contagion) has disadvantage on saving throws against your
+apothecary spells.
+Rapid Evolution
+18th-level Pathogenist feature
+Whenever you cast a spell which inflicts diseases, you can apply
+an two additional effects from your mutant strain to one of the
+targets of the spell, instead of one.

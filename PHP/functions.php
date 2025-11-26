@@ -5026,6 +5026,8 @@ add_action( 'acf/init', function () {
                 'choices'       => [
                     'reglas'    => 'Reglas',
                     'monstruos' => 'Manual de Monstruos',
+                    'forja'     => 'Forja',
+                    'tienda'    => 'Tienda',
                 ],
                 'required'      => 1,
                 'ui'            => 1,
@@ -5077,6 +5079,7 @@ function drak_grimorio_acf_admin_format_json( $value ) {
     }
     return $value;
 }
+
 
 // Redirigir /pj al login si no está logueado
 function redirigir_pj_si_no_logueado() {
@@ -8090,21 +8093,51 @@ function drak_dnd5_get_feature_traits() {
         ];
     }
 
+    $class_features_raw = $features_data['classFeatures'][ $class_id ] ?? [];
+    $class_features     = array_values(
+        array_filter(
+            $class_features_raw,
+            static function ( $feature ) {
+                // Los rasgos de subclase no deberían mostrarse en el bloque de clase.
+                return empty( $feature['subclassShortName'] ) && empty( $feature['subclassSource'] );
+            }
+        )
+    );
+
     $class_payload = [
         'id'       => $class_id,
         'name'     => $class_entry['name'] ?? '',
         'source'   => $class_entry['source'] ?? '',
-        'features' => $features_data['classFeatures'][ $class_id ] ?? [],
+        'features' => $class_features,
     ];
 
     $subclass_payload = null;
     if ( $subclass_meta ) {
         $sub_data = $subclass_meta['data'];
+        $subclass_features = $features_data['subclassFeatures'][ $subclass_id ] ?? [];
+
+        // Si no hay entrada específica en subclassFeatures, intenta obtener los
+        // rasgos desde la lista de la clase filtrando por el nombre corto.
+        if ( empty( $subclass_features ) && ! empty( $class_features_raw ) ) {
+            $short_name = $sub_data['shortName'] ?? '';
+            if ( $short_name ) {
+                $subclass_features = array_values(
+                    array_filter(
+                        $class_features_raw,
+                        static function ( $feature ) use ( $short_name ) {
+                            return isset( $feature['subclassShortName'] ) &&
+                                strcasecmp( $feature['subclassShortName'], $short_name ) === 0;
+                        }
+                    )
+                );
+            }
+        }
+
         $subclass_payload = [
             'id'       => $subclass_id,
             'name'     => $sub_data['name'] ?? '',
             'source'   => $sub_data['source'] ?? '',
-            'features' => $features_data['subclassFeatures'][ $subclass_id ] ?? [],
+            'features' => $subclass_features,
         ];
     }
 

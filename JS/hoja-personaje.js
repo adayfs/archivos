@@ -167,6 +167,58 @@
   let apothecaryTheoryCache = null;
   let apothecaryTheoryPromise = null;
 
+  const WEAPON_MASTERY_MAP = Object.freeze({
+    'club': 'slow',
+    'dagger': 'nick',
+    'greatclub': 'push',
+    'handaxe': 'vex',
+    'javelin': 'slow',
+    'light-hammer': 'nick',
+    'mace': 'sap',
+    'quarterstaff': 'topple',
+    'sickle': 'nick',
+    'spear': 'sap',
+    'light-crossbow': 'slow',
+    'dart': 'vex',
+    'shortbow': 'vex',
+    'sling': 'slow',
+    'battleaxe': 'topple',
+    'flail': 'sap',
+    'glaive': 'graze',
+    'greataxe': 'cleave',
+    'greatsword': 'graze',
+    'halberd': 'cleave',
+    'lance': 'topple',
+    'longsword': 'sap',
+    'maul': 'topple',
+    'morningstar': 'sap',
+    'pike': 'push',
+    'rapier': 'vex',
+    'scimitar': 'nick',
+    'shortsword': 'vex',
+    'trident': 'topple',
+    'war-pick': 'sap',
+    'warhammer': 'push',
+    'whip': 'slow',
+    'blowgun': 'vex',
+    'hand-crossbow': 'vex',
+    'heavy-crossbow': 'push',
+    'longbow': 'slow',
+  });
+
+  const WEAPON_MASTERY_TEXT = Object.freeze({
+    cleave: 'Tras impactar, permite un ataque extra a otra criatura a 5 ft (sin mod. de stat al daño).',
+    graze: 'Si fallas, el objetivo recibe daño igual a tu modificador de stat del ataque.',
+    nick: 'El ataque con la otra mano (Light) se integra en la misma acción de Ataque.',
+    push: 'Al impactar, puedes empujar hasta 10 ft en línea recta.',
+    sap: 'Al impactar, el siguiente ataque del objetivo tiene desventaja.',
+    slow: 'Al impactar, reduces su velocidad hasta tu siguiente turno.',
+    topple: 'Al impactar, puedes derribarlo (salvación de CON).',
+    vex: 'Al impactar, tienes ventaja en tu siguiente ataque contra ese objetivo antes de tu siguiente turno.',
+  });
+
+  const WEAPON_MASTERY_CLASSES = new Set(['fighter', 'barbarian', 'paladin', 'ranger', 'rogue']);
+
   let characterRecalcTimer = null;
 
   const featureModuleApi = {
@@ -2989,6 +3041,7 @@
       if (damageEl) damageEl.textContent = '—';
       if (attackBreakEl) attackBreakEl.textContent = 'Selecciona un arma en el inventario.';
       if (damageBreakEl) damageBreakEl.textContent = '';
+      renderWeaponMasteryInfo(card, '', false, '');
       return;
     }
 
@@ -2996,6 +3049,13 @@
     const proficiencySet = buildWeaponProficiencySet(context);
     const isProficient = isProficientWithWeapon(weapon, proficiencySet);
     const profBonus = isProficient ? derived.proficiencyBonus : 0;
+    const masteryKey = getWeaponMasteryKey(weapon);
+    const hasMastery = hasWeaponMasteryAccess(context);
+    const masteryActive = Boolean(masteryKey && isProficient && hasMastery);
+    const masteryReason = !masteryActive && masteryKey
+      ? (!isProficient ? 'sin competencia' : !hasMastery ? 'sin rasgo/feat de Maestría' : '')
+      : '';
+    renderWeaponMasteryInfo(card, masteryKey, masteryActive, masteryReason);
     const attackTotal = abilityInfo.mod + profBonus + (combatModuleState.attackExtra || 0);
 
     if (attackEl) attackEl.textContent = formatMod(attackTotal);
@@ -3108,6 +3168,101 @@
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
+  }
+
+  function baseWeaponSlug(value) {
+    const slug = slugifyWeaponId(value);
+    return slug.replace(/-(phb|xphb|one|tce|scag|xge|erlw|bgg|dmg|lvl|mm|vgm|ua).*$/, '');
+  }
+
+  function getWeaponMasteryKey(weapon) {
+    if (!weapon) return '';
+    const candidates = [];
+    if (weapon.slug) candidates.push(weapon.slug);
+    if (weapon.name) candidates.push(weapon.name);
+    for (const candidate of candidates) {
+      const base = baseWeaponSlug(candidate);
+      if (WEAPON_MASTERY_MAP[base]) return WEAPON_MASTERY_MAP[base];
+      if (WEAPON_MASTERY_MAP[candidate]) return WEAPON_MASTERY_MAP[candidate];
+    }
+    return '';
+  }
+
+  function collectFeatNames() {
+    const feats = new Set();
+    qsa('[data-feat-name]').forEach((node) => {
+      const raw = (node.value || node.textContent || '').trim();
+      if (raw) feats.add(raw);
+    });
+    qsa('input[name*="feat_name"]').forEach((node) => {
+      const raw = (node.value || '').trim();
+      if (raw) feats.add(raw);
+    });
+    qsa('input[name*="feat_id"]').forEach((node) => {
+      const raw = (node.value || '').trim();
+      if (raw) feats.add(raw);
+    });
+    const featList = document.getElementById('feat_list');
+    if (featList?.value) {
+      const raw = featList.value.trim();
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          parsed.forEach((entry) => {
+            if (!entry) return;
+            if (typeof entry === 'string') feats.add(entry);
+            else if (entry.feat_name) feats.add(entry.feat_name);
+          });
+        }
+      } catch (e) {
+        raw
+          .split(/[,\\n]+/)
+          .map((v) => v.trim())
+          .filter(Boolean)
+          .forEach((v) => feats.add(v));
+      }
+    }
+    return Array.from(feats);
+  }
+
+  function hasWeaponMasteryFeat() {
+    return collectFeatNames().some((name) => /weapon mastery|maestr[ií]a con armas/i.test(name));
+  }
+
+  function hasWeaponMasteryAccess(context) {
+    const classId = (context?.classId || '').toLowerCase();
+    const hasClassMastery = Array.from(WEAPON_MASTERY_CLASSES).some((slug) => classId.includes(slug));
+    if (hasClassMastery) return true;
+    return hasWeaponMasteryFeat();
+  }
+
+  function ensureCombatMasteryElement(card) {
+    if (!card) return null;
+    let el = card.querySelector('#combat-weapon-mastery');
+    if (!el) {
+      el = document.createElement('p');
+      el.id = 'combat-weapon-mastery';
+      el.className = 'combat-weapon-mastery';
+      const header = card.querySelector('.combat-card__header') || card;
+      header.appendChild(el);
+    }
+    return el;
+  }
+
+  function renderWeaponMasteryInfo(card, masteryKey, isActive, reason) {
+    const el = ensureCombatMasteryElement(card);
+    if (!el) return;
+    if (!masteryKey) {
+      el.textContent = '';
+      el.classList.add('is-hidden');
+      return;
+    }
+    el.classList.remove('is-hidden');
+    const label = masteryKey.charAt(0).toUpperCase() + masteryKey.slice(1);
+    const effect = WEAPON_MASTERY_TEXT[masteryKey] || '';
+    const status = isActive ? 'Activa' : 'No aplicable';
+    const detail = reason ? ` (${reason})` : '';
+    el.textContent = `Maestría: ${label} — ${status}${detail}${effect ? ` · ${effect}` : ''}`;
   }
 
   function isProficientWithWeapon(weapon, proficiencySet) {

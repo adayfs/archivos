@@ -1,0 +1,123 @@
+Reanimator
+A Reanimator is the master of life and death. Years spent perfecting
+their formula to bring the recently dead back, or to construct new
+life out of discarded flesh and patchwork anatomy, have left most
+Reanimators in a state constantly riding the lines between genius
+and madness. A Reanimator’s skills at clutching life from the jaws
+of death make them exquisitely suited for dealing with death, and
+undeath. Their mad genius is presented with the construction of a
+creature made from the scrap body parts left behind by their enemies
+which storms forward into battle on their command.
+Spark of Life
+1st-level Reanimator feature
+You learn the shocking grasp and spare the dying cantrips. These
+count as apothecary spells for you, and don’t count against the
+number of apothecary cantrips you know.
+Reanimator Spells
+1st-level Reanimator feature
+You always have certain spells prepared after you reach particular levels in this class, as shown in the Reanimator Spells table.
+These spells count as apothecary spells for you, but they don’t
+count against the number of apothecary spells you prepare.
+Reanimator Spells
+Apothecary Level Spell
+1st false life, inflict wounds
+3rd gentle repose, invigorate*
+5th lightning bolt, revivify
+7th death ward, corpse explosion*
+9th raise dead, nerve gas*
+Chapter 3: Drakkenheim Characters 147
+Corpsewrought Creature
+3rd-level Reanimator feature
+You have constructed a companion from scavenged body parts
+and brought it to life with your occult magic: a corpsewrought
+creature. The creature is friendly to you and your companions,
+and it obeys your commands. See its game statistics in the accompanying Corpsewrought Creature stat block, which uses your
+proficiency bonus (PB) in several places. You can determine the
+cosmetic characteristics of the creature; your choice has no effect
+on its game statistics.
+In combat, the creature shares your initiative count, but it
+takes its turn immediately after yours. It can move and use its
+reaction on its own, but the only action it takes on its turn is the
+Dodge action, unless you take a bonus action on your turn to
+command it to take another action. That action can be one in
+its stat block or some other action. If you are incapacitated, the
+creature can take any action of its choice, not just Dodge.
+If your corpsewrought creature has died within the last hour,
+you can use your healer’s kit as an action to revive it, provided
+you are within 5 feet of it and you expend an apothecary spell
+slot. The corpsewrought companion returns to life after 1
+minute with all its hit points restored.
+At the end of a long rest, you can create a new corpsewrought
+creature if you have your healer’s kit with you and access to
+suitable “materials.” If you already have a corpsewrought
+creature from this feature, the first one immediately perishes.
+The creature also perishes if you die.
+Bodyguard
+6th-level Reanimator feature
+When a creature within 5 feet of your corpsewrought creature
+makes an attack against you, it can use its reaction to make a
+melee weapon attack against the attacking creature. In addition,
+your corpsewrought creature’s slam attack counts as magical
+for the purposes of overcoming resistance and immunity to
+nonmagical attacks and damage.
+In addition, you can cast animate dead once using an
+Apothecary spell slot. Once you do, you can’t cast the spell
+again until you finish a long rest.
+Reanimated Head
+6th-level Reanimator feature
+You have reanimated the head of a dead humanoid creature
+which now serves you in your studies. You may use the head as
+a spellcasting focus. The head speaks common and one other
+language of your choice.
+Whenever you make an Intelligence ability check that lets
+you add your proficiency bonus, you can treat a d20 roll of 9 or
+lower as a 10. Additionally, you gain proficiency in the Arcana
+and Investigation skills.
+You can use the head to cast speak with dead without
+expending a spell slot. Once you use this feature you can’t do so
+again until you finish a short or long rest.
+Behold, My Creation
+10th-level Reanimator feature
+Your corpsewrought creature’s size increases to Large, and its
+speed increases to 40 feet.
+When your corpsewrought creature hits a creature with
+a melee attack, it can immediately make a grapple attempt
+against the target. The DC to escape this grapple is equal to 8 +
+the corpsewrought creature’s strength modifier (+4) + your PB.
+Berserk Fury
+14th-level Reanimator feature
+When you command your corpsewrought creature to take the
+Attack action, the creature can make two attacks.
+I Can’t Stop The Monster I Created
+18th-level Reanimator feature
+Your corpsewrought creature increases in size to Huge, gains
+a reach of 10 feet, and its speed increases to 50 feet. Its slam
+attack deals an additional 1d8 bludgeoning damage.
+Additionally, the weight your corpsewrought creature can
+push or lift is doubled
+
+
+
+Corpsewrought Creature
+Medium construct
+Armor Class 14 + PB
+Hit Points 5 + five times your apothecary level (the creature has a
+number of hit dice [d12s] equal to your apothecary level)
+Speed 30 feet
+STR DEX CON INT WIS CHA
+18 (+4) 10 (+0) 16 (+3) 8 (-1) 12 (+1) 8 (-1)
+Saving Throws Con +3 plus PB, Wis +1 plus PB
+Skills Athletics +4 plus PB
+Damage Immunities poison, lightning
+Condition Immunities poisoned
+Senses darkvision 60 ft, passive Perception 11
+Languages understands the languages of its creator but
+cannot speak
+Challenge –
+Proficiency Bonus equals your proficiency bonus
+Lightning Absorption. Whenever the corpsewrought creature is
+subjected to lightning damage, it takes no damage and regains a
+number of hit points equal to the lightning damage dealt.
+Actions
+Slam. Melee Weapon Attack: +4 plus PB to hit, reach 5 ft., one target.
+Hit: 1d8 + 4 bludgeoning damage.

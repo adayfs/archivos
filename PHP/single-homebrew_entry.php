@@ -310,6 +310,15 @@ $next_post = drak_get_adjacent_homebrew_entry( $entry_id, 'next', $section, $cam
       <div class="hb-entry__content">
         <?php the_content(); ?>
       </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          document.querySelectorAll('.hb-entry__content img').forEach((img) => {
+            if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
+            if (!img.getAttribute('decoding')) img.setAttribute('decoding', 'async');
+            if (!img.getAttribute('referrerpolicy')) img.setAttribute('referrerpolicy', 'no-referrer');
+          });
+        });
+      </script>
       <div class="hb-entry__meta">
         <span><?php echo esc_html( $sections[ $section ] ?? 'Homebrew' ); ?></span>
         <span class="hb-entry__meta-dot">·</span>

@@ -1,0 +1,100 @@
+Alienist
+An Alienist seeks to master the mysteries of the mind. Having devoted
+years to studying the inner workings of the brain, and unlocking
+its latent potential, an Alienist is able to read and manipulate the
+thoughts of others, and bend reality itself. They tap into unfathomable
+realities and shift the world to their will using the psychic energies they
+call upon from eldritch lore and arcane knowledge.
+Advanced Psychology
+1st-level Alienist feature
+You learn the eldritch blast cantrip. You gain proficiency in
+the Arcana skill. If you already have this proficiency, you gain
+proficiency with another skill of your choice.
+Alienist Spells
+1st-level Alienist feature
+You always have certain spells prepared after you reach particular
+levels in this class, as shown in the Alienist Spells table. These
+spells count as apothecary spells for you, but they don’t count
+against the number of apothecary spells you prepare.
+Alienist Spells
+Apothecary Level Spell
+1st charm person, hideous laughter
+3rd detect thoughts, suggestion
+5th hypnotic pattern, major image
+7th arcane eye, dimension door
+9th animate objects, modify memory
+Mental Influence
+3rd-level Alienist Feature
+You have studied hard to unlock the deepest recesses of your
+psyche, unleashing untapped psychic potential within yourself.
+This energy is represented by a pool of Psychic Points. You have
+four psychic points. You gain two more at 6th level, another two
+at 10th, and two more again at 14th level, which you can expend to use the various psionic powers you have detailed below.
+If you have expended all your Psychic Points, you cannot use
+these powers. You regain all your expended Psychic Points when
+you finish a short or long rest.
+h Cerebral Breakthrough. When you cast an apothecary
+spell that deals damage, you can expend a Psychic Point to
+re-roll any number of the dice. You must use the new rolls.
+h Mind Over Matter. Whenever you take damage, you can
+use your reaction and expend a Psychic Point, reducing the
+damage taken by an amount equal to your apothecary level.
+h Mind Whisperer. When you cast an apothecary spell which
+does not deal damage, you may spend a psychic point to cast
+it without any somatic or verbal components.
+Metaphysical Tether
+3rd-level Alienist feature
+As an action, you can touch a willing creature to create a psychic link with it which lasts a number of hours equal to your
+Apothecary level or until you end the link (no action required).
+The maximum number of links you can have at any time is
+equal to your proficiency bonus. All the creatures tethered in
+this way can communicate telepathically with one another as
+long as they are within 100 feet of each other.
+Chapter 3: Drakkenheim Characters 141
+Force Manipulation
+6th-level Alienist feature
+Your mental prowess allows you to control the very fabric of
+your own reality around you, allowing you to defy gravity and
+push yourself through the air using only your mind. As a bonus
+action, you can expend. a psychic point to give yourself a
+flying speed equal to your walking speed for 1 minute, during
+which you can hover.
+Mental Magic
+10th-level Alienist feature
+You gain new ways to use your latent psychic powers to manipulate the essence of your spells and spellcasting. You gain three
+new ways to use your Psychic Points:
+h Prescribed Effects. Once per turn when a target you can see
+within 30 feet of you succeeds on an Intelligence, Wisdom, or
+Charisma saving throw against a spell you cast, you can expend
+a Psychic Point to fill its mind with scrambled psionic energy,
+forcing it to reroll the d20 and use the lower roll for its saving
+throw, possibly turning a success into a failure.
+h Mentally Prepared. Once per turn, when a target you can
+see within 30 feet of you, including yourself, fails an Intelligence, Wisdom, or Charisma saving throw, you can use a Psychic Point and add your Intelligence modifier to the creature’s
+saving throw, potentially turning the failure into a success.
+h Fight or Flight Response. As a bonus action, you
+can expend a Psychic Point and teleport up to 30 feet to
+an unoccupied space you can see. You immediately gain
+temporary hit points equal to twice your intelligence modifier.
+Self-Diagnosis
+14th-level Alienist feature
+If you have no Psychic Points remaining, you can use an bonus
+action and expend a spell slot to regain 1d4 Psychic Points.
+You also gain two additional psychic features:
+h Careful Examination. Whenever you cast a spell which
+restores hit points to a creature, you may expend a Psychic Point.
+If you do, all creatures targeted by the spell regain an additional
+amount of hit points equal to twice your Intelligence modifier.
+h Enhanced Cerebellum. When you cast any spell of 1st
+level or higher from your Alienist Spells feature, you can
+cast it by expending a spell slot as normal or by spending a
+number of psychic points equal to the spell’s level.
+Impenetrable Mind
+18th-level Alienist feature
+You are resistant to psychic damage and immune to being
+charmed or frightened. Magic cannot put you to sleep and you
+have advantage on saving throws against spells that attempt
+to read your thoughts or control your mind or actions, such as
+dominate person. Additionally, when you use the Self-Diagnosis
+feature to regain Psychic Points using a spell slot, you now
+regain Psychic Points equal to the spell’s level.

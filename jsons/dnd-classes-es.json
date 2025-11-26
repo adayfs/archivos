@@ -26,6 +26,46 @@
           "className": "Apothecary",
           "classSource": "SCGTD",
           "name_es": "Exorcist"
+        },
+        {
+          "id": "apothecary-alienist-scgtd-drakkenheim",
+          "name": "Alienist",
+          "shortName": "Alienist",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD",
+          "name_es": "Alienist"
+        },
+        {
+          "id": "apothecary-chemist-scgtd-drakkenheim",
+          "name": "Chemist",
+          "shortName": "Chemist",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD",
+          "name_es": "Chemist"
+        },
+        {
+          "id": "apothecary-pathogenist-scgtd-drakkenheim",
+          "name": "Pathogenist",
+          "shortName": "Pathogenist",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD",
+          "name_es": "Pathogenist"
+        },
+        {
+          "id": "apothecary-reanimator-scgtd-drakkenheim",
+          "name": "Reanimator",
+          "shortName": "Reanimator",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD",
+          "name_es": "Reanimator"
         }
       ],
       "name_es": "Apothecary"
@@ -186,6 +226,16 @@
           "className": "Barbarian",
           "classSource": "PHB",
           "name_es": "Camino del Zelote"
+        },
+        {
+          "id": "barbarian-haze-rager-scgtd-drakkenheim",
+          "name": "Path of the Haze Rager",
+          "shortName": "Haze Rager",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Barbarian",
+          "classSource": "PHB",
+          "name_es": "Path of the Haze Rager"
         }
       ],
       "name_es": "Barbarian"
