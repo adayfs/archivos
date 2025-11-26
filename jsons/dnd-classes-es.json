@@ -16,6 +16,16 @@
           "className": "Apothecary",
           "classSource": "SCGTD",
           "name_es": "Mutagenist"
+        },
+        {
+          "id": "apothecary-exorcist-scgtd-drakkenheim",
+          "name": "Exorcist",
+          "shortName": "Exorcist",
+          "source": "SCGTD",
+          "edition": "Drakkenheim",
+          "className": "Apothecary",
+          "classSource": "SCGTD",
+          "name_es": "Exorcist"
         }
       ],
       "name_es": "Apothecary"

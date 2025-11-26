@@ -740,6 +740,14 @@
     const fallbackDerived = buildFallbackDerived(fallbackContext);
     updateCombatCard(fallbackDerived, fallbackContext);
     refreshCombatFromCache();
+
+    if (characterDataStore.data) {
+      initConditionSelector();
+    } else {
+      loadCharacterData()
+        .then(() => initConditionSelector())
+        .catch(() => {});
+    }
   }
 
   // ---------- Proficiency Modals ----------
@@ -757,19 +765,14 @@
   function preferXphbMap(map) {
     const result = {};
     if (!map || typeof map !== 'object') return result;
-    const normalizeKey = (entry) => {
-      const raw = (entry?.name || entry?.id || '').toString().toLowerCase();
-      return raw.replace(/-phb-classic|-xphb-one/g, '').trim();
-    };
-    Object.values(map).forEach((entry) => {
+    Object.entries(map).forEach(([key, entry]) => {
       if (!entry) return;
-      const key = normalizeKey(entry) || (entry.id || '').toString().toLowerCase();
-      if (!key) return;
       const current = result[key];
-      const source = (entry.source || '').toString().toUpperCase();
-      const isXphb = source === 'XPHB';
-      const hasXphb = current && (current.source || '').toString().toUpperCase() === 'XPHB';
-      if (!current || (isXphb && !hasXphb)) {
+      const src = (entry.source || '').toString().toUpperCase();
+      const currentSrc = (current?.source || '').toString().toUpperCase();
+      const isXphb = src === 'XPHB';
+      const currentIsXphb = currentSrc === 'XPHB';
+      if (!current || (isXphb && !currentIsXphb)) {
         result[key] = entry;
       }
     });
@@ -901,6 +904,13 @@
     const basicsSection = createBasicsSectionController(overlay);
     const profsSection = createProficiencySectionController(overlay);
     const theoriesSection = createEsotericTheoryController(overlay);
+    const modalClassSelect = overlay.querySelector('#modal-clase');
+
+    if (modalClassSelect && typeof profsSection.applyClassProficiencies === 'function') {
+      modalClassSelect.addEventListener('change', () => {
+        profsSection.applyClassProficiencies(modalClassSelect.value);
+      });
+    }
 
     function openModal() {
       statsSection.populate();
@@ -1589,6 +1599,95 @@
       });
     }
 
+    function sanitizeProficiencyValue(value) {
+      const clean = strip5eTags(value || '');
+      return clean.replace(/[,;]+/g, ' / ').replace(/\s+/g, ' ').trim();
+    }
+
+    function flattenClassProficiencies(entries) {
+      if (!entries) return [];
+      const list = Array.isArray(entries) ? entries : [entries];
+      const seen = new Set();
+      const result = [];
+
+      list.forEach((entry) => {
+        if (!entry) return;
+        if (typeof entry === 'string') {
+          const clean = sanitizeProficiencyValue(entry);
+          if (clean && !seen.has(clean)) {
+            seen.add(clean);
+            result.push(clean);
+          }
+          return;
+        }
+
+        if (entry.type === 'fixed' && Array.isArray(entry.items)) {
+          entry.items.forEach((item) => {
+            const clean = sanitizeProficiencyValue(item);
+            if (clean && !seen.has(clean)) {
+              seen.add(clean);
+              result.push(clean);
+            }
+          });
+          return;
+        }
+
+        const choice = entry.choose || (entry.type === 'choice' ? entry : null);
+        if (choice && Array.isArray(choice.from || choice.options)) {
+          const from = choice.from || choice.options;
+          const count = choice.count || from.length || 1;
+          const label = sanitizeProficiencyValue(`Elige ${count} de ${from.map(strip5eTags).join(' / ')}`);
+          if (label && !seen.has(label)) {
+            seen.add(label);
+            result.push(label);
+          }
+          return;
+        }
+
+        if (typeof entry === 'object') {
+          Object.keys(entry).forEach((key) => {
+            if (!entry[key]) return;
+            const clean = sanitizeProficiencyValue(key);
+            if (clean && !seen.has(clean)) {
+              seen.add(clean);
+              result.push(clean);
+            }
+          });
+        }
+      });
+
+      return result;
+    }
+
+    function applyClassProficiencies(classId) {
+      const nextClassId = (classId || '').trim();
+      if (!nextClassId) {
+        Object.entries(config).forEach(([type, info]) => {
+          info.values = [];
+          renderList(type);
+        });
+        return;
+      }
+
+      loadCharacterData()
+        .then((data) => {
+          const classDef = data?.classDetails?.[nextClassId];
+          const profs = classDef?.startingProficiencies || {};
+          const nextValues = {
+            weapons: flattenClassProficiencies(profs.weapons),
+            armors: flattenClassProficiencies(profs.armor),
+            tools: flattenClassProficiencies(profs.tools || profs.toolProficiencies),
+            languages: flattenClassProficiencies(profs.languages),
+          };
+
+          Object.entries(config).forEach(([type, info]) => {
+            info.values = nextValues[type] || [];
+            renderList(type);
+          });
+        })
+        .catch(() => {});
+    }
+
     function populate() {
       ensureLookupCache().then(() => {
         Object.entries(config).forEach(([type, info]) => {
@@ -1608,7 +1707,7 @@
       refreshSheetDisplays();
     }
 
-    return { populate, apply, ensureLookupCache };
+    return { populate, apply, ensureLookupCache, applyClassProficiencies };
   }
 
   function initSkillSaveSystem() {
@@ -2652,16 +2751,17 @@
       return Promise.reject(new Error('Datos estáticos no disponibles'));
     }
     if (!characterDataStore.promise) {
-      const requests = [
-        fetchStaticJson(STATIC_DATA.races),
-        fetchStaticJson(STATIC_DATA.backgrounds),
-        fetchStaticJson(STATIC_DATA.classDetails || STATIC_DATA.classList),
-        fetchStaticJson(STATIC_DATA.classList),
-        STATIC_DATA.feats ? fetchStaticJson(STATIC_DATA.feats) : Promise.resolve(null),
-        STATIC_DATA.esotericTheories ? fetchStaticJson(STATIC_DATA.esotericTheories) : Promise.resolve(null),
-      ];
-      characterDataStore.promise = Promise.all(requests)
-        .then(([races, backgrounds, classDetails, classList, feats, theories]) => {
+    const requests = [
+      fetchStaticJson(STATIC_DATA.races),
+      fetchStaticJson(STATIC_DATA.backgrounds),
+      fetchStaticJson(STATIC_DATA.classDetails || STATIC_DATA.classList),
+      fetchStaticJson(STATIC_DATA.classList),
+      STATIC_DATA.feats ? fetchStaticJson(STATIC_DATA.feats) : Promise.resolve(null),
+      STATIC_DATA.esotericTheories ? fetchStaticJson(STATIC_DATA.esotericTheories) : Promise.resolve(null),
+      STATIC_DATA.conditions ? fetchStaticJson(STATIC_DATA.conditions) : Promise.resolve(null),
+    ];
+    characterDataStore.promise = Promise.all(requests)
+      .then(([races, backgrounds, classDetails, classList, feats, theories, conditions]) => {
           const raceMapRaw = {};
           (races?.races || []).forEach((race) => {
             if (race?.id) raceMapRaw[race.id] = race;
@@ -2698,6 +2798,11 @@
               : fallbackTheories;
           const theoryMap = buildEsotericTheoryMap(rawTheories);
 
+          const conditionMap = {};
+          (conditions?.conditions || []).forEach((cond) => {
+            if (cond?.id) conditionMap[cond.id] = cond;
+          });
+
           characterDataStore.data = {
             races: raceMap,
             backgrounds: backgroundMap,
@@ -2705,6 +2810,7 @@
             classDetails: classDetailMap,
             feats: featMap,
             esotericTheories: theoryMap,
+            conditions: conditionMap,
           };
           apothecaryTheoryCache = theoryMap;
           refreshApothecaryTheoryDisplay();
@@ -3038,6 +3144,35 @@
     const joined = pieces.join(' ').trim();
     const typeLabel = type ? ` ${type}` : '';
     return (joined || '—') + typeLabel;
+  }
+
+  function initConditionSelector() {
+    const select = document.getElementById('combat-condition-select');
+    const body = document.getElementById('combat-condition-body');
+    if (!select || !body || !characterDataStore.data?.conditions) return;
+
+    const entries = Object.values(characterDataStore.data.conditions || {});
+    const sorted = entries.sort((a, b) => (a.name_es || a.name || '').localeCompare(b.name_es || b.name || ''));
+
+    select.innerHTML = `<option value="">Selecciona una condición…</option>${sorted
+      .map((cond) => `<option value="${cond.id}">${escapeHtml(cond.name_es || cond.name || cond.id)}</option>`)
+      .join('')}`;
+
+    select.addEventListener('change', () => {
+      const cond = characterDataStore.data.conditions[select.value];
+      if (!cond) {
+        body.innerHTML = '<p>Selecciona una condición para ver sus efectos.</p>';
+        return;
+      }
+      const entriesHtml = Array.isArray(cond.entries)
+        ? `<ul>${cond.entries.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`
+        : '<p>No hay detalles disponibles.</p>';
+      body.innerHTML = `
+        <h4>${escapeHtml(cond.name_es || cond.name || cond.id)}</h4>
+        ${entriesHtml}
+        <p class="combat-condition-source">Fuente: ${escapeHtml(cond.source || '')}</p>
+      `;
+    });
   }
 
 function normalizeProficiencyList(list) {

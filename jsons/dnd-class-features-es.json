@@ -272,6 +272,142 @@
           "Una criatura solo puede beneficiarse de una recuperación milagrosa en un período de 24 horas.",
           "Una vez usas este rasgo, no puedes volver a hacerlo hasta que termine un descanso largo."
         ]
+      },
+      {
+        "name": "Spiritual Study",
+        "source": "SCGTD",
+        "page": 144,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "Gain proficiency in heavy armor and the Religion skill (or another skill if already proficient). You can use a holy symbol as an arcane focus for apothecary spells and learn a cleric cantrip of your choice."
+        ]
+      },
+      {
+        "name": "Exorcist Spells",
+        "source": "SCGTD",
+        "page": 144,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 1,
+        "entries": [
+          "You always have certain spells prepared at the Apothecary levels noted in the Exorcist Spells table. They count as apothecary spells for you and don’t count against spells prepared.",
+          {
+            "type": "table",
+            "caption": "Exorcist Spells",
+            "colLabels": [
+              "Apothecary Level",
+              "Spells"
+            ],
+            "rows": [
+              [
+                "1st",
+                "{@spell bless}, {@spell protection from evil and good}"
+              ],
+              [
+                "3rd",
+                "{@spell spiritual weapon}, {@spell zone of truth}"
+              ],
+              [
+                "5th",
+                "{@spell counterspell}, {@spell spirit guardians}"
+              ],
+              [
+                "7th",
+                "{@spell banishment}, {@spell last rites*}"
+              ],
+              [
+                "9th",
+                "{@spell dispel evil and good}, {@spell flame strike}"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Exorcism",
+        "source": "SCGTD",
+        "page": 145,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 3,
+        "entries": [
+          "You can channel divine energy to expel evil or purge conditions. Uses equal to half proficiency (rounded down), regained on short/long rest. Save DCs use your Apothecary spell save DC.",
+          "Starting at 5th level, undead or fiends that fail against Expel Evil take 4d8 radiant damage.",
+          {
+            "type": "entries",
+            "name": "Expel Evil",
+            "entries": [
+              "As an action, present your holy symbol. Each undead, celestial, fey, or fiend within 30 ft that can see/hear you makes a Wisdom save. On a failure it is turned for 1 minute or until it takes damage, using its turns to flee and only Dash/Escape; no reactions."
+            ]
+          },
+          {
+            "type": "entries",
+            "name": "Purge Corruption",
+            "entries": [
+              "Touch a creature or item to end one condition: blinded, charmed, deafened, frightened, paralyzed, or poisoned. If possessed/controlled, you can end the possession, shunting the entity to 5 ft; it takes 2d8 + your apothecary level psychic damage."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sacred Vessel",
+        "source": "SCGTD",
+        "page": 145,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 6,
+        "entries": [
+          "You are immune to being frightened and cannot be possessed or cursed. You have advantage on saves against being charmed."
+        ]
+      },
+      {
+        "name": "Negation",
+        "source": "SCGTD",
+        "page": 145,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 10,
+        "entries": [
+          "As a reaction when a hostile creature targets an ally, expend an Apothecary spell slot to force a Charisma save vs your spell save DC. On a fail, its action fails and resources spent are lost."
+        ]
+      },
+      {
+        "name": "Empowered Healing",
+        "source": "SCGTD",
+        "page": 145,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 14,
+        "entries": [
+          "Whenever you cast a spell that heals, it heals the maximum amount and the target gains temporary hit points equal to your apothecary level."
+        ]
+      },
+      {
+        "name": "Devout Witness",
+        "source": "SCGTD",
+        "page": 145,
+        "className": "Apothecary",
+        "classSource": "SCGTD",
+        "subclassShortName": "Exorcist",
+        "subclassSource": "SCGTD",
+        "level": 18,
+        "entries": [
+          "Creatures that fail against your Exorcism: Expel Evil take +4d8 radiant damage; creatures aided by your Exorcism: Purge Corruption gain 4d8 temporary hit points."
+        ]
       }
     ],
     "artificer-tce-classic": [

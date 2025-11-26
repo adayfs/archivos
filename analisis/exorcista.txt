@@ -1,0 +1,92 @@
+Exorcist
+An Exorcist comes prepared to deal with evil entities, sinister
+spirits, and fearsome fiends. Equipped with their holy symbol, a
+book of prayers, and a bag of ritualistic baubles, they stand ready
+to face the most unnatural and otherworldly entities of the realms.
+An Exorcist is accustomed to facing down insurmountable threats,
+with a holy symbol in hand they fear nothing, and stand as a
+shield between the realms of men, and those of monsters.
+Spiritual Study
+1st-level Exorcist feature
+You gain proficiency in heavy armor and the Religion Skill. If you
+already have this proficiency, you gain proficiency with another
+skill of your choice. You can use a holy symbol as an arcane focus
+for your apothecary spells and you gain a cantrip of your choice
+from the cleric spell list. This cantrip counts as an apothecary
+cantrip for you.
+Exorcist Spells
+1st-level Exorcist feature
+You always have certain spells prepared after you reach particular levels in this class, as shown in the Exorcist Spells table.
+These spells count as apothecary spells for you, but they don’t
+count against the number of apothecary spells you prepare.
+
+Exorcist Spells
+Apothecary Level Spell
+1st bless, protection from evil and good
+3rd spiritual weapon, zone of truth
+5th counterspell, spirit guardians
+7th banishment, last rites*
+9th dispel evil and good, flame strike
+
+Exorcism
+3rd-level Exorcist feature
+At 3rd level you gain the ability to imbue divine energy through
+your holy symbol to expel evil entities in the area, or purge their
+harmful effects from your allies.
+When you use this feature, you choose which effect to create.
+You can use this feature a number of times equal to half your
+proficiency bonus rounded down, you regain all expended uses
+on a short or long rest.
+If an Exorcism effect requires a saving throw, the DC equals
+your Apothecary spell save DC.
+Starting at 5th level, when an undead or fiend fails its saving
+throw against your Expel Evil feature, that creature suffers 4d8
+radiant damage.
+Expel Evil. As an action, you present your holy symbol and
+speak a prayer censuring creatures that mean you harm. Each
+Chapter 3: Drakkenheim Characters 143
+undead, celestial, fey, or fiend that can see or hear you within 30
+feet of you must make a Wisdom saving throw. If the creature
+fails its saving throw, it is turned for 1 minute or until it takes
+any damage.
+A turned creature must spend its turns trying to move as far
+away from you as it can, and it can’t willingly move to a space
+within 30 feet of you. It also can’t take reactions. For its action,
+it can use only the Dash action or try to escape from an effect
+that prevents it from moving. If there’s nowhere to move, the
+creature can use the Dodge action.
+Purge Corruption. You touch a creature or item and can
+end either one condition afflicting it. The condition can be
+blinded, charmed, deafened, frightened, paralyzed, or poisoned.
+Additionally, if a creature is possessed or mind controlled by
+a spirit or foreign entity, you can use this feature to remove any
+traits or other features related to the possession. If possessed, the
+creature possessing it is shunted out of its host to an unoccupied
+space within 5 feet and takes psychic damage equal to 2d8 +
+your apothecary level.
+Sacred Vessel
+6th-level Exorcist feature
+You are immune to the frightened condition, and cannot be
+possessed or cursed. You also have advantage on saving throws
+against being charmed.
+Negation
+10th-level Exorcist feature
+As a reaction when a hostile creature you can see targets an ally
+with an attack, spell, or other effect, you can expend an Apothecary spell slot to force it to make a Charisma saving throw
+against your spell save DC. On a failure, the action they were
+attempting fails and resources used are wasted.
+Empowered Healing
+14th-level Exorcist feature
+Whenever you cast a spell that heals a creature, that spell
+deals maximum healing and the creature immediately gains
+temporary hit points equal to your apothecary level.
+Devout Witness
+18th-level Exorcist feature
+As a Devout Witness, you speak on behalf of your gods and
+can feel their powers surging through you. Commanding spirits
+and vanquishing evil is second nature to you. You have added
+benefits that bolster your abilities.
+h Creatures who fail their saving throws against your Exorcism:
+Expel Evil feature take an additional 4d8 radiant damage.
+h Creatures who are aided by your Exorcism: Purge Corruption
+feature gain 4d8 temporary hit points.

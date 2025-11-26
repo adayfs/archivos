@@ -34,87 +34,147 @@
       descripcion: document.getElementById('arma_descripcion'),
     };
 
-    const translations = {
-      Axespear: 'Lanza-hacha',
-      'Barge Pole': 'Pértiga',
-      Battleaxe: 'Hacha de batalla',
-      'Bladed Scarf': 'Bufanda afilada',
-      Blowgun: 'Cerbatana',
-      Blunderbuss: 'Trabuco',
-      Bolas: 'Bolas',
-      'Chain Hook': 'Gancho de cadena',
-      Chakram: 'Chakram',
-      'Climbing Adze': 'Azada de escalada',
-      'Clockwork Crossbow': 'Ballesta de relojería',
-      Club: 'Garrote',
-      'Club Shield': 'Escudo-garrote',
-      'Crossbow, hand': 'Ballesta de mano',
-      'Crossbow, heavy': 'Ballesta pesada',
-      'Crossbow, light': 'Ballesta ligera',
-      Dagger: 'Daga',
-      Dart: 'Dardo',
-      'Double Axe': 'Hacha doble',
-      'Dwarven Arquebus': 'Arcabuz enano',
-      'Dwarven Axe': 'Hacha enana',
-      'Dwarven Revolving Musket': 'Mosquete giratorio enano',
-      'Elven Dueling Blade': 'Hoja de duelo élfica',
-      Flail: 'Mangual',
-      Glaive: 'Alabarda',
-      'Granite Fist': 'Puño de granito',
-      Greataxe: 'Gran hacha',
-      Greatclub: 'Gran garrote',
-      Greatsword: 'Gran espada',
-      Halberd: 'Alabarda',
-      'Hand Trebuchet': 'Trabuquete de mano',
-      Handaxe: 'Hacha de mano',
-      Javelin: 'Jabalina',
-      'Joining Dirks': 'Dagas gemelas',
-      Khopesh: 'Jopesh',
-      Lance: 'Lanza',
-      'Light hammer': 'Martillo ligero',
-      'Light Pick': 'Pico ligero',
-      Longbow: 'Arco largo',
-      Longsword: 'Espada larga',
-      Mace: 'Maza',
-      Maul: 'Mazo',
-      Morningstar: 'Estrella del alba',
-      Musket: 'Mosquete',
-      Net: 'Red',
-      Pike: 'Pica',
-      Pistol: 'Pistola',
-      'Pneumatic War Pick': 'Pico de guerra neumático',
-      Quarterstaff: 'Bastón',
-      Rapier: 'Estoque',
-    };
-
+    const hasApi = typeof window.DND5_API !== 'undefined';
     let weaponCache = [];
     let fetchPromise = null;
 
-    function translatedName(name) {
-      return translations[name] || name;
+    function readWeaponName(name) {
+      if (!name) return '';
+      if (typeof name === 'object') {
+        return name.es || name.en || '';
+      }
+      return name;
+    }
+
+    function normalizeWeapon(entry) {
+      return {
+        slug: entry.id || entry.slug || '',
+        name: readWeaponName(entry.name) || entry.id || '',
+        category: entry.category || '',
+        damage_dice: entry.dmg1 || entry.damage_dice || '',
+        damage_type: entry.dmgType || entry.damage_type || '',
+        weight: entry.weight,
+        properties: entry.properties || [],
+        desc: entry.desc || '',
+      };
+    }
+
+    function resolveWeaponUrls() {
+      const urls = [];
+      const staticData = window.DND5_STATIC_DATA || window.DND5_STATIC || null;
+      const racesUrl = staticData?.races;
+
+      if (typeof racesUrl === 'string' && racesUrl.includes('/')) {
+        const base = racesUrl.replace(/[^/]+$/, '');
+        urls.push(`${base}dnd-weapons.json`);
+        urls.push(`${base}jsons/dnd-weapons.json`);
+        if (/\/data\/?$/i.test(base)) {
+          urls.push(base.replace(/\/data\/?$/i, '/jsons/dnd-weapons.json'));
+        }
+      }
+
+      urls.push('dnd-weapons.json');
+      urls.push('jsons/dnd-weapons.json');
+
+      const pathBase = window.location?.pathname ? window.location.pathname.replace(/[^/]+$/, '') : '/';
+      urls.push(`${pathBase}dnd-weapons.json`);
+      urls.push(`${pathBase}jsons/dnd-weapons.json`);
+      urls.push('/dnd-weapons.json');
+      urls.push('/jsons/dnd-weapons.json');
+
+      return Array.from(new Set(urls.filter(Boolean)));
+    }
+
+    function fetchJsonWithFallback(urls) {
+      const [head, ...tail] = urls;
+      if (!head) return Promise.reject(new Error('Sin URL de armas'));
+      return fetch(head)
+        .then((response) => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .catch((err) => {
+          if (!tail.length) throw err;
+          return fetchJsonWithFallback(tail);
+        });
+    }
+
+    function resolveAjaxUrl() {
+      if (window.DND5_API?.ajax_url) return window.DND5_API.ajax_url;
+      if (window.ajaxurl) return window.ajaxurl;
+      return '/wp-admin/admin-ajax.php';
+    }
+
+    function fetchWeaponsViaApi() {
+      const ajaxUrl = resolveAjaxUrl();
+      if (!ajaxUrl) return Promise.reject(new Error('API no disponible'));
+      const formData = new FormData();
+      formData.append('action', 'drak_dnd5_get_weapons_full');
+      return fetch(ajaxUrl, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: formData,
+      }).then((res) => res.json());
+    }
+
+    function processWeaponPayload(payload) {
+      const list = Array.isArray(payload?.weapons) ? payload.weapons : [];
+      const seen = new Set();
+      weaponCache = list
+        .map(normalizeWeapon)
+        .filter((item) => {
+          if (!item.slug || seen.has(item.slug)) return false;
+          seen.add(item.slug);
+          return true;
+        });
+      populateSelector();
     }
 
     function fetchWeapons() {
       if (fetchPromise) return fetchPromise;
-      fetchPromise = fetch('https://api.open5e.com/weapons/')
-        .then((response) => response.json())
-        .then((data) => {
-          weaponCache = data?.results || [];
-          populateSelector();
-        })
-        .catch((error) => {
+      const weaponUrls = resolveWeaponUrls();
+
+      const tryApi = () =>
+        fetchWeaponsViaApi().then((json) => {
+          if (!json?.success && !Array.isArray(json?.weapons)) {
+            throw new Error('Respuesta inválida');
+          }
+          processWeaponPayload(json.data || json);
+          return weaponCache;
+        });
+
+      const tryStatic = () =>
+        fetchJsonWithFallback(weaponUrls).then((data) => {
+          processWeaponPayload(data);
+          return weaponCache;
+        });
+
+      if (hasApi || resolveAjaxUrl()) {
+        fetchPromise = tryApi().catch((error) => {
+          console.error('Error al cargar armas (AJAX)', error);
+          selector.innerHTML = '<option value="">No se pudieron cargar las armas</option>';
+          return [];
+        });
+      } else {
+        fetchPromise = tryStatic().catch((error) => {
           console.error('Error al cargar armas', error);
           selector.innerHTML = '<option value="">No se pudieron cargar las armas</option>';
+          return [];
         });
+      }
+
       return fetchPromise;
     }
 
     function populateSelector() {
       selector.innerHTML = '<option value="">Selecciona un arma</option>';
-      weaponCache.forEach((weapon) => {
+      const sorted = [...weaponCache].sort((a, b) =>
+        readWeaponName(a.name).localeCompare(readWeaponName(b.name), 'es', { sensitivity: 'base' })
+      );
+      sorted.forEach((weapon) => {
         const option = document.createElement('option');
         option.value = weapon.slug;
-        option.textContent = translatedName(weapon.name);
+        option.textContent = readWeaponName(weapon.name) || weapon.slug;
         selector.appendChild(option);
       });
     }
@@ -143,10 +203,10 @@
 
     function applySelection(weapon) {
       if (!weapon) return;
-      const name = translatedName(weapon.name);
+      const name = readWeaponName(weapon.name);
       display.innerHTML = `<p><strong>${name}</strong> (${weapon.damage_dice || '—'} ${weapon.damage_type || ''})</p>`;
 
-      setHiddenField('name', weapon.name);
+      setHiddenField('name', name);
       setHiddenField('slug', weapon.slug);
       setHiddenField('category', weapon.category);
       setHiddenField('damage_dice', weapon.damage_dice);
@@ -222,6 +282,5 @@
       });
     }
 
-    fetchWeapons();
   });
 })();

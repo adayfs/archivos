@@ -1923,11 +1923,11 @@ function renderizar_combate_personaje( $post_id ) {
 	            </div>
 	          </div>
 
-	          <div class="combat-modifiers">
-	            <div class="combat-modifiers__row">
-	              <label for="combat_attack_extra">Bonificador extra al ataque</label>
-	              <input
-	                type="number"
+          <div class="combat-modifiers">
+            <div class="combat-modifiers__row">
+              <label for="combat_attack_extra">Bonificador extra al ataque</label>
+              <input
+                type="number"
 	                id="combat_attack_extra"
 	                name="combat_attack_extra"
 	                value="<?php echo esc_attr( $attack_extra ); ?>"
@@ -1950,14 +1950,29 @@ function renderizar_combate_personaje( $post_id ) {
 	                id="combat_notes"
 	                name="combat_notes"
 	                rows="2"
-	                placeholder="Añade aquí dotes o rasgos que modifiquen el ataque con esta arma."
-	              ><?php echo esc_textarea( $notes ); ?></textarea>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
+                placeholder="Añade aquí dotes o rasgos que modifiquen el ataque con esta arma."
+              ><?php echo esc_textarea( $notes ); ?></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="combat-card combat-card--conditions">
+          <div class="combat-card__header">
+            <p class="combat-card__eyebrow">Condiciones</p>
+            <h4>Condición actual</h4>
+          </div>
+          <div class="combat-conditions">
+            <label for="combat-condition-select">Selecciona condición</label>
+            <select id="combat-condition-select">
+              <option value="">Cargando condiciones…</option>
+            </select>
+            <div id="combat-condition-body" class="combat-condition-body">
+              <p>Selecciona una condición para ver sus efectos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-	    </section>
+    </section>
 
 	    <div style="display:none;">
 	      <?php
@@ -5475,6 +5490,7 @@ add_action('wp_enqueue_scripts', function () {
             'feats'        => drak_static_data_uri( 'dnd-feats-es.json' ) ?: drak_static_data_uri( 'dnd-feats.json' ),
             'esotericTheories' => $esoteric_uri,
             'esotericTheoriesData' => $apothecary_theories,
+            'conditions'    => drak_static_data_uri( 'dnd-conditions-es.json' ),
         ]);
         wp_localize_script('hoja-personaje-js', 'APOTHECARY_THEORY_CATALOG', $apothecary_theories );
         wp_enqueue_script('spell-search-js', get_stylesheet_directory_uri() . '/js/spell-search.js', ['jquery', 'dnd5-renderer'], null, true);
@@ -5561,6 +5577,7 @@ add_action('wp_enqueue_scripts', function () {
             'feats'        => drak_static_data_uri( 'dnd-feats-es.json' ) ?: drak_static_data_uri( 'dnd-feats.json' ),
             'esotericTheories' => drak_static_data_uri( 'esotherics.json' ),
             'esotericTheoriesData' => $grimorio_apothecary_theories,
+            'conditions'    => drak_static_data_uri( 'dnd-conditions-es.json' ),
         ]);
         wp_localize_script('grimorio-js', 'APOTHECARY_THEORY_CATALOG', $grimorio_apothecary_theories );
         wp_localize_script('grimorio-js', 'DND5_API', [
@@ -7104,6 +7121,17 @@ function drak_dnd5_get_proficiencies() {
 add_action( 'wp_ajax_drak_dnd5_get_proficiencies',        'drak_dnd5_get_proficiencies' );
 add_action( 'wp_ajax_nopriv_drak_dnd5_get_proficiencies', 'drak_dnd5_get_proficiencies' );
 
+function drak_dnd5_get_weapons_full() {
+    $weapons = drak_get_local_dnd_list( 'dnd-weapons.json', 'weapons' );
+    wp_send_json_success(
+        [
+            'weapons' => $weapons,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_dnd5_get_weapons_full', 'drak_dnd5_get_weapons_full' );
+add_action( 'wp_ajax_nopriv_drak_dnd5_get_weapons_full', 'drak_dnd5_get_weapons_full' );
+
 function drak_dnd5_get_actions() {
     $actions = drak_get_local_dnd_actions();
     wp_send_json_success( [ 'actions' => $actions ] );
@@ -8109,6 +8137,23 @@ function drak_render_class_features_section( $class_id, $level_filter = null, $e
     $class_name    = $class_lookup['classes'][ $class_id ]['name'] ?? $class_id;
     $features      = $features_data['classFeatures'][ $class_id ] ?? [];
     $sub_features  = $subclass_id ? ( $features_data['subclassFeatures'][ $subclass_id ] ?? [] ) : [];
+
+    if ( $subclass_id && $features ) {
+        $features = array_values(
+            array_filter(
+                $features,
+                static function ( $feat ) use ( $subclass_id ) {
+                    if ( empty( $feat['subclassShortName'] ) && empty( $feat['subclassSource'] ) && empty( $feat['subclass'] ) ) {
+                        return true;
+                    }
+                    $feat_sub = $feat['subclassShortName'] ?? '';
+                    $feat_source = $feat['subclassSource'] ?? '';
+                    $feat_id = $feat['subclass'] ?? '';
+                    return $feat_id === $subclass_id || sanitize_title( $feat_sub ) === sanitize_title( $subclass_id );
+                }
+            )
+        );
+    }
 
     if ( $level_filter !== null ) {
         $features = array_filter(

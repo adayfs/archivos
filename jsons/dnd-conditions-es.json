@@ -1,0 +1,173 @@
+{
+  "conditions": [
+    {
+      "id": "blinded",
+      "name": "Blinded",
+      "name_es": "Cegado",
+      "source": "XPHB",
+      "entries": [
+        "No puedes ver y fallas automáticamente las pruebas de característica que dependan de la vista.",
+        "Las tiradas de ataque contra ti tienen ventaja.",
+        "Tus tiradas de ataque tienen desventaja.",
+        "Si intentas ver algo en un área muy oscurecida, se te considera Cegado respecto a ese objetivo."
+      ]
+    },
+    {
+      "id": "charmed",
+      "name": "Charmed",
+      "name_es": "Hechizado",
+      "source": "XPHB",
+      "entries": [
+        "No puedes atacar al hechizador ni usar efectos dañinos directamente contra él.",
+        "El hechizador tiene ventaja en las pruebas de característica para interactuar contigo socialmente."
+      ]
+    },
+    {
+      "id": "deafened",
+      "name": "Deafened",
+      "name_es": "Ensordecido",
+      "source": "XPHB",
+      "entries": [
+        "No puedes oír.",
+        "Fallas automáticamente las pruebas de característica que dependan de la audición."
+      ]
+    },
+    {
+      "id": "exhaustion",
+      "name": "Exhaustion",
+      "name_es": "Agotamiento",
+      "source": "XPHB",
+      "entries": [
+        "Tienes uno o más niveles de agotamiento. Si llegas a 6 niveles, mueres.",
+        "En cualquier d20 restas 2 × tu nivel de agotamiento al resultado.",
+        "Tu velocidad se reduce en 5 pies × tu nivel de agotamiento.",
+        "Reduces el nivel en 1 al finalizar un descanso largo; a nivel 0 la condición termina."
+      ]
+    },
+    {
+      "id": "frightened",
+      "name": "Frightened",
+      "name_es": "Asustado",
+      "source": "XPHB",
+      "entries": [
+        "Mientras veas la fuente de tu miedo, tienes desventaja en pruebas de característica y tiradas de ataque.",
+        "No puedes moverte voluntariamente para acercarte a la fuente del miedo."
+      ]
+    },
+    {
+      "id": "grappled",
+      "name": "Grappled",
+      "name_es": "Agarrado",
+      "source": "XPHB",
+      "entries": [
+        "Tu velocidad pasa a 0 y no puede aumentar.",
+        "Tienes desventaja en las tiradas de ataque contra criaturas que no sean la que te agarra.",
+        "El agarre termina si escapas, el que agarra queda incapacitado o salís de su alcance."
+      ]
+    },
+    {
+      "id": "incapacitated",
+      "name": "Incapacitated",
+      "name_es": "Incapacitado",
+      "source": "XPHB",
+      "entries": [
+        "No puedes realizar acciones, acciones adicionales ni reacciones.",
+        "Pierdes la concentración.",
+        "No puedes hablar.",
+        "Tienes desventaja en la tirada de iniciativa."
+      ]
+    },
+    {
+      "id": "invisible",
+      "name": "Invisible",
+      "name_es": "Invisible",
+      "source": "XPHB",
+      "entries": [
+        "Si estás invisible al tirar iniciativa, tienes ventaja.",
+        "Estás oculto a la vista; los efectos que requieren ver al objetivo no te afectan salvo que puedan verte.",
+        "Las tiradas de ataque contra ti tienen desventaja.",
+        "Tus tiradas de ataque tienen ventaja salvo contra criaturas que puedan verte."
+      ]
+    },
+    {
+      "id": "paralyzed",
+      "name": "Paralyzed",
+      "name_es": "Paralizado",
+      "source": "XPHB",
+      "entries": [
+        "Estás incapacitado y tu velocidad es 0.",
+        "Fallas automáticamente las tiradas de salvación de Fuerza y Destreza.",
+        "Las tiradas de ataque contra ti tienen ventaja.",
+        "Los ataques que te impactan a 5 pies o menos son críticos automáticos."
+      ]
+    },
+    {
+      "id": "petrified",
+      "name": "Petrified",
+      "name_es": "Petrificado",
+      "source": "XPHB",
+      "entries": [
+        "Te transformas en una sustancia sólida; tu peso se multiplica por diez.",
+        "Estás incapacitado y tu velocidad es 0.",
+        "Las tiradas de ataque contra ti tienen ventaja; fallas las salvaciones de Fuerza y Destreza.",
+        "Tienes resistencia a todo el daño e inmunidad a Envenenado."
+      ]
+    },
+    {
+      "id": "poisoned",
+      "name": "Poisoned",
+      "name_es": "Envenenado",
+      "source": "XPHB",
+      "entries": [
+        "Tienes desventaja en las tiradas de ataque.",
+        "Tienes desventaja en las pruebas de característica."
+      ]
+    },
+    {
+      "id": "prone",
+      "name": "Prone",
+      "name_es": "Tumbado",
+      "source": "XPHB",
+      "entries": [
+        "Tu movimiento se limita a arrastrarte o gastar la mitad de tu velocidad para levantarte.",
+        "Tus tiradas de ataque tienen desventaja.",
+        "Las tiradas de ataque contra ti tienen ventaja si el atacante está a 5 pies; desventaja si está más lejos."
+      ]
+    },
+    {
+      "id": "restrained",
+      "name": "Restrained",
+      "name_es": "Restringido",
+      "source": "XPHB",
+      "entries": [
+        "Tu velocidad es 0 y no puede aumentar.",
+        "Las tiradas de ataque contra ti tienen ventaja.",
+        "Tus tiradas de ataque tienen desventaja.",
+        "Tienes desventaja en las tiradas de salvación de Destreza."
+      ]
+    },
+    {
+      "id": "stunned",
+      "name": "Stunned",
+      "name_es": "Aturdido",
+      "source": "XPHB",
+      "entries": [
+        "Estás incapacitado.",
+        "Fallas automáticamente las tiradas de salvación de Fuerza y Destreza.",
+        "Las tiradas de ataque contra ti tienen ventaja."
+      ]
+    },
+    {
+      "id": "unconscious",
+      "name": "Unconscious",
+      "name_es": "Inconsciente",
+      "source": "XPHB",
+      "entries": [
+        "Estás incapacitado y tumbado; sueltas lo que sostienes y tu velocidad es 0.",
+        "Las tiradas de ataque contra ti tienen ventaja; fallas automáticamente salvaciones de Fuerza y Destreza.",
+        "Los ataques que te impactan a 5 pies o menos son críticos automáticos.",
+        "No percibes lo que ocurre a tu alrededor."
+      ]
+    }
+  ]
+}

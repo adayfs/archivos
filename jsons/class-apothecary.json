@@ -513,7 +513,14 @@
 				"Potent Biology|Apothecary||Mutagenist||6",
 				"Adaptive Genetics|Apothecary||Mutagenist||10",
 				"Unnatural Evolution|Apothecary||Mutagenist||14",
-				"The New Flesh|Apothecary||Mutagenist||18"
+				"The New Flesh|Apothecary||Mutagenist||18",
+				"Spiritual Study|Apothecary||Exorcist||1",
+				"Exorcist Spells|Apothecary||Exorcist||1",
+				"Exorcism|Apothecary||Exorcist||3",
+				"Sacred Vessel|Apothecary||Exorcist||6",
+				"Negation|Apothecary||Exorcist||10",
+				"Empowered Healing|Apothecary||Exorcist||14",
+				"Devout Witness|Apothecary||Exorcist||18"
 			]
 		}	
 	],
@@ -859,7 +866,162 @@
       ]
     }
 	  ]
-	}
+	},
+{
+  "name": "Spiritual Study",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 1,
+  "header": 1,
+  "entries": [
+    "Al elegir la práctica Exorcist en 1er nivel, te preparas para enfrentarte a espíritus y entidades malignas.",
+    "Obtienes competencia con armadura pesada y con la habilidad Religión. Si ya eres competente, eliges otra habilidad.",
+    "Puedes usar un símbolo sagrado como foco arcano para tus conjuros de apotecario y aprendes un truco de la lista de clérigo (cuenta como truco de apotecario para ti)."
+  ]
+},
+{
+  "name": "Exorcist Spells",
+  "source": "SCGTD",
+  "page": 144,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 1,
+  "header": 1,
+  "entries": [
+    "Ciertos conjuros están siempre preparados para ti cuando alcanzas los niveles indicados, según se muestra en la tabla de Exorcist Spells.",
+    "Estos conjuros cuentan como conjuros de apotecario para ti, pero no cuentan contra el número de conjuros que puedes preparar cada día.",
+    {
+      "type": "table",
+      "caption": "Exorcist Spells",
+      "colLabels": [
+        "Apothecary Level",
+        "Spells"
+      ],
+      "colStyles": [
+        "col-2 text-center",
+        "col-10"
+      ],
+      "rows": [
+        [
+          "1st",
+          "{@spell bless}, {@spell protection from evil and good}"
+        ],
+        [
+          "3rd",
+          "{@spell spiritual weapon}, {@spell zone of truth}"
+        ],
+        [
+          "5th",
+          "{@spell counterspell}, {@spell spirit guardians}"
+        ],
+        [
+          "7th",
+          "{@spell banishment}, {@spell last rites*}"
+        ],
+        [
+          "9th",
+          "{@spell dispel evil and good}, {@spell flame strike}"
+        ]
+      ]
+    }
+  ]
+},
+{
+  "name": "Exorcism",
+  "source": "SCGTD",
+  "page": 145,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 3,
+  "header": 1,
+  "entries": [
+    "Al 3er nivel obtienes la capacidad de canalizar energía divina a través de tu símbolo sagrado para expulsar entidades malignas o purgar efectos perjudiciales. Elige uno de los siguientes efectos al usar este rasgo.",
+    "Puedes usar este rasgo un número de veces igual a la mitad de tu bonificación de competencia (redondeando hacia abajo) y recuperas todos los usos al terminar un descanso corto o largo. Si un efecto requiere una tirada de salvación, la CD es tu CD de conjuros de apotecario.",
+    "A partir de 5º nivel, cuando un no muerto o un demonio (fiend) falla su tirada de salvación contra tu Expel Evil, sufre 4d8 de daño radiante.",
+    {
+      "type": "entries",
+      "name": "Expel Evil",
+      "entries": [
+        "Como acción, presentas tu símbolo sagrado y pronuncias una oración. Cada no muerto, celestial, fey o fiend que pueda verte u oírte a 30 pies debe hacer una tirada de salvación de Sabiduría. Si falla, queda turned durante 1 minuto o hasta que reciba daño.",
+        "Una criatura turned debe gastar sus turnos alejándose lo máximo posible de ti y no puede acercarse voluntariamente a menos de 30 pies. No puede usar reacciones, y su acción se limita a Correr o intentar escapar; si no puede, usa Esquivar."
+      ]
+    },
+    {
+      "type": "entries",
+      "name": "Purge Corruption",
+      "entries": [
+        "Como acción, tocas a una criatura u objeto y terminas una condición que le afecte: ceguera, encantado, ensordecido, asustado, paralizado o envenenado.",
+        "Si una criatura está poseída o bajo control mental de una entidad, puedes expulsar la posesión. La entidad es expulsada a un espacio a 5 pies, sufriendo 2d8 + tu nivel de apotecario de daño psíquico."
+      ]
+    }
+  ]
+},
+{
+  "name": "Sacred Vessel",
+  "source": "SCGTD",
+  "page": 145,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 6,
+  "header": 1,
+  "entries": [
+    "Eres inmune a la condición de asustado y no puedes ser poseído ni maldito. Además, tienes ventaja en las tiradas de salvación contra ser encantado."
+  ]
+},
+{
+  "name": "Negation",
+  "source": "SCGTD",
+  "page": 145,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 10,
+  "header": 1,
+  "entries": [
+    "Como reacción, cuando una criatura hostil que puedas ver apunte a un aliado con un ataque, conjuro u otro efecto, puedes gastar un espacio de conjuro de apotecario para obligarle a hacer una tirada de salvación de Carisma contra tu CD de conjuro. Si falla, la acción fracasa y los recursos gastados se pierden."
+  ]
+},
+{
+  "name": "Empowered Healing",
+  "source": "SCGTD",
+  "page": 145,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 14,
+  "header": 1,
+  "entries": [
+    "Cuando lanzas un conjuro que cure a una criatura, ese conjuro cura la cantidad máxima y el objetivo gana puntos de golpe temporales iguales a tu nivel de apotecario."
+  ]
+},
+{
+  "name": "Devout Witness",
+  "source": "SCGTD",
+  "page": 145,
+  "className": "Apothecary",
+  "classSource": "SCGTD",
+  "subclassShortName": "Exorcist",
+  "subclassSource": "SCGTD",
+  "level": 18,
+  "header": 1,
+  "entries": [
+    "Eres la voz de tus dioses y su poder fluye a través de ti.",
+    "Las criaturas que fallen la salvación contra tu Exorcism: Expel Evil reciben 4d8 de daño radiante adicional.",
+    "Las criaturas ayudadas por tu Exorcism: Purge Corruption ganan 4d8 puntos de golpe temporales."
+  ]
+}
 	
 			]
 }
