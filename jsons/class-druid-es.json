@@ -2158,7 +2158,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de lanzamiento para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2255,7 +2255,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de lanzamiento para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2865,7 +2865,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Druid."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Druid."
               ]
             },
             {
@@ -2941,7 +2941,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Druid."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Druid."
               ]
             },
             {
@@ -3024,7 +3024,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Druid."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Druid."
               ]
             },
             {
@@ -3100,7 +3100,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Druid."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Druid."
               ]
             },
             {
@@ -3259,7 +3259,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3313,7 +3313,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3435,7 +3435,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3489,7 +3489,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3618,7 +3618,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3672,7 +3672,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3794,7 +3794,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -3848,7 +3848,7 @@
                       ],
                       "name_es": "Estadísticas del juego",
                       "entries_es": [
-                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o ahorro en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
+                        "Sus estadísticas de juego son reemplazadas por el bloque de estatura de la Bestia, pero usted conserva su tipo de criatura; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Resultados de inteligencia, sabiduría y carisma; características de clase; idiomas; y hazañas. También conservas tu habilidad y ahorras habilidades de tiro y utilizas tus {@variantrule Proficiency|XPHB|Proficiency Bonus} para ellos, además de ganar las ventajas de la criatura. Si un modificador de tiro de habilidad o salvación en el bloque de estatura de la Bestia es más alto que el tuyo, use el que está en el bloque de estaturas."
                       ]
                     },
                     {
@@ -4047,7 +4047,7 @@
       ],
       "name_es": "Primal Strike",
       "entries_es": [
-        "Una vez en cada uno de tus turnos cuando golpeas a una criatura con un rollo de ataque usando un arma o un ataque de forma Bestia en Forma Salvaje, puedes hacer que el objetivo tome un extra {@damage 1d8} Daño frío, fuego, relámpago o Trueno (escoge cuando golpeas)."
+        "Una vez en cada uno de tus turnos cuando golpeas a una criatura con un tirada de ataque usando un arma o un ataque de forma Bestia en Forma Salvaje, puedes hacer que el objetivo tome un extra {@damage 1d8} Daño frío, fuego, relámpago o Trueno (escoge cuando golpeas)."
       ]
     },
     {
@@ -5093,7 +5093,7 @@
       ],
       "name_es": "Santuario de la naturaleza",
       "entries_es": [
-        "Cuando alcanzas el nivel 14, las criaturas del mundo natural sienten tu conexión con la naturaleza y se vuelven vacilantes para atacarte. Cuando una bestia o criatura de planta te ataca, esa criatura debe hacer un tiro de Sabiduría salvando contra tu hechizo druido salvo DC. En un fallido ahorro, la criatura debe elegir un objetivo diferente, o el ataque automáticamente falla. En un ahorro exitoso, la criatura es inmune a este efecto durante 24 horas.",
+        "Cuando alcanzas el nivel 14, las criaturas del mundo natural sienten tu conexión con la naturaleza y se vuelven vacilantes para atacarte. Cuando una bestia o criatura de planta te ataca, esa criatura debe hacer un tiro de Sabiduría salvando contra tu hechizo druido salvo DC. En un fallido salvación, la criatura debe elegir un objetivo diferente, o el ataque automáticamente falla. En un salvación exitoso, la criatura es inmune a este efecto durante 24 horas.",
         "La criatura es consciente de este efecto antes de que haga su ataque contra usted."
       ]
     },
@@ -5728,7 +5728,7 @@
       "name_es": "Mapa de estrellas",
       "entries_es": [
         "[[TAG0]",
-        "Has creado un gráfico estrella como parte de tus estudios celestiales. Es un objeto Tiny y puede servir como un foco de ortografía para sus hechizos druidos. Usted determina su forma al rodar en la tabla Star Map o al elegir uno.",
+        "Has creado un gráfico estrella como parte de tus estudios celestiales. Es un objeto Tiny y puede servir como un foco de ortografía para sus hechizos druidos. Usted determina su forma al tirar en la tabla Star Map o al elegir uno.",
         {
           "type": "table",
           "caption": "Star Map",
@@ -5882,7 +5882,7 @@
       ],
       "name_es": "Dragon",
       "entries_es": [
-        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o una tirada de salvación de Constitución para mantener {@status concentration} en un hechizo, usted puede tratar un rollo de 9 o inferior en el [[TAG1] como un 10."
+        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o una tirada de salvación de Constitución para mantener {@status concentration} en un hechizo, usted puede tratar un tirada de 9 o inferior en el [[TAG1] como un 10."
       ]
     },
     {
@@ -6158,7 +6158,7 @@
       "name_es": "Bono mejorado",
       "entries_es": [
         "[[TAG0]",
-        "El vínculo con tu espíritu de fuego salvaje aumenta tus hechizos destructivos y restaurativos. Cada vez que usted lanza un hechizo que trata el daño del fuego o restaura puntos de éxito mientras su espíritu de incendio salvaje es convocado, rodar un {@dice d8}, y usted gana un bono igual al número rodado a un daño o rollo de curación del hechizo.",
+        "El vínculo con tu espíritu de fuego salvaje aumenta tus hechizos destructivos y restaurativos. Cada vez que usted lanza un hechizo que trata el daño del fuego o restaura puntos de éxito mientras su espíritu de incendio salvaje es convocado, tirar un {@dice d8}, y usted gana un bono igual al número rodado a un daño o tirada de curación del hechizo.",
         "Además, cuando usted lanza un hechizo con un rango distinto al yo, el hechizo puede originarse de usted o su espíritu de fuego salvaje."
       ]
     },
@@ -6607,7 +6607,7 @@
       "name_es": "Balm of the Summer Court",
       "entries_es": [
         "A 2o nivel, te incomprendes con las bendiciones de la Corte de Verano. Usted es una fuente de energía que ofrece respite de las lesiones. Usted tiene una piscina de energía fey representada por un número de {@dice d6} igual a su nivel druido.",
-        "Como una acción de bonificación, usted puede elegir una criatura que puede ver dentro de 120 pies de usted y pasar un número de esos dados igual a la mitad de su nivel druido o menos. Rodar los dados gastados y agregarlos juntos. El objetivo recupera una serie de puntos de impacto iguales al total. El objetivo también gana 1 punto de impacto temporal por muerte gastada.",
+        "Como una acción de bonificación, usted puede elegir una criatura que puede ver dentro de 120 pies de usted y pasar un número de esos dados igual a la mitad de su nivel druido o menos. tirar los dados gastados y agregarlos juntos. El objetivo recupera una serie de puntos de impacto iguales al total. El objetivo también gana 1 punto de impacto temporal por muerte gastada.",
         "Recuperas todos los dados gastados cuando terminas un largo descanso."
       ]
     },
@@ -6755,7 +6755,7 @@
           ],
           "name_es": "Espíritu Oso",
           "entries_es": [
-            "El espíritu del oso te otorga a ti y a tus aliados su poder y resistencia. Cada criatura de su elección en el aura cuando el espíritu aparece gana puntos de éxito temporales igual a 5 + su nivel druido. Además, usted y sus aliados obtienen ventaja en los controles de fuerza y los tiros de ahorro de fuerza mientras que en el aura."
+            "El espíritu del oso te otorga a ti y a tus aliados su poder y resistencia. Cada criatura de su elección en el aura cuando el espíritu aparece gana puntos de éxito temporales igual a 5 + su nivel druido. Además, usted y sus aliados obtienen ventaja en los controles de fuerza y los tiros de salvación de fuerza mientras que en el aura."
           ]
         },
         {
@@ -6766,7 +6766,7 @@
           ],
           "name_es": "Hawk Spirit",
           "entries_es": [
-            "El espíritu halcón es un cazador consumado, ayudándote a ti y a tus aliados con su mirada aguda. Cuando una criatura hace un rodaje de ataque contra un blanco en el aura del espíritu, usted puede utilizar su reacción para otorgar ventaja a ese rollo de ataque. Además, usted y sus aliados tienen ventaja en los cheques de Sabiduría ([TAG0]]) mientras que en el aura."
+            "El espíritu halcón es un cazador consumado, ayudándote a ti y a tus aliados con su mirada aguda. Cuando una criatura hace un rodaje de ataque contra un blanco en el aura del espíritu, usted puede utilizar su reacción para otorgar ventaja a ese tirada de ataque. Además, usted y sus aliados tienen ventaja en los cheques de Sabiduría ([TAG0]]) mientras que en el aura."
           ]
         },
         {
@@ -6795,7 +6795,7 @@
           ],
           "name_es": "Espíritu Oso",
           "entries_es": [
-            "El espíritu del oso te otorga a ti y a tus aliados su poder y resistencia. Cada criatura de su elección en el aura cuando el espíritu aparece gana puntos de éxito temporales igual a 5 + su nivel druido. Además, usted y sus aliados obtienen ventaja en los controles de fuerza y los tiros de ahorro de fuerza mientras que en el aura."
+            "El espíritu del oso te otorga a ti y a tus aliados su poder y resistencia. Cada criatura de su elección en el aura cuando el espíritu aparece gana puntos de éxito temporales igual a 5 + su nivel druido. Además, usted y sus aliados obtienen ventaja en los controles de fuerza y los tiros de salvación de fuerza mientras que en el aura."
           ]
         },
         {
@@ -6806,7 +6806,7 @@
           ],
           "name_es": "Hawk Spirit",
           "entries_es": [
-            "El espíritu halcón es un cazador consumado, ayudándote a ti y a tus aliados con su mirada aguda. Cuando una criatura hace un rodaje de ataque contra un blanco en el aura del espíritu, usted puede utilizar su reacción para otorgar ventaja a ese rollo de ataque. Además, usted y sus aliados tienen ventaja en los cheques de Sabiduría ([TAG0]]) mientras que en el aura."
+            "El espíritu halcón es un cazador consumado, ayudándote a ti y a tus aliados con su mirada aguda. Cuando una criatura hace un rodaje de ataque contra un blanco en el aura del espíritu, usted puede utilizar su reacción para otorgar ventaja a ese tirada de ataque. Además, usted y sus aliados tienen ventaja en los cheques de Sabiduría ([TAG0]]) mientras que en el aura."
           ]
         },
         {
@@ -7390,7 +7390,7 @@
       ],
       "name_es": "Land's Aid",
       "entries_es": [
-        "Como acción {@action Magic|XPHB}, usted puede gastar un uso de su Forma Salvaje y elegir un punto dentro de 60 pies de usted mismo. Flores y espinas que dan vida aparecen por un momento en unradius de 10 pies {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centrado en ese punto. Cada criatura de su elección en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer una tirada de salvación de Constitución contra su hechizo salvo DC, tomando {@damage 2d6}] Daño necrótico en un ahorro fallido o la mitad de daño en uno exitoso. Una criatura de su elección en ese área recupera {@dice 2d6} {@variantrule Hit Points|XPHB}.",
+        "Como acción {@action Magic|XPHB}, usted puede gastar un uso de su Forma Salvaje y elegir un punto dentro de 60 pies de usted mismo. Flores y espinas que dan vida aparecen por un momento en unradius de 10 pies {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centrado en ese punto. Cada criatura de su elección en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer una tirada de salvación de Constitución contra su hechizo salvo DC, tomando {@damage 2d6}] Daño necrótico en un salvación fallido o la mitad de daño en uno exitoso. Una criatura de su elección en ese área recupera {@dice 2d6} {@variantrule Hit Points|XPHB}.",
         "El daño y el aumento de la curación por {@dice 1d6} cuando alcanza los niveles de Druid 10 ([TAG1]) y 14 ([TAG2])."
       ]
     },
@@ -7905,7 +7905,7 @@
               ],
               "name_es": "Aumento de la masa",
               "entries_es": [
-                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de ahorro de Constitución."
+                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de salvación de Constitución."
               ]
             }
           ],
@@ -7929,7 +7929,7 @@
               ],
               "name_es": "Aumento de la masa",
               "entries_es": [
-                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de ahorro de Constitución."
+                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de salvación de Constitución."
               ]
             }
           ]
@@ -7960,7 +7960,7 @@
               ],
               "name_es": "Aumento de la masa",
               "entries_es": [
-                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de ahorro de Constitución."
+                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de salvación de Constitución."
               ]
             }
           ],
@@ -7984,7 +7984,7 @@
               ],
               "name_es": "Aumento de la masa",
               "entries_es": [
-                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de ahorro de Constitución."
+                "Puedes añadir tu modificador de Sabiduría a tus lanzamientos de salvación de Constitución."
               ]
             }
           ]
@@ -8007,7 +8007,7 @@
       ],
       "name_es": "Moonlight Step",
       "entries_es": [
-        "Te transportas mágicamente, reapareciendo en medio de una explosión de luz de luna. Como un {@variantrule Bonus Action|XPHB}, teletransportas hasta 30 pies a un espacio no ocupado que puedes ver, y tienes {@variantrule Advantage|XPHB} en el siguiente rollo de ataque que haces antes del final de este turno.",
+        "Te transportas mágicamente, reapareciendo en medio de una explosión de luz de luna. Como un {@variantrule Bonus Action|XPHB}, teletransportas hasta 30 pies a un espacio no ocupado que puedes ver, y tienes {@variantrule Advantage|XPHB} en el siguiente tirada de ataque que haces antes del final de este turno.",
         "Puede utilizar esta característica varias veces igual a su modificador de Sabiduría (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}. También puede recuperar los usos exponiendo una ranura de hechizo de nivel 2+ para cada uso que desea restaurar (no se requiere acción)."
       ]
     },
@@ -8454,7 +8454,7 @@
       ],
       "name_es": "Mapa de estrellas",
       "entries_es": [
-        "Has creado un gráfico estrella como parte de tus estudios celestiales. Es un objeto pequeño, y puede utilizarlo como un {@variantrule Spellcasting Focus|XPHB} para sus hechizos druidos. Usted determina su forma al rodar en la tabla Star Map o al elegir uno.",
+        "Has creado un gráfico estrella como parte de tus estudios celestiales. Es un objeto pequeño, y puede utilizarlo como un {@variantrule Spellcasting Focus|XPHB} para sus hechizos druidos. Usted determina su forma al tirar en la tabla Star Map o al elegir uno.",
         "Mientras sostiene el mapa, usted tiene los {@spell Guidance|XPHB} y {@spell Guiding Bolt|XPHB} hechizos preparados, y usted puede lanzar {@spell Guiding Bolt|XPHB} sin gastar una ranura de hechizo. Usted puede echarlo de esa manera un número de veces igual a su modificador de Sabiduría (mínimo de una vez), y usted recupera todos los usos gastados cuando usted termina un {@variantrule Long Rest|XPHB}.",
         "Si pierdes el mapa, puedes realizar una ceremonia de 1 hora para crear mágicamente un reemplazo. Esta ceremonia se puede realizar durante un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}, y destruye el mapa anterior.",
         {
@@ -8598,7 +8598,7 @@
       ],
       "name_es": "Dragon",
       "entries_es": [
-        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o una tirada de salvación de Constitución para mantener {@status Concentration|XPHB}, usted puede tratar un rollo de 9 o inferior en el {@dice d20} como un 10."
+        "Una constelación de un dragón sabio aparece en ti. Cuando usted hace una inteligencia o un cheque de Sabiduría o una tirada de salvación de Constitución para mantener {@status Concentration|XPHB}, usted puede tratar un tirada de 9 o inferior en el {@dice d20} como un 10."
       ]
     },
     {
@@ -8625,7 +8625,7 @@
               ],
               "name_es": "Saldo (incluso)",
               "entries_es": [
-                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para rodar {@dice 1d6}] y añadir el número rodado al total."
+                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para tirar {@dice 1d6}] y añadir el número rodado al total."
               ]
             },
             {
@@ -8636,7 +8636,7 @@
               ],
               "name_es": "Woe (odd)",
               "entries_es": [
-                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para rodar {@dice 1d6}] y restar el número rodado del total."
+                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para tirar {@dice 1d6}] y restar el número rodado del total."
               ]
             }
           ]
@@ -8645,7 +8645,7 @@
       ],
       "name_es": "Cosmic Omen",
       "entries_es": [
-        "Siempre que termines un {@variantrule Long Rest|XPHB}, puedes consultar tu Mapa de estrellas para los presagios y rodar una muerte. Hasta que termines tu siguiente {@variantrule Long Rest|XPHB}, obtienes acceso a un número especial {@variantrule Reaction|XPHB} basado en si rodaste un número uniforme o extraño en la muerte:",
+        "Siempre que termines un {@variantrule Long Rest|XPHB}, puedes consultar tu Mapa de estrellas para los presagios y tirar una muerte. Hasta que termines tu siguiente {@variantrule Long Rest|XPHB}, obtienes acceso a un número especial {@variantrule Reaction|XPHB} basado en si rodaste un número uniforme o extraño en la muerte:",
         {
           "type": "list",
           "style": "list-hang-notitle",
@@ -8658,7 +8658,7 @@
               ],
               "name_es": "Saldo (incluso)",
               "entries_es": [
-                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para rodar {@dice 1d6}] y añadir el número rodado al total."
+                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para tirar {@dice 1d6}] y añadir el número rodado al total."
               ]
             },
             {
@@ -8669,7 +8669,7 @@
               ],
               "name_es": "Woe (odd)",
               "entries_es": [
-                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para rodar {@dice 1d6}] y restar el número rodado del total."
+                "Cada vez que una criatura que puede ver dentro de 30 pies de usted está a punto de hacer un {@variantrule D20 Test|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB}] para tirar {@dice 1d6}] y restar el número rodado del total."
               ]
             }
           ]

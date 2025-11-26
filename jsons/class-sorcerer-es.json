@@ -2411,7 +2411,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2508,7 +2508,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -5205,7 +5205,7 @@
               ],
               "name_es": "Luna nueva",
               "entries_es": [
-                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Destreza contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un rollo de ataque o lanzar un hechizo."
+                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Destreza contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un tirada de ataque o lanzar un hechizo."
               ]
             },
             {
@@ -5250,7 +5250,7 @@
               ],
               "name_es": "Luna nueva",
               "entries_es": [
-                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Destreza contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un rollo de ataque o lanzar un hechizo."
+                "Usted emana momentáneamente la oscuridad. Cada criatura de su elección dentro de 30 pies de usted debe tener éxito en una tirada de salvación de Destreza contra su hechizo ahorrar DC o tomar {@damage 3d10} daño necrótico y tener su velocidad reducida a 0 hasta el final de su próximo turno. Además, usted se convierte {@condition invisible} hasta el final de su próximo turno, o hasta inmediatamente después de hacer un tirada de ataque o lanzar un hechizo."
               ]
             },
             {
@@ -5473,7 +5473,7 @@
       ],
       "name_es": "Afinidad elemental",
       "entries_es": [
-        "A partir del sexto nivel, cuando usted lanza un hechizo que trata el daño del tipo asociado con su ascendencia dracónica, puede añadir su modificador de Charisma a un rollo de daño de ese hechizo. Al mismo tiempo, puede pasar 1 punto de brujería para ganar resistencia a ese tipo de daño durante 1 hora."
+        "A partir del sexto nivel, cuando usted lanza un hechizo que trata el daño del tipo asociado con su ascendencia dracónica, puede añadir su modificador de Charisma a un tirada de daño de ese hechizo. Al mismo tiempo, puede pasar 1 punto de brujería para ganar resistencia a ese tipo de daño durante 1 hora."
       ]
     },
     {
@@ -5518,7 +5518,7 @@
       ],
       "name_es": "Presencia dramática",
       "entries_es": [
-        "A partir del 18o nivel, se puede canalizar la presencia de terror de su antepasado de dragón, causando que los que están a su alrededor se vuelvan aterradores o {@condition frightened}. Como acción, puede pasar 5 puntos de brujería para aprovechar este poder y exudar un aura de temor o temor (su elección) a una distancia de 60 pies. Por 1 minuto o hasta que pierdas tu {@status concentration}] (como si estuvieras emitiendo un {@status concentration} hechizo), cada criatura hostil que comienza su turno en este aura debe tener éxito en una tirada de salvación de Sabiduría o ser {@condition charmed} (si eliges asombro) o {@condition frightened} (si eliges el miedo) hasta que el aura termina. Una criatura que tiene éxito en este tiro de ahorro es inmune a su aura durante 24 horas."
+        "A partir del 18o nivel, se puede canalizar la presencia de terror de su antepasado de dragón, causando que los que están a su alrededor se vuelvan aterradores o {@condition frightened}. Como acción, puede pasar 5 puntos de brujería para aprovechar este poder y exudar un aura de temor o temor (su elección) a una distancia de 60 pies. Por 1 minuto o hasta que pierdas tu {@status concentration}] (como si estuvieras emitiendo un {@status concentration} hechizo), cada criatura hostil que comienza su turno en este aura debe tener éxito en una tirada de salvación de Sabiduría o ser {@condition charmed} (si eliges asombro) o {@condition frightened} (si eliges el miedo) hasta que el aura termina. Una criatura que tiene éxito en este tiro de salvación es inmune a su aura durante 24 horas."
       ]
     },
     {
@@ -5570,8 +5570,8 @@
       ],
       "name_es": "mareas de caos",
       "entries_es": [
-        "A partir del primer nivel, puede manipular las fuerzas del azar y el caos para ganar ventaja en un rollo de ataque, control de habilidad o ahorro de tiro. Una vez que lo haga, debe terminar un largo descanso antes de que pueda utilizar esta característica de nuevo.",
-        "Cualquier momento antes de recuperar el uso de esta característica, el DM puede tener que rodar en la tabla [[TAG0] inmediatamente después de lanzar un hechizo de hechicero de primer nivel o superior. Luego recuperas el uso de esta característica."
+        "A partir del primer nivel, puede manipular las fuerzas del azar y el caos para ganar ventaja en un tirada de ataque, tirada de habilidad o tirada de salvacion. Una vez que lo haga, debe terminar un largo descanso antes de que pueda utilizar esta característica de nuevo.",
+        "Cualquier momento antes de recuperar el uso de esta característica, el DM puede tener que tirar en la tabla [[TAG0] inmediatamente después de lanzar un hechizo de hechicero de primer nivel o superior. Luego recuperas el uso de esta característica."
       ]
     },
     {
@@ -5809,7 +5809,7 @@
       ],
       "name_es": "Wild Magic Surge",
       "entries_es": [
-        "Comenzando cuando eliges este origen a primer nivel, tu deletreo puede desencadenar oleadas de magia no amenazada. Inmediatamente después de lanzar un hechizo de hechicero de primer nivel o superior, el DM puede tener que rodar un {@dice d20}. Si enrollas un 1, rollo en la mesa Wild Magic Surge para crear un efecto mágico aleatorio. Un Wild Magic Surge puede suceder una vez por turno.",
+        "Comenzando cuando eliges este origen a primer nivel, tu deletreo puede desencadenar oleadas de magia no amenazada. Inmediatamente después de lanzar un hechizo de hechicero de primer nivel o superior, el DM puede tener que tirar un {@dice d20}. Si enrollas un 1, rollo en la mesa Wild Magic Surge para crear un efecto mágico aleatorio. Un Wild Magic Surge puede suceder una vez por turno.",
         "Si un efecto Wild Magic es un hechizo, es demasiado salvaje para ser afectado por Metamagic. Si normalmente requiere {@status concentration}, no requiere {@status concentration} en este caso; el hechizo dura toda su duración.",
         {
           "type": "table",
@@ -6052,7 +6052,7 @@
       ],
       "name_es": "Bend Luck",
       "entries_es": [
-        "A partir del sexto nivel, tienes la capacidad de retorcer el destino usando tu magia salvaje. Cuando otra criatura que puedes ver hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, puedes usar tu reacción y gastar 2 puntos de brujería para rodar {@dice 1d4} y aplicar el número rodado como un bono o penal (su elección) al rollo de la criatura. Puedes hacerlo después de los rollos de la criatura pero antes de que ocurran efectos del rollo."
+        "A partir del sexto nivel, tienes la capacidad de retorcer el destino usando tu magia salvaje. Cuando otra criatura que puedes ver hace un tirada de ataque, un cheque de habilidad, o una tirada de salvación, puedes usar tu reacción y gastar 2 puntos de brujería para tirar {@dice 1d4} y aplicar el número rodado como un bono o penal (su elección) al tirada de la criatura. Puedes hacerlo después de los rollos de la criatura pero antes de que ocurran efectos del rollo."
       ]
     },
     {
@@ -6070,7 +6070,7 @@
       ],
       "name_es": "Caos controlados",
       "entries_es": [
-        "A nivel 14, usted gana un modicum de control sobre las oleadas de su magia salvaje. Cada vez que usted roda en la {@table Wild Magic Surge|PHB} tabla, usted puede rodar dos veces y utilizar cualquier número."
+        "A nivel 14, usted gana un modicum de control sobre las oleadas de su magia salvaje. Cada vez que usted roda en la {@table Wild Magic Surge|PHB} tabla, usted puede tirar dos veces y utilizar cualquier número."
       ]
     },
     {
@@ -6088,7 +6088,7 @@
       ],
       "name_es": "Spell Bombardment",
       "entries_es": [
-        "Comenzando a nivel 18, la energía dañina de sus hechizos se intensifica. Al rodar el daño por un hechizo y rodar el mayor número posible en cualquiera de los dados, elegir uno de esos dados, rodar de nuevo y añadir ese rollo al daño. Puedes usar la función sólo una vez por turno."
+        "Comenzando a nivel 18, la energía dañina de sus hechizos se intensifica. Al tirar el daño por un hechizo y tirar el mayor número posible en cualquiera de los dados, elegir uno de esos dados, tirar de nuevo y añadir ese rollo al daño. Puedes usar la función sólo una vez por turno."
       ]
     },
     {
@@ -6509,7 +6509,7 @@
       "name_es": "Implosión de calentamiento",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede desencadenar su poder aberrante como una anomalía en el calentamiento del espacio. Como acción, se puede teletransportar a un espacio no ocupado que se puede ver a menos de 120 pies de usted. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. En un fallido ahorro, una criatura toma {@damage 3d10} daño de fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un ahorro exitoso, la criatura toma la mitad de los daños y no es tirada.",
+        "Usted puede desencadenar su poder aberrante como una anomalía en el calentamiento del espacio. Como acción, se puede teletransportar a un espacio no ocupado que se puede ver a menos de 120 pies de usted. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. En un fallido salvación, una criatura toma {@damage 3d10} daño de fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un salvación exitoso, la criatura toma la mitad de los daños y no es tirada.",
         "Una vez que utilices esta característica, no puedes hacerlo de nuevo hasta que termines un largo descanso, a menos que gastes 5 puntos de brujería para usarlo de nuevo."
       ]
     },
@@ -6732,7 +6732,7 @@
       "name_es": "Restaurar el equilibrio",
       "entries_es": [
         "[[TAG0]",
-        "Su conexión al plano del orden absoluto le permite igualar los momentos caóticos. Cuando una criatura que puede ver dentro de 60 pies de usted está a punto de rodar un {@dice d20} con ventaja o desventaja, puede utilizar su reacción para evitar que el rollo se vea afectado por la ventaja y desventaja.",
+        "Su conexión al plano del orden absoluto le permite igualar los momentos caóticos. Cuando una criatura que puede ver dentro de 60 pies de usted está a punto de tirar un {@dice d20} con ventaja o desventaja, puede utilizar su reacción para evitar que el rollo se vea afectado por la ventaja y desventaja.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
       ]
     },
@@ -6759,7 +6759,7 @@
       "entries_es": [
         "[[TAG0]",
         "Puedes aprovechar la gran ecuación de la existencia para infundir a una criatura con un escudo de orden que brilla. Como acción, usted puede gastar 1 a 5 puntos de brujería para crear una sala mágica alrededor de usted u otra criatura que puede ver dentro de 30 pies de usted. La sala dura hasta que termines un largo descanso o hasta que uses esta característica de nuevo.",
-        "El pabellón está representado por una serie de {@dice d8} iguales al número de puntos de brujería gastados para crearlo. Cuando la criatura acorazada daña, puede gastar una serie de esos dados, rodarlos y reducir el daño causado por el total rodado en esos dados."
+        "El pabellón está representado por una serie de {@dice d8} iguales al número de puntos de brujería gastados para crearlo. Cuando la criatura acorazada daña, puede gastar una serie de esos dados, tirarlos y reducir el daño causado por el total rodado en esos dados."
       ]
     },
     {
@@ -6780,7 +6780,7 @@
       "name_es": "Trance of Order",
       "entries_es": [
         "[[TAG0]",
-        "Ganas la habilidad de alinear tu conciencia a los interminables cálculos de Mechanus. Como una acción de bonificación, puede entrar en este estado por 1 minuto. Durante la duración, los rollos de ataque contra usted no pueden beneficiarse de la ventaja, y cuando usted hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, usted puede tratar un rollo de 9 o más bajo en el [[TAG0] como un 10.",
+        "Ganas la habilidad de alinear tu conciencia a los interminables cálculos de Mechanus. Como una acción de bonificación, puede entrar en este estado por 1 minuto. Durante la duración, los rollos de ataque contra usted no pueden beneficiarse de la ventaja, y cuando usted hace un tirada de ataque, un cheque de habilidad, o una tirada de salvación, usted puede tratar un tirada de 9 o más bajo en el [[TAG0] como un 10.",
         "Una vez que usas esta acción de bonificación, no puedes usarla de nuevo hasta que termines un descanso largo, a menos que gastes 5 puntos de brujería para usarlo de nuevo."
       ]
     },
@@ -7274,7 +7274,7 @@
       ],
       "name_es": "Favorecido por los dioses",
       "entries_es": [
-        "A partir del primer nivel, el poder divino protege tu destino. Si fallas una tirada de salvación o pierdes con un rollo de ataque, puedes rodar {@dice 2d4} y añadirlo al total, posiblemente cambiando el resultado. Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
+        "A partir del primer nivel, el poder divino protege tu destino. Si fallas una tirada de salvación o pierdes con un tirada de ataque, puedes tirar {@dice 2d4} y añadirlo al total, posiblemente cambiando el resultado. Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
     {
@@ -7401,7 +7401,7 @@
       "name_es": "Shadow Magic",
       "entries_es": [
         "Eres una criatura de sombra, porque tu magia innata viene de la Sombra misma. Usted podría rastrear su linaje a una entidad de ese lugar, o tal vez usted estaba expuesto a su energía caída y transformado por ella.",
-        "El poder de la magia de la sombra arroja un extraño peaje sobre su presencia física. La chispa de la vida que te sostiene es desconcertada, como si lucha por seguir siendo viable contra la energía oscura que impregna tu alma. En su opción, puede elegir o rodar en la mesa de Shadow Sorcerer Quirks para crear un quirk para su personaje.",
+        "El poder de la magia de la sombra arroja un extraño peaje sobre su presencia física. La chispa de la vida que te sostiene es desconcertada, como si lucha por seguir siendo viable contra la energía oscura que impregna tu alma. En su opción, puede elegir o tirar en la mesa de Shadow Sorcerer Quirks para crear un quirk para su personaje.",
         {
           "type": "table",
           "caption": "Shadow Sorcerer Quirks",
@@ -7530,7 +7530,7 @@
             "At the start of its turn, the hound automatically knows its target's location. If the target was hidden, it is no longer hidden from the hound."
           ]
         },
-        "El sabueso aparece en un espacio no ocupado de su elección a menos de 30 pies del objetivo. Rollo de iniciativa para el sabueso. A su vez, sólo puede moverse hacia su objetivo por la ruta más directa, y puede utilizar su acción sólo para atacar su objetivo. El sabueso puede hacer ataques de oportunidad, pero sólo contra su objetivo. Además, mientras que el sabueso está a menos de 5 pies del objetivo, el objetivo tiene desventaja en ahorrar tiros contra cualquier hechizo que usted lanzó. El sabueso desaparece si se reduce a 0 puntos de impacto, si su objetivo se reduce a 0 puntos de impacto, o después de 5 minutos."
+        "El sabueso aparece en un espacio no ocupado de su elección a menos de 30 pies del objetivo. tirada de iniciativa para el sabueso. A su vez, sólo puede moverse hacia su objetivo por la ruta más directa, y puede utilizar su acción sólo para atacar su objetivo. El sabueso puede hacer ataques de oportunidad, pero sólo contra su objetivo. Además, mientras que el sabueso está a menos de 5 pies del objetivo, el objetivo tiene desventaja en ahorrar tiros contra cualquier hechizo que usted lanzó. El sabueso desaparece si se reduce a 0 puntos de impacto, si su objetivo se reduce a 0 puntos de impacto, o después de 5 minutos."
       ]
     },
     {
@@ -7702,7 +7702,7 @@
       ],
       "name_es": "Furia de la tormenta",
       "entries_es": [
-        "A partir del nivel 14, cuando usted es golpeado por un ataque de melee, usted puede utilizar su reacción para tratar daños de relámpago al atacante. El daño equivale a su nivel de hechicero. El atacante también debe hacer una tirada de salvación de fuerza contra su hechizo de hechicero salvar a DC. En un fallido ahorro, el atacante es empujado en una línea recta hasta 20 pies de distancia de usted."
+        "A partir del nivel 14, cuando usted es golpeado por un ataque de melee, usted puede utilizar su reacción para tratar daños de relámpago al atacante. El daño equivale a su nivel de hechicero. El atacante también debe hacer una tirada de salvación de fuerza contra su hechizo de hechicero salvar a DC. En un fallido salvación, el atacante es empujado en una línea recta hasta 20 pies de distancia de usted."
       ]
     },
     {
@@ -7983,7 +7983,7 @@
           ],
           "name_es": "Burning Life Force",
           "entries_es": [
-            "Una vez por turno cuando te golpea un rollo de ataque, puedes gastar un número de {@variantrule Hit Point Dice|XPHB}, hasta un máximo igual a tu modificador de Charisma (mínimo de uno). Rodar los dados gastados y reducir la cantidad de daño de ese ataque igual al total rodado."
+            "Una vez por turno cuando te golpea un tirada de ataque, puedes gastar un número de {@variantrule Hit Point Dice|XPHB}, hasta un máximo igual a tu modificador de Charisma (mínimo de uno). tirar los dados gastados y reducir la cantidad de daño de ese ataque igual al total rodado."
           ]
         },
         {
@@ -8023,7 +8023,7 @@
           ],
           "name_es": "Burning Life Force",
           "entries_es": [
-            "Una vez por turno cuando te golpea un rollo de ataque, puedes gastar un número de {@variantrule Hit Point Dice|XPHB}, hasta un máximo igual a tu modificador de Charisma (mínimo de uno). Rodar los dados gastados y reducir la cantidad de daño de ese ataque igual al total rodado."
+            "Una vez por turno cuando te golpea un tirada de ataque, puedes gastar un número de {@variantrule Hit Point Dice|XPHB}, hasta un máximo igual a tu modificador de Charisma (mínimo de uno). tirar los dados gastados y reducir la cantidad de daño de ese ataque igual al total rodado."
           ]
         },
         {
@@ -8428,7 +8428,7 @@
       ],
       "name_es": "Psychic Defenses",
       "entries_es": [
-        "Usted tiene {@variantrule Resistance|XPHB} al daño Psíquico, y usted tiene {@variantrule Advantage|XPHB} en los lanzamientos de ahorro para evitar o terminar la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB}."
+        "Usted tiene {@variantrule Resistance|XPHB} al daño Psíquico, y usted tiene {@variantrule Advantage|XPHB} en los lanzamientos de salvación para evitar o terminar la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB}."
       ]
     },
     {
@@ -8660,7 +8660,7 @@
       ],
       "name_es": "Implosión de calentamiento",
       "entries_es": [
-        "Puedes desencadenar una anomalía espacial. Como una acción {@action Magic|XPHB}, te teletransportas a un espacio no ocupado que puedes ver dentro de 120 pies de ti mismo. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. En una salvación fallida, una criatura toma {@damage 3d10} Daño de la fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un ahorro exitoso, la criatura toma la mitad del daño sólo.",
+        "Puedes desencadenar una anomalía espacial. Como una acción {@action Magic|XPHB}, te teletransportas a un espacio no ocupado que puedes ver dentro de 120 pies de ti mismo. Inmediatamente después de que desaparezcas, cada criatura dentro de 30 pies del espacio que dejaste debe hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. En una salvación fallida, una criatura toma {@damage 3d10} Daño de la fuerza y se tira directamente hacia el espacio que dejaste, terminando en un espacio no ocupado tan cerca de su espacio anterior como sea posible. Con un salvación exitoso, la criatura toma la mitad del daño sólo.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que gaste 5 Puntos de brujería (no se requiere acción) para restaurar su uso de ella."
       ]
     },
@@ -8871,7 +8871,7 @@
       ],
       "name_es": "Restaurar el equilibrio",
       "entries_es": [
-        "Su conexión al plano del orden absoluto le permite igualar los momentos caóticos. Cuando una criatura que puedes ver dentro de 60 pies de ti mismo está a punto de rodar un {@dice d20} con {@variantrule Advantage|XPHB} o {@variantrule Disadvantage|XPHB}, puedes tomar un {@variantrule Reaction|XPHB} para evitar que el rollo sea afectado por {@variantrule Advantage|XPHB}] y {@variantrule Disadvantage|XPHB}]].",
+        "Su conexión al plano del orden absoluto le permite igualar los momentos caóticos. Cuando una criatura que puedes ver dentro de 60 pies de ti mismo está a punto de tirar un {@dice d20} con {@variantrule Advantage|XPHB} o {@variantrule Disadvantage|XPHB}, puedes tomar un {@variantrule Reaction|XPHB} para evitar que el rollo sea afectado por {@variantrule Advantage|XPHB}] y {@variantrule Disadvantage|XPHB}]].",
         "Puede utilizar esta característica varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -8897,7 +8897,7 @@
       ],
       "name_es": "Bastion of Law",
       "entries_es": [
-        "Puedes aprovechar la gran ecuación de la existencia para infundir a una criatura con un escudo de orden que brilla. Como una acción {@action Magic|XPHB}, puedes gastar 1 a 5 puntos de brujería para crear una sala mágica alrededor de ti mismo u otra criatura que puedas ver dentro de 30 pies de ti mismo. El pabellón está representado por una serie de d8s iguales al número de puntos de brujería gastados para crearlo. Cuando la criatura acorazada daña, puede gastar una serie de esos dados, rodarlos y reducir el daño causado por el total rodado en esos dados.",
+        "Puedes aprovechar la gran ecuación de la existencia para infundir a una criatura con un escudo de orden que brilla. Como una acción {@action Magic|XPHB}, puedes gastar 1 a 5 puntos de brujería para crear una sala mágica alrededor de ti mismo u otra criatura que puedas ver dentro de 30 pies de ti mismo. El pabellón está representado por una serie de d8s iguales al número de puntos de brujería gastados para crearlo. Cuando la criatura acorazada daña, puede gastar una serie de esos dados, tirarlos y reducir el daño causado por el total rodado en esos dados.",
         "La sala dura hasta que termines una {@variantrule Long Rest|XPHB} o hasta que vuelvas a usar esta característica."
       ]
     },
@@ -8922,7 +8922,7 @@
       ],
       "name_es": "Trance of Order",
       "entries_es": [
-        "Ganas la capacidad de alinear tu conciencia con los interminables cálculos de Mechanus. Como {@variantrule Bonus Action|XPHB}, puede entrar en este estado por 1 minuto. Por la duración, los rollos de ataque contra usted no pueden beneficiarse de {@variantrule Advantage|XPHB}, y cuando usted hace un {@variantrule D20 Test|XPHB}, usted puede tratar un rollo de 9 o inferior en el [[TAG3] como un 10.",
+        "Ganas la capacidad de alinear tu conciencia con los interminables cálculos de Mechanus. Como {@variantrule Bonus Action|XPHB}, puede entrar en este estado por 1 minuto. Por la duración, los rollos de ataque contra usted no pueden beneficiarse de {@variantrule Advantage|XPHB}, y cuando usted hace un {@variantrule D20 Test|XPHB}, usted puede tratar un tirada de 9 o inferior en el [[TAG3] como un 10.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que gaste 5 Puntos de brujería (no se requiere acción) para restaurar su uso de ella."
       ]
     },
@@ -9253,7 +9253,7 @@
       "name_es": "Afinidad elemental",
       "entries_es": [
         "Su magia dracónica tiene una afinidad con un tipo de daño asociado con dragones. Elige uno de esos tipos: Ácido, frío, fuego, relámpago o veneno.",
-        "Usted tiene {@variantrule Resistance|XPHB} a ese tipo de daño, y cuando usted lanza un hechizo que trata el daño de ese tipo, usted puede añadir su modificador de Charisma a un rollo de daño de ese hechizo."
+        "Usted tiene {@variantrule Resistance|XPHB} a ese tipo de daño, y cuando usted lanza un hechizo que trata el daño de ese tipo, usted puede añadir su modificador de Charisma a un tirada de daño de ese hechizo."
       ]
     },
     {
@@ -9356,8 +9356,8 @@
       ],
       "name_es": "mareas de caos",
       "entries_es": [
-        "Usted puede manipular el caos mismo para darse {@variantrule Advantage|XPHB} en uno {@variantrule D20 Test|XPHB} antes de rodar el {@dice d20}. Una vez que lo haga, debe lanzar un hechizo Sorcerer con una ranura de hechizo o terminar un {@variantrule Long Rest|XPHB} antes de que pueda utilizar esta característica de nuevo.",
-        "Si lanzas un hechizo Sorcerer con una ranura de hechizo antes de terminar una {@variantrule Long Rest|XPHB}, automáticamente rodarás en la tabla {@table Wild Magic Surge|XPHB}."
+        "Usted puede manipular el caos mismo para darse {@variantrule Advantage|XPHB} en uno {@variantrule D20 Test|XPHB} antes de tirar el {@dice d20}. Una vez que lo haga, debe lanzar un hechizo Sorcerer con una ranura de hechizo o terminar un {@variantrule Long Rest|XPHB} antes de que pueda utilizar esta característica de nuevo.",
+        "Si lanzas un hechizo Sorcerer con una ranura de hechizo antes de terminar una {@variantrule Long Rest|XPHB}, automáticamente tirarás en la tabla {@table Wild Magic Surge|XPHB}."
       ]
     },
     {
@@ -9495,7 +9495,7 @@
       ],
       "name_es": "Wild Magic Surge",
       "entries_es": [
-        "Tu deletreo puede desencadenar oleadas de magia inadvertida. Una vez por turno, puede rodar {@dice 1d20} inmediatamente después de lanzar un hechizo Sorcerer con una ranura de hechizo. Si rodas un 20, roda sobre la mesa de Wild Magic Surge para crear un efecto mágico.",
+        "Tu deletreo puede desencadenar oleadas de magia inadvertida. Una vez por turno, puede tirar {@dice 1d20} inmediatamente después de lanzar un hechizo Sorcerer con una ranura de hechizo. Si rodas un 20, roda sobre la mesa de Wild Magic Surge para crear un efecto mágico.",
         "Si el efecto mágico es un hechizo, es demasiado salvaje para ser afectado por su Metamagic.",
         {
           "type": "table",
@@ -9637,7 +9637,7 @@
       ],
       "name_es": "Bend Luck",
       "entries_es": [
-        "Tienes la habilidad de retorcer el destino usando tu magia salvaje. Inmediatamente después de que otra criatura pueda ver rollos el {@dice d20} para un {@variantrule D20 Test|XPHB}], usted puede tomar un {@variantrule Reaction|XPHB} y gastar 1 punto de brujería para rodar {@dice 1d4} y aplicar el número rodado como un bono o penal (su elección) al [[TAG0] rollo."
+        "Tienes la habilidad de retorcer el destino usando tu magia salvaje. Inmediatamente después de que otra criatura pueda ver rollos el {@dice d20} para un {@variantrule D20 Test|XPHB}], usted puede tomar un {@variantrule Reaction|XPHB} y gastar 1 punto de brujería para tirar {@dice 1d4} y aplicar el número rodado como un bono o penal (su elección) al [[TAG0] rollo."
       ]
     },
     {
@@ -9655,7 +9655,7 @@
       ],
       "name_es": "Caos controlados",
       "entries_es": [
-        "Ganas un modicum de control sobre las olas de tu magia salvaje. Cada vez que rodas en el Salvaje {@action Magic|XPHB} Mesa de Surge, puedes rodar dos veces y usar cualquier número."
+        "Ganas un modicum de control sobre las olas de tu magia salvaje. Cada vez que rodas en el Salvaje {@action Magic|XPHB} Mesa de Surge, puedes tirar dos veces y usar cualquier número."
       ]
     },
     {
@@ -9674,7 +9674,7 @@
       ],
       "name_es": "Tamed Surge",
       "entries_es": [
-        "Inmediatamente después de lanzar un hechizo Sorcerer con una ranura de hechizo, usted puede crear un efecto de su elección de la tabla [[TAG0] en lugar de rodar en esa tabla. Puedes elegir cualquier efecto en la tabla excepto en la fila final, y si el efecto elegido implica un rollo, debes hacerlo.",
+        "Inmediatamente después de lanzar un hechizo Sorcerer con una ranura de hechizo, usted puede crear un efecto de su elección de la tabla [[TAG0] en lugar de tirar en esa tabla. Puedes elegir cualquier efecto en la tabla excepto en la fila final, y si el efecto elegido implica un rollo, debes hacerlo.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}."
       ]
     }

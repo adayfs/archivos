@@ -1904,7 +1904,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2001,7 +2001,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -3471,7 +3471,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es la habilidad de deletrear para tus hechizos Warlock."
+                "Charisma es la habilidad de lanzamiento para tus hechizos Warlock."
               ]
             },
             {
@@ -3506,7 +3506,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es la habilidad de deletrear para tus hechizos Warlock."
+                "Charisma es la habilidad de lanzamiento para tus hechizos Warlock."
               ]
             },
             {
@@ -3631,7 +3631,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es la habilidad de deletrear para tus hechizos Warlock."
+                "Charisma es la habilidad de lanzamiento para tus hechizos Warlock."
               ]
             },
             {
@@ -3666,7 +3666,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es la habilidad de deletrear para tus hechizos Warlock."
+                "Charisma es la habilidad de lanzamiento para tus hechizos Warlock."
               ]
             },
             {
@@ -4165,7 +4165,7 @@
       ],
       "name_es": "Fey Presence",
       "entries_es": [
-        "A partir del primer nivel, su patrono le otorga la capacidad de proyectar la presencia engañosa y temible de la fey. Como acción, usted puede hacer que cada criatura en un cubo de 10 pies que se origina de usted para hacer una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvar DC. Las criaturas que fallan sus lanzamientos de ahorro son todas {@condition charmed} o {@condition frightened} por usted (su elección) hasta el final de su próximo turno.",
+        "A partir del primer nivel, su patrono le otorga la capacidad de proyectar la presencia engañosa y temible de la fey. Como acción, usted puede hacer que cada criatura en un cubo de 10 pies que se origina de usted para hacer una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvar DC. Las criaturas que fallan sus lanzamientos de salvación son todas {@condition charmed} o {@condition frightened} por usted (su elección) hasta el final de su próximo turno.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -4224,7 +4224,7 @@
       ],
       "name_es": "Dark Delirium",
       "entries_es": [
-        "A partir del nivel 14, puedes sumergir a una criatura en un reino ilusorio. Como acción, elige una criatura que puedes ver a menos de 60 pies de ti. Debe hacer una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvo DC. En un ahorro fallido, es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto o hasta que su {@status concentration}] se rompe (como si usted está {@status concentration||concentrating} en un hechizo). Este efecto termina temprano si la criatura toma algún daño.",
+        "A partir del nivel 14, puedes sumergir a una criatura en un reino ilusorio. Como acción, elige una criatura que puedes ver a menos de 60 pies de ti. Debe hacer una tirada de salvación de Sabiduría contra su hechizo de bloqueo salvo DC. En un salvación fallido, es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto o hasta que su {@status concentration}] se rompe (como si usted está {@status concentration||concentrating} en un hechizo). Este efecto termina temprano si la criatura toma algún daño.",
         "Hasta que termine esta ilusión, la criatura piensa que se pierde en un reino despiadado, la apariencia de la que eliges. La criatura puede ver y escuchar solo a sí misma, a ti y a la ilusión.",
         "Usted debe terminar un breve o largo descanso antes de que pueda utilizar esta característica de nuevo."
       ]
@@ -4712,7 +4712,7 @@
       ],
       "name_es": "Entropic Ward",
       "entries_es": [
-        "A 6o nivel, aprendes a advertirte mágicamente contra el ataque y convertir la fallida huelga de un enemigo en buena suerte para ti mismo. Cuando una criatura hace un rollo de ataque contra usted, puede utilizar su reacción para imponer desventaja en ese rollo. Si el ataque te extraña, tu próximo lanzamiento contra la criatura tiene ventaja si lo haces antes del final de tu próximo turno.",
+        "A 6o nivel, aprendes a advertirte mágicamente contra el ataque y convertir la fallida huelga de un enemigo en buena suerte para ti mismo. Cuando una criatura hace un tirada de ataque contra usted, puede utilizar su reacción para imponer desventaja en ese rollo. Si el ataque te extraña, tu próximo lanzamiento contra la criatura tiene ventaja si lo haces antes del final de tu próximo turno.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -4956,7 +4956,7 @@
       "name_es": "Entre los muertos",
       "entries_es": [
         "A partir del primer nivel, usted aprende el [[TAG0] cantrip, que cuenta como un cantrip de guerra para usted. También tiene ventaja en salvar los tiros contra cualquier enfermedad.",
-        "Además, los no muertos tienen dificultad para hacerte daño. Si un no-muerto te apunta directamente con un ataque o un hechizo dañino, esa criatura debe hacer una tirada de salvación de Sabiduría contra tu hechizo salvo DC (un no-muerto no necesita hacer el ahorro cuando te incluye en un efecto de área, como la explosión de {@spell fireball}). En un ahorro fallido, la criatura debe elegir un nuevo objetivo o falsificación apuntando a alguien en lugar de usted, potencialmente desperdiciando el ataque o el hechizo. En un ahorro exitoso, la criatura es inmune a este efecto durante 24 horas. Un no-muerto también es inmune a este efecto durante 24 horas si lo apuntas con un ataque o un hechizo dañino."
+        "Además, los no muertos tienen dificultad para hacerte daño. Si un no-muerto te apunta directamente con un ataque o un hechizo dañino, esa criatura debe hacer una tirada de salvación de Sabiduría contra tu hechizo salvo DC (un no-muerto no necesita hacer el salvación cuando te incluye en un efecto de área, como la explosión de {@spell fireball}). En un salvación fallido, la criatura debe elegir un nuevo objetivo o falsificación apuntando a alguien en lugar de usted, potencialmente desperdiciando el ataque o el hechizo. En un salvación exitoso, la criatura es inmune a este efecto durante 24 horas. Un no-muerto también es inmune a este efecto durante 24 horas si lo apuntas con un ataque o un hechizo dañino."
       ]
     },
     {
@@ -5379,7 +5379,7 @@
       ],
       "name_es": "Genie's Wrath",
       "entries_es": [
-        "Una vez durante cada uno de sus turnos cuando usted golpeó con un rollo de ataque, usted puede hacer daño adicional al objetivo igual que su prima de competencia. El tipo de este daño es determinado por su patrón: bludgeoning (dao), trueno (djinni), fuego (efreeti), o frío (matrimonio)."
+        "Una vez durante cada uno de sus turnos cuando usted golpeó con un tirada de ataque, usted puede hacer daño adicional al objetivo igual que su prima de competencia. El tipo de este daño es determinado por su patrón: bludgeoning (dao), trueno (djinni), fuego (efreeti), o frío (matrimonio)."
       ]
     },
     {
@@ -6253,7 +6253,7 @@
       "entries_es": [
         "[[TAG0]",
         "Los poderes de tu patrón tienen un efecto profundo en tu cuerpo y magia. No necesitas comer, beber o respirar.",
-        "Además, una vez durante cada uno de tus turnos, cuando golpeas a una criatura con un rollo de ataque y dañas contra la criatura, puedes reemplazar el tipo de daño con daño necrótico. Mientras usted está usando su forma de pan, usted puede rodar un daño adicional muere al determinar el daño necroático que el objetivo toma."
+        "Además, una vez durante cada uno de tus turnos, cuando golpeas a una criatura con un tirada de ataque y dañas contra la criatura, puedes reemplazar el tipo de daño con daño necrótico. Mientras usted está usando su forma de pan, usted puede tirar un daño adicional muere al determinar el daño necroático que el objetivo toma."
       ]
     },
     {
@@ -6551,7 +6551,7 @@
       "name_es": "Luz sanadora",
       "entries_es": [
         "A primer nivel, usted gana la capacidad de canalizar la energía celestial para sanar las heridas. Tienes una piscina de {@dice d6} que gastas para alimentar esta curación. El número de dados en la piscina es igual a 1 + su nivel de bloqueo.",
-        "Como una acción de bonificación, usted puede sanar una criatura que se puede ver dentro de 60 pies de usted, gastando dados de la piscina. El número máximo de dados que puedes gastar a la vez equivale a tu modificador de Charisma (mínimo de una muerte). Rodar los dados que gastas, agregarlos juntos y restaurar un número de puntos de éxito igual al total.",
+        "Como una acción de bonificación, usted puede sanar una criatura que se puede ver dentro de 60 pies de usted, gastando dados de la piscina. El número máximo de dados que puedes gastar a la vez equivale a tu modificador de Charisma (mínimo de una muerte). tirar los dados que gastas, agregarlos juntos y restaurar un número de puntos de éxito igual al total.",
         "Tu piscina recupera todos los dados gastados cuando terminas un largo descanso."
       ]
     },
@@ -6877,7 +6877,7 @@
       ],
       "name_es": "Accursed Specter",
       "entries_es": [
-        "A partir del sexto nivel, puedes maldecir el alma de una persona que matas, sujetarla temporalmente a tu servicio. Cuando matas a un humanoide, puedes hacer que su espíritu se levante de su cuerpo como un {@creature specter}, las estadísticas para las cuales están en el Manual del Monstruo. Cuando aparece el espectro, gana puntos temporales iguales a la mitad de tu nivel de bloqueo. Rollo de iniciativa para el espectro, que tiene sus propios giros. Obedece sus órdenes verbales, y gana un bono especial a sus rollos de ataque igual a su modificador de Charisma (mínimo de +0).",
+        "A partir del sexto nivel, puedes maldecir el alma de una persona que matas, sujetarla temporalmente a tu servicio. Cuando matas a un humanoide, puedes hacer que su espíritu se levante de su cuerpo como un {@creature specter}, las estadísticas para las cuales están en el Manual del Monstruo. Cuando aparece el espectro, gana puntos temporales iguales a la mitad de tu nivel de bloqueo. tirada de iniciativa para el espectro, que tiene sus propios giros. Obedece sus órdenes verbales, y gana un bono especial a sus rollos de ataque igual a su modificador de Charisma (mínimo de +0).",
         "El espectro permanece en su servicio hasta el final de su próximo descanso largo, en cuyo momento desaparece a la vida posterior.",
         "Una vez que une un espectro con esta característica, no puede utilizar la característica de nuevo hasta que termine un descanso largo."
       ]
@@ -6897,7 +6897,7 @@
       ],
       "name_es": "Armor of Hexes",
       "entries_es": [
-        "A nivel 10, tu hex crece más poderoso. Si el objetivo maldito por la maldición de su Hexblade te golpea con un rollo de ataque, puedes usar tu reacción para rodar un {@dice d6}. En un 4 o más, el ataque en su lugar te extraña, independientemente de su rollo."
+        "A nivel 10, tu hex crece más poderoso. Si el objetivo maldito por la maldición de su Hexblade te golpea con un tirada de ataque, puedes usar tu reacción para tirar un {@dice d6}. En un 4 o más, el ataque en su lugar te extraña, independientemente de su rollo."
       ]
     },
     {
@@ -7385,7 +7385,7 @@
               ],
               "name_es": "Paso desaparecido",
               "entries_es": [
-                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un rollo de ataque, hacer daño o hacer un hechizo."
+                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un tirada de ataque, hacer daño o hacer un hechizo."
               ]
             },
             {
@@ -7409,7 +7409,7 @@
               ],
               "name_es": "Paso desaparecido",
               "entries_es": [
-                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un rollo de ataque, hacer daño o hacer un hechizo."
+                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un tirada de ataque, hacer daño o hacer un hechizo."
               ]
             },
             {
@@ -7441,7 +7441,7 @@
               ],
               "name_es": "Paso desaparecido",
               "entries_es": [
-                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un rollo de ataque, hacer daño o hacer un hechizo."
+                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un tirada de ataque, hacer daño o hacer un hechizo."
               ]
             },
             {
@@ -7465,7 +7465,7 @@
               ],
               "name_es": "Paso desaparecido",
               "entries_es": [
-                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un rollo de ataque, hacer daño o hacer un hechizo."
+                "Usted tiene la condición {@condition Invisible|XPHB} hasta el comienzo de su próximo turno o hasta inmediatamente después de hacer un tirada de ataque, hacer daño o hacer un hechizo."
               ]
             },
             {
@@ -7500,7 +7500,7 @@
       "name_es": "Beguiling Defenses",
       "entries_es": [
         "Su patrón le enseña cómo cuidar su mente y cuerpo. Eres inmune a la condición [[TAG0].",
-        "Además, inmediatamente después de que una criatura puede ver le golpea con un rollo de ataque, usted puede tomar un {@variantrule Reaction|XPHB} para reducir el daño que usted toma por la mitad (redondo hacia abajo), y usted puede obligar al atacante a hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un ahorro fallido, el atacante toma daño Psíquico igual al daño que usted toma. Una vez que utilice este {@variantrule Reaction|XPHB}, no puede utilizarlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse una ranura de hechizos Pact Magic (no se requiere acción) para restaurar su uso de él."
+        "Además, inmediatamente después de que una criatura puede ver le golpea con un tirada de ataque, usted puede tomar un {@variantrule Reaction|XPHB} para reducir el daño que usted toma por la mitad (redondo hacia abajo), y usted puede obligar al atacante a hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un salvación fallido, el atacante toma daño Psíquico igual al daño que usted toma. Una vez que utilice este {@variantrule Reaction|XPHB}, no puede utilizarlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse una ranura de hechizos Pact Magic (no se requiere acción) para restaurar su uso de él."
       ]
     },
     {
@@ -7651,7 +7651,7 @@
       "name_es": "Luz sanadora",
       "entries_es": [
         "Ganas la capacidad de canalizar energía celestial para curar heridas. Usted tiene una piscina de d6s para alimentar esta curación. El número de dados en la piscina es igual a 1 más su nivel Warlock.",
-        "Como un {@variantrule Bonus Action|XPHB}, puedes curarte a ti mismo o a una criatura que puedes ver dentro de 60 pies de ti mismo, expendiendo dados de la piscina. El número máximo de dados que puedes gastar a la vez equivale a tu modificador de Charisma (mínimo de una muerte). Rodar los dados que usted expulsa, y restaurar un número de {@variantrule Hit Points|XPHB} igual al total del rollo. Su piscina recupera todos los dados gastados cuando termine un {@variantrule Long Rest|XPHB}."
+        "Como un {@variantrule Bonus Action|XPHB}, puedes curarte a ti mismo o a una criatura que puedes ver dentro de 60 pies de ti mismo, expendiendo dados de la piscina. El número máximo de dados que puedes gastar a la vez equivale a tu modificador de Charisma (mínimo de una muerte). tirar los dados que usted expulsa, y restaurar un número de {@variantrule Hit Points|XPHB} igual al total del rollo. Su piscina recupera todos los dados gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
     {
@@ -7907,7 +7907,7 @@
       ],
       "name_es": "Hurl A través del infierno",
       "entries_es": [
-        "Una vez por turno cuando golpeas a una criatura con un rollo de ataque, puedes tratar de transportar instantáneamente el objetivo a través de los Planes inferiores. El objetivo debe tener éxito en una tirada de salvación de Charisma contra su hechizo salvar a DC, o el objetivo desaparece y duele a través de un paisaje de pesadilla. El objetivo toma {@damage 8d10} Daño psíquico si no es un Fiend, y tiene la condición {@condition Incapacitated|XPHB} hasta el final de su próximo turno, cuando regresa al espacio que ocupó anteriormente o el espacio no ocupado más cercano.",
+        "Una vez por turno cuando golpeas a una criatura con un tirada de ataque, puedes tratar de transportar instantáneamente el objetivo a través de los Planes inferiores. El objetivo debe tener éxito en una tirada de salvación de Charisma contra su hechizo salvar a DC, o el objetivo desaparece y duele a través de un paisaje de pesadilla. El objetivo toma {@damage 8d10} Daño psíquico si no es un Fiend, y tiene la condición {@condition Incapacitated|XPHB} hasta el final de su próximo turno, cuando regresa al espacio que ocupó anteriormente o el espacio no ocupado más cercano.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse una ranura del hechizo Pact Magic (no se requiere acción) para restaurar su uso de él."
       ]
     },
@@ -8086,7 +8086,7 @@
       ],
       "name_es": "Clairvoyant Combatant",
       "entries_es": [
-        "Cuando usted forma un vínculo telepático con una criatura usando su Mente Despertada, usted puede obligar a esa criatura a hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, la criatura tiene {@variantrule Disadvantage|XPHB} sobre los rollos de ataque contra usted, y usted tiene [[TAG1] en los rollos de ataque contra esa criatura durante la duración del vínculo.",
+        "Cuando usted forma un vínculo telepático con una criatura usando su Mente Despertada, usted puede obligar a esa criatura a hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido salvación, la criatura tiene {@variantrule Disadvantage|XPHB} sobre los rollos de ataque contra usted, y usted tiene [[TAG1] en los rollos de ataque contra esa criatura durante la duración del vínculo.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}] a menos que usted expulse un Pact {@action Magic|XPHB} deletreo (no se requiere acción) para restaurar su uso."
       ]
     },
@@ -8105,7 +8105,7 @@
       ],
       "name_es": "Eldritch Hex",
       "entries_es": [
-        "Su patrón alienígena le otorga una poderosa maldición. Siempre tienes el hechizo [[TAG0] preparado. Cuando usted lanza {@spell Hex|XPHB} y elige una habilidad, el objetivo también tiene {@variantrule Disadvantage|XPHB} en ahorros de la habilidad elegida durante la duración del hechizo."
+        "Su patrón alienígena le otorga una poderosa maldición. Siempre tienes el hechizo [[TAG0] preparado. Cuando usted lanza {@spell Hex|XPHB} y elige una habilidad, el objetivo también tiene {@variantrule Disadvantage|XPHB} en salvacións de la habilidad elegida durante la duración del hechizo."
       ]
     },
     {

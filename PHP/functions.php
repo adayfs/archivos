@@ -4693,18 +4693,18 @@ function drak_render_spell_search_module() {
         </label>
         <button type="submit" class="spell-search__submit">Buscar</button>
       </form>
-      <div class="spell-search__filters" data-spell-search-classes style="display:none;"></div>
-      <div class="spell-search__suggestions" data-spell-search-suggestions hidden></div>
+          <div class="spell-search__filters" data-spell-search-classes style="display:none;"></div>
+          <div class="spell-search__suggestions" data-spell-search-suggestions hidden></div>
 
-      <div class="grimorio-modal spell-search-modal" role="dialog" aria-modal="true" aria-hidden="true" data-spell-search-modal>
-        <div class="grimorio-modal__dialog">
-          <header class="grimorio-modal__header">
-            <h3>Resultados del buscador</h3>
-            <button type="button" class="grimorio-modal__close" data-spell-search-close>&times;</button>
-          </header>
-          <div class="grimorio-modal__body" data-spell-search-results>
-            <p>Aún no has realizado ninguna búsqueda.</p>
-          </div>
+          <div class="grimorio-modal spell-search-modal" role="dialog" aria-modal="true" aria-hidden="true" data-spell-search-modal>
+            <div class="grimorio-modal__dialog">
+              <header class="grimorio-modal__header">
+            <h3></h3>
+                <button type="button" class="grimorio-modal__close" data-spell-search-close>&times;</button>
+              </header>
+              <div class="grimorio-modal__body" data-spell-search-results>
+                <p>Aún no has realizado ninguna búsqueda.</p>
+              </div>
           <footer class="grimorio-modal__footer">
             <button type="button" class="grimorio-modal__btn" data-spell-search-close>Cerrar</button>
           </footer>

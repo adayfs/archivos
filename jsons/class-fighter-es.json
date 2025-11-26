@@ -2596,7 +2596,7 @@
       ],
       "name_es": "Mente táctica",
       "entries_es": [
-        "Tienes una mente para tácticas en y fuera del campo de batalla. Cuando fallas un cheque de habilidad, puedes gastar un uso de tu Segundo Viento para empujarte hacia el éxito. En lugar de recuperar {@variantrule Hit Points|XPHB}, rodarás {@dice 1d10} y agregas el número enrollado a la verificación de habilidad, lo que podría convertirlo en un éxito. Si el cheque todavía falla, este uso del Segundo Viento no es gastado."
+        "Tienes una mente para tácticas en y fuera del campo de batalla. Cuando fallas un cheque de habilidad, puedes gastar un uso de tu Segundo Viento para empujarte hacia el éxito. En lugar de recuperar {@variantrule Hit Points|XPHB}, tirarás {@dice 1d10} y agregas el número enrollado a la verificación de habilidad, lo que podría convertirlo en un éxito. Si el cheque todavía falla, este uso del Segundo Viento no es gastado."
       ]
     },
     {
@@ -2838,7 +2838,7 @@
       ],
       "name_es": "Ataques estudiados",
       "entries_es": [
-        "Estudias a tus oponentes y aprendes de cada ataque que haces. Si usted hace un rollo de ataque contra una criatura y la señorita, usted tiene [[TAG0] en su próximo lanzamiento de ataque contra esa criatura antes del final de su próximo turno."
+        "Estudias a tus oponentes y aprendes de cada ataque que haces. Si usted hace un tirada de ataque contra una criatura y la señorita, usted tiene [[TAG0] en su próximo lanzamiento de ataque contra esa criatura antes del final de su próximo turno."
       ]
     },
     {
@@ -3116,7 +3116,7 @@
       "name_es": "Shadow Martyr",
       "entries_es": [
         "[[TAG0]",
-        "Puedes hacer que tu eco se tire delante de un ataque dirigido a otra criatura que puedas ver. Antes de que se haga el rollo de ataque, puede utilizar su reacción a teletransportar el eco a un espacio no ocupado a 5 pies de la criatura dirigida. El rollo de ataque que provocó la reacción se hace en lugar de su eco.",
+        "Puedes hacer que tu eco se tire delante de un ataque dirigido a otra criatura que puedas ver. Antes de que se haga el tirada de ataque, puede utilizar su reacción a teletransportar el eco a un espacio no ocupado a 5 pies de la criatura dirigida. El tirada de ataque que provocó la reacción se hace en lugar de su eco.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -3309,7 +3309,7 @@
                   "name_es": "Maneuver"
                 }
               ],
-              "name_es": "Tirantes de ahorro",
+              "name_es": "Tiradas de salvación",
               "entries_es": [
                 "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
@@ -3340,7 +3340,7 @@
                   "name_es": "Maneuver"
                 }
               ],
-              "name_es": "Tirantes de ahorro",
+              "name_es": "Tiradas de salvación",
               "entries_es": [
                 "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
@@ -3444,7 +3444,7 @@
                   "name_es": "Maneuver"
                 }
               ],
-              "name_es": "Tirantes de ahorro",
+              "name_es": "Tiradas de salvación",
               "entries_es": [
                 "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
@@ -3475,7 +3475,7 @@
                   "name_es": "Maneuver"
                 }
               ],
-              "name_es": "Tirantes de ahorro",
+              "name_es": "Tiradas de salvación",
               "entries_es": [
                 "Algunas de sus maniobras requieren que su objetivo haga una tirada de salvación para resistir los efectos de la maniobra. Eltirada de salvación DC se calcula de la siguiente manera:",
                 {
@@ -4294,7 +4294,7 @@
       ],
       "name_es": "Campeón",
       "entries_es": [
-        "El campeón arquetípico se centra en el desarrollo del poder físico bruto perfeccionado mortalmente. Aquellos que se modelan en este arquetipo combinan un entrenamiento riguroso con la excelencia física para hacer frente a golpes devastadores.",
+        "El campeón arquetípico se centra en el desartirada del poder físico bruto perfeccionado mortalmente. Aquellos que se modelan en este arquetipo combinan un entrenamiento riguroso con la excelencia física para hacer frente a golpes devastadores.",
         {
           "type": "refSubclassFeature",
           "subclassFeature": "Improved Critical|Fighter||Champion||3"
@@ -4318,7 +4318,7 @@
       ],
       "name_es": "Mejorado crítico",
       "entries_es": [
-        "Comenzando cuando eliges este arquetipo a 3o nivel, tus ataques de armas marcan un golpe crítico en un rollo de 19 o 20."
+        "Comenzando cuando eliges este arquetipo a 3o nivel, tus ataques de armas marcan un golpe crítico en un tirada de 19 o 20."
       ]
     },
     {
@@ -4380,7 +4380,7 @@
       ],
       "name_es": "Crítico Superior",
       "entries_es": [
-        "A partir del nivel 15, sus ataques de armas marcan un impacto crítico en un rollo de 18-20."
+        "A partir del nivel 15, sus ataques de armas marcan un impacto crítico en un tirada de 18-20."
       ]
     },
     {
@@ -4560,7 +4560,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4605,7 +4605,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4742,7 +4742,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4787,7 +4787,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -5077,7 +5077,7 @@
       ],
       "name_es": "Campo de protección",
       "entries_es": [
-        "Cuando usted u otra criatura puede ver dentro de 30 pies de usted toma daño, usted puede utilizar su reacción para expulsar una energía Psionic muere, rodar la muerte, y reducir el daño tomado por el número rodado más su modificador de inteligencia (reducción mínima de 1), como usted crea un escudo momentáneo de fuerza telequinética."
+        "Cuando usted u otra criatura puede ver dentro de 30 pies de usted toma daño, usted puede utilizar su reacción para expulsar una energía Psionic muere, tirar la muerte, y reducir el daño tomado por el número rodado más su modificador de inteligencia (reducción mínima de 1), como usted crea un escudo momentáneo de fuerza telequinética."
       ]
     },
     {
@@ -5125,7 +5125,7 @@
       ],
       "name_es": "Psionic Strike",
       "entries_es": [
-        "Puede propulsar sus armas con fuerza psionic. Una vez en cada uno de sus turnos, inmediatamente después de golpear un objetivo dentro de 30 pies de usted con un ataque y tratar daño a él con un arma, usted puede expulsar un Psionic Energy morir, rodarlo y tratar el daño de la fuerza al objetivo igual que el número rodado más su modificador de Inteligencia."
+        "Puede propulsar sus armas con fuerza psionic. Una vez en cada uno de sus turnos, inmediatamente después de golpear un objetivo dentro de 30 pies de usted con un ataque y tratar daño a él con un arma, usted puede expulsar un Psionic Energy morir, tirarlo y tratar el daño de la fuerza al objetivo igual que el número rodado más su modificador de Inteligencia."
       ]
     },
     {
@@ -5266,7 +5266,7 @@
       ],
       "name_es": "Trono telequinético",
       "entries_es": [
-        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer una tirada de salvación de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de inteligencia. Si el ahorro falla, puede golpear el objetivo {@condition prone} o moverlo hasta 10 pies en cualquier dirección horizontal."
+        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer una tirada de salvación de fuerza contra un DC igual a 8 + su bonificación de competencia + su modificador de inteligencia. Si el salvación falla, puede golpear el objetivo {@condition prone} o moverlo hasta 10 pies en cualquier dirección horizontal."
       ]
     },
     {
@@ -5750,7 +5750,7 @@
       "name_es": "Runic Shield",
       "entries_es": [
         "[[TAG0]",
-        "Aprendes a invocar tu magia para proteger a tus aliados. Cuando otra criatura que puedes ver dentro de 60 pies de ti es golpeada por un rollo de ataque, puedes usar tu reacción para obligar al atacante a rerollar el {@dice d20} y utilizar el nuevo rollo.",
+        "Aprendes a invocar tu magia para proteger a tus aliados. Cuando otra criatura que puedes ver dentro de 60 pies de ti es golpeada por un tirada de ataque, puedes usar tu reacción para obligar al atacante a rerollar el {@dice d20} y utilizar el nuevo rollo.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
       ]
     },
@@ -5792,7 +5792,7 @@
       "name_es": "Gran Estatura",
       "entries_es": [
         "[[TAG0]",
-        "La magia de tus runas te altera permanentemente. Cuando usted gana esta característica, rodar {@dice 3d4}. Usted crece un número de pulgadas en altura igual al rollo.",
+        "La magia de tus runas te altera permanentemente. Cuando usted gana esta característica, tirar {@dice 3d4}. Usted crece un número de pulgadas en altura igual al rollo.",
         "Además, el daño adicional que usted hace frente a la característica de su Giant podría aumentar a {@dice 1d8}."
       ]
     },
@@ -5933,7 +5933,7 @@
       "name_es": "Arcane Shot",
       "entries_es": [
         "A 3o nivel, aprendes a desencadenar efectos mágicos especiales con algunas de tus tomas. Cuando usted gana esta característica, usted aprende dos opciones Arcane Shot de su elección (ver \"Arcane Shot Options\" abajo).",
-        "Una vez por turno cuando disparas una flecha desde un arco corto o un arco largo como parte de la acción {@action Attack}, puedes aplicar una de tus opciones de Arcane Shot a esa flecha. Usted decide utilizar la opción cuando la flecha golpea a una criatura, a menos que la opción no implique un rollo de ataque. Usted tiene dos usos de esta habilidad, y usted recupera todos los usos gastados de ella cuando se termina un breve o largo descanso.",
+        "Una vez por turno cuando disparas una flecha desde un arco corto o un arco largo como parte de la acción {@action Attack}, puedes aplicar una de tus opciones de Arcane Shot a esa flecha. Usted decide utilizar la opción cuando la flecha golpea a una criatura, a menos que la opción no implique un tirada de ataque. Usted tiene dos usos de esta habilidad, y usted recupera todos los usos gastados de ella cuando se termina un breve o largo descanso.",
         "Usted gana una opción adicional Arcane Shot de su elección cuando alcanza ciertos niveles en esta clase: 7, 10, 15 y 18o nivel. Cada opción también mejora cuando te conviertes en un luchador de 18 años."
       ]
     },
@@ -6150,7 +6150,7 @@
       ],
       "name_es": "Curving Shot",
       "entries_es": [
-        "En el séptimo nivel, aprendes a dirigir una flecha errante hacia un nuevo objetivo. Cuando haces un rollo de ataque con una flecha mágica y falta, puedes usar una acción de bonificación para rerollar el rollo de ataque contra un objetivo diferente dentro de 60 pies del objetivo original."
+        "En el séptimo nivel, aprendes a dirigir una flecha errante hacia un nuevo objetivo. Cuando haces un tirada de ataque con una flecha mágica y falta, puedes usar una acción de bonificación para rerollar el tirada de ataque contra un objetivo diferente dentro de 60 pies del objetivo original."
       ]
     },
     {
@@ -6318,7 +6318,7 @@
       ],
       "name_es": "Nacido en el Saddle",
       "entries_es": [
-        "A partir del tercer nivel, su maestría como piloto se hace evidente. Usted tiene ventaja en los lanzamientos de ahorro hechos para evitar caer de su montura. Si caes de tu monte y desciendes no más de 10 pies, puedes aterrizar sobre tus pies si no eres {@condition incapacitated}.",
+        "A partir del tercer nivel, su maestría como piloto se hace evidente. Usted tiene ventaja en los lanzamientos de salvación hechos para evitar caer de su montura. Si caes de tu monte y desciendes no más de 10 pies, puedes aterrizar sobre tus pies si no eres {@condition incapacitated}.",
         "Finalmente, montar o desmontar una criatura le cuesta sólo 5 pies de movimiento, en lugar de la mitad de su velocidad."
       ]
     },
@@ -6341,8 +6341,8 @@
       "name_es": "Marca inquebrantable",
       "entries_es": [
         "A partir del tercer nivel, puedes amenazar a tus enemigos, frustrar sus ataques y castigarlos por dañar a otros. Cuando golpeas a una criatura con un simple ataque de armas, puedes marcar a la criatura hasta el final de tu próximo turno. Este efecto termina temprano si usted es {@condition incapacitated} o usted muere, o si alguien más marca la criatura.",
-        "Mientras que está a 5 pies de ti, una criatura marcada por ti tiene desventaja en cualquier rollo de ataque que no te apunta.",
-        "Además, si una criatura marcada por usted daña a alguien que no sea usted, usted puede hacer un ataque especial de arma melee contra la criatura marcada como una acción de bonificación en su próximo turno. Usted tiene ventaja en el rollo de ataque, y si golpea, el arma del ataque trata daños adicionales al objetivo igual a la mitad de su nivel de luchador.",
+        "Mientras que está a 5 pies de ti, una criatura marcada por ti tiene desventaja en cualquier tirada de ataque que no te apunta.",
+        "Además, si una criatura marcada por usted daña a alguien que no sea usted, usted puede hacer un ataque especial de arma melee contra la criatura marcada como una acción de bonificación en su próximo turno. Usted tiene ventaja en el tirada de ataque, y si golpea, el arma del ataque trata daños adicionales al objetivo igual a la mitad de su nivel de luchador.",
         "Independientemente del número de criaturas que usted marca, usted puede hacer este ataque especial una serie de veces igual a su modificador de fuerza (mínimo de una vez), y usted recupera todos los usos gastados de él cuando usted termina un descanso largo."
       ]
     },
@@ -6362,7 +6362,7 @@
       ],
       "name_es": "Warding Maneuver",
       "entries_es": [
-        "En el séptimo nivel, aprendes a hacer frente a las huelgas dirigidas a ti, tu monte u otras criaturas cercanas. Si usted o una criatura puede ver dentro de 5 pies de usted es golpeado por un ataque, usted puede rodar {@dice 1d8} como una reacción si usted está manipulando un arma de meleo o un escudo. Roll the die, and add the number rolled to the target's AC against that attack. Si el ataque sigue golpeando, el objetivo tiene resistencia contra el daño del ataque.",
+        "En el séptimo nivel, aprendes a hacer frente a las huelgas dirigidas a ti, tu monte u otras criaturas cercanas. Si usted o una criatura puede ver dentro de 5 pies de usted es golpeado por un ataque, usted puede tirar {@dice 1d8} como una reacción si usted está manipulando un arma de meleo o un escudo. Roll the die, and add the number rolled to the target's AC against that attack. Si el ataque sigue golpeando, el objetivo tiene resistencia contra el daño del ataque.",
         "Puede utilizar esta característica varias veces igual a su modificador de Constitución (mínimo de una vez), y recuperar todos los usos gastados de ella cuando termine un descanso largo."
       ]
     },
@@ -6508,7 +6508,7 @@
       "name_es": "Elegante cortesano",
       "entries_es": [
         "A partir del séptimo nivel, su disciplina y atención al detalle le permiten sobresalir en situaciones sociales. Cada vez que haces un Charisma ({@skill Persuasion}) cheque, ganas un bono al cheque igual que tu modificador de Sabiduría.",
-        "Su autocontrol también le hace ganar la competencia en los lanzamientos de ahorro de sabiduría. Si usted ya tiene esta competencia, usted gana la competencia en Inteligencia o Charisma ahorro lanzamientos (su elección)."
+        "Su autocontrol también le hace ganar la competencia en los lanzamientos de salvación de sabiduría. Si usted ya tiene esta competencia, usted gana la competencia en Inteligencia o Charisma salvación lanzamientos (su elección)."
       ]
     },
     {
@@ -6544,7 +6544,7 @@
       ],
       "name_es": "Rapid Strike",
       "entries_es": [
-        "A partir del 15o nivel, usted aprende a cambiar la precisión para las huelgas rápidas. Si usted toma la acción [[TAG0] en su turno y tiene ventaja en un rollo de ataque contra uno de los objetivos, puede renunciar a la ventaja de ese rollo para hacer un ataque adicional de arma contra ese objetivo, como parte de la misma acción. No puedes hacerlo más de una vez por turno."
+        "A partir del 15o nivel, usted aprende a cambiar la precisión para las huelgas rápidas. Si usted toma la acción [[TAG0] en su turno y tiene ventaja en un tirada de ataque contra uno de los objetivos, puede renunciar a la ventaja de ese rollo para hacer un ataque adicional de arma contra ese objetivo, como parte de la misma acción. No puedes hacerlo más de una vez por turno."
       ]
     },
     {
@@ -6563,7 +6563,7 @@
       ],
       "name_es": "Fuerza antes de la muerte",
       "entries_es": [
-        "A partir del nivel 18, su espíritu de lucha puede retrasar la comprensión de la muerte. Si tomas un daño que te reduce a 0 puntos de impacto y no te mata de forma directa, puedes usar tu reacción para retrasar la caída {@condition unconscious}, y puedes tomar inmediatamente un giro extra, interrumpiendo el giro actual. Mientras usted tiene 0 puntos de éxito durante ese giro extra, tomar daño causa el ahorro de la muerte arroja fallos como normal, y tres fallas de tiro de muerte todavía puede matarte. Cuando el giro adicional termina, usted cae {@condition unconscious} si todavía tiene 0 puntos de éxito.",
+        "A partir del nivel 18, su espíritu de lucha puede retrasar la comprensión de la muerte. Si tomas un daño que te reduce a 0 puntos de impacto y no te mata de forma directa, puedes usar tu reacción para retrasar la caída {@condition unconscious}, y puedes tomar inmediatamente un giro extra, interrumpiendo el giro actual. Mientras usted tiene 0 puntos de éxito durante ese giro extra, tomar daño causa el salvación de la muerte arroja fallos como normal, y tres fallas de tiro de muerte todavía puede matarte. Cuando el giro adicional termina, usted cae {@condition unconscious} si todavía tiene 0 puntos de éxito.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -6944,7 +6944,7 @@
           "entries": [
             "If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Destreza modifier (your choice) and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ],
-          "name_es": "Tirantes de ahorro",
+          "name_es": "Tiradas de salvación",
           "entries_es": [
             "Si una maniobra requiere una tirada de salvación, el DC es igual a 8 más su modificador de fuerza o de destreza (su elección) y {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ]
@@ -6985,7 +6985,7 @@
           "entries": [
             "If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Destreza modifier (your choice) and {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ],
-          "name_es": "Tirantes de ahorro",
+          "name_es": "Tiradas de salvación",
           "entries_es": [
             "Si una maniobra requiere una tirada de salvación, el DC es igual a 8 más su modificador de fuerza o de destreza (su elección) y {@variantrule Proficiency|XPHB|Proficiency Bonus}."
           ]
@@ -7417,7 +7417,7 @@
       ],
       "name_es": "Inquieto",
       "entries_es": [
-        "Una vez por turno, cuando se utiliza una maniobra, se puede rodar {@dice 1d8} y utilizar el número rodado en lugar de gastar una Superioridad Muere."
+        "Una vez por turno, cuando se utiliza una maniobra, se puede tirar {@dice 1d8} y utilizar el número rodado en lugar de gastar una Superioridad Muere."
       ]
     },
     {
@@ -7464,7 +7464,7 @@
       "name_es": "Campeón",
       "entries_es": [
         "[[TAG0]",
-        "Un Campeón se centra en el desarrollo de la fuerza militar en una búsqueda implacable de la victoria. Los campeones combinan un entrenamiento riguroso con la excelencia física para hacer frente a golpes devastadores, soportar el peligro y obtener la gloria. Ya sea en concursos atléticos o batalla sangrienta, los Campeones se esfuerzan por la corona del vencedor.",
+        "Un Campeón se centra en el desartirada de la fuerza militar en una búsqueda implacable de la victoria. Los campeones combinan un entrenamiento riguroso con la excelencia física para hacer frente a golpes devastadores, soportar el peligro y obtener la gloria. Ya sea en concursos atléticos o batalla sangrienta, los Campeones se esfuerzan por la corona del vencedor.",
         {
           "type": "refSubclassFeature",
           "subclassFeature": "Improved Critical|Fighter|XPHB|Champion|XPHB|3"
@@ -7492,7 +7492,7 @@
       ],
       "name_es": "Mejorado crítico",
       "entries_es": [
-        "Sus rollos de ataque con armas y huelgas desarmadas pueden marcar un {@variantrule Critical Hit|XPHB} en un rollo de 19 o 20 en el {@dice d20}."
+        "Sus rollos de ataque con armas y huelgas desarmadas pueden marcar un {@variantrule Critical Hit|XPHB} en un tirada de 19 o 20 en el {@dice d20}."
       ]
     },
     {
@@ -7574,7 +7574,7 @@
       ],
       "name_es": "Crítico Superior",
       "entries_es": [
-        "Sus rollos de ataque con armas y huelgas desarmadas ahora pueden marcar un {@variantrule Critical Hit|XPHB} en un rollo de 18-20 en el {@dice d20}."
+        "Sus rollos de ataque con armas y huelgas desarmadas ahora pueden marcar un {@variantrule Critical Hit|XPHB} en un tirada de 18-20 en el {@dice d20}."
       ]
     },
     {
@@ -7599,7 +7599,7 @@
           ],
           "name_es": "Muerte desafiante",
           "entries_es": [
-            "Usted tiene {@variantrule Advantage|XPHB} en {@variantrule Death Saving Throw|XPHB|Death Saving Throws}. Además, cuando usted roda 18-20 en un {@variantrule Death Saving Throw|XPHB}, usted gana el beneficio de rodar un 20 en él."
+            "Usted tiene {@variantrule Advantage|XPHB} en {@variantrule Death Saving Throw|XPHB|Death Saving Throws}. Además, cuando usted roda 18-20 en un {@variantrule Death Saving Throw|XPHB}, usted gana el beneficio de tirar un 20 en él."
           ]
         },
         {
@@ -7625,7 +7625,7 @@
           ],
           "name_es": "Muerte desafiante",
           "entries_es": [
-            "Usted tiene {@variantrule Advantage|XPHB} en {@variantrule Death Saving Throw|XPHB|Death Saving Throws}. Además, cuando usted roda 18-20 en un {@variantrule Death Saving Throw|XPHB}, usted gana el beneficio de rodar un 20 en él."
+            "Usted tiene {@variantrule Advantage|XPHB} en {@variantrule Death Saving Throw|XPHB|Death Saving Throws}. Además, cuando usted roda 18-20 en un {@variantrule Death Saving Throw|XPHB}, usted gana el beneficio de tirar un 20 en él."
           ]
         },
         {
@@ -7803,7 +7803,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             }
           ],
@@ -7816,7 +7816,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             }
           ]
@@ -7969,7 +7969,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             }
           ],
@@ -7982,7 +7982,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             }
           ]
@@ -8073,7 +8073,7 @@
       ],
       "name_es": "Eldritch Strike",
       "entries_es": [
-        "Aprendes a hacer que tus ataques de arma atenten contra la habilidad de una criatura para soportar tus hechizos. Cuando golpeas a una criatura con un ataque usando un arma, esa criatura tiene [[TAG0] en el próximotirada de salvación hace contra un hechizo que lanzas antes del final de tu próximo turno."
+        "Aprendes a hacer que tus ataques de arma atenten contra la habilidad de una criatura para soportar tus hechizos. Cuando golpeas a una criatura con un ataque usando un arma, esa criatura tiene [[TAG0] en el próximo tirada de salvación hace contra un hechizo que lanzas antes del final de tu próximo turno."
       ]
     },
     {
@@ -8295,7 +8295,7 @@
       ],
       "name_es": "Campo de protección",
       "entries_es": [
-        "Cuando usted u otra criatura puede ver dentro de 30 pies de usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB}] para expulsar un Psionic Energy Die, rodar la muerte, y reducir el daño tomado por el número rodado más su modificador de Inteligencia (reducción mínima de 1), como usted crea un escudo momentáneo de la fuerza telequinética."
+        "Cuando usted u otra criatura puede ver dentro de 30 pies de usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB}] para expulsar un Psionic Energy Die, tirar la muerte, y reducir el daño tomado por el número rodado más su modificador de Inteligencia (reducción mínima de 1), como usted crea un escudo momentáneo de la fuerza telequinética."
       ]
     },
     {
@@ -8317,7 +8317,7 @@
       ],
       "name_es": "Psionic Strike",
       "entries_es": [
-        "Puede propulsar sus armas con fuerza psionic. Una vez en cada uno de sus turnos, inmediatamente después de golpear un objetivo dentro de 30 pies de usted mismo con un ataque y tratar daño a él con un arma, usted puede expulsar un Psionic Energy Die, rodarlo y tratar daño de la fuerza al objetivo igual al número rodado más su modificador de Inteligencia."
+        "Puede propulsar sus armas con fuerza psionic. Una vez en cada uno de sus turnos, inmediatamente después de golpear un objetivo dentro de 30 pies de usted mismo con un ataque y tratar daño a él con un arma, usted puede expulsar un Psionic Energy Die, tirarlo y tratar daño de la fuerza al objetivo igual al número rodado más su modificador de Inteligencia."
       ]
     },
     {
@@ -8415,7 +8415,7 @@
       ],
       "name_es": "Trono telequinético",
       "entries_es": [
-        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer una tirada de salvación de fuerza ([TAG0]] más su modificador de inteligencia y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, puede dar al objetivo la condición {@condition Prone|XPHB} o transportarlo hasta 10 pies horizontalmente."
+        "Cuando usted hace daño a un objetivo con su Psionic Strike, usted puede obligar al objetivo a hacer una tirada de salvación de fuerza ([TAG0]] más su modificador de inteligencia y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un salvación fallido, puede dar al objetivo la condición {@condition Prone|XPHB} o transportarlo hasta 10 pies horizontalmente."
       ]
     },
     {

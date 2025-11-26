@@ -1996,7 +1996,7 @@
       "name_es": "Inspiración Bardica",
       "entries_es": [
         "Puedes inspirar a otros a través de palabras o música revolviendo. Para hacerlo, usted utiliza una acción de bonificación en su turno para elegir una criatura que no sea usted a menos de 60 pies de usted que puede escuchar. Esa criatura gana una Inspiración Bardica muere, un {@dice d6}.",
-        "Una vez dentro de los próximos 10 minutos, la criatura puede rodar la muerte y añadir el número rodado a un control de habilidad, el rollo de ataque o el ahorro de lanzamiento hace. La criatura puede esperar hasta después de rodar el {@dice d20} antes de decidir utilizar la Inspiración Bardica muere, pero debe decidir antes de que el DM diga si el rollo tiene éxito o falla. Una vez que muere la Inspiración Bardica, se pierde. Una criatura puede tener sólo una Inspiración Bardica muere a la vez.",
+        "Una vez dentro de los próximos 10 minutos, la criatura puede tirar la muerte y añadir el número rodado a un tirada de habilidad, el tirada de ataque o el salvación de lanzamiento hace. La criatura puede esperar hasta después de tirar el {@dice d20} antes de decidir utilizar la Inspiración Bardica muere, pero debe decidir antes de que el DM diga si el rollo tiene éxito o falla. Una vez que muere la Inspiración Bardica, se pierde. Una criatura puede tener sólo una Inspiración Bardica muere a la vez.",
         "Puede utilizar esta característica un número de veces igual a su modificador de Charisma (un mínimo de una vez). Usted recupera cualquier uso gastado cuando termina un descanso largo.",
         "Su Inspiración Bardica muere cambios cuando alcanza ciertos niveles en esta clase. La muerte se convierte en un [[TAG0] a 5o nivel, un {@dice d10} a 10o nivel, y un {@dice d12} a 15o nivel."
       ]
@@ -2074,7 +2074,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2182,7 +2182,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2256,7 +2256,7 @@
       "name_es": "Inspiración mágica",
       "entries_es": [
         "{@i 2nd-level bard {@variantrule optional class features|tce|optional feature}",
-        "Si una criatura tiene una Inspiración Bardica muere de ti y lanza un hechizo que restaura puntos de éxito o daña, la criatura puede rodar que muere y elegir un objetivo afectado por el hechizo. Agregue el número rodado como un bono a los puntos de éxito recuperados o el daño tratado. La Inspiración Bardica muere entonces se pierde."
+        "Si una criatura tiene una Inspiración Bardica muere de ti y lanza un hechizo que restaura puntos de éxito o daña, la criatura puede tirar que muere y elegir un objetivo afectado por el hechizo. Agregue el número rodado como un bono a los puntos de éxito recuperados o el daño tratado. La Inspiración Bardica muere entonces se pierde."
       ]
     },
     {
@@ -2705,7 +2705,7 @@
               "name_es": "Usando Inspiración Bardica",
               "entries_es": [
                 "Como un {@variantrule Bonus Action|XPHB}, puedes inspirar a otra criatura dentro de 60 pies de ti mismo que pueda verte o escucharte. Esa criatura gana uno de tus dados de Inspiración Bardica. Una criatura puede tener sólo una Inspiración Bardica muere a la vez.",
-                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede rodar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
+                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede tirar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
               ]
             },
             {
@@ -2742,7 +2742,7 @@
               "name_es": "Usando Inspiración Bardica",
               "entries_es": [
                 "Como un {@variantrule Bonus Action|XPHB}, puedes inspirar a otra criatura dentro de 60 pies de ti mismo que pueda verte o escucharte. Esa criatura gana uno de tus dados de Inspiración Bardica. Una criatura puede tener sólo una Inspiración Bardica muere a la vez.",
-                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede rodar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
+                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede tirar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
               ]
             },
             {
@@ -2786,7 +2786,7 @@
               "name_es": "Usando Inspiración Bardica",
               "entries_es": [
                 "Como un {@variantrule Bonus Action|XPHB}, puedes inspirar a otra criatura dentro de 60 pies de ti mismo que pueda verte o escucharte. Esa criatura gana uno de tus dados de Inspiración Bardica. Una criatura puede tener sólo una Inspiración Bardica muere a la vez.",
-                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede rodar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
+                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede tirar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
               ]
             },
             {
@@ -2823,7 +2823,7 @@
               "name_es": "Usando Inspiración Bardica",
               "entries_es": [
                 "Como un {@variantrule Bonus Action|XPHB}, puedes inspirar a otra criatura dentro de 60 pies de ti mismo que pueda verte o escucharte. Esa criatura gana uno de tus dados de Inspiración Bardica. Una criatura puede tener sólo una Inspiración Bardica muere a la vez.",
-                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede rodar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
+                "Una vez dentro de la hora siguiente cuando la criatura falla un {@variantrule D20 Test|XPHB}, la criatura puede tirar la Inspiración Bardica muere y añadir el número rodado al {@dice d20}, potencialmente convirtiendo el fracaso en un éxito. Una Inspiración Bardica muere es gastada cuando está rodada."
               ]
             },
             {
@@ -3327,7 +3327,7 @@
       ],
       "name_es": "Countercharm",
       "entries_es": [
-        "Puede utilizar notas musicales o palabras de poder para interrumpir los efectos de influencia mental. Si usted o una criatura dentro de 30 pies de usted falla una tirada de salvación contra un efecto que aplica la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} para hacer que el ahorro sea rerollado, y el nuevo rollo tiene {@variantrule Advantage|XPHB}]."
+        "Puede utilizar notas musicales o palabras de poder para interrumpir los efectos de influencia mental. Si usted o una criatura dentro de 30 pies de usted falla una tirada de salvación contra un efecto que aplica la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} para hacer que el salvación sea rerollado, y el nuevo rollo tiene {@variantrule Advantage|XPHB}]."
       ]
     },
     {
@@ -3558,7 +3558,7 @@
       ],
       "name_es": "Palabras de corte",
       "entries_es": [
-        "También en el tercer nivel, aprendes a usar tu ingenio para distraer, confundir y de otro modo saltar la confianza y la competencia de otros. Cuando una criatura que puede ver dentro de 60 pies de usted hace un rollo de ataque, un cheque de habilidad, o un rollo de daño, usted puede utilizar su reacción para expulsar uno de sus usos de Inspiración Bardica, rodando una Inspiración Bardica muere y restar el número rodado del rollo de la criatura. Usted puede elegir utilizar esta característica después de que la criatura hace su rollo, pero antes de que el DM determine si el rollo de ataque o la verificación de habilidad tiene éxito o falla, o antes de que la criatura trate su daño. La criatura es inmune si no puede oírte o si es inmune a ser {@condition charmed}."
+        "También en el tercer nivel, aprendes a usar tu ingenio para distraer, confundir y de otro modo saltar la confianza y la competencia de otros. Cuando una criatura que puede ver dentro de 60 pies de usted hace un tirada de ataque, un cheque de habilidad, o un tirada de daño, usted puede utilizar su reacción para expulsar uno de sus usos de Inspiración Bardica, rodando una Inspiración Bardica muere y restar el número rodado del tirada de la criatura. Usted puede elegir utilizar esta característica después de que la criatura hace su rollo, pero antes de que el DM determine si el tirada de ataque o la verificación de habilidad tiene éxito o falla, o antes de que la criatura trate su daño. La criatura es inmune si no puede oírte o si es inmune a ser {@condition charmed}."
       ]
     },
     {
@@ -3596,7 +3596,7 @@
       ],
       "name_es": "Peerless Skill",
       "entries_es": [
-        "A partir del nivel 14, cuando realizas un cheque de habilidad, puedes gastar un uso de Inspiración Bardica. Roll a Bardic Inspiration muere y añade el número enrollado a tu control de habilidad. Usted puede elegir hacerlo después de rodar la muerte para el cheque de habilidad, pero antes de que el DM le diga si tiene éxito o falla."
+        "A partir del nivel 14, cuando realizas un cheque de habilidad, puedes gastar un uso de Inspiración Bardica. Roll a Bardic Inspiration muere y añade el número enrollado a tu tirada de habilidad. Usted puede elegir hacerlo después de tirar la muerte para el cheque de habilidad, pero antes de que el DM le diga si tiene éxito o falla."
       ]
     },
     {
@@ -3665,7 +3665,7 @@
       ],
       "name_es": "Combatir la inspiración",
       "entries_es": [
-        "También a nivel 3, aprendes a inspirar a otros en la batalla. Una criatura que tiene una Inspiración Bardica muere de usted puede rodar que muere y añadir el número rodado a un rollo de daño de arma que acaba de hacer. Alternativamente, cuando se hace un rollo de ataque contra la criatura, puede usar su reacción para rodar la Inspiración Bardica muere y añadir el número rodado a su AC contra ese ataque, después de ver el rollo pero antes de saber si golpea o falla."
+        "También a nivel 3, aprendes a inspirar a otros en la batalla. Una criatura que tiene una Inspiración Bardica muere de usted puede tirar que muere y añadir el número rodado a un tirada de daño de arma que acaba de hacer. Alternativamente, cuando se hace un tirada de ataque contra la criatura, puede usar su reacción para tirar la Inspiración Bardica muere y añadir el número rodado a su AC contra ese ataque, después de ver el rollo pero antes de saber si golpea o falla."
       ]
     },
     {
@@ -3769,13 +3769,13 @@
               "type": "item",
               "name": "Attack Roll",
               "entry": "Immediately after the creature rolls the Bardic Inspiration die to add it to an attack roll against a target, the mote thunderously shatters. The target and each creature of your choice that you can see within 5 feet of it must succeed on a Constitution saving throw against your spell save DC or take thunder damage equal to the number rolled on the Bardic Inspiration die.",
-              "name_es": "Rollo de ataque"
+              "name_es": "tirada de ataque"
             },
             {
               "type": "item",
               "name": "Saving Throw",
               "entry": "Immediately after the creature rolls the Bardic Inspiration die and adds it to a saving throw, the mote vanishes with the sound of soft music, causing the creature to gain temporary hit points equal to the number rolled on the Bardic Inspiration die plus your Charisma modifier (minimum of 1 temporary hit point).",
-              "name_es": "Lanzamiento de ahorro"
+              "name_es": "Lanzamiento de salvación"
             }
           ]
         }
@@ -3784,7 +3784,7 @@
       "entries_es": [
         "[[TAG0]",
         "Cada vez que le das a una criatura una Inspiración Bardica muere, puedes pronunciar una nota de la Canción de la Creación para crear un pequeño mudo de potencial, que orbita dentro de 5 pies de esa criatura. El mudo es intangible e invulnerable, y dura hasta que la Inspiración Bardica muera se pierde. El mudo parece una nota musical, una estrella, una flor u otro símbolo de arte o vida que elijas.",
-        "Cuando la criatura utiliza la Inspiración Bardica muere, el mudo proporciona un efecto adicional basado en si el die beneficia un cheque de habilidad, un rollo de ataque o una tirada de salvación, como se detalla a continuación:",
+        "Cuando la criatura utiliza la Inspiración Bardica muere, el mudo proporciona un efecto adicional basado en si el die beneficia un cheque de habilidad, un tirada de ataque o una tirada de salvación, como se detalla a continuación:",
         {
           "type": "list",
           "style": "list-hang-notitle",
@@ -3799,13 +3799,13 @@
               "type": "item",
               "name": "Attack Roll",
               "entry": "Immediately after the creature rolls the Bardic Inspiration die to add it to an attack roll against a target, the mote thunderously shatters. The target and each creature of your choice that you can see within 5 feet of it must succeed on a Constitution saving throw against your spell save DC or take thunder damage equal to the number rolled on the Bardic Inspiration die.",
-              "name_es": "Rollo de ataque"
+              "name_es": "tirada de ataque"
             },
             {
               "type": "item",
               "name": "Saving Throw",
               "entry": "Immediately after the creature rolls the Bardic Inspiration die and adds it to a saving throw, the mote vanishes with the sound of soft music, causing the creature to gain temporary hit points equal to the number rolled on the Bardic Inspiration die plus your Charisma modifier (minimum of 1 temporary hit point).",
-              "name_es": "Lanzamiento de ahorro"
+              "name_es": "Lanzamiento de salvación"
             }
           ]
         }
@@ -3953,7 +3953,7 @@
       "name_es": "Palabras inquietantes",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede hacer girar palabras lazadas con la magia que unsettle a una criatura y hacerla dudar de sí misma. Como una acción de bonificación, usted puede gastar un uso de su Inspiración Bardica y elegir una criatura que usted puede ver dentro de 60 pies de usted. Muere la Inspiración Bardica. La criatura debe restar el número rodado desde el próximotirada de salvación que hace antes del comienzo de su próximo turno."
+        "Usted puede hacer girar palabras lazadas con la magia que unsettle a una criatura y hacerla dudar de sí misma. Como una acción de bonificación, usted puede gastar un uso de su Inspiración Bardica y elegir una criatura que usted puede ver dentro de 60 pies de usted. Muere la Inspiración Bardica. La criatura debe restar el número rodado desde el próximo tirada de salvación que hace antes del comienzo de su próximo turno."
       ]
     },
     {
@@ -3973,7 +3973,7 @@
       "name_es": "Inspiración infalible",
       "entries_es": [
         "[[TAG0]",
-        "Sus palabras inspiradoras son tan persuasivas que otros se sienten impulsados a tener éxito. Cuando una criatura agrega uno de sus dados de Inspiración Bardica a su control de habilidad, lanzamiento de ataque otirada de salvación y el rollo falla, la criatura puede mantener la Inspiración Bardica morir."
+        "Sus palabras inspiradoras son tan persuasivas que otros se sienten impulsados a tener éxito. Cuando una criatura agrega uno de sus dados de Inspiración Bardica a su tirada de habilidad, lanzamiento de ataque o tirada de salvación y el rollo falla, la criatura puede mantener la Inspiración Bardica morir."
       ]
     },
     {
@@ -4016,7 +4016,7 @@
       "name_es": "Inspiración infecciosa",
       "entries_es": [
         "[[TAG0]",
-        "Cuando inspiras con éxito a alguien, el poder de tu elocuencia ahora puede extenderse a otra persona. Cuando una criatura dentro de 60 pies de usted agrega uno de sus dados de Inspiración Bardica a su control de habilidad, lanzamiento de ataque, otirada de salvación y el rollo tiene éxito, usted puede utilizar su reacción para alentar a una criatura diferente (excepto usted mismo) que puede escuchar dentro de 60 pies de usted, dándole una Inspiración Bardica muere sin gastar ninguno de sus usos de Inspiración Bardica.",
+        "Cuando inspiras con éxito a alguien, el poder de tu elocuencia ahora puede extenderse a otra persona. Cuando una criatura dentro de 60 pies de usted agrega uno de sus dados de Inspiración Bardica a su tirada de habilidad, lanzamiento de ataque, o tirada de salvación y el rollo tiene éxito, usted puede utilizar su reacción para alentar a una criatura diferente (excepto usted mismo) que puede escuchar dentro de 60 pies de usted, dándole una Inspiración Bardica muere sin gastar ninguno de sus usos de Inspiración Bardica.",
         "Puede utilizar esta reacción varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un descanso largo."
       ]
     },
@@ -4068,7 +4068,7 @@
       ],
       "name_es": "Poesía en la miseria",
       "entries_es": [
-        "Cuando te unes al Colegio de la Tragedia a 3o nivel, aprendes a aprovechar la belleza en el fracaso, encontrando inspiración en incluso los giros del destino. Cada vez que usted o un aliado dentro de 30 pies de usted roda un 1 en el {@dice d20} para un rollo de ataque, un cheque de habilidad, o un {@quickref saving throws|PHB|2|1|saving throw}, usted puede utilizar su reacción al soliloquize y recuperar un uso expendedo de su característica de Inspiración Bardica."
+        "Cuando te unes al Colegio de la Tragedia a 3o nivel, aprendes a aprovechar la belleza en el fracaso, encontrando inspiración en incluso los giros del destino. Cada vez que usted o un aliado dentro de 30 pies de usted roda un 1 en el {@dice d20} para un tirada de ataque, un cheque de habilidad, o un {@quickref saving throws|PHB|2|1|saving throw}, usted puede utilizar su reacción al soliloquize y recuperar un uso expendedo de su característica de Inspiración Bardica."
       ]
     },
     {
@@ -4089,7 +4089,7 @@
       "name_es": "Fate dolorosa",
       "entries_es": [
         "A partir del tercer nivel, explotas el peligro de un enemigo para inculcar sentimientos profundos de dolor y de perdición. Cuando usted o un aliado puede ver fuerzas a una criatura para hacer un {@quickref saving throws|PHB|2|1|saving throw}, puede gastar un uso de su Inspiración Bardica para cambiar el tipo de {@quickref saving throws|PHB|2|1|saving throw} a un Charisma ahorrar en su lugar.",
-        "Si el objetivo falla este ahorro, rodar una Inspiración Bardica muere. El objetivo toma daño psíquico igual al resultado, y está plagado de pesar por 1 minuto. Si el objetivo se reduce a 0 puntos de éxito durante este tiempo y puede hablar, se ven mágicamente obligados a pronunciar palabras finales oscuramente poéticas antes de sucumbir a sus lesiones.",
+        "Si el objetivo falla este salvación, tirar una Inspiración Bardica muere. El objetivo toma daño psíquico igual al resultado, y está plagado de pesar por 1 minuto. Si el objetivo se reduce a 0 puntos de éxito durante este tiempo y puede hablar, se ven mágicamente obligados a pronunciar palabras finales oscuramente poéticas antes de sucumbir a sus lesiones.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@quickref resting|PHB|2|0|short or long rest}."
       ]
     },
@@ -4109,7 +4109,7 @@
       ],
       "name_es": "La desgracia inminente",
       "entries_es": [
-        "También en el sexto nivel, sus palabras pueden retorcer el poder del destino para crear triunfo de la promesa de la desesperación futura. Cuando usted hace un rollo de ataque o un {@quickref saving throws|PHB|2|1|saving throw}, usted puede ganar un bono +10 al rollo, pero el siguiente rollo de ataque o {@quickref saving throws|PHB|2|1|saving throw} usted hace toma una penalización −10. Si no se usa, esta pena desaparece cuando se termina un {@quickref resting|PHB|2|0|short or long rest}.",
+        "También en el sexto nivel, sus palabras pueden retorcer el poder del destino para crear triunfo de la promesa de la desesperación futura. Cuando usted hace un tirada de ataque o un {@quickref saving throws|PHB|2|1|saving throw}, usted puede ganar un bono +10 al rollo, pero el siguiente tirada de ataque o {@quickref saving throws|PHB|2|1|saving throw} usted hace toma una penalización −10. Si no se usa, esta pena desaparece cuando se termina un {@quickref resting|PHB|2|0|short or long rest}.",
         "No puede utilizar esta característica de nuevo hasta que termine un {@quickref resting|PHB|2|0|short or long rest}, o hasta que se reduzca a 0 puntos de éxito."
       ]
     },
@@ -4128,7 +4128,7 @@
       ],
       "name_es": "Tale of Hubris",
       "entries_es": [
-        "A 6o nivel, aprendes a tejer una narrativa mágica que saca la arrogancia fatal de tus enemigos. Cuando una criatura marca un golpe crítico contra usted o un aliado dentro de 60 pies de usted que puede ver, usted puede utilizar su reacción y expulsar un uso de su Inspiración Bardica para apuntar a la criatura atacante y evocar la historia de su caída. Durante 1 minuto o hasta que el objetivo sufre un impacto crítico, cualquier ataque de arma contra el objetivo marca un golpe crítico en un rollo de 18-20."
+        "A 6o nivel, aprendes a tejer una narrativa mágica que saca la arrogancia fatal de tus enemigos. Cuando una criatura marca un golpe crítico contra usted o un aliado dentro de 60 pies de usted que puede ver, usted puede utilizar su reacción y expulsar un uso de su Inspiración Bardica para apuntar a la criatura atacante y evocar la historia de su caída. Durante 1 minuto o hasta que el objetivo sufre un impacto crítico, cualquier ataque de arma contra el objetivo marca un golpe crítico en un tirada de 18-20."
       ]
     },
     {
@@ -4267,7 +4267,7 @@
       "entries_es": [
         "[[TAG0]",
         "Empleas herramientas que te ayudan en canalizar espíritus, ya sean figuras históricas o arquetipos ficticios. Usted puede utilizar los siguientes objetos como un foco de ortografía para sus hechizos desnudos: una vela, bola de cristal, cráneo, tablero de espíritu, o {@deck tarokka deck|CoS}.",
-        "A partir del sexto nivel, cuando usted lanza un hechizo desnudo que trata los daños o restaura puntos de éxito a través del Focus Espiritual, rodar un {@dice d6}, y usted gana un bono a un daño o rollo de curación del hechizo igual al número rodado."
+        "A partir del sexto nivel, cuando usted lanza un hechizo desnudo que trata los daños o restaura puntos de éxito a través del Focus Espiritual, tirar un {@dice d6}, y usted gana un bono a un daño o tirada de curación del hechizo igual al número rodado."
       ]
     },
     {
@@ -4357,9 +4357,9 @@
       "name_es": "Cuentos de más allá",
       "entries_es": [
         "[[TAG0]",
-        "Llegas a los espíritus que cuentan sus cuentos a través de ti. Mientras estás sosteniendo tu Enfoque Espiritual, puedes usar una acción de bonificación para gastar un uso de tu Inspiración Bardica y rodar en la mesa de Tales Espirituales usando tu Inspiración Bardica muere para determinar el relato que los espíritus te dirigen a contar. Retienes el relato en mente hasta que otorgas el efecto del cuento o terminas un breve o largo descanso.",
-        "Usted puede utilizar una acción para elegir una criatura que puede ver dentro de 30 pies de usted (esto puede ser usted) para ser el objetivo del efecto del relato. Una vez que lo haces, no puedes otorgar el efecto de la historia de nuevo hasta que vuelvas a rodar.",
-        "Usted puede retener sólo uno de estos cuentos en la mente a la vez, y rodar en la tabla Spirit Tales inmediatamente termina el efecto de la historia anterior.",
+        "Llegas a los espíritus que cuentan sus cuentos a través de ti. Mientras estás sosteniendo tu Enfoque Espiritual, puedes usar una acción de bonificación para gastar un uso de tu Inspiración Bardica y tirar en la mesa de Tales Espirituales usando tu Inspiración Bardica muere para determinar el relato que los espíritus te dirigen a contar. Retienes el relato en mente hasta que otorgas el efecto del cuento o terminas un breve o largo descanso.",
+        "Usted puede utilizar una acción para elegir una criatura que puede ver dentro de 30 pies de usted (esto puede ser usted) para ser el objetivo del efecto del relato. Una vez que lo haces, no puedes otorgar el efecto de la historia de nuevo hasta que vuelvas a tirar.",
+        "Usted puede retener sólo uno de estos cuentos en la mente a la vez, y tirar en la tabla Spirit Tales inmediatamente termina el efecto de la historia anterior.",
         "Si el cuento requiere una tirada de salvación, el DC iguala su hechizo a salvo DC.",
         {
           "type": "table",
@@ -4482,7 +4482,7 @@
       "name_es": "Conexión mística",
       "entries_es": [
         "[[TAG0]",
-        "Ahora tienes la capacidad de enjuagar los espíritus de Tales de Más allá hacia ciertos cuentos. Cada vez que usted roda sobre la mesa de cuentos espirituales, usted puede rodar la muerte dos veces y elegir cuál de los dos efectos para otorgar. Si rodas el mismo número en ambos dados, puedes ignorar el número y elegir cualquier efecto en la tabla.",
+        "Ahora tienes la capacidad de enjuagar los espíritus de Tales de Más allá hacia ciertos cuentos. Cada vez que usted roda sobre la mesa de cuentos espirituales, usted puede tirar la muerte dos veces y elegir cuál de los dos efectos para otorgar. Si rodas el mismo número en ambos dados, puedes ignorar el número y elegir cualquier efecto en la tabla.",
         {
           "type": "inset",
           "name": "Spirit Tales",
@@ -4617,7 +4617,7 @@
       "name_es": "Unbreakable Majestad",
       "entries_es": [
         "A nivel 14, tu apariencia gana permanentemente un aspecto de otro mundo que te hace parecer más encantador y feroz.",
-        "Además, como una acción de bonificación, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que esté {@condition incapacitated}. Por la duración, cuando cualquier criatura trata de atacarte por primera vez en un turno, el atacante debe hacer una tirada de salvación de Charisma contra tu hechizo excepto DC. En un fallido ahorro, no puede atacarte en este turno, y debe elegir un nuevo objetivo para su ataque o el ataque se desperdicia. En un ahorro exitoso, puede atacarte en este turno, pero tiene desventaja en cualquiertirada de salvación que hace contra tus hechizos en tu próximo turno.",
+        "Además, como una acción de bonificación, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que esté {@condition incapacitated}. Por la duración, cuando cualquier criatura trata de atacarte por primera vez en un turno, el atacante debe hacer una tirada de salvación de Charisma contra tu hechizo excepto DC. En un fallido salvación, no puede atacarte en este turno, y debe elegir un nuevo objetivo para su ataque o el ataque se desperdicia. En un salvación exitoso, puede atacarte en este turno, pero tiene desventaja en cualquiertirada de salvación que hace contra tus hechizos en tu próximo turno.",
         "Una vez que asumas esta presencia majestuosa, no puedes hacerlo de nuevo hasta que termines un breve o largo descanso."
       ]
     },
@@ -4918,7 +4918,7 @@
       ],
       "name_es": "El maestro Flourish",
       "entries_es": [
-        "A partir del 14o nivel, cada vez que utiliza una opción Blade Flourish, puede rodar un {@dice d6} y utilizarlo en lugar de gastar una Inspiración Bardica muere."
+        "A partir del 14o nivel, cada vez que utiliza una opción Blade Flourish, puede tirar un {@dice d6} y utilizarlo en lugar de gastar una Inspiración Bardica muere."
       ]
     },
     {
@@ -5049,7 +5049,7 @@
       "name_es": "Shadow Lore",
       "entries_es": [
         "A nivel 14, usted gana la capacidad de tejer magia oscura en sus palabras y tocar en los miedos más profundos de una criatura.",
-        "Como acción, mágicamente susurras una frase que sólo una criatura de tu elección dentro de 30 pies de ti puede escuchar. El objetivo debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. Sucede automáticamente si no comparte un idioma contigo o si no te oye. En un exitosotirada de salvacións, tus susurros suenan como mumbling ininteligible y no tienen efecto.",
+        "Como acción, mágicamente susurras una frase que sólo una criatura de tu elección dentro de 30 pies de ti puede escuchar. El objetivo debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. Sucede automáticamente si no comparte un idioma contigo o si no te oye. En un exitoso tirada de salvacións, tus susurros suenan como mumbling ininteligible y no tienen efecto.",
         "En una tirada de salvación fallido, el objetivo es {@condition charmed} por usted durante las próximas 8 horas o hasta que usted o sus aliados lo ataquen, lo dañen o lo obliguen a hacer una tirada de salvación. Interpreta los susurros como una descripción de su secreto más mortificante. No tienes conocimiento de este secreto, pero el objetivo está convencido de que lo sabes.",
         "La criatura [[TAG0] obedece tus mandamientos por temor a revelar su secreto. No arriesgará su vida por ti ni luchará por ti, a menos que ya esté inclinado a hacerlo. Te otorga favores y regalos que ofrecería a un amigo cercano.",
         "Cuando el efecto termina, la criatura no tiene comprensión de por qué te mantuvo en tal temor.",
@@ -5108,7 +5108,7 @@
           ],
           "name_es": "Eclipse inspirado",
           "entries_es": [
-            "Cuando tomas un {@variantrule Bonus Action|XPHB} para dar a una criatura una Inspiración Bardica muere, puedes tener la condición invisible y teletransportar hasta 30 pies a un espacio no ocupado que puedes ver como parte de ese [[TAG0]. Esta invisibilidad dura hasta el comienzo de su próximo turno y termina temprano inmediatamente después de hacer un rollo de ataque, hacer daño o hacer un hechizo."
+            "Cuando tomas un {@variantrule Bonus Action|XPHB} para dar a una criatura una Inspiración Bardica muere, puedes tener la condición invisible y teletransportar hasta 30 pies a un espacio no ocupado que puedes ver como parte de ese [[TAG0]. Esta invisibilidad dura hasta el comienzo de su próximo turno y termina temprano inmediatamente después de hacer un tirada de ataque, hacer daño o hacer un hechizo."
           ]
         },
         {
@@ -5119,7 +5119,7 @@
           ],
           "name_es": "Vitality Lunar",
           "entries_es": [
-            "Una vez por turno cuando restauras {@variantrule Hit Points|XPHB} a una criatura con un hechizo, puedes gastar una Inspiración Bardica muere y aumentar la cantidad de {@variantrule Hit Points|XPHB} restaurada por un número igual a un rollo de la Inspiración Bardica muere. La criatura {@variantrule Speed|XPHB} también aumenta en 10 pies hasta el final de su próximo turno."
+            "Una vez por turno cuando restauras {@variantrule Hit Points|XPHB} a una criatura con un hechizo, puedes gastar una Inspiración Bardica muere y aumentar la cantidad de {@variantrule Hit Points|XPHB} restaurada por un número igual a un tirada de la Inspiración Bardica muere. La criatura {@variantrule Speed|XPHB} también aumenta en 10 pies hasta el final de su próximo turno."
           ]
         }
       ],
@@ -5134,7 +5134,7 @@
           ],
           "name_es": "Eclipse inspirado",
           "entries_es": [
-            "Cuando tomas un {@variantrule Bonus Action|XPHB} para dar a una criatura una Inspiración Bardica muere, puedes tener la condición invisible y teletransportar hasta 30 pies a un espacio no ocupado que puedes ver como parte de ese [[TAG0]. Esta invisibilidad dura hasta el comienzo de su próximo turno y termina temprano inmediatamente después de hacer un rollo de ataque, hacer daño o hacer un hechizo."
+            "Cuando tomas un {@variantrule Bonus Action|XPHB} para dar a una criatura una Inspiración Bardica muere, puedes tener la condición invisible y teletransportar hasta 30 pies a un espacio no ocupado que puedes ver como parte de ese [[TAG0]. Esta invisibilidad dura hasta el comienzo de su próximo turno y termina temprano inmediatamente después de hacer un tirada de ataque, hacer daño o hacer un hechizo."
           ]
         },
         {
@@ -5145,7 +5145,7 @@
           ],
           "name_es": "Vitality Lunar",
           "entries_es": [
-            "Una vez por turno cuando restauras {@variantrule Hit Points|XPHB} a una criatura con un hechizo, puedes gastar una Inspiración Bardica muere y aumentar la cantidad de {@variantrule Hit Points|XPHB} restaurada por un número igual a un rollo de la Inspiración Bardica muere. La criatura {@variantrule Speed|XPHB} también aumenta en 10 pies hasta el final de su próximo turno."
+            "Una vez por turno cuando restauras {@variantrule Hit Points|XPHB} a una criatura con un hechizo, puedes gastar una Inspiración Bardica muere y aumentar la cantidad de {@variantrule Hit Points|XPHB} restaurada por un número igual a un tirada de la Inspiración Bardica muere. La criatura {@variantrule Speed|XPHB} también aumenta en 10 pies hasta el final de su próximo turno."
           ]
         }
       ]
@@ -5219,7 +5219,7 @@
           ],
           "name_es": "Vibranza de la Luna Llena",
           "entries_es": [
-            "Cuando usas la Vitality Lunar, puedes rodar {@dice 1d6} y utilizar el número rodado en lugar de expendir una Inspiración Bardica muere."
+            "Cuando usas la Vitality Lunar, puedes tirar {@dice 1d6} y utilizar el número rodado en lugar de expendir una Inspiración Bardica muere."
           ]
         }
       ],
@@ -5245,7 +5245,7 @@
           ],
           "name_es": "Vibranza de la Luna Llena",
           "entries_es": [
-            "Cuando usas la Vitality Lunar, puedes rodar {@dice 1d6} y utilizar el número rodado en lugar de expendir una Inspiración Bardica muere."
+            "Cuando usas la Vitality Lunar, puedes tirar {@dice 1d6} y utilizar el número rodado en lugar de expendir una Inspiración Bardica muere."
           ]
         }
       ]
@@ -5310,7 +5310,7 @@
       ],
       "name_es": "Daños bárdicos",
       "entries_es": [
-        "Puedes usar Destreza en lugar de Strength para los rollos de ataque de tus huelgas desarmadas. Cuando se hace daño con un {@variantrule Unarmed Strike|XPHB}, se puede tratar el daño Bludgeoning igual a un rollo de su Bardic Inspiration morir más su modificador de Destreza, en lugar del daño normal de la huelga. Este rollo no gasta la muerte."
+        "Puedes usar Destreza en lugar de Strength para los rollos de ataque de tus huelgas desarmadas. Cuando se hace daño con un {@variantrule Unarmed Strike|XPHB}, se puede tratar el daño Bludgeoning igual a un tirada de su Bardic Inspiration morir más su modificador de Destreza, en lugar del daño normal de la huelga. Este rollo no gasta la muerte."
       ]
     },
     {
@@ -5453,7 +5453,7 @@
       ],
       "name_es": "Evasión líder",
       "entries_es": [
-        "Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en eltirada de salvación y sólo medio daño si usted falla. Si cualquier criatura a 5 pies de usted está haciendo el mismotirada de salvación de Destreza, usted puede compartir este beneficio con ellos para ese ahorro.",
+        "Cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Destreza para tomar sólo medio daño, en lugar de tomar ningún daño si usted tiene éxito en eltirada de salvación y sólo medio daño si usted falla. Si cualquier criatura a 5 pies de usted está haciendo el mismo tirada de salvación de Destreza, usted puede compartir este beneficio con ellos para ese salvación.",
         "No puedes usar esta característica si tienes la condición [[TAG0]."
       ]
     },
@@ -5510,7 +5510,7 @@
       "name_es": "Magia guiada",
       "entries_es": [
         "Siempre tienes los hechizos {@spell Charm Person|XPHB} y {@spell Mirror Image|XPHB} preparados.",
-        "Además, inmediatamente después de lanzar un hechizo de encantamiento o ilusión usando una ranura de hechizo, usted puede causar una criatura que puede ver dentro de 60 pies de usted mismo para hacer una tirada de salvación de sabiduría contra su hechizo salvo DC. En un ahorro fallido, el objetivo tiene la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) durante 1 minuto. El objetivo repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+        "Además, inmediatamente después de lanzar un hechizo de encantamiento o ilusión usando una ranura de hechizo, usted puede causar una criatura que puede ver dentro de 60 pies de usted mismo para hacer una tirada de salvación de sabiduría contra su hechizo salvo DC. En un salvación fallido, el objetivo tiene la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) durante 1 minuto. El objetivo repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
         "Una vez que utilice este beneficio, no puede utilizarlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. También puede restaurar su uso de él expendiendo de un uso de su Inspiración Bardica (sin necesidad de acción)."
       ]
     },
@@ -5572,7 +5572,7 @@
       ],
       "name_es": "Unbreakable Majestad",
       "entries_es": [
-        "Como {@variantrule Bonus Action|XPHB}, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que tenga la condición [[TAG1]. Por la duración, cuando cualquier criatura te golpee con un rollo de ataque por primera vez en un turno, el atacante debe tener éxito en una tirada de salvación de Charisma contra tu hechizo salvo DC, o el ataque falla en su lugar, ya que la criatura retrocede de tu majestad.",
+        "Como {@variantrule Bonus Action|XPHB}, puede asumir una presencia mágicamente majestuosa durante 1 minuto o hasta que tenga la condición [[TAG1]. Por la duración, cuando cualquier criatura te golpee con un tirada de ataque por primera vez en un turno, el atacante debe tener éxito en una tirada de salvación de Charisma contra tu hechizo salvo DC, o el ataque falla en su lugar, ya que la criatura retrocede de tu majestad.",
         "Una vez que asuma esta presencia majestuosa, no puede hacerlo de nuevo hasta que termine un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -5650,7 +5650,7 @@
       ],
       "name_es": "Palabras de corte",
       "entries_es": [
-        "Aprendes a usar tu ingenio para distraer sobrenaturalmente, confundir y de otra manera saltar la confianza y la competencia de otros. Cuando una criatura que usted puede ver dentro de 60 pies de usted hace un rollo de daño o tiene éxito en un registro de verificación de habilidad o ataque, usted puede tomar un {@variantrule Reaction|XPHB} para expulsar un uso de su Inspiración Bardica; rodar su Inspiración Bardica muere, y restar el número rodado del rollo de la criatura, reduciendo el daño o potencialmente convirtiendo el éxito en un fracaso."
+        "Aprendes a usar tu ingenio para distraer sobrenaturalmente, confundir y de otra manera saltar la confianza y la competencia de otros. Cuando una criatura que usted puede ver dentro de 60 pies de usted hace un tirada de daño o tiene éxito en un registro de verificación de habilidad o ataque, usted puede tomar un {@variantrule Reaction|XPHB} para expulsar un uso de su Inspiración Bardica; tirar su Inspiración Bardica muere, y restar el número rodado del tirada de la criatura, reduciendo el daño o potencialmente convirtiendo el éxito en un fracaso."
       ]
     },
     {
@@ -5692,7 +5692,7 @@
       ],
       "name_es": "Peerless Skill",
       "entries_es": [
-        "Cuando usted hace un registro de la habilidad o del ataque y falla, usted puede expulsar un uso de la inspiración Bardic; rodar la inspiración Bardic muere, y añadir el número rodado al {@dice d20}, potencialmente convirtiendo un fracaso en un éxito. En un fracaso, la Inspiración Bardica no es expulsada."
+        "Cuando usted hace un registro de la habilidad o del ataque y falla, usted puede expulsar un uso de la inspiración Bardic; tirar la inspiración Bardic muere, y añadir el número rodado al {@dice d20}, potencialmente convirtiendo un fracaso en un éxito. En un fracaso, la Inspiración Bardica no es expulsada."
       ]
     },
     {
@@ -5750,7 +5750,7 @@
           ],
           "name_es": "Defensa",
           "entries_es": [
-            "Cuando la criatura es golpeada por un rollo de ataque, esa criatura puede usar su {@variantrule Reaction|XPHB} para rodar la Inspiración Bardica muere y añadir el número rodado a su AC contra ese ataque, potencialmente causando que el ataque se pierda."
+            "Cuando la criatura es golpeada por un tirada de ataque, esa criatura puede usar su {@variantrule Reaction|XPHB} para tirar la Inspiración Bardica muere y añadir el número rodado a su AC contra ese ataque, potencialmente causando que el ataque se pierda."
           ]
         },
         {
@@ -5761,7 +5761,7 @@
           ],
           "name_es": "Offense",
           "entries_es": [
-            "Inmediatamente después de que la criatura golpee un blanco con un rollo de ataque, la criatura puede rodar la Inspiración Bardica muere y añadir el número rodado al daño del ataque contra el objetivo."
+            "Inmediatamente después de que la criatura golpee un blanco con un tirada de ataque, la criatura puede tirar la Inspiración Bardica muere y añadir el número rodado al daño del ataque contra el objetivo."
           ]
         }
       ],
@@ -5776,7 +5776,7 @@
           ],
           "name_es": "Defensa",
           "entries_es": [
-            "Cuando la criatura es golpeada por un rollo de ataque, esa criatura puede usar su {@variantrule Reaction|XPHB} para rodar la Inspiración Bardica muere y añadir el número rodado a su AC contra ese ataque, potencialmente causando que el ataque se pierda."
+            "Cuando la criatura es golpeada por un tirada de ataque, esa criatura puede usar su {@variantrule Reaction|XPHB} para tirar la Inspiración Bardica muere y añadir el número rodado a su AC contra ese ataque, potencialmente causando que el ataque se pierda."
           ]
         },
         {
@@ -5787,7 +5787,7 @@
           ],
           "name_es": "Offense",
           "entries_es": [
-            "Inmediatamente después de que la criatura golpee un blanco con un rollo de ataque, la criatura puede rodar la Inspiración Bardica muere y añadir el número rodado al daño del ataque contra el objetivo."
+            "Inmediatamente después de que la criatura golpee un blanco con un tirada de ataque, la criatura puede tirar la Inspiración Bardica muere y añadir el número rodado al daño del ataque contra el objetivo."
           ]
         }
       ]

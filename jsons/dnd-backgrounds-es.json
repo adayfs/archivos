@@ -15224,7 +15224,7 @@
           "entries_es": [
             "Tienes más de una identidad. El que llevas la mayor parte del tiempo te hace parecer un miembro de un gremio aparte de House Dimir. Usted tiene documentación, conocidos establecidos, y disfraces que le permiten asumir esa persona y encajar en el gremio secundario.",
             "Siempre que elijas, puedes dejar caer esta identidad y mezclarte con las masas indias de la ciudad.",
-            "Considere por qué está incrustado en el gremio secundario. Cree una historia con su DM, inspirada en rodar en la siguiente tabla o eligiendo una razón que le convenga.",
+            "Considere por qué está incrustado en el gremio secundario. Cree una historia con su DM, inspirada en tirar en la siguiente tabla o eligiendo una razón que le convenga.",
             {
               "type": "table",
               "colLabels": [
@@ -15750,7 +15750,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "Como agente de House Dimir trabajando encubierto, tienes contactos limitados dentro de tu gremio. Sus relaciones dentro de su gremio secundario, bajo el pretexto de su identidad falsa, son generalmente más extensas.",
-            "Rodar una vez en la mesa Dimir Contacts, dándole un aliado que sirve como su contacto en Dimir. Luego rodar dos veces sobre la mesa para su gremio secundario. El primer rollo te da un aliado, y el segundo rollo te da un rival.",
+            "tirar una vez en la mesa Dimir Contacts, dándole un aliado que sirve como su contacto en Dimir. Luego tirar dos veces sobre la mesa para su gremio secundario. El primer rollo te da un aliado, y el segundo rollo te da un rival.",
             {
               "type": "table",
               "caption": "Dimir Contacts",
@@ -15923,7 +15923,7 @@
           "entries_es": [
             "Tienes más de una identidad. El que llevas la mayor parte del tiempo te hace parecer un miembro de un gremio aparte de House Dimir. Usted tiene documentación, conocidos establecidos, y disfraces que le permiten asumir esa persona y encajar en el gremio secundario.",
             "Siempre que elijas, puedes dejar caer esta identidad y mezclarte con las masas indias de la ciudad.",
-            "Considere por qué está incrustado en el gremio secundario. Cree una historia con su DM, inspirada en rodar en la siguiente tabla o eligiendo una razón que le convenga.",
+            "Considere por qué está incrustado en el gremio secundario. Cree una historia con su DM, inspirada en tirar en la siguiente tabla o eligiendo una razón que le convenga.",
             {
               "type": "table",
               "colLabels": [
@@ -16449,7 +16449,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "Como agente de House Dimir trabajando encubierto, tienes contactos limitados dentro de tu gremio. Sus relaciones dentro de su gremio secundario, bajo el pretexto de su identidad falsa, son generalmente más extensas.",
-            "Rodar una vez en la mesa Dimir Contacts, dándole un aliado que sirve como su contacto en Dimir. Luego rodar dos veces sobre la mesa para su gremio secundario. El primer rollo te da un aliado, y el segundo rollo te da un rival.",
+            "tirar una vez en la mesa Dimir Contacts, dándole un aliado que sirve como su contacto en Dimir. Luego tirar dos veces sobre la mesa para su gremio secundario. El primer rollo te da un aliado, y el segundo rollo te da un rival.",
             {
               "type": "table",
               "caption": "Dimir Contacts",
@@ -21874,7 +21874,7 @@
           ],
           "name_es": "¿Por qué estás aquí?",
           "entries_es": [
-            "Un viajero lejano podría haber hecho un viaje por una de varias razones, y la salida de su patria podría haber sido voluntaria o involuntaria. Para determinar por qué estás tan lejos de casa, rodar sobre la tabla de abajo o elegir entre las opciones proporcionadas. En la sección siguiente, en la que se examinan las posibles tierras de origen, se incluyen algunas razones sugeridas que son apropiadas para cada lugar.",
+            "Un viajero lejano podría haber hecho un viaje por una de varias razones, y la salida de su patria podría haber sido voluntaria o involuntaria. Para determinar por qué estás tan lejos de casa, tirar sobre la tabla de abajo o elegir entre las opciones proporcionadas. En la sección siguiente, en la que se examinan las posibles tierras de origen, se incluyen algunas razones sugeridas que son apropiadas para cada lugar.",
             {
               "type": "table",
               "colLabels": [
@@ -22336,7 +22336,7 @@
           ],
           "name_es": "¿Por qué estás aquí?",
           "entries_es": [
-            "Un viajero lejano podría haber hecho un viaje por una de varias razones, y la salida de su patria podría haber sido voluntaria o involuntaria. Para determinar por qué estás tan lejos de casa, rodar sobre la tabla de abajo o elegir entre las opciones proporcionadas. En la sección siguiente, en la que se examinan las posibles tierras de origen, se incluyen algunas razones sugeridas que son apropiadas para cada lugar.",
+            "Un viajero lejano podría haber hecho un viaje por una de varias razones, y la salida de su patria podría haber sido voluntaria o involuntaria. Para determinar por qué estás tan lejos de casa, tirar sobre la tabla de abajo o elegir entre las opciones proporcionadas. En la sección siguiente, en la que se examinan las posibles tierras de origen, se incluyen algunas razones sugeridas que son apropiadas para cada lugar.",
             {
               "type": "table",
               "colLabels": [
@@ -22884,7 +22884,7 @@
           ],
           "name_es": "Fey Mark",
           "entries_es": [
-            "Usted fue transformado de alguna manera pequeña por su estancia en el Feywild y ganó una marca fey, determinada por rodar en la mesa Fey Mark.",
+            "Usted fue transformado de alguna manera pequeña por su estancia en el Feywild y ganó una marca fey, determinada por tirar en la mesa Fey Mark.",
             {
               "type": "table",
               "caption": "Fey Mark",
@@ -23229,7 +23229,7 @@
           ],
           "name_es": "Traits de carácter",
           "entries_es": [
-            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede rodar de nuevo o elegir una entrada más apropiada en la tabla.",
+            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede tirar de nuevo o elegir una entrada más apropiada en la tabla.",
             "Estas tablas, aunque opcionales, son adecuadas para las aventuras temáticas Feywild y son ideales para cualquier personaje que tenga el fondo de mano feylost o Witchlight.",
             {
               "type": "table",
@@ -23544,7 +23544,7 @@
           ],
           "name_es": "Fey Mark",
           "entries_es": [
-            "Usted fue transformado de alguna manera pequeña por su estancia en el Feywild y ganó una marca fey, determinada por rodar en la mesa Fey Mark.",
+            "Usted fue transformado de alguna manera pequeña por su estancia en el Feywild y ganó una marca fey, determinada por tirar en la mesa Fey Mark.",
             {
               "type": "table",
               "caption": "Fey Mark",
@@ -23889,7 +23889,7 @@
           ],
           "name_es": "Traits de carácter",
           "entries_es": [
-            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede rodar de nuevo o elegir una entrada más apropiada en la tabla.",
+            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede tirar de nuevo o elegir una entrada más apropiada en la tabla.",
             "Estas tablas, aunque opcionales, son adecuadas para las aventuras temáticas Feywild y son ideales para cualquier personaje que tenga el fondo de mano feylost o Witchlight.",
             {
               "type": "table",
@@ -24176,7 +24176,7 @@
           ],
           "name_es": "Cuento de pesca",
           "entries_es": [
-            "Puedes contar un cuento convincente, ya sea alto o verdadero, para impresionar y entretener a otros. Una vez al día, puedes contar tu historia a los oyentes dispuestos. A discreción del DM, algunos de esos oyentes se vuelven amigables con usted; esto no es un efecto mágico, y la amabilidad continua de su parte depende de sus acciones. Puede rodar en la siguiente tabla para ayudar a determinar el tema de su cuenta o elegir uno que mejor se ajuste a su carácter. Alternativamente, trabaje con su DM para crear su propio cuento de pesca.",
+            "Puedes contar un cuento convincente, ya sea alto o verdadero, para impresionar y entretener a otros. Una vez al día, puedes contar tu historia a los oyentes dispuestos. A discreción del DM, algunos de esos oyentes se vuelven amigables con usted; esto no es un efecto mágico, y la amabilidad continua de su parte depende de sus acciones. Puede tirar en la siguiente tabla para ayudar a determinar el tema de su cuenta o elegir uno que mejor se ajuste a su carácter. Alternativamente, trabaje con su DM para crear su propio cuento de pesca.",
             {
               "type": "table",
               "colLabels": [
@@ -24663,7 +24663,7 @@
           ],
           "name_es": "Cuento de pesca",
           "entries_es": [
-            "Puedes contar un cuento convincente, ya sea alto o verdadero, para impresionar y entretener a otros. Una vez al día, puedes contar tu historia a los oyentes dispuestos. A discreción del DM, algunos de esos oyentes se vuelven amigables con usted; esto no es un efecto mágico, y la amabilidad continua de su parte depende de sus acciones. Puede rodar en la siguiente tabla para ayudar a determinar el tema de su cuenta o elegir uno que mejor se ajuste a su carácter. Alternativamente, trabaje con su DM para crear su propio cuento de pesca.",
+            "Puedes contar un cuento convincente, ya sea alto o verdadero, para impresionar y entretener a otros. Una vez al día, puedes contar tu historia a los oyentes dispuestos. A discreción del DM, algunos de esos oyentes se vuelven amigables con usted; esto no es un efecto mágico, y la amabilidad continua de su parte depende de sus acciones. Puede tirar en la siguiente tabla para ayudar a determinar el tema de su cuenta o elegir uno que mejor se ajuste a su carácter. Alternativamente, trabaje con su DM para crear su propio cuento de pesca.",
             {
               "type": "table",
               "colLabels": [
@@ -27816,7 +27816,7 @@
               ],
               "name_es": "Tornillos de guardia de puerta",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ],
@@ -27831,7 +27831,7 @@
               ],
               "name_es": "Tornillos de guardia de puerta",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ]
@@ -27989,7 +27989,7 @@
               ],
               "name_es": "Tornillos de guardia de puerta",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ],
@@ -28004,7 +28004,7 @@
               ],
               "name_es": "Tornillos de guardia de puerta",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ]
@@ -31337,7 +31337,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "Los miembros de los Clanes Gruul confían entre sí, incluso cuando ven por territorio y gloria. Sus encuentros con miembros de otros gremios son más a menudo violentos que amistosos, pero los vínculos ocasionales se forman.",
-            "Rodar dos veces sobre la mesa de contactos Gruul (para un aliado y un rival) y una vez sobre la mesa de contactos no-Gruul.",
+            "tirar dos veces sobre la mesa de contactos Gruul (para un aliado y un rival) y una vez sobre la mesa de contactos no-Gruul.",
             {
               "type": "table",
               "caption": "Gruul Contacts",
@@ -32059,7 +32059,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "Los miembros de los Clanes Gruul confían entre sí, incluso cuando ven por territorio y gloria. Sus encuentros con miembros de otros gremios son más a menudo violentos que amistosos, pero los vínculos ocasionales se forman.",
-            "Rodar dos veces sobre la mesa de contactos Gruul (para un aliado y un rival) y una vez sobre la mesa de contactos no-Gruul.",
+            "tirar dos veces sobre la mesa de contactos Gruul (para un aliado y un rival) y una vez sobre la mesa de contactos no-Gruul.",
             {
               "type": "table",
               "caption": "Gruul Contacts",
@@ -32528,7 +32528,7 @@
           ],
           "name_es": "Especialidad",
           "entries_es": [
-            "Los culpables generalmente se encuentran en ciudades lo suficientemente grandes como para apoyar a varios artesanos que practican el mismo comercio. Sin embargo, su gremio podría ser una red suelta de artesanos que cada uno trabaja en un pueblo diferente dentro de un reino más grande. Trabaja con tu DM para determinar la naturaleza de tu gremio. Puede seleccionar su negocio de gremios de la mesa de Negocio de Culpa o rodar aleatoriamente.",
+            "Los culpables generalmente se encuentran en ciudades lo suficientemente grandes como para apoyar a varios artesanos que practican el mismo comercio. Sin embargo, su gremio podría ser una red suelta de artesanos que cada uno trabaja en un pueblo diferente dentro de un reino más grande. Trabaja con tu DM para determinar la naturaleza de tu gremio. Puede seleccionar su negocio de gremios de la mesa de Negocio de Culpa o tirar aleatoriamente.",
             {
               "type": "table",
               "colLabels": [
@@ -33117,7 +33117,7 @@
           ],
           "name_es": "Especialidad",
           "entries_es": [
-            "Los culpables generalmente se encuentran en ciudades lo suficientemente grandes como para apoyar a varios artesanos que practican el mismo comercio. Sin embargo, su gremio podría ser una red suelta de artesanos que cada uno trabaja en un pueblo diferente dentro de un reino más grande. Trabaja con tu DM para determinar la naturaleza de tu gremio. Puede seleccionar su negocio de gremios de la mesa de Negocio de Culpa o rodar aleatoriamente.",
+            "Los culpables generalmente se encuentran en ciudades lo suficientemente grandes como para apoyar a varios artesanos que practican el mismo comercio. Sin embargo, su gremio podría ser una red suelta de artesanos que cada uno trabaja en un pueblo diferente dentro de un reino más grande. Trabaja con tu DM para determinar la naturaleza de tu gremio. Puede seleccionar su negocio de gremios de la mesa de Negocio de Culpa o tirar aleatoriamente.",
             {
               "type": "table",
               "colLabels": [
@@ -34529,7 +34529,7 @@
           ],
           "name_es": "Evento de estrechamiento",
           "entries_es": [
-            "Antes de convertirse en un aventurero, su camino en la vida fue definido por un momento oscuro, una decisión fatal, o una tragedia. Ahora sientes una oscuridad amenazando con consumirte, y temes que no haya esperanza de escapar. Elija un evento agitador que le persigue, o rodar uno en la mesa de eventos de atraque.",
+            "Antes de convertirse en un aventurero, su camino en la vida fue definido por un momento oscuro, una decisión fatal, o una tragedia. Ahora sientes una oscuridad amenazando con consumirte, y temes que no haya esperanza de escapar. Elija un evento agitador que le persigue, o tirar uno en la mesa de eventos de atraque.",
             {
               "type": "table",
               "caption": "Harrowing Event",
@@ -35230,7 +35230,7 @@
           ],
           "name_es": "Evento de estrechamiento",
           "entries_es": [
-            "Antes de convertirse en un aventurero, su camino en la vida fue definido por un momento oscuro, una decisión fatal, o una tragedia. Ahora sientes una oscuridad amenazando con consumirte, y temes que no haya esperanza de escapar. Elija un evento agitador que le persigue, o rodar uno en la mesa de eventos de atraque.",
+            "Antes de convertirse en un aventurero, su camino en la vida fue definido por un momento oscuro, una decisión fatal, o una tragedia. Ahora sientes una oscuridad amenazando con consumirte, y temes que no haya esperanza de escapar. Elija un evento agitador que le persigue, o tirar uno en la mesa de eventos de atraque.",
             {
               "type": "table",
               "caption": "Harrowing Event",
@@ -35902,7 +35902,7 @@
           ],
           "name_es": "Especialidad",
           "entries_es": [
-            "¿Cuál fue la razón de su aislamiento, y qué cambió para permitirle terminar su soledad? Puede trabajar con su DM para determinar la naturaleza exacta de su aislamiento, o puede elegir o rodar en la tabla de abajo para determinar la razón detrás de su aislamiento.",
+            "¿Cuál fue la razón de su aislamiento, y qué cambió para permitirle terminar su soledad? Puede trabajar con su DM para determinar la naturaleza exacta de su aislamiento, o puede elegir o tirar en la tabla de abajo para determinar la razón detrás de su aislamiento.",
             {
               "type": "table",
               "colLabels": [
@@ -36393,7 +36393,7 @@
           ],
           "name_es": "Especialidad",
           "entries_es": [
-            "¿Cuál fue la razón de su aislamiento, y qué cambió para permitirle terminar su soledad? Puede trabajar con su DM para determinar la naturaleza exacta de su aislamiento, o puede elegir o rodar en la tabla de abajo para determinar la razón detrás de su aislamiento.",
+            "¿Cuál fue la razón de su aislamiento, y qué cambió para permitirle terminar su soledad? Puede trabajar con su DM para determinar la naturaleza exacta de su aislamiento, o puede elegir o tirar en la tabla de abajo para determinar la razón detrás de su aislamiento.",
             {
               "type": "table",
               "colLabels": [
@@ -43610,7 +43610,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "Los laboratorios de la Liga Izzet están iniciando constantemente nuevos proyectos y disolviendo antiguos, por lo que es fácil para el más humilde asistente hacer amigos (y enemigos) en laboratorios de todo Ravnica.",
-            "Rodar dos veces sobre la mesa de contactos Izzet (para un aliado y un rival) y una vez sobre la mesa de contactos no Izzet.",
+            "tirar dos veces sobre la mesa de contactos Izzet (para un aliado y un rival) y una vez sobre la mesa de contactos no Izzet.",
             {
               "type": "table",
               "caption": "Izzet Contacts",
@@ -44333,7 +44333,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "Los laboratorios de la Liga Izzet están iniciando constantemente nuevos proyectos y disolviendo antiguos, por lo que es fácil para el más humilde asistente hacer amigos (y enemigos) en laboratorios de todo Ravnica.",
-            "Rodar dos veces sobre la mesa de contactos Izzet (para un aliado y un rival) y una vez sobre la mesa de contactos no Izzet.",
+            "tirar dos veces sobre la mesa de contactos Izzet (para un aliado y un rival) y una vez sobre la mesa de contactos no Izzet.",
             {
               "type": "table",
               "caption": "Izzet Contacts",
@@ -44547,7 +44547,7 @@
               ],
               "name_es": "Caballero de Solamnia Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Knight of Solamnia Trinkets",
@@ -44639,7 +44639,7 @@
               ],
               "name_es": "Caballero de Solamnia Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Knight of Solamnia Trinkets",
@@ -44791,7 +44791,7 @@
               ],
               "name_es": "Caballero de Solamnia Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Knight of Solamnia Trinkets",
@@ -44883,7 +44883,7 @@
               ],
               "name_es": "Caballero de Solamnia Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en la mesa Caballero de Solamnia Trinkets en lugar de en el {@item Trinket|PHB|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Knight of Solamnia Trinkets",
@@ -45498,7 +45498,7 @@
               ],
               "name_es": "Arrugas retenidas",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -45601,7 +45601,7 @@
               ],
               "name_es": "Arrugas retenidas",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -45834,7 +45834,7 @@
               ],
               "name_es": "Arrugas retenidas",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -45937,7 +45937,7 @@
               ],
               "name_es": "Arrugas retenidas",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -46836,7 +46836,7 @@
               ],
               "name_es": "Mage of High Sorcery Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Mage of High Sorcery Trinkets",
@@ -46927,7 +46927,7 @@
               ],
               "name_es": "Mage of High Sorcery Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Mage of High Sorcery Trinkets",
@@ -47078,7 +47078,7 @@
               ],
               "name_es": "Mage of High Sorcery Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Mage of High Sorcery Trinkets",
@@ -47169,7 +47169,7 @@
               ],
               "name_es": "Mage of High Sorcery Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, rodar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
+                "Cuando usted hace su personaje, tirar una vez en el Mage of High Sorcery Trinkets mesa en lugar de en el {@item trinket|phb|Trinkets table} en el Manual del Jugador para su trinket inicial.",
                 {
                   "type": "table",
                   "caption": "Mage of High Sorcery Trinkets",
@@ -47303,7 +47303,7 @@
           ],
           "name_es": "Hardship Endured",
           "entries_es": [
-            "Hardship en tu pasado te ha forjado en un arma viviente imparable. Esta dificultad es esencial para usted y está en el corazón de una filosofía personal o ethos que a menudo guía sus acciones. Usted puede rodar en la siguiente tabla para determinar esta dificultad o elegir uno que mejor se ajuste a su carácter.",
+            "Hardship en tu pasado te ha forjado en un arma viviente imparable. Esta dificultad es esencial para usted y está en el corazón de una filosofía personal o ethos que a menudo guía sus acciones. Usted puede tirar en la siguiente tabla para determinar esta dificultad o elegir uno que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -47775,7 +47775,7 @@
           ],
           "name_es": "Hardship Endured",
           "entries_es": [
-            "Hardship en tu pasado te ha forjado en un arma viviente imparable. Esta dificultad es esencial para usted y está en el corazón de una filosofía personal o ethos que a menudo guía sus acciones. Usted puede rodar en la siguiente tabla para determinar esta dificultad o elegir uno que mejor se ajuste a su carácter.",
+            "Hardship en tu pasado te ha forjado en un arma viviente imparable. Esta dificultad es esencial para usted y está en el corazón de una filosofía personal o ethos que a menudo guía sus acciones. Usted puede tirar en la siguiente tabla para determinar esta dificultad o elegir uno que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -50902,7 +50902,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "El Orzhov Syndicate opera según una estricta jerarquía construida sobre una red de conexiones entre las familias antiguas y ricas. Su familia podría proporcionar contactos importantes, mientras que las actividades de su familia en la delincuencia, la banca o la recolección de deuda podrían vincularle a miembros de otros gremios.",
-            "Rodar dos veces sobre la mesa de contactos de Orzhov (para un aliado y un rival) y una vez sobre la mesa de contactos de Non-Orzhov.",
+            "tirar dos veces sobre la mesa de contactos de Orzhov (para un aliado y un rival) y una vez sobre la mesa de contactos de Non-Orzhov.",
             {
               "type": "table",
               "caption": "Orzhov Contacts",
@@ -51605,7 +51605,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "El Orzhov Syndicate opera según una estricta jerarquía construida sobre una red de conexiones entre las familias antiguas y ricas. Su familia podría proporcionar contactos importantes, mientras que las actividades de su familia en la delincuencia, la banca o la recolección de deuda podrían vincularle a miembros de otros gremios.",
-            "Rodar dos veces sobre la mesa de contactos de Orzhov (para un aliado y un rival) y una vez sobre la mesa de contactos de Non-Orzhov.",
+            "tirar dos veces sobre la mesa de contactos de Orzhov (para un aliado y un rival) y una vez sobre la mesa de contactos de Non-Orzhov.",
             {
               "type": "table",
               "caption": "Orzhov Contacts",
@@ -51834,7 +51834,7 @@
           ],
           "name_es": "Especialidad",
           "entries_es": [
-            "Has estado en lugares extraños y has visto cosas que otros no pueden empezar a engordar. Considera algunas de las tierras distantes que has visitado, y cómo te impactaron. Puede rodar en la siguiente tabla para determinar su ocupación durante su tiempo en la naturaleza, o elegir uno que mejor se ajuste a su carácter.",
+            "Has estado en lugares extraños y has visto cosas que otros no pueden empezar a engordar. Considera algunas de las tierras distantes que has visitado, y cómo te impactaron. Puede tirar en la siguiente tabla para determinar su ocupación durante su tiempo en la naturaleza, o elegir uno que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -52339,7 +52339,7 @@
           ],
           "name_es": "Especialidad",
           "entries_es": [
-            "Has estado en lugares extraños y has visto cosas que otros no pueden empezar a engordar. Considera algunas de las tierras distantes que has visitado, y cómo te impactaron. Puede rodar en la siguiente tabla para determinar su ocupación durante su tiempo en la naturaleza, o elegir uno que mejor se ajuste a su carácter.",
+            "Has estado en lugares extraños y has visto cosas que otros no pueden empezar a engordar. Considera algunas de las tierras distantes que has visitado, y cómo te impactaron. Puede tirar en la siguiente tabla para determinar su ocupación durante su tiempo en la naturaleza, o elegir uno que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -52837,7 +52837,7 @@
           ],
           "name_es": "Origen",
           "entries_es": [
-            "Retirada de tu vida como un pueblo, te has adaptado a la vida dura en los salvajes que rodean a Phlan. El comercio que practicaste aún influye en tu perspectiva, en la forma en que abordas situaciones, y en la forma en que contribuyes al movimiento de resistencia contra la Virulencia de Maimed. Puede rodar en la siguiente tabla para determinar cuál era su ocupación antes de la caída, o elegir uno que mejor se ajuste a su carácter (seleccione desde la columna general o la columna específica, pero no ambos).",
+            "Retirada de tu vida como un pueblo, te has adaptado a la vida dura en los salvajes que rodean a Phlan. El comercio que practicaste aún influye en tu perspectiva, en la forma en que abordas situaciones, y en la forma en que contribuyes al movimiento de resistencia contra la Virulencia de Maimed. Puede tirar en la siguiente tabla para determinar cuál era su ocupación antes de la caída, o elegir uno que mejor se ajuste a su carácter (seleccione desde la columna general o la columna específica, pero no ambos).",
             {
               "type": "table",
               "colLabels": [
@@ -53361,7 +53361,7 @@
           ],
           "name_es": "Origen",
           "entries_es": [
-            "Retirada de tu vida como un pueblo, te has adaptado a la vida dura en los salvajes que rodean a Phlan. El comercio que practicaste aún influye en tu perspectiva, en la forma en que abordas situaciones, y en la forma en que contribuyes al movimiento de resistencia contra la Virulencia de Maimed. Puede rodar en la siguiente tabla para determinar cuál era su ocupación antes de la caída, o elegir uno que mejor se ajuste a su carácter (seleccione desde la columna general o la columna específica, pero no ambos).",
+            "Retirada de tu vida como un pueblo, te has adaptado a la vida dura en los salvajes que rodean a Phlan. El comercio que practicaste aún influye en tu perspectiva, en la forma en que abordas situaciones, y en la forma en que contribuyes al movimiento de resistencia contra la Virulencia de Maimed. Puede tirar en la siguiente tabla para determinar cuál era su ocupación antes de la caída, o elegir uno que mejor se ajuste a su carácter (seleccione desde la columna general o la columna específica, pero no ambos).",
             {
               "type": "table",
               "colLabels": [
@@ -55833,7 +55833,7 @@
               ],
               "name_es": "Planar Philosopher Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ],
@@ -55848,7 +55848,7 @@
               ],
               "name_es": "Planar Philosopher Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ]
@@ -56372,7 +56372,7 @@
               ],
               "name_es": "Planar Philosopher Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ],
@@ -56387,7 +56387,7 @@
               ],
               "name_es": "Planar Philosopher Trinkets",
               "entries_es": [
-                "Cuando usted hace su personaje, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
+                "Cuando usted hace su personaje, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item Trinket|PHB|Trinkets} tabla en el Manual del Jugador, para su trinket inicial."
               ]
             }
           ]
@@ -56617,7 +56617,7 @@
               ],
               "name_es": "Prismari Trinkets",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -56720,7 +56720,7 @@
               ],
               "name_es": "Prismari Trinkets",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -56968,7 +56968,7 @@
               ],
               "name_es": "Prismari Trinkets",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -57071,7 +57071,7 @@
               ],
               "name_es": "Prismari Trinkets",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -57398,7 +57398,7 @@
               ],
               "name_es": "Arrugas de Quandrix",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -57501,7 +57501,7 @@
               ],
               "name_es": "Arrugas de Quandrix",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -57744,7 +57744,7 @@
               ],
               "name_es": "Arrugas de Quandrix",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -57847,7 +57847,7 @@
               ],
               "name_es": "Arrugas de Quandrix",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -57947,7 +57947,7 @@
           },
           "name_es": "Un Flair para el Dramatic",
           "entries_es": [
-            "Los estilos de rendimiento de Rakdos suelen fusionar acrobacias estándar de circo con fuego, picos de hierro forjado y ganchos, y monstruos. Puede rodar un {@dice d8} o elegir entre las opciones en la tabla Opciones de rendimiento para determinar su estilo de rendimiento preferido.",
+            "Los estilos de rendimiento de Rakdos suelen fusionar acrobacias estándar de circo con fuego, picos de hierro forjado y ganchos, y monstruos. Puede tirar un {@dice d8} o elegir entre las opciones en la tabla Opciones de rendimiento para determinar su estilo de rendimiento preferido.",
             {
               "type": "table",
               "caption": "Performance Options",
@@ -58539,7 +58539,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "El Culto de Rakdos es todo menos organizado. Los individuos se mueven frecuentemente de una tropa de rendimiento a otra. Casi todos los miembros del culto conocen a ex castmates ahora en diferentes grupos, lo que permite la posibilidad de una red generalizada de contactos.",
-            "Rodar dos veces en la mesa de contactos Rakdos (para un aliado y un rival) y una vez en la mesa de contactos de Non-Rakdos.",
+            "tirar dos veces en la mesa de contactos Rakdos (para un aliado y un rival) y una vez en la mesa de contactos de Non-Rakdos.",
             {
               "type": "table",
               "caption": "Rakdos Contacts",
@@ -58768,7 +58768,7 @@
           },
           "name_es": "Un Flair para el Dramatic",
           "entries_es": [
-            "Los estilos de rendimiento de Rakdos suelen fusionar acrobacias estándar de circo con fuego, picos de hierro forjado y ganchos, y monstruos. Puede rodar un {@dice d8} o elegir entre las opciones en la tabla Opciones de rendimiento para determinar su estilo de rendimiento preferido.",
+            "Los estilos de rendimiento de Rakdos suelen fusionar acrobacias estándar de circo con fuego, picos de hierro forjado y ganchos, y monstruos. Puede tirar un {@dice d8} o elegir entre las opciones en la tabla Opciones de rendimiento para determinar su estilo de rendimiento preferido.",
             {
               "type": "table",
               "caption": "Performance Options",
@@ -59360,7 +59360,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "El Culto de Rakdos es todo menos organizado. Los individuos se mueven frecuentemente de una tropa de rendimiento a otra. Casi todos los miembros del culto conocen a ex castmates ahora en diferentes grupos, lo que permite la posibilidad de una red generalizada de contactos.",
-            "Rodar dos veces en la mesa de contactos Rakdos (para un aliado y un rival) y una vez en la mesa de contactos de Non-Rakdos.",
+            "tirar dos veces en la mesa de contactos Rakdos (para un aliado y un rival) y una vez en la mesa de contactos de Non-Rakdos.",
             {
               "type": "table",
               "caption": "Rakdos Contacts",
@@ -60558,7 +60558,7 @@
           ],
           "name_es": "Recompensas",
           "entries_es": [
-            "Cuando usted hace su personaje, usted puede rodar una vez en la tabla de Trinkets recompensado en lugar de en la tabla de Trinkets en el {@book Player's Handbook|PHB} para su trinket inicial.",
+            "Cuando usted hace su personaje, usted puede tirar una vez en la tabla de Trinkets recompensado en lugar de en la tabla de Trinkets en el {@book Player's Handbook|PHB} para su trinket inicial.",
             {
               "type": "table",
               "colStyles": [
@@ -60811,7 +60811,7 @@
           ],
           "name_es": "Recompensas",
           "entries_es": [
-            "Cuando usted hace su personaje, usted puede rodar una vez en la tabla de Trinkets recompensado en lugar de en la tabla de Trinkets en el {@book Player's Handbook|PHB} para su trinket inicial.",
+            "Cuando usted hace su personaje, usted puede tirar una vez en la tabla de Trinkets recompensado en lugar de en la tabla de Trinkets en el {@book Player's Handbook|PHB} para su trinket inicial.",
             {
               "type": "table",
               "colStyles": [
@@ -61814,7 +61814,7 @@
           ],
           "name_es": "Ruined Trinkets",
           "entries_es": [
-            "Cuando usted hace su personaje, usted puede rodar una vez en la tabla de Trinkets Ruined en lugar de en la tabla de Trinkets en el [[TAG0].",
+            "Cuando usted hace su personaje, usted puede tirar una vez en la tabla de Trinkets Ruined en lugar de en la tabla de Trinkets en el [[TAG0].",
             {
               "type": "table",
               "colStyles": [
@@ -62067,7 +62067,7 @@
           ],
           "name_es": "Ruined Trinkets",
           "entries_es": [
-            "Cuando usted hace su personaje, usted puede rodar una vez en la tabla de Trinkets Ruined en lugar de en la tabla de Trinkets en el [[TAG0].",
+            "Cuando usted hace su personaje, usted puede tirar una vez en la tabla de Trinkets Ruined en lugar de en la tabla de Trinkets en el [[TAG0].",
             {
               "type": "table",
               "colStyles": [
@@ -62191,7 +62191,7 @@
           ],
           "name_es": "Estilos Rune",
           "entries_es": [
-            "Cada tallador de runa tiene un estilo único y medio preferido. Para determinar cómo haces tus runas, puedes rodar sobre la mesa Rune Style.",
+            "Cada tallador de runa tiene un estilo único y medio preferido. Para determinar cómo haces tus runas, puedes tirar sobre la mesa Rune Style.",
             {
               "type": "table",
               "caption": "Rune Style",
@@ -62439,7 +62439,7 @@
           ],
           "name_es": "Estilos Rune",
           "entries_es": [
-            "Cada tallador de runa tiene un estilo único y medio preferido. Para determinar cómo haces tus runas, puedes rodar sobre la mesa Rune Style.",
+            "Cada tallador de runa tiene un estilo único y medio preferido. Para determinar cómo haces tus runas, puedes tirar sobre la mesa Rune Style.",
             {
               "type": "table",
               "caption": "Rune Style",
@@ -67789,7 +67789,7 @@
           ],
           "name_es": "La vida en el mar",
           "entries_es": [
-            "Su vida en el mar y en el puerto le ha moldeado; puede rodar en la siguiente tabla para determinar su impacto o elegir un elemento que mejor se ajuste a su carácter.",
+            "Su vida en el mar y en el puerto le ha moldeado; puede tirar en la siguiente tabla para determinar su impacto o elegir un elemento que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -68261,7 +68261,7 @@
           ],
           "name_es": "La vida en el mar",
           "entries_es": [
-            "Su vida en el mar y en el puerto le ha moldeado; puede rodar en la siguiente tabla para determinar su impacto o elegir un elemento que mejor se ajuste a su carácter.",
+            "Su vida en el mar y en el puerto le ha moldeado; puede tirar en la siguiente tabla para determinar su impacto o elegir un elemento que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -68851,7 +68851,7 @@
               ],
               "name_es": "Arrugas de Silverquill",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -68954,7 +68954,7 @@
               ],
               "name_es": "Arrugas de Silverquill",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -69187,7 +69187,7 @@
               ],
               "name_es": "Arrugas de Silverquill",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -69290,7 +69290,7 @@
               ],
               "name_es": "Arrugas de Silverquill",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -69373,7 +69373,7 @@
           ],
           "name_es": "Clades y Proyectos",
           "entries_es": [
-            "Como investigador Simic, usted forma parte de un clade —un grupo diverso de individuos que combinan talentos dispares en la búsqueda de un objetivo común— o un investigador en un proyecto especializado y a corto plazo centrado en abordar una necesidad inmediata. Puede rodar un {@dice d6} o elegir entre las opciones en la tabla Opciones de investigación para determinar su área de investigación.",
+            "Como investigador Simic, usted forma parte de un clade —un grupo diverso de individuos que combinan talentos dispares en la búsqueda de un objetivo común— o un investigador en un proyecto especializado y a corto plazo centrado en abordar una necesidad inmediata. Puede tirar un {@dice d6} o elegir entre las opciones en la tabla Opciones de investigación para determinar su área de investigación.",
             {
               "type": "table",
               "caption": "Research Options",
@@ -69962,7 +69962,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "La naturaleza fluida de las clades, cuyas listas abarcan diferentes laboratorios y cambian a medida que los investigadores descubren nuevos intereses, crea abundantes conexiones entre los Simic. Los miembros del gremio viven en hundimientos acuosos llamados zonots, y su aislamiento los protege de mucho contacto con los extraños. Sin embargo, un número justo de miembros simicos son antiguos miembros de otros gremios.",
-            "Rodar dos veces sobre la mesa de contactos simicos (para un aliado y un rival) y una vez sobre la mesa de contactos no simicos.",
+            "tirar dos veces sobre la mesa de contactos simicos (para un aliado y un rival) y una vez sobre la mesa de contactos no simicos.",
             {
               "type": "table",
               "caption": "Simic Contacts",
@@ -70165,7 +70165,7 @@
           ],
           "name_es": "Clades y Proyectos",
           "entries_es": [
-            "Como investigador Simic, usted forma parte de un clade —un grupo diverso de individuos que combinan talentos dispares en la búsqueda de un objetivo común— o un investigador en un proyecto especializado y a corto plazo centrado en abordar una necesidad inmediata. Puede rodar un {@dice d6} o elegir entre las opciones en la tabla Opciones de investigación para determinar su área de investigación.",
+            "Como investigador Simic, usted forma parte de un clade —un grupo diverso de individuos que combinan talentos dispares en la búsqueda de un objetivo común— o un investigador en un proyecto especializado y a corto plazo centrado en abordar una necesidad inmediata. Puede tirar un {@dice d6} o elegir entre las opciones en la tabla Opciones de investigación para determinar su área de investigación.",
             {
               "type": "table",
               "caption": "Research Options",
@@ -70754,7 +70754,7 @@
           "name_es": "Contactos",
           "entries_es": [
             "La naturaleza fluida de las clades, cuyas listas abarcan diferentes laboratorios y cambian a medida que los investigadores descubren nuevos intereses, crea abundantes conexiones entre los Simic. Los miembros del gremio viven en hundimientos acuosos llamados zonots, y su aislamiento los protege de mucho contacto con los extraños. Sin embargo, un número justo de miembros simicos son antiguos miembros de otros gremios.",
-            "Rodar dos veces sobre la mesa de contactos simicos (para un aliado y un rival) y una vez sobre la mesa de contactos no simicos.",
+            "tirar dos veces sobre la mesa de contactos simicos (para un aliado y un rival) y una vez sobre la mesa de contactos no simicos.",
             {
               "type": "table",
               "caption": "Simic Contacts",
@@ -70961,7 +70961,7 @@
           ],
           "name_es": "Claim to Fame",
           "entries_es": [
-            "Cada contrabandista tiene ese cuento que los separa de los criminales comunes. Por ingenios, habilidad para navegar, o lengua plateada, viviste para contar la historia, y lo contaste a menudo. Puede rodar en la siguiente tabla para determinar su reclamación o elegir uno que mejor se ajuste a su carácter.",
+            "Cada contrabandista tiene ese cuento que los separa de los criminales comunes. Por ingenios, habilidad para navegar, o lengua plateada, viviste para contar la historia, y lo contaste a menudo. Puede tirar en la siguiente tabla para determinar su reclamación o elegir uno que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -71432,7 +71432,7 @@
           ],
           "name_es": "Claim to Fame",
           "entries_es": [
-            "Cada contrabandista tiene ese cuento que los separa de los criminales comunes. Por ingenios, habilidad para navegar, o lengua plateada, viviste para contar la historia, y lo contaste a menudo. Puede rodar en la siguiente tabla para determinar su reclamación o elegir uno que mejor se ajuste a su carácter.",
+            "Cada contrabandista tiene ese cuento que los separa de los criminales comunes. Por ingenios, habilidad para navegar, o lengua plateada, viviste para contar la historia, y lo contaste a menudo. Puede tirar en la siguiente tabla para determinar su reclamación o elegir uno que mejor se ajuste a su carácter.",
             {
               "type": "table",
               "colLabels": [
@@ -80034,7 +80034,7 @@
           ],
           "name_es": "Traits de carácter",
           "entries_es": [
-            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede rodar de nuevo o elegir una entrada más apropiada en la tabla.",
+            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede tirar de nuevo o elegir una entrada más apropiada en la tabla.",
             "Estas tablas, aunque opcionales, son adecuadas para las aventuras temáticas Feywild y son ideales para cualquier personaje que tenga el fondo de mano feylost o Witchlight.",
             {
               "type": "table",
@@ -80590,7 +80590,7 @@
           ],
           "name_es": "Traits de carácter",
           "entries_es": [
-            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede rodar de nuevo o elegir una entrada más apropiada en la tabla.",
+            "A medida que los jugadores eligen fondos para sus personajes, pueden usar las siguientes tablas para ayudar a determinar los rasgos de personalidad de sus personajes, ideales, bonos y defectos. Los jugadores pueden usar estas tablas en lugar de las que aparecen en el {@book Player's Handbook|PHB}, o pueden mezclar y combinarlas. Si un resultado enrollado no tiene sentido para un personaje, el jugador puede tirar de nuevo o elegir una entrada más apropiada en la tabla.",
             "Estas tablas, aunque opcionales, son adecuadas para las aventuras temáticas Feywild y son ideales para cualquier personaje que tenga el fondo de mano feylost o Witchlight.",
             {
               "type": "table",
@@ -81003,7 +81003,7 @@
               ],
               "name_es": "Trinkets de Witherbloom",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -81106,7 +81106,7 @@
               ],
               "name_es": "Trinkets de Witherbloom",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]
@@ -81349,7 +81349,7 @@
               ],
               "name_es": "Trinkets de Witherbloom",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ],
@@ -81452,7 +81452,7 @@
               ],
               "name_es": "Trinkets de Witherbloom",
               "entries_es": [
-                "Cuando usted hace su carácter, usted puede rodar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
+                "Cuando usted hace su carácter, usted puede tirar una vez en la [[TAG0] tabla, en lugar de en la {@item trinket|phb|Trinkets table} en el {@book Player's Handbook|PHB}, para su trinket inicial."
               ]
             }
           ]

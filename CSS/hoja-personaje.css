@@ -922,6 +922,36 @@
   margin: 0;
 }
 
+.prof-chip {
+  display: inline-block;
+  background: #12192b;
+  border: 1px solid #25314a;
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin: 2px 4px 2px 0;
+  color: #e9efff;
+  cursor: default;
+}
+
+.prof-chip.dnd5-link-item {
+  cursor: pointer;
+  border-color: #7fb4ff;
+  color: #dcecff;
+}
+
+#prof-modal .modal-contenido {
+  max-width: 500px;
+}
+
+.prof-modal-body {
+  color: #dcecff;
+}
+
+.prof-modal-details {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
 /* Segundo circulito para Expertise (misma pinta que el de proeficiencia) */
 .skill-expertise-toggle {
     padding: 0;

@@ -33,7 +33,8 @@
       debounceTimer = setTimeout(() => {
         requestSpells({ query: value, classes: getSelectedClasses(root), limit: 5 })
           .then((response) => {
-            renderSuggestions(suggestions, response.spells || [], (name) => {
+            const deduped = dedupeSpellsPreferXphb(response.spells || []);
+            renderSuggestions(suggestions, deduped, (name) => {
               input.value = name;
               runSearch(root, name, resultsBody, modal);
             });
@@ -123,6 +124,32 @@
     container.innerHTML = '';
   }
 
+  function dedupeSpellsPreferXphb(spells) {
+    if (!Array.isArray(spells)) return [];
+    const byName = new Map();
+    const normalizeName = (name) =>
+      (name || '')
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    spells.forEach((spell) => {
+      if (!spell || !spell.name) return;
+      const key = normalizeName(spell.name);
+      if (!key) return;
+      const current = byName.get(key);
+      const source = (spell.source || '').toString().toUpperCase();
+      const isXphb = source === 'XPHB';
+      const currentIsXphb = current && (current.source || '').toString().toUpperCase() === 'XPHB';
+      if (!current || (isXphb && !currentIsXphb)) {
+        byName.set(key, spell);
+      }
+    });
+    return Array.from(byName.values());
+  }
+
   function runSearch(root, query, resultsBody, modal) {
     const classes = getSelectedClasses(root);
     if (!query && !classes.length) {
@@ -133,7 +160,8 @@
 
     requestSpells({ query, classes, limit: 40 })
       .then((response) => {
-        renderResults(resultsBody, response.spells || [], response.total || 0, query, classes);
+        const spells = dedupeSpellsPreferXphb(response.spells || []);
+        renderResults(resultsBody, spells, response.total || spells.length, query, classes);
         openModal(modal);
       })
       .catch(() => {

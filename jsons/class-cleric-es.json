@@ -3130,7 +3130,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de ortografía para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de deletrear. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de ortografía para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de lanzamiento. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -3227,7 +3227,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de ortografía para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de deletrear. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de ortografía para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de lanzamiento. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -3293,7 +3293,7 @@
       "entries_es": [
         "A 2o nivel, usted gana la capacidad de canalizar la energía divina directamente desde su deidad, utilizando esa energía para alimentar los efectos mágicos. Usted comienza con dos efectos tales: Turn Undead y un efecto determinado por su dominio. Algunos dominios le otorgan efectos adicionales a medida que avanza en niveles, como se indica en la descripción de dominio.",
         "Cuando usas tu Divinidad del Canal, eliges qué efecto crear. Entonces debe terminar un breve o largo descanso para usar su Divinidad Canal de nuevo.",
-        "Algunos efectos de Divinidad Canal requieren lanzamientos de ahorro. Cuando usas tal efecto de esta clase, el DC iguala tu hechizo clérigo salvo DC.",
+        "Algunos efectos de Divinidad Canal requieren lanzamientos de salvación. Cuando usas tal efecto de esta clase, el DC iguala tu hechizo clérigo salvo DC.",
         "A partir del sexto nivel, puede utilizar su Divinidad Canal dos veces entre reposos, y a partir del 18o nivel, puede utilizarlo tres veces entre reposos. Cuando terminas un breve o largo descanso, recuperas tus usos gastados.",
         {
           "type": "refClassFeature",
@@ -3343,7 +3343,7 @@
       ],
       "name_es": "Divinidad del canal: Turn Undead",
       "entries_es": [
-        "Como acción, ustedes presentan su santo símbolo y hablan una oración que censura a los no muertos. Cada no-muerto que puede ver o escuchar dentro de 30 pies de usted debe hacer una tirada de salvación de Sabiduría. Si la criatura falla su tiro de ahorro, se gira por 1 minuto o hasta que se necesita cualquier daño.",
+        "Como acción, ustedes presentan su santo símbolo y hablan una oración que censura a los no muertos. Cada no-muerto que puede ver o escuchar dentro de 30 pies de usted debe hacer una tirada de salvación de Sabiduría. Si la criatura falla su tiro de salvación, se gira por 1 minuto o hasta que se necesita cualquier daño.",
         "Una criatura volteada debe pasar sus turnos tratando de alejarse tan lejos de ti como pueda, y no puede moverse voluntariamente a un espacio dentro de 30 pies de ti. Tampoco puede tomar reacciones. Para su acción, sólo puede utilizar la acción {@action Dash} o tratar de escapar de un efecto que le impide moverse. Si no hay donde moverse, la criatura puede usar la acción {@action Dodge}."
       ]
     },
@@ -3522,7 +3522,7 @@
       "name_es": "Intervención Divina",
       "entries_es": [
         "A partir del décimo nivel, puedes pedir a tu deidad que intervenga en tu nombre cuando tu necesidad sea grande.",
-        "Implorar la ayuda de tu deidad requiere que uses tu acción. Describir la ayuda que buscas, y rodar dados percentiles. Si haces rodar un número igual o inferior a tu nivel clérigo, tu deidad interviene. El DM elige la naturaleza de la intervención; el efecto de cualquier hechizo clérigo o hechizo de dominio lérico sería apropiado. Si tu deidad interviene, no puedes usar esta característica de nuevo durante 7 días. De lo contrario, puedes usarlo de nuevo después de terminar un largo descanso.",
+        "Implorar la ayuda de tu deidad requiere que uses tu acción. Describir la ayuda que buscas, y tirar dados percentiles. Si haces tirar un número igual o inferior a tu nivel clérigo, tu deidad interviene. El DM elige la naturaleza de la intervención; el efecto de cualquier hechizo clérigo o hechizo de dominio lérico sería apropiado. Si tu deidad interviene, no puedes usar esta característica de nuevo durante 7 días. De lo contrario, puedes usarlo de nuevo después de terminar un largo descanso.",
         "A nivel 20, su llamada de intervención tiene éxito automáticamente, sin necesidad de rollo."
       ]
     },
@@ -4198,7 +4198,7 @@
       ],
       "name_es": "Divina chispa",
       "entries_es": [
-        "Como acción {@action Magic|XPHB}, señalas tu {@item Holy Symbol|XPHB} a otra criatura que puedes ver dentro de 30 pies de ti mismo y enfocar la energía divina en ella. Roll {@dice 1d8} y añade tu modificador de Sabiduría. Ustedes restauran {@variantrule Hit Points|XPHB} a la criatura igual a ese total o obligan a la criatura a hacer una tirada de salvación de Constitución. En un ahorro fallido, la criatura toma daño necrotic o radical (su elección) igual a ese total. En un ahorro exitoso, la criatura toma la mitad de daño (redondeado abajo).",
+        "Como acción {@action Magic|XPHB}, señalas tu {@item Holy Symbol|XPHB} a otra criatura que puedes ver dentro de 30 pies de ti mismo y enfocar la energía divina en ella. Roll {@dice 1d8} y añade tu modificador de Sabiduría. Ustedes restauran {@variantrule Hit Points|XPHB} a la criatura igual a ese total o obligan a la criatura a hacer una tirada de salvación de Constitución. En un salvación fallido, la criatura toma daño necrotic o radical (su elección) igual a ese total. En un salvación exitoso, la criatura toma la mitad de daño (redondeado abajo).",
         "Enrollas un [[TAG0] adicional cuando llegues a los niveles 7 ([TAG1]]), 13 ([TAG2]]) y 18 ({@dice 4d8})."
       ]
     },
@@ -4272,7 +4272,7 @@
       ],
       "name_es": "Sear Undead",
       "entries_es": [
-        "Cada vez que utiliza Turn Undead, puede rodar un número de d8s igual a su modificador de Sabiduría (mínimo de {@dice 1d8}) y añadir los rollos juntos. Cada Undead que falla sutirada de salvación contra ese uso de Turn Undead toma daño radiante igual al total del rollo. Este daño no termina el efecto de giro."
+        "Cada vez que utiliza Turn Undead, puede tirar un número de d8s igual a su modificador de Sabiduría (mínimo de {@dice 1d8}) y añadir los rollos juntos. Cada Undead que falla sutirada de salvación contra ese uso de Turn Undead toma daño radiante igual al total del rollo. Este daño no termina el efecto de giro."
       ]
     },
     {
@@ -4370,7 +4370,7 @@
       ],
       "name_es": "Strike Divino",
       "entries_es": [
-        "Una vez en cada uno de tus turnos cuando golpeas a una criatura con un rollo de ataque usando un arma, puedes hacer que el objetivo tome un daño extra [[TAG0] Necrotic o Radiant (su elección)."
+        "Una vez en cada uno de tus turnos cuando golpeas a una criatura con un tirada de ataque usando un arma, puedes hacer que el objetivo tome un daño extra [[TAG0] Necrotic o Radiant (su elección)."
       ]
     },
     {
@@ -5458,7 +5458,7 @@
       ],
       "name_es": "curación suprema",
       "entries_es": [
-        "A partir del nivel 17, cuando normalmente rodará uno o más dados para restaurar puntos de éxito con un hechizo, en lugar de utilizar el mayor número posible para cada die. Por ejemplo, en lugar de restaurar [[TAG0] puntos de éxito a una criatura, usted restaura 12."
+        "A partir del nivel 17, cuando normalmente tirará uno o más dados para restaurar puntos de éxito con un hechizo, en lugar de utilizar el mayor número posible para cada die. Por ejemplo, en lugar de restaurar [[TAG0] puntos de éxito a una criatura, usted restaura 12."
       ]
     },
     {
@@ -5598,7 +5598,7 @@
       ],
       "name_es": "Warding Flare",
       "entries_es": [
-        "También en el primer nivel, se puede interponer la luz divina entre usted y un enemigo atacante. Cuando usted es atacado por una criatura a menos de 30 pies de usted que puede ver, usted puede utilizar su reacción para imponer desventaja en el rollo de ataque, causando luz para destellar ante el atacante antes de que golpee o pierda. Un atacante que no puede ser {@condition blinded} es inmune a esta característica.",
+        "También en el primer nivel, se puede interponer la luz divina entre usted y un enemigo atacante. Cuando usted es atacado por una criatura a menos de 30 pies de usted que puede ver, usted puede utilizar su reacción para imponer desventaja en el tirada de ataque, causando luz para destellar ante el atacante antes de que golpee o pierda. Un atacante que no puede ser {@condition blinded} es inmune a esta característica.",
         "Puede utilizar esta característica un número de veces igual a su modificador de Sabiduría (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
@@ -6076,7 +6076,7 @@
       ],
       "name_es": "La ira de la tormenta",
       "entries_es": [
-        "También en el primer nivel, puede reprender a los atacantes. Cuando una criatura a 5 pies de ti que puedes ver te golpea con un ataque, puedes usar tu reacción para hacer que la criatura haga una tirada de salvación de Destreza. La criatura toma [[TAG0] relámpago o daño del trueno (su elección) en un fallidotirada de salvación, y la mitad del daño en uno exitoso.",
+        "También en el primer nivel, puede reprender a los atacantes. Cuando una criatura a 5 pies de ti que puedes ver te golpea con un ataque, puedes usar tu reacción para hacer que la criatura haga una tirada de salvación de Destreza. La criatura toma [[TAG0] relámpago o daño del trueno (su elección) en un fallido tirada de salvación, y la mitad del daño en uno exitoso.",
         "Puede utilizar esta característica un número de veces igual a su modificador de Sabiduría (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
@@ -6101,7 +6101,7 @@
       "name_es": "Divinidad del canal: La ira destructiva",
       "entries_es": [
         "A partir del segundo nivel, puede utilizar su Divinidad del Canal para controlar el poder de la tormenta con ferocidad sin control.",
-        "Cuando haces relámpagos o daños al trueno, puedes usar tu Divinidad del Canal para hacer frente al máximo daño, en lugar de rodar."
+        "Cuando haces relámpagos o daños al trueno, puedes usar tu Divinidad del Canal para hacer frente al máximo daño, en lugar de tirar."
       ]
     },
     {
@@ -6557,7 +6557,7 @@
       ],
       "name_es": "Divinidad del canal: huelga guiada",
       "entries_es": [
-        "A partir del segundo nivel, puede utilizar su Divinidad Canal para golpear con precisión sobrenatural. Cuando haces un rollo de ataque, puedes usar tu Divinidad de Canal para ganar un bono +10 al rollo. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
+        "A partir del segundo nivel, puede utilizar su Divinidad Canal para golpear con precisión sobrenatural. Cuando haces un tirada de ataque, puedes usar tu Divinidad de Canal para ganar un bono +10 al rollo. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
       ]
     },
     {
@@ -6579,7 +6579,7 @@
       ],
       "name_es": "Divinidad del Canal: La guerra La bendición de Dios",
       "entries_es": [
-        "A 6o nivel, cuando una criatura a 30 pies de usted hace un rollo de ataque, usted puede utilizar su reacción para otorgar a esa criatura un bono +10 al rollo, utilizando su Divinidad Canal. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
+        "A 6o nivel, cuando una criatura a 30 pies de usted hace un tirada de ataque, usted puede utilizar su reacción para otorgar a esa criatura un bono +10 al rollo, utilizando su Divinidad Canal. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
       ]
     },
     {
@@ -6768,7 +6768,7 @@
       ],
       "name_es": "Warding Flare",
       "entries_es": [
-        "Cuando elija este dominio a 1o nivel, puede interponer la luz divina entre usted y un enemigo atacante. Cuando usted es atacado por una criatura a menos de 30 pies de usted que puede ver, usted puede utilizar su reacción para imponer desventaja en el rollo de ataque, causando luz para destellar ante el atacante antes de que golpee o pierda. Un atacante que no puede ser {@condition blinded} es inmune a esta característica.",
+        "Cuando elija este dominio a 1o nivel, puede interponer la luz divina entre usted y un enemigo atacante. Cuando usted es atacado por una criatura a menos de 30 pies de usted que puede ver, usted puede utilizar su reacción para imponer desventaja en el tirada de ataque, causando luz para destellar ante el atacante antes de que golpee o pierda. Un atacante que no puede ser {@condition blinded} es inmune a esta característica.",
         "Puede utilizar esta característica un número de veces igual a su modificador de Sabiduría (un mínimo de una vez). Recuperas todos los usos gastados cuando terminas un largo descanso."
       ]
     },
@@ -7118,7 +7118,7 @@
       ],
       "name_es": "La bendición de Oketra",
       "entries_es": [
-        "A 6o nivel, cuando una criatura a 30 pies de usted hace un rollo de ataque, usted puede utilizar su reacción para otorgar a esa criatura un bono +10 al rollo, utilizando su Divinidad Canal. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
+        "A 6o nivel, cuando una criatura a 30 pies de usted hace un tirada de ataque, usted puede utilizar su reacción para otorgar a esa criatura un bono +10 al rollo, utilizando su Divinidad Canal. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
       ]
     },
     {
@@ -7175,7 +7175,7 @@
       ],
       "name_es": "curación suprema",
       "entries_es": [
-        "A partir del nivel 17, cuando normalmente rodará uno o más dados para restaurar puntos de éxito con un hechizo, en lugar de utilizar el mayor número posible para cada die. Por ejemplo, en lugar de restaurar [[TAG0] puntos de éxito a una criatura, usted restaura 12."
+        "A partir del nivel 17, cuando normalmente tirará uno o más dados para restaurar puntos de éxito con un hechizo, en lugar de utilizar el mayor número posible para cada die. Por ejemplo, en lugar de restaurar [[TAG0] puntos de éxito a una criatura, usted restaura 12."
       ]
     },
     {
@@ -7354,7 +7354,7 @@
       ],
       "name_es": "Divinidad del Canal: Carne de Fuerza",
       "entries_es": [
-        "A 2o nivel, puede utilizar su Divinidad del Canal para mejorar su poder físico. Cuando usted hace un rollo de ataque, verificación de habilidad, otirada de salvación usando Strength, usted puede utilizar su Divinity Canal para ganar un bono +10 al rollo. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el rollo tiene éxito o falla."
+        "A 2o nivel, puede utilizar su Divinidad del Canal para mejorar su poder físico. Cuando usted hace un tirada de ataque, verificación de habilidad, o tirada de salvación usando Strength, usted puede utilizar su Divinity Canal para ganar un bono +10 al rollo. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el rollo tiene éxito o falla."
       ]
     },
     {
@@ -7372,7 +7372,7 @@
       ],
       "name_es": "La bendición de Rhonas",
       "entries_es": [
-        "A 6o nivel, cuando una criatura a menos de 30 pies de usted hace un rollo de ataque, control de habilidad otirada de salvación usando Fuerza, puede utilizar su reacción para otorgar a esa criatura un bono +10 al rollo, utilizando su Divinidad Canal. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el rollo tiene éxito o falla."
+        "A 6o nivel, cuando una criatura a menos de 30 pies de usted hace un tirada de ataque, tirada de habilidad o tirada de salvación usando Fuerza, puede utilizar su reacción para otorgar a esa criatura un bono +10 al rollo, utilizando su Divinidad Canal. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el rollo tiene éxito o falla."
       ]
     },
     {
@@ -7612,7 +7612,7 @@
       "name_es": "Divinidad del Canal: Consumiendo Fervor",
       "entries_es": [
         "A partir del segundo nivel, puede utilizar su Divinidad del Canal para canalizar su celo hacia la ferocidad no comprobada.",
-        "Cuando usted hace rodar fuego o daño del trueno, puede utilizar su Divinidad del Canal para tratar el máximo daño en lugar de rodar."
+        "Cuando usted hace tirar fuego o daño del trueno, puede utilizar su Divinidad del Canal para tratar el máximo daño en lugar de tirar."
       ]
     },
     {
@@ -7690,7 +7690,7 @@
       "name_es": "Blaze of Glory",
       "entries_es": [
         "A partir del nivel 17, puedes retrasar la muerte por un instante para realizar un acto heroico final.",
-        "Cuando usted es reducido a 0 puntos de impacto por un atacante se puede ver, incluso si usted sería asesinado de forma directa, usted puede utilizar su reacción para moverse a su velocidad hacia el atacante y hacer un ataque de arma melee contra él, siempre y cuando el movimiento lo traiga a su alcance. Haces este ataque con ventaja. Si el ataque golpea, la criatura toma un daño extra {@damage 5d10} y un daño extra {@damage 5d10} del tipo del arma. Luego caes {@condition unconscious} y comienzas a hacer lanzamientos de ahorro de muerte como normales, o mueres si el daño que tomaste te hubiera matado de forma directa.",
+        "Cuando usted es reducido a 0 puntos de impacto por un atacante se puede ver, incluso si usted sería asesinado de forma directa, usted puede utilizar su reacción para moverse a su velocidad hacia el atacante y hacer un ataque de arma melee contra él, siempre y cuando el movimiento lo traiga a su alcance. Haces este ataque con ventaja. Si el ataque golpea, la criatura toma un daño extra {@damage 5d10} y un daño extra {@damage 5d10} del tipo del arma. Luego caes {@condition unconscious} y comienzas a hacer lanzamientos de salvación de muerte como normales, o mueres si el daño que tomaste te hubiera matado de forma directa.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -7866,7 +7866,7 @@
       "name_es": "Divinidad del Canal: Abjuración de Arcana",
       "entries_es": [
         "A partir del segundo nivel, puedes usar tu Divinidad del Canal para dañar a las criaturas de otro mundo.",
-        "Como acción, usted presenta su santo símbolo, y un celestial, elemental, fey, o fiend de su elección que está a menos de 30 pies de usted debe hacer un tiro de salvación de Sabiduría, siempre que la criatura pueda ver o escuchar. Si la criatura falla su tiro de ahorro, se gira por 1 minuto o hasta que se necesita cualquier daño.",
+        "Como acción, usted presenta su santo símbolo, y un celestial, elemental, fey, o fiend de su elección que está a menos de 30 pies de usted debe hacer un tiro de salvación de Sabiduría, siempre que la criatura pueda ver o escuchar. Si la criatura falla su tiro de salvación, se gira por 1 minuto o hasta que se necesita cualquier daño.",
         "Una criatura volteada debe pasar sus turnos tratando de alejarse tan lejos de ti como pueda, y no puede terminar voluntariamente su movimiento en un espacio dentro de 30 pies de ti. Tampoco puede tomar reacciones. Para su acción, sólo puede utilizar la acción {@action Dash} o tratar de escapar de un efecto que le impide moverse. Si no hay donde moverse, entonces la criatura puede usar la acción {@action Dodge}.",
         "Después de alcanzar el 5o nivel, cuando una criatura falla sutirada de salvación contra su función Arcane Abjuration, la criatura es desterrada por 1 minuto (como en el [[TAG0] hechizo, no {@status concentration}] requerido) si no está en su plano de origen, y su calificación de desafío está en o debajo de un determinado umbral, como se muestra a continuación.",
         {
@@ -8577,7 +8577,7 @@
       "name_es": "Bond emboldado",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede forjar un vínculo de empoderamiento entre las personas que están en paz entre sí. Como acción, usted elige una serie de criaturas dispuestas a menos de 30 pies de usted (esto puede incluirse a sí mismo) igual a su prima de competencia. Creas un vínculo mágico entre ellos durante 10 minutos o hasta que vuelvas a usar esta función. Mientras que cualquier criatura ligada está a menos de 30 pies de otra, la criatura puede rodar un {@dice d4} y añadir el número rodado a un rollo de ataque, un cheque de habilidad, o una tirada de salvación que hace. Cada criatura puede añadir el [[TAG0] no más de una vez por turno.",
+        "Usted puede forjar un vínculo de empoderamiento entre las personas que están en paz entre sí. Como acción, usted elige una serie de criaturas dispuestas a menos de 30 pies de usted (esto puede incluirse a sí mismo) igual a su prima de competencia. Creas un vínculo mágico entre ellos durante 10 minutos o hasta que vuelvas a usar esta función. Mientras que cualquier criatura ligada está a menos de 30 pies de otra, la criatura puede tirar un {@dice d4} y añadir el número rodado a un tirada de ataque, un cheque de habilidad, o una tirada de salvación que hace. Cada criatura puede añadir el [[TAG0] no más de una vez por turno.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
       ]
     },
@@ -9062,7 +9062,7 @@
       "name_es": "Bendición vigilante",
       "entries_es": [
         "[[TAG0]",
-        "La noche te ha enseñado a estar vigilante. Como acción, le das a una criatura que toques (incluyendo posiblemente a ti mismo) ventaja en el siguiente rollo de iniciativa que hace la criatura. Este beneficio termina inmediatamente después del rollo o si utiliza esta característica de nuevo."
+        "La noche te ha enseñado a estar vigilante. Como acción, le das a una criatura que toques (incluyendo posiblemente a ti mismo) ventaja en el siguiente tirada de iniciativa que hace la criatura. Este beneficio termina inmediatamente después del rollo o si utiliza esta característica de nuevo."
       ]
     },
     {
@@ -9374,7 +9374,7 @@
       "name_es": "Divinidad del Canal: Bond Crimson",
       "entries_es": [
         "A partir del segundo nivel, puede utilizar su Divinidad del Canal para formar un vínculo sobrenatural con una criatura que puede ver, o con una criatura para la cual usted posee una muestra de sangre. Este vínculo dura 1 hora o hasta que su {@status concentration} esté roto (como si se concentre en un hechizo).",
-        "Mientras el vínculo está en efecto, puede utilizar una acción para aprender la distancia y dirección aproximadas del objetivo de usted, así como sus puntos de impacto actuales y cualquier condición que lo afecte, siempre y cuando el objetivo esté a 10 millas de usted. Alternativamente, puedes usar tu acción para intentar conectarte con los sentidos del objetivo. Usted toma {@damage 2d6} daño necrótico y el objetivo hace una Constitución {@quickref saving throws|PHB|2|1|saving throw} contra su hechizo salvo DC. Con un ahorro exitoso, el bono termina. En un fallo, puede elegir ver o escuchar a través de los sentidos del objetivo por un número de minutos igual a su modificador de Sabiduría (mínimo 1 minuto). Durante este tiempo, usted es {@condition blinded} o {@condition deafened} (respectivamente) con respecto a sus propios sentidos. Cuando la conexión termina, el vínculo se pierde.",
+        "Mientras el vínculo está en efecto, puede utilizar una acción para aprender la distancia y dirección aproximadas del objetivo de usted, así como sus puntos de impacto actuales y cualquier condición que lo afecte, siempre y cuando el objetivo esté a 10 millas de usted. Alternativamente, puedes usar tu acción para intentar conectarte con los sentidos del objetivo. Usted toma {@damage 2d6} daño necrótico y el objetivo hace una Constitución {@quickref saving throws|PHB|2|1|saving throw} contra su hechizo salvo DC. Con un salvación exitoso, el bono termina. En un fallo, puede elegir ver o escuchar a través de los sentidos del objetivo por un número de minutos igual a su modificador de Sabiduría (mínimo 1 minuto). Durante este tiempo, usted es {@condition blinded} o {@condition deafened} (respectivamente) con respecto a sus propios sentidos. Cuando la conexión termina, el vínculo se pierde.",
         "Independientemente del resultado, el objetivo siente una ola de malestar sobre él cuando hace que esto ahorre."
       ]
     },
@@ -9759,7 +9759,7 @@
       ],
       "name_es": "Divinidad del Canal: Mente de Dos Lunas",
       "entries_es": [
-        "A partir del sexto nivel, puede utilizar su Divinidad del Canal para invocar la doble arcana de las lunas de Exandria. Al gastar un uso de la Divinidad del Canal, puede lanzar un segundo hechizo {@status concentration} mientras ya se concentra en un primer hechizo, siempre y cuando ambos hechizos estén en su lista de hechizos del Dominio de la Luna. Si usted necesita hacer una Constitución {@quickref saving throws|PHB|2|1|saving throw} para mantener su {@status concentration} en ambos hechizos, usted hace el ahorro con {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage}. En un fracaso, pierdes {@status concentration} en ambos hechizos."
+        "A partir del sexto nivel, puede utilizar su Divinidad del Canal para invocar la doble arcana de las lunas de Exandria. Al gastar un uso de la Divinidad del Canal, puede lanzar un segundo hechizo {@status concentration} mientras ya se concentra en un primer hechizo, siempre y cuando ambos hechizos estén en su lista de hechizos del Dominio de la Luna. Si usted necesita hacer una Constitución {@quickref saving throws|PHB|2|1|saving throw} para mantener su {@status concentration} en ambos hechizos, usted hace el salvación con {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage}. En un fracaso, pierdes {@status concentration} en ambos hechizos."
       ]
     },
     {
@@ -10191,7 +10191,7 @@
       ],
       "name_es": "Círculo de mortalidad",
       "entries_es": [
-        "A primer nivel, usted gana la capacidad de manipular la línea entre la vida y la muerte. Cuando normalmente rodarás uno o más dados para restaurar puntos de éxito con un hechizo a una criatura en 0 puntos de éxito, en lugar de utilizar el mayor número posible para cada muerte.",
+        "A primer nivel, usted gana la capacidad de manipular la línea entre la vida y la muerte. Cuando normalmente tirarás uno o más dados para restaurar puntos de éxito con un hechizo a una criatura en 0 puntos de éxito, en lugar de utilizar el mayor número posible para cada muerte.",
         "Además, usted aprende el [[TAG0] cantrip, que no cuenta con el número de cantrips clérigos que usted sabe. Para usted, tiene un rango de 30 pies, y puede lanzarlo como una acción de bonificación."
       ]
     },
@@ -10540,7 +10540,7 @@
       "name_es": "Mente sin restricciones",
       "entries_es": [
         "Ganas hasta 60 pies. Cuando usas este {@variantrule telepathy|XPHB}, puedes contactar simultáneamente a un número de criaturas iguales a tu modificador de Sabiduría (mínimo de uno).",
-        "Además, usted gana la competencia en los lanzamientos de ahorro de inteligencia. Si usted ya tiene esta competencia, usted gana el ahorro de la habilidad tiro con una habilidad en la que le falta."
+        "Además, usted gana la competencia en los lanzamientos de salvación de inteligencia. Si usted ya tiene esta competencia, usted gana el salvación de la habilidad tiro con una habilidad en la que le falta."
       ]
     },
     {
@@ -11669,7 +11669,7 @@
       ],
       "name_es": "curación suprema",
       "entries_es": [
-        "Cuando normalmente rodar uno o más dados para restaurar {@variantrule Hit Points|XPHB} a una criatura con un hechizo o Divinidad del Canal, no tire esos dados para la curación; en lugar de utilizar el mayor número posible para cada muerte. Por ejemplo, en lugar de restaurar {@dice 2d6} {@variantrule Hit Points|XPHB} a una criatura con un hechizo, usted restaura 12."
+        "Cuando normalmente tirar uno o más dados para restaurar {@variantrule Hit Points|XPHB} a una criatura con un hechizo o Divinidad del Canal, no tire esos dados para la curación; en lugar de utilizar el mayor número posible para cada muerte. Por ejemplo, en lugar de restaurar {@dice 2d6} {@variantrule Hit Points|XPHB} a una criatura con un hechizo, usted restaura 12."
       ]
     },
     {
@@ -11814,7 +11814,7 @@
       ],
       "name_es": "Radiancia del amanecer",
       "entries_es": [
-        "Como acción {@action Magic|XPHB}, presentas tu {@item Holy Symbol|XPHB} y gastas un uso de tu Divinidad del Canal para emitir un flash de luz en un 30 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originado por ti mismo. Cualquier mágico {@variantrule Darkness|XPHB} —como el creado por el hechizo {@spell Darkness|XPHB}]— en esa área se disipa. Además, cada criatura de su elección en esa área debe hacer una tirada de salvación de Constitución, tomando daño radiante igual a {@dice 2d10} más su nivel clérico en un ahorro fallido o la mitad de daño en un éxito."
+        "Como acción {@action Magic|XPHB}, presentas tu {@item Holy Symbol|XPHB} y gastas un uso de tu Divinidad del Canal para emitir un flash de luz en un 30 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originado por ti mismo. Cualquier mágico {@variantrule Darkness|XPHB} —como el creado por el hechizo {@spell Darkness|XPHB}]— en esa área se disipa. Además, cada criatura de su elección en esa área debe hacer una tirada de salvación de Constitución, tomando daño radiante igual a {@dice 2d10} más su nivel clérico en un salvación fallido o la mitad de daño en un éxito."
       ]
     },
     {
@@ -11833,7 +11833,7 @@
       ],
       "name_es": "Warding Flare",
       "entries_es": [
-        "Cuando una criatura que puedes ver dentro de 30 pies de ti mismo hace un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} para imponer {@variantrule Disadvantage|XPHB} en el rollo de ataque, provocando que la luz brille antes de que golpee o pierda.",
+        "Cuando una criatura que puedes ver dentro de 30 pies de ti mismo hace un tirada de ataque, puedes tomar un {@variantrule Reaction|XPHB} para imponer {@variantrule Disadvantage|XPHB} en el tirada de ataque, provocando que la luz brille antes de que golpee o pierda.",
         "Puede utilizar esta característica un número de veces igual a su modificador de Sabiduría (mínimo de una vez). Usted recupera todos los usos gastados cuando termina un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -11873,7 +11873,7 @@
       ],
       "name_es": "Corona de Luz",
       "entries_es": [
-        "Como acción {@action Magic|XPHB}, se hace emitir un aura de luz solar que dura 1 minuto o hasta que lo despida (no se requiere acción). Usted emite {@variantrule Bright Light|XPHB} en un radio de 60 pies y {@variantrule Dim Light|XPHB} por 30 pies adicionales. Sus enemigos en el {@variantrule Bright Light|XPHB} tienen {@variantrule Disadvantage|XPHB} sobre los lanzamientos de ahorro contra su Radiancia del Amanecer y cualquier hechizo que trate el Fuego o daños radiantes.",
+        "Como acción {@action Magic|XPHB}, se hace emitir un aura de luz solar que dura 1 minuto o hasta que lo despida (no se requiere acción). Usted emite {@variantrule Bright Light|XPHB} en un radio de 60 pies y {@variantrule Dim Light|XPHB} por 30 pies adicionales. Sus enemigos en el {@variantrule Bright Light|XPHB} tienen {@variantrule Disadvantage|XPHB} sobre los lanzamientos de salvación contra su Radiancia del Amanecer y cualquier hechizo que trate el Fuego o daños radiantes.",
         "Puede utilizar esta característica varias veces igual a su modificador de Sabiduría (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -12308,7 +12308,7 @@
       ],
       "name_es": "Strike guiado",
       "entries_es": [
-        "Cuando usted o una criatura a menos de 30 pies de usted pierde con un rollo de ataque, usted puede gastar un uso de su Divinidad Canal y dar ese rollo un +10 bono, potencialmente causando que golpeó. Cuando usas esta característica para beneficiar el rollo de ataque de otra criatura, debes tomar un {@variantrule Reaction|XPHB} para hacerlo."
+        "Cuando usted o una criatura a menos de 30 pies de usted pierde con un tirada de ataque, usted puede gastar un uso de su Divinidad Canal y dar ese rollo un +10 bono, potencialmente causando que golpeó. Cuando usas esta característica para beneficiar el tirada de ataque de otra criatura, debes tomar un {@variantrule Reaction|XPHB} para hacerlo."
       ]
     },
     {

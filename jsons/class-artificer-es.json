@@ -856,7 +856,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -988,7 +988,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -1882,7 +1882,7 @@
       ],
       "name_es": "Alchemical Savant",
       "entries_es": [
-        "A 5o nivel, desarrollas el dominio magistral de químicos mágicos, mejorando la curación y el daño que creas a través de ellos. Cada vez que usted lanza un hechizo usando su {@item alchemist's supplies|PHB} como el foco de la ortografía, usted gana un bono a un rollo del hechizo. Ese rollo debe restaurar puntos de impacto o ser un rollo de daño que trate de ácido, fuego, necrotic o daño venenoso, y el bono equivale a su modificador de inteligencia (mínimo de +1)."
+        "A 5o nivel, desarrollas el dominio magistral de químicos mágicos, mejorando la curación y el daño que creas a través de ellos. Cada vez que usted lanza un hechizo usando su {@item alchemist's supplies|PHB} como el foco de la ortografía, usted gana un bono a un tirada del hechizo. Ese tirada debe restaurar puntos de impacto o ser un tirada de daño que trate de ácido, fuego, necrotic o daño venenoso, y el bono equivale a su modificador de inteligencia (mínimo de +1)."
       ]
     },
     {
@@ -2686,7 +2686,7 @@
       ],
       "name_es": "Guardian",
       "entries_es": [
-        "Cuando una criatura enorme o pequeña puede ver termina su turno a menos de 30 pies de usted, puede utilizar su reacción para forzarla mágicamente para hacer una tirada de salvación de fuerza contra su hechizo salvo DC. En un fallido ahorro, usted tira de la criatura hasta 25 pies directamente a un espacio no ocupado. Si tiras el blanco a un espacio a 5 pies de ti, puedes hacer un ataque de arma melee contra él como parte de esta reacción.",
+        "Cuando una criatura enorme o pequeña puede ver termina su turno a menos de 30 pies de usted, puede utilizar su reacción para forzarla mágicamente para hacer una tirada de salvación de fuerza contra su hechizo salvo DC. En un fallido salvación, usted tira de la criatura hasta 25 pies directamente a un espacio no ocupado. Si tiras el blanco a un espacio a 5 pies de ti, puedes hacer un ataque de arma melee contra él como parte de esta reacción.",
         "Usted puede utilizar esta reacción un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados de ella cuando termina un descanso largo."
       ]
     },
@@ -3014,7 +3014,7 @@
       "name_es": "Arcane Firearm",
       "entries_es": [
         "A 5o nivel, usted sabe cómo convertir una varita, personal o varilla en una arma de fuego arcana, un conducto para sus hechizos destructivos. Cuando termines un largo descanso, puedes usar {@item woodcarver's tools|PHB} para tallar sigiles especiales en una varita, personal o varilla y así convertirlo en tu arma de fuego arcana. Los sigiles desaparecen del objeto si después los tallas en un artículo diferente. Los sigiles duran indefinidamente.",
-        "Puede utilizar su arma de fuego arcano como un foco de ortografía para sus hechizos de artificio. Cuando usted lanzó un hechizo artificio a través de la arma de fuego, rodar un {@damage d8}, y usted gana un bono a uno de los rollos de daño del hechizo igual al número rodado."
+        "Puede utilizar su arma de fuego arcano como un foco de ortografía para sus hechizos de artificio. Cuando usted lanzó un hechizo artificio a través de la arma de fuego, tirar un {@damage d8}, y usted gana un bono a uno de los rollos de daño del hechizo igual al número rodado."
       ]
     },
     {

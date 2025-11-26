@@ -2159,7 +2159,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2235,7 +2235,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2254,7 +2254,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2278,7 +2278,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2297,7 +2297,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2391,7 +2391,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2410,7 +2410,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2434,7 +2434,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2453,7 +2453,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2593,7 +2593,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2669,7 +2669,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2688,7 +2688,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2712,7 +2712,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2731,7 +2731,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2825,7 +2825,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2844,7 +2844,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2868,7 +2868,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -2887,7 +2887,7 @@
                       "entries": [
                         "A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
                       ],
-                      "name_es": "Copiado de un Rollo",
+                      "name_es": "Copiado de un pergamino de hechizos",
                       "entries_es": [
                         "Un hechizo mago en un pergamino de hechizo se puede copiar así como los hechizos en los libros de hechizos se pueden copiar. Cuando usted copia un hechizo de un pergamino de hechizo, debe tener éxito en un registro de inteligencia ([TAG0]) con un DC igual a 10 + el nivel del hechizo. Si el cheque tiene éxito, el hechizo se copia con éxito. Si el cheque tiene éxito o falla, el pergamino del hechizo es destruido."
                       ]
@@ -3304,7 +3304,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             },
             {
@@ -3452,7 +3452,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             },
             {
@@ -3607,7 +3607,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             },
             {
@@ -3755,7 +3755,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
               ]
             },
             {
@@ -4110,7 +4110,7 @@
       "name_es": "Cambio cronal",
       "entries_es": [
         "[[TAG0]",
-        "Puedes ejercer mágicamente un control limitado sobre el flujo del tiempo alrededor de una criatura. Como reacción, después de que usted o una criatura puede ver dentro de 30 pies de usted hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, usted puede obligar a la criatura a rerollar. Usted toma esta decisión después de ver si el rollo tiene éxito o falla. El objetivo debe utilizar el resultado del segundo rollo.",
+        "Puedes ejercer mágicamente un control limitado sobre el flujo del tiempo alrededor de una criatura. Como reacción, después de que usted o una criatura puede ver dentro de 30 pies de usted hace un tirada de ataque, un cheque de habilidad, o una tirada de salvación, usted puede obligar a la criatura a rerollar. Usted toma esta decisión después de ver si el rollo tiene éxito o falla. El objetivo debe utilizar el resultado del segundo rollo.",
         "Puede utilizar esta habilidad dos veces, y recuperar cualquier uso gastado cuando termine un descanso largo."
       ]
     },
@@ -4131,7 +4131,7 @@
       "name_es": "Sensibilización temporal",
       "entries_es": [
         "[[TAG0]",
-        "Puede agregar su modificador de Inteligencia a sus rollos de iniciativa."
+        "Puede agregar su modificador de Inteligencia a sus tirada de iniciativa."
       ]
     },
     {
@@ -4198,7 +4198,7 @@
       "name_es": "Convergent Future",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede mirar a través de posibles futuros y mágicamente tirar uno de ellos en eventos alrededor de usted, asegurando un resultado particular. Cuando usted o una criatura puede ver dentro de 60 pies de usted hace un rollo de ataque, un cheque de habilidad, o una tirada de salvación, puede utilizar su reacción para ignorar el rollo de la muerte y decidir si el número rodado es el mínimo necesario para tener éxito o uno menos que ese número (su elección).",
+        "Usted puede mirar a través de posibles futuros y mágicamente tirar uno de ellos en eventos alrededor de usted, asegurando un resultado particular. Cuando usted o una criatura puede ver dentro de 60 pies de usted hace un tirada de ataque, un cheque de habilidad, o una tirada de salvación, puede utilizar su reacción para ignorar el tirada de la muerte y decidir si el número rodado es el mínimo necesario para tener éxito o uno menos que ese número (su elección).",
         "Cuando usas esta característica, obtienes un nivel de {@condition exhaustion}. Sólo al terminar un descanso largo se puede eliminar un nivel de [[TAG0] ganado de esta manera."
       ]
     },
@@ -4249,7 +4249,7 @@
       "entries_es": [
         "[[TAG0]",
         "Como acción, puedes alterar mágicamente el peso de un objeto o criatura que puedes ver a menos de 30 pies de ti. El objeto o la criatura debe ser grande o menor. El peso del objetivo se reduce a la mitad o se duplica hasta 1 minuto o hasta que su {@status concentration} termina (como si estuviera {@status concentration||concentrating} en un hechizo).",
-        "Mientras el peso de una criatura se reduce a la mitad por este efecto, la velocidad de la criatura aumenta en 10 pies, puede saltar el doble de lo normal, y tiene desventaja en los controles de fuerza y los tiros de ahorro de fuerza. Mientras el peso de una criatura se duplica por este efecto, la velocidad de la criatura se reduce en 10 pies, y tiene ventaja en los controles de fuerza y los tiros de ahorro de fuerza.",
+        "Mientras el peso de una criatura se reduce a la mitad por este efecto, la velocidad de la criatura aumenta en 10 pies, puede saltar el doble de lo normal, y tiene desventaja en los controles de fuerza y los tiros de salvación de fuerza. Mientras el peso de una criatura se duplica por este efecto, la velocidad de la criatura se reduce en 10 pies, y tiene ventaja en los controles de fuerza y los tiros de salvación de fuerza.",
         "Al alcanzar el décimo nivel de esta clase, se puede apuntar a un objeto o una criatura que es Huge o más pequeña."
       ]
     },
@@ -4315,7 +4315,7 @@
       "name_es": "Evento Horizonte",
       "entries_es": [
         "[[TAG0]",
-        "Como acción, se puede emitir mágicamente un poderoso campo de energía gravitacional que agita a otras criaturas por hasta 1 minuto o hasta que su {@status concentration} termina (como si estuviera {@status concentration||concentrating} en un hechizo). Por la duración, cada vez que una criatura hostil a usted comienza su turno a menos de 30 pies de usted, debe hacer una tirada de salvación de fuerza contra su hechizo salvo DC. En un ahorro fallido, toma {@damage 2d10} daño de fuerza, y su velocidad se reduce a 0 hasta el comienzo de su próximo turno. En un ahorro exitoso, toma la mitad del daño, y cada pie que mueve este giro cuesta 2 pies adicionales de movimiento.",
+        "Como acción, se puede emitir mágicamente un poderoso campo de energía gravitacional que agita a otras criaturas por hasta 1 minuto o hasta que su {@status concentration} termina (como si estuviera {@status concentration||concentrating} en un hechizo). Por la duración, cada vez que una criatura hostil a usted comienza su turno a menos de 30 pies de usted, debe hacer una tirada de salvación de fuerza contra su hechizo salvo DC. En un salvación fallido, toma {@damage 2d10} daño de fuerza, y su velocidad se reduce a 0 hasta el comienzo de su próximo turno. En un salvación exitoso, toma la mitad del daño, y cada pie que mueve este giro cuesta 2 pies adicionales de movimiento.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo o hasta que expende una ranura de hechizo de 3er nivel o superior en él."
       ]
     },
@@ -4644,8 +4644,8 @@
       ],
       "name_es": "Portent",
       "entries_es": [
-        "A partir del segundo nivel cuando eliges esta escuela, los vislumbres del futuro comienzan a presionar tu conciencia. Cuando termines un largo descanso, rodar dos {@dice d20}s y grabar los números rodados. Usted puede reemplazar cualquier rollo de ataque, ahorro de tiro, o control de habilidad hecho por usted o una criatura que usted puede ver con uno de estos rollos de falsificación. Usted debe elegir hacerlo antes del rollo, y puede reemplazar un rollo de esta manera sólo una vez por turno.",
-        "Cada rollo de foretelling se puede utilizar sólo una vez. Cuando terminas un largo descanso, pierdes cualquier rollo de faldeo sin usar."
+        "A partir del segundo nivel cuando eliges esta escuela, los vislumbres del futuro comienzan a presionar tu conciencia. Cuando termines un largo descanso, tirar dos {@dice d20}s y grabar los números rodados. Usted puede reemplazar cualquier tirada de ataque, tirada de salvacion, o tirada de habilidad hecho por usted o una criatura que usted puede ver con uno de estos rollos de falsificación. Usted debe elegir hacerlo antes del rollo, y puede reemplazar un tirada de esta manera sólo una vez por turno.",
+        "Cada tirada de foretelling se puede utilizar sólo una vez. Cuando terminas un largo descanso, pierdes cualquier tirada de faldeo sin usar."
       ]
     },
     {
@@ -4962,7 +4962,7 @@
       "entries_es": [
         "Comenzando en el segundo nivel cuando eliges esta escuela, tus palabras suaves y una mirada encantadora pueden mágicamente entristar a otra criatura. Como acción, elige una criatura que puedes ver a menos de 5 pies de ti. Si el objetivo puede verlo o escucharlo, debe tener éxito en una tirada de salvación de Sabiduría contra su hechizo mago excepto DC o ser {@condition charmed} por usted hasta el final de su próximo turno. La velocidad de la criatura [[TAG0] cae a 0, y la criatura es {@condition incapacitated} y visiblemente aturdida.",
         "En turnos posteriores, puede utilizar su acción para mantener este efecto, prolongando su duración hasta el final de su próximo turno. Sin embargo, el efecto termina si te alejas más de 5 pies de la criatura, si la criatura no puede ver ni oírte, o si la criatura toma daño.",
-        "Una vez que el efecto termina, o si la criatura tiene éxito en su lanzamiento inicial de ahorro contra este efecto, no puedes usar esta característica en esa criatura de nuevo hasta que termines un descanso largo."
+        "Una vez que el efecto termina, o si la criatura tiene éxito en su lanzamiento inicial de salvación contra este efecto, no puedes usar esta característica en esa criatura de nuevo hasta que termines un descanso largo."
       ]
     },
     {
@@ -4981,7 +4981,7 @@
       ],
       "name_es": "Instintivo Charm",
       "entries_es": [
-        "Comenzando en el sexto nivel, cuando una criatura que puedes ver dentro de 30 pies de ti hace un rollo de ataque contra ti, puedes usar tu reacción para desviar el ataque, siempre y cuando otra criatura esté dentro del alcance del ataque. El atacante debe hacer un lanzamiento de Sabiduría contra su hechizo mago salvar a DC. En un fallido ahorro, el atacante debe apuntar a la criatura que está más cercana a ella, no incluyendo a usted o a sí mismo. Si múltiples criaturas son más cercanas, el atacante elige cuál a apuntar. En un ahorro exitoso, no puedes usar esta característica en el atacante de nuevo hasta que termines un descanso largo.",
+        "Comenzando en el sexto nivel, cuando una criatura que puedes ver dentro de 30 pies de ti hace un tirada de ataque contra ti, puedes usar tu reacción para desviar el ataque, siempre y cuando otra criatura esté dentro del alcance del ataque. El atacante debe hacer un lanzamiento de Sabiduría contra su hechizo mago salvar a DC. En un fallido salvación, el atacante debe apuntar a la criatura que está más cercana a ella, no incluyendo a usted o a sí mismo. Si múltiples criaturas son más cercanas, el atacante elige cuál a apuntar. En un salvación exitoso, no puedes usar esta característica en el atacante de nuevo hasta que termines un descanso largo.",
         "Usted debe elegir utilizar esta característica antes de saber si el ataque golpea o falla. Las criaturas que no pueden ser {@condition charmed} son inmunes a este efecto."
       ]
     },
@@ -5095,7 +5095,7 @@
       ],
       "name_es": "Sculpt Spells",
       "entries_es": [
-        "Empezando a 2o nivel, puede crear bolsillos de seguridad relativa dentro de los efectos de sus hechizos de evocación. Cuando lanzas un hechizo de evocación que afecta a otras criaturas que puedes ver, puedes elegir un número de ellas igual a 1 + el nivel del hechizo. Las criaturas elegidas tienen éxito automáticamente en sus lanzamientos de ahorro contra el hechizo, y no tienen ningún daño si normalmente tomarían medio daño en un ahorro exitoso."
+        "Empezando a 2o nivel, puede crear bolsillos de seguridad relativa dentro de los efectos de sus hechizos de evocación. Cuando lanzas un hechizo de evocación que afecta a otras criaturas que puedes ver, puedes elegir un número de ellas igual a 1 + el nivel del hechizo. Las criaturas elegidas tienen éxito automáticamente en sus lanzamientos de salvación contra el hechizo, y no tienen ningún daño si normalmente tomarían medio daño en un salvación exitoso."
       ]
     },
     {
@@ -5135,7 +5135,7 @@
       ],
       "name_es": "Empowered Evocation",
       "entries_es": [
-        "A partir del nivel 10, puede agregar su modificador de Inteligencia a un rollo de daño de cualquier hechizo de evocación mago que usted lanzó."
+        "A partir del nivel 10, puede agregar su modificador de Inteligencia a un tirada de daño de cualquier hechizo de evocación mago que usted lanzó."
       ]
     },
     {
@@ -5265,7 +5265,7 @@
       ],
       "name_es": "Illusory Self",
       "entries_es": [
-        "Empezando a nivel 10, puedes crear un duplicado ilusorio de ti mismo como una reacción instantánea, casi instintiva al peligro. Cuando una criatura hace un rollo de ataque contra usted, puede utilizar su reacción para interponer el duplicado ilusorio entre el atacante y usted mismo. El ataque automáticamente te extraña, entonces la ilusión se disipa.",
+        "Empezando a nivel 10, puedes crear un duplicado ilusorio de ti mismo como una reacción instantánea, casi instintiva al peligro. Cuando una criatura hace un tirada de ataque contra usted, puede utilizar su reacción para interponer el duplicado ilusorio entre el atacante y usted mismo. El ataque automáticamente te extraña, entonces la ilusión se disipa.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un breve o largo descanso."
       ]
     },
@@ -6247,7 +6247,7 @@
       "entries_es": [
         "[[TAG0]",
         "Tu conexión con tu libro de palabras despilfarrado se ha vuelto tan profunda que tu alma se ha unido con ella. Mientras el libro está en su persona, usted tiene ventaja en todos los cheques de Inteligencia ([TAG0]]), ya que el libro de hechizos le ayuda a recordar lore mágico.",
-        "Además, si usted toma daño mientras la mente de su libro de hechizos se manifiesta, usted puede prevenir todo ese daño a usted mediante el uso de su reacción para desestimar la mente espectral, utilizando su magia para salvarse. Entonces rodar [[TAG0]. El libro de hechizos pierde temporalmente los hechizos de su elección que tienen un nivel de hechizo combinado igual a ese rollo o superior. Por ejemplo, si el total del rollo es 9, los hechizos desaparecen del libro que tiene un nivel combinado de al menos 9, lo que podría significar un hechizo de 9o nivel, tres hechizos de 3o nivel, o alguna otra combinación. Si no hay suficientes hechizos en el libro para cubrir este costo, usted cae a 0 puntos de éxito.",
+        "Además, si usted toma daño mientras la mente de su libro de hechizos se manifiesta, usted puede prevenir todo ese daño a usted mediante el uso de su reacción para desestimar la mente espectral, utilizando su magia para salvarse. Entonces tirar [[TAG0]. El libro de hechizos pierde temporalmente los hechizos de su elección que tienen un nivel de hechizo combinado igual a ese rollo o superior. Por ejemplo, si el total del rollo es 9, los hechizos desaparecen del libro que tiene un nivel combinado de al menos 9, lo que podría significar un hechizo de 9o nivel, tres hechizos de 3o nivel, o alguna otra combinación. Si no hay suficientes hechizos en el libro para cubrir este costo, usted cae a 0 puntos de éxito.",
         "Hasta que termines [[TAG0] de largos descansos, eres incapaz de lanzar los hechizos perdidos, incluso si los encuentras en un pergamino o en otro libro de hechizos. Después de terminar el número requerido de descansos, los hechizos reaparecen en el libro de hechizos.",
         "Una vez que usas esta reacción, no puedes hacerlo de nuevo hasta que termines un largo descanso."
       ]
@@ -6476,7 +6476,7 @@
       ],
       "name_es": "Wit táctico",
       "entries_es": [
-        "Comenzando en el segundo nivel, su gran capacidad para evaluar situaciones tácticas le permite actuar rápidamente en la batalla. Puedes darte un bono a tus rollos de iniciativa iguales a tu modificador de Inteligencia."
+        "Comenzando en el segundo nivel, su gran capacidad para evaluar situaciones tácticas le permite actuar rápidamente en la batalla. Puedes darte un bono a tus tirada de iniciativa iguales a tu modificador de Inteligencia."
       ]
     },
     {
@@ -6516,7 +6516,7 @@
       ],
       "name_es": "Magia duradera",
       "entries_es": [
-        "Comenzando a nivel 10, la magia que canalizas ayuda a evitar daños. Mientras mantiene {@status concentration} en un hechizo, usted tiene un bono +2 a AC y todos los lanzamientos de ahorro."
+        "Comenzando a nivel 10, la magia que canalizas ayuda a evitar daños. Mientras mantiene {@status concentration} en un hechizo, usted tiene un bono +2 a AC y todos los lanzamientos de salvación."
       ]
     },
     {
@@ -7182,7 +7182,7 @@
       ],
       "name_es": "Resistencia al gas",
       "entries_es": [
-        "Usted tiene [[TAG0] en los lanzamientos de ahorro contra hechizos, y usted tiene {@variantrule Resistance|XPHB} al daño de los hechizos."
+        "Usted tiene [[TAG0] en los lanzamientos de salvación contra hechizos, y usted tiene {@variantrule Resistance|XPHB} al daño de los hechizos."
       ]
     },
     {
@@ -7256,8 +7256,8 @@
       ],
       "name_es": "Portent",
       "entries_es": [
-        "Glimpses del futuro comienzan a presionar su conciencia. Cada vez que termines un {@variantrule Long Rest|XPHB}, rodar dos d20s y grabar los números rodados. Usted puede reemplazar cualquier [[TAG1] hecho por usted o una criatura que usted puede ver con uno de estos rollos de falsificación. Usted debe elegir hacerlo antes del rollo, y puede reemplazar un rollo de esta manera sólo una vez por turno.",
-        "Cada rollo de foretelling se puede utilizar sólo una vez. Cuando terminas un {@variantrule Long Rest|XPHB}, pierdes cualquier rollo de faldeo no utilizado."
+        "Glimpses del futuro comienzan a presionar su conciencia. Cada vez que termines un {@variantrule Long Rest|XPHB}, tirar dos d20s y grabar los números rodados. Usted puede reemplazar cualquier [[TAG1] hecho por usted o una criatura que usted puede ver con uno de estos rollos de falsificación. Usted debe elegir hacerlo antes del rollo, y puede reemplazar un tirada de esta manera sólo una vez por turno.",
+        "Cada tirada de foretelling se puede utilizar sólo una vez. Cuando terminas un {@variantrule Long Rest|XPHB}, pierdes cualquier tirada de faldeo no utilizado."
       ]
     },
     {
@@ -7536,7 +7536,7 @@
       ],
       "name_es": "Potent Cantrip",
       "entries_es": [
-        "Tus tiras dañinas afectan incluso a criaturas que evitan el hematoma del efecto. Cuando lanzas un bote a una criatura y te pierdes con el rollo de ataque o el objetivo tiene éxito en una tirada de salvación contra el cantrip, el objetivo toma la mitad del daño del cantrip (si hay) pero no sufre ningún efecto adicional del cantrip."
+        "Tus tiras dañinas afectan incluso a criaturas que evitan el hematoma del efecto. Cuando lanzas un bote a una criatura y te pierdes con el tirada de ataque o el objetivo tiene éxito en una tirada de salvación contra el cantrip, el objetivo toma la mitad del daño del cantrip (si hay) pero no sufre ningún efecto adicional del cantrip."
       ]
     },
     {
@@ -7556,7 +7556,7 @@
       ],
       "name_es": "Sculpt Spells",
       "entries_es": [
-        "Puede crear bolsillos de seguridad relativa dentro de los efectos de sus evocaciones. Cuando lanzas un hechizo de Evocación que afecta a otras criaturas que puedes ver, puedes elegir un número de ellas igual a 1 más el nivel del hechizo. Las criaturas elegidas tienen éxito automáticamente en sus lanzamientos de ahorro contra el hechizo, y no tienen ningún daño si normalmente tomarían medio daño en un ahorro exitoso."
+        "Puede crear bolsillos de seguridad relativa dentro de los efectos de sus evocaciones. Cuando lanzas un hechizo de Evocación que afecta a otras criaturas que puedes ver, puedes elegir un número de ellas igual a 1 más el nivel del hechizo. Las criaturas elegidas tienen éxito automáticamente en sus lanzamientos de salvación contra el hechizo, y no tienen ningún daño si normalmente tomarían medio daño en un salvación exitoso."
       ]
     },
     {
@@ -7576,7 +7576,7 @@
       ],
       "name_es": "Empowered Evocation",
       "entries_es": [
-        "Cada vez que lanzas un hechizo Wizard de la escuela de Evocación, puedes añadir tu modificador de Inteligencia a un rollo de daño de ese hechizo."
+        "Cada vez que lanzas un hechizo Wizard de la escuela de Evocación, puedes añadir tu modificador de Inteligencia a un tirada de daño de ese hechizo."
       ]
     },
     {
@@ -7712,7 +7712,7 @@
       ],
       "name_es": "Illusory Self",
       "entries_es": [
-        "Cuando una criatura te golpea con un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} interponer un duplicado ilusorio de ti mismo entre el atacante y tú mismo. El ataque automáticamente te extraña, entonces la ilusión se disipa.",
+        "Cuando una criatura te golpea con un tirada de ataque, puedes tomar un {@variantrule Reaction|XPHB} interponer un duplicado ilusorio de ti mismo entre el atacante y tú mismo. El ataque automáticamente te extraña, entonces la ilusión se disipa.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Short Rest|XPHB|Short} o {@variantrule Long Rest|XPHB}]. También puede restaurar su uso de la misma mediante el gasto de un nivel 2+ ranura de hechizo (no se requiere acción)."
       ]
     },

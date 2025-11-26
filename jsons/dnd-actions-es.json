@@ -210,7 +210,7 @@
       ],
       "name_es": "Ataque",
       "entries_es": [
-        "Cuando usted toma la acción de ataque, usted puede hacer un rollo de ataque con un arma o un {@variantrule Unarmed Strike|XPHB}.",
+        "Cuando usted toma la acción de ataque, usted puede hacer un tirada de ataque con un arma o un {@variantrule Unarmed Strike|XPHB}.",
         {
           "type": "entries",
           "entries": [
@@ -367,8 +367,8 @@
       ],
       "name_es": "Trastorno",
       "entries_es": [
-        "Una criatura puede usar un ataque de arma para golpear un arma u otro elemento del alcance de un objetivo. El atacante hace un rollo de ataque impugnado por la fuerza del objetivo ([TAG0]]) cheque o Destreza ({@skill Acrobatics}). Si el atacante gana el concurso, el ataque no causa ningún daño u otro efecto mal, pero el defensor deja caer el artículo.",
-        "El atacante tiene desventaja en su rollo de ataque si el objetivo está sosteniendo el artículo con dos o más manos. El objetivo tiene ventaja en su control de habilidad si es más grande que la criatura atacante, o desventaja si es más pequeño."
+        "Una criatura puede usar un ataque de arma para golpear un arma u otro elemento del alcance de un objetivo. El atacante hace un tirada de ataque impugnado por la fuerza del objetivo ([TAG0]]) cheque o Destreza ({@skill Acrobatics}). Si el atacante gana el concurso, el ataque no causa ningún daño u otro efecto mal, pero el defensor deja caer el artículo.",
+        "El atacante tiene desventaja en su tirada de ataque si el objetivo está sosteniendo el artículo con dos o más manos. El objetivo tiene ventaja en su tirada de habilidad si es más grande que la criatura atacante, o desventaja si es más pequeño."
       ]
     },
     {
@@ -428,7 +428,7 @@
       ],
       "name_es": "Dodge",
       "entries_es": [
-        "Cuando tomas la acción Dodge, te centras completamente en evitar ataques. Hasta el comienzo de su próximo turno, cualquier rollo de ataque hecho contra usted tiene desventaja si usted puede ver el atacante, y usted hace Destreza ahorro tira con ventaja. Usted pierde este beneficio si está incapacitado (como se explica en el apéndice) o si su velocidad baja a 0."
+        "Cuando tomas la acción Dodge, te centras completamente en evitar ataques. Hasta el comienzo de su próximo turno, cualquier tirada de ataque hecho contra usted tiene desventaja si usted puede ver el atacante, y usted hace Destreza salvación tira con ventaja. Usted pierde este beneficio si está incapacitado (como se explica en el apéndice) o si su velocidad baja a 0."
       ]
     },
     {
@@ -449,7 +449,7 @@
       ],
       "name_es": "Dodge",
       "entries_es": [
-        "Si usted toma la acción Dodge, usted gana los siguientes beneficios: hasta el comienzo de su próximo turno, cualquier rollo de ataque hecho contra usted tiene {@variantrule Disadvantage|XPHB} si usted puede ver el atacante, y usted hace Destreza {@variantrule Saving Throw|XPHB|saving throws} con {@variantrule Advantage|XPHB}].",
+        "Si usted toma la acción Dodge, usted gana los siguientes beneficios: hasta el comienzo de su próximo turno, cualquier tirada de ataque hecho contra usted tiene {@variantrule Disadvantage|XPHB} si usted puede ver el atacante, y usted hace Destreza {@variantrule Saving Throw|XPHB|saving throws} con {@variantrule Advantage|XPHB}].",
         "Usted pierde estos beneficios si usted tiene la condición {@condition Incapacitated|XPHB} o si su {@variantrule Speed|XPHB} es 0."
       ]
     },
@@ -652,7 +652,7 @@
       "name_es": "Ayuda",
       "entries_es": [
         "Puedes prestar tu ayuda a otra criatura en la terminación de una tarea. Cuando usted toma la acción de ayuda, la criatura que ayuda gana ventaja en el próximo cheque de habilidad que hace para realizar la tarea con la que está ayudando, siempre que haga el cheque antes del comienzo de su próximo turno.",
-        "Alternativamente, puedes ayudar a una criatura amistosa a atacar a una criatura a menos de 5 pies de ti. Usted feint, distrae al objetivo, o de alguna otra manera equipo para hacer el ataque de su aliado más eficaz. Si su aliado ataca al objetivo antes de su próximo turno, el primer rollo de ataque se hace con ventaja."
+        "Alternativamente, puedes ayudar a una criatura amistosa a atacar a una criatura a menos de 5 pies de ti. Usted feint, distrae al objetivo, o de alguna otra manera equipo para hacer el ataque de su aliado más eficaz. Si su aliado ataca al objetivo antes de su próximo turno, el primer tirada de ataque se hace con ventaja."
       ]
     },
     {
@@ -818,7 +818,7 @@
       "entries_es": [
         "Con la acción Hide, intenta ocultarse. Para hacerlo, debe tener éxito en un {@dc 15} Dexteridad ([TAG1]]) cheque mientras usted está {@variantrule Heavily Obscured|XPHB} o detrás {@variantrule Cover|XPHB|Three-Quarters Cover or Total Cover}, y usted debe estar fuera de la línea de visión de cualquier enemigo; si usted puede ver una criatura, usted puede discernir si puede ver usted.",
         "En un cheque exitoso, usted tiene la condición [[TAG0]. Toma nota del total de tu cheque, que es el DC para que una criatura te encuentre con un cheque de Sabiduría ([TAG1]).",
-        "Dejas de esconderte inmediatamente después de cualquiera de los siguientes casos: Haces un sonido más alto que un susurro, un enemigo te encuentra, haces un rollo de ataque, o lanzas un hechizo con un componente Verbal."
+        "Dejas de esconderte inmediatamente después de cualquiera de los siguientes casos: Haces un sonido más alto que un susurro, un enemigo te encuentra, haces un tirada de ataque, o lanzas un hechizo con un componente Verbal."
       ]
     },
     {
@@ -932,7 +932,7 @@
               ],
               "name_es": "Hesitant",
               "entries_es": [
-                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué control de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
+                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué tirada de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
               ]
             },
             {
@@ -1001,7 +1001,7 @@
               ],
               "name_es": "Hesitant",
               "entries_es": [
-                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué control de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
+                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué tirada de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
               ]
             },
             {
@@ -1077,7 +1077,7 @@
               ],
               "name_es": "Hesitant",
               "entries_es": [
-                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué control de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
+                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué tirada de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
               ]
             },
             {
@@ -1146,7 +1146,7 @@
               ],
               "name_es": "Hesitant",
               "entries_es": [
-                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué control de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
+                "Si usted insta al monstruo a hacer algo que es vacilante hacer, usted debe hacer un cheque de habilidad, que se ve afectado por la actitud del monstruo: Indiferente, Amistad o Hostile, cada uno de los cuales se define en este glosario. La tabla de Controles de Influencia sugiere qué tirada de habilidad hacer basado en cómo estás interactuando con el monstruo. El DM elige el cheque, que tiene un DC predeterminado igual a 15 o la puntuación de Inteligencia del monstruo, lo que sea mayor. En un cheque exitoso, el monstruo hace lo que se insta. En un cheque fallido, debe esperar 24 horas (o una duración fijada por el DM) antes de instarlo de la misma manera de nuevo."
               ]
             },
             {
@@ -1660,7 +1660,7 @@
       "name_es": "Estabilizar una criatura",
       "entries_es": [
         "Puede utilizar su acción para administrar primeros auxilios a una criatura {@condition unconscious} e intentar estabilizarla, lo que requiere un cheque exitoso {@dc 10}] de sabiduría ([TAG2]).",
-        "Una criatura estable no hace lanzamientos de ahorro de muerte, aunque tiene 0 puntos de éxito, pero sí permanece {@condition unconscious}. La criatura deja de ser estable, y debe empezar a hacer lanzamientos de salvación de muerte de nuevo, si se necesita algún daño. Una criatura estable que no se cura recupera 1 punto después de [[TAG1] horas."
+        "Una criatura estable no hace lanzamientos de salvación de muerte, aunque tiene 0 puntos de éxito, pero sí permanece {@condition unconscious}. La criatura deja de ser estable, y debe empezar a hacer lanzamientos de salvación de muerte de nuevo, si se necesita algún daño. Una criatura estable que no se cura recupera 1 punto después de [[TAG1] horas."
       ]
     },
     {
@@ -1816,7 +1816,7 @@
       ],
       "name_es": "Lucha contra dos armas",
       "entries_es": [
-        "Cuando usted toma la [[TAG0] acción en su turno y ataque con un arma de Luz, usted puede hacer un ataque adicional como un {@variantrule Bonus Action|XPHB} más adelante en el mismo turno. Ese ataque adicional debe hacerse con un arma de Luz diferente, y no agregas tu modificador de habilidad al daño del ataque extra a menos que ese modificador sea negativo. Por ejemplo, puede atacar con una {@item Shortsword|XPHB} de una mano y una {@item Dagger|XPHB}] en la otra usando la acción {@action Attack|XPHB} y una {@variantrule Bonus Action|XPHB}, pero no agrega su modificador de fuerza o de destreza al rollo de daño del {@variantrule Bonus Action|XPHB} a menos que ese modificador sea negativo."
+        "Cuando usted toma la [[TAG0] acción en su turno y ataque con un arma de Luz, usted puede hacer un ataque adicional como un {@variantrule Bonus Action|XPHB} más adelante en el mismo turno. Ese ataque adicional debe hacerse con un arma de Luz diferente, y no agregas tu modificador de habilidad al daño del ataque extra a menos que ese modificador sea negativo. Por ejemplo, puede atacar con una {@item Shortsword|XPHB} de una mano y una {@item Dagger|XPHB}] en la otra usando la acción {@action Attack|XPHB} y una {@variantrule Bonus Action|XPHB}, pero no agrega su modificador de fuerza o de destreza al tirada de daño del {@variantrule Bonus Action|XPHB} a menos que ese modificador sea negativo."
       ]
     },
     {

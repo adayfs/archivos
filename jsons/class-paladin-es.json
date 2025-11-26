@@ -1978,7 +1978,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2053,7 +2053,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un rollo de ataque con uno.",
+            "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2102,7 +2102,7 @@
       "entries_es": [
         "Su juramento le permite canalizar energía divina para alimentar efectos mágicos. Cada opción de Divinidad del Canal proporcionada por su juramento explica cómo utilizarlo.",
         "Cuando usas tu Divinidad del Canal, eliges la opción que debes usar. Entonces debe terminar un breve o largo descanso para usar su Divinidad Canal de nuevo.",
-        "Algunos efectos de Divinidad Canal requieren lanzamientos de ahorro. Cuando usas tal efecto de esta clase, el DC iguala tu hechizo paladín excepto DC."
+        "Algunos efectos de Divinidad Canal requieren lanzamientos de salvación. Cuando usas tal efecto de esta clase, el DC iguala tu hechizo paladín excepto DC."
       ]
     },
     {
@@ -3141,7 +3141,7 @@
       ],
       "name_es": "Radiant Strikes",
       "entries_es": [
-        "Sus huelgas ahora tienen poder sobrenatural. Cuando golpeas un blanco con un rollo de ataque usando un arma Melee o un {@variantrule Unarmed Strike|XPHB}, el objetivo toma un extra {@damage 1d8} Daño radiante."
+        "Sus huelgas ahora tienen poder sobrenatural. Cuando golpeas un blanco con un tirada de ataque usando un arma Melee o un {@variantrule Unarmed Strike|XPHB}, el objetivo toma un extra {@damage 1d8} Daño radiante."
       ]
     },
     {
@@ -3349,7 +3349,7 @@
       ],
       "name_es": "Control Undead",
       "entries_es": [
-        "Como acción, el paladín apunta a una criatura no muerta que él o ella pueden ver dentro de 30 pies de él o ella. El objetivo debe hacer una tirada de salvación de Sabiduría. En un fallido ahorro, el objetivo debe obedecer las órdenes del paladín durante las próximas 24 horas, o hasta que el paladín utilice esta opción de Divinidad Canal de nuevo. Un no-muerto cuya calificación de desafío es igual o superior al nivel del paladín es inmune a este efecto."
+        "Como acción, el paladín apunta a una criatura no muerta que él o ella pueden ver dentro de 30 pies de él o ella. El objetivo debe hacer una tirada de salvación de Sabiduría. En un fallido salvación, el objetivo debe obedecer las órdenes del paladín durante las próximas 24 horas, o hasta que el paladín utilice esta opción de Divinidad Canal de nuevo. Un no-muerto cuya calificación de desafío es igual o superior al nivel del paladín es inmune a este efecto."
       ]
     },
     {
@@ -3367,7 +3367,7 @@
       ],
       "name_es": "Aspectos terribles",
       "entries_es": [
-        "Como acción, el paladín canaliza las emociones más oscuras y las enfoca en una explosión de amenaza mágica. Cada criatura de la elección del paladín dentro de 30 pies del paladín debe hacer una tirada de salvación de Sabiduría si puede ver el paladín. En un ahorro fallido, el objetivo es {@condition frightened} del paladín por 1 minuto. Si una criatura [[TAG0] por este efecto termina su giro a más de 30 pies del paladín, puede intentar otrotirada de salvación de Sabiduría para terminar el efecto en él."
+        "Como acción, el paladín canaliza las emociones más oscuras y las enfoca en una explosión de amenaza mágica. Cada criatura de la elección del paladín dentro de 30 pies del paladín debe hacer una tirada de salvación de Sabiduría si puede ver el paladín. En un salvación fallido, el objetivo es {@condition frightened} del paladín por 1 minuto. Si una criatura [[TAG0] por este efecto termina su giro a más de 30 pies del paladín, puede intentar otro tirada de salvación de Sabiduría para terminar el efecto en él."
       ]
     },
     {
@@ -3970,7 +3970,7 @@
       ],
       "name_es": "Gire a los Infieles",
       "entries_es": [
-        "Usted puede utilizar su Divinidad del Canal para pronunciar palabras antiguas que son dolorosas para fey y amigos para escuchar. Como acción, usted presenta su santo símbolo, y cada fey o fiend dentro de 30 pies de usted que puede escuchar debe hacer una tirada de salvación de Sabiduría. En un fallido ahorro, la criatura se vuelve por 1 minuto o hasta que se necesita daño.",
+        "Usted puede utilizar su Divinidad del Canal para pronunciar palabras antiguas que son dolorosas para fey y amigos para escuchar. Como acción, usted presenta su santo símbolo, y cada fey o fiend dentro de 30 pies de usted que puede escuchar debe hacer una tirada de salvación de Sabiduría. En un fallido salvación, la criatura se vuelve por 1 minuto o hasta que se necesita daño.",
         "Una criatura volteada debe pasar sus turnos tratando de alejarse tan lejos de ti como pueda, y no puede moverse voluntariamente a un espacio dentro de 30 pies de ti. Tampoco puede tomar reacciones. Para su acción, sólo puede utilizar la acción {@action Dash} o tratar de escapar de un efecto que le impide moverse. Si no hay donde moverse, la criatura puede usar la acción {@action Dodge}.",
         "Si la verdadera forma de la criatura es ocultada por una ilusión, un cambio de forma u otro efecto, esa forma se revela mientras se vuelve."
       ]
@@ -4572,7 +4572,7 @@
       ],
       "name_es": "Gire el Inholy",
       "entries_es": [
-        "Como acción, usted presenta su santo símbolo y habla una oración que censura a los amigos y no muertos, utilizando su Divinidad Canal. Cada fiendiente o no muerto que puede ver o escuchar dentro de 30 pies de usted debe hacer una tirada de salvación de Sabiduría. Si la criatura falla su tiro de ahorro, se gira por 1 minuto o hasta que se necesita daño.",
+        "Como acción, usted presenta su santo símbolo y habla una oración que censura a los amigos y no muertos, utilizando su Divinidad Canal. Cada fiendiente o no muerto que puede ver o escuchar dentro de 30 pies de usted debe hacer una tirada de salvación de Sabiduría. Si la criatura falla su tiro de salvación, se gira por 1 minuto o hasta que se necesita daño.",
         "Una criatura volteada debe pasar sus turnos tratando de alejarse tan lejos de ti como pueda, y no puede moverse voluntariamente a un espacio dentro de 30 pies de ti. Tampoco puede tomar reacciones. Para su acción, sólo puede utilizar la acción {@action Dash} o tratar de escapar de un efecto que le impide moverse. Si no hay donde moverse, la criatura puede usar la acción {@action Dodge}."
       ]
     },
@@ -4704,8 +4704,8 @@
       "name_es": "Abjure Enemy",
       "entries_es": [
         "Como acción, usted presenta su santo símbolo y habla una oración de denuncia, utilizando su Divinidad Canal. Elige una criatura a menos de 60 pies de ti que puedas ver. Esa criatura debe hacer una tirada de salvación de sabiduría, a menos que sea inmune a ser {@condition frightened}. Los amigos y no muertos tienen desventaja en estetirada de salvación.",
-        "En un fallido ahorro, la criatura es {@condition frightened} por 1 minuto o hasta que se necesita cualquier daño. Mientras {@condition frightened}, la velocidad de la criatura es 0, y no puede beneficiarse de ningún bono a su velocidad.",
-        "En un ahorro exitoso, la velocidad de la criatura se reduce por 1 minuto o hasta que la criatura tome cualquier daño."
+        "En un fallido salvación, la criatura es {@condition frightened} por 1 minuto o hasta que se necesita cualquier daño. Mientras {@condition frightened}, la velocidad de la criatura es 0, y no puede beneficiarse de ningún bono a su velocidad.",
+        "En un salvación exitoso, la velocidad de la criatura se reduce por 1 minuto o hasta que la criatura tome cualquier daño."
       ]
     },
     {
@@ -5230,7 +5230,7 @@
       ],
       "name_es": "Champion Challenge",
       "entries_es": [
-        "Como una acción de bonificación, usted emite un desafío que obliga a otras criaturas a hacer batalla con usted. Cada criatura de su elección que usted puede ver dentro de 30 pies de usted debe hacer una tirada de salvación de Sabiduría. En un fallido ahorro, una criatura no puede moverse voluntariamente más de 30 pies de distancia de usted. Este efecto termina en la criatura si usted está {@condition incapacitated} o muere o si la criatura está a más de 30 pies de distancia de usted."
+        "Como una acción de bonificación, usted emite un desafío que obliga a otras criaturas a hacer batalla con usted. Cada criatura de su elección que usted puede ver dentro de 30 pies de usted debe hacer una tirada de salvación de Sabiduría. En un fallido salvación, una criatura no puede moverse voluntariamente más de 30 pies de distancia de usted. Este efecto termina en la criatura si usted está {@condition incapacitated} o muere o si la criatura está a más de 30 pies de distancia de usted."
       ]
     },
     {
@@ -5658,7 +5658,7 @@
       ],
       "name_es": "Espíritu inquebrantable",
       "entries_es": [
-        "A partir del 15o nivel, usted tiene ventaja en los lanzamientos de ahorro para evitar convertirse en {@condition paralyzed} o {@condition stunned}."
+        "A partir del 15o nivel, usted tiene ventaja en los lanzamientos de salvación para evitar convertirse en {@condition paralyzed} o {@condition stunned}."
       ]
     },
     {
@@ -6100,7 +6100,7 @@
       "name_es": "Gloriosa Defensa",
       "entries_es": [
         "[[TAG0]",
-        "Puedes convertir la defensa en una huelga repentina. Cuando usted u otra criatura puede ver dentro de 10 pies de usted es golpeado por un rollo de ataque, usted puede utilizar su reacción para otorgar un bono a la AC del objetivo contra ese ataque, potencialmente causando que se pierda. El bono equivale a su modificador de Charisma (mínimo de +1). Si el ataque falla, usted puede hacer un ataque de arma contra el atacante como parte de esta reacción, siempre que el atacante esté dentro del alcance de su arma.",
+        "Puedes convertir la defensa en una huelga repentina. Cuando usted u otra criatura puede ver dentro de 10 pies de usted es golpeado por un tirada de ataque, usted puede utilizar su reacción para otorgar un bono a la AC del objetivo contra ese ataque, potencialmente causando que se pierda. El bono equivale a su modificador de Charisma (mínimo de +1). Si el ataque falla, usted puede hacer un ataque de arma contra el atacante como parte de esta reacción, siempre que el atacante esté dentro del alcance de su arma.",
         "Puede utilizar esta característica varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un descanso largo."
       ]
     },
@@ -6419,7 +6419,7 @@
       ],
       "name_es": "Abjure el Extraplanar",
       "entries_es": [
-        "Puedes usar tu divinidad del Canal para castigar a seres inmundos. Como acción, usted presenta su santo símbolo y cada aberración, celestial, elemental, fey, o fiend dentro de 30 pies de usted que puede escuchar debe hacer un lanzamiento de salvación de Sabiduría. En un fallido ahorro, la criatura se vuelve por 1 minuto o hasta que se necesita daño.",
+        "Puedes usar tu divinidad del Canal para castigar a seres inmundos. Como acción, usted presenta su santo símbolo y cada aberración, celestial, elemental, fey, o fiend dentro de 30 pies de usted que puede escuchar debe hacer un lanzamiento de salvación de Sabiduría. En un fallido salvación, la criatura se vuelve por 1 minuto o hasta que se necesita daño.",
         "Una criatura volteada debe pasar sus turnos tratando de alejarse tan lejos de ti como pueda, y no puede terminar voluntariamente su movimiento en un espacio dentro de 30 pies de ti. Para su acción, sólo puede utilizar la acción {@action Dash} o tratar de escapar de un efecto que le impide moverse. Si no hay donde moverse, la criatura puede tomar la acción {@action Dodge}."
       ]
     },
@@ -6442,7 +6442,7 @@
       ],
       "name_es": "La voluntad del vigilante",
       "entries_es": [
-        "Puedes usar tu Divinidad del Canal para invertir tu presencia con el poder de guerra de tu fe. Como acción, puedes elegir una serie de criaturas que puedes ver a menos de 30 pies de ti, hasta un número igual a tu modificador de Charisma (mínimo de una criatura). Durante 1 minuto, ustedes y las criaturas elegidas tienen ventaja en los lanzamientos de inteligencia, sabiduría y ahorro de Charisma."
+        "Puedes usar tu Divinidad del Canal para invertir tu presencia con el poder de guerra de tu fe. Como acción, puedes elegir una serie de criaturas que puedes ver a menos de 30 pies de ti, hasta un número igual a tu modificador de Charisma (mínimo de una criatura). Durante 1 minuto, ustedes y las criaturas elegidas tienen ventaja en los lanzamientos de inteligencia, sabiduría y salvación de Charisma."
       ]
     },
     {
@@ -7063,7 +7063,7 @@
       ],
       "name_es": "Conquistando la presencia",
       "entries_es": [
-        "Puedes usar tu Divinidad del Canal para exudar una presencia aterradora. Como acción, obligas a cada criatura de tu elección que puedes ver dentro de 30 pies de ti para hacer una tirada de salvación de Sabiduría. En un fallido ahorro, una criatura se convierte en {@condition frightened} de ustedes por 1 minuto. La criatura [[TAG0] puede repetir estetirada de salvación al final de cada uno de sus turnos, terminando el efecto sobre sí misma en un éxito."
+        "Puedes usar tu Divinidad del Canal para exudar una presencia aterradora. Como acción, obligas a cada criatura de tu elección que puedes ver dentro de 30 pies de ti para hacer una tirada de salvación de Sabiduría. En un fallido salvación, una criatura se convierte en {@condition frightened} de ustedes por 1 minuto. La criatura [[TAG0] puede repetir estetirada de salvación al final de cada uno de sus turnos, terminando el efecto sobre sí misma en un éxito."
       ]
     },
     {
@@ -7085,7 +7085,7 @@
       ],
       "name_es": "Strike guiado",
       "entries_es": [
-        "Puedes usar tu Divinidad de Canal para golpear con precisión sobrenatural. Cuando haces un rollo de ataque, puedes usar tu Divinidad de Canal para ganar un bono +10 al rollo. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
+        "Puedes usar tu Divinidad de Canal para golpear con precisión sobrenatural. Cuando haces un tirada de ataque, puedes usar tu Divinidad de Canal para ganar un bono +10 al rollo. Usted toma esta opción después de ver el rollo, pero antes del DM dice si el ataque golpea o falla."
       ]
     },
     {
@@ -7618,7 +7618,7 @@
       ],
       "name_es": "Recuperar a los Violentos",
       "entries_es": [
-        "Puedes usar tu divinidad del Canal para reprender a los que usan la violencia. Inmediatamente después de que un atacante a menos de 30 pies de usted se ocupe de un ataque contra una criatura que no sea usted, usted puede usar su reacción para obligar al atacante a hacer una tirada de salvación de Sabiduría. En un ahorro fallido, el atacante toma daño radiante igual al daño que acaba de tratar. En un ahorro exitoso, se necesita la mitad de daño."
+        "Puedes usar tu divinidad del Canal para reprender a los que usan la violencia. Inmediatamente después de que un atacante a menos de 30 pies de usted se ocupe de un ataque contra una criatura que no sea usted, usted puede usar su reacción para obligar al atacante a hacer una tirada de salvación de Sabiduría. En un salvación fallido, el atacante toma daño radiante igual al daño que acaba de tratar. En un salvación exitoso, se necesita la mitad de daño."
       ]
     },
     {
@@ -8172,7 +8172,7 @@
       ],
       "name_es": "Marid's Surge",
       "entries_es": [
-        "El objetivo de tu Divinidad y cada criatura de tu elección en un 10 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originando de ti hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. Con un ahorro fallido, una criatura es empujada a 15 pies de distancia y tiene la condición de Prone."
+        "El objetivo de tu Divinidad y cada criatura de tu elección en un 10 pies {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originando de ti hacer una tirada de salvación de fuerza contra tu hechizo salvo DC. Con un salvación fallido, una criatura es empujada a 15 pies de distancia y tiene la condición de Prone."
       ]
     },
     {
@@ -8271,7 +8271,7 @@
       ],
       "name_es": "Elemental Rebuke",
       "entries_es": [
-        "Cuando te golpea un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño del ataque contra ti mismo (redondeado) y forzar al atacante a hacer una tirada de salvación de Dexteridad contra tu hechizo excepto DC. En un fallido ahorro, el atacante toma daño igual a {@dice 2d10} más su modificador de Charisma de uno de los siguientes tipos (su elección): Ácido, frío, fuego, rayo o Trueno. Con un ahorro exitoso, el atacante toma la mitad de los daños.",
+        "Cuando te golpea un tirada de ataque, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño del ataque contra ti mismo (redondeado) y forzar al atacante a hacer una tirada de salvación de Dexteridad contra tu hechizo excepto DC. En un fallido salvación, el atacante toma daño igual a {@dice 2d10} más su modificador de Charisma de uno de los siguientes tipos (su elección): Ácido, frío, fuego, rayo o Trueno. Con un salvación exitoso, el atacante toma la mitad de los daños.",
         "Puede utilizar esta característica varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -8358,7 +8358,7 @@
       ],
       "name_es": "La ira de la naturaleza",
       "entries_es": [
-        "Como acción {@action Magic|XPHB}, usted puede expulsar un uso de su Divinidad Canal para conjurar vides espectral alrededor de criaturas cercanas. Cada criatura de su elección que usted puede ver dentro de 15 pies de usted debe tener éxito en una tirada de salvación de fuerza o tener la condición [[TAG1] por 1 minuto. Una {@condition Restrained|XPHB} criatura repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+        "Como acción {@action Magic|XPHB}, usted puede expulsar un uso de su Divinidad Canal para conjurar vides espectral alrededor de criaturas cercanas. Cada criatura de su elección que usted puede ver dentro de 15 pies de usted debe tener éxito en una tirada de salvación de fuerza o tener la condición [[TAG1] por 1 minuto. Una {@condition Restrained|XPHB} criatura repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
       ]
     },
     {
@@ -8557,7 +8557,7 @@
           ],
           "name_es": "Diminish Defiance",
           "entries_es": [
-            "Enemigos en el aura tienen {@variantrule Disadvantage|XPHB} en ahorro lanzamientos contra sus hechizos y opciones de Divinidad Canal."
+            "Enemigos en el aura tienen {@variantrule Disadvantage|XPHB} en salvación lanzamientos contra sus hechizos y opciones de Divinidad Canal."
           ]
         },
         {
@@ -8594,7 +8594,7 @@
           ],
           "name_es": "Diminish Defiance",
           "entries_es": [
-            "Enemigos en el aura tienen {@variantrule Disadvantage|XPHB} en ahorro lanzamientos contra sus hechizos y opciones de Divinidad Canal."
+            "Enemigos en el aura tienen {@variantrule Disadvantage|XPHB} en salvación lanzamientos contra sus hechizos y opciones de Divinidad Canal."
           ]
         },
         {
@@ -9142,7 +9142,7 @@
       ],
       "name_es": "Gloriosa Defensa",
       "entries_es": [
-        "Puedes convertir la defensa en una huelga repentina. Cuando usted u otra criatura puede ver dentro de 10 pies de usted es golpeado por un rollo de ataque, usted puede tomar un {@variantrule Reaction|XPHB} otorgar un bono al AC del objetivo contra ese ataque, potencialmente causando que se pierda. El bono equivale a su modificador de Charisma (mínimo de +1). Si el ataque falla, usted puede hacer un ataque con un arma contra el atacante como parte de este {@variantrule Reaction|XPHB} si el atacante está dentro de la gama de su arma.",
+        "Puedes convertir la defensa en una huelga repentina. Cuando usted u otra criatura puede ver dentro de 10 pies de usted es golpeado por un tirada de ataque, usted puede tomar un {@variantrule Reaction|XPHB} otorgar un bono al AC del objetivo contra ese ataque, potencialmente causando que se pierda. El bono equivale a su modificador de Charisma (mínimo de +1). Si el ataque falla, usted puede hacer un ataque con un arma contra el atacante como parte de este {@variantrule Reaction|XPHB} si el atacante está dentro de la gama de su arma.",
         "Puede utilizar esta característica varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -9188,7 +9188,7 @@
           ],
           "name_es": "Unerring Strike",
           "entries_es": [
-            "Una vez en cada uno de tus turnos cuando haces un rollo de ataque con un arma y pierdes, puedes hacer que ese ataque golpee en su lugar."
+            "Una vez en cada uno de tus turnos cuando haces un tirada de ataque con un arma y pierdes, puedes hacer que ese ataque golpee en su lugar."
           ]
         }
       ],
@@ -9225,7 +9225,7 @@
           ],
           "name_es": "Unerring Strike",
           "entries_es": [
-            "Una vez en cada uno de tus turnos cuando haces un rollo de ataque con un arma y pierdes, puedes hacer que ese ataque golpee en su lugar."
+            "Una vez en cada uno de tus turnos cuando haces un tirada de ataque con un arma y pierdes, puedes hacer que ese ataque golpee en su lugar."
           ]
         }
       ]
@@ -9424,7 +9424,7 @@
       ],
       "name_es": "Soul of Vengeance",
       "entries_es": [
-        "Inmediatamente después de que una criatura bajo el efecto de su Voto de la Enemistad golpee o se pierda con un rollo de ataque, usted puede tomar un {@variantrule Reaction|XPHB} para hacer un simple ataque contra esa criatura si está dentro del alcance."
+        "Inmediatamente después de que una criatura bajo el efecto de su Voto de la Enemistad golpee o se pierda con un tirada de ataque, usted puede tomar un {@variantrule Reaction|XPHB} para hacer un simple ataque contra esa criatura si está dentro del alcance."
       ]
     },
     {

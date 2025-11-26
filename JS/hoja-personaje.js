@@ -742,6 +742,152 @@
     refreshCombatFromCache();
   }
 
+  // ---------- Proficiency Modals ----------
+  const ITEM_DATA_FILES = Object.freeze({
+    weapon: 'jsons/dnd-weapons.json',
+    armor: 'jsons/dnd-armors.json',
+    tool: 'jsons/dnd-tools.json',
+  });
+  const itemCache = {
+    weapon: null,
+    armor: null,
+    tool: null,
+  };
+
+  function preferXphbMap(map) {
+    const result = {};
+    if (!map || typeof map !== 'object') return result;
+    const normalizeKey = (entry) => {
+      const raw = (entry?.name || entry?.id || '').toString().toLowerCase();
+      return raw.replace(/-phb-classic|-xphb-one/g, '').trim();
+    };
+    Object.values(map).forEach((entry) => {
+      if (!entry) return;
+      const key = normalizeKey(entry) || (entry.id || '').toString().toLowerCase();
+      if (!key) return;
+      const current = result[key];
+      const source = (entry.source || '').toString().toUpperCase();
+      const isXphb = source === 'XPHB';
+      const hasXphb = current && (current.source || '').toString().toUpperCase() === 'XPHB';
+      if (!current || (isXphb && !hasXphb)) {
+        result[key] = entry;
+      }
+    });
+    return result;
+  }
+
+  function ensureProfModal() {
+    let modal = document.getElementById('prof-modal');
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.id = 'prof-modal';
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal-contenido">
+        <span class="close-prof-popup">&times;</span>
+        <h3 id="prof-modal-title"></h3>
+        <div id="prof-modal-body" class="prof-modal-body"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (ev) => {
+      if (ev.target === modal) modal.style.display = 'none';
+    });
+    modal.querySelector('.close-prof-popup')?.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    return modal;
+  }
+
+  function openProfModal(title, bodyHtml) {
+    const modal = ensureProfModal();
+    const titleEl = modal.querySelector('#prof-modal-title');
+    const bodyEl = modal.querySelector('#prof-modal-body');
+    if (titleEl) titleEl.textContent = title || '';
+    if (bodyEl) bodyEl.innerHTML = bodyHtml || '';
+    modal.style.display = 'flex';
+  }
+
+  function loadItemData(type) {
+    if (itemCache[type]) return Promise.resolve(itemCache[type]);
+    const file = ITEM_DATA_FILES[type];
+    if (!file) return Promise.resolve(null);
+    const url = getStaticDataUri(file);
+    const fallbackUrl =
+      file.startsWith('jsons/') && STATIC_DATA?.races
+        ? STATIC_DATA.races.replace(/dnd-races[^/]*\\.json$/i, file)
+        : null;
+
+    return fetch(url, { credentials: 'same-origin' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) {
+          itemCache[type] = data;
+          return data;
+        }
+        if (!fallbackUrl || fallbackUrl === url) return null;
+        return fetch(fallbackUrl, { credentials: 'same-origin' })
+          .then((res) => (res.ok ? res.json() : null))
+          .then((data2) => {
+            itemCache[type] = data2;
+            return data2;
+          })
+          .catch(() => null);
+      })
+      .catch(() => null);
+  }
+
+  function findItemEntry(type, ref) {
+    if (!ref) return null;
+    const [rawId] = ref.split('|');
+    const needle = slugifyWeaponId(rawId);
+    const data = itemCache[type];
+    if (!data) return null;
+    const key = type === 'armor' ? 'armors' : type === 'tool' ? 'tools' : 'weapons';
+    const list = data[key] || [];
+    const direct = list.find((item) => slugifyWeaponId(item.id) === needle);
+    if (direct) return direct;
+    return list.find((item) => {
+      const name = typeof item.name === 'object' ? item.name.es || item.name.en : item.name;
+      return slugifyWeaponId(name) === needle;
+    });
+  }
+
+  function renderItemDetails(type, entry) {
+    if (!entry) return '<p>No se encontró información.</p>';
+    const name = typeof entry.name === 'object' ? entry.name.es || entry.name.en || entry.id : entry.name;
+    const lines = [];
+    if (type === 'weapon') {
+      if (entry.dmg1) lines.push(`<strong>Daño:</strong> ${escapeHtml(entry.dmg1)} ${escapeHtml(entry.dmgType || '')}`);
+      if (entry.properties?.length) lines.push(`<strong>Propiedades:</strong> ${escapeHtml(entry.properties.join(', '))}`);
+      if (entry.category) lines.push(`<strong>Categoría:</strong> ${escapeHtml(entry.category)}`);
+      if (entry.range) lines.push(`<strong>Alcance:</strong> ${escapeHtml(entry.range)}`);
+    } else if (type === 'armor') {
+      if (entry.type) lines.push(`<strong>Tipo:</strong> ${escapeHtml(entry.type)}`);
+      if (entry.ac) lines.push(`<strong>CA:</strong> ${escapeHtml(entry.ac)}`);
+      if (entry.strength) lines.push(`<strong>Fuerza mín.:</strong> ${escapeHtml(entry.strength)}`);
+      if (entry.stealthDisadvantage) lines.push(`<strong>Sigilo:</strong> Desventaja`);
+    } else if (type === 'tool') {
+      if (entry.category) lines.push(`<strong>Categoría:</strong> ${escapeHtml(entry.category)}`);
+    }
+    if (entry.weight) lines.push(`<strong>Peso:</strong> ${escapeHtml(String(entry.weight))}`);
+    if (entry.value) lines.push(`<strong>Valor:</strong> ${escapeHtml(String(entry.value))}`);
+    return `<h4>${escapeHtml(name)}</h4><div class="prof-modal-details">${lines.join('<br>')}</div>`;
+  }
+
+  document.addEventListener('click', (ev) => {
+    const chip = ev.target.closest('.prof-chip.dnd5-link-item');
+    if (!chip) return;
+    const ref = chip.dataset.dnd5Ref || '';
+    const type = chip.dataset.profType || 'item';
+    loadItemData(type).then(() => {
+      const entry = findItemEntry(type, ref);
+      const body = renderItemDetails(type, entry);
+      const title = typeof entry?.name === 'object' ? entry.name.es || entry.name.en || '' : entry?.name || '';
+      openProfModal(title || chip.textContent || 'Detalle', body);
+    });
+  });
+
   function initSheetModal() {
     const overlay = document.getElementById('sheet-overlay');
     const openBtn = document.getElementById('btn-sheet-modal');
@@ -2487,6 +2633,17 @@
       .catch(() => null);
   }
 
+  function getStaticDataUri(filename) {
+    if (!STATIC_DATA?.races) return filename;
+    const base = STATIC_DATA.races.replace(/[^/]+$/, '');
+    if (filename.startsWith('jsons/')) {
+      // Sustituimos /data/ por /jsons/ para los ficheros locales.
+      const altBase = base.replace(/\/data\/?$/i, '/jsons/');
+      return altBase + filename.replace(/^jsons\//, '');
+    }
+    return base + filename;
+  }
+
   function loadCharacterData() {
     if (characterDataStore.data) {
       return Promise.resolve(characterDataStore.data);
@@ -2505,28 +2662,34 @@
       ];
       characterDataStore.promise = Promise.all(requests)
         .then(([races, backgrounds, classDetails, classList, feats, theories]) => {
-          const raceMap = {};
+          const raceMapRaw = {};
           (races?.races || []).forEach((race) => {
-            if (race?.id) raceMap[race.id] = race;
+            if (race?.id) raceMapRaw[race.id] = race;
           });
+          const raceMap = preferXphbMap(raceMapRaw);
 
-          const backgroundMap = {};
+          const backgroundMapRaw = {};
           (backgrounds?.backgrounds || []).forEach((bg) => {
-            if (bg?.id) backgroundMap[bg.id] = bg;
+            if (bg?.id) backgroundMapRaw[bg.id] = bg;
           });
+          const backgroundMap = preferXphbMap(backgroundMapRaw);
 
-          const classDetailMap = classDetails?.classes || {};
-          const classListMap = {};
-          (classList?.classes || []).forEach((cls) => {
-            if (cls?.id) classListMap[cls.id] = cls;
-          });
+          const classDetailMap = preferXphbMap(classDetails?.classes || {});
+          const classListMap = preferXphbMap(
+            (classList?.classes || []).reduce((acc, cls) => {
+              if (cls?.id) acc[cls.id] = cls;
+              return acc;
+            }, {})
+          );
 
-          const featMap = {};
-          (feats?.feats || []).forEach((feat) => {
-            if (!feat) return;
-            const key = feat.id || feat.name;
-            if (key) featMap[key] = feat;
-          });
+          const featMap = preferXphbMap(
+            (feats?.feats || []).reduce((acc, feat) => {
+              if (!feat) return acc;
+              const key = feat.id || feat.name;
+              if (key) acc[key] = feat;
+              return acc;
+            }, {})
+          );
 
           const fallbackTheories = getStaticEsotericTheoryList();
           const rawTheories =
@@ -2877,6 +3040,53 @@
     return (joined || '—') + typeLabel;
   }
 
+function normalizeProficiencyList(list) {
+    if (!Array.isArray(list)) return [];
+    const seen = new Set();
+    const filtered = [];
+    const skipTokens = /\b(phb|xphb|ua|tce|xge|dmg|scag)\b/i;
+    list.forEach((raw) => {
+      const text = (raw || '').toString().trim();
+      if (!text) return;
+      // Descarta entradas que parecen solo la fuente (phb, etc.).
+      if (!text.includes(':') && skipTokens.test(text)) return;
+      const normalized = text.replace(/\\s*[,;]\\s*/g, ', ').replace(/\\s+/g, ' ').trim();
+      const key = normalized.toLowerCase();
+      if (seen.has(key)) return;
+      seen.add(key);
+      filtered.push(normalized);
+    });
+    return filtered;
+}
+
+function renderProficiencyLinks(list, targetId, type = '') {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const items = Array.isArray(list) ? list : [];
+    if (!items.length) {
+      target.textContent = '—';
+      return;
+    }
+    const html = items
+      .map((entry) => {
+        const raw = (entry || '').toString();
+        const clean = raw.replace(/^[^:]+:\s*/, '').trim();
+        const match = clean.match(/\{@item\s+([^|}]+)\|([^|}]+)(?:\|([^}]+))?\}/i);
+        if (match) {
+          const name = match[3]?.trim() || match[1].trim();
+          const source = match[2]?.trim() || '';
+          const ref = `${match[1].trim()}|${source.toUpperCase()}`;
+          return `<span class="prof-chip dnd5-link dnd5-link-item" data-dnd5-tag="item" data-prof-type="${escapeHtml(
+            type
+          )}" data-dnd5-ref="${escapeHtml(ref)}">${escapeHtml(name)}</span>`;
+        }
+        const plain = strip5eTags(clean);
+        return `<span class="prof-chip${type === 'language' ? '' : ' prof-chip--plain'}">${escapeHtml(plain)}</span>`;
+      })
+      .join(' ');
+    target.innerHTML = html;
+  }
+
   function buildFallbackDerived(context) {
     const pbHidden = getNumberFromInput('cs_proeficiencia');
     const level = Math.max(1, context.level || 1);
@@ -3039,10 +3249,10 @@
     updateSaveDisplays(derived);
     updateSkillDisplays(derived);
 
-    setDisplayText('display_cs_armas', formatJoinedList(derived.weaponText));
-    setDisplayText('display_cs_armaduras', formatJoinedList(derived.armorText));
-    setDisplayText('display_cs_herramientas', formatJoinedList(derived.toolText));
-    setDisplayText('display_cs_idiomas', formatJoinedList(derived.languageText));
+    renderProficiencyLinks(derived.weaponText, 'display_cs_armas', 'weapon');
+    renderProficiencyLinks(derived.armorText, 'display_cs_armaduras', 'armor');
+    renderProficiencyLinks(derived.toolText, 'display_cs_herramientas', 'tool');
+    renderProficiencyLinks(derived.languageText, 'display_cs_idiomas', 'language');
 
     recomputeSkillsAndSaves();
   }
@@ -3196,22 +3406,20 @@
     list.forEach((entry) => {
       if (!entry) return;
       if (typeof entry === 'string') {
-        target.push(`${prefix ? `${prefix}: ` : ''}${strip5eTags(entry)}`);
+        target.push(entry);
       } else if (entry.type === 'fixed' && Array.isArray(entry.items)) {
-        target.push(`${prefix ? `${prefix}: ` : ''}${entry.items.map(strip5eTags).join(', ')}`);
+        entry.items.forEach((item) => target.push(item));
       } else if (entry.type === 'choice' && Array.isArray(entry.options)) {
-        target.push(
-          `${prefix ? `${prefix}: ` : ''}Elige ${entry.count || 1}: ${entry.options.map(strip5eTags).join(', ')}`
-        );
+        target.push(`Elige ${entry.count || 1}: ${entry.options.map(strip5eTags).join(', ')}`);
       } else if (typeof entry === 'object') {
         const keys = Object.keys(entry)
           .filter((key) => entry[key] && key !== 'type')
           .map(strip5eTags);
         if (keys.length) {
-          target.push(`${prefix ? `${prefix}: ` : ''}${keys.join(', ')}`);
+          target.push(keys.join(', '));
         }
       } else if (Array.isArray(entry)) {
-        target.push(`${prefix ? `${prefix}: ` : ''}${entry.map(strip5eTags).join(', ')}`);
+        entry.forEach((val) => target.push(val));
       }
     });
   }
@@ -3244,8 +3452,13 @@
 
   function strip5eTags(text) {
     if (typeof text !== 'string') return '';
-    return text
-      .replace(/\{@([^}|]+)\|([^}|]+)(?:\|[^}]*)?\}/gi, '$2')
+    const replaced = text.replace(/\{@item\s+([^|}]+)\|([^|}]+)(?:\|([^}]+))?\}/gi, (_, id, source, display) => {
+      return (display && display.trim()) || id.trim();
+    });
+    return replaced
+      .replace(/\{@([^}|]+)\|([^}|]+)(?:\|([^}]+))?\}/gi, (_, id, source, display) => {
+        return (display && display.trim()) || id.trim();
+      })
       .replace(/[{}]/g, '')
       .trim();
   }

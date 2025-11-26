@@ -369,7 +369,7 @@
           ],
           "name_es": "Manos curativas",
           "entries_es": [
-            "Como una acción, usted puede tocar a una criatura y rodar un número de d4s igual a su prima de competencia. La criatura recupera un número de puntos de éxito iguales al total rodado. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un largo descanso."
+            "Como una acción, usted puede tocar a una criatura y tirar un número de d4s igual a su prima de competencia. La criatura recupera un número de puntos de éxito iguales al total rodado. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un largo descanso."
           ]
         },
         {
@@ -896,7 +896,7 @@
           ],
           "name_es": "Fuego Astral",
           "entries_es": [
-            "Conoces uno de los siguientes cantrips de tu elección: {@spell dancing lights}, {@spell light}, o {@spell sacred flame}. Inteligencia, Sabiduría, o Charisma es su habilidad de deletrear para ello (escoge cuando selecciona esta carrera)."
+            "Conoces uno de los siguientes cantrips de tu elección: {@spell dancing lights}, {@spell light}, o {@spell sacred flame}. Inteligencia, Sabiduría, o Charisma es su habilidad de lanzamiento para ello (escoge cuando selecciona esta carrera)."
           ]
         },
         {
@@ -918,7 +918,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -1008,7 +1008,7 @@
           ],
           "name_es": "Construido para el éxito",
           "entries_es": [
-            "Puedes añadir un {@dice d4} a un rollo de ataque, control de habilidad o ahorro de tiro que hagas, y puedes hacerlo después de ver el rollo {@dice d20} pero antes de que se resuelvan los efectos del rollo. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Puedes añadir un {@dice d4} a un tirada de ataque, tirada de habilidad o tirada de salvacion que hagas, y puedes hacerlo después de ver el rollo {@dice d20} pero antes de que se resuelvan los efectos del rollo. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         },
         {
@@ -1020,7 +1020,7 @@
           ],
           "name_es": "Máquina de sanación",
           "entries_es": [
-            "Si el hechizo {@spell mending} es lanzado en usted, usted puede pasar un Hit Die, rodarlo, y recuperar un número de puntos de éxito igual al rollo más su modificador de Constitución (mínimo de 1 punto de impacto).",
+            "Si el hechizo {@spell mending} es lanzado en usted, usted puede pasar un Hit Die, tirarlo, y recuperar un número de puntos de éxito igual al rollo más su modificador de Constitución (mínimo de 1 punto de impacto).",
             "Además, su creador le diseñó para beneficiarse de varios hechizos que preservan la vida pero que normalmente no afectan a Constructos: {@spell cure wounds}, {@spell healing word}], {@spell mass cure wounds}, {@spell mass healing word}], y {@spell spare the dying}]."
           ]
         },
@@ -1441,7 +1441,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -1485,7 +1485,7 @@
           ],
           "name_es": "Ataque sorpresa",
           "entries_es": [
-            "Si golpeas a una criatura con un rollo de ataque, la criatura toma un daño extra [[TAG0] si no ha dado un giro todavía en el combate actual."
+            "Si golpeas a una criatura con un tirada de ataque, la criatura toma un daño extra [[TAG0] si no ha dado un giro todavía en el combate actual."
           ]
         }
       ]
@@ -2496,7 +2496,7 @@
           ],
           "name_es": "Edad",
           "entries_es": [
-            "El joven dragón crece rápidamente. Caminan horas después de la eclosión, alcanzan el tamaño y desarrollo de un niño humano de 10 años para los 3 años y llegan a la edad adulta para los 15 años. Viven alrededor de 80."
+            "El joven dragón crece rápidamente. Caminan horas después de la eclosión, alcanzan el tamaño y desartirada de un niño humano de 10 años para los 3 años y llegan a la edad adulta para los 15 años. Viven alrededor de 80."
           ]
         },
         {
@@ -2664,7 +2664,7 @@
           "name_es": "Guión de respiración",
           "entries_es": [
             "Puedes usar tu acción para exhalar energía destructiva. Su ascendencia dracónica determina el tamaño, la forma y el tipo de daño de la exhalación.",
-            "Cuando usted utiliza su arma de aliento, cada criatura en el área de la exhalación debe hacer una tirada de salvación, el tipo de que se determina por su ascendencia dracónica. El DC para estetirada de salvación equivale a 8 + su Modificador de Constitución + su bonificación de competencia. Una criatura toma [[TAG0] daño en un ahorro fallido, y la mitad de daño en uno exitoso. El daño aumenta a {@damage 3d6} a 6o nivel, {@damage 4d6} a 11o nivel, y {@damage 5d6} a 16o nivel.",
+            "Cuando usted utiliza su arma de aliento, cada criatura en el área de la exhalación debe hacer una tirada de salvación, el tipo de que se determina por su ascendencia dracónica. El DC para estetirada de salvación equivale a 8 + su Modificador de Constitución + su bonificación de competencia. Una criatura toma [[TAG0] daño en un salvación fallido, y la mitad de daño en uno exitoso. El daño aumenta a {@damage 3d6} a 6o nivel, {@damage 4d6} a 11o nivel, y {@damage 5d6} a 16o nivel.",
             "Después de utilizar su arma de aliento, no puede utilizarla de nuevo hasta que complete un breve o largo descanso."
           ]
         },
@@ -2837,7 +2837,7 @@
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes reemplazar uno de tus ataques con una exhalación de energía mágica en una potencia de 15 pies {@variantrule Cone [Area of Effect]|XPHB|Cone} o de 30 pies [[TAG2] que es de 5 pies de ancho (escoge la forma cada vez). Cada criatura en esa área debe hacer una tirada de salvación de la Dexteridad ([TAG3]] más su modificador de Constitución y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un ahorro fallido, una criatura toma {@damage 1d10} daño del tipo determinado por su rasgo de ascendencia Dracónica. En un ahorro exitoso, una criatura toma la mitad de daño. Este daño aumenta {@damage 1d10} cuando alcanza los niveles de caracteres 5 ([TAG7]]), 11 ([TAG8]]) y 17 ({@damage 4d10}).",
+            "Cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes reemplazar uno de tus ataques con una exhalación de energía mágica en una potencia de 15 pies {@variantrule Cone [Area of Effect]|XPHB|Cone} o de 30 pies [[TAG2] que es de 5 pies de ancho (escoge la forma cada vez). Cada criatura en esa área debe hacer una tirada de salvación de la Dexteridad ([TAG3]] más su modificador de Constitución y {@variantrule Proficiency|XPHB|Proficiency Bonus}). En un salvación fallido, una criatura toma {@damage 1d10} daño del tipo determinado por su rasgo de ascendencia Dracónica. En un salvación exitoso, una criatura toma la mitad de daño. Este daño aumenta {@damage 1d10} cuando alcanza los niveles de caracteres 5 ([TAG7]]), 11 ([TAG8]]) y 17 ({@damage 4d10}).",
             "Puede utilizar este arma de respiración un número de veces igual a su {@variantrule Proficiency|XPHB|Proficiency Bonus}, y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
           ]
         },
@@ -2977,7 +2977,7 @@
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en una línea de 30 pies que es de 5 pies de ancho. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia cromática. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
+            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en una línea de 30 pies que es de 5 pies de ancho. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un salvación fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia cromática. En un salvación exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
             "Puede utilizar su Arma de Respiración un número de veces igual a su bonificación de competencia, y recuperar todos los usos gastados cuando termine un descanso largo."
           ]
         },
@@ -3106,7 +3106,7 @@
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia gema. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
+            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un salvación fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia gema. En un salvación exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
             "Puede utilizar su Arma de Respiración un número de veces igual a su bonificación de competencia, y recuperar todos los usos gastados cuando termine un descanso largo."
           ]
         },
@@ -3246,7 +3246,7 @@
           ],
           "name_es": "Guión de respiración",
           "entries_es": [
-            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un ahorro fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia metálica. En un ahorro exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
+            "Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación de energía mágica en un cono de 15 pies. Cada criatura en ese área debe hacer una tirada de salvación de Dexteridad (DC = 8 + su modificador de Constitución + su prima de competencia). En un salvación fallido, la criatura toma {@damage 1d10} daño del tipo asociado con su ascendencia metálica. En un salvación exitoso, se necesita la mitad de daño. Este daño aumenta en [[TAG1] cuando alcanzas el quinto nivel ([TAG3]]), el 11o nivel ([TAG4]]) y el 17o nivel ([TAG5]).",
             "Puede utilizar su Arma de Respiración un número de veces igual a su bonificación de competencia, y recuperar todos los usos gastados cuando termine un descanso largo."
           ]
         },
@@ -3298,7 +3298,7 @@
           ],
           "name_es": "Arma de respiración metálica",
           "entries_es": [
-            "A 5o nivel, usted gana un segundo arma de aliento. Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación en un cono de 15 pies. El ahorro DC para este aliento es 8 + su Modificador de Constitución + su prima de competencia. Cuando utilices este rasgo, elige uno:",
+            "A 5o nivel, usted gana un segundo arma de aliento. Cuando usted toma la acción [[TAG0] en su turno, usted puede reemplazar uno de sus ataques con una exhalación en un cono de 15 pies. El salvación DC para este aliento es 8 + su Modificador de Constitución + su prima de competencia. Cuando utilices este rasgo, elige uno:",
             {
               "type": "list",
               "style": "list-hang-notitle",
@@ -3395,7 +3395,7 @@
           ],
           "name_es": "Resiliencia enana",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition poisoned} en usted mismo. También tiene resistencia al daño venenoso."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition poisoned} en usted mismo. También tiene resistencia al daño venenoso."
           ]
         },
         {
@@ -3406,7 +3406,7 @@
           ],
           "name_es": "Fortaleza Psionic",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la {@condition charmed} o {@condition stunned} condición en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la {@condition charmed} o {@condition stunned} condición en usted mismo."
           ]
         }
       ]
@@ -3487,7 +3487,7 @@
           "type": "entries",
           "name_es": "Resiliencia enana",
           "entries_es": [
-            "Usted tiene ventaja en el ahorro de tiros contra veneno, y usted tiene resistencia contra daños venenosos."
+            "Usted tiene ventaja en el tirada de salvacions contra veneno, y usted tiene resistencia contra daños venenosos."
           ]
         },
         {
@@ -3572,7 +3572,7 @@
           ],
           "name_es": "Resiliencia enana",
           "entries_es": [
-            "Usted tiene {@variantrule Resistance|XPHB} al daño de veneno. También tiene {@variantrule Advantage|XPHB} sobre lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition Poisoned|XPHB}."
+            "Usted tiene {@variantrule Resistance|XPHB} al daño de veneno. También tiene {@variantrule Advantage|XPHB} sobre lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition Poisoned|XPHB}."
           ]
         },
         {
@@ -3689,7 +3689,7 @@
           "type": "entries",
           "name_es": "Resiliencia enana",
           "entries_es": [
-            "Usted tiene ventaja en el ahorro de tiros contra veneno, y usted tiene resistencia contra daños venenosos."
+            "Usted tiene ventaja en el tirada de salvacions contra veneno, y usted tiene resistencia contra daños venenosos."
           ]
         },
         {
@@ -3788,7 +3788,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -4140,7 +4140,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene [[TAG0] en lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition Charmed|XPHB}."
+            "Usted tiene [[TAG0] en lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition Charmed|XPHB}."
           ]
         },
         {
@@ -4573,7 +4573,7 @@
           ],
           "name_es": "Paso oculto",
           "entries_es": [
-            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un rollo de daño, o obligue a alguien a hacer una tirada de salvación. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un tirada de daño, o obligue a alguien a hacer una tirada de salvación. Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         },
         {
@@ -4675,7 +4675,7 @@
           "type": "entries",
           "name_es": "Paso oculto",
           "entries_es": [
-            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un rollo de daño, o obligue a alguien a hacer una tirada de salvación. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Como acción de bonificación, puede girar mágicamente {@condition invisible} hasta el comienzo de su próximo turno o hasta que ataque, haga un tirada de daño, o obligue a alguien a hacer una tirada de salvación. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -4867,7 +4867,7 @@
           ],
           "name_es": "Armas de fuego Mastery",
           "entries_es": [
-            "Tienes una conexión mística con las armas de fuego que se remonta a los dioses de la paja, que se deleitaron en tales armas. Usted tiene competencia con todas las armas de fuego e ignora la propiedad de carga de cualquier arma de fuego. Además, atacar a larga distancia con un arma de fuego no impone desventaja en su rollo de ataque."
+            "Tienes una conexión mística con las armas de fuego que se remonta a los dioses de la paja, que se deleitaron en tales armas. Usted tiene competencia con todas las armas de fuego e ignora la propiedad de carga de cualquier arma de fuego. Además, atacar a larga distancia con un arma de fuego no impone desventaja en su tirada de ataque."
           ]
         },
         {
@@ -4878,7 +4878,7 @@
           ],
           "name_es": "Hippo Build",
           "entries_es": [
-            "Usted tiene ventaja en controles de habilidad basados en fuerza y tiros de ahorro de fuerza. Además, cuenta como un tamaño más grande al determinar su capacidad de carga y el peso que puede empujar, arrastrar o levantar."
+            "Usted tiene ventaja en controles de habilidad basados en fuerza y tiros de salvación de fuerza. Además, cuenta como un tamaño más grande al determinar su capacidad de carga y el peso que puede empujar, arrastrar o levantar."
           ]
         }
       ]
@@ -5037,7 +5037,7 @@
           ],
           "name_es": "Disciplina mental",
           "entries_es": [
-            "Sus innatas defensas psíquicas le otorgan ventaja en ahorros que usted hace para evitar o terminar las condiciones {@condition charmed} y {@condition frightened} en usted mismo."
+            "Sus innatas defensas psíquicas le otorgan ventaja en salvacións que usted hace para evitar o terminar las condiciones {@condition charmed} y {@condition frightened} en usted mismo."
           ]
         },
         {
@@ -5184,7 +5184,7 @@
           "type": "entries",
           "name_es": "Gnome Cunning",
           "entries_es": [
-            "Usted tiene ventaja en todos los lanzamientos de inteligencia, sabiduría y Charisma de ahorro contra la magia."
+            "Usted tiene ventaja en todos los lanzamientos de inteligencia, sabiduría y Charisma de salvación contra la magia."
           ]
         },
         {
@@ -5383,7 +5383,7 @@
                 }
               ]
             },
-            "Inteligencia es tu habilidad de deletrear para estos hechizos."
+            "Inteligencia es tu habilidad de lanzamiento para estos hechizos."
           ]
         },
         {
@@ -5569,7 +5569,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -5845,7 +5845,7 @@
           ],
           "name_es": "Resistencia de Stone",
           "entries_es": [
-            "Usted puede dibujar sobrenaturalmente sobre piedra inflexible para sacar el daño. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total.",
+            "Usted puede dibujar sobrenaturalmente sobre piedra inflexible para sacar el daño. Cuando usted toma el daño, puede utilizar su reacción para tirar un {@dice d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total.",
             "Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
@@ -5930,7 +5930,7 @@
           "type": "entries",
           "name_es": "Resistencia de Stone",
           "entries_es": [
-            "Usted puede enfocarse a ocasionalmente arruinar la lesión. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d12}. Agregue su modificador de Constitución al número rodado, y reduzca el daño por ese total. Después de usar este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Usted puede enfocarse a ocasionalmente arruinar la lesión. Cuando usted toma el daño, puede utilizar su reacción para tirar un {@dice d12}. Agregue su modificador de Constitución al número rodado, y reduzca el daño por ese total. Después de usar este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -6015,7 +6015,7 @@
                   ],
                   "name_es": "Fire's Burn (Fire Giant)",
                   "entries_es": [
-                    "Cuando golpeas a un blanco con un rollo de ataque y le haces daño, también puedes tratar {@damage 1d10} Dispara daños a ese objetivo."
+                    "Cuando golpeas a un blanco con un tirada de ataque y le haces daño, también puedes tratar {@damage 1d10} Dispara daños a ese objetivo."
                   ]
                 },
                 {
@@ -6026,7 +6026,7 @@
                   ],
                   "name_es": "Frost's Chill (Frost Giant)",
                   "entries_es": [
-                    "Cuando golpeas a un blanco con un rollo de ataque y le haces daño, también puedes tratar {@damage 1d6} Daño frío a ese objetivo y reducir su {@variantrule Speed|XPHB} por 10 pies hasta el comienzo de su próximo turno."
+                    "Cuando golpeas a un blanco con un tirada de ataque y le haces daño, también puedes tratar {@damage 1d6} Daño frío a ese objetivo y reducir su {@variantrule Speed|XPHB} por 10 pies hasta el comienzo de su próximo turno."
                   ]
                 },
                 {
@@ -6037,7 +6037,7 @@
                   ],
                   "name_es": "Hill's Tumble (Hill Giant)",
                   "entries_es": [
-                    "Cuando golpeas a una criatura grande o más pequeña con un rollo de ataque y le haces daño, puedes darle a ese objetivo la condición [[TAG0]."
+                    "Cuando golpeas a una criatura grande o más pequeña con un tirada de ataque y le haces daño, puedes darle a ese objetivo la condición [[TAG0]."
                   ]
                 },
                 {
@@ -6048,7 +6048,7 @@
                   ],
                   "name_es": "Stone's Endurance (Stone Giant)",
                   "entries_es": [
-                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para rodar {@dice 1d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total."
+                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para tirar {@dice 1d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total."
                   ]
                 },
                 {
@@ -6091,7 +6091,7 @@
                   ],
                   "name_es": "Fire's Burn (Fire Giant)",
                   "entries_es": [
-                    "Cuando golpeas a un blanco con un rollo de ataque y le haces daño, también puedes tratar {@damage 1d10} Dispara daños a ese objetivo."
+                    "Cuando golpeas a un blanco con un tirada de ataque y le haces daño, también puedes tratar {@damage 1d10} Dispara daños a ese objetivo."
                   ]
                 },
                 {
@@ -6102,7 +6102,7 @@
                   ],
                   "name_es": "Frost's Chill (Frost Giant)",
                   "entries_es": [
-                    "Cuando golpeas a un blanco con un rollo de ataque y le haces daño, también puedes tratar {@damage 1d6} Daño frío a ese objetivo y reducir su {@variantrule Speed|XPHB} por 10 pies hasta el comienzo de su próximo turno."
+                    "Cuando golpeas a un blanco con un tirada de ataque y le haces daño, también puedes tratar {@damage 1d6} Daño frío a ese objetivo y reducir su {@variantrule Speed|XPHB} por 10 pies hasta el comienzo de su próximo turno."
                   ]
                 },
                 {
@@ -6113,7 +6113,7 @@
                   ],
                   "name_es": "Hill's Tumble (Hill Giant)",
                   "entries_es": [
-                    "Cuando golpeas a una criatura grande o más pequeña con un rollo de ataque y le haces daño, puedes darle a ese objetivo la condición [[TAG0]."
+                    "Cuando golpeas a una criatura grande o más pequeña con un tirada de ataque y le haces daño, puedes darle a ese objetivo la condición [[TAG0]."
                   ]
                 },
                 {
@@ -6124,7 +6124,7 @@
                   ],
                   "name_es": "Stone's Endurance (Stone Giant)",
                   "entries_es": [
-                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para rodar {@dice 1d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total."
+                    "Cuando usted toma el daño, usted puede tomar un {@variantrule Reaction|XPHB} para tirar {@dice 1d12}. Agregue su modificador de Constitución al número rodado y reduzca el daño por ese total."
                   ]
                 },
                 {
@@ -6445,7 +6445,7 @@
           ],
           "name_es": "Hadozee Dodge",
           "entries_es": [
-            "La magia que corre en tus venas aumenta tus defensas naturales. Cuando usted toma el daño, puede utilizar su reacción para rodar un {@dice d6}. Agregue su bonificación de competencia al número rodado, y reduzca el daño que toma por una cantidad igual a ese total (mínimo de 0 daño).",
+            "La magia que corre en tus venas aumenta tus defensas naturales. Cuando usted toma el daño, puede utilizar su reacción para tirar un {@dice d6}. Agregue su bonificación de competencia al número rodado, y reduzca el daño que toma por una cantidad igual a ese total (mínimo de 0 daño).",
             "Usted puede utilizar este rasgo un número de veces igual a su prima de competencia. Recuperas todos los usos gastados cuando terminas un largo descanso."
           ]
         }
@@ -6670,7 +6670,7 @@
           "type": "entries",
           "name_es": "Savage Attacks",
           "entries_es": [
-            "Cuando anotas un golpe crítico con un ataque de arma melee, puedes rodar uno de los dados de daño del arma una vez más y añadirlo al daño extra del golpe crítico."
+            "Cuando anotas un golpe crítico con un ataque de arma melee, puedes tirar uno de los dados de daño del arma una vez más y añadirlo al daño extra del golpe crítico."
           ]
         },
         {
@@ -6744,7 +6744,7 @@
           "type": "entries",
           "name_es": "Suerte",
           "entries_es": [
-            "Al rodar un 1 en un rollo de ataque, control de habilidad otirada de salvación, puede rerollar el die y debe utilizar el nuevo rollo."
+            "Al tirar un 1 en un tirada de ataque, tirada de habilidad o tirada de salvación, puede rerollar el die y debe utilizar el nuevo rollo."
           ]
         },
         {
@@ -6806,7 +6806,7 @@
           ],
           "name_es": "Brave",
           "entries_es": [
-            "Usted tiene [[TAG0] en lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition Frightened|XPHB}."
+            "Usted tiene [[TAG0] en lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition Frightened|XPHB}."
           ]
         },
         {
@@ -6882,7 +6882,7 @@
           ],
           "name_es": "Hare-Trigger",
           "entries_es": [
-            "Puedes añadir tu bono de competencia a tus rollos de iniciativa."
+            "Puedes añadir tu bono de competencia a tus tirada de iniciativa."
           ]
         },
         {
@@ -6904,7 +6904,7 @@
           ],
           "name_es": "Lucky Footwork",
           "entries_es": [
-            "Cuando fallas una tirada de salvación de Destreza, puedes usar tu reacción para rodar un {@dice d4} y añadirlo al ahorro, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
+            "Cuando fallas una tirada de salvación de Destreza, puedes usar tu reacción para tirar un {@dice d4} y añadirlo al salvación, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
           ]
         },
         {
@@ -6958,7 +6958,7 @@
           ],
           "name_es": "Hare-Trigger",
           "entries_es": [
-            "Puedes añadir tu bono de competencia a tus rollos de iniciativa."
+            "Puedes añadir tu bono de competencia a tus tirada de iniciativa."
           ]
         },
         {
@@ -6980,7 +6980,7 @@
           ],
           "name_es": "Lucky Footwork",
           "entries_es": [
-            "Cuando fallas una tirada de salvación de Destreza, puedes usar tu reacción para rodar un {@dice d4} y añadirlo al ahorro, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
+            "Cuando fallas una tirada de salvación de Destreza, puedes usar tu reacción para tirar un {@dice d4} y añadirlo al salvación, convirtiendo potencialmente el fracaso en un éxito. No puedes usar esta reacción si eres {@condition prone} o tu velocidad es 0."
           ]
         },
         {
@@ -7266,7 +7266,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -7338,7 +7338,7 @@
           ],
           "name_es": "La fortuna de los muchos",
           "entries_es": [
-            "Si te pierdes con un rollo de ataque o fallas un cheque de habilidad o una tirada de salvación, puedes sacar tus bonos de reciprocidad para ganar un bono al rollo igual que el número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +3). Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Si te pierdes con un tirada de ataque o fallas un cheque de habilidad o una tirada de salvación, puedes sacar tus bonos de reciprocidad para ganar un bono al rollo igual que el número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +3). Usted puede utilizar este rasgo un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
       ]
@@ -7429,7 +7429,7 @@
           "type": "entries",
           "name_es": "Saving Face",
           "entries_es": [
-            "Los Hobgoblins tienen cuidado de no mostrar debilidad frente a sus aliados, por miedo a perder el estatus. Si te pierdes con un rollo de ataque o fallas un cheque de habilidad o una tirada de salvación, puedes ganar un bono al rollo igual al número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +5). Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Los Hobgoblins tienen cuidado de no mostrar debilidad frente a sus aliados, por miedo a perder el estatus. Si te pierdes con un tirada de ataque o fallas un cheque de habilidad o una tirada de salvación, puedes ganar un bono al rollo igual al número de aliados que puedes ver dentro de 30 pies de ti (máximo bono de +5). Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -7883,7 +7883,7 @@
           ],
           "name_es": "Mente dual",
           "entries_es": [
-            "Tienes ventaja en todos los lanzamientos de ahorro de Sabiduría."
+            "Tienes ventaja en todos los lanzamientos de salvación de Sabiduría."
           ]
         },
         {
@@ -7968,7 +7968,7 @@
           ],
           "name_es": "Sin miedo",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition frightened} en usted mismo. Cuando fallas una tirada de salvación para evitar o terminar la condición {@condition frightened} en ti mismo, puedes elegir tener éxito en su lugar. Una vez que tienes éxito en una tirada de salvación de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition frightened} en usted mismo. Cuando fallas una tirada de salvación para evitar o terminar la condición {@condition frightened} en ti mismo, puedes elegir tener éxito en su lugar. Una vez que tienes éxito en una tirada de salvación de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso."
           ]
         },
         {
@@ -8110,7 +8110,7 @@
           "name_es": "Kenku Recall",
           "entries_es": [
             "Gracias a su memoria sobrenaturalmente buena, usted tiene competencia en dos habilidades de su elección.",
-            "Además, cuando usted hace un cheque de habilidad utilizando cualquier habilidad en la que usted tiene competencia, usted puede darse ventaja en el cheque antes de rodar el {@dice d20}. Usted puede darse ventaja de esta manera un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Además, cuando usted hace un cheque de habilidad utilizando cualquier habilidad en la que usted tiene competencia, usted puede darse ventaja en el cheque antes de tirar el {@dice d20}. Usted puede darse ventaja de esta manera un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         },
         {
@@ -8313,7 +8313,7 @@
           "type": "entries",
           "name_es": "Khenra Gemelos",
           "entries_es": [
-            "Si tu gemelo está vivo y puedes ver a tu gemelo, cada vez que enrollas un 1 en un rollo de ataque, control de habilidad o tiro de ahorro, puedes rerollar la muerte y debes usar el nuevo rollo. Si tu gemelo está muerto (o si naciste sin un gemelo), no puedes ser {@condition frightened}."
+            "Si tu gemelo está vivo y puedes ver a tu gemelo, cada vez que enrollas un 1 en un tirada de ataque, tirada de habilidad o tiro de salvación, puedes rerollar la muerte y debes usar el nuevo rollo. Si tu gemelo está muerto (o si naciste sin un gemelo), no puedes ser {@condition frightened}."
           ]
         },
         {
@@ -8366,7 +8366,7 @@
           "type": "entries",
           "name_es": "Tactics de paquete",
           "entries_es": [
-            "Usted tiene ventaja en un rollo de ataque contra una criatura si al menos uno de sus aliados está a 5 pies de la criatura y el aliado no es {@condition incapacitated}."
+            "Usted tiene ventaja en un tirada de ataque contra una criatura si al menos uno de sus aliados está a 5 pies de la criatura y el aliado no es {@condition incapacitated}."
           ]
         },
         {
@@ -8599,7 +8599,7 @@
           "type": "entries",
           "name_es": "Tactics de paquete",
           "entries_es": [
-            "Usted tiene ventaja en un rollo de ataque contra una criatura si al menos uno de sus aliados está a 5 pies de la criatura y el aliado no es {@condition incapacitated}."
+            "Usted tiene ventaja en un tirada de ataque contra una criatura si al menos uno de sus aliados está a 5 pies de la criatura y el aliado no es {@condition incapacitated}."
           ]
         },
         {
@@ -8744,7 +8744,7 @@
           "type": "entries",
           "name_es": "Suerte",
           "entries_es": [
-            "Al rodar un 1 en el {@dice d20} para un rollo de ataque, control de habilidad, otirada de salvación, puede rerollar el die y debe utilizar el nuevo rollo."
+            "Al tirar un 1 en el {@dice d20} para un tirada de ataque, tirada de habilidad, o tirada de salvación, puede rerollar el die y debe utilizar el nuevo rollo."
           ]
         }
       ]
@@ -8805,7 +8805,7 @@
           ],
           "name_es": "Resbaladizo",
           "entries_es": [
-            "Usted tiene ventaja en los controles de habilidad y los tiros de ahorro hechos para escapar de un grapple."
+            "Usted tiene ventaja en los controles de habilidad y los tiros de salvación hechos para escapar de un grapple."
           ]
         },
         {
@@ -8963,7 +8963,7 @@
           "type": "entries",
           "name_es": "Daunting Roar",
           "entries_es": [
-            "Como una acción de bonificación, usted puede dejar fuera un rugido especialmente amenazador. Las criaturas de su elección dentro de 10 pies de usted que puede escuchar debe tener éxito en una tirada de salvación de Sabiduría o convertirse {@condition frightened} de usted hasta el final de su próximo turno. El DC del ahorro equivale a 8 + su prima de competencia + su modificador de Constitución. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
+            "Como una acción de bonificación, usted puede dejar fuera un rugido especialmente amenazador. Las criaturas de su elección dentro de 10 pies de usted que puede escuchar debe tener éxito en una tirada de salvación de Sabiduría o convertirse {@condition frightened} de usted hasta el final de su próximo turno. El DC del salvación equivale a 8 + su prima de competencia + su modificador de Constitución. Una vez que usas este rasgo, no puedes usarlo de nuevo hasta que termines un breve o largo descanso."
           ]
         },
         {
@@ -10061,7 +10061,7 @@
           "type": "entries",
           "name_es": "Savage Attacks",
           "entries_es": [
-            "Cuando anotas un golpe crítico con un ataque de arma melee, puedes rodar uno de los dados de daño del arma una vez más y añadirlo al daño extra del golpe crítico."
+            "Cuando anotas un golpe crítico con un ataque de arma melee, puedes tirar uno de los dados de daño del arma una vez más y añadirlo al daño extra del golpe crítico."
           ]
         },
         {
@@ -10160,7 +10160,7 @@
           "name_es": "Armas naturales",
           "entries_es": [
             "Tu mandíbula fanfarroneada y tu cuerpo constrictivo son armas naturales que puedes usar para hacer huelgas desarmadas.",
-            "Si usted golpea con su mordedura, usted trata el daño perforante igual a {@damage 1d4} + su modificador de fuerza, y su objetivo debe hacer una tirada de salvación de Constitución ([TAG1]] + su bonificación de competencia + su modificador de Constitución. En un ahorro fallido, el objetivo toma [[TAG0] daño venenoso.",
+            "Si usted golpea con su mordedura, usted trata el daño perforante igual a {@damage 1d4} + su modificador de fuerza, y su objetivo debe hacer una tirada de salvación de Constitución ([TAG1]] + su bonificación de competencia + su modificador de Constitución. En un salvación fallido, el objetivo toma [[TAG0] daño venenoso.",
             "Si usted golpea con su ataque constricto, usted trata el daño de la mancha igual a {@damage 1d6}] + su modificador de fuerza, y el objetivo es {@condition grappled}] (escape {@dc 8}] + su bonificación de competencia + su modificador de fuerza). Hasta que este grapple termine, el objetivo es {@condition restrained}, y no se puede restringir otro objetivo."
           ]
         },
@@ -10768,7 +10768,7 @@
           ],
           "name_es": "Savage Attacks",
           "entries_es": [
-            "Cuando anotas un golpe crítico con un ataque de arma melee, puedes rodar uno de los dados de daño del arma una vez más y añadirlo al daño extra del golpe crítico."
+            "Cuando anotas un golpe crítico con un ataque de arma melee, puedes tirar uno de los dados de daño del arma una vez más y añadirlo al daño extra del golpe crítico."
           ]
         },
         {
@@ -11041,7 +11041,7 @@
           ],
           "name_es": "Conocimiento de una vida pasada",
           "entries_es": [
-            "Recuerdas temporalmente los vislumbres del pasado, tal vez recuerdos descoloridos de hace años o una vida anterior. Cuando usted hace un cheque de habilidad que utiliza una habilidad, puede rodar un {@dice d6} inmediatamente después de ver el número en el {@dice d20}] y añadir el número en el [[TAG0] al cheque. Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+            "Recuerdas temporalmente los vislumbres del pasado, tal vez recuerdos descoloridos de hace años o una vida anterior. Cuando usted hace un cheque de habilidad que utiliza una habilidad, puede tirar un {@dice d6} inmediatamente después de ver el número en el {@dice d20}] y añadir el número en el [[TAG0] al cheque. Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
           ]
         }
       ]
@@ -11152,7 +11152,7 @@
           "type": "entries",
           "name_es": "Resistencia mágica",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro contra hechizos y otros efectos mágicos."
+            "Usted tiene ventaja en los lanzamientos de salvación contra hechizos y otros efectos mágicos."
           ]
         },
         {
@@ -11163,7 +11163,7 @@
           "type": "entries",
           "name_es": "Mirthful Leaps",
           "entries_es": [
-            "Cada vez que haces un salto largo o alto, puedes rodar un {@dice d8} y añadir el número rodado al número de pies que cubres, incluso cuando haces un salto de pie. Esta distancia adicional cuesta el movimiento como normal."
+            "Cada vez que haces un salto largo o alto, puedes tirar un {@dice d8} y añadir el número rodado al número de pies que cubres, incluso cuando haces un salto de pie. Esta distancia adicional cuesta el movimiento como normal."
           ]
         },
         {
@@ -11257,7 +11257,7 @@
           ],
           "name_es": "Mirthful Leaps",
           "entries_es": [
-            "Cada vez que haces un salto largo o un salto alto, puedes rodar un {@dice d8} y añadir el número rodado al número de pies que cubres, incluso cuando haces un salto de pie. Esta distancia adicional cuesta el movimiento como de costumbre."
+            "Cada vez que haces un salto largo o un salto alto, puedes tirar un {@dice d8} y añadir el número rodado al número de pies que cubres, incluso cuando haces un salto de pie. Esta distancia adicional cuesta el movimiento como de costumbre."
           ]
         },
         {
@@ -11359,7 +11359,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -11472,7 +11472,7 @@
           ],
           "name_es": "Fey Ancestry",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition charmed} en usted mismo."
           ]
         },
         {
@@ -12766,7 +12766,7 @@
           ],
           "name_es": "Shell Defense",
           "entries_es": [
-            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a su AC, y usted tiene ventaja en la fuerza y la Constitución ahorro lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de ahorro de Destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
+            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a su AC, y usted tiene ventaja en la fuerza y la Constitución salvación lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de salvación de Destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
           ]
         }
       ]
@@ -12887,7 +12887,7 @@
           "type": "entries",
           "name_es": "Shell Defense",
           "entries_es": [
-            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a AC, y usted tiene ventaja en la fuerza y la Constitución ahorro lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de ahorro de Destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
+            "Puede retirarse en su cáscara como una acción. Hasta que usted emerge, usted gana un bono +4 a AC, y usted tiene ventaja en la fuerza y la Constitución salvación lanzamientos. Mientras que en su cáscara, usted está {@condition prone}, su velocidad es 0 y no puede aumentar, usted tiene desventaja en los lanzamientos de salvación de Destreza, no puede tomar reacciones, y la única acción que puede tomar es una acción de bonificación para emerger de su cáscara."
           ]
         },
         {
@@ -13201,7 +13201,7 @@
           ],
           "name_es": "Stench",
           "entries_es": [
-            "Cualquier criatura que no sea un troglodita que comience su turno dentro de 5 pies de usted debe tener éxito en un {@dc 12} La Constitución salvando el lanzamiento o ser {@condition poisoned} hasta el comienzo del siguiente turno de la criatura. En un exitosotirada de salvación, la criatura es inmune al hedor de todos los trogloditas durante 1 hora."
+            "Cualquier criatura que no sea un troglodita que comience su turno dentro de 5 pies de usted debe tener éxito en un {@dc 12} La Constitución salvando el lanzamiento o ser {@condition poisoned} hasta el comienzo del siguiente turno de la criatura. En un exitoso tirada de salvación, la criatura es inmune al hedor de todos los trogloditas durante 1 hora."
           ]
         },
         {
@@ -13443,7 +13443,7 @@
           ],
           "name_es": "Vedalken Dispassion",
           "entries_es": [
-            "Usted tiene ventaja en todos los lanzamientos de inteligencia, sabiduría y ahorro de Charisma."
+            "Usted tiene ventaja en todos los lanzamientos de inteligencia, sabiduría y salvación de Charisma."
           ]
         },
         {
@@ -13559,7 +13559,7 @@
           "type": "entries",
           "name_es": "Vedalken Cunning",
           "entries_es": [
-            "Usted tiene ventaja en todos los lanzamientos de inteligencia, sabiduría y Charisma de ahorro contra la magia."
+            "Usted tiene ventaja en todos los lanzamientos de inteligencia, sabiduría y Charisma de salvación contra la magia."
           ]
         },
         {
@@ -13646,7 +13646,7 @@
           "type": "entries",
           "name_es": "Saneamiento de sangre negra",
           "entries_es": [
-            "La sangre negra que es un signo de la conexión de su gente con That-Which-Endures aumenta su curación natural. Al rodar un 1 o 2 en cualquier Hit Die que pasas al final de un breve descanso, puedes rerollar el die y debes usar el nuevo rollo."
+            "La sangre negra que es un signo de la conexión de su gente con That-Which-Endures aumenta su curación natural. Al tirar un 1 o 2 en cualquier Hit Die que pasas al final de un breve descanso, puedes rerollar el die y debes usar el nuevo rollo."
           ]
         },
         {
@@ -13679,7 +13679,7 @@
           "type": "entries",
           "name_es": "Telepathic Insight",
           "entries_es": [
-            "La conexión de tu mente con el mundo que te rodea fortalece tu voluntad. Usted tiene ventaja en todos los lanzamientos de ahorro de Sabiduría y Charisma."
+            "La conexión de tu mente con el mundo que te rodea fortalece tu voluntad. Usted tiene ventaja en todos los lanzamientos de salvación de Sabiduría y Charisma."
           ]
         },
         {
@@ -13926,7 +13926,7 @@
           ],
           "name_es": "Resiliencia venenosa",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro que usted hace para evitar o terminar la condición {@condition poisoned} en usted mismo. También tiene resistencia al daño venenoso."
+            "Usted tiene ventaja en los lanzamientos de salvación que usted hace para evitar o terminar la condición {@condition poisoned} en usted mismo. También tiene resistencia al daño venenoso."
           ]
         },
         {
@@ -14032,7 +14032,7 @@
           "type": "entries",
           "name_es": "Resistencia mágica",
           "entries_es": [
-            "Usted tiene ventaja en los lanzamientos de ahorro contra hechizos y otros efectos mágicos."
+            "Usted tiene ventaja en los lanzamientos de salvación contra hechizos y otros efectos mágicos."
           ]
         },
         {

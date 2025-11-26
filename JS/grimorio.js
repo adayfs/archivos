@@ -2189,7 +2189,6 @@
     }
 
     const stats = computeTransformationStats(state.transformation.slotLevel);
-    const startedInfo = stats.startedAt ? `<p class="grimorio-transformation-card__meta">Inicio: ${formatTimestamp(stats.startedAt)}</p>` : '';
     selectors.transformDisplay.innerHTML = `
       <div class="grimorio-transformation-card">
         <div class="grimorio-transformation-card__media" aria-hidden="true"></div>
@@ -2197,7 +2196,6 @@
           <header>
             <h4>Transformación activa</h4>
             <p>Slot de nivel ${stats.slotLevel}</p>
-            ${startedInfo}
           </header>
           <ul class="grimorio-transformation-card__stats">
             <li><strong>Fuerza:</strong> ${stats.strValue} (${formatMod(stats.strMod)})</li>

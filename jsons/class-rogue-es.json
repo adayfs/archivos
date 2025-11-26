@@ -2180,8 +2180,8 @@
       ],
       "name_es": "Sneak Attack",
       "entries_es": [
-        "A partir del primer nivel, usted sabe cómo golpear sutilmente y explotar la distracción de un enemigo. Una vez por turno, usted puede hacer un daño adicional {@damage 1d6} a una criatura que golpeó con un ataque si usted tiene ventaja en el rollo de ataque. El ataque debe usar una finura o un arma de gran alcance.",
-        "Usted no necesita ventaja en el rollo de ataque si otro enemigo del objetivo está a 5 pies de él, ese enemigo no es {@condition incapacitated}, y usted no tiene desventaja en el rollo de ataque.",
+        "A partir del primer nivel, usted sabe cómo golpear sutilmente y explotar la distracción de un enemigo. Una vez por turno, usted puede hacer un daño adicional {@damage 1d6} a una criatura que golpeó con un ataque si usted tiene ventaja en el tirada de ataque. El ataque debe usar una finura o un arma de gran alcance.",
+        "Usted no necesita ventaja en el tirada de ataque si otro enemigo del objetivo está a 5 pies de él, ese enemigo no es {@condition incapacitated}, y usted no tiene desventaja en el tirada de ataque.",
         "La cantidad de daño adicional aumenta a medida que usted gana niveles en esta clase, como se muestra en la columna de Ataque Sneak de la tabla Rogue."
       ]
     },
@@ -2395,7 +2395,7 @@
       ],
       "name_es": "Talento confiable",
       "entries_es": [
-        "En 11o nivel, has refinado tus habilidades elegidas hasta que se acercan a la perfección. Cada vez que haces un cheque de habilidad que te permite añadir tu bonificación de competencia, puedes tratar un [[TAG0] rollo de 9 o inferior como un 10."
+        "En 11o nivel, has refinado tus habilidades elegidas hasta que se acercan a la perfección. Cada vez que haces un cheque de habilidad que te permite añadir tu bonificación de competencia, puedes tratar un [[TAG0] tirada de 9 o inferior como un 10."
       ]
     },
     {
@@ -2465,7 +2465,7 @@
       ],
       "name_es": "Mente resbaladiza",
       "entries_es": [
-        "En el nivel 15, usted ha adquirido mayor fuerza mental. Ganas habilidad en tiros de ahorro de sabiduría."
+        "En el nivel 15, usted ha adquirido mayor fuerza mental. Ganas habilidad en tiros de salvación de sabiduría."
       ]
     },
     {
@@ -2518,7 +2518,7 @@
       ],
       "name_es": "Elusivo",
       "entries_es": [
-        "Empezando a nivel 18, eres tan evasivo que los atacantes rara vez ganan la mano superior contra ti. Ningún rollo de ataque tiene ventaja en su contra mientras usted no es {@condition incapacitated}."
+        "Empezando a nivel 18, eres tan evasivo que los atacantes rara vez ganan la mano superior contra ti. Ningún tirada de ataque tiene ventaja en su contra mientras usted no es {@condition incapacitated}."
       ]
     },
     {
@@ -2594,8 +2594,8 @@
       ],
       "name_es": "Sneak Attack",
       "entries_es": [
-        "Sabes cómo golpear sutilmente y explotar la distracción de un enemigo. Una vez por turno, usted puede tratar un daño adicional {@damage 1d6} a una criatura que golpeó con un rollo de ataque si usted tiene {@variantrule Advantage|XPHB} en el rollo y el ataque utiliza una Finesse o un arma Ranged. El tipo de daño extra es el mismo que el tipo del arma.",
-        "Usted no necesita {@variantrule Advantage|XPHB} en el rollo de ataque si al menos uno de sus aliados está a 5 pies del blanco, el aliado no tiene la condición {@condition Incapacitated|XPHB}, y usted no tiene {@variantrule Disadvantage|XPHB} en el rollo de ataque.",
+        "Sabes cómo golpear sutilmente y explotar la distracción de un enemigo. Una vez por turno, usted puede tratar un daño adicional {@damage 1d6} a una criatura que golpeó con un tirada de ataque si usted tiene {@variantrule Advantage|XPHB} en el rollo y el ataque utiliza una Finesse o un arma Ranged. El tipo de daño extra es el mismo que el tipo del arma.",
+        "Usted no necesita {@variantrule Advantage|XPHB} en el tirada de ataque si al menos uno de sus aliados está a 5 pies del blanco, el aliado no tiene la condición {@condition Incapacitated|XPHB}, y usted no tiene {@variantrule Disadvantage|XPHB} en el tirada de ataque.",
         "El daño adicional aumenta a medida que usted gana niveles de Rogue, como se muestra en la columna de Ataque Sneak de la tabla Características Rogue."
       ]
     },
@@ -2749,7 +2749,7 @@
       ],
       "name_es": "Cunning Strike",
       "entries_es": [
-        "Has desarrollado formas astutas de usar tu ataque Sneak. Cuando se trata de daño Sneak Attack, puede añadir uno de los siguientes efectos de Cunning Strike. Cada efecto tiene un costo de muerte, que es el número de dados de daño Sneak Attack que debe renunciar a añadir el efecto. Usted elimina la muerte antes de rodar, y el efecto ocurre inmediatamente después de que el daño del ataque sea tratado. Por ejemplo, si agrega el efecto veneno, retire {@dice 1d6} del daño del Ataque Sneak antes de rodar.",
+        "Has desarrollado formas astutas de usar tu ataque Sneak. Cuando se trata de daño Sneak Attack, puede añadir uno de los siguientes efectos de Cunning Strike. Cada efecto tiene un costo de muerte, que es el número de dados de daño Sneak Attack que debe renunciar a añadir el efecto. Usted elimina la muerte antes de tirar, y el efecto ocurre inmediatamente después de que el daño del ataque sea tratado. Por ejemplo, si agrega el efecto veneno, retire {@dice 1d6} del daño del Ataque Sneak antes de tirar.",
         "Si un efecto Strike Cunning requiere una tirada de salvación, el DC equivale a 8 más su modificador de Destreza y {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
         {
           "type": "entries",
@@ -2799,7 +2799,7 @@
       ],
       "name_es": "Veneno (Costo: 1d6)",
       "entries_es": [
-        "Usted agrega una toxina a su huelga, obligando al objetivo a hacer una tirada de salvación de Constitución. En un ahorro fallido, el objetivo tiene la condición [[TAG0] por 1 minuto. Al final de cada uno de sus turnos, el objetivo {@condition Poisoned|XPHB} repite el ahorro, terminando el efecto sobre sí mismo en un éxito.",
+        "Usted agrega una toxina a su huelga, obligando al objetivo a hacer una tirada de salvación de Constitución. En un salvación fallido, el objetivo tiene la condición [[TAG0] por 1 minuto. Al final de cada uno de sus turnos, el objetivo {@condition Poisoned|XPHB} repite el salvación, terminando el efecto sobre sí mismo en un éxito.",
         "Para utilizar este efecto, usted debe tener un {@item Poisoner's Kit|XPHB} en su persona."
       ]
     },
@@ -2834,7 +2834,7 @@
       ],
       "name_es": "Uncanny Dodge",
       "entries_es": [
-        "Cuando un atacante que puedes ver te golpea con un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño del ataque contra ti (redondeado)."
+        "Cuando un atacante que puedes ver te golpea con un tirada de ataque, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño del ataque contra ti (redondeado)."
       ]
     },
     {
@@ -2902,7 +2902,7 @@
       ],
       "name_es": "Talento confiable",
       "entries_es": [
-        "Cada vez que haces una verificación de habilidad que utiliza una de tus habilidades o habilidades de herramienta, puedes tratar un [[TAG0] rollo de 9 o inferior como un 10."
+        "Cada vez que haces una verificación de habilidad que utiliza una de tus habilidades o habilidades de herramienta, puedes tratar un [[TAG0] tirada de 9 o inferior como un 10."
       ]
     },
     {
@@ -3117,7 +3117,7 @@
       ],
       "name_es": "Knock Out (Cost: 6d6)",
       "entries_es": [
-        "El objetivo debe tener éxito en una tirada de salvación de Constitución, o tiene la condición [[TAG0] por 1 minuto o hasta que tome cualquier daño. El objetivo {@condition Unconscious|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+        "El objetivo debe tener éxito en una tirada de salvación de Constitución, o tiene la condición [[TAG0] por 1 minuto o hasta que tome cualquier daño. El objetivo {@condition Unconscious|XPHB} repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
       ]
     },
     {
@@ -3151,7 +3151,7 @@
       ],
       "name_es": "Mente resbaladiza",
       "entries_es": [
-        "Su mente astuta es excepcionalmente difícil de controlar. Ganas la competencia en los lanzamientos de ahorro de Sabiduría y Charisma."
+        "Su mente astuta es excepcionalmente difícil de controlar. Ganas la competencia en los lanzamientos de salvación de Sabiduría y Charisma."
       ]
     },
     {
@@ -3202,7 +3202,7 @@
       ],
       "name_es": "Elusivo",
       "entries_es": [
-        "Eres tan evasivo que los atacantes rara vez ganan la mano superior contra ti. Ningún rollo de ataque puede tener [[TAG0] contra usted a menos que tenga la condición {@condition Incapacitated|XPHB}."
+        "Eres tan evasivo que los atacantes rara vez ganan la mano superior contra ti. Ningún tirada de ataque puede tener [[TAG0] contra usted a menos que tenga la condición {@condition Incapacitated|XPHB}."
       ]
     },
     {
@@ -3456,7 +3456,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3501,7 +3501,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3656,7 +3656,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3701,7 +3701,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de deletrear para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un rollo de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3739,7 +3739,7 @@
       ],
       "name_es": "Magical Ambush",
       "entries_es": [
-        "A partir del noveno nivel, si usted está oculto de una criatura cuando usted lanza un hechizo en él, la criatura tiene desventaja en cualquier tiro de ahorro que hace contra el hechizo este giro."
+        "A partir del noveno nivel, si usted está oculto de una criatura cuando usted lanza un hechizo en él, la criatura tiene desventaja en cualquier tiro de salvación que hace contra el hechizo este giro."
       ]
     },
     {
@@ -3778,7 +3778,7 @@
       "name_es": "Spell Thief",
       "entries_es": [
         "A nivel 17, usted gana la capacidad de robar mágicamente el conocimiento de cómo lanzar un hechizo de otra máquina de hechizos.",
-        "Inmediatamente después de que una criatura emita un hechizo que te apunta o te incluye en su área de efecto, puedes usar tu reacción para obligar a la criatura a hacer una tirada de salvación con su modificador de habilidad de deletrear. El DC iguala tu hechizo salvo DC. En un fallido ahorro, usted niega el efecto del hechizo contra usted, y usted roba el conocimiento del hechizo si es al menos el primer nivel y de un nivel que usted puede lanzar (no necesita ser un hechizo mago). Durante las próximas 8 horas, usted conoce el hechizo y puede lanzarlo usando sus ranuras de hechizo. La criatura no puede lanzar ese hechizo hasta que hayan pasado las 8 horas.",
+        "Inmediatamente después de que una criatura emita un hechizo que te apunta o te incluye en su área de efecto, puedes usar tu reacción para obligar a la criatura a hacer una tirada de salvación con su modificador de habilidad de lanzamiento. El DC iguala tu hechizo salvo DC. En un fallido salvación, usted niega el efecto del hechizo contra usted, y usted roba el conocimiento del hechizo si es al menos el primer nivel y de un nivel que usted puede lanzar (no necesita ser un hechizo mago). Durante las próximas 8 horas, usted conoce el hechizo y puede lanzarlo usando sus ranuras de hechizo. La criatura no puede lanzar ese hechizo hasta que hayan pasado las 8 horas.",
         "Una vez que uses esta característica, no puedes usarla de nuevo hasta que termines un largo descanso."
       ]
     },
@@ -3908,7 +3908,7 @@
       ],
       "name_es": "Death Strike",
       "entries_es": [
-        "A partir del nivel 17, te conviertes en un maestro de muerte instantánea. Cuando atacas y golpeas a una criatura que es {@status surprised}, debe hacer una tirada de salvación de Constitución ([TAG1]] + tu modificador de Dexteridad + tu bonificación de competencia). En un fallido ahorro, dobla el daño de tu ataque contra la criatura."
+        "A partir del nivel 17, te conviertes en un maestro de muerte instantánea. Cuando atacas y golpeas a una criatura que es {@status surprised}, debe hacer una tirada de salvación de Constitución ([TAG1]] + tu modificador de Dexteridad + tu bonificación de competencia). En un fallido salvación, dobla el daño de tu ataque contra la criatura."
       ]
     },
     {
@@ -4103,7 +4103,7 @@
       "name_es": "Wails from the Grave",
       "entries_es": [
         "[[TAG0]",
-        "Mientras enjuicias a alguien más cerca de la tumba, puedes canalizar el poder de la muerte para dañar a alguien más también. Inmediatamente después de que usted trate su Sneak Ataque daño a una criatura en su turno, usted puede apuntar a una segunda criatura que usted puede ver dentro de 30 pies de la primera criatura. Rodar la mitad del número de dados Sneak Attack para su nivel (redondeado), y la segunda criatura toma daño necroático igual al total del rollo, como cerdas del sonido muerto alrededor de ellos por un momento.",
+        "Mientras enjuicias a alguien más cerca de la tumba, puedes canalizar el poder de la muerte para dañar a alguien más también. Inmediatamente después de que usted trate su Sneak Ataque daño a una criatura en su turno, usted puede apuntar a una segunda criatura que usted puede ver dentro de 30 pies de la primera criatura. tirar la mitad del número de dados Sneak Attack para su nivel (redondeado), y la segunda criatura toma daño necroático igual al total del rollo, como cerdas del sonido muerto alrededor de ellos por un momento.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
       ]
     },
@@ -4153,7 +4153,7 @@
       "name_es": "Datos de los partidos",
       "entries_es": [
         "[[TAG0]",
-        "Cuando una vida termina en su presencia, usted es capaz de arrebatar un token del alma que sale, un sliver de su esencia de vida que toma forma física: como una reacción cuando una criatura que se puede ver muere a menos de 30 pies de usted, usted puede abrir su mano libre y hacer que un pequeño trinket aparezca allí, un trinket de alma. El DM determina la forma del trinket o tiene que rodar sobre la tabla {@item Trinket|phb|Trinkets} en la {@i Player's Handbook} para generarla. Usted puede tener un número máximo de trinkets de alma igual a su bonificación de competencia, y no puede crear uno al máximo.",
+        "Cuando una vida termina en su presencia, usted es capaz de arrebatar un token del alma que sale, un sliver de su esencia de vida que toma forma física: como una reacción cuando una criatura que se puede ver muere a menos de 30 pies de usted, usted puede abrir su mano libre y hacer que un pequeño trinket aparezca allí, un trinket de alma. El DM determina la forma del trinket o tiene que tirar sobre la tabla {@item Trinket|phb|Trinkets} en la {@i Player's Handbook} para generarla. Usted puede tener un número máximo de trinkets de alma igual a su bonificación de competencia, y no puede crear uno al máximo.",
         "Puedes usar trinkets de alma de las siguientes maneras:",
         {
           "type": "list",
@@ -4239,7 +4239,7 @@
       ],
       "name_es": "Psi-Bolstered Knack",
       "entries_es": [
-        "Cuando tu entrenamiento no-psiónico te falla, tu poder psionico puede ayudar: si fallas un cheque de habilidad usando una habilidad o herramienta con la que tienes competencia, puedes rodar una matriz de energía Psionic y añadir el número enrollado al cheque, convirtiendo potencialmente la falla en éxito. Usted gasta la muerte sólo si el rollo tiene éxito."
+        "Cuando tu entrenamiento no-psiónico te falla, tu poder psionico puede ayudar: si fallas un cheque de habilidad usando una habilidad o herramienta con la que tienes competencia, puedes tirar una matriz de energía Psionic y añadir el número enrollado al cheque, convirtiendo potencialmente la falla en éxito. Usted gasta la muerte sólo si el rollo tiene éxito."
       ]
     },
     {
@@ -4257,7 +4257,7 @@
       ],
       "name_es": "Whisky psíquico",
       "entries_es": [
-        "Usted puede establecer la comunicación telepática entre usted y otros-perfecto para la infiltración silenciosa. Como acción, elige una o más criaturas que puedes ver, hasta un número de criaturas iguales a tu bonificación de competencia, y luego rodar un Psionic Energy morir. Durante un número de horas igual al número rodado, las criaturas elegidas pueden hablar telepáticamente contigo, y puedes hablar telepáticamente con ellas. Para enviar o recibir un mensaje (no se requiere acción), usted y la otra criatura deben estar dentro de 1 milla uno del otro. Una criatura no puede usar esta telepatía si no puede hablar ningún idioma, y una criatura puede terminar la conexión telepática en cualquier momento (sin necesidad de acción). Tú y la criatura no necesitan hablar un lenguaje común para entenderse.",
+        "Usted puede establecer la comunicación telepática entre usted y otros-perfecto para la infiltración silenciosa. Como acción, elige una o más criaturas que puedes ver, hasta un número de criaturas iguales a tu bonificación de competencia, y luego tirar un Psionic Energy morir. Durante un número de horas igual al número rodado, las criaturas elegidas pueden hablar telepáticamente contigo, y puedes hablar telepáticamente con ellas. Para enviar o recibir un mensaje (no se requiere acción), usted y la otra criatura deben estar dentro de 1 milla uno del otro. Una criatura no puede usar esta telepatía si no puede hablar ningún idioma, y una criatura puede terminar la conexión telepática en cualquier momento (sin necesidad de acción). Tú y la criatura no necesitan hablar un lenguaje común para entenderse.",
         "La primera vez que usas este poder después de cada descanso largo, no expulsas la Energía Psionica. Todas las otras veces que usas el poder, gastas la muerte."
       ]
     },
@@ -4388,7 +4388,7 @@
       "name_es": "Blades psíquicos",
       "entries_es": [
         "[[TAG0]",
-        "Usted puede manifestar su poder psionico como cuchillas brillantes de energía psíquica. Siempre que tomes la acción {@action Attack}, puedes manifestar una espada psíquica de tu mano libre y hacer el ataque con esa espada. Esta espada mágica es un simple arma de meleo con las propiedades finas y lanzadas. Tiene un rango normal de 60 pies y no largo alcance, y en un golpe, se trata de daño psíquico igual a {@damage 1d6} más el modificador de habilidad que utilizó para el rollo de ataque. La hoja desaparece inmediatamente después de golpear o perder su objetivo, y no deja ninguna marca en su blanco si se trata de daño.",
+        "Usted puede manifestar su poder psionico como cuchillas brillantes de energía psíquica. Siempre que tomes la acción {@action Attack}, puedes manifestar una espada psíquica de tu mano libre y hacer el ataque con esa espada. Esta espada mágica es un simple arma de meleo con las propiedades finas y lanzadas. Tiene un rango normal de 60 pies y no largo alcance, y en un golpe, se trata de daño psíquico igual a {@damage 1d6} más el modificador de habilidad que utilizó para el tirada de ataque. La hoja desaparece inmediatamente después de golpear o perder su objetivo, y no deja ninguna marca en su blanco si se trata de daño.",
         "Después de atacar con la hoja, usted puede hacer un ataque de arma melee o ranged con una segunda hoja psíquica como una acción de bonificación en el mismo turno, siempre que su otra mano sea libre de crearla. El daño muere de este ataque de bonificación es {@damage 1d4}, en lugar de {@damage 1d6}."
       ]
     },
@@ -4406,7 +4406,7 @@
       ],
       "name_es": "Homing Strikes",
       "entries_es": [
-        "Si usted hace un rollo de ataque con sus Psic Blades y perder el objetivo, usted puede rodar una Psionic Energy morir y añadir el número rodado al rollo de ataque. Si esto hace que el ataque golpee, usted expulsa la energía Psionic morir."
+        "Si usted hace un tirada de ataque con sus Psic Blades y perder el objetivo, usted puede tirar una Psionic Energy morir y añadir el número rodado al tirada de ataque. Si esto hace que el ataque golpee, usted expulsa la energía Psionic morir."
       ]
     },
     {
@@ -4423,7 +4423,7 @@
       ],
       "name_es": "Teleportación Psíquica",
       "entries_es": [
-        "Como una acción de bonificación, usted manifiesta uno de sus Blades Psíquicos, expulsar un Psionic Energy morir y rodar, y tirar la espada a un espacio no ocupado que se puede ver, hasta un número de pies de distancia igual a 10 veces el número rodado. Luego te teletransportas a ese espacio, y la espada desaparece."
+        "Como una acción de bonificación, usted manifiesta uno de sus Blades Psíquicos, expulsar un Psionic Energy morir y tirar, y tirar la espada a un espacio no ocupado que se puede ver, hasta un número de pies de distancia igual a 10 veces el número rodado. Luego te teletransportas a ese espacio, y la espada desaparece."
       ]
     },
     {
@@ -4532,7 +4532,7 @@
       "name_es": "Rend Mind",
       "entries_es": [
         "[[TAG0]",
-        "Puedes barrer tus Psic Blades directamente a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + tu modificador de Destreza). Si el ahorro falla, el objetivo es {@condition stunned} por 1 minuto. El objetivo {@condition stunned} puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+        "Puedes barrer tus Psic Blades directamente a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + tu modificador de Destreza). Si el salvación falla, el objetivo es {@condition stunned} por 1 minuto. El objetivo {@condition stunned} puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo, a menos que expulse tres dados Psionic Energy para usarlo de nuevo."
       ]
     },
@@ -4592,7 +4592,7 @@
       ],
       "name_es": "Oreja para el engaño",
       "entries_es": [
-        "Cuando eliges este arquetipo a 3o nivel, desarrollas un talento para recoger mentiras. Cuando usted hace una Sabiduría ({@skill Insight}) comprobar para determinar si una criatura está mintiendo, tratar un rollo de 7 o inferior en el {@dice d20} como un 8."
+        "Cuando eliges este arquetipo a 3o nivel, desarrollas un talento para recoger mentiras. Cuando usted hace una Sabiduría ({@skill Insight}) comprobar para determinar si una criatura está mintiendo, tratar un tirada de 7 o inferior en el {@dice d20} como un 8."
       ]
     },
     {
@@ -4629,7 +4629,7 @@
       ],
       "name_es": "Insightful Fighting",
       "entries_es": [
-        "A 3o nivel, usted gana la capacidad de descifrar las tácticas de un oponente y desarrollar un contador a ellos. Como una acción de bonificación, puede hacer un cheque de Sabiduría ([TAG0]]) contra una criatura que puede ver que no es {@condition incapacitated}, impugnado por el Charisma del objetivo ([TAG2]]) cheque. Si tienes éxito, puedes usar tu ataque Sneak contra ese objetivo incluso si no tienes ventaja en el rollo de ataque, pero no si tienes desventaja en él.",
+        "A 3o nivel, usted gana la capacidad de descifrar las tácticas de un oponente y desarrollar un contador a ellos. Como una acción de bonificación, puede hacer un cheque de Sabiduría ([TAG0]]) contra una criatura que puede ver que no es {@condition incapacitated}, impugnado por el Charisma del objetivo ([TAG2]]) cheque. Si tienes éxito, puedes usar tu ataque Sneak contra ese objetivo incluso si no tienes ventaja en el tirada de ataque, pero no si tienes desventaja en él.",
         "Este beneficio dura 1 minuto o hasta que utilice esta función con éxito contra un objetivo diferente."
       ]
     },
@@ -4940,7 +4940,7 @@
       "name_es": "Ambush Master",
       "entries_es": [
         "A partir del 13o nivel, se destaca en las emboscadas principales y actúa primero en una pelea.",
-        "Usted tiene ventaja en los rollos de iniciativa. Además, la primera criatura que golpeaste durante la primera ronda de un combate se vuelve más fácil para ti y otros para atacar; los rollos de ataque contra ese objetivo tienen ventaja hasta el comienzo de tu próximo turno."
+        "Usted tiene ventaja en los tirada de iniciativa. Además, la primera criatura que golpeaste durante la primera ronda de un combate se vuelve más fácil para ti y otros para atacar; los rollos de ataque contra ese objetivo tienen ventaja hasta el comienzo de tu próximo turno."
       ]
     },
     {
@@ -5030,8 +5030,8 @@
       ],
       "name_es": "Rakish Audacity",
       "entries_es": [
-        "A partir del tercer nivel, tu confianza te impulsa a la batalla. Puedes darte un bono a tus rollos de iniciativa iguales a tu modificador de Charisma.",
-        "Usted también gana una manera adicional de utilizar su ataque Sneak; usted no necesita ventaja en su rollo de ataque para utilizar Sneak Attack contra una criatura si usted está a 5 pies de ella, ninguna otra criatura está a 5 pies de usted, y usted no tiene desventaja en el rollo de ataque. Todas las demás reglas para Sneak Attack todavía se aplican a usted."
+        "A partir del tercer nivel, tu confianza te impulsa a la batalla. Puedes darte un bono a tus tirada de iniciativa iguales a tu modificador de Charisma.",
+        "Usted también gana una manera adicional de utilizar su ataque Sneak; usted no necesita ventaja en su tirada de ataque para utilizar Sneak Attack contra una criatura si usted está a 5 pies de ella, ninguna otra criatura está a 5 pies de usted, y usted no tiene desventaja en el tirada de ataque. Todas las demás reglas para Sneak Attack todavía se aplican a usted."
       ]
     },
     {
@@ -5089,7 +5089,7 @@
       ],
       "name_es": "Master Duelist",
       "entries_es": [
-        "A partir del nivel 17, su dominio de la hoja le permite convertir el fracaso en éxito en combate. Si te pierdes con un rollo de ataque, puedes rodar de nuevo con ventaja. Una vez que lo haga, no puede utilizar esta característica de nuevo hasta que termine un breve o largo descanso."
+        "A partir del nivel 17, su dominio de la hoja le permite convertir el fracaso en éxito en combate. Si te pierdes con un tirada de ataque, puedes tirar de nuevo con ventaja. Una vez que lo haga, no puede utilizar esta característica de nuevo hasta que termine un breve o largo descanso."
       ]
     },
     {
@@ -5152,7 +5152,7 @@
       ],
       "name_es": "Dread Allegiance",
       "entries_es": [
-        "Elija uno de los tres muertos: {@deity Bane|Faerûnian|FRHoF}, {@deity Bhaal|Faerûnian|FRHoF}, o {@deity Myrkul|Faerûnian|FRHoF}]. Usted gana {@variantrule Resistance|XPHB} a un tipo de daño y la capacidad de lanzar un cantrip, como se detalla en la tabla siguiente; Inteligencia es tu habilidad de deletrear para este cantrip. Cuando termines un {@variantrule Long Rest|XPHB}, puedes cambiar tu elección.",
+        "Elija uno de los tres muertos: {@deity Bane|Faerûnian|FRHoF}, {@deity Bhaal|Faerûnian|FRHoF}, o {@deity Myrkul|Faerûnian|FRHoF}]. Usted gana {@variantrule Resistance|XPHB} a un tipo de daño y la capacidad de lanzar un cantrip, como se detalla en la tabla siguiente; Inteligencia es tu habilidad de lanzamiento para este cantrip. Cuando termines un {@variantrule Long Rest|XPHB}, puedes cambiar tu elección.",
         {
           "type": "table",
           "page": 7,
@@ -5244,7 +5244,7 @@
           "name_es": "Terrify (Cost: {@dice 1d6})",
           "entries_es": [
             "El objetivo debe tener éxito en una tirada de salvación de Sabiduría, o tiene la condición [[TAG0] por 1 minuto. Mientras el objetivo está asustado de esta manera, usted tiene {@variantrule Advantage|XPHB} en los rollos de ataque contra el objetivo.",
-            "El objetivo {@condition Frightened|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+            "El objetivo {@condition Frightened|XPHB} repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
           ]
         }
       ],
@@ -5262,7 +5262,7 @@
           "name_es": "Terrify (Cost: {@dice 1d6})",
           "entries_es": [
             "El objetivo debe tener éxito en una tirada de salvación de Sabiduría, o tiene la condición [[TAG0] por 1 minuto. Mientras el objetivo está asustado de esta manera, usted tiene {@variantrule Advantage|XPHB} en los rollos de ataque contra el objetivo.",
-            "El objetivo {@condition Frightened|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+            "El objetivo {@condition Frightened|XPHB} repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
           ]
         }
       ]
@@ -5316,7 +5316,7 @@
           ],
           "name_es": "Intent involuntario asesino",
           "entries_es": [
-            "Cuando usted hace rodar por su [[TAG0] daño, usted puede tratar un rollo de 1 o 2 en la muerte como un 3."
+            "Cuando usted hace tirar por su [[TAG0] daño, usted puede tratar un tirada de 1 o 2 en la muerte como un 3."
           ]
         }
       ],
@@ -5344,7 +5344,7 @@
           ],
           "name_es": "Intent involuntario asesino",
           "entries_es": [
-            "Cuando usted hace rodar por su [[TAG0] daño, usted puede tratar un rollo de 1 o 2 en la muerte como un 3."
+            "Cuando usted hace tirar por su [[TAG0] daño, usted puede tratar un tirada de 1 o 2 en la muerte como un 3."
           ]
         }
       ]
@@ -5470,7 +5470,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
           ]
         },
         {
@@ -5546,7 +5546,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de deletrear para tus hechizos magos."
+            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos."
           ]
         },
         {
@@ -5616,7 +5616,7 @@
       "name_es": "Spell Thief",
       "entries_es": [
         "Ganas la habilidad de robar mágicamente el conocimiento de cómo lanzar un hechizo de otra máquina de hechizos.",
-        "Inmediatamente después de que una criatura emita un hechizo que te apunta o te incluye en su área de efecto, puedes tomar un {@variantrule Reaction|XPHB} para forzar a la criatura a hacer un lanzamiento de salvación de inteligencia. El DC iguala tu hechizo salvo DC. En un fallido ahorro, usted niega el efecto del hechizo contra usted, y usted roba el conocimiento del hechizo si es al menos el nivel 1 y de un nivel que puede lanzar (no necesita ser un hechizo mago). Para las próximas 8 horas, tienes el hechizo preparado. La criatura no puede echarla hasta que hayan pasado las 8 horas.",
+        "Inmediatamente después de que una criatura emita un hechizo que te apunta o te incluye en su área de efecto, puedes tomar un {@variantrule Reaction|XPHB} para forzar a la criatura a hacer un lanzamiento de salvación de inteligencia. El DC iguala tu hechizo salvo DC. En un fallido salvación, usted niega el efecto del hechizo contra usted, y usted roba el conocimiento del hechizo si es al menos el nivel 1 y de un nivel que puede lanzar (no necesita ser un hechizo mago). Para las próximas 8 horas, tienes el hechizo preparado. La criatura no puede echarla hasta que hayan pasado las 8 horas.",
         "Una vez que robas un hechizo con esta característica, no puedes usar esta característica de nuevo hasta que termines un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -5926,7 +5926,7 @@
       ],
       "name_es": "Envenom Weapons",
       "entries_es": [
-        "Cuando usas la opción de Envenenamiento de tu Huelga Cunning, el objetivo también toma {@damage 2d6}] Envenenar el daño cuando falla el tiro de ahorro. Este daño ignora {@variantrule Resistance|XPHB} al daño venenoso."
+        "Cuando usas la opción de Envenenamiento de tu Huelga Cunning, el objetivo también toma {@damage 2d6}] Envenenar el daño cuando falla el tiro de salvación. Este daño ignora {@variantrule Resistance|XPHB} al daño venenoso."
       ]
     },
     {
@@ -6169,7 +6169,7 @@
       ],
       "name_es": "Psi-Bolstered Knack",
       "entries_es": [
-        "Si fallas un cheque de habilidad usando una habilidad o herramienta con la que tienes competencia, puedes hacer rodar un Psionic Energy Die y añadir el número rodado al cheque, lo que podría convertir el fracaso en éxito. La muerte se gasta sólo si el rollo tiene éxito."
+        "Si fallas un cheque de habilidad usando una habilidad o herramienta con la que tienes competencia, puedes hacer tirar un Psionic Energy Die y añadir el número rodado al cheque, lo que podría convertir el fracaso en éxito. La muerte se gasta sólo si el rollo tiene éxito."
       ]
     },
     {
@@ -6191,7 +6191,7 @@
       ],
       "name_es": "Whisky psíquico",
       "entries_es": [
-        "Usted puede establecer la comunicación telepática entre usted y otros. Como una acción {@action Magic|XPHB}, elige una o más criaturas que puedes ver, hasta un número de criaturas iguales a tu {@variantrule Proficiency|XPHB|Proficiency Bonus}, y luego rodar una Psionic Energy Die. Durante un número de horas igual al número rodado, las criaturas elegidas pueden hablar telepáticamente contigo, y puedes hablar telepáticamente con ellas. Para enviar o recibir un mensaje (no se requiere acción), usted y la otra criatura deben estar dentro de 1 milla uno del otro. Una criatura puede terminar la conexión telepática en cualquier momento (no se requiere acción)."
+        "Usted puede establecer la comunicación telepática entre usted y otros. Como una acción {@action Magic|XPHB}, elige una o más criaturas que puedes ver, hasta un número de criaturas iguales a tu {@variantrule Proficiency|XPHB|Proficiency Bonus}, y luego tirar una Psionic Energy Die. Durante un número de horas igual al número rodado, las criaturas elegidas pueden hablar telepáticamente contigo, y puedes hablar telepáticamente con ellas. Para enviar o recibir un mensaje (no se requiere acción), usted y la otra criatura deben estar dentro de 1 milla uno del otro. Una criatura puede terminar la conexión telepática en cualquier momento (no se requiere acción)."
       ]
     },
     {
@@ -6213,7 +6213,7 @@
       ],
       "name_es": "Homing Strikes",
       "entries_es": [
-        "Si haces un rollo de ataque con tu {@item Psychic Blade|XPHB} y pierdes el objetivo, puedes rodar uno Psionic Energy Die y añadir el número rodado al rollo de ataque. Si esto hace que el ataque golpee, la muerte es gastada."
+        "Si haces un tirada de ataque con tu {@item Psychic Blade|XPHB} y pierdes el objetivo, puedes tirar uno Psionic Energy Die y añadir el número rodado al tirada de ataque. Si esto hace que el ataque golpee, la muerte es gastada."
       ]
     },
     {
@@ -6235,7 +6235,7 @@
       ],
       "name_es": "Teleportación Psíquica",
       "entries_es": [
-        "Como un {@variantrule Bonus Action|XPHB}, usted manifiesta un {@item Psychic Blade|XPHB}, expulsar un Psionic Energy Die y rodar, y tirar la espada a un espacio no ocupado se puede ver hasta un número de pies de distancia igual a 10 veces el número rodado. Luego te teletransportas a ese espacio, y la espada desaparece."
+        "Como un {@variantrule Bonus Action|XPHB}, usted manifiesta un {@item Psychic Blade|XPHB}, expulsar un Psionic Energy Die y tirar, y tirar la espada a un espacio no ocupado se puede ver hasta un número de pies de distancia igual a 10 veces el número rodado. Luego te teletransportas a ese espacio, y la espada desaparece."
       ]
     },
     {
@@ -6312,7 +6312,7 @@
       ],
       "name_es": "Rend Mind",
       "entries_es": [
-        "Puedes barrer tus Psic Blades a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría ([TAG0]] más tu modificador de Dexteridad y {@variantrule Proficiency|XPHB|Proficiency Bonus}). Si el ahorro falla, el objetivo tiene la condición {@condition Stunned|XPHB} por 1 minuto. El objetivo {@condition Stunned|XPHB} repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
+        "Puedes barrer tus Psic Blades a través de la mente de una criatura. Cuando usas tus Blades Psic para tratar el daño de Sneak Attack a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría ([TAG0]] más tu modificador de Dexteridad y {@variantrule Proficiency|XPHB|Proficiency Bonus}). Si el salvación falla, el objetivo tiene la condición {@condition Stunned|XPHB} por 1 minuto. El objetivo {@condition Stunned|XPHB} repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB} a menos que expulse tres Psionic Energy Dice (no se requiere acción) para restaurar su uso de ella."
       ]
     },
@@ -6706,7 +6706,7 @@
           ],
           "name_es": "Cargos",
           "entries_es": [
-            "Cada vez que utiliza una propiedad de elementos mágicos que gasta cargos, rollo {@dice 1d6}. En un rollo de 6, utiliza la propiedad sin gastar los cargos."
+            "Cada vez que utiliza una propiedad de elementos mágicos que gasta cargos, rollo {@dice 1d6}. En un tirada de 6, utiliza la propiedad sin gastar los cargos."
           ]
         },
         {
@@ -6743,7 +6743,7 @@
           ],
           "name_es": "Cargos",
           "entries_es": [
-            "Cada vez que utiliza una propiedad de elementos mágicos que gasta cargos, rollo {@dice 1d6}. En un rollo de 6, utiliza la propiedad sin gastar los cargos."
+            "Cada vez que utiliza una propiedad de elementos mágicos que gasta cargos, rollo {@dice 1d6}. En un tirada de 6, utiliza la propiedad sin gastar los cargos."
           ]
         },
         {
@@ -6887,7 +6887,7 @@
       ],
       "name_es": "Abajo de ellos",
       "entries_es": [
-        "También a 3o nivel, usted gana una manera adicional de utilizar su ataque Sneak: usted no necesita ventaja en el rollo de ataque para utilizar su ataque Sneak contra una criatura si usted o su montaje movió al menos 20 pies este giro, y usted no tiene desventaja en el rollo de ataque.",
+        "También a 3o nivel, usted gana una manera adicional de utilizar su ataque Sneak: usted no necesita ventaja en el tirada de ataque para utilizar su ataque Sneak contra una criatura si usted o su montaje movió al menos 20 pies este giro, y usted no tiene desventaja en el tirada de ataque.",
         "Todas las demás reglas para Sneak Attack siguen vigentes."
       ]
     },
@@ -6923,7 +6923,7 @@
       ],
       "name_es": "True Grit",
       "entries_es": [
-        "A 13o nivel, usted gana la competencia en ahorros de Constitución.",
+        "A 13o nivel, usted gana la competencia en salvacións de Constitución.",
         "Además, cuando usted está sujeto a un efecto que le permite hacer una tirada de salvación de Constitución para tomar sólo medio daño, en lugar de ello no se dañe si tiene éxito en eltirada de salvación, y sólo medio daño si falla."
       ]
     },
@@ -7005,7 +7005,7 @@
       "entries_es": [
         "Cuando usted elige este arquetipo a 3o nivel, usted gana la capacidad de colocar una maldición menor en otros con un vistazo.",
         "Como una acción de bonificación en tu turno, elige una criatura que puedes ver dentro de 60 pies. La criatura elegida debe tener éxito en una tirada de salvación de Charisma contra tu desgracia salvar a DC o estar marcada por tu mal ojo.",
-        "Mientras una criatura está marcada por tu mal ojo, puedes usar tu Ataque Sneak contra la criatura incluso si no tienes ventaja en el rollo de ataque, pero no si tienes desventaja en él.",
+        "Mientras una criatura está marcada por tu mal ojo, puedes usar tu Ataque Sneak contra la criatura incluso si no tienes ventaja en el tirada de ataque, pero no si tienes desventaja en él.",
         "La criatura permanece marcada por tu mal ojo durante 1 minuto o hasta que marcas una criatura diferente con tu mal ojo, cualquiera que venga primero."
       ]
     },
@@ -7055,7 +7055,7 @@
               "formula": "Misfortune save DC = 8 + your proficiency bonus + your Charisma modifier"
             }
           ],
-          "name_es": "Tirantes de ahorro",
+          "name_es": "Tiradas de salvación",
           "entries_es": [
             "Tu mal ojo, y algunas de tus desgracias, requieren tu objetivo para hacer una tirada de salvación para resistir sus efectos. Eltirada de salvación DC se calcula de la siguiente manera:",
             {
@@ -7104,7 +7104,7 @@
               "formula": "Misfortune save DC = 8 + your proficiency bonus + your Charisma modifier"
             }
           ],
-          "name_es": "Tirantes de ahorro",
+          "name_es": "Tiradas de salvación",
           "entries_es": [
             "Tu mal ojo, y algunas de tus desgracias, requieren tu objetivo para hacer una tirada de salvación para resistir sus efectos. Eltirada de salvación DC se calcula de la siguiente manera:",
             {
@@ -7162,7 +7162,7 @@
           ],
           "name_es": "Curse of the Debilitated",
           "entries_es": [
-            "Cuando una criatura marcada por tu mal ojo daña, puedes usar tu reacción y pasar 1 punto jinx para rodar 1d12.",
+            "Cuando una criatura marcada por tu mal ojo daña, puedes usar tu reacción y pasar 1 punto jinx para tirar 1d12.",
             "La criatura toma daño necromático y reduce sus puntos máximos iguales al resultado."
           ]
         },
@@ -7292,7 +7292,7 @@
           "name_es": "La maldición del desafortunado",
           "entries_es": [
             "Como una acción de bonificación en tu turno, puedes gastar 2 puntos jinx para poner un pox en una criatura marcada por tu mal ojo.",
-            "Cada vez que la criatura hace un rollo de ataque o tiro de ahorro, usted rodará 1d4 y resta el resultado de su total.",
+            "Cada vez que la criatura hace un tirada de ataque o tiro de salvación, usted tirará 1d4 y resta el resultado de su total.",
             "Este pox termina cuando la criatura ya no está marcada por tu mal ojo."
           ]
         }
@@ -7337,7 +7337,7 @@
           ],
           "name_es": "Curse of the Debilitated",
           "entries_es": [
-            "Cuando una criatura marcada por tu mal ojo daña, puedes usar tu reacción y pasar 1 punto jinx para rodar 1d12.",
+            "Cuando una criatura marcada por tu mal ojo daña, puedes usar tu reacción y pasar 1 punto jinx para tirar 1d12.",
             "La criatura toma daño necromático y reduce sus puntos máximos iguales al resultado."
           ]
         },
@@ -7467,7 +7467,7 @@
           "name_es": "La maldición del desafortunado",
           "entries_es": [
             "Como una acción de bonificación en tu turno, puedes gastar 2 puntos jinx para poner un pox en una criatura marcada por tu mal ojo.",
-            "Cada vez que la criatura hace un rollo de ataque o tiro de ahorro, usted rodará 1d4 y resta el resultado de su total.",
+            "Cada vez que la criatura hace un tirada de ataque o tiro de salvación, usted tirará 1d4 y resta el resultado de su total.",
             "Este pox termina cuando la criatura ya no está marcada por tu mal ojo."
           ]
         }
@@ -7489,7 +7489,7 @@
       ],
       "name_es": "Steal Luck",
       "entries_es": [
-        "A partir del 9o nivel, cuando una criatura que puedes ver a menos de 30 pies de ti hace un cheque de habilidad, un rollo de ataque o una tirada de salvación con ventaja, puedes usar tu reacción para quitar ventaja del rollo.",
+        "A partir del 9o nivel, cuando una criatura que puedes ver a menos de 30 pies de ti hace un cheque de habilidad, un tirada de ataque o una tirada de salvación con ventaja, puedes usar tu reacción para quitar ventaja del rollo.",
         "Cuando lo haces, recuperas un punto de jinx gastado.",
         "Una vez que utilice esta característica, debe terminar un breve o largo descanso antes de que pueda hacerlo de nuevo.",
         "A nivel 17, puede utilizar esta característica tres veces, recuperando todos los usos cuando termine un breve o largo descanso."

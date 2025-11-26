@@ -2048,7 +2048,7 @@
       "name_es": "Sanación Rápido",
       "entries_es": [
         "{@i 4th-level monk {@variantrule optional class features|tce|optional feature}",
-        "Como acción, puedes pasar 2 puntos de ki y rodar una muerte de Artes Marciales. Usted recupera un número de puntos de éxito igual al número rodado más su bono de competencia."
+        "Como acción, puedes pasar 2 puntos de ki y tirar una muerte de Artes Marciales. Usted recupera un número de puntos de éxito igual al número rodado más su bono de competencia."
       ]
     },
     {
@@ -2098,7 +2098,7 @@
       "name_es": "Objetivo concentrado",
       "entries_es": [
         "{@i 5th-level monk {@variantrule optional class features|tce|optional feature}",
-        "Cuando te pierdas con un rollo de ataque, puedes gastar 1 a 3 puntos de ki para aumentar tu rollo de ataque en 2 para cada uno de estos puntos de ki que gastas, convirtiendo potencialmente a la señorita en un éxito."
+        "Cuando te pierdas con un tirada de ataque, puedes gastar 1 a 3 puntos de ki para aumentar tu tirada de ataque en 2 para cada uno de estos puntos de ki que gastas, convirtiendo potencialmente a la señorita en un éxito."
       ]
     },
     {
@@ -2305,7 +2305,7 @@
       ],
       "name_es": "Diamond Soul",
       "entries_es": [
-        "Comenzando a nivel 14, su dominio de ki te otorga competencia en todos los lanzamientos de ahorro.",
+        "Comenzando a nivel 14, su dominio de ki te otorga competencia en todos los lanzamientos de salvación.",
         "Además, cada vez que haces una tirada de salvación y fallas, puedes pasar 1 punto ki para rerollarlo y tomar el segundo resultado."
       ]
     },
@@ -2413,7 +2413,7 @@
       ],
       "name_es": "Ser perfecto",
       "entries_es": [
-        "En el nivel 20, cuando usted hace rodar por iniciativa y no tiene puntos de ki restantes, usted recupera 4 puntos de ki."
+        "En el nivel 20, cuando usted hace tirar por iniciativa y no tiene puntos de ki restantes, usted recupera 4 puntos de ki."
       ]
     },
     {
@@ -2562,7 +2562,7 @@
       ],
       "name_es": "Martial Arts Die",
       "entries_es": [
-        "Puede rodar {@damage 1d6} en lugar del daño normal de sus {@variantrule Unarmed Strike|XPHB}] o armas Monk. Esta muerte cambia a medida que usted gana niveles de Monk, como se muestra en la columna de las Artes Marciales de la tabla Características Monk."
+        "Puede tirar {@damage 1d6} en lugar del daño normal de sus {@variantrule Unarmed Strike|XPHB}] o armas Monk. Esta muerte cambia a medida que usted gana niveles de Monk, como se muestra en la columna de las Artes Marciales de la tabla Características Monk."
       ]
     },
     {
@@ -2765,7 +2765,7 @@
       ],
       "name_es": "Uncanny Metabolismo",
       "entries_es": [
-        "Cuando ruede {@variantrule Initiative|XPHB}, puede recuperar todos los Puntos de Focus gastados. Cuando lo haces, rodar tus Artes Marciales mueren, y recuperar un número de {@variantrule Hit Points|XPHB} igual a tu nivel Monk más el número rodado.",
+        "Cuando ruede {@variantrule Initiative|XPHB}, puede recuperar todos los Puntos de Focus gastados. Cuando lo haces, tirar tus Artes Marciales mueren, y recuperar un número de {@variantrule Hit Points|XPHB} igual a tu nivel Monk más el número rodado.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -2788,7 +2788,7 @@
       ],
       "name_es": "Deflect Attacks",
       "entries_es": [
-        "Cuando un rollo de ataque te golpea y su daño incluye Bludgeoning, Piercing o Slashing daño, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño total del ataque contra ti. La reducción es igual {@dice 1d10} más su modificador de Destreza y nivel de Monk.",
+        "Cuando un tirada de ataque te golpea y su daño incluye Bludgeoning, Piercing o Slashing daño, puedes tomar un {@variantrule Reaction|XPHB} para reducir el daño total del ataque contra ti. La reducción es igual {@dice 1d10} más su modificador de Destreza y nivel de Monk.",
         "Si reduce el daño a 0, puede enviar 1 punto focal para redirigir parte de la fuerza del ataque. Si lo haces, elige una criatura que puedes ver a menos de 5 pies de ti mismo si el ataque fue un simple ataque o una criatura que puedes ver dentro de 60 pies de ti mismo que no está detrás {@variantrule Cover|XPHB|Total Cover} si el ataque fue un ataque extendido. Esa criatura debe tener éxito en una tirada de salvación de Destreza o tomar el daño igual a dos rollos de sus Artes Marciales mueren más su modificador de Destreza. El daño es el mismo tipo que el ataque."
       ]
     },
@@ -2878,7 +2878,7 @@
       ],
       "name_es": "Strike impresionante",
       "entries_es": [
-        "Una vez por turno cuando golpeas a una criatura con un arma Monk o un {@variantrule Unarmed Strike|XPHB}, puedes enviar 1 punto focal para intentar una huelga impresionante. El objetivo debe hacer un lanzamiento de Constitución. En un ahorro fallido, el objetivo tiene la condición {@condition Stunned|XPHB} hasta el comienzo de su próximo turno. En un ahorro exitoso, el objetivo {@variantrule Speed|XPHB} se reduce a la mitad hasta el comienzo de su próximo turno, y el próximo lanzamiento de ataque hecho contra el objetivo antes de entonces tiene {@variantrule Advantage|XPHB}."
+        "Una vez por turno cuando golpeas a una criatura con un arma Monk o un {@variantrule Unarmed Strike|XPHB}, puedes enviar 1 punto focal para intentar una huelga impresionante. El objetivo debe hacer un lanzamiento de Constitución. En un salvación fallido, el objetivo tiene la condición {@condition Stunned|XPHB} hasta el comienzo de su próximo turno. En un salvación exitoso, el objetivo {@variantrule Speed|XPHB} se reduce a la mitad hasta el comienzo de su próximo turno, y el próximo lanzamiento de ataque hecho contra el objetivo antes de entonces tiene {@variantrule Advantage|XPHB}."
       ]
     },
     {
@@ -3224,7 +3224,7 @@
       ],
       "name_es": "Survivor disciplinado",
       "entries_es": [
-        "Su disciplina física y mental le otorga competencia en todos los lanzamientos de ahorro.",
+        "Su disciplina física y mental le otorga competencia en todos los lanzamientos de salvación.",
         "Además, cada vez que haces una tirada de salvación y fallas, puedes enviar 1 Focus Point para rerollarlo, y debes usar el nuevo rollo."
       ]
     },
@@ -3467,7 +3467,7 @@
       "name_es": "Respiración del Dragón",
       "entries_es": [
         "[[TAG0]",
-        "Puedes canalizar ondas destructivas de energía, como las creadas por los dragones que emulas. Cuando usted toma la acción [[TAG0] en su turno, puede reemplazar uno de los ataques con una exhalación de energía dracónica en un cono de 20 pies o una línea de 30 pies de ancho (su elección). Elija un tipo de daño: ácido, frío, fuego, relámpago o veneno. Cada criatura en ese área debe hacer una tirada de salvación de Destreza contra su ki ahorre DC, tomando el daño del tipo elegido igual a dos rollos de sus Artes Marciales muere en un ahorro fallido, o la mitad de daño en un éxito.",
+        "Puedes canalizar ondas destructivas de energía, como las creadas por los dragones que emulas. Cuando usted toma la acción [[TAG0] en su turno, puede reemplazar uno de los ataques con una exhalación de energía dracónica en un cono de 20 pies o una línea de 30 pies de ancho (su elección). Elija un tipo de daño: ácido, frío, fuego, relámpago o veneno. Cada criatura en ese área debe hacer una tirada de salvación de Destreza contra su ki ahorre DC, tomando el daño del tipo elegido igual a dos rollos de sus Artes Marciales muere en un salvación fallido, o la mitad de daño en un éxito.",
         "A 11o nivel, el daño de esta característica aumenta a tres rollos de sus Artes Marciales mueren.",
         "Usted puede utilizar esta característica un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo. Si bien no tiene usos disponibles, puede pasar 2 puntos ki para usar esta característica de nuevo."
       ]
@@ -4674,7 +4674,7 @@
       ],
       "name_es": "Touch of the Long Death",
       "entries_es": [
-        "A partir del nivel 17, tu tacto puede canalizar la energía de la muerte en una criatura. Como acción, tocas a una criatura a 5 pies de ti, y gastas 1 a 10 puntos de qui. El objetivo debe hacer una tirada de salvación de Constitución, y toma [[TAG0] daño necroético por punto ki gastado en un ahorro fallido, o la mitad del daño en un éxito."
+        "A partir del nivel 17, tu tacto puede canalizar la energía de la muerte en una criatura. Como acción, tocas a una criatura a 5 pies de ti, y gastas 1 a 10 puntos de qui. El objetivo debe hacer una tirada de salvación de Constitución, y toma [[TAG0] daño necroético por punto ki gastado en un salvación fallido, o la mitad del daño en un éxito."
       ]
     },
     {
@@ -5074,7 +5074,7 @@
       "name_es": "Mano de Harm",
       "entries_es": [
         "[[TAG0]",
-        "Usas tu ki para causar heridas. Cuando golpeas a una criatura con una huelga desarmada, puedes pasar 1 punto de qui para hacer frente a un daño necrótico extra igual a un rollo de tus Artes Marciales morir + tu modificador de Sabiduría. Usted puede utilizar esta característica sólo una vez por turno."
+        "Usas tu ki para causar heridas. Cuando golpeas a una criatura con una huelga desarmada, puedes pasar 1 punto de qui para hacer frente a un daño necrótico extra igual a un tirada de tus Artes Marciales morir + tu modificador de Sabiduría. Usted puede utilizar esta característica sólo una vez por turno."
       ]
     },
     {
@@ -5099,7 +5099,7 @@
       "name_es": "Mano de sanación",
       "entries_es": [
         "[[TAG0]",
-        "Tu toque místico puede reparar heridas. Como acción, puedes pasar 1 punto de ki para tocar a una criatura y restaurar un número de puntos de éxito igual a un rollo de tus Artes Marciales morir + tu modificador de Sabiduría.",
+        "Tu toque místico puede reparar heridas. Como acción, puedes pasar 1 punto de ki para tocar a una criatura y restaurar un número de puntos de éxito igual a un tirada de tus Artes Marciales morir + tu modificador de Sabiduría.",
         "Cuando usas tu Flurry of Blows, puedes reemplazar una de las huelgas desarmadas con un uso de esta característica sin gastar un punto de qui para la curación."
       ]
     },
@@ -5160,7 +5160,7 @@
       "entries_es": [
         "[[TAG0]",
         "Ganas la competencia en las habilidades {@skill Insight} y {@skill Medicine}, y obtienes la competencia con {@item herbalism kit|PHB}.",
-        "También ganas una máscara especial, que a menudo usas cuando usas las características de esta subclase. Usted determina su apariencia, o lo genera aleatoriamente al rodar en la mesa de la Mascarilla Merciful.",
+        "También ganas una máscara especial, que a menudo usas cuando usas las características de esta subclase. Usted determina su apariencia, o lo genera aleatoriamente al tirar en la mesa de la Mascarilla Merciful.",
         {
           "type": "table",
           "caption": "Merciful Mask",
@@ -5555,7 +5555,7 @@
       ],
       "name_es": "Redirect Attack",
       "entries_es": [
-        "Cuando una criatura te echa de menos con un simple rollo de ataque, puedes pasar 1 punto de qui como reacción para hacer que ese ataque golpee a una criatura de tu elección, aparte del atacante, que puedes ver a menos de 5 pies de ti."
+        "Cuando una criatura te echa de menos con un simple tirada de ataque, puedes pasar 1 punto de qui como reacción para hacer que ese ataque golpee a una criatura de tu elección, aparte del atacante, que puedes ver a menos de 5 pies de ti."
       ]
     },
     {
@@ -5642,7 +5642,7 @@
       ],
       "name_es": "La suerte de borracho",
       "entries_es": [
-        "A partir del 11o nivel, siempre pareces tener un rebote afortunado en el momento adecuado. Cuando usted hace un cheque de habilidad, un rollo de ataque, o una tirada de salvación y tiene desventaja en el rollo, puede pasar 2 puntos de ki para cancelar la desventaja para ese rollo."
+        "A partir del 11o nivel, siempre pareces tener un rebote afortunado en el momento adecuado. Cuando usted hace un cheque de habilidad, un tirada de ataque, o una tirada de salvación y tiene desventaja en el rollo, puede pasar 2 puntos de ki para cancelar la desventaja para ese rollo."
       ]
     },
     {
@@ -5932,7 +5932,7 @@
       ],
       "name_es": "Precisión infalible",
       "entries_es": [
-        "A nivel 17, su dominio de armas le otorga una extraordinaria precisión. Si te pierdes con un rollo de ataque usando un arma monje en tu turno, puedes rerollarlo. Puedes usar esta función sólo una vez en cada turno."
+        "A nivel 17, su dominio de armas le otorga una extraordinaria precisión. Si te pierdes con un tirada de ataque usando un arma monje en tu turno, puedes rerollarlo. Puedes usar esta función sólo una vez en cada turno."
       ]
     },
     {
@@ -6086,7 +6086,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un salvación fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ],
@@ -6110,7 +6110,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un salvación fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ]
@@ -6141,7 +6141,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un salvación fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ],
@@ -6165,7 +6165,7 @@
               ],
               "name_es": "Elemental Strikes",
               "entries_es": [
-                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un ahorro fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
+                "Cada vez que usted golpea con su {@variantrule Unarmed Strike|XPHB}, usted puede hacer que se ocupe de su elección de ácido, frío, fuego, rayo, o daño del Trueno en lugar de su tipo de daño normal. Cuando se trata de uno de estos tipos con él, también puede obligar al objetivo a hacer una tirada de salvación de fuerza. En un salvación fallido, usted puede mover el objetivo hasta 10 pies hacia o lejos de usted, como energía elemental gira alrededor de él."
               ]
             }
           ]
@@ -6186,7 +6186,7 @@
       ],
       "name_es": "Manipular elementos",
       "entries_es": [
-        "Conoces el hechizo. La sabiduría es tu habilidad de deletrear para ello."
+        "Conoces el hechizo. La sabiduría es tu habilidad de lanzamiento para ello."
       ]
     },
     {
@@ -6246,7 +6246,7 @@
       "name_es": "Elemental Burst",
       "entries_es": [
         "Como acción {@action Magic|XPHB}, se puede expulsar 2 puntos focales para hacer que la energía elemental estalle en un radio de 20 pies {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centrado en un punto dentro de 120 pies de usted mismo. Elija un tipo de daño: Ácido, frío, fuego, relámpago o Trueno.",
-        "Cada criatura en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer una tirada de salvación de Destreza. En un fallido ahorro, una criatura toma el daño del tipo elegido igual a tres rollos de sus Artes Marciales muere. En un ahorro exitoso, una criatura toma la mitad de daño."
+        "Cada criatura en el {@variantrule Sphere [Area of Effect]|XPHB|Sphere} debe hacer una tirada de salvación de Destreza. En un fallido salvación, una criatura toma el daño del tipo elegido igual a tres rollos de sus Artes Marciales muere. En un salvación exitoso, una criatura toma la mitad de daño."
       ]
     },
     {
@@ -6298,7 +6298,7 @@
           ],
           "name_es": "Stride destructivo",
           "entries_es": [
-            "Cuando usted utiliza su Paso del Viento, su [[TAG0] aumenta en 20 pies hasta el final del turno. Para esa duración, cualquier criatura de su elección tiene un daño igual a un rollo de sus Artes Marciales muere cuando usted entra en un espacio a 5 pies de él. El tipo de daño es su elección de ácido, frío, fuego, relámpago o Trueno. Una criatura puede tomar este daño sólo una vez por turno."
+            "Cuando usted utiliza su Paso del Viento, su [[TAG0] aumenta en 20 pies hasta el final del turno. Para esa duración, cualquier criatura de su elección tiene un daño igual a un tirada de sus Artes Marciales muere cuando usted entra en un espacio a 5 pies de él. El tipo de daño es su elección de ácido, frío, fuego, relámpago o Trueno. Una criatura puede tomar este daño sólo una vez por turno."
           ]
         },
         {
@@ -6309,7 +6309,7 @@
           ],
           "name_es": "Empowered Strikes",
           "entries_es": [
-            "Una vez en cada uno de sus turnos, usted puede hacer daño adicional a un objetivo igual a un rollo de sus Artes Marciales muere cuando lo golpeó con un {@variantrule Unarmed Strike|XPHB}. El daño adicional es el mismo tipo que el ataque."
+            "Una vez en cada uno de sus turnos, usted puede hacer daño adicional a un objetivo igual a un tirada de sus Artes Marciales muere cuando lo golpeó con un {@variantrule Unarmed Strike|XPHB}. El daño adicional es el mismo tipo que el ataque."
           ]
         }
       ],
@@ -6335,7 +6335,7 @@
           ],
           "name_es": "Stride destructivo",
           "entries_es": [
-            "Cuando usted utiliza su Paso del Viento, su [[TAG0] aumenta en 20 pies hasta el final del turno. Para esa duración, cualquier criatura de su elección tiene un daño igual a un rollo de sus Artes Marciales muere cuando usted entra en un espacio a 5 pies de él. El tipo de daño es su elección de ácido, frío, fuego, relámpago o Trueno. Una criatura puede tomar este daño sólo una vez por turno."
+            "Cuando usted utiliza su Paso del Viento, su [[TAG0] aumenta en 20 pies hasta el final del turno. Para esa duración, cualquier criatura de su elección tiene un daño igual a un tirada de sus Artes Marciales muere cuando usted entra en un espacio a 5 pies de él. El tipo de daño es su elección de ácido, frío, fuego, relámpago o Trueno. Una criatura puede tomar este daño sólo una vez por turno."
           ]
         },
         {
@@ -6346,7 +6346,7 @@
           ],
           "name_es": "Empowered Strikes",
           "entries_es": [
-            "Una vez en cada uno de sus turnos, usted puede hacer daño adicional a un objetivo igual a un rollo de sus Artes Marciales muere cuando lo golpeó con un {@variantrule Unarmed Strike|XPHB}. El daño adicional es el mismo tipo que el ataque."
+            "Una vez en cada uno de sus turnos, usted puede hacer daño adicional a un objetivo igual a un tirada de sus Artes Marciales muere cuando lo golpeó con un {@variantrule Unarmed Strike|XPHB}. El daño adicional es el mismo tipo que el ataque."
           ]
         }
       ]
@@ -6413,7 +6413,7 @@
       ],
       "name_es": "Mano de Harm",
       "entries_es": [
-        "Una vez por turno cuando golpeas a una criatura con un {@variantrule Unarmed Strike|XPHB} y haces daño, puedes expulsar 1 punto focal para hacer frente al daño neocrótico adicional igual a un rollo de tus Artes Marciales muere más tu modificador de Sabiduría."
+        "Una vez por turno cuando golpeas a una criatura con un {@variantrule Unarmed Strike|XPHB} y haces daño, puedes expulsar 1 punto focal para hacer frente al daño neocrótico adicional igual a un tirada de tus Artes Marciales muere más tu modificador de Sabiduría."
       ]
     },
     {
@@ -6435,7 +6435,7 @@
       ],
       "name_es": "Mano de sanación",
       "entries_es": [
-        "Como una acción {@action Magic|XPHB}, usted puede enviar 1 punto focal para tocar a una criatura y restaurar un número de {@variantrule Hit Points|XPHB} igual a un rollo de su muere Artes Marciales más su modificador de Sabiduría. Cuando usas tu Flurry of Blows, puedes reemplazar uno de los Strikes Desarmados con un uso de esta característica sin gastar un Focus Point para la curación."
+        "Como una acción {@action Magic|XPHB}, usted puede enviar 1 punto focal para tocar a una criatura y restaurar un número de {@variantrule Hit Points|XPHB} igual a un tirada de su muere Artes Marciales más su modificador de Sabiduría. Cuando usas tu Flurry of Blows, puedes reemplazar uno de los Strikes Desarmados con un uso de esta característica sin gastar un Focus Point para la curación."
       ]
     },
     {
@@ -6755,7 +6755,7 @@
       ],
       "name_es": "Plenitud del cuerpo",
       "entries_es": [
-        "Ganas la habilidad de curarte. Como un {@variantrule Bonus Action|XPHB}, usted puede rodar sus Artes Marciales morir. Usted recupera un número de [[TAG1] igual al número rodado más su modificador de Sabiduría (mínimo de 1 {@variantrule Hit Points|XPHB|Hit Point} recuperado).",
+        "Ganas la habilidad de curarte. Como un {@variantrule Bonus Action|XPHB}, usted puede tirar sus Artes Marciales morir. Usted recupera un número de [[TAG1] igual al número rodado más su modificador de Sabiduría (mínimo de 1 {@variantrule Hit Points|XPHB|Hit Point} recuperado).",
         "Puede utilizar esta característica varias veces igual a su modificador de Sabiduría (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -6802,7 +6802,7 @@
       ],
       "name_es": "Palmera descarada",
       "entries_es": [
-        "Ganas la habilidad de establecer vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con un {@variantrule Unarmed Strike|XPHB}, puedes gastar 4 Puntos de Focus para iniciar estas vibraciones imperceptibles, que duran varios días iguales a tu nivel de Monk. Las vibraciones son inofensivas a menos que tomes una acción para terminarlas. Alternativamente, cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes renunciar a uno de los ataques para acabar con las vibraciones. Para acabar con ellos, usted y el objetivo deben estar en el mismo plano de la existencia. Cuando los termines, el objetivo debe hacer una tirada de salvación de Constitución, tomando {@damage 10d12} Daño de la fuerza en un ahorro fallido o la mitad de daño en uno exitoso.",
+        "Ganas la habilidad de establecer vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con un {@variantrule Unarmed Strike|XPHB}, puedes gastar 4 Puntos de Focus para iniciar estas vibraciones imperceptibles, que duran varios días iguales a tu nivel de Monk. Las vibraciones son inofensivas a menos que tomes una acción para terminarlas. Alternativamente, cuando tomes la acción {@action Attack|XPHB} en tu turno, puedes renunciar a uno de los ataques para acabar con las vibraciones. Para acabar con ellos, usted y el objetivo deben estar en el mismo plano de la existencia. Cuando los termines, el objetivo debe hacer una tirada de salvación de Constitución, tomando {@damage 10d12} Daño de la fuerza en un salvación fallido o la mitad de daño en uno exitoso.",
         "Usted puede tener sólo una criatura bajo el efecto de esta característica a la vez. Usted puede terminar las vibraciones inofensivamente (sin necesidad de acción)."
       ]
     },
@@ -6929,7 +6929,7 @@
       ],
       "name_es": "Shadowy Figs",
       "entries_es": [
-        "Conoces el hechizo. La sabiduría es tu habilidad de deletrear para ello."
+        "Conoces el hechizo. La sabiduría es tu habilidad de lanzamiento para ello."
       ]
     },
     {

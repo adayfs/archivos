@@ -1665,7 +1665,7 @@
       "name_es": "Foe favorito",
       "entries_es": [
         "{@i 1st-level ranger {@variantrule optional class features|tce|optional feature}, que reemplaza la característica Enemigo Favoreado y funciona con la función Foe Slayer}",
-        "Cuando golpeas a una criatura con un rollo de ataque, puedes llamar a tu vínculo místico con la naturaleza para marcar el objetivo como tu enemigo favorecido durante 1 minuto o hasta que pierdas tu {@status concentration} (como si estuvieras {@status concentration||concentrating} en un hechizo).",
+        "Cuando golpeas a una criatura con un tirada de ataque, puedes llamar a tu vínculo místico con la naturaleza para marcar el objetivo como tu enemigo favorecido durante 1 minuto o hasta que pierdas tu {@status concentration} (como si estuvieras {@status concentration||concentrating} en un hechizo).",
         "La primera vez en cada uno de tus turnos que golpeas al enemigo favorecido y le haces daño, incluso cuando lo marcas, puedes aumentar ese daño por {@damage 1d4}.",
         "Usted puede utilizar esta característica para marcar un enemigo favorecido una serie de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando usted termina un descanso largo.",
         "El daño adicional de esta característica aumenta cuando alcanza ciertos niveles en esta clase: a {@damage 1d6} a 6o nivel y a {@damage 1d8} a 14o nivel."
@@ -1919,7 +1919,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -1994,7 +1994,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de deletrear para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un rollo de ataque con uno.",
+            "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2556,7 +2556,7 @@
       ],
       "name_es": "Foe Slayer",
       "entries_es": [
-        "A nivel 20, te conviertes en un cazador sin igual de tus enemigos. Una vez en cada uno de sus turnos, puede agregar su modificador de Sabiduría al rollo de ataque o el rollo de daño de un ataque que usted hace contra uno de sus enemigos favorecidos. Puede elegir usar esta función antes o después del rollo, pero antes de que se apliquen los efectos del rollo."
+        "A nivel 20, te conviertes en un cazador sin igual de tus enemigos. Una vez en cada uno de sus turnos, puede agregar su modificador de Sabiduría al tirada de ataque o el tirada de daño de un ataque que usted hace contra uno de sus enemigos favorecidos. Puede elegir usar esta función antes o después del rollo, pero antes de que se apliquen los efectos del rollo."
       ]
     },
     {
@@ -2637,7 +2637,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Ranger."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Ranger."
               ]
             },
             {
@@ -2698,7 +2698,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Ranger."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Ranger."
               ]
             },
             {
@@ -2766,7 +2766,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Ranger."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Ranger."
               ]
             },
             {
@@ -2827,7 +2827,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "La sabiduría es tu habilidad de deletrear para tus hechizos Ranger."
+                "La sabiduría es tu habilidad de lanzamiento para tus hechizos Ranger."
               ]
             },
             {
@@ -3756,7 +3756,7 @@
       "name_es": "Respiración de Drake",
       "entries_es": [
         "[[TAG0]",
-        "Como acción, puede exhalar un cono de 30 pies de aliento dañino o causar que su drake exhale. Elija ácido, frío, fuego, relámpago o daño venenoso (su elección no tiene que coincidir con la esencia Draconic de su Drake). Cada criatura en el cono debe hacer una tirada de salvación de Dexteridad contra su hechizo salvo DC, tomando [[TAG0] daño en un ahorro fallido, o la mitad de daño en un éxito.",
+        "Como acción, puede exhalar un cono de 30 pies de aliento dañino o causar que su drake exhale. Elija ácido, frío, fuego, relámpago o daño venenoso (su elección no tiene que coincidir con la esencia Draconic de su Drake). Cada criatura en el cono debe hacer una tirada de salvación de Dexteridad contra su hechizo salvo DC, tomando [[TAG0] daño en un salvación fallido, o la mitad de daño en un éxito.",
         "Este daño aumenta a [[TAG0] cuando alcanza el nivel 15 en esta clase.",
         "Una vez que utilice esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo, a menos que expende una ranura de hechizo de 3er nivel o superior para utilizarlo de nuevo."
       ]
@@ -3938,7 +3938,7 @@
       ],
       "name_es": "Compañero de Ranger",
       "entries_es": [
-        "Ganas un compañero de bestia que te acompaña en tus aventuras y te entrenan para luchar contigo. Elige un [[TAG0]. Agregue su bonificación de competencia al AC de la bestia, los rollos de ataque y los rollos de daño, así como a cualquier tiro de ahorro y habilidades que es competente en. Su punto de impacto máximo equivale a su máximo normal o cuatro veces su nivel de ranger, lo que sea más alto. Como cualquier criatura, la bestia puede pasar Hit Dice durante un breve descanso.",
+        "Ganas un compañero de bestia que te acompaña en tus aventuras y te entrenan para luchar contigo. Elige un [[TAG0]. Agregue su bonificación de competencia al AC de la bestia, los rollos de ataque y los rollos de daño, así como a cualquier tiro de salvación y habilidades que es competente en. Su punto de impacto máximo equivale a su máximo normal o cuatro veces su nivel de ranger, lo que sea más alto. Como cualquier criatura, la bestia puede pasar Hit Dice durante un breve descanso.",
         "La bestia obedece sus órdenes lo mejor que pueda. Toma su decisión sobre su iniciativa. A su vez, usted puede ordenar verbalmente a la bestia donde moverse (no hay acción requerida por usted). Puede utilizar su acción para ordenar verbalmente que tome la {@action Attack}, {@action Dash}], {@action Disengage}, o {@action Help} acción. Si no emites un comando, la bestia toma la acción {@action Dodge}. Una vez que tenga la característica de ataque adicional, puede hacer un ataque de arma cuando ordene a la bestia tomar la acción {@action Attack}.",
         "Si estás {@condition incapacitated} o estás ausente, tu compañero de bestia actúa por sí mismo, centrándose en protegerte a ti y a sí mismo. Nunca requiere que su comando use su reacción, como cuando hace un ataque de oportunidad.",
         "Mientras viajas por tu terreno favorecido con sólo la bestia, puedes moverte sigilosamente a un ritmo normal.",
@@ -4388,7 +4388,7 @@
       ],
       "name_es": "Volley",
       "entries_es": [
-        "Usted puede utilizar su acción para hacer un ataque extendido contra cualquier número de criaturas dentro de 10 pies de un punto que puede ver dentro de la gama de su arma. Usted debe tener municiones para cada objetivo, como normal, y hacer un rollo de ataque separado para cada objetivo."
+        "Usted puede utilizar su acción para hacer un ataque extendido contra cualquier número de criaturas dentro de 10 pies de un punto que puede ver dentro de la gama de su arma. Usted debe tener municiones para cada objetivo, como normal, y hacer un tirada de ataque separado para cada objetivo."
       ]
     },
     {
@@ -4407,7 +4407,7 @@
       ],
       "name_es": "Whirlwind Attack",
       "entries_es": [
-        "Puedes usar tu acción para hacer un simple ataque contra cualquier número de criaturas a menos de 5 pies de ti, con un rollo de ataque separado para cada objetivo."
+        "Puedes usar tu acción para hacer un simple ataque contra cualquier número de criaturas a menos de 5 pies de ti, con un tirada de ataque separado para cada objetivo."
       ]
     },
     {
@@ -4820,7 +4820,7 @@
       "entries_es": [
         "[[TAG0]",
         "La magia del Feywild protege tu mente. Usted tiene ventaja en ahorrar lanzamientos contra ser {@condition charmed} o {@condition frightened}.",
-        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en una tirada de salvación contra ser {@condition charmed} o {@condition frightened}, usted puede utilizar su reacción para forzar una criatura diferente que puede ver dentro de 120 pies de usted para hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. Si el ahorro falla, el objetivo es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto. El objetivo puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto en sí mismo en un ahorro exitoso."
+        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en una tirada de salvación contra ser {@condition charmed} o {@condition frightened}, usted puede utilizar su reacción para forzar una criatura diferente que puede ver dentro de 120 pies de usted para hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. Si el salvación falla, el objetivo es {@condition charmed} o {@condition frightened} por usted (su elección) por 1 minuto. El objetivo puede repetir eltirada de salvación al final de cada uno de sus turnos, terminando el efecto en sí mismo en un salvación exitoso."
       ]
     },
     {
@@ -5251,7 +5251,7 @@
       ],
       "name_es": "Dread Ambusher",
       "entries_es": [
-        "A 3o nivel, dominas el arte de la emboscada. Puedes darte un bono a tus rollos de iniciativa iguales a tu modificador de Sabiduría.",
+        "A 3o nivel, dominas el arte de la emboscada. Puedes darte un bono a tus tirada de iniciativa iguales a tu modificador de Sabiduría.",
         "Al comienzo de su primera vuelta de cada combate, su velocidad de caminar aumenta en 10 pies, que dura hasta el final de ese giro. Si toma la acción [[TAG0] en ese giro, puede hacer un ataque adicional de arma como parte de esa acción. Si ese ataque golpea, el objetivo toma un daño adicional {@damage 1d8} del tipo de daño del arma."
       ]
     },
@@ -5376,7 +5376,7 @@
       ],
       "name_es": "Iron Mind",
       "entries_es": [
-        "En el séptimo nivel, ha perfeccionado su capacidad de resistir los poderes de alteración mental de su presa. Ganas habilidad en tiros de ahorro de sabiduría. Si usted ya tiene esta competencia, usted gana la competencia en Inteligencia o Charisma ahorro lanzamientos (su elección)."
+        "En el séptimo nivel, ha perfeccionado su capacidad de resistir los poderes de alteración mental de su presa. Ganas habilidad en tiros de salvación de sabiduría. Si usted ya tiene esta competencia, usted gana la competencia en Inteligencia o Charisma salvación lanzamientos (su elección)."
       ]
     },
     {
@@ -5412,7 +5412,7 @@
       ],
       "name_es": "Shadowy Dodge",
       "entries_es": [
-        "A partir del 15o nivel, se puede esquivar de maneras imprevistas, con pliegues de sombra sobrenatural alrededor de usted. Cada vez que una criatura hace un lanzamiento de ataque contra usted y no tiene ventaja en el rollo, usted puede utilizar su reacción para imponer desventaja en él. Debe utilizar esta característica antes de conocer el resultado del rollo de ataque."
+        "A partir del 15o nivel, se puede esquivar de maneras imprevistas, con pliegues de sombra sobrenatural alrededor de usted. Cada vez que una criatura hace un lanzamiento de ataque contra usted y no tiene ventaja en el rollo, usted puede utilizar su reacción para imponer desventaja en él. Debe utilizar esta característica antes de conocer el resultado del tirada de ataque."
       ]
     },
     {
@@ -5862,7 +5862,7 @@
       ],
       "name_es": "Slayer's Counter",
       "entries_es": [
-        "A nivel 15, usted gana la capacidad de contraatacar cuando su presa trata de sabotearlo. Si el objetivo de la presa de su asesino le obliga a hacer una tirada de salvación, puede utilizar su reacción para hacer un ataque de arma contra la cantera. Haces este ataque inmediatamente antes de hacer eltirada de salvacións. Si su ataque golpea, su ahorro tiene éxito automáticamente, además de los efectos normales del ataque."
+        "A nivel 15, usted gana la capacidad de contraatacar cuando su presa trata de sabotearlo. Si el objetivo de la presa de su asesino le obliga a hacer una tirada de salvación, puede utilizar su reacción para hacer un ataque de arma contra la cantera. Haces este ataque inmediatamente antes de hacer eltirada de salvacións. Si su ataque golpea, su salvación tiene éxito automáticamente, además de los efectos normales del ataque."
       ]
     },
     {
@@ -5908,7 +5908,7 @@
           ],
           "name_es": "Polar Strikes",
           "entries_es": [
-            "Cuando golpeas a una criatura con un rollo de ataque usando un arma, puedes tratar un extra {@damage 1d4} Daño frío al objetivo, que puede tomar este daño adicional sólo una vez por turno. Cuando alcanza el nivel de Ranger 11, este daño adicional aumenta a {@dice 1d6}."
+            "Cuando golpeas a una criatura con un tirada de ataque usando un arma, puedes tratar un extra {@damage 1d4} Daño frío al objetivo, que puede tomar este daño adicional sólo una vez por turno. Cuando alcanza el nivel de Ranger 11, este daño adicional aumenta a {@dice 1d6}."
           ]
         }
       ],
@@ -5948,7 +5948,7 @@
           ],
           "name_es": "Polar Strikes",
           "entries_es": [
-            "Cuando golpeas a una criatura con un rollo de ataque usando un arma, puedes tratar un extra {@damage 1d4} Daño frío al objetivo, que puede tomar este daño adicional sólo una vez por turno. Cuando alcanza el nivel de Ranger 11, este daño adicional aumenta a {@dice 1d6}."
+            "Cuando golpeas a una criatura con un tirada de ataque usando un arma, puedes tratar un extra {@damage 1d4} Daño frío al objetivo, que puede tomar este daño adicional sólo una vez por turno. Cuando alcanza el nivel de Ranger 11, este daño adicional aumenta a {@dice 1d6}."
           ]
         }
       ]
@@ -6110,7 +6110,7 @@
       ],
       "name_es": "Alma Fortificante",
       "entries_es": [
-        "Su experiencia sobreviviendo entornos de arrogancia le permite reforzar sus aliados además de usted mismo. Como acción Mágica, elige una serie de criaturas que puedes ver igual a tu modificador de Sabiduría (mínimo de uno). Cada criatura elegida recupera {@variantrule Hit Points|XPHB} igual a {@dice 1d10} más su nivel de Ranger y tiene [[TAG2] en los lanzamientos de ahorro para evitar o terminar la condición asustada durante 1 hora.",
+        "Su experiencia sobreviviendo entornos de arrogancia le permite reforzar sus aliados además de usted mismo. Como acción Mágica, elige una serie de criaturas que puedes ver igual a tu modificador de Sabiduría (mínimo de uno). Cada criatura elegida recupera {@variantrule Hit Points|XPHB} igual a {@dice 1d10} más su nivel de Ranger y tiene [[TAG2] en los lanzamientos de salvación para evitar o terminar la condición asustada durante 1 hora.",
         "Una vez que utilice esta característica, no puede utilizarla de nuevo hasta que termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -6129,7 +6129,7 @@
       ],
       "name_es": "Retribución de Chilling",
       "entries_es": [
-        "Cuando una criatura te golpea con un rollo de ataque, puedes tomar un {@variantrule Reaction|XPHB} para obligar a la criatura a hacer una tirada de salvación de Sabiduría contra tu hechizo salvo DC. En un ahorro fallido, el objetivo tiene la condición de Stunned hasta el final de su próximo turno. Mientras que el objetivo es Stunned, su {@variantrule Speed|XPHB} se reduce a 0 pies.",
+        "Cuando una criatura te golpea con un tirada de ataque, puedes tomar un {@variantrule Reaction|XPHB} para obligar a la criatura a hacer una tirada de salvación de Sabiduría contra tu hechizo salvo DC. En un salvación fallido, el objetivo tiene la condición de Stunned hasta el final de su próximo turno. Mientras que el objetivo es Stunned, su {@variantrule Speed|XPHB} se reduce a 0 pies.",
         "Puede utilizar esta característica varias veces igual a su modificador de Sabiduría (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
       ]
     },
@@ -6371,7 +6371,7 @@
       "name_es": "Formación excepcional",
       "entries_es": [
         "Cuando usted toma un {@variantrule Bonus Action|XPHB} para ordenar a su bestia del Compañero Primal para tomar una acción, también puede ordenar que tome la {@action Dash|XPHB}, {@action Disengage|XPHB}, {@action Dodge|XPHB}], o {@action Help|XPHB} acción utilizando su {@variantrule Bonus Action|XPHB}].",
-        "Además, cada vez que golpea con un rollo de ataque y daña daños, puede tratar su elección de daño de la fuerza o su tipo de daño normal."
+        "Además, cada vez que golpea con un tirada de ataque y daña daños, puede tratar su elección de daño de la fuerza o su tipo de daño normal."
       ]
     },
     {
@@ -6673,8 +6673,8 @@
       ],
       "name_es": "Twist.",
       "entries_es": [
-        "La magia del Feywild protege tu mente. Usted tiene [[TAG0] en lanzamientos de ahorro para evitar o terminar la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}.",
-        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en una tirada de salvación para evitar o terminar la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} fuerza una criatura diferente que puede ver dentro de 120 pies de usted mismo para hacer una Sabiduría salvo contra su hechizo salvo DC. En un ahorro fallido, el objetivo es {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) por 1 minuto. El objetivo repite el ahorro al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
+        "La magia del Feywild protege tu mente. Usted tiene [[TAG0] en lanzamientos de salvación para evitar o terminar la condición {@condition Charmed|XPHB}] o {@condition Frightened|XPHB}.",
+        "Además, cada vez que usted o una criatura que puede ver dentro de 120 pies de usted tiene éxito en una tirada de salvación para evitar o terminar la condición {@condition Charmed|XPHB} o {@condition Frightened|XPHB}, usted puede tomar un {@variantrule Reaction|XPHB} fuerza una criatura diferente que puede ver dentro de 120 pies de usted mismo para hacer una Sabiduría salvo contra su hechizo salvo DC. En un salvación fallido, el objetivo es {@condition Charmed|XPHB} o {@condition Frightened|XPHB} (su elección) por 1 minuto. El objetivo repite el salvación al final de cada uno de sus turnos, terminando el efecto sobre sí mismo en un éxito."
       ]
     },
     {
@@ -6962,7 +6962,7 @@
       ],
       "name_es": "Iron Mind",
       "entries_es": [
-        "Has perfeccionado tu capacidad de resistir poderes alteradores de la mente. Ganas habilidad en tiros de ahorro de sabiduría. Si usted ya tiene esta competencia, usted gana la competencia en Inteligencia o Charisma ahorro lanzamientos (su elección)."
+        "Has perfeccionado tu capacidad de resistir poderes alteradores de la mente. Ganas habilidad en tiros de salvación de sabiduría. Si usted ya tiene esta competencia, usted gana la competencia en Inteligencia o Charisma salvación lanzamientos (su elección)."
       ]
     },
     {
@@ -6996,7 +6996,7 @@
           ],
           "name_es": "Miedo de Masa",
           "entries_es": [
-            "El objetivo y cada criatura dentro de 10 pies de él debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
+            "El objetivo y cada criatura dentro de 10 pies de él debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido salvación, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
           ]
         }
       ],
@@ -7022,7 +7022,7 @@
           ],
           "name_es": "Miedo de Masa",
           "entries_es": [
-            "El objetivo y cada criatura dentro de 10 pies de él debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido ahorro, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
+            "El objetivo y cada criatura dentro de 10 pies de él debe hacer una tirada de salvación de Sabiduría contra su hechizo salvo DC. En un fallido salvación, una criatura tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno."
           ]
         }
       ]
@@ -7042,7 +7042,7 @@
       ],
       "name_es": "Shadowy Dodge",
       "entries_es": [
-        "Cuando una criatura hace un rollo de ataque contra usted, usted puede tomar un {@variantrule Reaction|XPHB} imponer {@variantrule Disadvantage|XPHB} en ese rollo. Ya sea que el ataque golpee o pierda, entonces puede teletransportar hasta 30 pies a un espacio no ocupado que puede ver."
+        "Cuando una criatura hace un tirada de ataque contra usted, usted puede tomar un {@variantrule Reaction|XPHB} imponer {@variantrule Disadvantage|XPHB} en ese rollo. Ya sea que el ataque golpee o pierda, entonces puede teletransportar hasta 30 pies a un espacio no ocupado que puede ver."
       ]
     },
     {
@@ -7258,7 +7258,7 @@
               ],
               "name_es": "Multiattack Defense",
               "entries_es": [
-                "Cuando una criatura te golpea con un rollo de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
+                "Cuando una criatura te golpea con un tirada de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
               ]
             }
           ],
@@ -7282,7 +7282,7 @@
               ],
               "name_es": "Multiattack Defense",
               "entries_es": [
-                "Cuando una criatura te golpea con un rollo de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
+                "Cuando una criatura te golpea con un tirada de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
               ]
             }
           ]
@@ -7313,7 +7313,7 @@
               ],
               "name_es": "Multiattack Defense",
               "entries_es": [
-                "Cuando una criatura te golpea con un rollo de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
+                "Cuando una criatura te golpea con un tirada de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
               ]
             }
           ],
@@ -7337,7 +7337,7 @@
               ],
               "name_es": "Multiattack Defense",
               "entries_es": [
-                "Cuando una criatura te golpea con un rollo de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
+                "Cuando una criatura te golpea con un tirada de ataque, esa criatura tiene {@variantrule Disadvantage|XPHB} en todos los otros rollos de ataque contra ti este giro."
               ]
             }
           ]
