@@ -614,8 +614,13 @@ function drak_campaign_render_personajes( $campaign_id ) {
     }
 
     echo '<div class="campaign-cards">';
+    $visible = 0;
     while ( $query->have_posts() ) {
         $query->the_post();
+        if ( ! drak_user_can_view_personaje( get_the_ID() ) ) {
+            continue;
+        }
+        $visible++;
         $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
         $slug  = get_post_field( 'post_name', get_the_ID() );
         $sheet_url = home_url( '/hoja-personaje/' . $slug . '/' );
@@ -629,6 +634,9 @@ function drak_campaign_render_personajes( $campaign_id ) {
         <?php
     }
     echo '</div>';
+    if ( 0 === $visible ) {
+        echo '<p class="campaign-section__empty">No tienes personajes asignados en esta campaña.</p>';
+    }
     wp_reset_postdata();
 }
 

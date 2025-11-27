@@ -1,0 +1,680 @@
+## Trucos (Cantrips)
+
+### Acid Burn (Quemadura Ácida)
+**Escuela:** Truco de evocación  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal (cono de 15 pies)  
+**Componentes:** V, S  
+**Duración:** Instantánea  
+
+Produces mágicamente una rociada de fórmula ácida en un cono de 15 pies frente a ti. Todas las criaturas en el cono deben superar una tirada de salvación de Destreza o sufrir 1d6 puntos de daño por ácido.  
+
+El daño de este conjuro aumenta en 1d6 cuando alcanzas el nivel 5 (2d6), nivel 11 (3d6) y nivel 17 (4d6).
+
+
+### Bacterial Barrage (Descarga Bacteriana)
+**Escuela:** Truco de nigromancia  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 30 pies  
+**Componentes:** V, S  
+**Duración:** Instantánea  
+
+Atacas a una criatura dentro del alcance con una infección de rápida propagación que aprovecha las dolencias existentes. Realiza una tirada de ataque de conjuro a distancia contra un objetivo; si impactas, la infección inflige 1d8 puntos de daño necrótico al objetivo.  
+
+Si el objetivo sufre la condición *envenenado* o padece una enfermedad, en su lugar recibe 1d12 puntos de daño necrótico.  
+
+El daño de este conjuro aumenta en un dado cuando alcanzas el nivel 5 (2d8 o 2d12), el nivel 11 (3d8 o 3d12) y el nivel 17 (4d8 o 4d12).
+
+
+### Poison Needle (Aguja Venenosa)
+**Escuela:** Truco de conjuración  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** V, S  
+**Duración:** Instantánea  
+
+Lanzas un dardo conjurado recubierto de veneno letal contra una criatura que puedas ver dentro del alcance. Realiza una tirada de ataque de conjuro a distancia contra el objetivo. Si impactas, el objetivo recibe 1d10 puntos de daño de veneno.  
+
+Si este daño de veneno reduce al objetivo a 0 puntos de golpe, el objetivo queda estable pero envenenado durante 1 hora, incluso tras recuperar puntos de golpe, y permanece paralizado mientras esté envenenado de este modo.  
+
+El daño de este conjuro aumenta en 1d10 cuando alcanzas el nivel 5 (2d10), el nivel 11 (3d10) y el nivel 17 (4d10).
+
+---
+
+## Hechizos de 1er nivel
+
+### Acrid Orb (Orbe Ácrido)
+**Escuela:** Evocación de 1er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** V, S, M (un vial de ácido gástrico y una pizca de sulfato)  
+**Duración:** Instantánea  
+
+Creas un orbe de gel ácido y lo lanzas contra una criatura dentro del alcance. Realiza una tirada de ataque de conjuro a distancia contra el objetivo. Si impactas, el objetivo recibe 2d6 puntos de daño por ácido.  
+
+Tanto si el ataque impacta como si falla, el orbe explota. El objetivo y cada criatura en un radio de 5 pies de él deben superar una tirada de salvación de Destreza o sufrir 2d6 puntos de daño por ácido.  
+
+**En niveles superiores.** Cuando lanzas este conjuro usando un espacio de conjuro de 2º nivel o superior, el daño del ácido de la explosión aumenta en 1d6 por cada nivel de espacio por encima de 1º.
+
+
+### Envenom (Envenenar)
+**Escuela:** Conjuración de 1er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** V, S, M (un vial de veneno básico)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Elige una criatura que puedas ver dentro del alcance para afligirla con un veneno mágico. El objetivo recibe 2d4 puntos de daño de veneno y debe hacer una tirada de salvación de Constitución. En una tirada de salvación fallida, queda envenenado durante la duración del conjuro.  
+
+Mientras esté envenenado de este modo, el objetivo debe hacer una tirada de salvación de Constitución al final de cada uno de sus turnos. Sufre 2d4 puntos de daño de veneno si falla la tirada. Si la supera, el conjuro termina para ese objetivo.  
+
+Un conjuro de *restauración menor* lanzado sobre el objetivo termina este conjuro antes de tiempo.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 2º nivel o superior, puedes elegir una criatura adicional como objetivo por cada nivel de espacio por encima de 1º.
+
+
+### Infect (Infectar)
+**Escuela:** Nigromancia de 1er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** V, S, M (una placa de Petri)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Afliges a una criatura que puedas ver dentro del alcance con una enfermedad mágica. Al inicio de cada uno de los turnos del objetivo, este debe hacer una tirada de salvación de Constitución.  
+
+La criatura recibe 1d12 puntos de daño necrótico en una tirada de salvación fallida, o la mitad de daño en una tirada con éxito. Si el objetivo tiene éxito en tres de estas tiradas, el conjuro termina para esa criatura.  
+
+Un conjuro de *restauración menor* lanzado sobre el objetivo termina este conjuro antes de tiempo.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 2º nivel o superior, el daño aumenta en 1d12 por cada dos niveles de espacio por encima de 1º.
+
+
+### Stream of Consumption (Corriente Devoradora)
+**Escuela:** Nigromancia de 1er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal  
+**Componentes:** V, S  
+**Duración:** Concentración, hasta 1 minuto  
+
+Durante la duración del conjuro, tu lengua se convierte en un apéndice alargado de energía verde necrótica que puedes usar para beber la vitalidad de otras criaturas.  
+
+Una criatura a tu elección que puedas ver y que se encuentre a 60 pies de ti debe hacer una tirada de salvación de Constitución. En una tirada fallida, el objetivo gana 1 nivel de agotamiento y tú recuperas puntos de golpe iguales a 1d4 + tu modificador de característica de conjuración.  
+
+En cada uno de tus turnos hasta que el conjuro termine, puedes usar tu acción para elegir como objetivo a la misma criatura u otra distinta, pero no puedes volver a elegir como objetivo a una criatura que haya tenido éxito en una tirada de salvación contra este lanzamiento de *corriente devoradora*.
+
+
+### Toxic Shield (Escudo Tóxico)
+**Escuela:** Conjuración de 1er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal  
+**Componentes:** S, M (una gota de sangre enana)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Obtienes resistencia al daño de veneno y ventaja en las tiradas de salvación contra ser envenenado durante la duración del conjuro.  
+
+Además, siempre que una criatura a 5 pies de ti te golpee con un ataque cuerpo a cuerpo, el escudo la rocía con veneno, infligiendo 1d8 puntos de daño de veneno al atacante.  
+
+**En niveles superiores.** Cuando lanzas este conjuro usando un espacio de conjuro de 2º nivel o superior, el daño de veneno aumenta en 1d8 por cada 2 niveles de espacio por encima de 1º.
+
+## Hechizos de 2º nivel
+
+### Biohazard (Peligro Biológico)
+**Escuela:** Conjuración de 2º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies (cubo de 15 pies)  
+**Componentes:** V, S, M (una raíz marchita y una gota de vinagre)  
+**Duración:** 1 minuto  
+
+Cubre un cubo de 15 pies de lado con lodo tóxico durante la duración del conjuro. El área es terreno difícil y está llena de gases peligrosos.  
+
+Una criatura que entre en el área o empiece su turno en ella debe hacer una tirada de salvación de Constitución. Si falla, sufre 1d8 puntos de daño de veneno y queda **envenenada** hasta el inicio de su siguiente turno. Las criaturas se ven afectadas incluso si contienen la respiración o no necesitan respirar.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 3er nivel o superior, el daño aumenta en 1d8 por cada nivel de espacio por encima de 2º.
+
+
+### Caustic Grip (Agarre Cáustico)
+**Escuela:** Evocación de 2º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal  
+**Componentes:** S  
+**Duración:** Concentración, hasta 1 minuto  
+
+Mientras dure el conjuro, tu mano segrega un ácido pegajoso y abrasador que puedes usar para sujetar a una criatura con un agarre doloroso.  
+
+Cuando lanzas el conjuro, y como acción en tus turnos hasta que termine, puedes hacer un ataque de conjuro cuerpo a cuerpo contra una criatura a 5 pies de ti. Si impactas, infliges 4d4 puntos de daño por ácido y la criatura queda **inmovilizada** por tu agarre ácido hasta el final de tu siguiente turno. Puedes seguir atacando al mismo objetivo turno tras turno o elegir uno nuevo en cualquier momento. Si cambias de objetivo, el anterior deja de estar afectado por el conjuro.  
+
+Una criatura inmovilizada por tu agarre puede usar su acción para hacer una prueba de Fuerza contra la CD de salvación de tu conjuro. Si tiene éxito, deja de estar inmovilizada. Cada vez que una criatura termina su turno inmovilizada por este conjuro, sufre otros 4d4 puntos de daño por ácido.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 3er nivel o superior, tanto el daño inicial como el daño al final del turno aumentan en 2d4 por cada nivel de espacio por encima de 2º.
+
+
+### Grasping Ghost (Espectro Aferrador)
+**Escuela:** Nigromancia de 2º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** S, M (un hueso de dedo y un retazo de tela)  
+**Duración:** Instantánea  
+
+Un enjambre de manos espectrales flotantes aparece y se aferra a una criatura que puedas ver dentro del alcance. El objetivo debe superar una tirada de salvación de Fuerza.  
+
+- En una tirada fallida, el objetivo sufre 3d8 puntos de daño necrótico.  
+- En una tirada con éxito, sufre la mitad del daño.  
+
+Además, con una salvación fallida las manos fantasmales **agarran** al objetivo hasta el final de tu siguiente turno, y lo mueven inmediatamente hasta 30 pies en una dirección que elijas (pero no hacia arriba).  
+
+En su turno, la criatura puede usar su acción para intentar escapar del agarre haciendo una prueba de Fuerza o Destreza (a su elección) contra la CD de salvación de tu conjuro. Si tiene éxito, el agarre termina.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 3er nivel o superior, el espectro aferrador puede tener como objetivo a una criatura adicional dentro del alcance por cada nivel de espacio por encima de 2º.
+
+
+### Invigorate (Vigorizante)
+**Escuela:** Abjuración de 2º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 30 pies  
+**Componentes:** S, M (una jeringuilla y una muestra de sangre)  
+**Duración:** 1 hora  
+
+Elige hasta tres criaturas dentro del alcance. Cada objetivo gana **10 puntos de golpe temporales**.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 3er nivel o superior, los puntos de golpe temporales aumentan en 5 por cada nivel de espacio por encima de 2º.
+
+
+### Ocular Necrosis (Necrosis Ocular)
+**Escuela:** Nigromancia de 2º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 30 pies  
+**Componentes:** V, S  
+**Duración:** Instantánea  
+
+Haz un ataque de conjuro a distancia contra una criatura que puedas ver dentro del alcance. Si impactas, la llenas de una toxina mortal que hace que sus ojos sangren.  
+
+El objetivo sufre 2d6 puntos de daño necrótico y queda **ciego** hasta el final de tu siguiente turno.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 3er nivel o superior, el daño necrótico aumenta en 1d6 por cada nivel de espacio por encima de 2º.
+
+
+---
+
+## Hechizos de 3er nivel
+
+### Corrosive Blast (Explosión Corrosiva)
+**Escuela:** Evocación de 3er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal (cono de 30 pies)  
+**Componentes:** V, S, M (un vial de ácido)  
+**Duración:** Instantánea  
+
+Un chorro de químicos acre arde desde tus manos. Cada criatura en un cono de 30 pies debe hacer una tirada de salvación de Destreza.  
+
+- En una salvación fallida, la criatura sufre 10d4 puntos de daño por ácido.  
+- En una salvación con éxito, sufre la mitad de daño.  
+
+El ácido destruye cualquier objeto de materiales orgánicos en el área del conjuro. Una criatura asesinada por este conjuro ve su carne completamente disuelta, dejando solo un esqueleto corroído.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 4º nivel o superior, el daño por ácido aumenta en 2d4 por cada nivel de espacio por encima de 3º.
+
+
+### Fetid Blade (Hoja Fétida)
+**Escuela:** Evocación de 3er nivel  
+**Tiempo de lanzamiento:** 1 acción adicional  
+**Alcance:** Toque  
+**Componentes:** V, S, M (una gota de ácido y un pellizco de polvo de hierro)  
+**Duración:** Concentración, 1 minuto  
+
+Revestes un arma que toques con una sustancia ácida. Mientras dure el conjuro, los ataques con esa arma infligen **2d4 puntos de daño por ácido** adicionales al impactar. Si el arma no es ya mágica, se considera un arma mágica durante la duración.  
+
+Además, una criatura alcanzada por un ataque cuerpo a cuerpo con el arma debe hacer una tirada de salvación de Constitución. En una tirada fallida, queda **envenenada** hasta el final del siguiente turno del atacante.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 4º nivel o superior, el daño por ácido adicional aumenta en 1d4 por cada nivel de espacio por encima de 3º.
+
+
+### Pestilence (Pestilencia)
+**Escuela:** Nigromancia de 3er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 90 pies  
+**Componentes:** V, S, M (una flor marchita)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Infectas hasta tres criaturas que puedas ver dentro del alcance con una enfermedad mágica. Al inicio de cada uno de los turnos de cada objetivo, este debe hacer una tirada de salvación de Constitución.  
+
+- En una salvación fallida, la criatura sufre 3d6 puntos de daño necrótico y gana 1 nivel de **agotamiento**.  
+- Si un objetivo tiene éxito en tres de estas tiradas, el conjuro termina para esa criatura.  
+
+Un conjuro de *restauración menor* lanzado sobre un objetivo termina este conjuro antes de tiempo para esa criatura.
+
+
+### Purge Contamination (Purgar Contaminación)
+**Escuela:** Abjuración de 3er nivel  
+**Tiempo de lanzamiento:** 1 hora  
+**Alcance:** Toque  
+**Componentes:** V, S, M (100 po en fluidos alquímicos o agua bendita, que el conjuro consume)  
+**Duración:** Instantánea  
+
+Aplicas fluidos alquímicos o agua bendita a una criatura humanoide contaminada mientras recitas un extenso cántico mágico que expulsa los contaminantes élficos de su cuerpo.  
+
+Al finalizar el lanzamiento, se eliminan **todos** los Niveles de Contaminación y mutaciones de la criatura. Después de esto, la criatura gana 1 nivel de **agotamiento** por cada Nivel de Contaminación que haya eliminado con este conjuro.
+
+
+### Tranquilizing Toxin (Toxina Tranquilizante)
+**Escuela:** Evocación de 3er nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** V, S  
+**Duración:** Instantánea  
+
+Un objetivo que elijas dentro del alcance debe hacer una tirada de salvación de Constitución.  
+
+- En una salvación fallida, sufre 8d6 puntos de daño de veneno y queda **envenenado** hasta el final de tu siguiente turno. Mientras esté envenenado de este modo, también queda **aturdido**.  
+- En una salvación con éxito, el objetivo sufre la mitad de daño y no queda envenenado.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 4º nivel o superior, el daño de veneno aumenta en 1d6 por cada nivel de espacio por encima de 3º.
+
+
+### Venomous Aura (Aura Venenosa)
+**Escuela:** Transmutación de 3er nivel  
+**Tiempo de lanzamiento:** 1 acción adicional  
+**Alcance:** Personal (radio de 10 pies)  
+**Componentes:** V, S, M (escamas o colmillos de una serpiente venenosa)  
+**Duración:** 1 minuto  
+
+Emites un aura funesta que desorienta a las criaturas que se acercan a ti. Cualquier criatura que empiece su turno a 10 pies o menos de ti queda **envenenada** hasta el inicio de su siguiente turno.
+
+
+---
+
+## Hechizos de 4º nivel
+
+### Blood Worm (Gusano de Sangre)
+**Escuela:** Nigromancia de 4º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 30 pies  
+**Componentes:** V, S, M (un tarro lleno de sanguijuelas)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Infectas a una criatura que puedas ver dentro del alcance con una enfermedad mágica en forma de parásito maligno.  
+
+Una vez por turno, cuando una criatura golpea al objetivo infectado con un ataque de arma, ese ataque inflige **4d6 puntos de daño necrótico adicionales**, y el atacante recupera puntos de golpe iguales al daño necrótico infligido.  
+
+Cada vez que el objetivo sufre este daño necrótico, debe hacer una tirada de salvación de Constitución contra la CD de tu conjuro. Si tiene éxito, el conjuro termina.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, el daño necrótico adicional aumenta en 1d6 por cada nivel de espacio por encima de 4º.
+
+
+### Corpse Explosion (Explosión de Cadáver)
+**Escuela:** Nigromancia de 4º nivel  
+**Tiempo de lanzamiento:** 1 reacción, que realizas cuando una criatura que ves muere a 120 pies de ti  
+**Alcance:** 120 pies  
+**Componentes:** V, S  
+**Duración:** Instantánea  
+
+Haces que el cuerpo de la criatura que acaba de morir explote en una violenta lluvia de vísceras y carne infectada. Las criaturas en un radio de 10 pies de un punto centrado en el cuerpo de la criatura desencadenante sufren **4d8 puntos de daño necrótico y 4d8 puntos de daño por ácido**, o la mitad de daño con una tirada de salvación de Destreza exitosa.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, el daño aumenta en 1d8 de daño por ácido por cada nivel de espacio por encima de 4º.
+
+
+### Corrupting Spores (Esporas Corruptoras)
+**Escuela:** Nigromancia de 4º nivel  
+**Tiempo de lanzamiento:** 1 acción adicional  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (un hongo seco)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Un pequeño grupo de tres hongos venenosos brota mágicamente en un cuadrado de 5 pies que puedas ver dentro del alcance.  
+
+Los hongos emiten esporas tóxicas, y cualquier criatura que comience su turno a 10 pies o menos del parche debe hacer una tirada de salvación de Constitución.  
+
+- En una salvación fallida, la criatura sufre **1d8 puntos de daño de veneno por cada hongo del parche** y queda **envenenada** hasta el inicio de su siguiente turno.  
+
+Mientras dure el conjuro, puedes usar una acción adicional en tu turno para hacer que brote un hongo adicional dentro del mismo parche.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, un hongo adicional brota en el parche inicial por cada nivel de espacio por encima de 4º.
+
+
+### Last Rites (Últimos Ritos)
+**Escuela:** Abjuración de 4º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (un pequeño trozo de latón, un pétalo de rosa y una gota de agua bendita)  
+**Duración:** Instantánea  
+
+Apuntas a una criatura que puedas ver dentro del alcance con un rayo de luz sagrada que desciende sobre ella. El objetivo debe hacer una tirada de salvación de Sabiduría.  
+
+- En una salvación fallida, sufre 8d8 puntos de daño radiante.  
+- En una salvación con éxito, sufre la mitad de daño.  
+
+Este conjuro no afecta a celestiales ni constructos.  
+
+Si el objetivo es un muerto viviente o un infernal, hace la tirada de salvación con desventaja, y el conjuro le inflige el **daño máximo**. Si un muerto viviente o un infernal es reducido a 0 puntos de golpe por este conjuro, muere y su cuerpo se reduce a cenizas.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, puedes elegir un objetivo adicional dentro de 30 pies de otro por cada nivel de espacio por encima de 5º.
+
+
+### Poison Wave (Ola de Veneno)
+**Escuela:** Conjuración de 4º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal (esfera de 30 pies)  
+**Componentes:** V, S, M (una raíz marchita y una gota de vinagre)  
+**Duración:** Instantánea  
+
+Una ola de vapores venenosos emana de ti. Las criaturas a 30 pies de ti deben hacer una tirada de salvación de Constitución.  
+
+- En una salvación fallida, cada criatura sufre 4d12 puntos de daño de veneno y queda **envenenada** hasta el final de tu siguiente turno.  
+- En una salvación con éxito, sufre la mitad de daño y no queda envenenada.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, el daño aumenta en 1d12 por cada nivel de espacio por encima de 4º.
+
+
+### Summon the Thing with the Writhing Tail (Invocar a la Cosa de la Cola Retorcida)
+**Escuela:** Conjuración de 4º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 90 pies  
+**Componentes:** V, S, M (un mechón de pelo de gato y una rata muerta)  
+**Duración:** Concentración, hasta 1 hora  
+
+Llamas a la Cosa de la Cola Retorcida. Se manifiesta en un espacio desocupado que puedas ver dentro del alcance. Esta forma corpórea usa el bloque de estadísticas que aparece más abajo. La criatura desaparece cuando cae a 0 puntos de golpe o cuando el conjuro termina.  
+
+La criatura es aliada tuya y de tus compañeros. En combate, comparte tu conteo de iniciativa, pero actúa inmediatamente después de ti. Obedece tus órdenes verbales (no requiere acción por tu parte). Si no le das órdenes, realiza la acción Esquivar y usa su movimiento para evitar el peligro.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, utiliza el nivel más alto allá donde aparezca el nivel del conjuro en el bloque de estadísticas.
+
+#### La Cosa de la Cola Retorcida
+*Aberración mediana, sin alineamiento*  
+
+**Clase de Armadura:** 12 + el nivel del conjuro  
+**Puntos de Golpe:** 50 + 10 por cada nivel de conjuro por encima de 4º  
+**Velocidad:** 40 pies, trepar 30 pies  
+
+**FUE** 13 (+1) &nbsp;&nbsp; **DES** 19 (+4) &nbsp;&nbsp; **CON** 12 (+1) &nbsp;&nbsp; **INT** 19 (+4) &nbsp;&nbsp; **SAB** 15 (+2) &nbsp;&nbsp; **CAR** 19 (+4)  
+
+**Inmunidad al daño:** psíquico  
+**Inmunidad a condiciones:** hechizado, asustado  
+**Sentidos:** visión en la oscuridad 120 pies, Percepción pasiva 12  
+**Idiomas:** Habla Profunda, telepatía 120 pies  
+**Desafío:** – (su bonificador de competencia es igual al tuyo)  
+
+***Vista Etérea.*** La Cosa ve criaturas invisibles y puede ver el Plano Etéreo.  
+
+***Acciones***  
+
+***Multiataque.*** La Cosa realiza un número de ataques de garra igual a la mitad del nivel del conjuro (redondeado hacia abajo).  
+
+***Garra.*** Ataque de arma cuerpo a cuerpo: tu modificador de ataque de conjuro para impactar, alcance 5 pies, un objetivo. Impacto: 1d6 + el nivel del conjuro + 4 puntos de daño cortante, más 2d6 puntos de daño frío.  
+
+***Siseo Eldritch.*** La Cosa susurra una terrible verdad a una criatura que pueda ver a 5 pies o menos de ella. El objetivo debe hacer una tirada de salvación de Sabiduría. Si falla, sufre 4d6 puntos de daño psíquico y debe usar inmediatamente su reacción, si la tiene, para moverse lo más lejos posible de la Cosa según su velocidad lo permita. La criatura no entra voluntariamente en un terreno obviamente peligroso (como fuego o un foso).  
+
+***Zarcillo de Pensamiento.*** La Cosa azota psíquicamente a una criatura que pueda ver a 5 pies o menos. El objetivo debe hacer una tirada de salvación de Inteligencia. Si falla, sufre 4d6 puntos de daño psíquico y no puede usar reacciones hasta el final de su siguiente turno. Además, en su siguiente turno debe elegir si realiza **movimiento**, **acción** o **acción adicional**; solo puede hacer una de las tres.
+
+
+### Vitriol Ichor (Icor Vítreo)
+**Escuela:** Transmutación de 4º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 30 pies  
+**Componentes:** V, S, M (un vial de ácido nítrico y una redoma de agua)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Elige una criatura dentro del alcance que tenga armadura natural o lleve armadura. Haces que su armadura natural o manufacturada se vuelva corroída y quebradiza mientras dure el conjuro.  
+
+Mientras su armadura esté corroída, la **CA** de la criatura se convierte en **10 + el modificador de Destreza de la criatura**, ignorando cualquier otra bonificación de armadura.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 5º nivel o superior, puedes elegir una criatura adicional como objetivo por cada nivel de espacio por encima de 4º.
+
+
+---
+
+## Hechizos de 5º nivel
+
+### Acid Rain (Lluvia Ácida)
+**Escuela:** Conjuración de 5º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 150 pies  
+**Componentes:** V, S, M (una pizca de azufre y carbón molido)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Mientras dure el conjuro, cae lluvia ácida en un cilindro de 40 pies de radio y 40 pies de altura centrado en un punto que elijas dentro del alcance. El área está ligeramente oscurecida y las llamas expuestas en el área se apagan.  
+
+Charcos químicos se acumulan en el suelo del área, convirtiéndola en terreno difícil. Cuando una criatura entra por primera vez en el área del conjuro en un turno o empieza su turno allí, sufre **3d6 puntos de daño por ácido** y debe hacer una tirada de salvación de Destreza.  
+
+- En una salvación fallida, cae **derribada** en los charcos, sufriendo **3d6 puntos de daño por ácido adicionales**.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 6º nivel o superior, cada tirada de daño por ácido aumenta en 1d6 por cada nivel de espacio por encima de 5º.
+
+
+### Nerve Gas (Gas Nervioso)
+**Escuela:** Nigromancia de 5º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (muestras de fosfato y cloro mezcladas con una gota de alcohol puro)  
+**Duración:** Concentración, hasta 10 minutos  
+
+Creas una esfera de 10 pies de radio de niebla tóxica centrada en un punto que elijas dentro del alcance. La niebla se extiende alrededor de las esquinas. Dura hasta el final de la duración o hasta que un viento fuerte la disperse, terminando el conjuro. El área de la niebla está fuertemente oscurecida.  
+
+Cuando una criatura entra en el área del conjuro por primera vez en un turno o empieza su turno allí, debe hacer una tirada de salvación de **Inteligencia**.  
+
+- En una salvación fallida, la criatura sufre 3d6 puntos de daño psíquico y queda **aturdida** hasta el inicio de su siguiente turno.  
+- En una salvación con éxito, la criatura sufre la mitad de daño y no queda aturdida.  
+
+Las criaturas se ven afectadas incluso si contienen la respiración o no necesitan respirar.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 6º nivel o superior, el daño psíquico aumenta en 1d6 por cada nivel de espacio por encima de 5º.
+
+
+### Neutralizing Field (Campo Neutralizador)
+**Escuela:** Abjuración de 5º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal (esfera de 10 pies de radio)  
+**Componentes:** V, S, M (un cristal de Delirio o una reliquia sagrada por valor de 1.000 po)  
+**Duración:** Concentración, hasta 1 hora  
+
+Anulas las energías mágicas contaminadas en una esfera de 10 pies de radio. Mientras dure el conjuro, la esfera se mueve contigo, centrada en ti.  
+
+- Las criaturas dentro de la esfera (incluyéndote) **no pueden ganar Niveles de Contaminación**.  
+- Además, tienen **resistencia al daño necrótico**.  
+- Dentro del área **no se pueden lanzar conjuros contaminados**.  
+
+***Investigar el conjuro.*** Un personaje que pueda lanzar conjuros de 5º nivel, conozca el conjuro *purga de contaminación* (*purge contamination*) y haya creado al menos 1 dosis de *aqua expurgo* puede investigar *campo neutralizador*.
+
+
+### Septic Shock (Shock Séptico)
+**Escuela:** Nigromancia de 5º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 150 pies  
+**Componentes:** V, S, M (un trozo de hígado podrido)  
+**Duración:** Instantánea  
+
+Elige una criatura que puedas ver dentro del alcance que no tenga todos sus puntos de golpe. Infectas sus heridas con bacterias putrefactas. El objetivo debe hacer una tirada de salvación de Constitución.  
+
+- Si le queda menos de la mitad de sus puntos de golpe máximos, hace la tirada con **desventaja**.  
+- En una salvación fallida, el objetivo sufre **10d8 puntos de daño necrótico** y gana 1 nivel de **agotamiento**.  
+- En una salvación con éxito, sufre la mitad de daño y no gana niveles de agotamiento.  
+
+
+### Toxic Barrage (Descarga Tóxica)
+**Escuela:** Conjuración de 5º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (cuatro setas *death cap*)  
+**Duración:** Instantánea  
+
+Creas cuatro rayos de veneno puro y los lanzas contra objetivos dentro del alcance. Puedes dirigirlos todos al mismo objetivo o repartirlos entre varios.  
+
+Haz una tirada de ataque de conjuro a distancia por cada rayo.  
+
+- En un impacto, el objetivo sufre **3d6 puntos de daño de veneno**.  
+- Si un objetivo es alcanzado por uno o más rayos, debe hacer una tirada de salvación de Constitución. En una tirada fallida, queda **envenenado** durante 1 minuto.  
+
+Mientras esté envenenado de este modo, puede repetir la tirada de salvación al final de cada uno de sus turnos; con éxito, deja de estar envenenado.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 6º nivel o superior, creas un rayo adicional por cada nivel de espacio por encima de 5º.
+
+
+---
+
+## Hechizos de 6º nivel
+
+### Mephitic Vapors (Vapores Mefíticos)
+**Escuela:** Conjuración de 6º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (un vial de cloro)  
+**Duración:** Concentración, hasta 10 minutos  
+
+Empapas un área de radio 20 pies centrada en un punto que puedas ver dentro del alcance con una baba acre que permanece mientras dure el conjuro.  
+
+- El área se convierte en terreno difícil.  
+- Cualquier criatura **completamente dentro** del área está **ciega** y no puede realizar **reacciones**.  
+
+Una criatura que empiece su turno en el área debe superar una tirada de salvación de Constitución o sufrir **2d8 puntos de daño de veneno y 2d8 puntos de daño por ácido**, y gana 1 nivel de **agotamiento**.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 7º nivel o superior, el daño aumenta en 1d8 de veneno y 1d8 de ácido por cada nivel de espacio por encima de 6º.
+
+
+### Vile Necrosis (Necrosis Vil)
+**Escuela:** Nigromancia de 6º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (un vial de sangre coagulada)  
+**Duración:** Instantánea  
+
+Apuntas con tu dedo a una criatura dentro del alcance, proyectando un rayo verde pálido de energía debilitante. Haz un ataque de conjuro a distancia contra el objetivo.  
+
+- En un impacto, el objetivo sufre **12d6 puntos de daño necrótico** y queda **debilitado**.  
+
+Mientras esté debilitado por este conjuro, el objetivo inflige **la mitad de daño** con sus ataques de arma y conjuros.  
+
+Una criatura debilitada puede hacer una tirada de salvación de Constitución al final de cada uno de sus turnos. Si tiene éxito, la debilidad termina.
+
+
+---
+
+## Hechizos de 7º nivel
+
+### Contamination Immunity (Inmunidad a la Contaminación)
+**Escuela:** Abjuración de 7º nivel  
+**Tiempo de lanzamiento:** 1 minuto  
+**Alcance:** Toque  
+**Componentes:** V, S, M (un lirio eldritch mezclado en 250 po en fluidos purificados por objetivo, que el conjuro consume)  
+**Duración:** 24 horas  
+
+Hasta que termine el conjuro, una criatura dispuesta que toques es **inmune al daño necrótico** y **no puede ganar Niveles de Contaminación**.  
+
+La criatura afectada puede descansar con normalidad dentro de la Niebla (Haze).  
+
+El conjuro termina de inmediato si la criatura lanza un **conjuro contaminado**.  
+
+***Investigar el conjuro.*** Un personaje que pueda lanzar conjuros de 7º nivel, conozca el conjuro *campo neutralizador* (*neutralizing field*) y haya visitado el Corazón del Delirio (*Delerium Heart*) puede investigar *inmunidad a la contaminación*.
+
+
+### Grievous Wounds (Heridas Atroces)
+**Escuela:** Nigromancia de 7º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (una aguja y varios puntos de sutura)  
+**Duración:** Instantánea  
+
+Elige una criatura que puedas ver dentro del alcance. Momentáneamente despojas a la fisiología del objetivo de toda resiliencia, de modo que un simple rasguño puede convertirse en una herida terrible.  
+
+Hasta el final de tu siguiente turno:  
+
+- El objetivo **pierde todas sus resistencias e inmunidades al daño**.  
+- Se vuelve **vulnerable a todo tipo de daño**.  
+- Realiza todas sus tiradas de salvación con **desventaja**.  
+
+
+### Miasma (Miasma)
+**Escuela:** Evocación de 7º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 120 pies  
+**Componentes:** V, S, M (un lirio cadáver recién recolectado)  
+**Duración:** Concentración, hasta 1 minuto  
+
+Creas un muro de gases tóxicos de color verde amarillento sobre una superficie sólida dentro del alcance. Puedes hacer el muro de hasta 60 pies de largo, 20 pies de alto y 1 pie de grosor, o en forma de anillo de hasta 20 pies de diámetro, 20 pies de alto y 1 pie de grosor. El muro es opaco y dura mientras se mantenga la concentración.  
+
+Cuando aparece el muro, cada criatura en su área debe hacer una tirada de salvación de Destreza.  
+
+- En una salvación fallida, una criatura sufre **10d4 puntos de daño por ácido**, o la mitad de daño en una salvación exitosa.  
+
+Un lado del muro, que eliges al lanzar el conjuro, emite vapores tóxicos:  
+
+- Ese lado inflige **8d8 puntos de daño de veneno** a cada criatura que termine su turno a 30 pies o menos de ese lado o dentro del muro.  
+- Una criatura sufre el mismo daño cuando entra en el muro por primera vez en un turno.  
+- El otro lado del muro no inflige daño.  
+
+Una criatura que sufra daño de veneno por el muro debe hacer una tirada de salvación de Constitución o quedar **envenenada** mientras dure el conjuro.  
+
+**En niveles superiores.** Si lanzas este conjuro usando un espacio de conjuro de 8º nivel o superior, el daño de veneno aumenta en 2d8 por cada nivel de espacio por encima de 7º.
+
+
+---
+
+## Hechizos de 8º nivel
+
+### Breath of Nightshade (Aliento de Belladona)
+**Escuela:** Conjuración de 8º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal (cono de 60 pies)  
+**Componentes:** V, S, M (un par de flores de belladona mortal)  
+**Duración:** Instantánea  
+
+Exhalas un cono de 60 pies de veneno letal. Cada criatura en el área cuando lanzas el conjuro debe hacer una tirada de salvación de Constitución.  
+
+- En una salvación fallida, la criatura queda **envenenada** durante 1 hora. Mientras esté envenenada por este conjuro, está **paralizada**.  
+- El conjuro termina para una criatura afectada si sufre cualquier cantidad de daño.  
+
+
+### Plague Wind (Viento de Plaga)
+**Escuela:** Conjuración de 8º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Personal (cono de 120 pies)  
+**Componentes:** V, S, M (moco de un gul)  
+**Duración:** Instantánea  
+
+Invocas un viento turbulento de enfermedad devoradora de carne y vapores de sangre hirviente que barre el área emanando de ti en un cono de 120 pies.  
+
+Las criaturas en el área deben hacer una tirada de salvación de Constitución.  
+
+- En una salvación fallida, una criatura sufre **5d8 puntos de daño de veneno y 5d8 puntos de daño necrótico**, o la mitad de daño en una salvación exitosa.  
+- Después de recibir este daño, cualquier criatura afectada con **25 puntos de golpe o menos restantes** muere de inmediato y se reduce a un esqueleto desgastado cuando su carne y tejido blando se desintegran como ceniza.  
+
+
+---
+
+## Hechizos de 9º nivel
+
+### Pandemic (Pandemia)
+**Escuela:** Conjuración de 9º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** 60 pies  
+**Componentes:** V, S, M (el cadáver fétido de una rata de la peste)  
+**Duración:** Instantánea  
+
+Infectas a una criatura que puedas ver dentro del alcance con una enfermedad mortal y altamente contagiosa que dura hasta que se cura mediante *restauración mayor*, *curar heridas plenarias* (*heal*) o *deseo* (*wish*). Otros conjuros y efectos mágicos que eliminan enfermedades no pueden curar la infección causada por este conjuro.  
+
+Mientras esté infectada, la criatura debe hacer una tirada de salvación de Constitución al **inicio de cada uno de sus turnos**.  
+
+- En una salvación fallida, sufre **10d8 puntos de daño necrótico** y queda **incapacitada** hasta el inicio de su siguiente turno.  
+- En una salvación con éxito, sufre la mitad de daño y no queda incapacitada.  
+
+Una criatura infectada debe seguir realizando esta tirada al inicio de sus turnos hasta que muere o se cura.  
+
+Además, una criatura que empiece su turno a 10 pies o menos de una criatura infectada por este conjuro debe hacer una tirada de salvación de Constitución. En una salvación fallida, **contrae la infección**.  
+
+Cuando lanzas este conjuro, puedes elegirte a ti mismo y hasta ocho criaturas adicionales para que queden inmunes a la infección causada por **esta** instancia del conjuro.
+
+
+### Touch of Death (Toque de Muerte)
+**Escuela:** Nigromancia de 9º nivel  
+**Tiempo de lanzamiento:** 1 acción  
+**Alcance:** Toque  
+**Componentes:** V, S, M (el dedo de una bruja)  
+**Duración:** Instantánea  
+
+Haz un ataque de conjuro cuerpo a cuerpo contra un objetivo a 5 pies de ti.  
+
+En un impacto, el objetivo sufre **200 puntos de daño de veneno**.  
+
+- Este daño **ignora cualquier resistencia o inmunidad** al daño de veneno que tenga la criatura, y **no puede reducirse ni prevenirse de ninguna manera**.  
+
+El potente veneno permanece en el cuerpo del objetivo y lo arrastra hacia la muerte:  
+
+- Una criatura reducida a 0 puntos de golpe por este daño de veneno falla automáticamente sus tiradas de salvación contra la muerte hasta que complete un descanso largo.  
+- Un conjuro de *curar heridas plenarias* (*heal*) o *restauración mayor* lanzado sobre el objetivo también termina este efecto.  

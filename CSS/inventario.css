@@ -496,9 +496,9 @@
   border-radius: 12px;
   margin-bottom: 2rem;
   overflow: hidden;
-  background: #fff;
+  background: linear-gradient(90deg, #350852, #521091);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
-  color: #1d0b2b;
+  color: #f7e9ff;
 }
 
 .delerium-header {
@@ -508,7 +508,7 @@
   align-items: center;
   justify-content: space-between;
   background: linear-gradient(90deg, #350852, #521091);
-  color: #fff;
+  color: #f7e9ff;
   padding: 1rem 1.5rem;
 }
 
@@ -534,26 +534,29 @@
 .delerium-icon {
   width: 20px;
   height: 26px;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(233, 197, 255, 0.45);
   clip-path: polygon(50% 0%, 85% 100%, 15% 100%);
   opacity: 0.4;
   transition: opacity 0.2s ease, background 0.2s ease;
 }
 
 .delerium-icon.active {
-  background: #ffd983;
+  background: #e04acb;
   opacity: 1;
 }
 
 .delerium-contamination-input input {
-  width: 60px;
+  width: 5ch;
+  min-width: 4.25ch;
+  max-width: 6ch;
   border-radius: 6px;
   border: none;
   padding: 0.25rem 0.4rem;
   font-weight: bold;
   text-align: center;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  font-variant-numeric: tabular-nums;
+  background: rgba(233, 197, 255, 0.28);
+  color: #f8e9ff;
 }
 
 .delerium-slot-summary {
@@ -567,30 +570,39 @@
 }
 
 .delerium-counts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  background: #f8f0ff;
-  border-top: 1px solid rgba(64, 17, 93, 0.2);
-  border-bottom: 1px solid rgba(64, 17, 93, 0.2);
+  background: transparent;
+  border-top: 1px solid rgba(247, 233, 255, 0.18);
+  border-bottom: 1px solid rgba(247, 233, 255, 0.18);
+}
+
+.delerium-count {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: fit-content;
 }
 
 .delerium-count label {
   display: block;
   font-size: 0.85rem;
-  margin-bottom: 0.35rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #5b267a;
+  color: #f1d8ff;
 }
 
 .delerium-count input {
-  width: 100%;
+  width: clamp(5.5ch, 2%, 8ch);
+  display: block;
   padding: 0.4rem;
   border-radius: 6px;
   border: 1px solid rgba(64, 17, 93, 0.4);
-  background: #fff;
+  background: #f3e9ff;
+  color: #2b0f43;
+  font-variant-numeric: tabular-nums;
 }
 
 .delerium-notes {
@@ -604,7 +616,7 @@
   display: block;
   font-weight: 600;
   margin-bottom: 0.35rem;
-  color: #40115d;
+  color: #f1d8ff;
 }
 
 .delerium-notes textarea {
@@ -613,7 +625,8 @@
   border-radius: 8px;
   border: 1px solid rgba(64, 17, 93, 0.3);
   padding: 0.6rem;
-  background: rgba(248, 240, 255, 0.75);
+  background: rgba(245, 224, 255, 0.15);
+  color: #f7e9ff;
   resize: vertical;
 }
 

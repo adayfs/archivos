@@ -21,12 +21,14 @@ $nav_links = array(
     'hoja'       => home_url('/hoja-personaje/' . $personaje_slug),
     'inventario' => home_url('/inventario/' . $personaje_slug),
     'grimorio'   => home_url('/grimorio/' . $personaje_slug),
+    'combate'    => home_url('/combate/' . $personaje_slug),
 );
 
 $nav_images = array(
     'hoja'       => 'https://adayfs.com/wp-content/uploads/2025/11/hj-pj.webp',
     'inventario' => 'https://adayfs.com/wp-content/uploads/2025/11/mochila.webp',
     'grimorio'   => 'https://adayfs.com/wp-content/uploads/2025/11/grimorio.webp',
+    'combate'    => 'https://adayfs.com/wp-content/uploads/2025/11/hj-pj.webp',
 );
 ?>
 
@@ -42,26 +44,18 @@ $nav_images = array(
   ?>
 
   <div class="personaje-nav">
-    <a class="personaje-nav-link"
-       href="<?php echo esc_url($nav_links['grimorio']); ?>"
-       aria-label="Ir al Grimorio del personaje">
-      <div class="personaje-nav-button"
-           style="background-image:url('<?php echo esc_url($nav_images['grimorio']); ?>');"></div>
-    </a>
-
     <?php if ($imagen_url) : ?>
       <a href="<?php echo esc_url($personaje_url); ?>" class="personaje-avatar-link" aria-label="Volver a la ficha del personaje">
         <div class="personaje-avatar"
              style="background-image:url('<?php echo esc_url($imagen_url); ?>');"></div>
       </a>
     <?php endif; ?>
+  </div>
 
-    <a class="personaje-nav-link"
-       href="<?php echo esc_url($nav_links['hoja']); ?>"
-       aria-label="Ir a la Hoja de Personaje">
-      <div class="personaje-nav-button"
-           style="background-image:url('<?php echo esc_url($nav_images['hoja']); ?>');"></div>
-    </a>
+  <div class="personaje-botones">
+    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['hoja'] ); ?>">Hoja de Personaje</a>
+    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['grimorio'] ); ?>">Grimorio</a>
+    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['combate'] ); ?>">Mod Combate</a>
   </div>
 
   <?php echo renderizar_inventario_personaje($personaje->ID); ?>

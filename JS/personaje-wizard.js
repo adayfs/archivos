@@ -31,46 +31,9 @@
     if (!root || typeof window.PERSONAJE_WIZARD_API === 'undefined') return;
 
     const state = {
-      step: 0,
       data: {
-        ability_scores: { str: 15, dex: 14, con: 13, int: 12, wis: 10, cha: 8 },
-        ability_mods: {},
-        saving_throw_proficiencies: [],
-        skill_proficiencies: [],
-        expertise_skills: [],
-        proficiencies: { weapons: [], armors: [], tools: [], languages: [] },
-        spells: { slots_used: { 1: 0 }, prepared: {} },
-        feat_list: [],
-        feature_choices: [],
-      inventory_slots: {},
-        gold: 0,
         campaign_id: readCampaignIdFromUrl(),
         image_id: null,
-        skillsBySource: {
-          class: [],
-          race: [],
-          background: [],
-          feats: [],
-        },
-        languagesBySource: {
-          race: [],
-          background: [],
-          feats: [],
-        },
-        languages: [],
-        bgSkillChoices: [],
-        bgLangChoices: [],
-        raceLangChoices: [],
-    },
-      options: {
-        classes: [],
-        races: [],
-        backgrounds: [],
-        proficiencies: { weapons: [], armors: [], tools: [], languages: [] },
-        classDetails: {},
-        raceData: [],
-        backgroundData: [],
-        languages: [],
       },
       loading: false,
       error: '',
@@ -79,7 +42,6 @@
 
     buildUI(root, state);
     initImagePicker(state);
-    loadBaseData(state);
   }
 
   function readCampaignIdFromUrl() {
@@ -90,162 +52,29 @@
 
   function buildUI(root, state) {
     root.innerHTML = `
-      <div class="pw-steps">
-        <div class="pw-step" data-step="0"></div>
-        <div class="pw-step" data-step="1"></div>
-        <div class="pw-step" data-step="2"></div>
-        <div class="pw-step" data-step="3"></div>
-        <div class="pw-step" data-step="4"></div>
-        <div class="pw-step" data-step="5"></div>
-        <div class="pw-step" data-step="6"></div>
-      </div>
-      <div class="pw-nav">
-        <div class="pw-nav-spacer"></div>
-        <button type="button" class="pw-btn pw-btn-primary" data-next>Siguiente</button>
-        <button type="button" class="pw-btn pw-btn-success" data-submit>Crear personaje</button>
+      <div class="pw-step pw-step--simple">
+        <h3>Crear personaje</h3>
+        <p class="pw-helper">Sólo necesitamos el nombre y la imagen. El resto se rellena en la Hoja de Personaje.</p>
+        <label>Nombre <input type="text" id="pw-name" placeholder="Nombre del personaje"></label>
+        <div class="pw-field pw-field--full">
+          <label for="pw-image-id">Imagen / Avatar</label>
+          <div class="pw-image-picker">
+            <button type="button" class="pw-btn pw-btn-secondary" id="pw-image-button">Seleccionar imagen</button>
+            <input type="hidden" id="pw-image-id" value="${state.data.image_id || ''}">
+            <div class="pw-image-preview" id="pw-image-preview"></div>
+          </div>
+        </div>
+        <div class="pw-nav">
+          <button type="button" class="pw-btn pw-btn-success" data-submit>Crear y abrir la hoja</button>
+        </div>
       </div>
       <div class="pw-feedback">
         <p class="pw-error" aria-live="assertive"></p>
         <div class="pw-success" aria-live="polite"></div>
       </div>
     `;
-
-    renderStepBasic(root.querySelector('[data-step="0"]'), state);
-    renderStepClass(root.querySelector('[data-step="1"]'), state);
-    renderStepRace(root.querySelector('[data-step="2"]'), state);
-    renderStepBackground(root.querySelector('[data-step="3"]'), state);
-    renderStepAbilities(root.querySelector('[data-step="4"]'), state);
-    renderStepSpells(root.querySelector('[data-step="5"]'), state);
-    renderStepInventory(root.querySelector('[data-step="6"]'), state);
-
-    const prevBtn = root.querySelector('[data-prev]');
-    const nextBtn = root.querySelector('[data-next]');
     const submitBtn = root.querySelector('[data-submit]');
-
-    if (prevBtn) prevBtn.remove();
-    nextBtn.addEventListener('click', () => updateStep(state, 1, root));
     submitBtn.addEventListener('click', () => handleSubmit(state, root));
-
-    refreshStepVisibility(state, root);
-  }
-
-  function renderStepBasic(container, state) {
-    container.innerHTML = `
-      <h3>Datos básicos</h3>
-      <label>Nombre <input type="text" id="pw-name" placeholder="Nombre del personaje"></label>
-      <div class="pw-field pw-field--full">
-        <label for="pw-image-id">Imagen / Avatar</label>
-        <div class="pw-image-picker">
-          <button type="button" class="pw-btn pw-btn-secondary" id="pw-image-button">Seleccionar imagen</button>
-          <input type="hidden" id="pw-image-id" value="${state.data.image_id || ''}">
-          <div class="pw-image-preview" id="pw-image-preview"></div>
-        </div>
-      </div>
-      <div class="pw-inline">
-        <label>Nivel
-          <input type="number" id="pw-level" min="1" value="1" readonly>
-        </label>
-        <label>Bonificador de competencia
-          <input type="number" id="pw-profbonus" min="1" value="2" readonly>
-        </label>
-      </div>
-    `;
-  }
-
-  function renderStepClass(container, state) {
-    container.innerHTML = `
-      <h3>Clase</h3>
-      <label>Clase
-        <select id="pw-class"><option value="">Cargando...</option></select>
-      </label>
-      <div id="pw-class-skills" class="pw-skill-block"></div>
-      <div class="pw-class-features-wrapper">
-        <h3 class="pw-class-features-title">Rasgos de la clase (nivel 1)</h3>
-        <div id="pw-class-features" class="character-extended__section pw-class-features"></div>
-      </div>
-    `;
-  }
-
-  function renderStepRace(container, state) {
-    container.innerHTML = `
-      <h3>Raza / Especie</h3>
-      <label>Raza/Especie
-        <select id="pw-race"><option value="">Cargando...</option></select>
-      </label>
-      <div id="pw-race-traits" class="pw-trait-block"></div>
-      <div id="pw-race-skills" class="pw-skill-block"></div>
-      <div class="pw-race-features-wrapper">
-        <h3 class="pw-race-features-title">Rasgos de la raza</h3>
-        <div id="pw-race-features" class="character-extended__section pw-race-features"></div>
-      </div>
-    `;
-  }
-
-  function renderStepBackground(container, state) {
-    container.innerHTML = `
-      <h3>Trasfondo</h3>
-      <label>Trasfondo
-        <select id="pw-background"><option value="">Cargando...</option></select>
-      </label>
-      <div id="pw-bg-skills" class="pw-skill-block"></div>
-      <div id="pw-bg-tools" class="pw-trait-block"></div>
-      <div id="pw-bg-languages" class="pw-trait-block"></div>
-    `;
-  }
-
-  function renderStepAbilities(container, state) {
-    container.innerHTML = `
-      <h3>Características y tiradas</h3>
-      <div class="pw-grid pw-abilities">
-        ${renderAbilityInput('FUE', 'str', state)}
-        ${renderAbilityInput('DES', 'dex', state)}
-        ${renderAbilityInput('CON', 'con', state)}
-        ${renderAbilityInput('INT', 'int', state)}
-        ${renderAbilityInput('SAB', 'wis', state)}
-        ${renderAbilityInput('CAR', 'cha', state)}
-      </div>
-      <fieldset class="pw-fieldset">
-        <legend>Salvaciones competentes</legend>
-        ${['str','dex','con','int','wis','cha'].map(renderSaveCheckbox).join('')}
-      </fieldset>
-      <div class="pw-skill-summary" id="pw-skill-summary"></div>
-      <label>Expertise (opcional, slugs separados por coma)
-        <input type="text" id="pw-expertise" placeholder="p.ej. perception, stealth">
-      </label>
-    `;
-  }
-
-  function renderStepProficiencies(container, state) {}
-
-  function renderStepSpells(container, state) {
-    container.innerHTML = `
-      <h3>Magia inicial</h3>
-      <label>Espacios de conjuro nivel 1 <input type="number" id="pw-slots-1" min="0" value="0"></label>
-      <label>Cantrips conocidos (uno por línea)
-        <textarea id="pw-cantrips" rows="3" placeholder="Ej: Prestidigitation"></textarea>
-      </label>
-      <label>Conjuros preparados/conocidos nivel 1 (uno por línea, puedes añadir |FUENTE)
-        <textarea id="pw-spells-1" rows="4" placeholder="Cure Wounds|PHB"></textarea>
-      </label>
-    `;
-  }
-
-  function renderStepInventory(container, state) {
-    container.innerHTML = `
-      <h3>Inventario inicial</h3>
-      <label>Oro <input type="number" id="pw-gold" min="0" value="0"></label>
-      <label>Slots principales (texto libre)
-        <textarea id="pw-slots" rows="4" placeholder="1: paquete de aventurero&#10;2: cuerda 50 ft"></textarea>
-      </label>
-      <fieldset class="pw-fieldset">
-        <legend>Arma principal</legend>
-        <label>Nombre <input type="text" id="pw-weapon-name"></label>
-        <label>Daño (ej: 1d8) <input type="text" id="pw-weapon-dmg"></label>
-        <label>Tipo de daño <input type="text" id="pw-weapon-dmgtype"></label>
-        <label>Peso <input type="text" id="pw-weapon-weight"></label>
-        <label>Propiedades <input type="text" id="pw-weapon-props" placeholder="Ligera, Finesse"></label>
-      </fieldset>
-    `;
   }
 
   function renderAbilityInput(label, key, state) {
@@ -284,55 +113,6 @@
         </label>
       </div>
     `;
-  }
-
-  function updateStep(state, delta, root) {
-    const next = Math.min(6, Math.max(0, state.step + delta));
-    state.step = next;
-    refreshStepVisibility(state, root);
-  }
-
-  function refreshStepVisibility(state, root) {
-    root.querySelectorAll('.pw-step').forEach((step, idx) => {
-      step.style.display = idx === state.step ? 'block' : 'none';
-    });
-    const nextBtn = root.querySelector('[data-next]');
-    const submitBtn = root.querySelector('[data-submit]');
-    nextBtn.style.display = state.step < 6 ? 'inline-block' : 'none';
-    submitBtn.style.display = state.step === 6 ? 'inline-block' : 'none';
-  }
-
-  async function loadBaseData(state) {
-    await Promise.all([
-      fetchClasses(state),
-      fetchRaces(state),
-      fetchBackgrounds(state),
-      fetchProficiencies(state),
-      fetchStaticData(state),
-      fetchLanguages(state),
-    ]);
-
-    document.getElementById('pw-class')?.addEventListener('change', () => renderClassSkills(state));
-    document.getElementById('pw-class')?.addEventListener('change', () => {
-      renderClassSkills(state);
-      loadClassFeaturesForWizard(state);
-    });
-    document.getElementById('pw-race')?.addEventListener('change', () => {
-      renderRaceTraits(state);
-      loadRaceFeaturesForWizard(state);
-    });
-    document.getElementById('pw-background')?.addEventListener('change', () => renderBackgroundTraits(state));
-
-    document.querySelectorAll('[data-ability]').forEach((input) => {
-      input.addEventListener('input', updateAbilityMods);
-    });
-
-    addFeatChoiceHandlers(state);
-    renderClassSkills(state);
-    renderRaceTraits(state);
-    renderBackgroundTraits(state);
-    loadClassFeaturesForWizard(state);
-    loadRaceFeaturesForWizard(state);
   }
 
   function fetchClasses(state) {
@@ -1032,8 +812,8 @@
       errorEl.textContent = 'El nombre es obligatorio.';
       return;
     }
-    if (!payload.class_id) {
-      errorEl.textContent = 'Selecciona una clase.';
+    if (!payload.image_id) {
+      errorEl.textContent = 'La imagen es obligatoria.';
       return;
     }
 
@@ -1050,14 +830,12 @@
           throw new Error(data?.data?.message || api.labels.error_generic);
         }
         const urls = data.data || {};
-        successEl.innerHTML = `
-          <p>✅ Personaje creado (ID ${urls.post_id}).</p>
-          <ul>
-            ${urls.sheet_url ? `<li><a href="${urls.sheet_url}">Hoja</a></li>` : ''}
-            ${urls.inventory_url ? `<li><a href="${urls.inventory_url}">Inventario</a></li>` : ''}
-            ${urls.grimorio_url ? `<li><a href="${urls.grimorio_url}">Grimorio</a></li>` : ''}
-          </ul>
-        `;
+        const redirect = urls.redirect_url || urls.sheet_url;
+        if (redirect) {
+          window.location.href = redirect;
+          return;
+        }
+        successEl.innerHTML = `<p>✅ Personaje creado (ID ${urls.post_id}). Abre la hoja desde aquí: <a href="${urls.sheet_url}">${urls.sheet_url}</a></p>`;
       })
       .catch((err) => {
         errorEl.textContent = err.message || api.labels.error_generic;
@@ -1069,116 +847,11 @@
 
   function collectPayload(state) {
     const getVal = (id) => document.getElementById(id)?.value || '';
-    const abilityScores = {};
-    document.querySelectorAll('[data-ability]').forEach((input) => {
-      const key = input.dataset.ability;
-      const val = parseInt(input.value, 10);
-      if (Number.isFinite(val)) abilityScores[key] = val;
-    });
-    const abilityMods = {};
-    Object.keys(abilityScores).forEach((key) => {
-      abilityMods[key] = Math.floor((abilityScores[key] - 10) / 2);
-    });
-
-    const saves = [];
-    document.querySelectorAll('[data-save]').forEach((cb) => {
-      if (cb.checked) saves.push(cb.dataset.save);
-    });
-    const skills = computeSkillUnion(state);
-    const langs = state.data.languages || [];
-
-    const profs = { weapons: [], armors: [], tools: [], languages: [] };
-    Object.keys(profs).forEach((key) => {
-      const select = document.querySelector(`select[data-prof="${key}"]`);
-      if (!select) return;
-      const selected = Array.from(select.selectedOptions).map((opt) => opt.value);
-      profs[key] = selected;
-    });
-
-    const feats = [];
-    document.querySelectorAll('[data-feat-list] .pw-row').forEach((row) => {
-      const feat = {
-        feat_id: row.querySelector('[data-feat-id]')?.value || '',
-        feat_name: row.querySelector('[data-feat-name]')?.value || '',
-        feat_source: row.querySelector('[data-feat-source]')?.value || '',
-      };
-      if (feat.feat_id) feats.push(feat);
-    });
-
-    const choices = [];
-    document.querySelectorAll('[data-choice-list] .pw-row').forEach((row) => {
-      const choice = {
-        choice_key: row.querySelector('[data-choice-key]')?.value || '',
-        choice_value: row.querySelector('[data-choice-value]')?.value || '',
-        choice_source: row.querySelector('[data-choice-source]')?.value || '',
-        choice_notes: row.querySelector('[data-choice-notes]')?.value || '',
-      };
-      if (choice.choice_key && choice.choice_value) choices.push(choice);
-    });
-
-    const expertiseRaw = getVal('pw-expertise');
-    const expertise = expertiseRaw
-      .split(',')
-      .map((s) => s.trim().toLowerCase())
-      .filter(Boolean);
-
-    const spellsPrepared = {};
-    const cantrips = splitLines(getVal('pw-cantrips'));
-    const lvl1 = splitLines(getVal('pw-spells-1'));
-    if (cantrips.length) spellsPrepared[0] = cantrips;
-    if (lvl1.length) spellsPrepared[1] = lvl1;
-
-    const slots = {};
-    const slots1 = parseInt(getVal('pw-slots-1'), 10);
-    if (Number.isFinite(slots1)) slots[1] = Math.max(0, slots1);
-
-    const inventorySlots = {};
-    splitLines(getVal('pw-slots')).forEach((line) => {
-      const [slot, ...rest] = line.split(':');
-      const num = parseInt(slot, 10);
-      if (Number.isFinite(num) && num >= 1 && num <= 10) {
-        inventorySlots[num] = rest.join(':').trim();
-      }
-    });
-
-    const payload = {
-      name: getVal('pw-name'),
+    return {
+      name: getVal('pw-name').trim(),
       image_id: state.data.image_id || parseInt(document.getElementById('pw-image-id')?.value || '0', 10) || null,
       campaign_id: state.data.campaign_id || 0,
-      class_id: getVal('pw-class'),
-      race_id: getVal('pw-race'),
-      background_id: getVal('pw-background'),
-      level: parseInt(getVal('pw-level'), 10) || 1,
-      proficiency_bonus: parseInt(getVal('pw-profbonus'), 10) || 2,
-      ability_scores: abilityScores,
-      ability_mods: abilityMods,
-      saving_throw_proficiencies: saves,
-      skill_proficiencies: skills,
-      expertise_skills: expertise,
-      proficiencies: {
-        weapons: profs.weapons,
-        armors: profs.armors,
-        tools: profs.tools,
-        languages: langs,
-      },
-      feat_list: feats,
-      feature_choices: choices,
-      spells: {
-        slots_used: slots,
-        prepared: spellsPrepared,
-      },
-      gold: parseInt(getVal('pw-gold'), 10) || 0,
-      inventory_slots: inventorySlots,
-      weapon_main: {
-        name: getVal('pw-weapon-name'),
-        damage_dice: getVal('pw-weapon-dmg'),
-        damage_type: getVal('pw-weapon-dmgtype'),
-        weight: getVal('pw-weapon-weight'),
-        properties: getVal('pw-weapon-props'),
-      },
     };
-
-    return payload;
   }
 
   function splitLines(text) {

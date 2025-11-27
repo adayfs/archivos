@@ -178,7 +178,7 @@
     state.apothecaryLevel = Number.isFinite(data.apothecary_level) && data.apothecary_level > 0 ? data.apothecary_level : state.level || 1;
     state.spellModel = data.spell_model || 'default';
     if (state.spellModel === 'apothecary') {
-      state.preparedLimit = computeApothecaryPreparedLimit(state.apothecaryLevel, state.abilities.int);
+      state.preparedLimit = state.preparedLimit || computeApothecaryPreparedLimit(state.apothecaryLevel, state.abilities.int);
     }
     state.greaterFormulas = Array.isArray(data.greater_formulas) ? data.greater_formulas : [];
     state.alwaysPrepared = Array.isArray(data.always_prepared) ? data.always_prepared : [];
@@ -545,8 +545,8 @@
     const summary = document.getElementById('grimorio-prepared-total');
     if (summary) {
       if (state.spellModel === 'apothecary') {
-        // Apotecario usa preparación única 1–5, mostramos el rótulo especial.
-        summary.textContent = 'Preparados (1–5)';
+        const max = state.preparedLimit || '';
+        summary.textContent = max ? `Preparados: ${totalPrepared} / ${max}` : `Preparados: ${totalPrepared}`;
       } else if (state.preparedLimit) {
         summary.textContent = `Total: ${totalPrepared} / ${state.preparedLimit}`;
       } else {
@@ -1532,7 +1532,7 @@
     const limitNote = isCantrip
       ? `<p class="grimorio-spell-picker__limit">Cantrips: ${selected.length}${state.cantripLimit ? ' / ' + state.cantripLimit : ''}</p>`
       : (state.spellModel === 'apothecary'
-          ? `<p class="grimorio-spell-picker__limit">Preparados (1–5)</p>`
+          ? `<p class="grimorio-spell-picker__limit">Preparados (1–5): ${totalSelected}${state.preparedLimit ? ' / ' + state.preparedLimit : ''}</p>`
           : (state.preparedLimit
               ? `<p class="grimorio-spell-picker__limit">Total preparados: ${totalSelected} / ${state.preparedLimit}</p>`
               : `<p class="grimorio-spell-picker__limit">Conjuros preparados en este nivel: ${selected.length}</p>`));
@@ -2371,7 +2371,7 @@
       : false;
 
     const textBlocks = [];
-    (spell.entries || []).forEach((entry) => flattenSpellEntry(entry, textBlocks));
+    (spell.entries || spell.entries_es || []).forEach((entry) => flattenSpellEntry(entry, textBlocks));
     const rawText = textBlocks.join('\n');
 
     const savingThrows = extractMatches(rawText, /\{@savingThrow ([^}|]+)(?:\|[^}]*)?\}/gi);
@@ -2480,13 +2480,23 @@
       result += escapeHtml(text.slice(lastIndex));
     }
 
+    // Marcar tiradas de dados (ej. 2d4, 1d10+3) en los fragmentos de texto.
+    const parts = result.split(/(<[^>]+>)/g);
+    const diceRegex = /(\d+d\d+(?:\s*[+\-]\s*\d+d?\d*)*)/gi;
+    result = parts
+      .map((part) => {
+        if (part.startsWith('<')) return part;
+        return part.replace(diceRegex, '<span class="grimorio-spell-tag grimorio-spell-tag--dice">$1</span>');
+      })
+      .join('');
+
     return result;
   }
 
   function getSpellSummaryHtml(spell) {
-    if (!spell || !spell.entries) return '';
+    if (!spell || (!spell.entries && !spell.entries_es)) return '';
     const chunks = [];
-    flattenSpellEntry(spell.entries, chunks);
+    flattenSpellEntry(spell.entries || spell.entries_es, chunks);
     if (!chunks.length) return '';
     const text = chunks.join(' ').replace(/\s+/g, ' ').trim();
     if (!text) return '';
@@ -2528,6 +2538,8 @@
       rows.push(`<li><strong>Fuente:</strong> ${escapeHtml(spell.source)}</li>`);
     }
 
+    const basics = buildSpellBasics(spell);
+
     let summaryParagraph = '';
     if (context.text) {
       const paragraphs = context.text
@@ -2545,8 +2557,97 @@
       <ul class="grimorio-cast-summary">
         ${rows.join('')}
       </ul>
+      ${basics}
       ${summaryParagraph}
     `;
+  }
+
+  function buildSpellBasics(spell) {
+    if (!spell) return '';
+    const chunks = [];
+
+    // Tiempo de lanzamiento (primer registro)
+    if (Array.isArray(spell.time) && spell.time.length) {
+      const t = spell.time[0] || {};
+      const unitMap = {
+        action: 'acción',
+        bonus: 'acción adicional',
+        'bonus action': 'acción adicional',
+        reaction: 'reacción',
+        minute: 'minuto',
+        minutes: 'minutos',
+        hour: 'hora',
+        hours: 'horas',
+      };
+      const unit = unitMap[t.unit] || t.unit || '';
+      const cond = t.condition ? ` (${t.condition})` : '';
+      if (t.number && unit) {
+        chunks.push(`<li><strong>Tiempo:</strong> ${t.number} ${unit}${cond}</li>`);
+      }
+    }
+
+    // Alcance
+    if (spell.range) {
+      const r = spell.range;
+      let desc = '';
+      if (r.type === 'self') desc = 'Personal';
+      else if (r.type === 'touch') desc = 'Toque';
+      else if (r.distance && typeof r.distance.amount === 'number') {
+        const amount = r.distance.amount;
+        const unit = r.distance.type === 'feet' ? 'pies' : r.distance.type || '';
+        desc = `${amount} ${unit}`.trim();
+      }
+      if (desc) {
+        const shape = r.type && !['self', 'touch', 'point'].includes(r.type) ? ` (${r.type})` : '';
+        chunks.push(`<li><strong>Alcance:</strong> ${escapeHtml(desc + shape)}</li>`);
+      }
+    }
+
+    // Componentes
+    if (spell.components) {
+      const comp = spell.components;
+      const list = [];
+      if (comp.v) list.push('V');
+      if (comp.s) list.push('S');
+      if (comp.m) list.push('M');
+      if (list.length) {
+        let mat = '';
+        if (typeof comp.m === 'string') {
+          mat = comp.m;
+        } else if (comp.m && typeof comp.m.text === 'string') {
+          mat = comp.m.text;
+        }
+        const matNote = mat ? ` <span class="grimorio-spell-tag grimorio-spell-tag--ref">${escapeHtml(mat)}</span>` : '';
+        chunks.push(`<li><strong>Componentes:</strong> ${list.join(', ')}${matNote}</li>`);
+      }
+    }
+
+    // Duración
+    if (Array.isArray(spell.duration) && spell.duration.length) {
+      const d = spell.duration[0] || {};
+      let dur = '';
+      if (d.type === 'instant') {
+        dur = 'Instantánea';
+      } else if (d.type === 'timed' && d.duration) {
+        const unitMap = { round: 'asalto', minute: 'minuto', hour: 'hora', day: 'día' };
+        const unit = unitMap[d.duration.type] || d.duration.type || '';
+        const amount = d.duration.amount ? `${d.duration.amount} ` : '';
+        dur = `${amount}${unit}`.trim();
+      }
+      if (dur) {
+        const conc = d.concentration ? ' (Concentración)' : '';
+        chunks.push(`<li><strong>Duración:</strong> ${escapeHtml(dur + conc)}</li>`);
+      }
+    }
+
+    // Ritual
+    const isRitual = spell.ritual || (spell.meta && spell.meta.ritual);
+    if (isRitual) {
+      chunks.push('<li><strong>Ritual:</strong> <span class="grimorio-spell-tag grimorio-spell-tag--ritual">Ritual</span></li>');
+    }
+
+    if (!chunks.length) return '';
+    return `<ul class="grimorio-spell-basics">${chunks.join('')}</ul>`;
   }
 
   function formatSavingThrow(value) {
@@ -2628,7 +2729,9 @@
   function getTotalPreparedCount(map) {
     const source = map || state.prepared;
     return Object.entries(source).reduce((sum, [lvl, list]) => {
-      if (parseInt(lvl, 10) === 0) return sum;
+      const level = parseInt(lvl, 10);
+      if (Number.isNaN(level) || level === 0) return sum;
+      if (state.spellModel === 'apothecary' && level > 5) return sum;
       return sum + (Array.isArray(list) ? list.length : 0);
     }, 0);
   }

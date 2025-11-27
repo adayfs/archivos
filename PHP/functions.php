@@ -4393,7 +4393,7 @@ function renderizar_grimorio_personaje( $post_id ) {
             <article class="grimorio-prepared-block grimorio-prepared-block--apothecary">
               <div class="grimorio-prepared-block__head">
                 <div>
-                  <span class="grimorio-prepared-block__label">Preparados (1–5)</span>
+                  <span class="grimorio-prepared-block__label">Conjuros preparados</span>
                 </div>
               </div>
               <ul class="grimorio-prepared-block__list"></ul>
@@ -5459,6 +5459,14 @@ function drak_get_dnd5_link_bases() {
 
 add_action('wp_enqueue_scripts', function () {
     $dnd5_link_bases = drak_get_dnd5_link_bases();
+
+    wp_enqueue_script(
+        'dice-highlighter',
+        get_stylesheet_directory_uri() . '/js/dice-highlighter.js',
+        [],
+        null,
+        true
+    );
 
     if (is_page_template('page-hoja-personaje.php') || is_page_template('page-combate-personaje.php')) {
         $personaje_slug = get_query_var('personaje_slug');
@@ -6573,6 +6581,14 @@ function drak_merge_apothecary_spell_list( $spells, $apothecary_list ) {
             if ( ! $exists ) {
                 $spells[ $target_idx ]['classes'][] = $class_ref;
             }
+            // Propaga la marca de ritual si el apotecario lo tiene marcado.
+            if ( ! empty( $ap_spell['ritual'] ) ) {
+                if ( isset( $spells[ $target_idx ]['meta'] ) && is_array( $spells[ $target_idx ]['meta'] ) ) {
+                    $spells[ $target_idx ]['meta']['ritual'] = true;
+                } else {
+                    $spells[ $target_idx ]['ritual'] = true;
+                }
+            }
             continue;
         }
 
@@ -6587,6 +6603,7 @@ function drak_merge_apothecary_spell_list( $spells, $apothecary_list ) {
 
         if ( ! empty( $ap_spell['ritual'] ) ) {
             $new_spell['meta'] = [ 'ritual' => true ];
+            $new_spell['ritual'] = true;
         }
         if ( ! empty( $ap_spell['homebrew'] ) ) {
             $new_spell['homebrew'] = true;
@@ -7728,26 +7745,9 @@ function drak_dnd5_save_concentration_state() {
 add_action( 'wp_ajax_drak_dnd5_save_concentration_state', 'drak_dnd5_save_concentration_state' );
 
 /**
- * Crea un personaje completo desde el asistente (nivel 1).
+ * Crea un personaje básico desde el asistente.
  *
- * Espera un payload JSON en $_POST['payload'] o en el cuerpo raw con:
- * - name (string, obligatorio)
- * - campaign_id (int)
- * - class_id (string), subclass_id (string), race_id (string), background_id (string)
- * - level (int, por defecto 1), proficiency_bonus (int, por defecto 2)
- * - ability_scores { str,dex,con,int,wis,cha }
- * - ability_mods opcional (si no, se calculan)
- * - saving_throw_proficiencies [str,dex,...]
- * - skill_proficiencies [lista de slugs en inglés: "athletics", "perception", ...]
- * - expertise_skills lista opcional (se guarda en meta skills_expertise)
- * - proficiencies { weapons:[], armors:[], tools:[], languages:[] } (IDs de nuestros JSON)
- * - speed, ac, initiative, hp (opcionales, se calculan si no vienen)
- * - gold (int), inventory_slots {1:"...",2:"..."} para mainpack_slot_*
- * - weapon_main array con subcampos del campo ACF arma_principal
- * - apothecary_theories [ids]
- * - feat_list [ {feat_id, feat_name, feat_source} ]
- * - feature_choices [ {choice_key, choice_value, choice_source, choice_notes} ]
- * - spells { slots_used:{nivel:count}, prepared:{nivel:[{name,source}] } }
+ * Requiere nombre e imagen; asocia campaña y usuario y devuelve la URL de la hoja.
  */
 function drak_wizard_create_personaje() {
     $payload = null;
@@ -7778,12 +7778,15 @@ function drak_wizard_create_personaje() {
 
     $name        = sanitize_text_field( $payload['name'] ?? '' );
     $campaign_id = intval( $payload['campaign_id'] ?? 0 );
-    $class_id    = sanitize_text_field( $payload['class_id'] ?? '' );
-    $level       = max( 1, intval( $payload['level'] ?? 1 ) );
-    $prof_bonus  = intval( $payload['proficiency_bonus'] ?? 2 );
+    $image_id    = isset( $payload['image_id'] ) ? intval( $payload['image_id'] ) : 0;
+    $image_url   = isset( $payload['image_url'] ) ? esc_url_raw( $payload['image_url'] ) : '';
 
     if ( $name === '' ) {
         wp_send_json_error( [ 'message' => 'El nombre del personaje es obligatorio.' ], 400 );
+    }
+
+    if ( $image_id <= 0 && ! $image_url ) {
+        wp_send_json_error( [ 'message' => 'La imagen del personaje es obligatoria.' ], 400 );
     }
 
     $post_id = wp_insert_post( [
@@ -7801,239 +7804,59 @@ function drak_wizard_create_personaje() {
         update_field( 'campaign', $campaign_id, $post_id );
     }
 
-    // Imagen destacada si viene URL
-    if ( ! empty( $payload['image_url'] ) ) {
-        $image_id = media_sideload_image( esc_url_raw( $payload['image_url'] ), $post_id, $name, 'id' );
-        if ( ! is_wp_error( $image_id ) && $image_id ) {
-            set_post_thumbnail( $post_id, $image_id );
+    $featured_id = 0;
+    if ( $image_id > 0 ) {
+        set_post_thumbnail( $post_id, $image_id );
+        $featured_id = $image_id;
+    } elseif ( $image_url ) {
+        $sideload_id = media_sideload_image( $image_url, $post_id, $name, 'id' );
+        if ( ! is_wp_error( $sideload_id ) && $sideload_id ) {
+            set_post_thumbnail( $post_id, $sideload_id );
+            $featured_id = $sideload_id;
         }
     }
 
-    // Datos base
-    update_field( 'nivel', $level, $post_id );
-    update_field( 'clase', $class_id, $post_id );
-    if ( isset( $payload['subclass_id'] ) ) {
-        update_field( 'subclase', sanitize_text_field( $payload['subclass_id'] ), $post_id );
-    }
-    update_field( 'raza', sanitize_text_field( $payload['race_id'] ?? '' ), $post_id );
-    update_field( 'background', sanitize_text_field( $payload['background_id'] ?? '' ), $post_id );
+    // Crear el personaje-wiki asociado
+    $wiki_id = wp_insert_post( [
+        'post_type'   => 'personaje_wiki',
+        'post_title'  => $name,
+        'post_status' => 'publish',
+        'post_author' => $current_user->ID,
+    ] );
 
-    // Ability scores/mods
-    $scores = array_map( 'intval', $payload['ability_scores'] ?? [] );
-    $mods   = array_map( 'intval', $payload['ability_mods'] ?? [] );
-
-    $ability_map = [
-        'str' => 'cs_fuerza',
-        'dex' => 'cs_destreza',
-        'con' => 'cs_constitucion',
-        'int' => 'cs_inteligencia',
-        'wis' => 'cs_sabiduria',
-        'cha' => 'cs_carisma',
-    ];
-
-    foreach ( $ability_map as $key => $field ) {
-        $score = isset( $scores[ $key ] ) ? intval( $scores[ $key ] ) : null;
-        if ( $score === null ) {
-            continue;
-        }
-        $mod = isset( $mods[ $key ] ) ? intval( $mods[ $key ] ) : floor( ( $score - 10 ) / 2 );
-        update_field( $field, $score, $post_id );
-        update_field( "{$field}_mod", $mod, $post_id );
-        $mods[ $key ] = $mod;
+    if ( is_wp_error( $wiki_id ) || ! $wiki_id ) {
+        wp_delete_post( $post_id, true );
+        wp_send_json_error( [ 'message' => 'No se pudo crear la ficha de Personaje-Wiki asociada.' ], 500 );
     }
 
-    update_field( 'cs_proeficiencia', $prof_bonus, $post_id );
-
-    // Saving throws
-    $save_profs = array_map( 'strtolower', (array) ( $payload['saving_throw_proficiencies'] ?? [] ) );
-    $save_fields = [
-        'str' => 'cs_prof_save_fuerza',
-        'dex' => 'cs_prof_save_destreza',
-        'con' => 'cs_prof_save_constitucion',
-        'int' => 'cs_prof_save_inteligencia',
-        'wis' => 'cs_prof_save_sabiduria',
-        'cha' => 'cs_prof_save_carisma',
-    ];
-    foreach ( $save_fields as $abbr => $field ) {
-        update_field( $field, in_array( $abbr, $save_profs, true ) ? '1' : '0', $post_id );
+    if ( $campaign_id > 0 ) {
+        update_field( 'campaign', $campaign_id, $wiki_id );
+    }
+    if ( $featured_id > 0 ) {
+        update_field( 'hero_image', $featured_id, $wiki_id );
+        set_post_thumbnail( $wiki_id, $featured_id );
     }
 
-    // Habilidades
-    $skill_flags = [];
-    foreach ( (array) ( $payload['skill_proficiencies'] ?? [] ) as $skill_slug ) {
-        $skill_flags[ strtolower( $skill_slug ) ] = true;
-    }
-
-    $skill_map = [
-        'acrobatics'       => 'cs_prof_acrobacias',
-        'athletics'        => 'cs_prof_atletismo',
-        'sleight of hand'  => 'cs_prof_juego_manos',
-        'stealth'          => 'cs_prof_sigilo',
-        'arcana'           => 'cs_prof_arcanos',
-        'history'          => 'cs_prof_historia',
-        'investigation'    => 'cs_prof_investigacion',
-        'nature'           => 'cs_prof_naturaleza',
-        'religion'         => 'cs_prof_religion',
-        'animal handling'  => 'cs_prof_trato_animales',
-        'insight'          => 'cs_prof_perspicacia',
-        'medicine'         => 'cs_prof_medicina',
-        'perception'       => 'cs_prof_percepcion',
-        'survival'         => 'cs_prof_supervivencia',
-        'deception'        => 'cs_prof_engano',
-        'intimidation'     => 'cs_prof_intimidacion',
-        'performance'      => 'cs_prof_interpretacion',
-        'persuasion'       => 'cs_prof_persuasion',
-    ];
-
-    foreach ( $skill_map as $slug => $field ) {
-        update_field( $field, isset( $skill_flags[ $slug ] ) ? '1' : '0', $post_id );
-    }
-
-    if ( ! empty( $payload['expertise_skills'] ) && is_array( $payload['expertise_skills'] ) ) {
-        update_post_meta( $post_id, 'skills_expertise', sanitize_text_field( implode( ',', $payload['expertise_skills'] ) ) );
-    }
-
-    // Stats básicos
-    $dex_mod = $mods['dex'] ?? 0;
-    $con_mod = $mods['con'] ?? 0;
-    $class_detail = drak_get_class_detail_entry( $class_id ) ?: [];
-    $hit_die      = intval( $class_detail['hitDie'] ?? 8 );
-
-    $hp          = intval( $payload['hp'] ?? max( 1, $hit_die + $con_mod ) );
-    $ac          = intval( $payload['ac'] ?? max( 10 + $dex_mod, 10 ) );
-    $init        = intval( $payload['initiative'] ?? $dex_mod );
-    $speed_input = $payload['speed'] ?? null;
-    $speed_value = 30;
-    if ( is_numeric( $speed_input ) ) {
-        $speed_value = intval( $speed_input );
-    } elseif ( is_array( $speed_input ) && isset( $speed_input['walk'] ) ) {
-        $speed_value = intval( $speed_input['walk'] );
-    }
-
-    update_field( 'cs_hp', $hp, $post_id );
-    update_field( 'cs_ac', $ac, $post_id );
-    update_field( 'cs_iniciativa', $init, $post_id );
-    update_field( 'cs_velocidad', $speed_value, $post_id );
-    update_field( 'cs_hp_temp', 0, $post_id );
-    update_post_meta( $post_id, 'cs_hp_manual_override', '' );
-
-    // Proficiencias generales
-    $prof_categories = [
-        'weapons'   => 'prof_weapons',
-        'armors'    => 'prof_armors',
-        'tools'     => 'prof_tools',
-        'languages' => 'prof_languages',
-    ];
-    foreach ( $prof_categories as $key => $field ) {
-        $ids = [];
-        if ( ! empty( $payload['proficiencies'][ $key ] ) && is_array( $payload['proficiencies'][ $key ] ) ) {
-            $ids = array_filter( array_map( 'sanitize_text_field', $payload['proficiencies'][ $key ] ) );
-        }
-        update_field( $field, implode( ',', $ids ), $post_id );
-    }
-
-    // Feats y elecciones de rasgos
-    if ( ! empty( $payload['feat_list'] ) && is_array( $payload['feat_list'] ) ) {
-        $feat_rows = [];
-        foreach ( $payload['feat_list'] as $feat ) {
-            if ( empty( $feat['feat_id'] ) ) {
-                continue;
-            }
-            $feat_rows[] = [
-                'feat_id'     => sanitize_text_field( $feat['feat_id'] ),
-                'feat_name'   => sanitize_text_field( $feat['feat_name'] ?? $feat['feat_id'] ),
-                'feat_source' => sanitize_text_field( $feat['feat_source'] ?? '' ),
-            ];
-        }
-        update_field( 'feat_list', $feat_rows, $post_id );
-    }
-
-    if ( ! empty( $payload['feature_choices'] ) && is_array( $payload['feature_choices'] ) ) {
-        $choice_rows = [];
-        foreach ( $payload['feature_choices'] as $choice ) {
-            if ( empty( $choice['choice_key'] ) || empty( $choice['choice_value'] ) ) {
-                continue;
-            }
-            $choice_rows[] = [
-                'choice_key'    => sanitize_text_field( $choice['choice_key'] ),
-                'choice_value'  => sanitize_text_field( $choice['choice_value'] ),
-                'choice_source' => sanitize_text_field( $choice['choice_source'] ?? '' ),
-                'choice_notes'  => sanitize_textarea_field( $choice['choice_notes'] ?? '' ),
-            ];
-        }
-        update_field( 'feature_choices', $choice_rows, $post_id );
-    }
-
-    // Teorías del apotecario
-    if ( ! empty( $payload['apothecary_theories'] ) && is_array( $payload['apothecary_theories'] ) ) {
-        $theories = array_filter( array_map( 'sanitize_text_field', $payload['apothecary_theories'] ) );
-        update_post_meta( $post_id, 'apothecary_theories', wp_json_encode( $theories ) );
-    }
-
-    // Grimorio: slots y conjuros preparados/conocidos
-    $slots = [];
-    if ( ! empty( $payload['spells']['slots_used'] ) && is_array( $payload['spells']['slots_used'] ) ) {
-        foreach ( $payload['spells']['slots_used'] as $lvl => $count ) {
-            $slots[ intval( $lvl ) ] = max( 0, intval( $count ) );
-        }
-    }
-    drak_grimorio_save_slots( $post_id, $slots );
-
-    $prepared = [];
-    if ( ! empty( $payload['spells']['prepared'] ) && is_array( $payload['spells']['prepared'] ) ) {
-        foreach ( $payload['spells']['prepared'] as $lvl => $list ) {
-            $lvl = intval( $lvl );
-            if ( $lvl < 0 ) {
-                continue;
-            }
-            $prepared[ $lvl ] = [];
-            foreach ( (array) $list as $spell ) {
-                if ( empty( $spell['name'] ) ) {
-                    continue;
-                }
-                $name   = sanitize_text_field( $spell['name'] );
-                $source = sanitize_text_field( $spell['source'] ?? '' );
-                $token  = $source ? $name . '|' . strtoupper( $source ) : $name;
-                $prepared[ $lvl ][] = $token;
-            }
-        }
-    }
-    drak_grimorio_save_prepared( $post_id, $prepared );
-    delete_post_meta( $post_id, 'grimorio_concentration_state' );
-
-    // Inventario básico
-    $gold = intval( $payload['gold'] ?? 0 );
-    update_field( 'golden_coins', max( 0, $gold ), $post_id );
-
-    if ( ! empty( $payload['inventory_slots'] ) && is_array( $payload['inventory_slots'] ) ) {
-        foreach ( $payload['inventory_slots'] as $slot => $value ) {
-            $slot_num = intval( $slot );
-            if ( $slot_num < 1 || $slot_num > 10 ) {
-                continue;
-            }
-            update_field( 'mainpack_slot_' . $slot_num, sanitize_text_field( $value ), $post_id );
-        }
-    }
-
-    if ( ! empty( $payload['weapon_main'] ) && is_array( $payload['weapon_main'] ) ) {
-        $weapon = [];
-        foreach ( $payload['weapon_main'] as $key => $val ) {
-            $weapon[ sanitize_key( $key ) ] = is_scalar( $val ) ? sanitize_text_field( $val ) : $val;
-        }
-        update_field( 'arma_principal', $weapon, $post_id );
-    }
-
-    // Recalcular stats derivados de lanzador
-    drak_update_spellcasting_fields( $post_id );
+    update_post_meta( $post_id, 'personaje_wiki_id', $wiki_id );
+    update_post_meta( $wiki_id, 'linked_personaje_id', $post_id );
 
     $slug = get_post_field( 'post_name', $post_id );
+    $wiki_slug = get_post_field( 'post_name', $wiki_id );
+
+    $sheet_url     = $slug ? trailingslashit( home_url( '/hoja-personaje/' . $slug ) ) : '';
+    $inventory_url = $slug ? trailingslashit( home_url( '/inventario/' . $slug ) ) : '';
+    $grimorio_url  = $slug ? trailingslashit( home_url( '/grimorio/' . $slug ) ) : '';
+    $wiki_url      = $wiki_slug ? trailingslashit( home_url( '/personaje-wiki/' . $wiki_slug ) ) : '';
 
     $response = [
         'post_id'       => $post_id,
         'edit_url'      => get_permalink( $post_id ),
-        'sheet_url'     => $slug ? home_url( '/hoja-personaje/' . $slug ) : '',
-        'inventory_url' => $slug ? home_url( '/inventario/' . $slug ) : '',
-        'grimorio_url'  => $slug ? home_url( '/grimorio/' . $slug ) : '',
+        'sheet_url'     => $sheet_url,
+        'inventory_url' => $inventory_url,
+        'grimorio_url'  => $grimorio_url,
+        'redirect_url'  => $sheet_url,
+        'personaje_wiki_id' => $wiki_id,
+        'personaje_wiki_url' => $wiki_url,
     ];
 
     wp_send_json_success( $response );

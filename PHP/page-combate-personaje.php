@@ -42,26 +42,18 @@ $nav_images = array(
   ?>
 
   <div class="personaje-nav">
-    <a class="personaje-nav-link"
-       href="<?php echo esc_url( $nav_links['inventario'] ); ?>"
-       aria-label="Ir al Inventario del personaje">
-      <div class="personaje-nav-button"
-           style="background-image:url('<?php echo esc_url( $nav_images['inventario'] ); ?>');"></div>
-    </a>
-
     <?php if ( $imagen_url ) : ?>
       <a href="<?php echo esc_url( $personaje_url ); ?>" class="personaje-avatar-link" aria-label="Volver a la ficha del personaje">
         <div class="personaje-avatar"
              style="background-image:url('<?php echo esc_url( $imagen_url ); ?>');"></div>
       </a>
     <?php endif; ?>
+  </div>
 
-    <a class="personaje-nav-link"
-       href="<?php echo esc_url( $nav_links['hoja'] ); ?>"
-       aria-label="Ir a la Hoja del personaje">
-      <div class="personaje-nav-button"
-           style="background-image:url('<?php echo esc_url( $nav_images['hoja'] ); ?>');"></div>
-    </a>
+  <div class="personaje-botones">
+    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['hoja'] ); ?>">Hoja de Personaje</a>
+    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['inventario'] ); ?>">Inventario</a>
+    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['grimorio'] ); ?>">Grimorio</a>
   </div>
 
   <?php echo renderizar_combate_personaje( $personaje->ID ); ?>

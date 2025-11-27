@@ -805,6 +805,11 @@
     border: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
+.grimorio-spell-tag--ritual {
+    background: linear-gradient(135deg, #5a0f1e, #8a1c35);
+    color: #ffeef3;
+}
+
 .grimorio-spell-picker__item input:disabled + span {
     opacity: 0.6;
 }

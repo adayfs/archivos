@@ -63435,6 +63435,1914 @@
         }
       ],
       "name_es": "Poppet de Sanguine"
+    },
+    {
+      "id": "acid-burn-scgtd-homebrew",
+      "name": "Acid Burn",
+      "source": "SCGTD",
+      "level": 0,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "cone",
+        "distance": {
+          "type": "feet",
+          "amount": 15
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Un cono de ácido inflige 1d6 de daño (aumenta con nivel). TS Destreza mitad."
+      ],
+      "entries": [
+        "Un cono de ácido inflige 1d6 de daño (aumenta con nivel). TS Destreza mitad."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Quemadura Ácida"
+    },
+    {
+      "id": "bacterial-barrage-scgtd-homebrew",
+      "name": "Bacterial Barrage",
+      "source": "SCGTD",
+      "level": 0,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Ataque a distancia; 1d8 necrótico (1d12 si el objetivo está enfermo o envenenado). Escala con nivel."
+      ],
+      "entries": [
+        "Ataque a distancia; 1d8 necrótico (1d12 si el objetivo está enfermo o envenenado). Escala con nivel."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Descarga Bacteriana"
+    },
+    {
+      "id": "poison-needle-scgtd-homebrew",
+      "name": "Poison Needle",
+      "source": "SCGTD",
+      "level": 0,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Ataque a distancia; 1d10 veneno, escala con nivel. Si reduce a 0 PG, queda estable, envenenado y paralizado 1 h."
+      ],
+      "entries": [
+        "Ataque a distancia; 1d10 veneno, escala con nivel. Si reduce a 0 PG, queda estable, envenenado y paralizado 1 h."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Aguja Venenosa"
+    },
+    {
+      "id": "acrid-orb-scgtd-homebrew",
+      "name": "Acrid Orb",
+      "source": "SCGTD",
+      "level": 1,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un vial de ácido gástrico y una pizca de sulfato"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Ataque a distancia 2d6 ácido; explota en radio 5 pies TS DES 2d6 ácido (mitad si salva). En niveles superiores, +1d6 a la explosión por espacio."
+      ],
+      "entries": [
+        "Ataque a distancia 2d6 ácido; explota en radio 5 pies TS DES 2d6 ácido (mitad si salva). En niveles superiores, +1d6 a la explosión por espacio."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Orbe Ácrido"
+    },
+    {
+      "id": "envenom-scgtd-homebrew",
+      "name": "Envenom",
+      "source": "SCGTD",
+      "level": 1,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un vial de veneno básico"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Objetivo sufre 2d4 veneno y TS CON; si falla, queda envenenado y repite TS al final de turno recibiendo 2d4 veneno en fallo hasta superar o terminar. +1 objetivo por nivel superior."
+      ],
+      "entries": [
+        "Objetivo sufre 2d4 veneno y TS CON; si falla, queda envenenado y repite TS al final de turno recibiendo 2d4 veneno en fallo hasta superar o terminar. +1 objetivo por nivel superior."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Envenenar"
+    },
+    {
+      "id": "infect-scgtd-homebrew",
+      "name": "Infect",
+      "source": "SCGTD",
+      "level": 1,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "una placa de Petri"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Al inicio de cada turno del objetivo TS CON: 1d12 necrótico (mitad si salva); termina tras 3 TS superadas. +1d12 por cada 2 niveles de espacio sobre 1º."
+      ],
+      "entries": [
+        "Al inicio de cada turno del objetivo TS CON: 1d12 necrótico (mitad si salva); termina tras 3 TS superadas. +1d12 por cada 2 niveles de espacio sobre 1º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Infectar"
+    },
+    {
+      "id": "stream-of-consumption-scgtd-homebrew",
+      "name": "Stream of Consumption",
+      "source": "SCGTD",
+      "level": 1,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "self"
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Mientras dura, acción para forzar TS CON a criatura a 60 pies: fallo gana 1 agotamiento y recuperas 1d4+mod PG. No puedes repetir sobre quien haya salvado."
+      ],
+      "entries": [
+        "Mientras dura, acción para forzar TS CON a criatura a 60 pies: fallo gana 1 agotamiento y recuperas 1d4+mod PG. No puedes repetir sobre quien haya salvado."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Corriente Devoradora"
+    },
+    {
+      "id": "toxic-shield-scgtd-homebrew",
+      "name": "Toxic Shield",
+      "source": "SCGTD",
+      "level": 1,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "self"
+      },
+      "components": {
+        "s": true,
+        "m": {
+          "text": "una gota de sangre enana"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Resistencia a veneno y ventaja contra envenenado; quien te golpea en melee sufre 1d8 veneno (escala +1d8 cada 2 niveles sobre 1º)."
+      ],
+      "entries": [
+        "Resistencia a veneno y ventaja contra envenenado; quien te golpea en melee sufre 1d8 veneno (escala +1d8 cada 2 niveles sobre 1º)."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Escudo Tóxico"
+    },
+    {
+      "id": "biohazard-scgtd-homebrew",
+      "name": "Biohazard",
+      "source": "SCGTD",
+      "level": 2,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "cube"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "una raíz marchita y una gota de vinagre"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          }
+        }
+      ],
+      "entries_es": [
+        "Cubo 15 pies de lodo tóxico, terreno difícil. Al entrar o empezar turno TS CON: 1d8 veneno y envenenado hasta tu siguiente turno. +1d8 por nivel sobre 2º."
+      ],
+      "entries": [
+        "Cubo 15 pies de lodo tóxico, terreno difícil. Al entrar o empezar turno TS CON: 1d8 veneno y envenenado hasta tu siguiente turno. +1d8 por nivel sobre 2º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Peligro Biológico"
+    },
+    {
+      "id": "caustic-grip-scgtd-homebrew",
+      "name": "Caustic Grip",
+      "source": "SCGTD",
+      "level": 2,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "self"
+      },
+      "components": {
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Ataque de conjuro cuerpo a cuerpo: 4d4 ácido y objetivo inmovilizado hasta tu siguiente turno; acción para liberar con prueba FUE. Al final de su turno inmovilizado sufre 4d4 ácido. +2d4 ambos daños por nivel sobre 2º."
+      ],
+      "entries": [
+        "Ataque de conjuro cuerpo a cuerpo: 4d4 ácido y objetivo inmovilizado hasta tu siguiente turno; acción para liberar con prueba FUE. Al final de su turno inmovilizado sufre 4d4 ácido. +2d4 ambos daños por nivel sobre 2º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Agarre Cáustico"
+    },
+    {
+      "id": "grasping-ghost-scgtd-homebrew",
+      "name": "Grasping Ghost",
+      "source": "SCGTD",
+      "level": 2,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "s": true,
+        "m": {
+          "text": "un hueso de dedo y un retazo de tela"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "TS FUE; fallo: 3d8 necrótico y agarrado + empujado hasta 30 pies en dirección elegida. Éxito mitad daño. El agarre se rompe con acción (FUE o DES). +1 objetivo por nivel sobre 2º."
+      ],
+      "entries": [
+        "TS FUE; fallo: 3d8 necrótico y agarrado + empujado hasta 30 pies en dirección elegida. Éxito mitad daño. El agarre se rompe con acción (FUE o DES). +1 objetivo por nivel sobre 2º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Espectro Aferrador"
+    },
+    {
+      "id": "invigorate-scgtd-homebrew",
+      "name": "Invigorate",
+      "source": "SCGTD",
+      "level": 2,
+      "school": "A",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "s": true,
+        "m": {
+          "text": "una jeringuilla y una muestra de sangre"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1
+          }
+        }
+      ],
+      "entries_es": [
+        "Hasta tres criaturas ganan 10 PG temporales. +5 PG temp por nivel sobre 2º."
+      ],
+      "entries": [
+        "Hasta tres criaturas ganan 10 PG temporales. +5 PG temp por nivel sobre 2º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Vigorizante"
+    },
+    {
+      "id": "ocular-necrosis-scgtd-homebrew",
+      "name": "Ocular Necrosis",
+      "source": "SCGTD",
+      "level": 2,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Ataque de conjuro a distancia: 2d6 necrótico y ciego hasta final de tu siguiente turno. +1d6 por nivel sobre 2º."
+      ],
+      "entries": [
+        "Ataque de conjuro a distancia: 2d6 necrótico y ciego hasta final de tu siguiente turno. +1d6 por nivel sobre 2º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Necrosis Ocular"
+    },
+    {
+      "id": "corrosive-blast-scgtd-homebrew",
+      "name": "Corrosive Blast",
+      "source": "SCGTD",
+      "level": 3,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "cone",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un vial de ácido"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Cono 30 pies TS DES: 10d4 ácido (mitad si salva); destruye materiales orgánicos. +2d4 por nivel sobre 3º."
+      ],
+      "entries": [
+        "Cono 30 pies TS DES: 10d4 ácido (mitad si salva); destruye materiales orgánicos. +2d4 por nivel sobre 3º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Explosión Corrosiva"
+    },
+    {
+      "id": "fetid-blade-scgtd-homebrew",
+      "name": "Fetid Blade",
+      "source": "SCGTD",
+      "level": 3,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "range": {
+        "type": "touch"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "una gota de ácido y polvo de hierro"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Arma tocada inflige +2d4 ácido y se vuelve mágica; objetivo TS CON o queda envenenado hasta final de tu siguiente turno. +1d4 por nivel sobre 3º."
+      ],
+      "entries": [
+        "Arma tocada inflige +2d4 ácido y se vuelve mágica; objetivo TS CON o queda envenenado hasta final de tu siguiente turno. +1d4 por nivel sobre 3º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Hoja Fétida"
+    },
+    {
+      "id": "pestilence-scgtd-homebrew",
+      "name": "Pestilence",
+      "source": "SCGTD",
+      "level": 3,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "una flor marchita"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Hasta tres criaturas hacen TS CON al inicio de turno: fallo 3d6 necrótico y 1 nivel de agotamiento; termina tras 3 TS exitosas."
+      ],
+      "entries": [
+        "Hasta tres criaturas hacen TS CON al inicio de turno: fallo 3d6 necrótico y 1 nivel de agotamiento; termina tras 3 TS exitosas."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Pestilencia"
+    },
+    {
+      "id": "purge-contamination-scgtd-homebrew",
+      "name": "Purge Contamination",
+      "source": "SCGTD",
+      "level": 3,
+      "school": "A",
+      "time": [
+        {
+          "number": 1,
+          "unit": "hour"
+        }
+      ],
+      "range": {
+        "type": "touch"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "100 po en fluidos alquímicos o agua bendita (consumidos)"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Tras 1 h de ritual, elimina todos los niveles de contaminación y mutaciones; objetivo gana 1 nivel de agotamiento por cada nivel eliminado."
+      ],
+      "entries": [
+        "Tras 1 h de ritual, elimina todos los niveles de contaminación y mutaciones; objetivo gana 1 nivel de agotamiento por cada nivel eliminado."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Purgar Contaminación"
+    },
+    {
+      "id": "tranquilizing-toxin-scgtd-homebrew",
+      "name": "Tranquilizing Toxin",
+      "source": "SCGTD",
+      "level": 3,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "TS CON: en fallo 8d6 veneno y envenenado + aturdido hasta tu siguiente turno; éxito mitad sin estados. +1d6 por nivel sobre 3º."
+      ],
+      "entries": [
+        "TS CON: en fallo 8d6 veneno y envenenado + aturdido hasta tu siguiente turno; éxito mitad sin estados. +1d6 por nivel sobre 3º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Toxina Tranquilizante"
+    },
+    {
+      "id": "venomous-aura-scgtd-homebrew",
+      "name": "Venomous Aura",
+      "source": "SCGTD",
+      "level": 3,
+      "school": "T",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "range": {
+        "type": "self"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "escamas o colmillos de serpiente venenosa"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          }
+        }
+      ],
+      "entries_es": [
+        "Aura 10 pies: criaturas que empiezan turno quedan envenenadas hasta su siguiente turno."
+      ],
+      "entries": [
+        "Aura 10 pies: criaturas que empiezan turno quedan envenenadas hasta su siguiente turno."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Aura Venenosa"
+    },
+    {
+      "id": "blood-worm-scgtd-homebrew",
+      "name": "Blood Worm",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un tarro lleno de sanguijuelas"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Objetivo infectado: cuando recibe un ataque de arma, añade 4d6 necrótico y atacante sana esa cantidad. Cada vez que recibe este daño TS CON o termina. +1d6 por nivel sobre 4º."
+      ],
+      "entries": [
+        "Objetivo infectado: cuando recibe un ataque de arma, añade 4d6 necrótico y atacante sana esa cantidad. Cada vez que recibe este daño TS CON o termina. +1d6 por nivel sobre 4º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Gusano de Sangre"
+    },
+    {
+      "id": "corpse-explosion-scgtd-homebrew",
+      "name": "Corpse Explosion",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "reaction"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Reacción al morir una criatura. Radio 10 pies: 4d8 necrótico + 4d8 ácido, TS DES mitad. +1d8 ácido por nivel sobre 4º."
+      ],
+      "entries": [
+        "Reacción al morir una criatura. Radio 10 pies: 4d8 necrótico + 4d8 ácido, TS DES mitad. +1d8 ácido por nivel sobre 4º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Explosión de Cadáver"
+    },
+    {
+      "id": "corrupting-spores-scgtd-homebrew",
+      "name": "Corrupting Spores",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un hongo seco"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Brota parche de hongos; criaturas a 10 pies TS CON o 1d8 veneno por hongo y envenenadas hasta tu siguiente turno. Puedes añadir un hongo con acción bonus cada turno. +1 hongo inicial por nivel sobre 4º."
+      ],
+      "entries": [
+        "Brota parche de hongos; criaturas a 10 pies TS CON o 1d8 veneno por hongo y envenenadas hasta tu siguiente turno. Puedes añadir un hongo con acción bonus cada turno. +1 hongo inicial por nivel sobre 4º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Esporas Corruptoras"
+    },
+    {
+      "id": "last-rites-scgtd-homebrew",
+      "name": "Last Rites",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "A",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "latón, pétalo de rosa y gota de agua bendita"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Rayo radiante: TS SAB, fallo 8d8 radiante (undead/fiends desventaja y daño máximo); éxito mitad. +1 objetivo a 30 pies por nivel sobre 5º."
+      ],
+      "entries": [
+        "Rayo radiante: TS SAB, fallo 8d8 radiante (undead/fiends desventaja y daño máximo); éxito mitad. +1 objetivo a 30 pies por nivel sobre 5º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Últimos Ritos"
+    },
+    {
+      "id": "poison-wave-scgtd-homebrew",
+      "name": "Poison Wave",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "sphere",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "una raíz marchita y una gota de vinagre"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Esfera 30 pies: TS CON, fallo 4d12 veneno y envenenado hasta tu siguiente turno; éxito mitad sin estado. +1d12 por nivel sobre 4º."
+      ],
+      "entries": [
+        "Esfera 30 pies: TS CON, fallo 4d12 veneno y envenenado hasta tu siguiente turno; éxito mitad sin estado. +1d12 por nivel sobre 4º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Ola de Veneno"
+    },
+    {
+      "id": "summon-the-thing-with-the-writhing-tail-scgtd-homebrew",
+      "name": "Summon the Thing with the Writhing Tail",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un mechón de pelo de gato y una rata muerta"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Invoca aberración aliada con bloque de estadísticas escalando por nivel del conjuro; actúa tras ti y desaparece a 0 PG o al terminar la duración."
+      ],
+      "entries": [
+        "Invoca aberración aliada con bloque de estadísticas escalando por nivel del conjuro; actúa tras ti y desaparece a 0 PG o al terminar la duración."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Invocar a la Cosa de la Cola Retorcida"
+    },
+    {
+      "id": "vitriol-ichor-scgtd-homebrew",
+      "name": "Vitriol Ichor",
+      "source": "SCGTD",
+      "level": 4,
+      "school": "T",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "ácido nítrico y agua"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Objetivo con armadura: su CA pasa a 10 + DES, ignorando otras bonificaciones. +1 objetivo por nivel sobre 4º."
+      ],
+      "entries": [
+        "Objetivo con armadura: su CA pasa a 10 + DES, ignorando otras bonificaciones. +1 objetivo por nivel sobre 4º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Icor Vítreo"
+    },
+    {
+      "id": "acid-rain-scgtd-homebrew",
+      "name": "Acid Rain",
+      "source": "SCGTD",
+      "level": 5,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 150
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "pizca de azufre y carbón"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Cilindro 40 pies radio/altura; terreno difícil y apagafuegos. Al entrar o empezar turno: 3d6 ácido y TS DES o cae derribado y sufre 3d6 ácido extra. Cada tirada +1d6 por nivel sobre 5º."
+      ],
+      "entries": [
+        "Cilindro 40 pies radio/altura; terreno difícil y apagafuegos. Al entrar o empezar turno: 3d6 ácido y TS DES o cae derribado y sufre 3d6 ácido extra. Cada tirada +1d6 por nivel sobre 5º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Lluvia Ácida"
+    },
+    {
+      "id": "nerve-gas-scgtd-homebrew",
+      "name": "Nerve Gas",
+      "source": "SCGTD",
+      "level": 5,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "sphere",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "fosfato y cloro con alcohol"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Esfera de niebla 10 pies radio, fuertemente oscurecida. Al entrar o empezar turno TS INT: fallo 3d6 psíquico y aturdido hasta tu siguiente turno, éxito mitad sin estado. +1d6 psíquico por nivel sobre 5º."
+      ],
+      "entries": [
+        "Esfera de niebla 10 pies radio, fuertemente oscurecida. Al entrar o empezar turno TS INT: fallo 3d6 psíquico y aturdido hasta tu siguiente turno, éxito mitad sin estado. +1d6 psíquico por nivel sobre 5º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Gas Nervioso"
+    },
+    {
+      "id": "neutralizing-field-scgtd-homebrew",
+      "name": "Neutralizing Field",
+      "source": "SCGTD",
+      "level": 5,
+      "school": "A",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "self"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "cristal de Delirio o reliquia sagrada de 1000 po"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Esfera 10 pies centrada en ti: evita ganar contaminación, resistencia al necrótico, bloquea conjuros contaminados."
+      ],
+      "entries": [
+        "Esfera 10 pies centrada en ti: evita ganar contaminación, resistencia al necrótico, bloquea conjuros contaminados."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Campo Neutralizador"
+    },
+    {
+      "id": "septic-shock-scgtd-homebrew",
+      "name": "Septic Shock",
+      "source": "SCGTD",
+      "level": 5,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 150
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "trozo de hígado podrido"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Objetivo herido TS CON (desventaja si ≤ mitad PG máx): fallo 10d8 necrótico y 1 nivel de agotamiento; éxito mitad sin agotamiento."
+      ],
+      "entries": [
+        "Objetivo herido TS CON (desventaja si ≤ mitad PG máx): fallo 10d8 necrótico y 1 nivel de agotamiento; éxito mitad sin agotamiento."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Shock Séptico"
+    },
+    {
+      "id": "toxic-barrage-scgtd-homebrew",
+      "name": "Toxic Barrage",
+      "source": "SCGTD",
+      "level": 5,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "cuatro setas death cap"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Cuatro rayos de veneno; ataque a distancia por rayo 3d6 veneno. Si impacta al menos uno, TS CON o envenenado 1 minuto (repite al final de turno). +1 rayo por nivel sobre 5º."
+      ],
+      "entries": [
+        "Cuatro rayos de veneno; ataque a distancia por rayo 3d6 veneno. Si impacta al menos uno, TS CON o envenenado 1 minuto (repite al final de turno). +1 rayo por nivel sobre 5º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Descarga Tóxica"
+    },
+    {
+      "id": "mephitic-vapors-scgtd-homebrew",
+      "name": "Mephitic Vapors",
+      "source": "SCGTD",
+      "level": 6,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "sphere",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un vial de cloro"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Área radio 20 pies de baba: terreno difícil, criaturas dentro quedan ciegas y sin reacciones; al empezar turno TS CON o 2d8 veneno +2d8 ácido y 1 agotamiento. +1d8 veneno y ácido por nivel sobre 6º."
+      ],
+      "entries": [
+        "Área radio 20 pies de baba: terreno difícil, criaturas dentro quedan ciegas y sin reacciones; al empezar turno TS CON o 2d8 veneno +2d8 ácido y 1 agotamiento. +1d8 veneno y ácido por nivel sobre 6º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Vapores Mefíticos"
+    },
+    {
+      "id": "vile-necrosis-scgtd-homebrew",
+      "name": "Vile Necrosis",
+      "source": "SCGTD",
+      "level": 6,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un vial de sangre coagulada"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Ataque de conjuro a distancia: 12d6 necrótico y el objetivo queda debilitado (mitad de daño con ataques/conjuros) hasta superar TS CON al final de turno."
+      ],
+      "entries": [
+        "Ataque de conjuro a distancia: 12d6 necrótico y el objetivo queda debilitado (mitad de daño con ataques/conjuros) hasta superar TS CON al final de turno."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Necrosis Vil"
+    },
+    {
+      "id": "contamination-immunity-scgtd-homebrew",
+      "name": "Contamination Immunity",
+      "source": "SCGTD",
+      "level": 7,
+      "school": "A",
+      "time": [
+        {
+          "number": 1,
+          "unit": "minute"
+        }
+      ],
+      "range": {
+        "type": "touch"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "lirio eldritch y 250 po en fluidos purificados por objetivo (consumidos)"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 24
+          }
+        }
+      ],
+      "entries_es": [
+        "Criatura tocada es inmune al necrótico y no puede ganar niveles de contaminación durante 24 h; termina si lanza un conjuro contaminado."
+      ],
+      "entries": [
+        "Criatura tocada es inmune al necrótico y no puede ganar niveles de contaminación durante 24 h; termina si lanza un conjuro contaminado."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Inmunidad a la Contaminación"
+    },
+    {
+      "id": "grievous-wounds-scgtd-homebrew",
+      "name": "Grievous Wounds",
+      "source": "SCGTD",
+      "level": 7,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "una aguja y suturas"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Hasta fin de tu siguiente turno, el objetivo pierde resistencias/inmunidades, es vulnerable a todo daño y hace TS con desventaja."
+      ],
+      "entries": [
+        "Hasta fin de tu siguiente turno, el objetivo pierde resistencias/inmunidades, es vulnerable a todo daño y hace TS con desventaja."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Heridas Atroces"
+    },
+    {
+      "id": "miasma-scgtd-homebrew",
+      "name": "Miasma",
+      "source": "SCGTD",
+      "level": 7,
+      "school": "V",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "un lirio cadáver"
+        }
+      },
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1
+          },
+          "concentration": true
+        }
+      ],
+      "entries_es": [
+        "Muro de gas tóxico (60x20x1 pies o anillo 20 pies). Al aparecer TS DES: 10d4 ácido (mitad si salva). Un lado inflige 8d8 veneno a 30 pies al final de turno o al entrar; TS CON o envenenado mientras dure. +2d8 veneno por nivel sobre 7º."
+      ],
+      "entries": [
+        "Muro de gas tóxico (60x20x1 pies o anillo 20 pies). Al aparecer TS DES: 10d4 ácido (mitad si salva). Un lado inflige 8d8 veneno a 30 pies al final de turno o al entrar; TS CON o envenenado mientras dure. +2d8 veneno por nivel sobre 7º."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Miasma"
+    },
+    {
+      "id": "breath-of-nightshade-scgtd-homebrew",
+      "name": "Breath of Nightshade",
+      "source": "SCGTD",
+      "level": 8,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "cone",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "dos flores de belladona mortal"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Cono 60 pies TS CON: fallo envenenado y paralizado 1 h hasta recibir daño."
+      ],
+      "entries": [
+        "Cono 60 pies TS CON: fallo envenenado y paralizado 1 h hasta recibir daño."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Aliento de Belladona"
+    },
+    {
+      "id": "plague-wind-scgtd-homebrew",
+      "name": "Plague Wind",
+      "source": "SCGTD",
+      "level": 8,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "cone",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "moco de un gul"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Cono 120 pies TS CON: 5d8 veneno + 5d8 necrótico (mitad si salva); criaturas con ≤25 PG restantes mueren y se reducen a esqueleto."
+      ],
+      "entries": [
+        "Cono 120 pies TS CON: 5d8 veneno + 5d8 necrótico (mitad si salva); criaturas con ≤25 PG restantes mueren y se reducen a esqueleto."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Viento de Plaga"
+    },
+    {
+      "id": "pandemic-scgtd-homebrew",
+      "name": "Pandemic",
+      "source": "SCGTD",
+      "level": 9,
+      "school": "C",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "cadáver fétido de una rata de la peste"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Infecta a una criatura; al inicio de cada turno TS CON: fallo 10d8 necrótico e incapacitado hasta tu siguiente turno, éxito mitad. Las criaturas a 10 pies pueden contraer la infección. Se cura solo con restauración mayor, heal o wish."
+      ],
+      "entries": [
+        "Infecta a una criatura; al inicio de cada turno TS CON: fallo 10d8 necrótico e incapacitado hasta tu siguiente turno, éxito mitad. Las criaturas a 10 pies pueden contraer la infección. Se cura solo con restauración mayor, heal o wish."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Pandemia"
+    },
+    {
+      "id": "touch-of-death-scgtd-homebrew",
+      "name": "Touch of Death",
+      "source": "SCGTD",
+      "level": 9,
+      "school": "N",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "range": {
+        "type": "touch"
+      },
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "el dedo de una bruja"
+        }
+      },
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "entries_es": [
+        "Ataque de conjuro cuerpo a cuerpo: 200 daño de veneno que ignora resistencias/inmunidades y no puede reducirse. Si reduce a 0 PG, el objetivo falla TS de muerte automáticamente hasta un descanso largo; heal o restauración mayor termina el efecto."
+      ],
+      "entries": [
+        "Ataque de conjuro cuerpo a cuerpo: 200 daño de veneno que ignora resistencias/inmunidades y no puede reducirse. Si reduce a 0 PG, el objetivo falla TS de muerte automáticamente hasta un descanso largo; heal o restauración mayor termina el efecto."
+      ],
+      "classes": [
+        {
+          "id": "apothecary-scgtd-drakkenheim",
+          "name": "Apothecary",
+          "source": "SCGTD",
+          "name_es": "Apotecario"
+        }
+      ],
+      "name_es": "Toque de Muerte"
     }
   ]
 }
