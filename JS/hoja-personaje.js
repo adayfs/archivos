@@ -689,7 +689,7 @@
 
   function parseIds(value) {
     return (value || '')
-      .split(',')
+      .split(/[,/;]+/)
       .map((v) => v.trim())
       .filter(Boolean);
   }
@@ -4008,12 +4008,29 @@
     if (!slug) return;
     set.add(slug);
     const trimmed = slug.replace(/-(phb|dmg|tce|xge|scag|ua|lvl).*$/, '');
-    if (trimmed && trimmed !== slug) {
-      set.add(trimmed);
-    }
+    if (trimmed && trimmed !== slug) set.add(trimmed);
     const simplified = slug.replace(/-weapons?/, '');
-    if (simplified) {
-      set.add(simplified);
+    if (simplified) set.add(simplified);
+    const singular = simplified.replace(/s$/, '');
+    if (singular && singular !== simplified) set.add(singular);
+    // Agrupaciones comunes desde ACF ("simple", "martial", tipos de espada/arco)
+    if (slug.includes('simple')) {
+      set.add('simple');
+    }
+    if (slug.includes('martial')) {
+      set.add('martial');
+    }
+    if (slug.includes('sword')) {
+      set.add('sword');
+    }
+    if (slug.includes('bow')) {
+      set.add('bow');
+    }
+    if (slug.includes('crossbow')) {
+      set.add('crossbow');
+    }
+    if (slug.includes('axe')) {
+      set.add('axe');
     }
   }
 
@@ -4452,10 +4469,14 @@ function normalizeProficiencyList(list) {
   }
 
   function buildDerivedCharacter(context, data) {
+    const profOverride = getNumberFromInput('cs_proeficiencia');
     const derived = {
       level: context.level,
       abilityMods: context.abilityMods,
-      proficiencyBonus: Math.max(2, 2 + Math.floor((context.level - 1) / 4)),
+      proficiencyBonus: Math.max(
+        2,
+        Number.isFinite(profOverride) && profOverride > 0 ? profOverride : 2 + Math.floor((context.level - 1) / 4)
+      ),
       skills: new Map(),
       saves: new Map(),
       armorText: [],
