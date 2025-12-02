@@ -1517,6 +1517,7 @@ function renderizar_hoja_personaje($post_id) {
     $combat_attack_extra = intval( get_post_meta( $post_id, 'combat_attack_extra', true ) );
     $combat_damage_extra = intval( get_post_meta( $post_id, 'combat_damage_extra', true ) );
     $combat_notes        = sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) );
+    $combat_ammo_state   = drak_get_combat_ammo_state( $post_id );
 
 
     ?>
@@ -2171,6 +2172,19 @@ function renderizar_combate_personaje( $post_id ) {
                   <input type="number" name="combat_damage_extra_main" id="combat_damage_extra_main" value="<?php echo esc_attr( $damage_extra_main ); ?>">
                 </label>
               </div>
+              <div class="combat-ammo is-hidden" id="combat-ammo-main">
+                <div class="combat-ammo__row">
+                  <label class="combat-ammo__label">
+                    Munición
+                    <input type="number" id="combat-ammo-input-main" class="combat-ammo__input" min="0" step="1">
+                  </label>
+                  <div class="combat-ammo__status">
+                    <span class="combat-ammo__value" id="combat-ammo-value-main">—</span>
+                    <button type="button" class="combat-ammo__consume" data-ammo-consume="main">Consumir 1</button>
+                  </div>
+                </div>
+                <p class="combat-ammo__warning" id="combat-ammo-warning-main">Sin munición</p>
+              </div>
               <div class="combat-attack-grid">
                 <div class="combat-attack-box">
                   <span class="combat-label">Tirada de ataque</span>
@@ -2200,6 +2214,19 @@ function renderizar_combate_personaje( $post_id ) {
                   Bonificador al daño
                   <input type="number" name="combat_damage_extra_off" id="combat_damage_extra_off" value="<?php echo esc_attr( $damage_extra_off ); ?>">
                 </label>
+              </div>
+              <div class="combat-ammo is-hidden" id="combat-ammo-off">
+                <div class="combat-ammo__row">
+                  <label class="combat-ammo__label">
+                    Munición
+                    <input type="number" id="combat-ammo-input-off" class="combat-ammo__input" min="0" step="1">
+                  </label>
+                  <div class="combat-ammo__status">
+                    <span class="combat-ammo__value" id="combat-ammo-value-off">—</span>
+                    <button type="button" class="combat-ammo__consume" data-ammo-consume="off">Consumir 1</button>
+                  </div>
+                </div>
+                <p class="combat-ammo__warning" id="combat-ammo-warning-off">Sin munición</p>
               </div>
               <div class="combat-attack-grid">
                 <div class="combat-attack-box">
@@ -5814,6 +5841,48 @@ function drak_static_data_uri( $filename ) {
     return '';
 }
 
+/**
+ * Devuelve el estado de munición por arma para el combate.
+ *
+ * @param int $post_id
+ * @return array<string,int>
+ */
+function drak_get_combat_ammo_state( $post_id ) {
+    $raw = get_post_meta( $post_id, 'combat_ammo_state', true );
+    if ( empty( $raw ) ) {
+        return [];
+    }
+    if ( is_string( $raw ) ) {
+        $decoded = json_decode( $raw, true );
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            $raw = $decoded;
+        }
+    }
+    if ( ! is_array( $raw ) ) {
+        return [];
+    }
+    return drak_sanitize_combat_ammo_state( $raw );
+}
+
+/**
+ * Limpia el array de munición asegurando enteros no negativos.
+ *
+ * @param array $state
+ * @return array<string,int>
+ */
+function drak_sanitize_combat_ammo_state( $state ) {
+    $clean = [];
+    foreach ( $state as $key => $value ) {
+        $k = is_string( $key ) ? sanitize_key( $key ) : '';
+        if ( ! $k ) {
+            continue;
+        }
+        $num = is_numeric( $value ) ? intval( $value ) : 0;
+        $clean[ $k ] = max( 0, $num );
+    }
+    return $clean;
+}
+
 function guardar_hp_temporal() {
 	
 	    if (!isset($_POST['post_id']) || !isset($_POST['valor'])) {
@@ -5856,6 +5925,17 @@ function drak_guardar_modulo_combate() {
     $shield_extra      = isset( $_POST['shield_extra'] ) ? intval( $_POST['shield_extra'] ) : 0;
     $temp_hp_extra     = isset( $_POST['temp_hp_extra'] ) ? intval( $_POST['temp_hp_extra'] ) : 0;
     $notes        = isset( $_POST['notes'] ) ? sanitize_text_field( wp_unslash( $_POST['notes'] ) ) : '';
+    $ammo_state_raw = isset( $_POST['ammo_state'] ) ? wp_unslash( $_POST['ammo_state'] ) : '';
+    $ammo_state = [];
+    if ( is_string( $ammo_state_raw ) && $ammo_state_raw !== '' ) {
+        $decoded = json_decode( $ammo_state_raw, true );
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            $ammo_state = $decoded;
+        }
+    } elseif ( is_array( $ammo_state_raw ) ) {
+        $ammo_state = $ammo_state_raw;
+    }
+    $ammo_state = drak_sanitize_combat_ammo_state( $ammo_state );
 
     update_post_meta( $post_id, 'combat_attack_extra_main', $attack_extra_main );
     update_post_meta( $post_id, 'combat_damage_extra_main', $damage_extra_main );
@@ -5865,6 +5945,7 @@ function drak_guardar_modulo_combate() {
     update_post_meta( $post_id, 'combat_shield_extra', $shield_extra );
     update_post_meta( $post_id, 'combat_temp_hp_extra', $temp_hp_extra );
     update_post_meta( $post_id, 'combat_notes', $notes );
+    update_post_meta( $post_id, 'combat_ammo_state', $ammo_state );
 
     wp_send_json_success(
         [
@@ -5876,6 +5957,7 @@ function drak_guardar_modulo_combate() {
             'shield_extra'      => $shield_extra,
             'temp_hp_extra'     => $temp_hp_extra,
             'notes'        => $notes,
+            'ammo'         => $ammo_state,
         ]
     );
 }
@@ -6008,6 +6090,7 @@ add_action('wp_enqueue_scripts', function () {
             'shield_extra'      => intval( get_post_meta( $post_id, 'combat_shield_extra', true ) ),
             'temp_hp_extra'     => intval( get_post_meta( $post_id, 'combat_temp_hp_extra', true ) ),
             'notes'          => sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) ),
+            'ammo'           => $combat_ammo_state,
         ];
         wp_localize_script( 'hoja-personaje-js', 'COMBAT_CONFIG', $combat_config );
         $can_edit_sheet = $post_id ? drak_user_can_manage_personaje( $post_id ) : false;

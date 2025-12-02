@@ -1177,6 +1177,80 @@
   color: #fff;
 }
 
+.combat-ammo {
+  margin: 4px 0 8px;
+  padding: 8px;
+  border: 1px solid #1f2940;
+  border-radius: 10px;
+  background: #0b0f1b;
+}
+
+.combat-ammo__row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.combat-ammo__label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #cfd6ef;
+}
+
+.combat-ammo__input {
+  width: 110px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #2a3550;
+  background: #0f1423;
+  color: #fff;
+}
+
+.combat-ammo__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.combat-ammo__value {
+  font-weight: 700;
+  color: #cfd6ef;
+}
+
+.combat-ammo__value--empty {
+  color: #ff8a8a;
+}
+
+.combat-ammo__consume {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #2a3550;
+  background: #1a2238;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.combat-ammo__consume:hover {
+  background: #242f4a;
+  border-color: #33426b;
+  transform: translateY(-1px);
+}
+
+.combat-ammo__warning {
+  margin: 6px 0 0;
+  color: #ff8a8a;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.combat-ammo__warning.is-visible {
+  display: block;
+}
+
 .combat-weapon-meta {
   margin: 0;
   color: #9ca7c2;

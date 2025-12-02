@@ -255,6 +255,7 @@
     shieldExtra: Number(COMBAT_CONFIG.shield_extra || 0) || 0,
     tempHpExtra: Number(COMBAT_CONFIG.temp_hp_extra || 0) || 0,
     notes: COMBAT_CONFIG.notes || '',
+    ammo: COMBAT_CONFIG.ammo || {},
   };
   let lastCombatContext = null;
   let apothecaryTheoryCache = null;
@@ -1046,6 +1047,8 @@
         scheduleCombatSave();
       });
     });
+
+    initAmmoControls();
 
     renderCombatWeaponsInfo(combatModuleState.weaponMain, combatModuleState.weaponOff);
     const fallbackContext = collectCombatContextOnly();
@@ -3713,6 +3716,7 @@
     formData.append('shield_extra', combatModuleState.shieldExtra || 0);
     formData.append('temp_hp_extra', combatModuleState.tempHpExtra || 0);
     formData.append('notes', combatModuleState.notes || '');
+    formData.append('ammo_state', JSON.stringify(combatModuleState.ammo || {}));
 
     fetch(window.DND5_API.ajax_url, {
       method: 'POST',
@@ -3783,6 +3787,77 @@
     return codes.some((code) => set.has(code) || set.has(code.toLowerCase()) || set.has(code.toUpperCase()));
   }
 
+  const AMMO_PROPERTY_CODES = ['A', 'ammunition', 'ammo', 'municion', 'munición'];
+
+  function weaponRequiresAmmo(weapon) {
+    return weaponHasProperty(weapon, AMMO_PROPERTY_CODES);
+  }
+
+  function ammoKeyFromWeapon(weapon, slot = '') {
+    if (!weapon) return slot ? `slot-${slot}` : '';
+    const raw =
+      weapon.slug ||
+      weapon.name ||
+      weapon.id ||
+      weapon.damageDice ||
+      (slot ? `slot-${slot}` : '');
+    return raw
+      .toString()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function getAmmoValueForWeapon(weapon, slot = '') {
+    const key = ammoKeyFromWeapon(weapon, slot);
+    if (!key) return 0;
+    const state = combatModuleState.ammo || {};
+    const raw = state[key];
+    const val = parseInt(raw, 10);
+    return Number.isFinite(val) ? Math.max(0, val) : 0;
+  }
+
+  function setAmmoValueForWeapon(weapon, slot, value) {
+    const key = ammoKeyFromWeapon(weapon, slot);
+    if (!key) return;
+    if (!combatModuleState.ammo) combatModuleState.ammo = {};
+    combatModuleState.ammo[key] = Math.max(0, parseInt(value, 10) || 0);
+  }
+
+  function getWeaponBySlot(slot) {
+    const weapon =
+      slot === 'off' ? combatModuleState.weaponOff || null : combatModuleState.weaponMain || null;
+    return normalizeWeaponData(weapon);
+  }
+
+  function initAmmoControls() {
+    ['main', 'off'].forEach((slot) => {
+      const input = document.getElementById(`combat-ammo-input-${slot}`);
+      const consumeBtn = document.querySelector(`[data-ammo-consume="${slot}"]`);
+      if (!input || !consumeBtn) return;
+
+      input.addEventListener('input', () => {
+        const weapon = getWeaponBySlot(slot);
+        if (!weapon || !weaponRequiresAmmo(weapon)) return;
+        setAmmoValueForWeapon(weapon, slot, input.value || '0');
+        renderWeaponAmmo(slot, weapon);
+        scheduleCombatSave();
+      });
+
+      consumeBtn.addEventListener('click', () => {
+        const weapon = getWeaponBySlot(slot);
+        if (!weapon || !weaponRequiresAmmo(weapon)) return;
+        const current = getAmmoValueForWeapon(weapon, slot);
+        const next = Math.max(0, current - 1);
+        setAmmoValueForWeapon(weapon, slot, next);
+        renderWeaponAmmo(slot, weapon);
+        scheduleCombatSave();
+      });
+    });
+  }
+
   function normalizeArmorData(value) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
     const acRaw = value.ac ?? value.base_ac ?? value.baseAc ?? '';
@@ -3846,6 +3921,33 @@
     });
   }
 
+  function renderWeaponAmmo(slot, weapon) {
+    const block = document.getElementById(`combat-ammo-${slot}`);
+    const input = document.getElementById(`combat-ammo-input-${slot}`);
+    const valueEl = document.getElementById(`combat-ammo-value-${slot}`);
+    const warning = document.getElementById(`combat-ammo-warning-${slot}`);
+    if (!block || !input || !valueEl) return;
+
+    if (!weapon || !weaponRequiresAmmo(weapon)) {
+      block.classList.add('is-hidden');
+      block.dataset.ammoKey = '';
+      input.value = '';
+      valueEl.textContent = '—';
+      valueEl.classList.remove('combat-ammo__value--empty');
+      warning?.classList.remove('is-visible');
+      return;
+    }
+
+    const current = getAmmoValueForWeapon(weapon, slot);
+    const key = ammoKeyFromWeapon(weapon, slot);
+    block.dataset.ammoKey = key;
+    block.classList.remove('is-hidden');
+    input.value = current;
+    valueEl.textContent = current;
+    valueEl.classList.toggle('combat-ammo__value--empty', current <= 0);
+    warning?.classList.toggle('is-visible', current <= 0);
+  }
+
   function updateCombatCard(derived, context) {
     const card = document.getElementById('combat-attack-card');
     if (!card) return;
@@ -3864,6 +3966,8 @@
     ];
 
     slots.forEach(({ key, weapon }) => {
+      renderWeaponAmmo(key, weapon);
+
       const attackEl = document.getElementById(`combat-${key}-attack-value`);
       const damageEl = document.getElementById(`combat-${key}-damage-value`);
       const attackBreakEl = document.getElementById(`combat-${key}-attack-breakdown`);
