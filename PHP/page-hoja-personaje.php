@@ -30,6 +30,8 @@ $nav_images = array(
     'grimorio'   => 'https://adayfs.com/wp-content/uploads/2025/11/grimorio.webp',
     'combate'    => 'https://adayfs.com/wp-content/uploads/2025/11/hj-pj.webp',
 );
+
+$can_edit_sheet = is_user_logged_in() && drak_user_can_manage_personaje( $personaje->ID );
 ?>
 
 
@@ -60,11 +62,16 @@ $nav_images = array(
     <a class="personaje-boton" href="<?php echo esc_url( $nav_links['combate'] ); ?>">Mod Combate</a>
   </div>
 
-  <div class="hoja-toolbar">
-    <button type="button" id="btn-sheet-modal" class="btn-hoja-edit">
-      Editar Hoja.pj
-    </button>
-  </div>
+  <?php if ( $can_edit_sheet ) : ?>
+    <div class="hoja-toolbar">
+      <button type="button" id="btn-sheet-modal" class="btn-hoja-edit">
+        Editar Hoja.pj
+      </button>
+      <button type="button" id="btn-feat-modal" class="btn-hoja-edit">
+        Añadir feat
+      </button>
+    </div>
+  <?php endif; ?>
 
   <?php echo renderizar_hoja_personaje($personaje->ID); ?>
 

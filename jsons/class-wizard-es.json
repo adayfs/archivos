@@ -2159,7 +2159,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2197,7 +2197,7 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos magos."
+            "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos magos."
           ]
         },
         {
@@ -2319,7 +2319,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ],
@@ -2334,7 +2334,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ]
@@ -2475,7 +2475,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ],
@@ -2490,7 +2490,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ]
@@ -2529,7 +2529,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Como estudiante de magia arcana, tienes un libro de hechizos que contiene hechizos que muestran los primeros brillos de tu verdadero poder. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
+        "Como estudiante de magia arcana, tienes un libro de hechizos que contiene hechizos que muestran los primeros brillos de tu verdadero poder. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
         {
           "type": "entries",
           "name": "Cantrips",
@@ -2593,7 +2593,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2631,7 +2631,7 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos magos."
+            "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos magos."
           ]
         },
         {
@@ -2753,7 +2753,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ],
@@ -2768,7 +2768,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ]
@@ -2909,7 +2909,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ],
@@ -2924,7 +2924,7 @@
                   "name_es": "Reemplazando el Libro",
                   "entries_es": [
                     "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                    "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                   ]
                 }
               ]
@@ -3530,7 +3530,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Como estudiante de magia arcana, has aprendido a lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Wizard, que aparecen en {@filter Wizard spell list|spells|class=Wizard} más adelante en la descripción de la clase.",
+        "Como estudiante de magia arcana, has aprendido a lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Wizard, que aparecen en {@filter Wizard spell list|spells|class=Wizard} más adelante en la descripción de la clase.",
         {
           "type": "entries",
           "entries": [
@@ -4663,7 +4663,7 @@
       ],
       "name_es": "Expert Divination",
       "entries_es": [
-        "A partir del sexto nivel, los hechizos de adivinación de casting vienen tan fácilmente a usted que gasta sólo una fracción de sus esfuerzos de ortografía. Cuando usted echa un {@filter divination spell of 2nd level or higher|spells|school=D} utilizando una ranura de hechizo, usted recupera una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que el hechizo que usted lanza y no puede ser más alto que el quinto nivel."
+        "A partir del sexto nivel, los hechizos de adivinación de casting vienen tan fácilmente a usted que gasta sólo una fracción de sus esfuerzos de spellcasting. Cuando usted echa un {@filter divination spell of 2nd level or higher|spells|school=D} utilizando una ranura de hechizo, usted recupera una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que el hechizo que usted lanza y no puede ser más alto que el quinto nivel."
       ]
     },
     {
@@ -7275,7 +7275,7 @@
       ],
       "name_es": "Expert Divination",
       "entries_es": [
-        "Casting Divination hechizos viene tan fácilmente a usted que sólo gasta una fracción de sus esfuerzos de ortografía. Cuando lanzas un hechizo Divination usando una ranura de hechizo nivel 2+, recuperas una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que la ranura que gasta y no puede ser superior al nivel 5."
+        "Casting Divination hechizos viene tan fácilmente a usted que sólo gasta una fracción de sus esfuerzos de spellcasting. Cuando lanzas un hechizo Divination usando una ranura de hechizo nivel 2+, recuperas una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que la ranura que gasta y no puede ser superior al nivel 5."
       ]
     },
     {

@@ -215,7 +215,7 @@
           "name_es": "Wind Caller",
           "entries_es": [
             "A partir del tercer nivel, puede lanzar el hechizo {@spell gust of wind} con este rasgo, sin requerir un componente material. Una vez que lanzas el hechizo con este rasgo, no puedes hacerlo de nuevo hasta que termines un largo descanso. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga de segundo nivel o superior.",
-            "Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para cuando usted lanza {@spell gust of wind} con este rasgo (elegir cuando se selecciona esta raza)."
+            "Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para cuando usted lanza {@spell gust of wind} con este rasgo (elegir cuando se selecciona esta raza)."
           ]
         }
       ]
@@ -297,7 +297,7 @@
           "type": "entries",
           "name_es": "Legado Celestial",
           "entries_es": [
-            "Sabes que el {@spell light} puede ir. Una vez que llegues al tercer nivel, puedes lanzar el hechizo [[TAG1] una vez con este rasgo, y recuperas la capacidad de hacerlo cuando termines un largo descanso. Una vez que llegues al quinto nivel, puedes lanzar el hechizo [[TAG2] una vez con este rasgo, y recuperas la capacidad de hacerlo cuando termines un largo descanso. Charisma es tu habilidad de ortografía para estos hechizos."
+            "Sabes que el {@spell light} puede ir. Una vez que llegues al tercer nivel, puedes lanzar el hechizo [[TAG1] una vez con este rasgo, y recuperas la capacidad de hacerlo cuando termines un largo descanso. Una vez que llegues al quinto nivel, puedes lanzar el hechizo [[TAG2] una vez con este rasgo, y recuperas la capacidad de hacerlo cuando termines un largo descanso. Charisma es tu habilidad de spellcasting para estos hechizos."
           ]
         },
         {
@@ -380,7 +380,7 @@
           ],
           "name_es": "Light Bearer",
           "entries_es": [
-            "Sabes que el {@spell light} puede ir. Charisma es tu habilidad de ortografía para ello."
+            "Sabes que el {@spell light} puede ir. Charisma es tu habilidad de spellcasting para ello."
           ]
         },
         {
@@ -537,7 +537,7 @@
           "type": "entries",
           "name_es": "Light Bearer",
           "entries_es": [
-            "Sabes que el {@spell light} puede ir. Charisma es tu habilidad de ortografía para ello."
+            "Sabes que el {@spell light} puede ir. Charisma es tu habilidad de spellcasting para ello."
           ]
         },
         {
@@ -612,7 +612,7 @@
           ],
           "name_es": "Light Bearer",
           "entries_es": [
-            "Sabes que el {@spell Light|XPHB} puede ir. Charisma es tu habilidad de ortografía para ello."
+            "Sabes que el {@spell Light|XPHB} puede ir. Charisma es tu habilidad de spellcasting para ello."
           ]
         },
         {
@@ -2319,7 +2319,7 @@
           "name_es": "Regalo del Svirfneblin",
           "entries_es": [
             "A partir del tercer nivel, puede lanzar el hechizo {@spell disguise self} con este rasgo. A partir del 5o nivel, también puede lanzar el hechizo {@spell nondetection} con él, sin requerir un componente material. Una vez que lanzas cualquiera de estos hechizos con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. Usted también puede lanzar estos usando ranuras de hechizo que tiene del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         },
         {
@@ -3384,7 +3384,7 @@
           "name_es": "Duergar Magic",
           "entries_es": [
             "A partir del tercer nivel, usted puede lanzar el hechizo {@spell enlarge/reduce} en sí mismo con este rasgo, sin requerir un componente material. A partir del quinto nivel, también se puede lanzar el hechizo {@spell invisibility} en sí mismo con este rasgo, sin requerir un componente material. Una vez que lanzas cualquiera de estos hechizos con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. También puede lanzar estos hechizos usando ranuras de hechizo que tiene del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         },
         {
@@ -4093,7 +4093,7 @@
           "entries_es": [
             "Eres parte de un linaje que te otorga habilidades sobrenaturales. Elija un linaje de la mesa Elven Lineages. Ganas el beneficio del nivel 1 de ese linaje.",
             "Cuando alcanzas los niveles de caracteres 3 y 5, aprendes un hechizo de alto nivel, como se muestra en la tabla. Siempre tienes preparado ese hechizo. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado.",
-            "Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para los hechizos que usted lanzó con este rasgo (elegir la habilidad cuando se selecciona el linaje).",
+            "Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para los hechizos que usted lanzó con este rasgo (elegir la habilidad cuando se selecciona el linaje).",
             {
               "type": "table",
               "caption": "Elven Lineages",
@@ -4462,7 +4462,7 @@
           "name_es": "Fairy Magic",
           "entries_es": [
             "Sabes que el {@spell druidcraft} puede ir. A partir del tercer nivel, puede lanzar el hechizo {@spell faerie fire} con este rasgo. A partir del quinto nivel, también se puede lanzar el hechizo {@spell enlarge/reduce} con este rasgo. Una vez que usted lanza {@spell faerie fire} o {@spell enlarge/reduce} con este rasgo, usted no puede lanzar ese hechizo con él de nuevo hasta que termine un descanso largo. También puede lanzar cualquiera de esos hechizos usando cualquier ranura de hechizo que tenga del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         },
         {
@@ -4531,7 +4531,7 @@
           "entries_es": [
             "Sabes que el {@spell druidcraft} puede ir.",
             "A partir del tercer nivel, puede lanzar el hechizo {@spell faerie fire} con este rasgo. A partir del quinto nivel, también se puede lanzar el hechizo {@spell enlarge/reduce} con este rasgo. Una vez que usted lanza {@spell faerie fire} o {@spell enlarge/reduce} con este rasgo, usted no puede lanzar ese hechizo con él de nuevo hasta que termine un descanso largo. También puede lanzar cualquiera de esos hechizos usando cualquier ranura de hechizo que tenga del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         }
       ]
@@ -4562,7 +4562,7 @@
           "name_es": "Firbolg Magic",
           "entries_es": [
             "Usted puede lanzar {@spell detect magic} y [[TAG1] hechizos con este rasgo. Cuando utiliza esta versión de {@spell disguise self}, puede parecer hasta 3 pies más corto o más alto. Una vez que lanzas cualquiera de estos hechizos con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. También puede lanzar estos hechizos usando cualquier ranura de hechizo que tenga.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         },
         {
@@ -4664,7 +4664,7 @@
           "type": "entries",
           "name_es": "Firbolg Magic",
           "entries_es": [
-            "Usted puede echar {@spell detect magic} y {@spell disguise self} con este rasgo, utilizando la Sabiduría como su habilidad de ortografía para ellos. Una vez que lanzas un hechizo, no puedes volver a echarlo con este rasgo hasta que termines un breve o largo descanso. Cuando usas esta versión {@spell disguise self}, puedes parecer hasta 3 pies más cortos de lo normal, lo que te permite mezclarte más fácilmente con humanos y elfos."
+            "Usted puede echar {@spell detect magic} y {@spell disguise self} con este rasgo, utilizando la Sabiduría como su habilidad de spellcasting para ellos. Una vez que lanzas un hechizo, no puedes volver a echarlo con este rasgo hasta que termines un breve o largo descanso. Cuando usas esta versión {@spell disguise self}, puedes parecer hasta 3 pies más cortos de lo normal, lo que te permite mezclarte más fácilmente con humanos y elfos."
           ]
         },
         {
@@ -4985,7 +4985,7 @@
           "entries_es": [
             "Usted sabe que el {@spell mage hand} puede ir, y la mano es {@condition invisible} cuando usted echa el cantrip con este rasgo.",
             "A partir del tercer nivel, puede lanzar el hechizo {@spell jump} con este rasgo. A partir del quinto nivel, también se puede fundir {@spell misty step} con él. Una vez que usted lanza {@spell jump} o {@spell misty step} con este rasgo, usted no puede lanzar ese hechizo con él de nuevo hasta que termine un descanso largo. También puede lanzar cualquiera de esos hechizos usando cualquier ranura de hechizo que tenga del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza). Ninguno de estos hechizos requiere componentes de hechizos cuando los echas con este rasgo."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza). Ninguno de estos hechizos requiere componentes de hechizos cuando los echas con este rasgo."
           ]
         },
         {
@@ -5026,7 +5026,7 @@
           "entries_es": [
             "Usted sabe que el {@spell mage hand} puede ir, y la mano es {@condition invisible} cuando usted echa el cantrip con este rasgo.",
             "A partir del tercer nivel, puede lanzar el hechizo {@spell shield} con este rasgo. A partir del quinto nivel, también se puede lanzar el hechizo {@spell detect thoughts} con él. Una vez que lanzas {@spell shield} o {@spell detect thoughts} hechizo con este rasgo, no puedes volver a lanzar ese hechizo con él hasta que termines un largo descanso. También puede lanzar cualquiera de esos hechizos usando cualquier ranura de hechizo que tenga del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza). Ninguno de estos hechizos requiere componentes de hechizos cuando los echas con este rasgo."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza). Ninguno de estos hechizos requiere componentes de hechizos cuando los echas con este rasgo."
           ]
         },
         {
@@ -5275,7 +5275,7 @@
           ],
           "name_es": "Gnomish Lineage",
           "entries_es": [
-            "Eres parte de un linaje que te otorga habilidades sobrenaturales. Elige una de las siguientes opciones; cualquiera que elijas, Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para los hechizos que lanzas con este rasgo (escoge la habilidad cuando seleccionas el linaje):",
+            "Eres parte de un linaje que te otorga habilidades sobrenaturales. Elige una de las siguientes opciones; cualquiera que elijas, Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para los hechizos que lanzas con este rasgo (escoge la habilidad cuando seleccionas el linaje):",
             {
               "type": "list",
               "style": "list-hang-notitle",
@@ -7135,7 +7135,7 @@
           "name_es": "Hex Magic",
           "entries_es": [
             "Puede lanzar los hechizos {@spell disguise self} y {@spell hex} con este rasgo. Una vez que lanzas cualquiera de estos hechizos con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. También puede lanzar estos hechizos usando cualquier ranura de hechizo que tenga.",
-            "Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para estos hechizos (escoge la habilidad cuando ganas este linaje).",
+            "Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para estos hechizos (escoge la habilidad cuando ganas este linaje).",
             {
               "type": "inset",
               "name": "Becoming a Hag",
@@ -12528,7 +12528,7 @@
           "type": "entries",
           "name_es": "Legado infernal",
           "entries_es": [
-            "Sabes que el {@spell thaumaturgy} puede ir. Una vez que llegues al tercer nivel, puedes lanzar el hechizo {@spell hellish rebuke} como un hechizo de segundo nivel con este rasgo; recuperas la capacidad de lanzarlo cuando terminas un largo descanso. Una vez que llegues al quinto nivel, también puedes lanzar el hechizo [[TAG2] una vez al día con este rasgo; recuperas la capacidad de lanzarlo cuando terminas un largo descanso. Charisma es tu habilidad de ortografía para estos hechizos."
+            "Sabes que el {@spell thaumaturgy} puede ir. Una vez que llegues al tercer nivel, puedes lanzar el hechizo {@spell hellish rebuke} como un hechizo de segundo nivel con este rasgo; recuperas la capacidad de lanzarlo cuando terminas un largo descanso. Una vez que llegues al quinto nivel, también puedes lanzar el hechizo [[TAG2] una vez al día con este rasgo; recuperas la capacidad de lanzarlo cuando terminas un largo descanso. Charisma es tu habilidad de spellcasting para estos hechizos."
           ]
         },
         {
@@ -12619,7 +12619,7 @@
           "name_es": "Fiendish Legacy",
           "entries_es": [
             "Usted es el destinatario de un legado que le otorga habilidades sobrenaturales. Elija un legado de la tabla Legacies Fiendish. Ganas el beneficio nivel 1 del legado elegido.",
-            "Cuando alcanzas los niveles de caracteres 3 y 5, aprendes un hechizo de alto nivel, como se muestra en la tabla. Siempre tienes preparado ese hechizo. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado. Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para los hechizos que usted lanzó con este rasgo (elegir la habilidad cuando usted selecciona el legado).",
+            "Cuando alcanzas los niveles de caracteres 3 y 5, aprendes un hechizo de alto nivel, como se muestra en la tabla. Siempre tienes preparado ese hechizo. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado. Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para los hechizos que usted lanzó con este rasgo (elegir la habilidad cuando usted selecciona el legado).",
             {
               "type": "table",
               "caption": "Fiendish Legacies",
@@ -12666,7 +12666,7 @@
           ],
           "name_es": "Presencia de otro mundo",
           "entries_es": [
-            "Sabes que el {@spell Thaumaturgy|XPHB} puede ir. Cuando lo echas con este rasgo, el hechizo usa la misma habilidad de ortografía que utilizas para tu Fiendish Legacy Trait."
+            "Sabes que el {@spell Thaumaturgy|XPHB} puede ir. Cuando lo echas con este rasgo, el hechizo usa la misma habilidad de spellcasting que utilizas para tu Fiendish Legacy Trait."
           ]
         }
       ]
@@ -12974,7 +12974,7 @@
           "name_es": "Control de aire y agua",
           "entries_es": [
             "Usted puede echar {@spell fog cloud} con este rasgo. A partir del tercer nivel, puede lanzar el hechizo {@spell gust of wind} con este rasgo. A partir del quinto nivel, también se puede lanzar el hechizo {@spell water walk} con él. Una vez que lanzas cualquiera de estos hechizos con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. También puede lanzar estos hechizos usando cualquier ranura de hechizo que tenga del nivel apropiado.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         },
         {
@@ -13102,7 +13102,7 @@
           "type": "entries",
           "name_es": "Control de aire y agua",
           "entries_es": [
-            "Un niño del mar, puede llamar a la magia del aire elemental y el agua. Usted puede echar {@spell fog cloud} con este rasgo. A partir del tercer nivel, se puede fundir {@spell gust of wind} con él, y a partir del quinto nivel, también se puede fundir {@spell wall of water|xge} con él. Una vez que lanzas un hechizo con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. Charisma es tu habilidad de ortografía para estos hechizos."
+            "Un niño del mar, puede llamar a la magia del aire elemental y el agua. Usted puede echar {@spell fog cloud} con este rasgo. A partir del tercer nivel, se puede fundir {@spell gust of wind} con él, y a partir del quinto nivel, también se puede fundir {@spell wall of water|xge} con él. Una vez que lanzas un hechizo con este rasgo, no puedes lanzar ese hechizo con él otra vez hasta que termines un largo descanso. Charisma es tu habilidad de spellcasting para estos hechizos."
           ]
         },
         {
@@ -13939,7 +13939,7 @@
           "name_es": "Serpentine Spellcasting",
           "entries_es": [
             "Sabes que el {@spell poison spray} puede ir. Usted puede lanzar {@spell animal friendship} un número ilimitado de veces con este rasgo, pero sólo se puede apuntar serpientes con él. A partir del tercer nivel, también puede fundir {@spell suggestion} con este rasgo. Una vez que lo echas, no puedes hacerlo de nuevo hasta que termines un largo descanso. También puede lanzarlo usando cualquier ranura de hechizo que tenga de segundo nivel o superior.",
-            "Inteligencia, Sabiduría o Charisma es tu habilidad de ortografía para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
+            "Inteligencia, Sabiduría o Charisma es tu habilidad de spellcasting para estos hechizos cuando los lanzas con este rasgo (escoge cuando seleccionas esta raza)."
           ]
         }
       ]
@@ -14021,7 +14021,7 @@
           "type": "entries",
           "name_es": "Innate Spellcasting",
           "entries_es": [
-            "Sabes que el {@spell poison spray} puede ir. Usted puede lanzar {@spell animal friendship} un número ilimitado de veces con este rasgo, pero sólo se puede apuntar serpientes con él. A partir del tercer nivel, también puede fundir {@spell suggestion} con este rasgo. Una vez que lo echas, no puedes hacerlo de nuevo hasta que termines un largo descanso. Charisma es tu habilidad de ortografía para estos hechizos."
+            "Sabes que el {@spell poison spray} puede ir. Usted puede lanzar {@spell animal friendship} un número ilimitado de veces con este rasgo, pero sólo se puede apuntar serpientes con él. A partir del tercer nivel, también puede fundir {@spell suggestion} con este rasgo. Una vez que lo echas, no puedes hacerlo de nuevo hasta que termines un largo descanso. Charisma es tu habilidad de spellcasting para estos hechizos."
           ]
         },
         {

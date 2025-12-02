@@ -531,7 +531,7 @@
               ],
               "name_es": "Ambiciosa magia",
               "entries_es": [
-                "Aprendes un hechizo de segundo nivel de tu elección. La {@filter 2nd-level spell|spells|level=2|school=E;N} debe ser de la escuela de encantamiento o necromancia de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
+                "Aprendes un hechizo de segundo nivel de tu elección. La {@filter 2nd-level spell|spells|level=2|school=E;N} debe ser de la escuela de encantamiento o necromancia de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
               ]
             },
             {
@@ -565,7 +565,7 @@
               ],
               "name_es": "Ambiciosa magia",
               "entries_es": [
-                "Aprendes un hechizo de segundo nivel de tu elección. La {@filter 2nd-level spell|spells|level=2|school=E;N} debe ser de la escuela de encantamiento o necromancia de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
+                "Aprendes un hechizo de segundo nivel de tu elección. La {@filter 2nd-level spell|spells|level=2|school=E;N} debe ser de la escuela de encantamiento o necromancia de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
               ]
             },
             {
@@ -631,7 +631,7 @@
               ],
               "name_es": "Insightful Magic",
               "entries_es": [
-                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=I;T} debe ser de la escuela de ilusión o transmutación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
+                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=I;T} debe ser de la escuela de ilusión o transmutación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
               ]
             },
             {
@@ -665,7 +665,7 @@
               ],
               "name_es": "Insightful Magic",
               "entries_es": [
-                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=I;T} debe ser de la escuela de ilusión o transmutación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
+                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=I;T} debe ser de la escuela de ilusión o transmutación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
               ]
             },
             {
@@ -731,7 +731,7 @@
               ],
               "name_es": "Magia protectora",
               "entries_es": [
-                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=A;D} debe ser de la escuela de abjuración o adivinación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
+                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=A;D} debe ser de la escuela de abjuración o adivinación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
               ]
             },
             {
@@ -765,7 +765,7 @@
               ],
               "name_es": "Magia protectora",
               "entries_es": [
-                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=A;D} debe ser de la escuela de abjuración o adivinación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
+                "Aprendes un hechizo de segundo nivel de tu elección. El {@filter 2nd-level spell|spells|level=2|school=A;D} debe ser de la escuela de abjuración o adivinación de la magia. Usted puede lanzar el hechizo de 2o nivel de esta hazaña sin una tragaperras de hechizo, y debe terminar un largo descanso antes de que pueda echarlo de nuevo. También puede lanzar este hechizo usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting del hechizo es la elegida cuando ganaste la hazaña {@feat Initiate of High Sorcery|DSotDQ}."
               ]
             },
             {
@@ -824,7 +824,7 @@
               ],
               "name_es": "Stasis Strike",
               "entries_es": [
-                "Una vez por turno, cuando dañas a una criatura que puedes ver dentro de 60 pies de ti mismo, puedes hacer un daño adicional {@damage 1d8} fuerza al objetivo, y debe hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + el modificador de la habilidad de ortografía que elegiste para la Scion de los Planes Exterior feat) como ligaduras espectrales intentan ensnarla. Con un salvación exitoso, el objetivo se escapa. En un salvación fallido, el objetivo tiene la condición restringida hasta el comienzo de su próximo turno. Estas uniones se manifiestan como cadenas o algún otro símbolo de estasis. Usted puede utilizar este beneficio un número de veces igual a su prima de competencia, y usted recupera todos los usos gastados cuando usted termina un descanso largo."
+                "Una vez por turno, cuando dañas a una criatura que puedes ver dentro de 60 pies de ti mismo, puedes hacer un daño adicional {@damage 1d8} fuerza al objetivo, y debe hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + el modificador de la habilidad de spellcasting que elegiste para la Scion de los Planes Exterior feat) como ligaduras espectrales intentan ensnarla. Con un salvación exitoso, el objetivo se escapa. En un salvación fallido, el objetivo tiene la condición restringida hasta el comienzo de su próximo turno. Estas uniones se manifiestan como cadenas o algún otro símbolo de estasis. Usted puede utilizar este beneficio un número de veces igual a su prima de competencia, y usted recupera todos los usos gastados cuando usted termina un descanso largo."
               ]
             }
           ]
@@ -846,7 +846,7 @@
               ],
               "name_es": "Stasis Strike",
               "entries_es": [
-                "Una vez por turno, cuando dañas a una criatura que puedes ver dentro de 60 pies de ti mismo, puedes hacer un daño adicional {@damage 1d8} fuerza al objetivo, y debe hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + el modificador de la habilidad de ortografía que elegiste para la Scion de los Planes Exterior feat) como ligaduras espectrales intentan ensnarla. Con un salvación exitoso, el objetivo se escapa. En un salvación fallido, el objetivo tiene la condición restringida hasta el comienzo de su próximo turno. Estas uniones se manifiestan como cadenas o algún otro símbolo de estasis. Usted puede utilizar este beneficio un número de veces igual a su prima de competencia, y usted recupera todos los usos gastados cuando usted termina un descanso largo."
+                "Una vez por turno, cuando dañas a una criatura que puedes ver dentro de 60 pies de ti mismo, puedes hacer un daño adicional {@damage 1d8} fuerza al objetivo, y debe hacer una tirada de salvación de Sabiduría (DC igual a 8 + tu bonificación de competencia + el modificador de la habilidad de spellcasting que elegiste para la Scion de los Planes Exterior feat) como ligaduras espectrales intentan ensnarla. Con un salvación exitoso, el objetivo se escapa. En un salvación fallido, el objetivo tiene la condición restringida hasta el comienzo de su próximo turno. Estas uniones se manifiestan como cadenas o algún otro símbolo de estasis. Usted puede utilizar este beneficio un número de veces igual a su prima de competencia, y usted recupera todos los usos gastados cuando usted termina un descanso largo."
               ]
             }
           ]
@@ -1278,7 +1278,7 @@
       "id": "blessed-warrior-xphb",
       "name_es": "Beato Guerrero",
       "entries_es": [
-        "Aprendes dos {@filter Cleric cantrips|spells|level=0|class=Cleric} de tu elección. {@spell Guidance|XPHB} y {@spell Sacred Flame|XPHB}] son recomendados. Los cantrips elegidos cuentan como hechizos Paladin para usted, y Charisma es su habilidad de ortografía para ellos. Cada vez que ganas un nivel Paladin, puedes reemplazar uno de estos botes con otro cantrip Cleric."
+        "Aprendes dos {@filter Cleric cantrips|spells|level=0|class=Cleric} de tu elección. {@spell Guidance|XPHB} y {@spell Sacred Flame|XPHB}] son recomendados. Los cantrips elegidos cuentan como hechizos Paladin para usted, y Charisma es su habilidad de spellcasting para ellos. Cada vez que ganas un nivel Paladin, puedes reemplazar uno de estos botes con otro cantrip Cleric."
       ]
     },
     {
@@ -3286,7 +3286,7 @@
       "id": "cartomancer-bmt",
       "name_es": "Cartomancer",
       "entries_es": [
-        "Has aprendido a canalizar tu magia a través de una cubierta de cartas. Usted puede utilizar una cubierta de tarjeta como su foco de ortografía, y usted gana los siguientes beneficios:",
+        "Has aprendido a canalizar tu magia a través de una cubierta de cartas. Usted puede utilizar una cubierta de tarjeta como su foco de spellcasting, y usted gana los siguientes beneficios:",
         {
           "type": "list",
           "style": "list-hang-notitle",
@@ -3822,7 +3822,7 @@
           ],
           "name_es": "Cantrip",
           "entries_es": [
-            "Aprendes que {@spell Ray of Frost|XPHB} puede ir. Si ya lo sabes, aprendes un mago diferente de tu elección. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña."
+            "Aprendes que {@spell Ray of Frost|XPHB} puede ir. Si ya lo sabes, aprendes un mago diferente de tu elección. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña."
           ]
         },
         {
@@ -3849,7 +3849,7 @@
           ],
           "name_es": "Cantrip",
           "entries_es": [
-            "Aprendes que {@spell Ray of Frost|XPHB} puede ir. Si ya lo sabes, aprendes un mago diferente de tu elección. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña."
+            "Aprendes que {@spell Ray of Frost|XPHB} puede ir. Si ya lo sabes, aprendes un mago diferente de tu elección. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña."
           ]
         },
         {
@@ -4779,8 +4779,8 @@
           ]
         },
         "Usted puede lanzar el hechizo elegido de primer nivel y el hechizo {@spell augury} sin una tragaperras de hechizo, y debe terminar un descanso largo antes de que usted pueda lanzar cualquiera de estos hechizos de esta manera de nuevo. También puede lanzar estos hechizos usando ranuras de hechizo que tiene del nivel apropiado.",
-        "Su capacidad de ortografía para los hechizos de esta hazaña es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña).",
-        "Además, usted puede utilizar un símbolo santo como un foco de ortografía para cualquier hechizo que usted lanza que utiliza la habilidad de ortografía que usted elige cuando se selecciona esta hazaña."
+        "Su capacidad de spellcasting para los hechizos de esta hazaña es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña).",
+        "Además, usted puede utilizar un símbolo santo como un foco de spellcasting para cualquier hechizo que usted lanza que utiliza la habilidad de spellcasting que usted elige cuando se selecciona esta hazaña."
       ]
     },
     {
@@ -5007,7 +5007,7 @@
       "id": "drow-high-magic-xge",
       "name_es": "Drow High Magic",
       "entries_es": [
-        "Aprendes más de la magia típica de los elfos oscuros. Usted aprende el hechizo {@spell detect magic} y puede lanzarlo a voluntad, sin gastar una ranura de hechizo. También se aprende {@spell levitate} y {@spell dispel magic}, cada uno de los cuales se puede lanzar una vez sin gastar una ranura de hechizo. Recuperas la capacidad de lanzar esos dos hechizos de esta manera cuando terminas un largo descanso. Charisma es tu habilidad de ortografía para los tres hechizos."
+        "Aprendes más de la magia típica de los elfos oscuros. Usted aprende el hechizo {@spell detect magic} y puede lanzarlo a voluntad, sin gastar una ranura de hechizo. También se aprende {@spell levitate} y {@spell dispel magic}, cada uno de los cuales se puede lanzar una vez sin gastar una ranura de hechizo. Recuperas la capacidad de lanzar esos dos hechizos de esta manera cuando terminas un largo descanso. Charisma es tu habilidad de spellcasting para los tres hechizos."
       ]
     },
     {
@@ -5042,7 +5042,7 @@
       "id": "druidic-warrior-xphb",
       "name_es": "Guerrero Druidic",
       "entries_es": [
-        "Aprendes dos {@filter Druid cantrips|spells|level=0|class=druid} de tu elección. {@spell Guidance|XPHB} y {@spell Starry Wisp|XPHB}] son recomendados. Los cantrips elegidos cuentan como hechizos Ranger para usted, y la Sabiduría es su habilidad de ortografía para ellos. Cada vez que obtienes un nivel de Ranger, puedes reemplazar uno de estos botes con otro bote Druid."
+        "Aprendes dos {@filter Druid cantrips|spells|level=0|class=druid} de tu elección. {@spell Guidance|XPHB} y {@spell Starry Wisp|XPHB}] son recomendados. Los cantrips elegidos cuentan como hechizos Ranger para usted, y la Sabiduría es su habilidad de spellcasting para ellos. Cada vez que obtienes un nivel de Ranger, puedes reemplazar uno de estos botes con otro bote Druid."
       ]
     },
     {
@@ -5385,7 +5385,7 @@
       "id": "eldritch-adept-tce",
       "name_es": "Eldritch Adept",
       "entries_es": [
-        "Estudiando lore oculto, usted aprende una opción [[TAG0] de su elección de la clase de bloque de guerra. Su capacidad de ortografía para la invocación es Inteligencia, Sabiduría o Charisma (elegir cuando selecciona esta hazaña). Si la invocación tiene un requisito previo de cualquier tipo, usted puede elegir esa invocación sólo si usted es un bloque de guerra que cumple con el requisito previo.",
+        "Estudiando lore oculto, usted aprende una opción [[TAG0] de su elección de la clase de bloque de guerra. Su capacidad de spellcasting para la invocación es Inteligencia, Sabiduría o Charisma (elegir cuando selecciona esta hazaña). Si la invocación tiene un requisito previo de cualquier tipo, usted puede elegir esa invocación sólo si usted es un bloque de guerra que cumple con el requisito previo.",
         "Cada vez que usted gana un nivel, usted puede reemplazar la invocación con otro de la clase del bloque de guerra."
       ]
     },
@@ -5666,7 +5666,7 @@
           ],
           "name_es": "Habla con Animales",
           "entries_es": [
-            "Siempre tienes el hechizo [[TAG0] preparado y puedes lanzarlo con cualquier ranura de hechizo que tengas. Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para este hechizo (escoge cuando selecciona esta hazaña). Cuando usted lanza este hechizo como un {@variantrule Ritual|XPHB}, su duración es de 8 horas."
+            "Siempre tienes el hechizo [[TAG0] preparado y puedes lanzarlo con cualquier ranura de hechizo que tengas. Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para este hechizo (escoge cuando selecciona esta hazaña). Cuando usted lanza este hechizo como un {@variantrule Ritual|XPHB}, su duración es de 8 horas."
           ]
         },
         {
@@ -5693,7 +5693,7 @@
           ],
           "name_es": "Habla con Animales",
           "entries_es": [
-            "Siempre tienes el hechizo [[TAG0] preparado y puedes lanzarlo con cualquier ranura de hechizo que tengas. Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para este hechizo (escoge cuando selecciona esta hazaña). Cuando usted lanza este hechizo como un {@variantrule Ritual|XPHB}, su duración es de 8 horas."
+            "Siempre tienes el hechizo [[TAG0] preparado y puedes lanzarlo con cualquier ranura de hechizo que tengas. Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para este hechizo (escoge cuando selecciona esta hazaña). Cuando usted lanza este hechizo como un {@variantrule Ritual|XPHB}, su duración es de 8 horas."
           ]
         },
         {
@@ -5774,7 +5774,7 @@
           ],
           "name_es": "Dos corazones, una mente",
           "entries_es": [
-            "Siempre tienes el hechizo [[TAG0] preparado. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. Cuando lo echas sin una ranura de hechizo usando esta característica, no requiere {@status Concentration|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña."
+            "Siempre tienes el hechizo [[TAG0] preparado. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. Cuando lo echas sin una ranura de hechizo usando esta característica, no requiere {@status Concentration|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña."
           ]
         }
       ],
@@ -5801,7 +5801,7 @@
           ],
           "name_es": "Dos corazones, una mente",
           "entries_es": [
-            "Siempre tienes el hechizo [[TAG0] preparado. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. Cuando lo echas sin una ranura de hechizo usando esta característica, no requiere {@status Concentration|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña."
+            "Siempre tienes el hechizo [[TAG0] preparado. Puedes echarlo una vez sin una ranura de hechizo, y recuperas la capacidad de lanzarlo de esa manera cuando termines una {@variantrule Long Rest|XPHB}. Cuando lo echas sin una ranura de hechizo usando esta característica, no requiere {@status Concentration|XPHB}. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga del nivel apropiado. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña."
           ]
         }
       ]
@@ -6380,7 +6380,7 @@
           ],
           "name_es": "Deseo Magia",
           "entries_es": [
-            "Como acción Mágica, usted puede lanzar un {@filter level 1 spell of your choice from the Sorcerer spell list|spells|level=1|class=Sorcerer} que tiene un tiempo de casting de una acción. Una vez que utilice este beneficio, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña.",
+            "Como acción Mágica, usted puede lanzar un {@filter level 1 spell of your choice from the Sorcerer spell list|spells|level=1|class=Sorcerer} que tiene un tiempo de casting de una acción. Una vez que utilice este beneficio, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña.",
             "Cuando alcanzas el nivel 11, el hechizo que lanzas con esta hazaña es lanzado como si usaras un nivel 2 ranura de hechizo.",
             "Cuando alcanza el nivel 17, el hechizo es lanzado como si se utiliza un nivel 3 ranura de hechizo."
           ]
@@ -6400,7 +6400,7 @@
           ],
           "name_es": "Deseo Magia",
           "entries_es": [
-            "Como acción Mágica, usted puede lanzar un {@filter level 1 spell of your choice from the Sorcerer spell list|spells|level=1|class=Sorcerer} que tiene un tiempo de casting de una acción. Una vez que utilice este beneficio, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña.",
+            "Como acción Mágica, usted puede lanzar un {@filter level 1 spell of your choice from the Sorcerer spell list|spells|level=1|class=Sorcerer} que tiene un tiempo de casting de una acción. Una vez que utilice este beneficio, no puede hacerlo de nuevo hasta que termine un {@variantrule Long Rest|XPHB}. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña.",
             "Cuando alcanzas el nivel 11, el hechizo que lanzas con esta hazaña es lanzado como si usaras un nivel 2 ranura de hechizo.",
             "Cuando alcanza el nivel 17, el hechizo es lanzado como si se utiliza un nivel 3 ranura de hechizo."
           ]
@@ -6573,7 +6573,7 @@
               ],
               "name_es": "Curación drácona",
               "entries_es": [
-                "Aprendes el hechizo {@spell cure wounds}. Puedes lanzar este hechizo sin gastar un hechizo. Una vez que lanzas este hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. También puede lanzar este hechizo usando ranuras de hechizo que tiene. La habilidad de la ortografía del hechizo es Inteligencia, Sabiduría, o Charisma cuando lo echas con esta hazaña (escoge cuando ganas la hazaña)."
+                "Aprendes el hechizo {@spell cure wounds}. Puedes lanzar este hechizo sin gastar un hechizo. Una vez que lanzas este hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. También puede lanzar este hechizo usando ranuras de hechizo que tiene. La habilidad de la spellcasting del hechizo es Inteligencia, Sabiduría, o Charisma cuando lo echas con esta hazaña (escoge cuando ganas la hazaña)."
               ]
             },
             {
@@ -6606,7 +6606,7 @@
               ],
               "name_es": "Curación drácona",
               "entries_es": [
-                "Aprendes el hechizo {@spell cure wounds}. Puedes lanzar este hechizo sin gastar un hechizo. Una vez que lanzas este hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. También puede lanzar este hechizo usando ranuras de hechizo que tiene. La habilidad de la ortografía del hechizo es Inteligencia, Sabiduría, o Charisma cuando lo echas con esta hazaña (escoge cuando ganas la hazaña)."
+                "Aprendes el hechizo {@spell cure wounds}. Puedes lanzar este hechizo sin gastar un hechizo. Una vez que lanzas este hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. También puede lanzar este hechizo usando ranuras de hechizo que tiene. La habilidad de la spellcasting del hechizo es Inteligencia, Sabiduría, o Charisma cuando lo echas con esta hazaña (escoge cuando ganas la hazaña)."
               ]
             },
             {
@@ -7735,7 +7735,7 @@
           ]
         },
         "Usted puede lanzar cada uno de los hechizos escogidos de primer nivel sin una ranura de hechizo, y debe terminar un largo descanso antes de que pueda echarlos de esta manera de nuevo. También puede lanzar los hechizos usando cualquier ranura de hechizo que tenga.",
-        "Su capacidad de ortografía para los hechizos de esta hazaña es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña)."
+        "Su capacidad de spellcasting para los hechizos de esta hazaña es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña)."
       ]
     },
     {
@@ -8026,7 +8026,7 @@
               ],
               "name_es": "Piedra",
               "entries_es": [
-                "Como una acción de bonificación, usted puede tomar una roca y hacer un ataque mágico con ella. El ataque es un ataque de hechizos con una gama de 60 pies que utiliza la puntuación de habilidad que aumentó con esta hazaña como la habilidad de la ortografía. En un éxito, las ofertas de roca {@damage 1d10} daño de la fuerza, y el objetivo debe tener éxito en una tirada de salvación de fuerza (DC es igual 8 + su bonificación de competencia + el modificador de habilidad de la ortografía) o tener la condición de prono. Usted puede utilizar esta acción de bonificación un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+                "Como una acción de bonificación, usted puede tomar una roca y hacer un ataque mágico con ella. El ataque es un ataque de hechizos con una gama de 60 pies que utiliza la puntuación de habilidad que aumentó con esta hazaña como la habilidad de la spellcasting. En un éxito, las ofertas de roca {@damage 1d10} daño de la fuerza, y el objetivo debe tener éxito en una tirada de salvación de fuerza (DC es igual 8 + su bonificación de competencia + el modificador de habilidad de la spellcasting) o tener la condición de prono. Usted puede utilizar esta acción de bonificación un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
               ]
             }
           ]
@@ -8059,7 +8059,7 @@
               ],
               "name_es": "Piedra",
               "entries_es": [
-                "Como una acción de bonificación, usted puede tomar una roca y hacer un ataque mágico con ella. El ataque es un ataque de hechizos con una gama de 60 pies que utiliza la puntuación de habilidad que aumentó con esta hazaña como la habilidad de la ortografía. En un éxito, las ofertas de roca {@damage 1d10} daño de la fuerza, y el objetivo debe tener éxito en una tirada de salvación de fuerza (DC es igual 8 + su bonificación de competencia + el modificador de habilidad de la ortografía) o tener la condición de prono. Usted puede utilizar esta acción de bonificación un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
+                "Como una acción de bonificación, usted puede tomar una roca y hacer un ataque mágico con ella. El ataque es un ataque de hechizos con una gama de 60 pies que utiliza la puntuación de habilidad que aumentó con esta hazaña como la habilidad de la spellcasting. En un éxito, las ofertas de roca {@damage 1d10} daño de la fuerza, y el objetivo debe tener éxito en una tirada de salvación de fuerza (DC es igual 8 + su bonificación de competencia + el modificador de habilidad de la spellcasting) o tener la condición de prono. Usted puede utilizar esta acción de bonificación un número de veces igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo."
               ]
             }
           ]
@@ -8710,7 +8710,7 @@
       "id": "mage-slayer-phb",
       "name_es": "Mage Slayer",
       "entries_es": [
-        "Usted ha practicado técnicas útiles en el combate contra las ortografías, ganando los siguientes beneficios:",
+        "Usted ha practicado técnicas útiles en el combate contra las spellcastings, ganando los siguientes beneficios:",
         {
           "type": "list",
           "items": [
@@ -8957,7 +8957,7 @@
       "entries_es": [
         "Elige una clase: {@filter bard|spells|level=0;1|class=bard}, {@filter cleric|spells|level=0;1|class=cleric}, {@filter druid|spells|level=0;1|class=druid}], {@filter sorcerer|spells|level=0;1|class=sorcerer}, {@filter warlock|spells|level=0;1|class=warlock}, o {@filter wizard|spells|level=0;1|class=wizard}. Aprendes dos cantrips de tu elección de la lista de hechizos de esa clase.",
         "Además, elija un hechizo de primer nivel para aprender de esa misma lista. Usando esta hazaña, puedes lanzar el hechizo una vez a su nivel más bajo, y debes terminar un largo descanso antes de que puedas lanzarlo de esta manera de nuevo.",
-        "Su capacidad de ortografía para estos hechizos depende de la clase que elegiste: Charisma for [TAG0]], {@filter sorcerer|spells|level=0;1|class=sorcerer}, o {@filter warlock|spells|level=0;1|class=warlock}; Sabiduría para [ [TAG3]]] o {@filter druid|spells|level=0;1|class=druid}]; o Inteligencia para {@filter wizard|spells|level=0;1|class=wizard}."
+        "Su capacidad de spellcasting para estos hechizos depende de la clase que elegiste: Charisma for [TAG0]], {@filter sorcerer|spells|level=0;1|class=sorcerer}, o {@filter warlock|spells|level=0;1|class=warlock}; Sabiduría para [ [TAG3]]] o {@filter druid|spells|level=0;1|class=druid}]; o Inteligencia para {@filter wizard|spells|level=0;1|class=wizard}."
       ]
     },
     {
@@ -9071,7 +9071,7 @@
           ],
           "name_es": "Dos botes",
           "entries_es": [
-            "Usted aprende dos cantrips de su elección de {@filter Cleric|spells|level=0;1|class=Cleric}, {@filter Druid|spells|level=0;1|class=Druid}], o {@filter Wizard|spells|level=0;1|class=Wizard} lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+            "Usted aprende dos cantrips de su elección de {@filter Cleric|spells|level=0;1|class=Cleric}, {@filter Druid|spells|level=0;1|class=Druid}], o {@filter Wizard|spells|level=0;1|class=Wizard} lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
           ]
         },
         {
@@ -9124,7 +9124,7 @@
                   ],
                   "name_es": "Dos botes",
                   "entries_es": [
-                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
                   ]
                 }
               },
@@ -9154,7 +9154,7 @@
                   ],
                   "name_es": "Dos botes",
                   "entries_es": [
-                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
                   ]
                 }
               },
@@ -9221,7 +9221,7 @@
                   ],
                   "name_es": "Dos botes",
                   "entries_es": [
-                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
                   ]
                 }
               },
@@ -9251,7 +9251,7 @@
                   ],
                   "name_es": "Dos botes",
                   "entries_es": [
-                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
                   ]
                 }
               },
@@ -9318,7 +9318,7 @@
                   ],
                   "name_es": "Dos botes",
                   "entries_es": [
-                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
                   ]
                 }
               },
@@ -9348,7 +9348,7 @@
                   ],
                   "name_es": "Dos botes",
                   "entries_es": [
-                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+                    "Usted aprende dos cantrips de su elección de la [[TAG0] lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
                   ]
                 }
               },
@@ -9413,7 +9413,7 @@
           ],
           "name_es": "Dos botes",
           "entries_es": [
-            "Usted aprende dos cantrips de su elección de {@filter Cleric|spells|level=0;1|class=Cleric}, {@filter Druid|spells|level=0;1|class=Druid}], o {@filter Wizard|spells|level=0;1|class=Wizard} lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de ortografía para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
+            "Usted aprende dos cantrips de su elección de {@filter Cleric|spells|level=0;1|class=Cleric}, {@filter Druid|spells|level=0;1|class=Druid}], o {@filter Wizard|spells|level=0;1|class=Wizard} lista de hechizos. Inteligencia, Sabiduría o Charisma es su habilidad de spellcasting para los hechizos de esta hazaña (escoge cuando seleccionas esta hazaña)."
           ]
         },
         {
@@ -10603,7 +10603,7 @@
               ],
               "name_es": "Crossroads Emissary",
               "entries_es": [
-                "Aprendes los hechizos {@spell misty step} y {@spell tongues}. Puedes lanzar cada hechizo una vez usando esta hazaña sin una tragaperras de hechizos, y debes terminar un largo descanso antes de que puedas volver a lanzar ese hechizo de esta manera. Cuando usted funde {@spell tongues} utilizando esta hazaña, usted no requiere componentes materiales. También puede lanzar estos hechizos usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía de los hechizos es la elegida cuando ganaste la hazaña de Scion of the Outer Planes."
+                "Aprendes los hechizos {@spell misty step} y {@spell tongues}. Puedes lanzar cada hechizo una vez usando esta hazaña sin una tragaperras de hechizos, y debes terminar un largo descanso antes de que puedas volver a lanzar ese hechizo de esta manera. Cuando usted funde {@spell tongues} utilizando esta hazaña, usted no requiere componentes materiales. También puede lanzar estos hechizos usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting de los hechizos es la elegida cuando ganaste la hazaña de Scion of the Outer Planes."
               ]
             }
           ]
@@ -10625,7 +10625,7 @@
               ],
               "name_es": "Crossroads Emissary",
               "entries_es": [
-                "Aprendes los hechizos {@spell misty step} y {@spell tongues}. Puedes lanzar cada hechizo una vez usando esta hazaña sin una tragaperras de hechizos, y debes terminar un largo descanso antes de que puedas volver a lanzar ese hechizo de esta manera. Cuando usted funde {@spell tongues} utilizando esta hazaña, usted no requiere componentes materiales. También puede lanzar estos hechizos usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de ortografía de los hechizos es la elegida cuando ganaste la hazaña de Scion of the Outer Planes."
+                "Aprendes los hechizos {@spell misty step} y {@spell tongues}. Puedes lanzar cada hechizo una vez usando esta hazaña sin una tragaperras de hechizos, y debes terminar un largo descanso antes de que puedas volver a lanzar ese hechizo de esta manera. Cuando usted funde {@spell tongues} utilizando esta hazaña, usted no requiere componentes materiales. También puede lanzar estos hechizos usando ranuras de hechizo que tiene del nivel apropiado. La habilidad de spellcasting de los hechizos es la elegida cuando ganaste la hazaña de Scion of the Outer Planes."
               ]
             }
           ]
@@ -11867,7 +11867,7 @@
       "name_es": "Caster ritual",
       "entries_es": [
         "Has aprendido una serie de hechizos que puedes lanzar como rituales. Estos hechizos están escritos en un libro ritual, que usted debe tener en la mano al lanzar uno de ellos.",
-        "Cuando eliges esta hazaña, adquieres un libro ritual que contiene dos hechizos de primer nivel de tu elección. Elige una de las siguientes clases: {@filter bard|spells|level=1|class=bard|components & miscellaneous=ritual}, {@filter cleric|spells|level=1|class=cleric|components & miscellaneous=ritual}, {@filter druid|spells|level=1|class=druid|components & miscellaneous=ritual}], {@filter sorcerer|spells|level=1|class=sorcerer|components & miscellaneous=ritual}, {@filter warlock|spells|level=1|class=warlock|components & miscellaneous=ritual}, o {@filter wizard|spells|level=1|class=wizard|components & miscellaneous=ritual}. Debes elegir tus hechizos de la lista de hechizos de esa clase, y los hechizos que elijas deben tener la etiqueta ritual. La clase que usted elige también determina su habilidad de ortografía para estos hechizos: Charisma para desnudo, hechicero, o candado; Sabiduría para clérigo o druido; o Inteligencia para mago.",
+        "Cuando eliges esta hazaña, adquieres un libro ritual que contiene dos hechizos de primer nivel de tu elección. Elige una de las siguientes clases: {@filter bard|spells|level=1|class=bard|components & miscellaneous=ritual}, {@filter cleric|spells|level=1|class=cleric|components & miscellaneous=ritual}, {@filter druid|spells|level=1|class=druid|components & miscellaneous=ritual}], {@filter sorcerer|spells|level=1|class=sorcerer|components & miscellaneous=ritual}, {@filter warlock|spells|level=1|class=warlock|components & miscellaneous=ritual}, o {@filter wizard|spells|level=1|class=wizard|components & miscellaneous=ritual}. Debes elegir tus hechizos de la lista de hechizos de esa clase, y los hechizos que elijas deben tener la etiqueta ritual. La clase que usted elige también determina su habilidad de spellcasting para estos hechizos: Charisma para desnudo, hechicero, o candado; Sabiduría para clérigo o druido; o Inteligencia para mago.",
         "Si encuentras un hechizo en forma escrita, como un libro mágico {@item spell scroll} o un libro de hechizos del mago, puedes añadirlo a tu libro ritual. El hechizo debe estar en la lista de hechizos para la clase que elegiste, el nivel del hechizo no puede ser superior a la mitad de tu nivel (redondeado), y debe tener la etiqueta ritual. El proceso de copiar el hechizo en su libro ritual lleva 2 horas por nivel del hechizo, y cuesta 50 gp por nivel. El costo representa los componentes materiales que gastas mientras experimentas con el hechizo para dominarlo, así como las tintas finas que necesitas grabarlo."
       ]
     },
@@ -12140,7 +12140,7 @@
               "name_es": "Rune Magic",
               "entries_es": [
                 "Conoces una serie de runas iguales a la mitad de tu bonificación de competencia (redondeada), elegida de la mesa Rune Spells. Cada vez que terminas un largo descanso, puedes inscribir cada runa que conoces sobre un arma, armadura, pedazo de ropa u otro objeto que toques. Usted aprende temporalmente los hechizos de primer nivel que corresponden a las runas que inscribió, como se especifica en la tabla Rune Spells, y conoce esos hechizos hasta que termine un descanso largo, cuando las runas se desvanecen. Mientras usted está usando o llevando cualquier objeto marcado por rune, usted puede lanzar los hechizos asociados con esas runas usando cualquier ranura de hechizo que usted tiene.",
-                "También puede invocar una runa inscrita en un objeto que está usando o llevando y lanzar su hechizo asociado sin gastar una ranura de hechizo o utilizar componentes materiales. Una vez que lanzas el hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. Su habilidad de ortografía para esta hazaña es Inteligencia, Sabiduría o Charisma (elegir esta hazaña).",
+                "También puede invocar una runa inscrita en un objeto que está usando o llevando y lanzar su hechizo asociado sin gastar una ranura de hechizo o utilizar componentes materiales. Una vez que lanzas el hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. Su habilidad de spellcasting para esta hazaña es Inteligencia, Sabiduría o Charisma (elegir esta hazaña).",
                 "Cada vez que ganas un nivel, puedes reemplazar una de las runas que conoces con otra de la mesa Rune Spells.",
                 {
                   "type": "table",
@@ -12307,7 +12307,7 @@
               "name_es": "Rune Magic",
               "entries_es": [
                 "Conoces una serie de runas iguales a la mitad de tu bonificación de competencia (redondeada), elegida de la mesa Rune Spells. Cada vez que terminas un largo descanso, puedes inscribir cada runa que conoces sobre un arma, armadura, pedazo de ropa u otro objeto que toques. Usted aprende temporalmente los hechizos de primer nivel que corresponden a las runas que inscribió, como se especifica en la tabla Rune Spells, y conoce esos hechizos hasta que termine un descanso largo, cuando las runas se desvanecen. Mientras usted está usando o llevando cualquier objeto marcado por rune, usted puede lanzar los hechizos asociados con esas runas usando cualquier ranura de hechizo que usted tiene.",
-                "También puede invocar una runa inscrita en un objeto que está usando o llevando y lanzar su hechizo asociado sin gastar una ranura de hechizo o utilizar componentes materiales. Una vez que lanzas el hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. Su habilidad de ortografía para esta hazaña es Inteligencia, Sabiduría o Charisma (elegir esta hazaña).",
+                "También puede invocar una runa inscrita en un objeto que está usando o llevando y lanzar su hechizo asociado sin gastar una ranura de hechizo o utilizar componentes materiales. Una vez que lanzas el hechizo de esta manera, no puedes hacerlo de nuevo hasta que termines un largo descanso. Su habilidad de spellcasting para esta hazaña es Inteligencia, Sabiduría o Charisma (elegir esta hazaña).",
                 "Cada vez que ganas un nivel, puedes reemplazar una de las runas que conoces con otra de la mesa Rune Spells.",
                 {
                   "type": "table",
@@ -12564,7 +12564,7 @@
       "id": "scion-of-the-outer-planes-sato",
       "name_es": "Scion of the Outer Planes",
       "entries_es": [
-        "Su conexión con un Plano Exterior le infunde con la energía allí. Elija un tipo de avión listado en la tabla de Infusión Planar. Su elección le da resistencia a un tipo de daño y la capacidad de lanzar un cantrip, como se especifica en la tabla. Usted puede lanzar este cantrip sin componentes materiales, y su capacidad de ortografía para él es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña).",
+        "Su conexión con un Plano Exterior le infunde con la energía allí. Elija un tipo de avión listado en la tabla de Infusión Planar. Su elección le da resistencia a un tipo de daño y la capacidad de lanzar un cantrip, como se especifica en la tabla. Usted puede lanzar este cantrip sin componentes materiales, y su capacidad de spellcasting para él es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña).",
         {
           "type": "table",
           "colStyles": [
@@ -14086,7 +14086,7 @@
       "id": "spelldriver-tdcsr",
       "name_es": "Spelldriver",
       "entries_es": [
-        "A través del enfoque intenso, el entrenamiento y la dedicación, has aprovechado las técnicas de la ortografía rápida.",
+        "A través del enfoque intenso, el entrenamiento y la dedicación, has aprovechado las técnicas de la spellcasting rápida.",
         "Cuando usas tu acción de bonificación para lanzar un hechizo de primer nivel o superior, también puedes usar tu acción para lanzar otro hechizo de primer nivel o superior. Sin embargo, si usted lanza dos o más hechizos en un solo giro, sólo uno de ellos puede ser 3o nivel o superior.",
         {
           "type": "inset",
@@ -14227,7 +14227,7 @@
           ],
           "name_es": "Llama de despedida",
           "entries_es": [
-            "Aprendes el {@spell Sacred Flame|XPHB}. Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para este hechizo (escoge cuando selecciona esta hazaña). También puede lanzar este cantrip como un {@variantrule Bonus Action|XPHB} una serie de veces igual a su {@variantrule Proficiency|XPHB|Proficiency Bonus}, y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
+            "Aprendes el {@spell Sacred Flame|XPHB}. Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para este hechizo (escoge cuando selecciona esta hazaña). También puede lanzar este cantrip como un {@variantrule Bonus Action|XPHB} una serie de veces igual a su {@variantrule Proficiency|XPHB|Proficiency Bonus}, y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
           ]
         }
       ],
@@ -14254,7 +14254,7 @@
           ],
           "name_es": "Llama de despedida",
           "entries_es": [
-            "Aprendes el {@spell Sacred Flame|XPHB}. Inteligencia, Sabiduría, o Charisma es su habilidad de ortografía para este hechizo (escoge cuando selecciona esta hazaña). También puede lanzar este cantrip como un {@variantrule Bonus Action|XPHB} una serie de veces igual a su {@variantrule Proficiency|XPHB|Proficiency Bonus}, y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
+            "Aprendes el {@spell Sacred Flame|XPHB}. Inteligencia, Sabiduría, o Charisma es su habilidad de spellcasting para este hechizo (escoge cuando selecciona esta hazaña). También puede lanzar este cantrip como un {@variantrule Bonus Action|XPHB} una serie de veces igual a su {@variantrule Proficiency|XPHB|Proficiency Bonus}, y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
           ]
         }
       ]
@@ -15200,7 +15200,7 @@
         "Has estudiado una teoría mágica y has aprendido algunos hechizos asociados a la Universidad de Strixhaven.",
         "Elige una de las universidades de Strixhaven: Lorehold, Prismari, Quandrix, Silverquill o Witherbloom. Aprendes dos cantrips y un hechizo de primer nivel basado en la universidad que elijas, como se especifica en la tabla Strixhaven Spells.",
         "Usted puede lanzar el hechizo elegido de primer nivel sin una ranura de hechizo, y debe terminar un largo descanso antes de que usted pueda echarlo de nuevo. También puede lanzar el hechizo usando cualquier ranura de hechizo que tenga.",
-        "Su capacidad de ortografía para los hechizos de esta hazaña es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña).",
+        "Su capacidad de spellcasting para los hechizos de esta hazaña es Inteligencia, Sabiduría o Charisma (elegir cuando se selecciona esta hazaña).",
         {
           "type": "table",
           "caption": "Strixhaven Spells",
@@ -15343,7 +15343,7 @@
       "id": "svirfneblin-magic-mtf",
       "name_es": "Svirfneblin Magic",
       "entries_es": [
-        "Has heredado la habilidad innata de la ortografía de tus antepasados. Esta capacidad le permite echar {@spell nondetection} a su voluntad, sin necesidad de un componente material. También puede lanzar cada uno de los siguientes hechizos una vez con esta habilidad: {@spell blindness/deafness}, {@spell blur}], y {@spell disguise self}. Recuperas la capacidad de lanzar estos hechizos cuando terminas un largo descanso.",
+        "Has heredado la habilidad innata de la spellcasting de tus antepasados. Esta capacidad le permite echar {@spell nondetection} a su voluntad, sin necesidad de un componente material. También puede lanzar cada uno de los siguientes hechizos una vez con esta habilidad: {@spell blindness/deafness}, {@spell blur}], y {@spell disguise self}. Recuperas la capacidad de lanzar estos hechizos cuando terminas un largo descanso.",
         "Inteligencia es tu habilidad de lanzamiento para estos hechizos, y los lanzas a sus niveles más bajos posibles."
       ]
     },
@@ -15590,7 +15590,7 @@
           ],
           "name_es": "Minor Telekinesis",
           "entries_es": [
-            "Aprendes el hechizo {@spell Mage Hand|XPHB}. Usted puede echarlo sin componentes Verbal o Somático, usted puede hacer la mano espectral {@condition Invisible|XPHB}, y su rango y la distancia que puede estar lejos de usted ambos aumentan en 30 pies cuando usted lo echa. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña."
+            "Aprendes el hechizo {@spell Mage Hand|XPHB}. Usted puede echarlo sin componentes Verbal o Somático, usted puede hacer la mano espectral {@condition Invisible|XPHB}, y su rango y la distancia que puede estar lejos de usted ambos aumentan en 30 pies cuando usted lo echa. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña."
           ]
         },
         {
@@ -15617,7 +15617,7 @@
           ],
           "name_es": "Minor Telekinesis",
           "entries_es": [
-            "Aprendes el hechizo {@spell Mage Hand|XPHB}. Usted puede echarlo sin componentes Verbal o Somático, usted puede hacer la mano espectral {@condition Invisible|XPHB}, y su rango y la distancia que puede estar lejos de usted ambos aumentan en 30 pies cuando usted lo echa. La habilidad de ortografía del hechizo es la habilidad aumentada por esta hazaña."
+            "Aprendes el hechizo {@spell Mage Hand|XPHB}. Usted puede echarlo sin componentes Verbal o Somático, usted puede hacer la mano espectral {@condition Invisible|XPHB}, y su rango y la distancia que puede estar lejos de usted ambos aumentan en 30 pies cuando usted lo echa. La habilidad de spellcasting del hechizo es la habilidad aumentada por esta hazaña."
           ]
         },
         {
@@ -15746,7 +15746,7 @@
           ],
           "name_es": "Detectar pensamientos",
           "entries_es": [
-            "Siempre tienes el hechizo [[TAG0] preparado. Usted puede echarlo sin una ranura de hechizo o componentes de hechizo, y usted debe terminar un {@variantrule Long Rest|XPHB} antes de que usted pueda echarlo de esta manera de nuevo. También puede lanzarlo usando ranuras de hechizo que tiene del nivel apropiado. Su habilidad de ortografía para el hechizo es la habilidad aumentada por esta hazaña."
+            "Siempre tienes el hechizo [[TAG0] preparado. Usted puede echarlo sin una ranura de hechizo o componentes de hechizo, y usted debe terminar un {@variantrule Long Rest|XPHB} antes de que usted pueda echarlo de esta manera de nuevo. También puede lanzarlo usando ranuras de hechizo que tiene del nivel apropiado. Su habilidad de spellcasting para el hechizo es la habilidad aumentada por esta hazaña."
           ]
         }
       ],
@@ -15773,7 +15773,7 @@
           ],
           "name_es": "Detectar pensamientos",
           "entries_es": [
-            "Siempre tienes el hechizo [[TAG0] preparado. Usted puede echarlo sin una ranura de hechizo o componentes de hechizo, y usted debe terminar un {@variantrule Long Rest|XPHB} antes de que usted pueda echarlo de esta manera de nuevo. También puede lanzarlo usando ranuras de hechizo que tiene del nivel apropiado. Su habilidad de ortografía para el hechizo es la habilidad aumentada por esta hazaña."
+            "Siempre tienes el hechizo [[TAG0] preparado. Usted puede echarlo sin una ranura de hechizo o componentes de hechizo, y usted debe terminar un {@variantrule Long Rest|XPHB} antes de que usted pueda echarlo de esta manera de nuevo. También puede lanzarlo usando ranuras de hechizo que tiene del nivel apropiado. Su habilidad de spellcasting para el hechizo es la habilidad aumentada por esta hazaña."
           ]
         }
       ]
@@ -16395,7 +16395,7 @@
       "id": "wood-elf-magic-xge",
       "name_es": "Wood Elf Magic",
       "entries_es": [
-        "Aprendes la magia de los bosques primitivos, que son venerados y protegidos por tu gente. Aprendes una pista druida de tu elección. También se aprenden los hechizos {@spell longstrider} y {@spell pass without trace}, cada uno de los cuales se puede lanzar una vez sin gastar una ranura de hechizo. Recuperas la capacidad de lanzar estos dos hechizos de esta manera cuando terminas un largo descanso. La sabiduría es tu habilidad de ortografía para los tres hechizos."
+        "Aprendes la magia de los bosques primitivos, que son venerados y protegidos por tu gente. Aprendes una pista druida de tu elección. También se aprenden los hechizos {@spell longstrider} y {@spell pass without trace}, cada uno de los cuales se puede lanzar una vez sin gastar una ranura de hechizo. Recuperas la capacidad de lanzar estos dos hechizos de esta manera cuando terminas un largo descanso. La sabiduría es tu habilidad de spellcasting para los tres hechizos."
       ]
     },
     {

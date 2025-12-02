@@ -4560,7 +4560,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4605,7 +4605,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4629,7 +4629,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Cuando alcanzas el tercer nivel, aumentas tu proeza marcial con la capacidad de lanzar hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
+        "Cuando alcanzas el tercer nivel, aumentas tu proeza marcial con la capacidad de lanzar hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
         {
           "type": "entries",
           "name": "Cantrips",
@@ -4742,7 +4742,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -4787,7 +4787,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través del estudio y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -5397,7 +5397,7 @@
       "name_es": "Maestro telequinético",
       "entries_es": [
         "[[TAG0]",
-        "Su capacidad para mover criaturas y objetos con su mente es igualada por pocos. Puede lanzar el hechizo {@spell telekinesis}, sin necesidad de componentes, y su capacidad de ortografía para el hechizo es Inteligencia. En cada uno de tus turnos mientras te concentras en el hechizo, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como una acción de bonificación.",
+        "Su capacidad para mover criaturas y objetos con su mente es igualada por pocos. Puede lanzar el hechizo {@spell telekinesis}, sin necesidad de componentes, y su capacidad de spellcasting para el hechizo es Inteligencia. En cada uno de tus turnos mientras te concentras en el hechizo, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como una acción de bonificación.",
         "Una vez que usted lanzó el hechizo con esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo, a menos que usted expulse una energía Psionic muere para echarlo de nuevo."
       ]
     },
@@ -6637,7 +6637,7 @@
           ],
           "name_es": "Comprensión",
           "entries_es": [
-            "Puedes lanzar el hechizo {@spell Comprehend Languages|XPHB} pero sólo como un {@variantrule Ritual|XPHB}. Charisma es tu habilidad de ortografía para ello."
+            "Puedes lanzar el hechizo {@spell Comprehend Languages|XPHB} pero sólo como un {@variantrule Ritual|XPHB}. Charisma es tu habilidad de spellcasting para ello."
           ]
         },
         {
@@ -6674,7 +6674,7 @@
           ],
           "name_es": "Comprensión",
           "entries_es": [
-            "Puedes lanzar el hechizo {@spell Comprehend Languages|XPHB} pero sólo como un {@variantrule Ritual|XPHB}. Charisma es tu habilidad de ortografía para ello."
+            "Puedes lanzar el hechizo {@spell Comprehend Languages|XPHB} pero sólo como un {@variantrule Ritual|XPHB}. Charisma es tu habilidad de spellcasting para ello."
           ]
         },
         {
@@ -7853,7 +7853,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Has aprendido a hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas como un Caballero Eldritch.",
+        "Has aprendido a hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas como un Caballero Eldritch.",
         {
           "type": "entries",
           "name": "Cantrips",
@@ -8484,7 +8484,7 @@
       ],
       "name_es": "Maestro telequinético",
       "entries_es": [
-        "Siempre tienes el hechizo [[TAG0] preparado. Con esta característica, se puede fundir sin una ranura de hechizo o componentes, y su capacidad de ortografía para él es Inteligencia. En cada uno de tus turnos mientras mantienes {@status Concentration|XPHB} en él, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como un {@variantrule Bonus Action|XPHB}.",
+        "Siempre tienes el hechizo [[TAG0] preparado. Con esta característica, se puede fundir sin una ranura de hechizo o componentes, y su capacidad de spellcasting para él es Inteligencia. En cada uno de tus turnos mientras mantienes {@status Concentration|XPHB} en él, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como un {@variantrule Bonus Action|XPHB}.",
         "Una vez que usted lanzó el hechizo con esta característica, no puede hacerlo de esta manera hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse un Psionic Energy Die (no se requiere acción) para restaurar su uso de él."
       ]
     }

@@ -49,7 +49,7 @@
           "entries_es": [
             "Algunos elementos mágicos permiten al usuario lanzar un hechizo del artículo, a menudo por expensión de cargos de él. El hechizo se lanza al nivel más bajo posible de hechizos y ruedas, no gasta ninguna de las ranuras de hechizo del usuario, y no requiere componentes a menos que la descripción del artículo diga lo contrario. El hechizo utiliza su tiempo de fundición normal, rango y duración, y el usuario del artículo debe concentrarse si el hechizo requiere {@status concentration}. Algunos artículos hacen excepciones a estas reglas, cambiando el tiempo de fundición, la duración u otras partes de un hechizo.",
             "Muchos elementos, como pociones, evitan el casting del hechizo y confieren los efectos del hechizo. Tal artículo todavía usa la duración del hechizo a menos que la descripción del artículo diga lo contrario.",
-            "Un elemento mágico, como ciertos empleados, puede requerir que utilice su propia habilidad de ortografía cuando usted lanza un hechizo del artículo. Si usted tiene más de una habilidad de ortografía, usted elige cuál utilizar con el artículo. Si usted no tiene una habilidad de ortografía —tal vez usted es un pícaro con la característica del dispositivo mágico de uso— su modificador de habilidad de ortografía es +0 para el artículo, y su bonificación de competencia se aplica."
+            "Un elemento mágico, como ciertos empleados, puede requerir que utilice su propia habilidad de spellcasting cuando usted lanza un hechizo del artículo. Si usted tiene más de una habilidad de spellcasting, usted elige cuál utilizar con el artículo. Si usted no tiene una habilidad de spellcasting —tal vez usted es un pícaro con la característica del dispositivo mágico de uso— su modificador de habilidad de spellcasting es +0 para el artículo, y su bonificación de competencia se aplica."
           ]
         },
         {
@@ -102,7 +102,7 @@
           "entries_es": [
             "Algunos elementos mágicos permiten al usuario lanzar un hechizo del artículo, a menudo por expensión de cargos de él. El hechizo se lanza al nivel más bajo posible de hechizos y ruedas, no gasta ninguna de las ranuras de hechizo del usuario, y no requiere componentes a menos que la descripción del artículo diga lo contrario. El hechizo utiliza su tiempo de fundición normal, rango y duración, y el usuario del artículo debe concentrarse si el hechizo requiere {@status concentration}. Algunos artículos hacen excepciones a estas reglas, cambiando el tiempo de fundición, la duración u otras partes de un hechizo.",
             "Muchos elementos, como pociones, evitan el casting del hechizo y confieren los efectos del hechizo. Tal artículo todavía usa la duración del hechizo a menos que la descripción del artículo diga lo contrario.",
-            "Un elemento mágico, como ciertos empleados, puede requerir que utilice su propia habilidad de ortografía cuando usted lanza un hechizo del artículo. Si usted tiene más de una habilidad de ortografía, usted elige cuál utilizar con el artículo. Si usted no tiene una habilidad de ortografía —tal vez usted es un pícaro con la característica del dispositivo mágico de uso— su modificador de habilidad de ortografía es +0 para el artículo, y su bonificación de competencia se aplica."
+            "Un elemento mágico, como ciertos empleados, puede requerir que utilice su propia habilidad de spellcasting cuando usted lanza un hechizo del artículo. Si usted tiene más de una habilidad de spellcasting, usted elige cuál utilizar con el artículo. Si usted no tiene una habilidad de spellcasting —tal vez usted es un pícaro con la característica del dispositivo mágico de uso— su modificador de habilidad de spellcasting es +0 para el artículo, y su bonificación de competencia se aplica."
           ]
         },
         {
@@ -278,7 +278,7 @@
       ],
       "name_es": "Cast a Spell",
       "entries_es": [
-        "Spellcasters tales como magos y clérigos, así como muchos monstruos, tienen acceso a hechizos y pueden utilizarlos a gran efecto en el combate. Cada hechizo tiene un tiempo de casting, que especifica si el caster debe usar una acción, una reacción, minutos o incluso horas para lanzar el hechizo. Casting a spell is, therefore, not necessarily an action. La mayoría de los hechizos tienen un tiempo de casting de 1 acción, por lo que una ortografía a menudo utiliza su acción en combate para lanzar tal hechizo. Véase {@book chapter 10|phb|10|casting a spell} para las reglas sobre la ortografía."
+        "Spellcasters tales como magos y clérigos, así como muchos monstruos, tienen acceso a hechizos y pueden utilizarlos a gran efecto en el combate. Cada hechizo tiene un tiempo de casting, que especifica si el caster debe usar una acción, una reacción, minutos o incluso horas para lanzar el hechizo. Casting a spell is, therefore, not necessarily an action. La mayoría de los hechizos tienen un tiempo de casting de 1 acción, por lo que una spellcasting a menudo utiliza su acción en combate para lanzar tal hechizo. Véase {@book chapter 10|phb|10|casting a spell} para las reglas sobre la spellcasting."
       ]
     },
     {
@@ -846,7 +846,7 @@
       "entries_es": [
         "A veces un personaje quiere identificar un hechizo que alguien más está casting o que ya fue lanzado. Para hacerlo, un personaje puede utilizar su reacción para identificar un hechizo como está siendo lanzado, o pueden usar una acción en su turno para identificar un hechizo por su efecto después de que sea lanzado.",
         "Si el personaje percibió el casting, el efecto del hechizo, o ambos, el personaje puede hacer un control de Inteligencia ([TAG0]) con la reacción o acción. El DC es igual a 15 + el nivel del hechizo. Si el hechizo es lanzado como un hechizo de clase y el personaje es miembro de esa clase, el cheque se hace con ventaja. Por ejemplo, si el hechizo lanza un hechizo como clérigo, otro clérigo tiene ventaja en el cheque para identificar el hechizo. Algunos hechizos no están asociados con ninguna clase cuando son lanzados, como cuando un monstruo usa su rasgo de espantado innato.",
-        "Este cheque de Inteligencia ([TAG0]) representa el hecho de que la identificación de un hechizo requiere una mente rápida y familiaridad con la teoría y la práctica del casting. Esto es cierto incluso para un personaje cuya habilidad de ortografía es la Sabiduría o Charisma. Ser capaz de lanzar hechizos no te hace depender por sí mismo de deducir exactamente lo que otros están haciendo cuando lanzan sus hechizos."
+        "Este cheque de Inteligencia ([TAG0]) representa el hecho de que la identificación de un hechizo requiere una mente rápida y familiaridad con la teoría y la práctica del casting. Esto es cierto incluso para un personaje cuya habilidad de spellcasting es la Sabiduría o Charisma. Ser capaz de lanzar hechizos no te hace depender por sí mismo de deducir exactamente lo que otros están haciendo cuando lanzan sus hechizos."
       ]
     },
     {

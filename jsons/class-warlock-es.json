@@ -1904,7 +1904,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Charisma es tu habilidad de spellcasting para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -1931,13 +1931,13 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de bloqueo."
+            "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de bloqueo."
           ]
         }
       ],
       "name_es": "Pact Magic",
       "entries_es": [
-        "Su investigación arcana y la magia que le otorga su patrón le han dado facilidad con hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter warlock spell list|spells|class=warlock}].",
+        "Su investigación arcana y la magia que le otorga su patrón le han dado facilidad con hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter warlock spell list|spells|class=warlock}].",
         {
           "type": "entries",
           "name": "Cantrips",
@@ -2001,7 +2001,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Charisma es tu habilidad de spellcasting para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2028,7 +2028,7 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de bloqueo."
+            "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de bloqueo."
           ]
         }
       ]
@@ -3525,7 +3525,7 @@
       ],
       "name_es": "Pact Magic",
       "entries_es": [
-        "A través de la ceremonia ocultista, has formado un pacto con una misteriosa entidad para ganar poderes mágicos. La entidad es una voz en las sombras —su identidad no clara— pero su capullo para usted es concreto: la capacidad de lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Warlock, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+        "A través de la ceremonia ocultista, has formado un pacto con una misteriosa entidad para ganar poderes mágicos. La entidad es una voz en las sombras —su identidad no clara— pero su capullo para usted es concreto: la capacidad de lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Warlock, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
         {
           "type": "entries",
           "entries": [
@@ -5869,7 +5869,7 @@
       "name_es": "El vaso de Genie",
       "entries_es": [
         "[[TAG0]",
-        "Tu patrón te da una nave mágica que te otorga una medida del poder del genio. El buque es un objeto Tiny, y usted puede utilizarlo como un foco de ortografía para sus hechizos de bloqueo. Usted decide lo que es el objeto, o puede determinar lo que es al azar rodando sobre la mesa del vaso de Genie.",
+        "Tu patrón te da una nave mágica que te otorga una medida del poder del genio. El buque es un objeto Tiny, y usted puede utilizarlo como un foco de spellcasting para sus hechizos de bloqueo. Usted decide lo que es el objeto, o puede determinar lo que es al azar rodando sobre la mesa del vaso de Genie.",
         {
           "type": "table",
           "caption": "Genie's Vessel",

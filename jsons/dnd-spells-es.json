@@ -2286,7 +2286,7 @@
           ],
           "name_es": "Mano de fuerza",
           "entries_es": [
-            "La mano intenta empujar a una criatura dentro de 5 pies de ella en una dirección que elijas. Haga un cheque con la fuerza de la mano impugnada por la fuerza ([TAG0])) cheque del objetivo. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Si tienes éxito, la mano empuja el objetivo hasta 5 pies más un número de pies igual a cinco veces tu modificador de habilidad de ortografía. La mano se mueve con el objetivo de permanecer a 5 pies de él."
+            "La mano intenta empujar a una criatura dentro de 5 pies de ella en una dirección que elijas. Haga un cheque con la fuerza de la mano impugnada por la fuerza ([TAG0])) cheque del objetivo. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Si tienes éxito, la mano empuja el objetivo hasta 5 pies más un número de pies igual a cinco veces tu modificador de habilidad de spellcasting. La mano se mueve con el objetivo de permanecer a 5 pies de él."
           ]
         },
         {
@@ -2297,7 +2297,7 @@
           ],
           "name_es": "Mano de graspado",
           "entries_es": [
-            "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. Usas el puntaje de fuerza de la mano para resolver el grapple. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Mientras que la mano está recortando el objetivo, usted puede utilizar una acción de bonificación para tener la mano aplastarlo. Cuando lo hace, el objetivo toma el daño de la mancha igual a {@damage 2d6} + su modificador de habilidad de la ortografía."
+            "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. Usas el puntaje de fuerza de la mano para resolver el grapple. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Mientras que la mano está recortando el objetivo, usted puede utilizar una acción de bonificación para tener la mano aplastarlo. Cuando lo hace, el objetivo toma el daño de la mancha igual a {@damage 2d6} + su modificador de habilidad de la spellcasting."
           ]
         },
         {
@@ -2356,7 +2356,7 @@
           ],
           "name_es": "Mano de fuerza",
           "entries_es": [
-            "La mano intenta empujar a una criatura dentro de 5 pies de ella en una dirección que elijas. Haga un cheque con la fuerza de la mano impugnada por la fuerza ([TAG0])) cheque del objetivo. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Si tienes éxito, la mano empuja el objetivo hasta 5 pies más un número de pies igual a cinco veces tu modificador de habilidad de ortografía. La mano se mueve con el objetivo de permanecer a 5 pies de él."
+            "La mano intenta empujar a una criatura dentro de 5 pies de ella en una dirección que elijas. Haga un cheque con la fuerza de la mano impugnada por la fuerza ([TAG0])) cheque del objetivo. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Si tienes éxito, la mano empuja el objetivo hasta 5 pies más un número de pies igual a cinco veces tu modificador de habilidad de spellcasting. La mano se mueve con el objetivo de permanecer a 5 pies de él."
           ]
         },
         {
@@ -2367,7 +2367,7 @@
           ],
           "name_es": "Mano de graspado",
           "entries_es": [
-            "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. Usas el puntaje de fuerza de la mano para resolver el grapple. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Mientras que la mano está recortando el objetivo, usted puede utilizar una acción de bonificación para tener la mano aplastarlo. Cuando lo hace, el objetivo toma el daño de la mancha igual a {@damage 2d6} + su modificador de habilidad de la ortografía."
+            "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. Usas el puntaje de fuerza de la mano para resolver el grapple. Si el objetivo es mediano o menor, usted tiene ventaja en el cheque. Mientras que la mano está recortando el objetivo, usted puede utilizar una acción de bonificación para tener la mano aplastarlo. Cuando lo hace, el objetivo toma el daño de la mancha igual a {@damage 2d6} + su modificador de habilidad de la spellcasting."
           ]
         },
         {
@@ -5853,7 +5853,7 @@
       ],
       "name_es": "Counterspell",
       "entries_es": [
-        "Intentas interrumpir a una criatura en el proceso de lanzar un hechizo. Si la criatura está emitiendo un hechizo de tercer nivel o inferior, su hechizo falla y no tiene efecto. Si está emitiendo un hechizo de 4to nivel o superior, haga un cheque de habilidad usando su habilidad de ortografía. El DC equivale a 10 + el nivel del hechizo. En un éxito, el hechizo de la criatura falla y no tiene efecto."
+        "Intentas interrumpir a una criatura en el proceso de lanzar un hechizo. Si la criatura está emitiendo un hechizo de tercer nivel o inferior, su hechizo falla y no tiene efecto. Si está emitiendo un hechizo de 4to nivel o superior, haga un cheque de habilidad usando su habilidad de spellcasting. El DC equivale a 10 + el nivel del hechizo. En un éxito, el hechizo de la criatura falla y no tiene efecto."
       ]
     },
     {
@@ -7559,7 +7559,7 @@
       ],
       "name_es": "Dispel Magic",
       "entries_es": [
-        "Elija una criatura, objeto o efecto mágico dentro del rango. Cualquier hechizo de tercer nivel o inferior en los extremos del objetivo. Para cada hechizo de 4o nivel o superior en el objetivo, haga un cheque de habilidad usando su habilidad de ortografía. El DC equivale a 10 + el nivel del hechizo. En un cheque exitoso, el hechizo termina."
+        "Elija una criatura, objeto o efecto mágico dentro del rango. Cualquier hechizo de tercer nivel o inferior en los extremos del objetivo. Para cada hechizo de 4o nivel o superior en el objetivo, haga un cheque de habilidad usando su habilidad de spellcasting. El DC equivale a 10 + el nivel del hechizo. En un cheque exitoso, el hechizo termina."
       ]
     },
     {
@@ -12839,7 +12839,7 @@
       ],
       "name_es": "Palabra de curación",
       "entries_es": [
-        "Una criatura de su elección que usted puede ver dentro del rango recupera puntos de éxito iguales a {@dice 1d4} + su modificador de habilidad de la ortografía. Este hechizo no tiene ningún efecto en los no muertos o construcciones."
+        "Una criatura de su elección que usted puede ver dentro del rango recupera puntos de éxito iguales a {@dice 1d4} + su modificador de habilidad de la spellcasting. Este hechizo no tiene ningún efecto en los no muertos o construcciones."
       ]
     },
     {
@@ -13065,7 +13065,7 @@
       ],
       "name_es": "Heroísmo",
       "entries_es": [
-        "Una criatura dispuesta a tocar está impregnada de valentía. Hasta que el hechizo termine, la criatura es inmune a ser {@condition frightened} y gana puntos de éxito temporales iguales a su modificador de habilidad de ortografía al comienzo de cada uno de sus turnos. Cuando el hechizo termina, el objetivo pierde cualquier punto de éxito temporal restante de este hechizo."
+        "Una criatura dispuesta a tocar está impregnada de valentía. Hasta que el hechizo termine, la criatura es inmune a ser {@condition frightened} y gana puntos de éxito temporales iguales a su modificador de habilidad de spellcasting al comienzo de cada uno de sus turnos. Cuando el hechizo termina, el objetivo pierde cualquier punto de éxito temporal restante de este hechizo."
       ]
     },
     {
@@ -15330,7 +15330,7 @@
         "Usted puede intentar poseer cualquier humanoide dentro de 100 pies de usted que pueda ver (creturas acorazadas por un {@spell protection from evil and good} o [[TAG1] hechizo no se puede poseer). El objetivo debe hacer una tirada de salvación de Charisma. En un fracaso, tu alma se mueve en el cuerpo del objetivo, y el alma del objetivo se queda atrapada en el contenedor. En un éxito, el objetivo resiste sus esfuerzos para poseerlo, y no puede intentar poseerlo de nuevo durante 24 horas.",
         "Una vez que poseas el cuerpo de una criatura, lo controlas. Sus estadísticas de juego son reemplazadas por las estadísticas de la criatura, aunque usted conserva su alineación y sus puntajes de Inteligencia, Sabiduría y Charisma. Retiene el beneficio de sus propias características de clase. Si el objetivo tiene niveles de clase, no puede utilizar ninguna de sus características de clase.",
         "Mientras tanto, el alma de la criatura poseída puede percibir del contenedor usando sus propios sentidos, pero no puede mover ni tomar acciones en absoluto.",
-        "Al poseer un cuerpo, puede utilizar su acción para regresar del cuerpo anfitrión al contenedor si está a menos de 100 pies de usted, devolviendo el alma de la criatura anfitriona a su cuerpo. Si el cuerpo anfitrión muere mientras estás en él, la criatura muere, y debes hacer una tirada de salvación de Charisma contra tu propio DC de ortografía. En un éxito, usted vuelve al contenedor si está a menos de 100 pies de usted. Si no, mueres.",
+        "Al poseer un cuerpo, puede utilizar su acción para regresar del cuerpo anfitrión al contenedor si está a menos de 100 pies de usted, devolviendo el alma de la criatura anfitriona a su cuerpo. Si el cuerpo anfitrión muere mientras estás en él, la criatura muere, y debes hacer una tirada de salvación de Charisma contra tu propio DC de spellcasting. En un éxito, usted vuelve al contenedor si está a menos de 100 pies de usted. Si no, mueres.",
         "Si el contenedor es destruido o el hechizo termina, su alma vuelve inmediatamente a su cuerpo. Si tu cuerpo está a más de 100 pies de distancia de ti o si tu cuerpo está muerto cuando intentas regresar a él, mueres. Si el alma de otra criatura está en el recipiente cuando es destruida, el alma de la criatura vuelve a su cuerpo si el cuerpo está vivo y a menos de 100 pies. Si no, esa criatura muere.",
         "Cuando el hechizo termina, el contenedor es destruido."
       ]
@@ -15743,7 +15743,7 @@
       ],
       "name_es": "Palabra de sanación masiva",
       "entries_es": [
-        "Como usted llama a las palabras de restauración, hasta seis criaturas de su elección que usted puede ver dentro del rango recuperar puntos de éxito igual a {@dice 1d4} + su modificador de habilidad de la ortografía. Este hechizo no tiene ningún efecto en los no muertos o construcciones."
+        "Como usted llama a las palabras de restauración, hasta seis criaturas de su elección que usted puede ver dentro del rango recuperar puntos de éxito igual a {@dice 1d4} + su modificador de habilidad de la spellcasting. Este hechizo no tiene ningún efecto en los no muertos o construcciones."
       ]
     },
     {
@@ -21308,7 +21308,7 @@
       ],
       "name_es": "Shillelagh",
       "entries_es": [
-        "La madera de un {@item club|phb} o {@item quarterstaff|phb} que está sosteniendo está impregnada con el poder de la naturaleza. Durante la duración, puede utilizar su habilidad de ortografía en lugar de Fuerza para el ataque y los rollos de daño de los ataques de melee usando ese arma, y el daño del arma se convierte en un {@dice d8}. El arma también se vuelve mágico, si no lo es. El hechizo termina si lo lanzas de nuevo o si te sueltas del arma."
+        "La madera de un {@item club|phb} o {@item quarterstaff|phb} que está sosteniendo está impregnada con el poder de la naturaleza. Durante la duración, puede utilizar su habilidad de spellcasting en lugar de Fuerza para el ataque y los rollos de daño de los ataques de melee usando ese arma, y el daño del arma se convierte en un {@dice d8}. El arma también se vuelve mágico, si no lo es. El hechizo termina si lo lanzas de nuevo o si te sueltas del arma."
       ]
     },
     {
@@ -22214,7 +22214,7 @@
       ],
       "name_es": "Arma espiritual",
       "entries_es": [
-        "Usted crea un arma flotante espectral dentro del rango que dura por la duración o hasta que usted lanza este hechizo de nuevo. Cuando usted lanza el hechizo, usted puede hacer un melee hechizo ataque contra una criatura a 5 pies del arma. En un golpe, el objetivo toma el daño de la fuerza igual a {@damage 1d8} + su modificador de la habilidad de la ortografía.",
+        "Usted crea un arma flotante espectral dentro del rango que dura por la duración o hasta que usted lanza este hechizo de nuevo. Cuando usted lanza el hechizo, usted puede hacer un melee hechizo ataque contra una criatura a 5 pies del arma. En un golpe, el objetivo toma el daño de la fuerza igual a {@damage 1d8} + su modificador de la habilidad de la spellcasting.",
         "Como una acción de bonificación en tu turno, puedes mover el arma hasta 20 pies y repetir el ataque contra una criatura a 5 pies de ella.",
         "El arma puede tomar cualquier forma que elijas. Los clérigos de las deidades que están asociados con un arma particular (como St. Cuthbert es conocido por su mace y Thor por su martillo) hacen que el efecto de este hechizo se parezca a ese arma."
       ]
@@ -23228,7 +23228,7 @@
           ],
           "name_es": "Criatura",
           "entries_es": [
-            "Puedes intentar mover una criatura enorme o más pequeña. Haga un cheque de habilidad con su habilidad de ortografía impugnada por el cheque de fuerza de la criatura. Si ganas el concurso, mueves a la criatura hasta 30 pies en cualquier dirección, incluyendo hacia arriba pero no más allá del alcance de este hechizo. Hasta el final de tu siguiente turno, la criatura está {@condition restrained} en tu agarre telequinético. Una criatura levantada hacia arriba está suspendida a mitad del aire.",
+            "Puedes intentar mover una criatura enorme o más pequeña. Haga un cheque de habilidad con su habilidad de spellcasting impugnada por el cheque de fuerza de la criatura. Si ganas el concurso, mueves a la criatura hasta 30 pies en cualquier dirección, incluyendo hacia arriba pero no más allá del alcance de este hechizo. Hasta el final de tu siguiente turno, la criatura está {@condition restrained} en tu agarre telequinético. Una criatura levantada hacia arriba está suspendida a mitad del aire.",
             "En rondas posteriores, puede utilizar su acción para intentar mantener su control telequinético sobre la criatura repitiendo el concurso."
           ]
         },
@@ -23243,7 +23243,7 @@
           "name_es": "Objeto",
           "entries_es": [
             "Puedes intentar mover un objeto que pesa hasta 1.000 libras. Si el objeto no está siendo usado o llevado, lo mueve automáticamente hasta 30 pies en cualquier dirección, pero no más allá del alcance de este hechizo.",
-            "Si el objeto es usado o llevado por una criatura, usted debe hacer un cheque de habilidad con su habilidad de ortografía impugnada por el cheque de fuerza de esa criatura. Si tienes éxito, sacas el objeto de esa criatura y puedes moverlo hasta 30 pies en cualquier dirección, pero no más allá del alcance de este hechizo.",
+            "Si el objeto es usado o llevado por una criatura, usted debe hacer un cheque de habilidad con su habilidad de spellcasting impugnada por el cheque de fuerza de esa criatura. Si tienes éxito, sacas el objeto de esa criatura y puedes moverlo hasta 30 pies en cualquier dirección, pero no más allá del alcance de este hechizo.",
             "Puede ejercer un control fino sobre objetos con su agarre telequinético, como manipular una herramienta simple, abrir una puerta o un contenedor, cortar o recuperar un artículo de un contenedor abierto, o verter el contenido de un frasco."
           ]
         }
@@ -23274,7 +23274,7 @@
           ],
           "name_es": "Criatura",
           "entries_es": [
-            "Puedes intentar mover una criatura enorme o más pequeña. Haga un cheque de habilidad con su habilidad de ortografía impugnada por el cheque de fuerza de la criatura. Si ganas el concurso, mueves a la criatura hasta 30 pies en cualquier dirección, incluyendo hacia arriba pero no más allá del alcance de este hechizo. Hasta el final de tu siguiente turno, la criatura está {@condition restrained} en tu agarre telequinético. Una criatura levantada hacia arriba está suspendida a mitad del aire.",
+            "Puedes intentar mover una criatura enorme o más pequeña. Haga un cheque de habilidad con su habilidad de spellcasting impugnada por el cheque de fuerza de la criatura. Si ganas el concurso, mueves a la criatura hasta 30 pies en cualquier dirección, incluyendo hacia arriba pero no más allá del alcance de este hechizo. Hasta el final de tu siguiente turno, la criatura está {@condition restrained} en tu agarre telequinético. Una criatura levantada hacia arriba está suspendida a mitad del aire.",
             "En rondas posteriores, puede utilizar su acción para intentar mantener su control telequinético sobre la criatura repitiendo el concurso."
           ]
         },
@@ -23289,7 +23289,7 @@
           "name_es": "Objeto",
           "entries_es": [
             "Puedes intentar mover un objeto que pesa hasta 1.000 libras. Si el objeto no está siendo usado o llevado, lo mueve automáticamente hasta 30 pies en cualquier dirección, pero no más allá del alcance de este hechizo.",
-            "Si el objeto es usado o llevado por una criatura, usted debe hacer un cheque de habilidad con su habilidad de ortografía impugnada por el cheque de fuerza de esa criatura. Si tienes éxito, sacas el objeto de esa criatura y puedes moverlo hasta 30 pies en cualquier dirección, pero no más allá del alcance de este hechizo.",
+            "Si el objeto es usado o llevado por una criatura, usted debe hacer un cheque de habilidad con su habilidad de spellcasting impugnada por el cheque de fuerza de esa criatura. Si tienes éxito, sacas el objeto de esa criatura y puedes moverlo hasta 30 pies en cualquier dirección, pero no más allá del alcance de este hechizo.",
             "Puede ejercer un control fino sobre objetos con su agarre telequinético, como manipular una herramienta simple, abrir una puerta o un contenedor, cortar o recuperar un artículo de un contenedor abierto, o verter el contenido de un frasco."
           ]
         }
@@ -26189,8 +26189,8 @@
       ],
       "name_es": "Clavo verde",
       "entries_es": [
-        "Marcas el arma utilizada en la casting del hechizo y haces un simple ataque con él contra una criatura a 5 pies de ti. En un golpe, el objetivo sufre los efectos normales del ataque de armas, y usted puede causar fuego verde para saltar del blanco a una criatura diferente de su elección que usted puede ver dentro de 5 pies de él. La segunda criatura toma daño de fuego igual a su modificador de habilidad de ortografía.",
-        "El daño de este hechizo aumenta cuando alcanza ciertos niveles. A 5o nivel, el ataque de melee se ocupa de un daño de fuego adicional {@damage 1d8} al blanco en un golpe, y el daño de fuego a la segunda criatura aumenta a {@damage 1d8} + su modificador de habilidad de ortografía. Ambos rollos de daño aumentan en {@damage 1d8} a 11o nivel ([TAG3]] y {@damage 2d8}) y 17o nivel ({@damage 3d8} y {@damage 3d8})."
+        "Marcas el arma utilizada en la casting del hechizo y haces un simple ataque con él contra una criatura a 5 pies de ti. En un golpe, el objetivo sufre los efectos normales del ataque de armas, y usted puede causar fuego verde para saltar del blanco a una criatura diferente de su elección que usted puede ver dentro de 5 pies de él. La segunda criatura toma daño de fuego igual a su modificador de habilidad de spellcasting.",
+        "El daño de este hechizo aumenta cuando alcanza ciertos niveles. A 5o nivel, el ataque de melee se ocupa de un daño de fuego adicional {@damage 1d8} al blanco en un golpe, y el daño de fuego a la segunda criatura aumenta a {@damage 1d8} + su modificador de habilidad de spellcasting. Ambos rollos de daño aumentan en {@damage 1d8} a 11o nivel ([TAG3]] y {@damage 2d8}) y 17o nivel ({@damage 3d8} y {@damage 3d8})."
       ]
     },
     {
@@ -30583,7 +30583,7 @@
       "name_es": "Espíritu curativo",
       "entries_es": [
         "Llamas a un espíritu de naturaleza para calmar a los heridos. El espíritu intangible aparece en un espacio que es un cubo de 5 pies que se puede ver dentro del alcance. El espíritu parece una bestia transparente o fey (su elección).",
-        "Hasta que el hechizo termine, siempre que usted o una criatura que pueda ver se mueve en el espacio del espíritu por primera vez en un giro o comienza su turno allí, usted puede hacer que el espíritu restaurar {@dice 1d6} puntos de éxito a esa criatura (no se requiere acción). El espíritu no puede sanar construcciones o no muerto. El espíritu puede sanar un número de veces igual a 1 + el modificador de habilidad de la ortografía (mínimo de dos veces). Después de sanar ese número de veces, el espíritu desaparece.",
+        "Hasta que el hechizo termine, siempre que usted o una criatura que pueda ver se mueve en el espacio del espíritu por primera vez en un giro o comienza su turno allí, usted puede hacer que el espíritu restaurar {@dice 1d6} puntos de éxito a esa criatura (no se requiere acción). El espíritu no puede sanar construcciones o no muerto. El espíritu puede sanar un número de veces igual a 1 + el modificador de habilidad de la spellcasting (mínimo de dos veces). Después de sanar ese número de veces, el espíritu desaparece.",
         "Como una acción de bonificación en su turno, usted puede mover el espíritu hasta 30 pies a un espacio que se puede ver."
       ]
     },
@@ -31748,7 +31748,7 @@
       ],
       "name_es": "Piedra mágica",
       "entries_es": [
-        "Tocas uno a tres guijarros e infundirlos con magia. Usted o alguien más puede hacer un ataque de hechizos con una de las piedras tirando o abrazándola con un {@item sling|phb}. Si se lanza, una piedra tiene un rango de 60 pies. Si alguien más ataca con una rocalla, ese atacante añade su modificador de habilidad de deletreo, no el atacante, al tirada de ataque. En un golpe, el objetivo toma el daño de la mancha igual a {@damage 1d6} + su modificador de habilidad de la ortografía. Si el ataque golpea o falla, el hechizo termina en la piedra.",
+        "Tocas uno a tres guijarros e infundirlos con magia. Usted o alguien más puede hacer un ataque de hechizos con una de las piedras tirando o abrazándola con un {@item sling|phb}. Si se lanza, una piedra tiene un rango de 60 pies. Si alguien más ataca con una rocalla, ese atacante añade su modificador de habilidad de deletreo, no el atacante, al tirada de ataque. En un golpe, el objetivo toma el daño de la mancha igual a {@damage 1d6} + su modificador de habilidad de la spellcasting. Si el ataque golpea o falla, el hechizo termina en la piedra.",
         "Si vuelves a lanzar este hechizo, el hechizo termina en cualquier piedra todavía afectada por tu casting anterior."
       ]
     },
@@ -36161,7 +36161,7 @@
       ],
       "name_es": "Animate Objects",
       "entries_es": [
-        "Los objetos animan a su orden. Elija una serie de objetos no mágicos dentro del rango que no están siendo usados o llevados, no están fijos en una superficie, y no son Gargantuan. El número máximo de objetos es igual a su modificador de habilidad de ortografía; para este número, un objetivo medio o menor cuenta como un objeto, un objetivo grande cuenta como dos, y un objetivo enorme cuenta como tres.",
+        "Los objetos animan a su orden. Elija una serie de objetos no mágicos dentro del rango que no están siendo usados o llevados, no están fijos en una superficie, y no son Gargantuan. El número máximo de objetos es igual a su modificador de habilidad de spellcasting; para este número, un objetivo medio o menor cuenta como un objeto, un objetivo grande cuenta como dos, y un objetivo enorme cuenta como tres.",
         "Cada objetivo anima, brota las piernas, y se convierte en un constructo que utiliza el bloque {@creature Animated Object|XPHB} de estatura; esta criatura está bajo su control hasta que el hechizo termina o hasta que se reduce a 0 {@variantrule Hit Points|XPHB}. Cada criatura que haces con este hechizo es un aliado para ti y tus aliados. En combate, comparte su cuenta {@variantrule Initiative|XPHB} y toma su turno inmediatamente después del suyo.",
         "Hasta que el hechizo termine, puedes tomar un {@variantrule Bonus Action|XPHB} para mandar mentalmente a cualquier criatura que hayas hecho con este hechizo si la criatura está a 500 pies de ti (si controlas múltiples criaturas, puedes mandar a cualquiera de ellos al mismo tiempo, emitiendo el mismo comando a cada uno). Si usted no emite comandos, la criatura toma la acción {@action Dodge|XPHB} y se mueve sólo para evitar daño. Cuando la criatura cae a 0 {@variantrule Hit Points|XPHB}, se revierte a su forma de objeto, y cualquier daño restante lleva a esa forma."
       ]
@@ -37717,7 +37717,7 @@
               ],
               "name_es": "Mano de graspado",
               "entries_es": [
-                "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. El objetivo debe tener éxito en una tirada de salvación de Destreza, o el objetivo tiene la condición {@condition Grappled|XPHB}, con un escape DC igual a su hechizo salvo DC. Mientras que la mano grapa el objetivo, usted puede tomar un {@variantrule Bonus Action|XPHB} para causar la mano para aplastarlo, tratando el daño desenvainado al objetivo igual que {@damage 4d6}] más su modificador de habilidad de ortografía."
+                "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. El objetivo debe tener éxito en una tirada de salvación de Destreza, o el objetivo tiene la condición {@condition Grappled|XPHB}, con un escape DC igual a su hechizo salvo DC. Mientras que la mano grapa el objetivo, usted puede tomar un {@variantrule Bonus Action|XPHB} para causar la mano para aplastarlo, tratando el daño desenvainado al objetivo igual que {@damage 4d6}] más su modificador de habilidad de spellcasting."
               ]
             },
             {
@@ -37793,7 +37793,7 @@
               ],
               "name_es": "Mano de graspado",
               "entries_es": [
-                "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. El objetivo debe tener éxito en una tirada de salvación de Destreza, o el objetivo tiene la condición {@condition Grappled|XPHB}, con un escape DC igual a su hechizo salvo DC. Mientras que la mano grapa el objetivo, usted puede tomar un {@variantrule Bonus Action|XPHB} para causar la mano para aplastarlo, tratando el daño desenvainado al objetivo igual que {@damage 4d6}] más su modificador de habilidad de ortografía."
+                "La mano intenta grapar a una criatura enorme o más pequeña a 5 pies de ella. El objetivo debe tener éxito en una tirada de salvación de Destreza, o el objetivo tiene la condición {@condition Grappled|XPHB}, con un escape DC igual a su hechizo salvo DC. Mientras que la mano grapa el objetivo, usted puede tomar un {@variantrule Bonus Action|XPHB} para causar la mano para aplastarlo, tratando el daño desenvainado al objetivo igual que {@damage 4d6}] más su modificador de habilidad de spellcasting."
               ]
             },
             {
@@ -40176,7 +40176,7 @@
       ],
       "name_es": "Conjure Fey",
       "entries_es": [
-        "Conjuras un espíritu mediano del Feywild en un espacio no ocupado que puedes ver dentro del rango. El espíritu dura por la duración, y parece una criatura Fey de su elección. Cuando el espíritu aparece, puedes hacer un simple ataque de hechizos contra una criatura a 5 pies de ella. En un golpe, el objetivo toma el daño Psíquico igual a {@damage 3d12} más su modificador de habilidad de ortografía, y el objetivo tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno, con usted y el espíritu como la fuente del miedo.",
+        "Conjuras un espíritu mediano del Feywild en un espacio no ocupado que puedes ver dentro del rango. El espíritu dura por la duración, y parece una criatura Fey de su elección. Cuando el espíritu aparece, puedes hacer un simple ataque de hechizos contra una criatura a 5 pies de ella. En un golpe, el objetivo toma el daño Psíquico igual a {@damage 3d12} más su modificador de habilidad de spellcasting, y el objetivo tiene la condición {@condition Frightened|XPHB} hasta el comienzo de su próximo turno, con usted y el espíritu como la fuente del miedo.",
         "Como un {@variantrule Bonus Action|XPHB} en sus turnos posteriores, se puede teletransportar el espíritu a un espacio no ocupado que se puede ver dentro de 30 pies del espacio que dejó y hacer el ataque contra una criatura a 5 pies de él."
       ]
     },
@@ -42883,7 +42883,7 @@
       ],
       "name_es": "Dispel Magic",
       "entries_es": [
-        "Elija una criatura, objeto o efecto mágico dentro del rango. Cualquier hechizo continuo del nivel 3 o inferior en el objetivo termina. Para cada hechizo de nivel 4 o superior en el objetivo, haga un cheque de habilidad usando su habilidad de ortografía ([TAG0] más el nivel de ese hechizo). En un cheque exitoso, el hechizo termina."
+        "Elija una criatura, objeto o efecto mágico dentro del rango. Cualquier hechizo continuo del nivel 3 o inferior en el objetivo termina. Para cada hechizo de nivel 4 o superior en el objetivo, haga un cheque de habilidad usando su habilidad de spellcasting ([TAG0] más el nivel de ese hechizo). En un cheque exitoso, el hechizo termina."
       ]
     },
     {
@@ -45857,7 +45857,7 @@
       "name_es": "Flame Blade",
       "entries_es": [
         "Evocas una espada ardiente en tu mano libre. La hoja es similar en tamaño y forma a un cimitar, y dura por la duración. Si dejas ir la espada, desaparece, pero puedes evocarla de nuevo como un {@variantrule Bonus Action|XPHB}.",
-        "Como acción {@action Magic|XPHB}, puedes hacer un ataque de hechizos con la espada ardiente. En un golpe, el objetivo toma el daño del Fuego igual a {@damage 3d6} más el modificador de la capacidad de ortografía.",
+        "Como acción {@action Magic|XPHB}, puedes hacer un ataque de hechizos con la espada ardiente. En un golpe, el objetivo toma el daño del Fuego igual a {@damage 3d6} más el modificador de la capacidad de spellcasting.",
         "La cuchilla en llamas derrama {@variantrule Bright Light|XPHB} en un radio de 10 pies y {@variantrule Dim Light|XPHB} por 10 pies adicionales."
       ]
     },
@@ -49025,7 +49025,7 @@
       ],
       "name_es": "Heroísmo",
       "entries_es": [
-        "Una criatura dispuesta a tocar está impregnada de valentía. Hasta que el hechizo termine, la criatura es inmune a la condición [[TAG0] y gana {@variantrule Temporary Hit Points|XPHB}] igual a su modificador de habilidad de ortografía al comienzo de cada uno de sus turnos."
+        "Una criatura dispuesta a tocar está impregnada de valentía. Hasta que el hechizo termine, la criatura es inmune a la condición [[TAG0] y gana {@variantrule Temporary Hit Points|XPHB}] igual a su modificador de habilidad de spellcasting al comienzo de cada uno de sus turnos."
       ]
     },
     {
@@ -51406,7 +51406,7 @@
         "Usted puede intentar poseer cualquier Humanoid a menos de 100 pies de usted que pueda ver (las criaturas acorazadas por un {@spell Protection from Evil and Good|XPHB} o {@spell Magic Circle|XPHB} hechizo no se puede poseer). El objetivo hace una tirada de salvación de Charisma. En un salvación fallido, tu alma entra en el cuerpo del objetivo, y el alma del objetivo se queda atrapada en el contenedor. En un salvación exitoso, el objetivo resiste sus esfuerzos para poseerlo, y no puede intentar poseerlo de nuevo durante 24 horas.",
         "Una vez que poseas el cuerpo de una criatura, lo controlas. Tu {@variantrule Hit Points|XPHB}, {@variantrule Hit Point Dice|XPHB}, Fuerza, Destreza, Constitución, {@variantrule Speed|XPHB}, y los sentidos son reemplazados por los de la criatura. De otro modo mantienes tus estadísticas de juego.",
         "Mientras tanto, el alma de la criatura poseída puede percibir del contenedor usando sus propios sentidos, pero no puede moverse y es {@condition Incapacitated|XPHB}.",
-        "Mientras posees un cuerpo, puedes tomar una acción {@action Magic|XPHB} para regresar del cuerpo anfitrión al contenedor si está a menos de 100 pies de ti, devolviendo el alma de la criatura anfitriona a su cuerpo. Si el cuerpo anfitrión muere mientras estás en él, la criatura muere, y haces una tirada de salvación de Charisma contra tu propio DC de ortografía. En un éxito, usted vuelve al contenedor si está a menos de 100 pies de usted. Si no, mueres.",
+        "Mientras posees un cuerpo, puedes tomar una acción {@action Magic|XPHB} para regresar del cuerpo anfitrión al contenedor si está a menos de 100 pies de ti, devolviendo el alma de la criatura anfitriona a su cuerpo. Si el cuerpo anfitrión muere mientras estás en él, la criatura muere, y haces una tirada de salvación de Charisma contra tu propio DC de spellcasting. En un éxito, usted vuelve al contenedor si está a menos de 100 pies de usted. Si no, mueres.",
         "Si el contenedor es destruido o el hechizo termina, tu alma vuelve a tu cuerpo. Si tu cuerpo está a más de 100 pies de distancia de ti o si tu cuerpo está muerto, mueres. Si el alma de otra criatura está en el recipiente cuando es destruida, el alma de la criatura vuelve a su cuerpo si el cuerpo está vivo y a menos de 100 pies. Si no, esa criatura muere.",
         "Cuando el hechizo termina, el contenedor es destruido."
       ]
@@ -53159,7 +53159,7 @@
       "name_es": "La espada de Mordenkainen",
       "entries_es": [
         "Creas una espada espectral que agita dentro del rango. Dura por la duración.",
-        "Cuando la espada aparece, usted hace un melee hechizo ataque contra un blanco a 5 pies de la espada. En un golpe, el objetivo toma el daño de la Fuerza igual a {@damage 4d12} más el modificador de habilidad de la ortografía.",
+        "Cuando la espada aparece, usted hace un melee hechizo ataque contra un blanco a 5 pies de la espada. En un golpe, el objetivo toma el daño de la Fuerza igual a {@damage 4d12} más el modificador de habilidad de la spellcasting.",
         "En sus turnos posteriores, puede tomar un {@variantrule Bonus Action|XPHB} para mover la espada hasta 30 pies a un punto que puede ver y repetir el ataque contra el mismo objetivo o uno diferente."
       ]
     },
@@ -57306,7 +57306,7 @@
       ],
       "name_es": "Shillelagh",
       "entries_es": [
-        "Un Club o Quarterstaff que está sosteniendo está lleno de poder de la naturaleza. Durante la duración, puede utilizar su habilidad de ortografía en lugar de Fuerza para el ataque y los rollos de daño de los ataques de melee usando ese arma, y el daño del arma se convierte en un [[TAG0]. Si el ataque daña, puede ser daño de la fuerza o el tipo de daño normal del arma (su elección).",
+        "Un Club o Quarterstaff que está sosteniendo está lleno de poder de la naturaleza. Durante la duración, puede utilizar su habilidad de spellcasting en lugar de Fuerza para el ataque y los rollos de daño de los ataques de melee usando ese arma, y el daño del arma se convierte en un [[TAG0]. Si el ataque daña, puede ser daño de la fuerza o el tipo de daño normal del arma (su elección).",
         "El hechizo termina temprano si lo lanzas de nuevo o si dejas ir del arma."
       ]
     },
@@ -57834,7 +57834,7 @@
       "name_es": "Sorcerous Burst",
       "entries_es": [
         "Usted echa energía brusca a una criatura o objeto dentro del rango. Haga un lanzamiento de ataque contra el objetivo. En un golpe, el objetivo toma [[TAG0] daño de un tipo que elija: Ácido, frío, fuego, relámpago, veneno, psíquico o Trueno.",
-        "Si rodas un 8 en un {@dice d8} para este hechizo, puedes tirar otro {@dice d8}, y añadirlo al daño. Cuando usted lanza este hechizo, el número máximo de estos d8s que puede añadir al daño del hechizo equivale a su modificador de habilidad de ortografía."
+        "Si rodas un 8 en un {@dice d8} para este hechizo, puedes tirar otro {@dice d8}, y añadirlo al daño. Cuando usted lanza este hechizo, el número máximo de estos d8s que puede añadir al daño del hechizo equivale a su modificador de habilidad de spellcasting."
       ]
     },
     {
@@ -58313,7 +58313,7 @@
       ],
       "name_es": "Arma espiritual",
       "entries_es": [
-        "Usted crea una fuerza flotante espectral que se asemeja a un arma de su elección y dura por la duración. La fuerza aparece dentro de su alcance en un espacio de su elección, y usted puede inmediatamente hacer un ataque de hechizo contra una criatura a menos de 5 pies de la fuerza. En un golpe, el objetivo toma el daño de la Fuerza igual a {@damage 1d8} más el modificador de habilidad de la ortografía.",
+        "Usted crea una fuerza flotante espectral que se asemeja a un arma de su elección y dura por la duración. La fuerza aparece dentro de su alcance en un espacio de su elección, y usted puede inmediatamente hacer un ataque de hechizo contra una criatura a menos de 5 pies de la fuerza. En un golpe, el objetivo toma el daño de la Fuerza igual a {@damage 1d8} más el modificador de habilidad de la spellcasting.",
         "Como un {@variantrule Bonus Action|XPHB} en sus turnos posteriores, usted puede mover la fuerza hasta 20 pies y repetir el ataque contra una criatura dentro de 5 pies de ella."
       ]
     },
@@ -59983,7 +59983,7 @@
       "name_es": "Tasha Bubbling Cauldron",
       "entries_es": [
         "Conjuras un caldero con patas de garra lleno de líquido de burbujas. El caldero aparece en un espacio inocupado en el suelo a 5 pies de usted y dura por la duración. El caldero no puede ser movido y desaparece cuando el hechizo termina, junto con el líquido burbujeante dentro de él.",
-        "El líquido en el caldero duplica las propiedades de una poción común o poco común de su elección (como un {@item Potion of Healing|XDMG}). Como un {@variantrule Bonus Action|XPHB}, usted o un aliado pueden llegar al caldero y retirar una poción de ese tipo. La poción está contenida en un frasco que desaparece cuando se consume la poción. El caldero puede producir una serie de estas pociones iguales a su modificador de habilidad de ortografía (mínimo 1). Cuando la última de estas pociones se retira del caldero, el caldero desaparece, y el hechizo termina.",
+        "El líquido en el caldero duplica las propiedades de una poción común o poco común de su elección (como un {@item Potion of Healing|XDMG}). Como un {@variantrule Bonus Action|XPHB}, usted o un aliado pueden llegar al caldero y retirar una poción de ese tipo. La poción está contenida en un frasco que desaparece cuando se consume la poción. El caldero puede producir una serie de estas pociones iguales a su modificador de habilidad de spellcasting (mínimo 1). Cuando la última de estas pociones se retira del caldero, el caldero desaparece, y el hechizo termina.",
         "Pociones obtenidas de la caldera que no se consumen desaparecen cuando lanzas este hechizo de nuevo."
       ]
     },
@@ -61704,7 +61704,7 @@
       ],
       "name_es": "True Strike",
       "entries_es": [
-        "Guiado por un flash de visión mágica, usted hace un ataque con el arma utilizado en el casting del hechizo. El ataque utiliza su capacidad de ortografía para los rodillos de ataque y daño en lugar de utilizar Strength o Destreza. Si el ataque daña, puede ser daño radiante o el tipo de daño normal del arma (su elección)."
+        "Guiado por un flash de visión mágica, usted hace un ataque con el arma utilizado en el casting del hechizo. El ataque utiliza su capacidad de spellcasting para los rodillos de ataque y daño en lugar de utilizar Strength o Destreza. Si el ataque daña, puede ser daño radiante o el tipo de daño normal del arma (su elección)."
       ]
     },
     {

@@ -3777,7 +3777,7 @@
           ],
           "name_es": "Casting Elemental Spells",
           "entries_es": [
-            "Algunas disciplinas elementales te permiten lanzar hechizos. Ver {@book chapter 10|PHB|10} del Manual del Jugador para las reglas generales de la ortografía. Para lanzar uno de estos hechizos, utiliza su tiempo de fundición y otras reglas, pero no necesita proporcionar componentes materiales para ello.",
+            "Algunas disciplinas elementales te permiten lanzar hechizos. Ver {@book chapter 10|PHB|10} del Manual del Jugador para las reglas generales de la spellcasting. Para lanzar uno de estos hechizos, utiliza su tiempo de fundición y otras reglas, pero no necesita proporcionar componentes materiales para ello.",
             "Una vez que llegues al quinto nivel de esta clase, puedes gastar puntos de ki adicionales para aumentar el nivel de un hechizo de disciplina elemental que echas, siempre que el hechizo tenga un efecto mejorado a un nivel superior, como {@spell burning hands}. El nivel del hechizo aumenta en 1 por cada punto adicional de ki que gastas. Por ejemplo, si eres un monje de 5o nivel y usa Sweeping Cinder Strike para fundir {@spell burning hands}, puedes gastar 3 puntos ki para lanzarlo como un hechizo de 2o nivel (el costo base de la disciplina de 2 puntos ki más 1).",
             "El número máximo de puntos de ki que puedes gastar para lanzar un hechizo de esta manera (incluyendo su costo de punto de base y cualquier punto de ki adicional que gastas para aumentar su nivel) está determinado por tu nivel de monje, como se muestra en la tabla Spells y Ki Points. A 5o nivel, puede gastar hasta 3 puntos de ki; esto aumenta a 4 puntos de ki a 9o nivel, 5 a 13o nivel y 6 a 17o nivel.",
             {
@@ -3858,7 +3858,7 @@
           ],
           "name_es": "Casting Elemental Spells",
           "entries_es": [
-            "Algunas disciplinas elementales te permiten lanzar hechizos. Ver {@book chapter 10|PHB|10} del Manual del Jugador para las reglas generales de la ortografía. Para lanzar uno de estos hechizos, utiliza su tiempo de fundición y otras reglas, pero no necesita proporcionar componentes materiales para ello.",
+            "Algunas disciplinas elementales te permiten lanzar hechizos. Ver {@book chapter 10|PHB|10} del Manual del Jugador para las reglas generales de la spellcasting. Para lanzar uno de estos hechizos, utiliza su tiempo de fundición y otras reglas, pero no necesita proporcionar componentes materiales para ello.",
             "Una vez que llegues al quinto nivel de esta clase, puedes gastar puntos de ki adicionales para aumentar el nivel de un hechizo de disciplina elemental que echas, siempre que el hechizo tenga un efecto mejorado a un nivel superior, como {@spell burning hands}. El nivel del hechizo aumenta en 1 por cada punto adicional de ki que gastas. Por ejemplo, si eres un monje de 5o nivel y usa Sweeping Cinder Strike para fundir {@spell burning hands}, puedes gastar 3 puntos ki para lanzarlo como un hechizo de 2o nivel (el costo base de la disciplina de 2 puntos ki más 1).",
             "El número máximo de puntos de ki que puedes gastar para lanzar un hechizo de esta manera (incluyendo su costo de punto de base y cualquier punto de ki adicional que gastas para aumentar su nivel) está determinado por tu nivel de monje, como se muestra en la tabla Spells y Ki Points. A 5o nivel, puede gastar hasta 3 puntos de ki; esto aumenta a 4 puntos de ki a 9o nivel, 5 a 13o nivel y 6 a 17o nivel.",
             {

@@ -3456,7 +3456,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3501,7 +3501,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3525,7 +3525,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Cuando alcanzas el tercer nivel, ganas la habilidad de lanzar hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
+        "Cuando alcanzas el tercer nivel, ganas la habilidad de lanzar hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
         {
           "type": "entries",
           "entries": [
@@ -3656,7 +3656,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -3701,7 +3701,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+                "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
                 {
                   "type": "abilityDc",
                   "name": "Spell",
@@ -5487,7 +5487,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Has aprendido a hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas como un Truco Arcane.",
+        "Has aprendido a hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas como un Truco Arcane.",
         {
           "type": "entries",
           "name": "Cantrips",
@@ -6717,7 +6717,7 @@
           ],
           "name_es": "Scrolls",
           "entries_es": [
-            "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de ortografía para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
+            "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de spellcasting para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
           ]
         }
       ],
@@ -6754,7 +6754,7 @@
           ],
           "name_es": "Scrolls",
           "entries_es": [
-            "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de ortografía para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
+            "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de spellcasting para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
           ]
         }
       ]
@@ -7510,7 +7510,7 @@
       "name_es": "Curse Caster",
       "entries_es": [
         "A 13o nivel, puede utilizar una acción y gastar 3 puntos jinx para lanzar el hechizo *mejor maldición*.",
-        "Charisma es tu habilidad de ortografía para este hechizo."
+        "Charisma es tu habilidad de spellcasting para este hechizo."
       ]
     }
   ]

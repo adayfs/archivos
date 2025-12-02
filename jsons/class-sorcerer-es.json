@@ -2411,7 +2411,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2438,13 +2438,13 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de hechicero."
+            "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de hechicero."
           ]
         }
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Un evento en tu pasado, o en la vida de un padre o un ancestro, te dejó una marca indeleble, infundiéndote con magia arcana. Esta fuente de magia, sea cual sea su origen, alimenta tus hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter sorcerer spell list|spells|class=sorcerer}].",
+        "Un evento en tu pasado, o en la vida de un padre o un ancestro, te dejó una marca indeleble, infundiéndote con magia arcana. Esta fuente de magia, sea cual sea su origen, alimenta tus hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter sorcerer spell list|spells|class=sorcerer}].",
         {
           "type": "entries",
           "name": "Cantrips",
@@ -2508,7 +2508,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2535,7 +2535,7 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de hechicero."
+            "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de hechicero."
           ]
         }
       ]
@@ -3477,7 +3477,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
               ]
             },
             {
@@ -3551,7 +3551,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
               ]
             },
             {
@@ -3570,7 +3570,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Dibujo de tu magia innata, puedes hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información que figura a continuación detalla cómo utilizas esas reglas con hechizos Sorcerer, que aparecen en {@filter Sorcerer spell list|spells|class=Sorcerer} más adelante en la descripción de la clase.",
+        "Dibujo de tu magia innata, puedes hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información que figura a continuación detalla cómo utilizas esas reglas con hechizos Sorcerer, que aparecen en {@filter Sorcerer spell list|spells|class=Sorcerer} más adelante en la descripción de la clase.",
         {
           "type": "entries",
           "entries": [
@@ -3632,7 +3632,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
               ]
             },
             {
@@ -3706,7 +3706,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
               ]
             },
             {

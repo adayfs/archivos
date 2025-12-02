@@ -1919,7 +1919,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
+            "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de spellcasting. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -1941,7 +1941,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Para cuando llegues al segundo nivel, has aprendido a usar la esencia mágica de la naturaleza para lanzar hechizos, tanto como un druid lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter ranger spell list|spells|class=ranger}].",
+        "Para cuando llegues al segundo nivel, has aprendido a usar la esencia mágica de la naturaleza para lanzar hechizos, tanto como un druid lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter ranger spell list|spells|class=ranger}].",
         {
           "type": "entries",
           "name": "Spell Slots",
@@ -1994,7 +1994,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
+            "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de spellcasting. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2030,7 +2030,7 @@
       "name_es": "Spellcasting Focus",
       "entries_es": [
         "{@i 2nd-level ranger {@variantrule optional class features|tce|optional feature}",
-        "Puede utilizar un {@item druidic focus|phb} como un foco de ortografía para sus hechizos de ranger. Un foco druídico podría ser un ramillete de muérdago o holly, una varita o varilla hecha de yew u otra madera especial, un personal extraído entero de un árbol vivo, o un objeto que incorpora plumas, piel, huesos y dientes de animales sagrados."
+        "Puede utilizar un {@item druidic focus|phb} como un foco de spellcasting para sus hechizos de ranger. Un foco druídico podría ser un ramillete de muérdago o holly, una varita o varilla hecha de yew u otra madera especial, un personal extraído entero de un árbol vivo, o un objeto que incorpora plumas, piel, huesos y dientes de animales sagrados."
       ]
     },
     {
@@ -2717,7 +2717,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Has aprendido a canalizar la esencia mágica de la naturaleza para lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Ranger, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+        "Has aprendido a canalizar la esencia mágica de la naturaleza para lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Ranger, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
         {
           "type": "entries",
           "entries": [

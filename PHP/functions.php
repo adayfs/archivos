@@ -1487,7 +1487,7 @@ function renderizar_hoja_personaje($post_id) {
     <div class="hoja-personaje-container">
       <form method="post" class="formulario-hoja-personaje">
         <input type="hidden" id="hoja_guardar" name="hoja_guardar" value="">
-        <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>">
+        <input type="hidden" id="post_id" name="post_id" value="<?php echo esc_attr($post_id); ?>">
         <input type="hidden" id="apothecary_theories" name="apothecary_theories" value="<?php echo esc_attr( $apothecary_selection_json ); ?>">
 		  
 		      <?php
@@ -2051,7 +2051,7 @@ function renderizar_combate_personaje( $post_id ) {
   <div class="hoja-personaje-container">
 	  <form method="post" class="formulario-hoja-personaje">
 	    <input type="hidden" name="combate_guardar" value="1">
-	    <input type="hidden" name="post_id" value="<?php echo esc_attr( $post_id ); ?>">
+	    <input type="hidden" id="post_id" name="post_id" value="<?php echo esc_attr( $post_id ); ?>">
 
       <?php if ( function_exists( 'drak_recursos_render_block' ) ) : ?>
         <div class="combat-card combat-card--resources">
@@ -5470,6 +5470,49 @@ add_action( 'acf/init', function () {
             ],
         ],
     ] );
+
+    acf_add_local_field_group( [
+        'key'    => 'group_personaje_feats',
+        'title'  => 'Gestión de feats',
+        'fields' => [
+            [
+                'key'           => 'field_personaje_feats',
+                'label'         => 'Feats seleccionados',
+                'name'          => 'feats',
+                'type'          => 'repeater',
+                'layout'        => 'table',
+                'button_label'  => 'Añadir feat',
+                'instructions'  => 'Solo se admiten feats de la fuente XPHB.',
+                'sub_fields'    => [
+                    [
+                        'key'      => 'field_personaje_feat_id',
+                        'label'    => 'ID de feat',
+                        'name'     => 'feat_id',
+                        'type'     => 'text',
+                        'required' => 1,
+                    ],
+                    [
+                        'key'           => 'field_personaje_feat_source',
+                        'label'         => 'Fuente',
+                        'name'          => 'feat_source',
+                        'type'          => 'text',
+                        'default_value' => 'XPHB',
+                    ],
+                ],
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'personaje',
+                ],
+            ],
+        ],
+        'position' => 'normal',
+        'style'    => 'default',
+    ] );
 } );
 add_action('init', 'drak_register_personaje_cpt');
 
@@ -5967,6 +6010,16 @@ add_action('wp_enqueue_scripts', function () {
             'notes'          => sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) ),
         ];
         wp_localize_script( 'hoja-personaje-js', 'COMBAT_CONFIG', $combat_config );
+        $can_edit_sheet = $post_id ? drak_user_can_manage_personaje( $post_id ) : false;
+        $feat_nonce     = $post_id ? wp_create_nonce( 'save_feats_' . $post_id ) : '';
+        $feat_selected  = $post_id ? drak_get_character_feats( $post_id ) : [];
+        wp_localize_script( 'hoja-personaje-js', 'FEAT_MANAGER', [
+            'ajax_url' => drak_get_admin_ajax_url(),
+            'post_id'  => $post_id,
+            'nonce'    => $feat_nonce,
+            'selected' => $feat_selected,
+            'can_edit' => is_user_logged_in() && $can_edit_sheet,
+        ] );
         wp_localize_script('hoja-personaje-js', 'DND5_API', [
             'ajax_url' => drak_get_admin_ajax_url(),
         ]);
@@ -6742,6 +6795,238 @@ function drak_get_local_dnd_actions() {
 
     $cache = $actions;
     return $cache;
+}
+
+/**
+ * Devuelve el catálogo completo de feats (prioriza ES si existe).
+ *
+ * @return array
+ */
+function drak_get_local_dnd_feats() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $path = drak_locate_theme_data_file( 'dnd-feats-es.json' );
+    if ( ! $path ) {
+        $path = drak_locate_theme_data_file( 'dnd-feats.json' );
+    }
+    if ( ! $path ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $json = file_get_contents( $path );
+    $data = json_decode( $json, true );
+    if ( ! is_array( $data ) || empty( $data['feats'] ) ) {
+        $cache = [];
+        return $cache;
+    }
+
+    $cache = is_array( $data['feats'] ?? null ) ? $data['feats'] : [];
+    return $cache;
+}
+
+/**
+ * Índice de feats por ID o slug normalizado.
+ *
+ * @return array<string,array>
+ */
+function drak_get_local_dnd_feats_map() {
+    static $cache = null;
+
+    if ( $cache !== null ) {
+        return $cache;
+    }
+
+    $cache = [];
+    $feats = drak_get_local_dnd_feats();
+    foreach ( $feats as $feat ) {
+        if ( ! is_array( $feat ) ) {
+            continue;
+        }
+        $raw_name = $feat['name']['es'] ?? $feat['name']['en'] ?? ( is_string( $feat['name'] ?? null ) ? $feat['name'] : '' );
+        $name     = drak_strip_5e_markup( $raw_name ?: '' );
+        $id       = isset( $feat['id'] ) ? (string) $feat['id'] : '';
+
+        if ( $id ) {
+            $cache[ $id ] = $feat;
+        }
+
+        $slug = sanitize_title( $id ?: $name );
+        if ( $slug && ! isset( $cache[ $slug ] ) ) {
+            $cache[ $slug ] = $feat;
+        }
+    }
+
+    return $cache;
+}
+
+/**
+ * Genera un resumen corto del feat a partir de sus entries.
+ *
+ * @param array $feat
+ * @return string
+ */
+function drak_extract_feat_summary( $feat ) {
+    $entries = $feat['entries'] ?? [];
+    $text    = '';
+
+    if ( is_string( $entries ) ) {
+        $text = $entries;
+    } elseif ( is_array( $entries ) ) {
+        foreach ( $entries as $entry ) {
+            if ( is_string( $entry ) && trim( $entry ) !== '' ) {
+                $text = $entry;
+                break;
+            }
+            if ( isset( $entry['entry'] ) && is_string( $entry['entry'] ) ) {
+                $text = $entry['entry'];
+                break;
+            }
+            if ( isset( $entry['entries'] ) ) {
+                $nested = $entry['entries'];
+                if ( is_string( $nested ) && trim( $nested ) !== '' ) {
+                    $text = $nested;
+                    break;
+                }
+                if ( is_array( $nested ) ) {
+                    foreach ( $nested as $inner ) {
+                        if ( is_string( $inner ) && trim( $inner ) !== '' ) {
+                            $text = $inner;
+                            break 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    $clean = drak_strip_5e_markup( $text );
+    if ( $clean === '' ) {
+        return '';
+    }
+
+    $limit  = 220;
+    $length = function_exists( 'mb_strlen' ) ? mb_strlen( $clean ) : strlen( $clean );
+    if ( $length > $limit ) {
+        $slice = function_exists( 'mb_substr' ) ? mb_substr( $clean, 0, 200 ) : substr( $clean, 0, 200 );
+        return rtrim( $slice ) . '…';
+    }
+
+    return $clean;
+}
+
+/**
+ * Normaliza una lista de feats (ids + fuente) aplicando filtros y evitando duplicados.
+ *
+ * @param mixed $raw_list
+ * @return array<int,array{feat_id:string,feat_source:string}>
+ */
+function drak_normalize_character_feats( $raw_list ) {
+    $list = is_array( $raw_list ) ? $raw_list : [];
+    $out  = [];
+    $seen = [];
+
+    foreach ( $list as $entry ) {
+        $id     = '';
+        $source = '';
+
+        if ( is_array( $entry ) ) {
+            $id     = $entry['feat_id'] ?? $entry['id'] ?? '';
+            $source = $entry['feat_source'] ?? $entry['source'] ?? '';
+        } elseif ( is_string( $entry ) ) {
+            $id     = $entry;
+            $source = 'XPHB';
+        }
+
+        $id     = sanitize_text_field( wp_unslash( $id ) );
+        $source = strtoupper( sanitize_text_field( wp_unslash( $source ?: 'XPHB' ) ) );
+
+        if ( $id === '' || $source !== 'XPHB' ) {
+            continue; // Por ahora solo permitimos XPHB.
+        }
+
+        $key = strtolower( $id ) . '|' . $source;
+        if ( isset( $seen[ $key ] ) ) {
+            continue;
+        }
+        $seen[ $key ] = true;
+
+        $out[] = [
+            'feat_id'     => $id,
+            'feat_source' => $source,
+        ];
+    }
+
+    return array_values( $out );
+}
+
+/**
+ * Lee el repeater de feats del personaje en formato normalizado.
+ *
+ * @param int $post_id
+ * @return array<int,array{feat_id:string,feat_source:string}>
+ */
+function drak_get_character_feats( $post_id ) {
+    if ( ! $post_id ) {
+        return [];
+    }
+
+    $raw = get_field( 'feats', $post_id );
+    if ( ! is_array( $raw ) ) {
+        return [];
+    }
+
+    return drak_normalize_character_feats( $raw );
+}
+
+/**
+ * Enriquecer feats con nombre/resumen para enviarlos al frontend.
+ *
+ * @param array $feats   Lista normalizada [{feat_id, feat_source}]
+ * @param array $catalog Mapa de feats por id
+ *
+ * @return array<int,array{id:string,source:string,name:string,summary:string,entriesHtml:string,meta:string}>
+ */
+function drak_build_character_feat_payload( $feats, $catalog ) {
+    $payload = [];
+
+    foreach ( $feats as $feat ) {
+        $id     = $feat['feat_id'] ?? '';
+        $source = $feat['feat_source'] ?? '';
+        if ( ! $id ) {
+            continue;
+        }
+
+        $match   = $catalog[ $id ] ?? $catalog[ sanitize_title( $id ) ] ?? null;
+        $rawName = '';
+        if ( $match ) {
+            $rawName = $match['name']['es'] ?? $match['name']['en'] ?? ( is_string( $match['name'] ?? null ) ? $match['name'] : '' );
+        }
+        $name    = $rawName ? drak_strip_5e_markup( $rawName ) : $id;
+        $summary = $match ? drak_extract_feat_summary( $match ) : '';
+        $entries = $match['entries_es'] ?? $match['entries'] ?? [];
+        $body    = drak_render_5e_entries_html( $entries );
+        $meta    = [];
+        if ( ! empty( $match['source'] ) ) {
+            $meta[] = $match['source'];
+        }
+        $meta_text = implode( ' · ', $meta );
+
+        $payload[] = [
+            'id'      => $id,
+            'source'  => $source,
+            'name'    => $name,
+            'summary' => $summary,
+            'entriesHtml' => $body,
+            'meta'    => $meta_text,
+        ];
+    }
+
+    return $payload;
 }
 
 /**
@@ -8358,9 +8643,55 @@ add_action( 'wp_ajax_drak_wizard_create_personaje', 'drak_wizard_create_personaj
 add_action( 'wp_ajax_nopriv_drak_wizard_create_personaje', 'drak_wizard_create_personaje' );
 
 /**
+ * AJAX: guardar feats seleccionados en el repeater ACF.
+ */
+function drak_save_character_feats() {
+    if ( ! isset( $_POST['post_id'], $_POST['nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Faltan parámetros.' ], 400 );
+    }
+
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+
+    if ( ! $post_id || ! wp_verify_nonce( $nonce, 'save_feats_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Solicitud no válida.' ], 403 );
+    }
+
+    if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+    }
+
+    $raw_list = $_POST['feats'] ?? [];
+    if ( is_string( $raw_list ) ) {
+        $decoded = json_decode( wp_unslash( $raw_list ), true );
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            $raw_list = $decoded;
+        }
+    }
+
+    if ( ! is_array( $raw_list ) ) {
+        $raw_list = [];
+    }
+
+    $clean_list = drak_normalize_character_feats( $raw_list );
+    update_field( 'feats', $clean_list, $post_id );
+
+    $catalog = drak_get_local_dnd_feats_map();
+    $payload = drak_build_character_feat_payload( $clean_list, $catalog );
+
+    wp_send_json_success(
+        [
+            'feats' => $payload,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_save_character_feats', 'drak_save_character_feats' );
+
+/**
  * AJAX: rasgos combinados (raza + clase + subclase).
  */
 function drak_dnd5_get_feature_traits() {
+    $post_id    = isset( $_POST['post_id'] ) ? intval( $_POST['post_id'] ) : 0;
     $class_id    = isset( $_POST['class_id'] ) ? sanitize_text_field( wp_unslash( $_POST['class_id'] ) ) : '';
     $subclass_id = isset( $_POST['subclass_id'] ) ? sanitize_text_field( wp_unslash( $_POST['subclass_id'] ) ) : '';
     $race_id     = isset( $_POST['race_id'] ) ? sanitize_text_field( wp_unslash( $_POST['race_id'] ) ) : '';
@@ -8457,11 +8788,19 @@ function drak_dnd5_get_feature_traits() {
         ];
     }
 
+    $selected_feats = [];
+    if ( $post_id && drak_user_can_view_personaje( $post_id ) ) {
+        $selected_feats = drak_get_character_feats( $post_id );
+    }
+    $feat_catalog         = drak_get_local_dnd_feats_map();
+    $selected_feats_ready = drak_build_character_feat_payload( $selected_feats, $feat_catalog );
+
     wp_send_json_success([
         'race'     => $race_payload,
         'class'    => $class_payload,
         'subclass' => $subclass_payload,
         'esotericTheories' => drak_expand_apothecary_theories( $selected_theories ),
+        'selectedFeats'    => $selected_feats_ready,
     ]);
 }
 add_action( 'wp_ajax_drak_dnd5_get_feature_traits', 'drak_dnd5_get_feature_traits' );

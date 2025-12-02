@@ -1978,7 +1978,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Charisma es tu habilidad de spellcasting para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2005,13 +2005,13 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item holy symbol|phb} como un foco de ortografía para sus hechizos paladin."
+            "Puede utilizar un {@item holy symbol|phb} como un foco de spellcasting para sus hechizos paladin."
           ]
         }
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "En el segundo nivel, habéis aprendido a aprovechar la magia divina mediante la meditación y la oración para lanzar hechizos como un clérigo lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter paladin spell list|spells|class=paladin}].",
+        "En el segundo nivel, habéis aprendido a aprovechar la magia divina mediante la meditación y la oración para lanzar hechizos como un clérigo lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter paladin spell list|spells|class=paladin}].",
         {
           "type": "entries",
           "name": "Preparing and Casting Spells",
@@ -2053,7 +2053,7 @@
           ],
           "name_es": "Spellcasting Ability",
           "entries_es": [
-            "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
+            "Charisma es tu habilidad de spellcasting para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
             {
               "type": "abilityDc",
               "name": "Spell",
@@ -2080,7 +2080,7 @@
           ],
           "name_es": "Spellcasting Focus",
           "entries_es": [
-            "Puede utilizar un {@item holy symbol|phb} como un foco de ortografía para sus hechizos paladin."
+            "Puede utilizar un {@item holy symbol|phb} como un foco de spellcasting para sus hechizos paladin."
           ]
         }
       ]
@@ -2571,7 +2571,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
               ]
             },
             {
@@ -2632,7 +2632,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
               ]
             },
             {
@@ -2651,7 +2651,7 @@
       ],
       "name_es": "Spellcasting",
       "entries_es": [
-        "Has aprendido a hacer hechizos a través de la oración y la meditación. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con los hechizos Paladin, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+        "Has aprendido a hacer hechizos a través de la oración y la meditación. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con los hechizos Paladin, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
         {
           "type": "entries",
           "entries": [
@@ -2700,7 +2700,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
               ]
             },
             {
@@ -2761,7 +2761,7 @@
               ],
               "name_es": "Spellcasting Ability",
               "entries_es": [
-                "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
               ]
             },
             {

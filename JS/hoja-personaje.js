@@ -21,6 +21,7 @@
     initCharacterAutomation();
     updateTheorySummaryVisibility();
     initLanguageChoiceModal();
+    initFeatSelectionModal();
   });
 
   const SELECT_PLACEHOLDERS = Object.freeze({
@@ -122,6 +123,17 @@
   const APOTHECARY_CLASS_IDS = new Set(['apothecary-scgtd-drakkenheim']);
   const APOTHECARY_MUTAGENIST_ID = 'apothecary-mutagenist-scgtd-drakkenheim';
   let lastDerivedTools = [];
+  const FEAT_ALLOWED_SOURCE = 'XPHB';
+  const featSelectionState = {
+    catalog: null,
+    catalogMap: new Map(),
+    catalogPromise: null,
+    selected: [],
+    saved: [],
+    searchTerm: '',
+    isSaving: false,
+    modal: null,
+  };
 
   function initBasicTextChips() {
     const nodes = document.querySelectorAll('.profs-list .basic-text');
@@ -1044,10 +1056,22 @@
     refreshCombatFromCache();
 
     if (characterDataStore.data) {
+      const ctx = collectCombatContext();
+      const derived = buildDerivedCharacter(ctx, characterDataStore.data);
+      updateCombatBasicsDisplay(derived);
+      updateArmorTotals(derived);
+      updateCombatCard(derived, ctx);
       initConditionSelector();
     } else {
       loadCharacterData()
-        .then(() => initConditionSelector())
+        .then(() => {
+          const ctx = collectCombatContext();
+          const derived = buildDerivedCharacter(ctx, characterDataStore.data);
+          updateCombatBasicsDisplay(derived);
+          updateArmorTotals(derived);
+          updateCombatCard(derived, ctx);
+          initConditionSelector();
+        })
         .catch(() => {});
     }
   }
@@ -1255,10 +1279,22 @@
     const profsSection = createProficiencySectionController(overlay);
     const theoriesSection = createEsotericTheoryController(overlay);
     const modalClassSelect = overlay.querySelector('#modal-clase');
+    const modalSubclassSelect = overlay.querySelector('#modal-subclase');
+    const modalRaceSelect = overlay.querySelector('#modal-raza');
 
     if (modalClassSelect && typeof profsSection.applyClassProficiencies === 'function') {
       modalClassSelect.addEventListener('change', () => {
-        profsSection.applyClassProficiencies(modalClassSelect.value);
+        profsSection.applyClassProficiencies(modalClassSelect.value, modalSubclassSelect?.value || '');
+      });
+    }
+    if (modalSubclassSelect && typeof profsSection.applyClassProficiencies === 'function') {
+      modalSubclassSelect.addEventListener('change', () => {
+        profsSection.applyClassProficiencies(modalClassSelect?.value || '', modalSubclassSelect.value);
+      });
+    }
+    if (modalRaceSelect && typeof profsSection.applyRaceProficiencies === 'function') {
+      modalRaceSelect.addEventListener('change', () => {
+        profsSection.applyRaceProficiencies(modalRaceSelect.value);
       });
     }
 
@@ -1862,6 +1898,18 @@
       };
       return acc;
     }, {});
+    let classDefaults = {
+      weapons: [],
+      armors: [],
+      tools: [],
+      languages: [],
+    };
+    let raceDefaults = {
+      weapons: [],
+      armors: [],
+      tools: [],
+      languages: [],
+    };
 
     let profDataPromise = null;
     const staticProfBase = (() => {
@@ -1989,10 +2037,19 @@
         removeBtn.addEventListener('click', () => {
           info.values = info.values.filter((value) => value !== id);
           renderList(type);
+          persistHidden(type);
         });
         li.appendChild(removeBtn);
         info.list.appendChild(li);
       });
+      persistHidden(type);
+    }
+
+    function persistHidden(type) {
+      const info = config[type];
+      if (!info?.hidden) return;
+      info.hidden.value = serializeIds(info.values);
+      refreshSheetDisplays();
     }
 
     function refreshSheetDisplays() {
@@ -2014,6 +2071,7 @@
           if (!value || info.values.includes(value)) return;
           info.values.push(value);
           renderList(type);
+          persistHidden(type);
         });
       }
     });
@@ -2090,30 +2148,147 @@
       return result;
     }
 
-    function applyClassProficiencies(classId) {
+    function applyClassProficiencies(classId, subclassId = '') {
       const nextClassId = (classId || '').trim();
+      const nextSubclassId = (subclassId || '').trim();
       if (!nextClassId) {
         Object.entries(config).forEach(([type, info]) => {
           info.values = [];
           renderList(type);
+          persistHidden(type);
+        });
+        classDefaults = { weapons: [], armors: [], tools: [], languages: [] };
+        return;
+      }
+
+      const resolveClassDef = (data, id) => {
+        if (!data?.classDetails) return null;
+        const details = data.classDetails;
+        const slug = slugifyWeaponId(id);
+        const candidates = [id, slug, (id || '').toLowerCase()];
+        candidates.push(slug.replace(/-classic$/, ''));
+        candidates.push(slug.replace(/-one$/, ''));
+        for (const cand of candidates) {
+          if (details[cand]) return details[cand];
+        }
+        return null;
+      };
+
+      const matchSubclassDef = (classDef) => {
+        if (!classDef || !Array.isArray(classDef.subclasses)) return null;
+        const slug = slugifyWeaponId(nextSubclassId);
+        return (
+          classDef.subclasses.find(
+            (sub) =>
+              sub.id === nextSubclassId ||
+              slugifyWeaponId(sub.id) === slug ||
+              slugifyWeaponId(sub.name || '') === slug
+          ) || null
+        );
+      };
+
+      loadCharacterData()
+        .then((data) => {
+          const classDef = resolveClassDef(data, nextClassId);
+          const profs = classDef?.startingProficiencies || {};
+          const subclassDef = matchSubclassDef(classDef);
+          const subclassProfs = subclassDef?.startingProficiencies || {};
+
+          const merge = (a = [], b = []) => {
+            const seen = new Set();
+            const out = [];
+            [...a, ...b].forEach((val) => {
+              const clean = sanitizeProficiencyValue(val);
+              if (clean && !seen.has(clean)) {
+                seen.add(clean);
+                out.push(clean);
+              }
+            });
+            return out;
+          };
+
+          const nextValues = {
+            weapons: merge(flattenClassProficiencies(profs.weapons), flattenClassProficiencies(subclassProfs.weapons)),
+            armors: merge(flattenClassProficiencies(profs.armor), flattenClassProficiencies(subclassProfs.armor)),
+            tools: merge(
+              flattenClassProficiencies(profs.tools || profs.toolProficiencies),
+              flattenClassProficiencies(subclassProfs.tools || subclassProfs.toolProficiencies)
+            ),
+            languages: merge(
+              flattenClassProficiencies(profs.languages),
+              flattenClassProficiencies(subclassProfs.languages)
+            ),
+          };
+
+          classDefaults = nextValues;
+          const combined = {
+            weapons: merge(classDefaults.weapons, raceDefaults.weapons),
+            armors: merge(classDefaults.armors, raceDefaults.armors),
+            tools: merge(classDefaults.tools, raceDefaults.tools),
+            languages: merge(classDefaults.languages, raceDefaults.languages),
+          };
+
+          Object.entries(config).forEach(([type, info]) => {
+            info.values = combined[type] || [];
+            renderList(type);
+            persistHidden(type);
+          });
+        })
+        .catch(() => {});
+    }
+
+    function applyRaceProficiencies(raceId = '') {
+      const nextRaceId = (raceId || '').trim();
+      if (!nextRaceId) {
+        raceDefaults = { weapons: [], armors: [], tools: [], languages: [] };
+        Object.entries(config).forEach(([type, info]) => {
+          info.values = classDefaults[type] ? [...classDefaults[type]] : [];
+          renderList(type);
+          persistHidden(type);
         });
         return;
       }
 
+      const resolveRaceDef = (data, id) => {
+        if (!data?.races) return null;
+        const races = data.races;
+        const candidates = [];
+        const slug = slugifyWeaponId(id);
+        candidates.push(id);
+        if (slug) candidates.push(slug);
+        if (slug.endsWith('-classic')) candidates.push(slug.replace(/-classic$/, ''));
+        if (slug.endsWith('-one')) candidates.push(slug.replace(/-one$/, ''));
+        candidates.push((id || '').toLowerCase());
+        for (const cand of candidates) {
+          if (races[cand]) return races[cand];
+        }
+        // fallback: search values by slug match
+        const match = Object.values(races).find(
+          (r) => slugifyWeaponId(r.id || r.name || '') === slug || slugifyWeaponId(r.id || '').replace(/-classic$/, '') === slug
+        );
+        return match || null;
+      };
+
       loadCharacterData()
         .then((data) => {
-          const classDef = data?.classDetails?.[nextClassId];
-          const profs = classDef?.startingProficiencies || {};
+          const raceDef = resolveRaceDef(data, nextRaceId);
           const nextValues = {
-            weapons: flattenClassProficiencies(profs.weapons),
-            armors: flattenClassProficiencies(profs.armor),
-            tools: flattenClassProficiencies(profs.tools || profs.toolProficiencies),
-            languages: flattenClassProficiencies(profs.languages),
+            weapons: flattenClassProficiencies(raceDef?.weaponProficiencies),
+            armors: flattenClassProficiencies(raceDef?.armorProficiencies),
+            tools: flattenClassProficiencies(raceDef?.toolProficiencies),
+            languages: flattenClassProficiencies(raceDef?.languageProficiencies),
           };
-
+          raceDefaults = nextValues;
+          const combined = {
+            weapons: merge(classDefaults.weapons, raceDefaults.weapons),
+            armors: merge(classDefaults.armors, raceDefaults.armors),
+            tools: merge(classDefaults.tools, raceDefaults.tools),
+            languages: merge(classDefaults.languages, raceDefaults.languages),
+          };
           Object.entries(config).forEach(([type, info]) => {
-            info.values = nextValues[type] || [];
+            info.values = combined[type] || [];
             renderList(type);
+            persistHidden(type);
           });
         })
         .catch(() => {});
@@ -2127,6 +2302,15 @@
           info.values = parseIds(info.hidden?.value || '');
           renderList(type);
         });
+        const currentClass = root.querySelector('#modal-clase')?.value || '';
+        const currentSubclass = root.querySelector('#modal-subclase')?.value || '';
+        const currentRace = root.querySelector('#modal-raza')?.value || '';
+        if (currentClass) {
+          applyClassProficiencies(currentClass, currentSubclass);
+        }
+        if (currentRace) {
+          applyRaceProficiencies(currentRace);
+        }
       });
     }
 
@@ -2138,7 +2322,7 @@
       refreshSheetDisplays();
     }
 
-    return { populate, apply, ensureLookupCache, applyClassProficiencies };
+    return { populate, apply, ensureLookupCache, applyClassProficiencies, applyRaceProficiencies };
   }
 
   function initSkillSaveSystem() {
@@ -2307,7 +2491,7 @@
 
     function currentKey() {
       const theoryKey = JSON.stringify(getSelectedEsotericTheories() || []);
-      return [readValue('clase'), readValue('subclase'), readValue('raza'), theoryKey].join('|');
+      return [readValue('post_id'), readValue('clase'), readValue('subclase'), readValue('raza'), theoryKey].join('|');
     }
 
     function showLoading() {
@@ -2322,6 +2506,48 @@
       panelEl.innerHTML = `<p class="character-extended__error">${message}</p>`;
     }
 
+    function renderSelectedFeatsSection(list) {
+      const feats = Array.isArray(list) ? list : [];
+      const cards = feats
+        .map((feat) => {
+          const name = feat.name || feat.id || 'Feat';
+          const metaParts = [];
+          if (feat.meta) metaParts.push(feat.meta);
+          const meta = metaParts.length
+            ? `<div class="feature-card__meta">${metaParts.map(escapeHtml).join(' · ')}</div>`
+            : '';
+          const body =
+            feat.entriesHtml ||
+            (feat.summary ? `<p>${escapeHtml(feat.summary)}</p>` : '<p>Sin descripción.</p>');
+          return `
+            <article class="feature-card is-collapsed">
+              <header class="feature-card__header">
+                <h5 class="feature-card__title">${escapeHtml(name)}</h5>
+                <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle">
+                  <span class="feature-card__toggle-icon">▼</span>
+                </button>
+              </header>
+              <div class="feature-card__content">
+                ${meta}
+                <div class="feature-card__body">${body}</div>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      const body = feats.length
+        ? cards
+        : '<p class="character-extended__empty">No hay feats guardados.</p>';
+
+      return `
+        <section class="character-extended__section">
+          <h4 class="character-extended__section-title">Feat seleccionados</h4>
+          ${body}
+        </section>
+      `;
+    }
+
     function renderFeatures(data) {
       if (!data) {
         showEmpty('Sin datos disponibles.');
@@ -2329,6 +2555,8 @@
       }
 
       const blocks = [];
+
+      blocks.push(renderSelectedFeatsSection(data.selectedFeats));
 
       if (data.race) {
         const raceEntries = getLocalizedArrayFrom(data.race, 'entries');
@@ -2524,6 +2752,10 @@
         subclass_id: readValue('subclase'),
         race_id: readValue('raza'),
       });
+      const postId = readValue('post_id');
+      if (postId) {
+        payload.append('post_id', postId);
+      }
       const theoryValue = document.getElementById('apothecary_theories')?.value || '';
       if (theoryValue) {
         payload.append('apothecary_theories', theoryValue);
@@ -3531,7 +3763,24 @@
       properties: props,
       isMagical: Boolean(value.is_magical || value.es_magica),
       description: value.description || value.descripcion || '',
+      _propSet: buildWeaponPropertySet(props),
     };
+  }
+
+  function buildWeaponPropertySet(list) {
+    const set = new Set();
+    (list || []).forEach((raw) => {
+      const txt = (raw || '').toString().trim();
+      if (!txt) return;
+      set.add(txt.toLowerCase());
+      set.add(txt.toUpperCase());
+    });
+    return set;
+  }
+
+  function weaponHasProperty(weapon, codes = []) {
+    const set = weapon?._propSet || buildWeaponPropertySet(weapon?.properties || []);
+    return codes.some((code) => set.has(code) || set.has(code.toLowerCase()) || set.has(code.toUpperCase()));
   }
 
   function normalizeArmorData(value) {
@@ -3672,14 +3921,19 @@
   }
 
   function pickWeaponAbility(weapon, derived) {
-    const props = new Set((weapon?.properties || []).map((prop) => prop.toString().trim().toLowerCase()));
     const category = (weapon?.category || '').toLowerCase();
     const strMod = derived?.abilityMods?.str ?? 0;
     const dexMod = derived?.abilityMods?.dex ?? 0;
 
-    const hasThrown = Array.from(props).some((p) => p.includes('thrown') || p.includes('arrojadiza'));
-    const hasAmmo = Array.from(props).some((p) => p.includes('ammunition') || p.includes('municion'));
-    const hasFinesse = Array.from(props).some((p) => p.includes('finesse') || p.includes('sutileza'));
+    const hasThrown =
+      weaponHasProperty(weapon, ['T']) ||
+      weaponHasProperty(weapon, ['thrown', 'arrojadiza']);
+    const hasAmmo =
+      weaponHasProperty(weapon, ['A']) ||
+      weaponHasProperty(weapon, ['ammunition', 'municion']);
+    const hasFinesse =
+      weaponHasProperty(weapon, ['F']) ||
+      weaponHasProperty(weapon, ['finesse', 'sutileza']);
     const isRanged = category.includes('ranged') || category.includes('distancia') || hasAmmo;
     const isThrown = hasThrown;
 
@@ -3693,6 +3947,9 @@
       return { ability: 'str', mod: strMod, reason: 'Arma sutil (FUE)' };
     }
     if (isThrown) {
+      if (hasFinesse && dexMod >= strMod) {
+        return { ability: 'dex', mod: dexMod, reason: 'Arma arrojadiza sutil' };
+      }
       return { ability: 'str', mod: strMod, reason: 'Arma arrojadiza' };
     }
     return { ability: 'str', mod: strMod, reason: 'Arma cuerpo a cuerpo' };
@@ -3703,15 +3960,27 @@
     const manualWeapons = parseIds(document.getElementById('prof_weapons')?.value || '');
     manualWeapons.forEach((id) => addWeaponTokenVariants(set, id));
 
-    const classDef = characterDataStore.data?.classDetails?.[context.classId];
+    const classDetails = characterDataStore.data?.classDetails || {};
+    const classDef =
+      classDetails[context.classId] ||
+      classDetails[slugifyWeaponId(context.classId)] ||
+      classDetails[(context.classId || '').toLowerCase()];
     addWeaponEntriesToSet(set, classDef?.startingProficiencies?.weapons);
 
-    const raceDef = characterDataStore.data?.races?.[context.raceId];
+    const races = characterDataStore.data?.races || {};
+    const raceDef =
+      races[context.raceId] ||
+      races[slugifyWeaponId(context.raceId)] ||
+      races[(context.raceId || '').toLowerCase()];
     if (raceDef?.weaponProficiencies) {
       addWeaponEntriesToSet(set, raceDef.weaponProficiencies);
     }
 
-    const backgroundDef = characterDataStore.data?.backgrounds?.[context.backgroundId];
+    const backgrounds = characterDataStore.data?.backgrounds || {};
+    const backgroundDef =
+      backgrounds[context.backgroundId] ||
+      backgrounds[slugifyWeaponId(context.backgroundId)] ||
+      backgrounds[(context.backgroundId || '').toLowerCase()];
     if (backgroundDef?.weaponProficiencies) {
       addWeaponEntriesToSet(set, backgroundDef.weaponProficiencies);
     }
@@ -3810,6 +4079,19 @@
           .forEach((v) => feats.add(v));
       }
     }
+
+    if (Array.isArray(window.FEAT_MANAGER?.selected)) {
+      const catalog = characterDataStore.data?.feats || {};
+      window.FEAT_MANAGER.selected.forEach((entry) => {
+        const id = (entry?.feat_id || entry?.id || '').trim();
+        if (!id) return;
+        const info = catalog[id] || null;
+        const name =
+          typeof info?.name === 'object' ? info.name.es || info.name.en || info.id : info?.name || id;
+        feats.add(name);
+      });
+    }
+
     return Array.from(feats);
   }
 
@@ -4396,6 +4678,376 @@ function normalizeProficiencyList(list) {
           modal.style.display = 'flex';
         });
     });
+  }
+
+  function initFeatSelectionModal() {
+    const config = window.FEAT_MANAGER || {};
+    const trigger = document.getElementById('btn-feat-modal');
+    if (!trigger || !config.post_id || !config.nonce || !config.can_edit) {
+      return;
+    }
+
+    featSelectionState.saved = normalizeFeatSelection(config.selected || []);
+    featSelectionState.selected = featSelectionState.saved.map((item) => ({ ...item }));
+
+    const modal = ensureFeatModal();
+    featSelectionState.modal = modal;
+
+    const listEl = modal.querySelector('[data-feat-list]');
+    const selectedEl = modal.querySelector('[data-feat-selected]');
+    const searchInput = modal.querySelector('[data-feat-search]');
+    const closeBtn = modal.querySelector('.close-feat-modal');
+    const cancelBtn = modal.querySelector('[data-feat-cancel]');
+    const saveBtn = modal.querySelector('[data-feat-save]');
+
+    trigger.addEventListener('click', () => openModal());
+    closeBtn?.addEventListener('click', () => closeModal());
+    cancelBtn?.addEventListener('click', () => closeModal());
+    modal.addEventListener('click', (ev) => {
+      if (ev.target === modal) {
+        closeModal();
+      }
+    });
+
+    searchInput?.addEventListener('input', (ev) => {
+      featSelectionState.searchTerm = ev.target.value || '';
+      renderFeatList();
+    });
+
+    listEl?.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('[data-feat-action="toggle"]');
+      if (!btn) return;
+      const featId = btn.dataset.featId || '';
+      toggleFeatSelection(featId);
+    });
+
+    selectedEl?.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('[data-feat-remove]');
+      if (!btn) return;
+      const featId = btn.dataset.featRemove || '';
+      removeFeatSelection(featId);
+    });
+
+    saveBtn?.addEventListener('click', () => saveSelection(saveBtn));
+
+    function ensureFeatModal() {
+      let modalEl = document.getElementById('feat-selection-modal');
+      if (modalEl) return modalEl;
+      modalEl = document.createElement('div');
+      modalEl.id = 'feat-selection-modal';
+      modalEl.className = 'modal-overlay';
+      modalEl.style.display = 'none';
+      modalEl.innerHTML = `
+        <div class="modal-contenido feat-modal">
+          <span class="close-feat-modal" role="button" aria-label="Cerrar">×</span>
+          <h3>Seleccionar feats</h3>
+          <p class="feat-modal__hint">Solo se muestran feats con fuente XPHB.</p>
+          <div class="feat-modal__search">
+            <input type="text" data-feat-search placeholder="Buscar feat…" autocomplete="off">
+          </div>
+          <div class="feat-modal__selection-inline" data-feat-selected>
+            <p class="feat-modal__empty">Aún no has añadido feats.</p>
+          </div>
+          <div class="feat-modal__body">
+            <div class="feat-modal__list" data-feat-list>
+              <p class="feat-modal__empty">Cargando feats...</p>
+            </div>
+          </div>
+          <div class="sheet-modal-actions feat-modal__actions">
+            <button type="button" class="btn-secondary" data-feat-cancel>Cancelar</button>
+            <button type="button" class="btn-primary" data-feat-save>Guardar selección</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modalEl);
+      return modalEl;
+    }
+
+    function featKey(value) {
+      return (value || '')
+        .toString()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    function normalizeFeatSelection(list) {
+      if (!Array.isArray(list)) return [];
+      const clean = [];
+      const seen = new Set();
+      list.forEach((entry) => {
+        const id = (entry.feat_id || entry.id || '').toString().trim();
+        const source = (entry.feat_source || entry.source || FEAT_ALLOWED_SOURCE).toString().trim().toUpperCase();
+        if (!id || source !== FEAT_ALLOWED_SOURCE) return;
+        const key = `${id.toLowerCase()}|${source}`;
+        if (seen.has(key)) return;
+        seen.add(key);
+        clean.push({ feat_id: id, feat_source: source });
+      });
+      return clean;
+    }
+
+    function loadFeatCatalog() {
+      if (featSelectionState.catalog && Array.isArray(featSelectionState.catalog)) {
+        return Promise.resolve(featSelectionState.catalog);
+      }
+      if (featSelectionState.catalogPromise) {
+        return featSelectionState.catalogPromise;
+      }
+      featSelectionState.catalogPromise = loadCharacterData()
+        .then((data) => {
+          const featMap = data?.feats || {};
+          const list = Object.values(featMap)
+            .filter((feat) => (feat?.source || '').toString().toUpperCase() === FEAT_ALLOWED_SOURCE)
+            .map((feat) => ({ ...feat }));
+          list.sort((a, b) => getFeatName(a).localeCompare(getFeatName(b), 'es', { sensitivity: 'base' }));
+          featSelectionState.catalog = list;
+          const map = new Map();
+          list.forEach((feat) => {
+            const key = featKey(feat.id || getFeatName(feat));
+            if (key) {
+              map.set(key, feat);
+            }
+          });
+          featSelectionState.catalogMap = map;
+          return list;
+        })
+        .catch(() => {
+          featSelectionState.catalog = [];
+          featSelectionState.catalogMap = new Map();
+          return [];
+        })
+        .finally(() => {
+          featSelectionState.catalogPromise = null;
+        });
+      return featSelectionState.catalogPromise;
+    }
+
+    function getFeatFromCatalog(featId) {
+      const key = featKey(featId);
+      if (!key) return null;
+      return featSelectionState.catalogMap.get(key) || null;
+    }
+
+    function getFeatSummary(feat) {
+      if (!feat) return '';
+      const entries = feat.entries || [];
+      let text = '';
+      if (typeof entries === 'string') {
+        text = entries;
+      } else if (Array.isArray(entries)) {
+        for (const entry of entries) {
+          if (typeof entry === 'string' && entry.trim()) {
+            text = entry;
+            break;
+          }
+          if (entry && typeof entry === 'object') {
+            if (typeof entry.entry === 'string' && entry.entry.trim()) {
+              text = entry.entry;
+              break;
+            }
+            if (Array.isArray(entry.entries) && entry.entries.length) {
+              const first = entry.entries.find((line) => typeof line === 'string' && line.trim());
+              if (first) {
+                text = first;
+                break;
+              }
+            }
+          }
+        }
+      }
+      const clean = strip5eTags(text || '');
+      if (!clean) return '';
+      return clean.length > 200 ? `${clean.slice(0, 190).trim()}…` : clean;
+    }
+
+    function getFeatBody(feat) {
+      if (!feat) return '';
+      const entries = feat.entries_es || feat.entries || [];
+      const rendered = renderEntries(entries);
+      if (rendered) return rendered;
+      const summary = getFeatSummary(feat);
+      return summary ? `<p>${escapeHtml(summary)}</p>` : '<p>Sin descripción.</p>';
+    }
+
+    function getFeatName(feat) {
+      if (!feat) return '';
+      const raw =
+        typeof feat.name === 'object' ? feat.name.es || feat.name.en || feat.id : feat.name || feat.id;
+      const clean = strip5eTags(raw || '');
+      return clean || (feat.id || '');
+    }
+
+    function renderFeatList(showLoading = false) {
+      if (!listEl) return;
+      if (showLoading || featSelectionState.catalog === null) {
+        listEl.innerHTML = '<p class="feat-modal__empty">Cargando feats...</p>';
+        return;
+      }
+      if (!featSelectionState.catalog.length) {
+        listEl.innerHTML = '<p class="feat-modal__empty">No hay feats disponibles.</p>';
+        return;
+      }
+
+      const selectedKeys = new Set(featSelectionState.selected.map((entry) => featKey(entry.feat_id)));
+      const search = featKey(featSelectionState.searchTerm);
+
+      const cards = featSelectionState.catalog
+        .filter((feat) => {
+          if ((feat.source || '').toString().toUpperCase() !== FEAT_ALLOWED_SOURCE) return false;
+          if (!search) return true;
+          return featKey(getFeatName(feat)).includes(search);
+        })
+        .map((feat) => {
+          const isSelected = selectedKeys.has(featKey(feat.id || getFeatName(feat)));
+          const body = getFeatBody(feat);
+          const meta = feat.source ? `<div class="feat-row__meta">${escapeHtml(feat.source)}</div>` : '';
+          return `
+            <article class="feat-row" data-feat-row="${escapeHtml(feat.id || getFeatName(feat) || '')}">
+              <header class="feat-row__head">
+                <div class="feat-row__title">${escapeHtml(getFeatName(feat) || 'Feat')}</div>
+                ${meta}
+                <button type="button" class="feat-row__action${isSelected ? ' is-active' : ''}" data-feat-action="toggle" data-feat-id="${escapeHtml(feat.id || '')}">
+                  ${isSelected ? 'Quitar' : 'Añadir'}
+                </button>
+              </header>
+              <div class="feat-row__body">${body}</div>
+            </article>
+          `;
+        });
+
+      listEl.innerHTML = cards.length
+        ? cards.join('')
+        : '<p class="feat-modal__empty">No se encontraron feats con ese filtro.</p>';
+    }
+
+    function renderSelectedList() {
+      if (!selectedEl) return;
+      if (!featSelectionState.selected.length) {
+        selectedEl.innerHTML = '<p class="feat-modal__empty">Aún no has añadido feats.</p>';
+        return;
+      }
+
+      const chips = featSelectionState.selected
+        .map((entry) => {
+          const info = getFeatFromCatalog(entry.feat_id);
+          const name = getFeatName(info) || entry.feat_id;
+          return `
+            <div class="feat-chip" data-feat-chip="${escapeHtml(entry.feat_id)}">
+              <div class="feat-chip__title">${escapeHtml(name)}</div>
+              <button type="button" class="feat-chip__remove" aria-label="Quitar ${escapeHtml(
+                name
+              )}" data-feat-remove="${escapeHtml(entry.feat_id)}">×</button>
+            </div>
+          `;
+        })
+        .join('');
+
+      selectedEl.innerHTML = chips;
+    }
+
+    function openModal() {
+      featSelectionState.selected = featSelectionState.saved.map((item) => ({ ...item }));
+      featSelectionState.searchTerm = '';
+      if (searchInput) {
+        searchInput.value = '';
+      }
+      renderSelectedList();
+      renderFeatList(featSelectionState.catalog === null);
+      modal.style.display = 'flex';
+      loadFeatCatalog()
+        .then(() => {
+          renderFeatList();
+          renderSelectedList();
+        })
+        .catch(() => renderFeatList());
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    function toggleFeatSelection(featId) {
+      const id = (featId || '').trim();
+      if (!id) return;
+      const idx = featSelectionState.selected.findIndex((entry) => entry.feat_id === id);
+      if (idx >= 0) {
+        featSelectionState.selected.splice(idx, 1);
+      } else {
+        const info = getFeatFromCatalog(id);
+        const source = (info?.source || FEAT_ALLOWED_SOURCE).toString().toUpperCase();
+        if (source !== FEAT_ALLOWED_SOURCE) return;
+        featSelectionState.selected.push({ feat_id: id, feat_source: source });
+      }
+      renderFeatList();
+      renderSelectedList();
+    }
+
+    function removeFeatSelection(featId) {
+      const id = (featId || '').trim();
+      if (!id) return;
+      const next = featSelectionState.selected.filter((entry) => entry.feat_id !== id);
+      featSelectionState.selected = next;
+      renderFeatList();
+      renderSelectedList();
+    }
+
+    function saveSelection(button) {
+      if (featSelectionState.isSaving) return;
+      const ajaxUrl = config.ajax_url || (window.DND5_API && DND5_API.ajax_url);
+      if (!ajaxUrl) {
+        alert('No se pudo localizar el endpoint.');
+        return;
+      }
+
+      featSelectionState.isSaving = true;
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Guardando…';
+      }
+
+      const payload = new URLSearchParams({
+        action: 'drak_save_character_feats',
+        post_id: config.post_id,
+        nonce: config.nonce,
+        feats: JSON.stringify(featSelectionState.selected),
+      });
+
+      fetch(ajaxUrl, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: payload,
+      })
+        .then((resp) => resp.json())
+        .then((json) => {
+          if (!json || !json.success) {
+            throw new Error(json?.data?.message || 'No se pudieron guardar los feats.');
+          }
+          const normalized = normalizeFeatSelection(json.data?.feats || []);
+          featSelectionState.saved = normalized.map((item) => ({ ...item }));
+          featSelectionState.selected = normalized.map((item) => ({ ...item }));
+          window.FEAT_MANAGER.selected = normalized;
+          renderSelectedList();
+          renderFeatList();
+          closeModal();
+          if (typeof featureModuleApi.invalidate === 'function') {
+            featureModuleApi.invalidate();
+          }
+        })
+        .catch((err) => {
+          console.error('[Hoja] Error al guardar feats', err);
+          alert(err?.message || 'No se pudieron guardar los feats.');
+        })
+        .finally(() => {
+          featSelectionState.isSaving = false;
+          if (button) {
+            button.disabled = false;
+            button.textContent = 'Guardar selección';
+          }
+        });
+    }
   }
 
   function updateBasicStat(fieldId, value, formatter) {

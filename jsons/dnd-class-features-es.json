@@ -1094,16 +1094,16 @@
                 ],
                 "name_es": "La magia del arte",
                 "entries_es": [
-                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su ortografía, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una ortografía de cualquier otra clase, pero su método de ortografía es especial.",
+                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su spellcasting, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una spellcasting de cualquier otra clase, pero su método de spellcasting es especial.",
                   "El mismo principio se aplica cuando usted prepara sus hechizos. Como artificio, no estudias un libro de hechizos o rezas para preparar tus hechizos. En su lugar, usted trabaja con sus herramientas y crear los elementos especializados que utilizará para producir sus efectos. Si reemplazas {@spell cure wounds} por {@spell heat metal}, podrías estar alterando el dispositivo que usas para sanar—tal vez modificando una herramienta para que canalice calor en lugar de energía curativa.",
-                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu ortografía creativamente es una manera divertida de distinguirte de otros deletreadores."
+                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu spellcasting creativamente es una manera divertida de distinguirte de otros deletreadores."
                 ]
               }
             ],
             "name_es": "Herramientas requeridas",
             "entries_es": [
-              "Usted produce sus efectos de hechizo artificio a través de sus herramientas. Usted debe tener un foco de ortografía (específicamente {@item thieves' tools|phb} o algún tipo de {@item artisan's tools|phb|artisan's tool}]—en la mano cuando usted lanza cualquier hechizo con esta característica de Spellcasting (que significa que el hechizo tiene un componente 'M' cuando usted lo echa). Usted debe ser competente con la herramienta para utilizarla de esta manera. Véase {@book chapter 5|PHB|4}, \"Equipment\", en el {@book Player's Handbook|PHB} para descripciones de estas herramientas.",
-              "Después de ganar la función Infuse Item en el segundo nivel, también puede utilizar cualquier elemento que lleve una de sus infusiones como un foco de ortografía.",
+              "Usted produce sus efectos de hechizo artificio a través de sus herramientas. Usted debe tener un foco de spellcasting (específicamente {@item thieves' tools|phb} o algún tipo de {@item artisan's tools|phb|artisan's tool}]—en la mano cuando usted lanza cualquier hechizo con esta característica de Spellcasting (que significa que el hechizo tiene un componente 'M' cuando usted lo echa). Usted debe ser competente con la herramienta para utilizarla de esta manera. Véase {@book chapter 5|PHB|4}, \"Equipment\", en el {@book Player's Handbook|PHB} para descripciones de estas herramientas.",
+              "Después de ganar la función Infuse Item en el segundo nivel, también puede utilizar cualquier elemento que lleve una de sus infusiones como un foco de spellcasting.",
               {
                 "type": "inset",
                 "name": "The Magic of Artifice",
@@ -1114,9 +1114,9 @@
                 ],
                 "name_es": "La magia del arte",
                 "entries_es": [
-                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su ortografía, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una ortografía de cualquier otra clase, pero su método de ortografía es especial.",
+                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su spellcasting, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una spellcasting de cualquier otra clase, pero su método de spellcasting es especial.",
                   "El mismo principio se aplica cuando usted prepara sus hechizos. Como artificio, no estudias un libro de hechizos o rezas para preparar tus hechizos. En su lugar, usted trabaja con sus herramientas y crear los elementos especializados que utilizará para producir sus efectos. Si reemplazas {@spell cure wounds} por {@spell heat metal}, podrías estar alterando el dispositivo que usas para sanar—tal vez modificando una herramienta para que canalice calor en lugar de energía curativa.",
-                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu ortografía creativamente es una manera divertida de distinguirte de otros deletreadores."
+                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu spellcasting creativamente es una manera divertida de distinguirte de otros deletreadores."
                 ]
               }
             ]
@@ -1148,7 +1148,7 @@
               "La tabla Artificer muestra cuántas tragaperras de hechizos tienes que lanzar tus hechizos de artificio. Para lanzar uno de sus hechizos de artificio de primer nivel o superior, debe gastar una ranura del nivel del hechizo o superior. Recuperas todas las ranuras de hechizo gastadas cuando terminas un descanso largo.",
               "Usted prepara la lista de hechizos del artificio que están disponibles para que usted elenco, eligiendo del {@filter artificer spell list|spells|class=Artificer}. Cuando lo haga, elija un número de hechizos de artificio iguales a su modificador de inteligencia + la mitad de su nivel de artificio, redondeado (mínimo de un hechizo). Los hechizos deben ser de un nivel para el cual usted tiene ranuras de hechizo.",
               "Por ejemplo, si usted es un artificio de 5o nivel, tiene cuatro ranuras de 1o nivel y dos de segundo nivel. Con una inteligencia de 14, su lista de hechizos preparados puede incluir cuatro hechizos de primer o segundo nivel, en cualquier combinación. Si preparas el hechizo de primer nivel {@spell cure wounds}, puedes lanzarlo usando una ranura de primer nivel o de segundo nivel. Casting el hechizo no lo quita de tu lista de hechizos preparados.",
-              "Puedes cambiar tu lista de hechizos preparados cuando termines un largo descanso. La preparación de una nueva lista de hechizos del artificio requiere tiempo dedicado al tinkering con sus focos de ortografía: al menos 1 minuto por hechizo para cada hechizo en su lista."
+              "Puedes cambiar tu lista de hechizos preparados cuando termines un largo descanso. La preparación de una nueva lista de hechizos del artificio requiere tiempo dedicado al tinkering con sus focos de spellcasting: al menos 1 minuto por hechizo para cada hechizo en su lista."
             ]
           },
           {
@@ -1175,7 +1175,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La inteligencia es tu habilidad de spellcasting para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -1226,16 +1226,16 @@
                 ],
                 "name_es": "La magia del arte",
                 "entries_es": [
-                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su ortografía, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una ortografía de cualquier otra clase, pero su método de ortografía es especial.",
+                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su spellcasting, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una spellcasting de cualquier otra clase, pero su método de spellcasting es especial.",
                   "El mismo principio se aplica cuando usted prepara sus hechizos. Como artificio, no estudias un libro de hechizos o rezas para preparar tus hechizos. En su lugar, usted trabaja con sus herramientas y crear los elementos especializados que utilizará para producir sus efectos. Si reemplazas {@spell cure wounds} por {@spell heat metal}, podrías estar alterando el dispositivo que usas para sanar—tal vez modificando una herramienta para que canalice calor en lugar de energía curativa.",
-                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu ortografía creativamente es una manera divertida de distinguirte de otros deletreadores."
+                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu spellcasting creativamente es una manera divertida de distinguirte de otros deletreadores."
                 ]
               }
             ],
             "name_es": "Herramientas requeridas",
             "entries_es": [
-              "Usted produce sus efectos de hechizo artificio a través de sus herramientas. Usted debe tener un foco de ortografía (específicamente {@item thieves' tools|phb} o algún tipo de {@item artisan's tools|phb|artisan's tool}]—en la mano cuando usted lanza cualquier hechizo con esta característica de Spellcasting (que significa que el hechizo tiene un componente 'M' cuando usted lo echa). Usted debe ser competente con la herramienta para utilizarla de esta manera. Véase {@book chapter 5|PHB|4}, \"Equipment\", en el {@book Player's Handbook|PHB} para descripciones de estas herramientas.",
-              "Después de ganar la función Infuse Item en el segundo nivel, también puede utilizar cualquier elemento que lleve una de sus infusiones como un foco de ortografía.",
+              "Usted produce sus efectos de hechizo artificio a través de sus herramientas. Usted debe tener un foco de spellcasting (específicamente {@item thieves' tools|phb} o algún tipo de {@item artisan's tools|phb|artisan's tool}]—en la mano cuando usted lanza cualquier hechizo con esta característica de Spellcasting (que significa que el hechizo tiene un componente 'M' cuando usted lo echa). Usted debe ser competente con la herramienta para utilizarla de esta manera. Véase {@book chapter 5|PHB|4}, \"Equipment\", en el {@book Player's Handbook|PHB} para descripciones de estas herramientas.",
+              "Después de ganar la función Infuse Item en el segundo nivel, también puede utilizar cualquier elemento que lleve una de sus infusiones como un foco de spellcasting.",
               {
                 "type": "inset",
                 "name": "The Magic of Artifice",
@@ -1246,9 +1246,9 @@
                 ],
                 "name_es": "La magia del arte",
                 "entries_es": [
-                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su ortografía, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una ortografía de cualquier otra clase, pero su método de ortografía es especial.",
+                  "Como artificio, usa herramientas cuando lanzas tus hechizos. Al describir su spellcasting, piense en cómo está utilizando una herramienta para realizar el efecto del hechizo. Si usted echa {@spell cure wounds} utilizando {@item alchemist's supplies|PHB}, usted podría estar produciendo rápidamente un salve. Si lo echas usando {@item tinker's tools|PHB}, podrías tener una araña mecánica en miniatura que ata las heridas. Cuando usted echa {@spell poison spray}, usted podría fling productos químicos sucios o utilizar una varita que escupe el veneno. El efecto del hechizo es el mismo que para una spellcasting de cualquier otra clase, pero su método de spellcasting es especial.",
                   "El mismo principio se aplica cuando usted prepara sus hechizos. Como artificio, no estudias un libro de hechizos o rezas para preparar tus hechizos. En su lugar, usted trabaja con sus herramientas y crear los elementos especializados que utilizará para producir sus efectos. Si reemplazas {@spell cure wounds} por {@spell heat metal}, podrías estar alterando el dispositivo que usas para sanar—tal vez modificando una herramienta para que canalice calor en lugar de energía curativa.",
-                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu ortografía creativamente es una manera divertida de distinguirte de otros deletreadores."
+                  "Tales detalles no te limitan de ninguna manera ni te proporcionan ningún beneficio más allá de los efectos del hechizo. No tienes que justificar cómo estás usando herramientas para hacer un hechizo. Pero describir tu spellcasting creativamente es una manera divertida de distinguirte de otros deletreadores."
                 ]
               }
             ]
@@ -1280,7 +1280,7 @@
               "La tabla Artificer muestra cuántas tragaperras de hechizos tienes que lanzar tus hechizos de artificio. Para lanzar uno de sus hechizos de artificio de primer nivel o superior, debe gastar una ranura del nivel del hechizo o superior. Recuperas todas las ranuras de hechizo gastadas cuando terminas un descanso largo.",
               "Usted prepara la lista de hechizos del artificio que están disponibles para que usted elenco, eligiendo del {@filter artificer spell list|spells|class=Artificer}. Cuando lo haga, elija un número de hechizos de artificio iguales a su modificador de inteligencia + la mitad de su nivel de artificio, redondeado (mínimo de un hechizo). Los hechizos deben ser de un nivel para el cual usted tiene ranuras de hechizo.",
               "Por ejemplo, si usted es un artificio de 5o nivel, tiene cuatro ranuras de 1o nivel y dos de segundo nivel. Con una inteligencia de 14, su lista de hechizos preparados puede incluir cuatro hechizos de primer o segundo nivel, en cualquier combinación. Si preparas el hechizo de primer nivel {@spell cure wounds}, puedes lanzarlo usando una ranura de primer nivel o de segundo nivel. Casting el hechizo no lo quita de tu lista de hechizos preparados.",
-              "Puedes cambiar tu lista de hechizos preparados cuando termines un largo descanso. La preparación de una nueva lista de hechizos del artificio requiere tiempo dedicado al tinkering con sus focos de ortografía: al menos 1 minuto por hechizo para cada hechizo en su lista."
+              "Puedes cambiar tu lista de hechizos preparados cuando termines un largo descanso. La preparación de una nueva lista de hechizos del artificio requiere tiempo dedicado al tinkering con sus focos de spellcasting: al menos 1 minuto por hechizo para cada hechizo en su lista."
             ]
           },
           {
@@ -1307,7 +1307,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La inteligencia es tu habilidad de ortografía para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La inteligencia es tu habilidad de spellcasting para tus hechizos artificio; tu comprensión de la teoría detrás de la magia te permite manipular estos hechizos con habilidad superior. Usas tu Inteligencia cuando un hechizo de artificio se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo artificio que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -1587,8 +1587,8 @@
         "name_es": "Elemento de almacenamiento",
         "entries_es": [
           "[[TAG0]",
-          "Ahora puedes guardar un hechizo en un objeto. Cada vez que terminas un descanso largo, puedes tocar uno {@filter simple or martial weapon|items|source=phb|category=basic|type=martial weapon;simple weapon} o un elemento que puedes utilizar como foco de ortografía, y almacenas un hechizo en él, eligiendo un hechizo de primer o segundo nivel del {@filter artificer spell list|spells|class=Artificer|cast time=action|level=1;2} que requiere 1 acción para lanzar (no lo necesitas preparado).",
-          "Mientras sostiene el objeto, una criatura puede tomar una acción para producir el efecto del hechizo de él, utilizando su modificador de habilidad de ortografía. Si el hechizo requiere {@status concentration}, la criatura debe concentrarse. El hechizo se mantiene en el objeto hasta que se ha utilizado un número de veces igual al doble de su modificador de Inteligencia (mínimo de dos veces) o hasta que utilice esta característica de nuevo para almacenar un hechizo en un objeto."
+          "Ahora puedes guardar un hechizo en un objeto. Cada vez que terminas un descanso largo, puedes tocar uno {@filter simple or martial weapon|items|source=phb|category=basic|type=martial weapon;simple weapon} o un elemento que puedes utilizar como foco de spellcasting, y almacenas un hechizo en él, eligiendo un hechizo de primer o segundo nivel del {@filter artificer spell list|spells|class=Artificer|cast time=action|level=1;2} que requiere 1 acción para lanzar (no lo necesitas preparado).",
+          "Mientras sostiene el objeto, una criatura puede tomar una acción para producir el efecto del hechizo de él, utilizando su modificador de habilidad de spellcasting. Si el hechizo requiere {@status concentration}, la criatura debe concentrarse. El hechizo se mantiene en el objeto hasta que se ha utilizado un número de veces igual al doble de su modificador de Inteligencia (mínimo de dos veces) o hasta que utilice esta característica de nuevo para almacenar un hechizo en un objeto."
         ]
       },
       {
@@ -2950,7 +2950,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -2988,13 +2988,13 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item musical instrument|PHB} como un foco de ortografía para sus hechizos desnudos."
+              "Puede utilizar un {@item musical instrument|PHB} como un foco de spellcasting para sus hechizos desnudos."
             ]
           }
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Usted ha aprendido a desenredar y remodelar el tejido de la realidad en armonía con sus deseos y música. Tus hechizos son parte de tu vasto repertorio, magia que puedes sintonizar con diferentes situaciones. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter bard spell list|spells|class=bard}].",
+          "Usted ha aprendido a desenredar y remodelar el tejido de la realidad en armonía con sus deseos y música. Tus hechizos son parte de tu vasto repertorio, magia que puedes sintonizar con diferentes situaciones. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter bard spell list|spells|class=bard}].",
           {
             "type": "entries",
             "name": "Cantrips",
@@ -3058,7 +3058,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos desnudos. Tu magia viene del corazón y del alma que derramas en el rendimiento de tu música o oración. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo desnudo que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -3096,7 +3096,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item musical instrument|PHB} como un foco de ortografía para sus hechizos desnudos."
+              "Puede utilizar un {@item musical instrument|PHB} como un foco de spellcasting para sus hechizos desnudos."
             ]
           }
         ]
@@ -3690,7 +3690,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Bard."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Bard."
                 ]
               },
               {
@@ -3766,7 +3766,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Bard."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Bard."
                 ]
               },
               {
@@ -3785,7 +3785,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Has aprendido a lanzar hechizos a través de tus artes bárdicas. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Bard, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+          "Has aprendido a lanzar hechizos a través de tus artes bárdicas. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Bard, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -3849,7 +3849,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Bard."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Bard."
                 ]
               },
               {
@@ -3925,7 +3925,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Bard."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Bard."
                 ]
               },
               {
@@ -4227,7 +4227,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La sabiduría es tu habilidad de ortografía para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de lanzamiento. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La sabiduría es tu habilidad de spellcasting para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de lanzamiento. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -4265,13 +4265,13 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item holy symbol|phb} como un foco de ortografía para sus hechizos clérigos."
+              "Puede utilizar un {@item holy symbol|phb} como un foco de spellcasting para sus hechizos clérigos."
             ]
           }
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Como conducto para el poder divino, puedes lanzar hechizos clérigos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para una selección de {@filter cleric spells|spells|class=cleric}.",
+          "Como conducto para el poder divino, puedes lanzar hechizos clérigos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para una selección de {@filter cleric spells|spells|class=cleric}.",
           {
             "type": "entries",
             "name": "Cantrips",
@@ -4324,7 +4324,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La sabiduría es tu habilidad de ortografía para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de lanzamiento. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La sabiduría es tu habilidad de spellcasting para tus hechizos clérigos. El poder de tus hechizos viene de tu devoción a tu deidad. Usas tu Sabiduría cuando un hechizo clérigo se refiere a tu habilidad de lanzamiento. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo clérigo que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -4362,7 +4362,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item holy symbol|phb} como un foco de ortografía para sus hechizos clérigos."
+              "Puede utilizar un {@item holy symbol|phb} como un foco de spellcasting para sus hechizos clérigos."
             ]
           }
         ]
@@ -4760,7 +4760,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "La sabiduría es tu habilidad de ortografía para tus hechizos cléricos."
+                  "La sabiduría es tu habilidad de spellcasting para tus hechizos cléricos."
                 ]
               },
               {
@@ -4836,7 +4836,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "La sabiduría es tu habilidad de ortografía para tus hechizos cléricos."
+                  "La sabiduría es tu habilidad de spellcasting para tus hechizos cléricos."
                 ]
               },
               {
@@ -4855,7 +4855,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Has aprendido a hacer hechizos a través de la oración y la meditación. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información que figura a continuación detalla cómo utilizas esas reglas con hechizos cléricos, que aparecen en {@filter Cleric spell list|spells|class=Cleric} más adelante en la descripción de la clase.",
+          "Has aprendido a hacer hechizos a través de la oración y la meditación. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información que figura a continuación detalla cómo utilizas esas reglas con hechizos cléricos, que aparecen en {@filter Cleric spell list|spells|class=Cleric} más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -4919,7 +4919,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "La sabiduría es tu habilidad de ortografía para tus hechizos cléricos."
+                  "La sabiduría es tu habilidad de spellcasting para tus hechizos cléricos."
                 ]
               },
               {
@@ -4995,7 +4995,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "La sabiduría es tu habilidad de ortografía para tus hechizos cléricos."
+                  "La sabiduría es tu habilidad de spellcasting para tus hechizos cléricos."
                 ]
               },
               {
@@ -5511,7 +5511,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La sabiduría es tu habilidad de lanzamiento para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La sabiduría es tu habilidad de lanzamiento para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de spellcasting. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -5549,13 +5549,13 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item druidic focus|phb} como un foco de ortografía para sus hechizos druidos."
+              "Puede utilizar un {@item druidic focus|phb} como un foco de spellcasting para sus hechizos druidos."
             ]
           }
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Basándose en la esencia divina de la naturaleza misma, se pueden hacer hechizos para dar forma a esa esencia a su voluntad. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter druid spell list|spells|class=druid}].",
+          "Basándose en la esencia divina de la naturaleza misma, se pueden hacer hechizos para dar forma a esa esencia a su voluntad. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter druid spell list|spells|class=druid}].",
           {
             "type": "entries",
             "name": "Cantrips",
@@ -5608,7 +5608,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La sabiduría es tu habilidad de lanzamiento para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La sabiduría es tu habilidad de lanzamiento para tus hechizos druidos, ya que tu magia se basa en tu devoción y en la intimidad de la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de spellcasting. Además, utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo druido que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -5646,7 +5646,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item druidic focus|phb} como un foco de ortografía para sus hechizos druidos."
+              "Puede utilizar un {@item druidic focus|phb} como un foco de spellcasting para sus hechizos druidos."
             ]
           }
         ]
@@ -6211,7 +6211,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Has aprendido a hacer hechizos estudiando las fuerzas místicas de la naturaleza. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Druid, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+          "Has aprendido a hacer hechizos estudiando las fuerzas místicas de la naturaleza. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Druid, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -9704,7 +9704,7 @@
         ],
         "name_es": "Psionics",
         "entries_es": [
-          "Como estudiante de Psionics, puede dominar y utilizar talentos y disciplinas psionic, las reglas para las cuales aparecen al final de este documento. Psionics es una forma especial de uso mágico, distinta de la ortografía.",
+          "Como estudiante de Psionics, puede dominar y utilizar talentos y disciplinas psionic, las reglas para las cuales aparecen al final de este documento. Psionics es una forma especial de uso mágico, distinta de la spellcasting.",
           {
             "type": "entries",
             "name": "Psionic Talents",
@@ -9856,7 +9856,7 @@
             "name_es": "Opciones de efecto y puntos de Psi",
             "entries_es": [
               "Una disciplina proporciona diferentes opciones para cómo utilizarla con sus puntos psi. Cada opción de efecto tiene un nombre, y el costo de punto psi de esa opción aparece en paréntesis después de su nombre. Usted debe gastar ese número de puntos psi para utilizar esa opción, mientras que permanece por su límite psi. Si no te quedan suficientes puntos psi, o el costo está por encima de tu límite psi, no puedes usar la opción.",
-              "Algunas opciones muestran una gama de puntos psi, en lugar de un costo específico. Para utilizar esa opción, debe pasar una serie de puntos dentro de ese rango de puntos, aún presidiendo por su límite psi. Algunas opciones te permiten gastar puntos adicionales para aumentar la potencia de una disciplina. De nuevo, usted debe cumplir con su límite de psi, y usted debe pasar todos los puntos cuando primero utiliza la disciplina; no puede decidir gastar puntos adicionales una vez que vea la disciplina en acción.",
+              "Algunas opciones muestran una distancia de puntos psi, en lugar de un costo específico. Para utilizar esa opción, debe pasar una serie de puntos dentro de ese rango de puntos, aún presidiendo por su límite psi. Algunas opciones te permiten gastar puntos adicionales para aumentar la potencia de una disciplina. De nuevo, usted debe cumplir con su límite de psi, y usted debe pasar todos los puntos cuando primero utiliza la disciplina; no puede decidir gastar puntos adicionales una vez que vea la disciplina en acción.",
               "Cada opción toma nota de información específica sobre su efecto, incluyendo cualquier acción necesaria para utilizarlo y su rango."
             ]
           },
@@ -9994,7 +9994,7 @@
             "name_es": "Opciones de efecto y puntos de Psi",
             "entries_es": [
               "Una disciplina proporciona diferentes opciones para cómo utilizarla con sus puntos psi. Cada opción de efecto tiene un nombre, y el costo de punto psi de esa opción aparece en paréntesis después de su nombre. Usted debe gastar ese número de puntos psi para utilizar esa opción, mientras que permanece por su límite psi. Si no te quedan suficientes puntos psi, o el costo está por encima de tu límite psi, no puedes usar la opción.",
-              "Algunas opciones muestran una gama de puntos psi, en lugar de un costo específico. Para utilizar esa opción, debe pasar una serie de puntos dentro de ese rango de puntos, aún presidiendo por su límite psi. Algunas opciones te permiten gastar puntos adicionales para aumentar la potencia de una disciplina. De nuevo, usted debe cumplir con su límite de psi, y usted debe pasar todos los puntos cuando primero utiliza la disciplina; no puede decidir gastar puntos adicionales una vez que vea la disciplina en acción.",
+              "Algunas opciones muestran una distancia de puntos psi, en lugar de un costo específico. Para utilizar esa opción, debe pasar una serie de puntos dentro de ese rango de puntos, aún presidiendo por su límite psi. Algunas opciones te permiten gastar puntos adicionales para aumentar la potencia de una disciplina. De nuevo, usted debe cumplir con su límite de psi, y usted debe pasar todos los puntos cuando primero utiliza la disciplina; no puede decidir gastar puntos adicionales una vez que vea la disciplina en acción.",
               "Cada opción toma nota de información específica sobre su efecto, incluyendo cualquier acción necesaria para utilizarlo y su rango."
             ]
           },
@@ -10614,7 +10614,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -10641,13 +10641,13 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item holy symbol|phb} como un foco de ortografía para sus hechizos paladin."
+              "Puede utilizar un {@item holy symbol|phb} como un foco de spellcasting para sus hechizos paladin."
             ]
           }
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "En el segundo nivel, habéis aprendido a aprovechar la magia divina mediante la meditación y la oración para lanzar hechizos como un clérigo lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter paladin spell list|spells|class=paladin}].",
+          "En el segundo nivel, habéis aprendido a aprovechar la magia divina mediante la meditación y la oración para lanzar hechizos como un clérigo lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter paladin spell list|spells|class=paladin}].",
           {
             "type": "entries",
             "name": "Preparing and Casting Spells",
@@ -10689,7 +10689,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos paladin, ya que su poder deriva de la fuerza de tus convicciones. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al configurar eltirada de salvación DC para un hechizo paladín que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -10716,7 +10716,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item holy symbol|phb} como un foco de ortografía para sus hechizos paladin."
+              "Puede utilizar un {@item holy symbol|phb} como un foco de spellcasting para sus hechizos paladin."
             ]
           }
         ]
@@ -11089,7 +11089,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
                 ]
               },
               {
@@ -11150,7 +11150,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
                 ]
               },
               {
@@ -11169,7 +11169,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Has aprendido a hacer hechizos a través de la oración y la meditación. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con los hechizos Paladin, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+          "Has aprendido a hacer hechizos a través de la oración y la meditación. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con los hechizos Paladin, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -11218,7 +11218,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
                 ]
               },
               {
@@ -11279,7 +11279,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos Paladin."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos Paladin."
                 ]
               },
               {
@@ -11969,7 +11969,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de spellcasting. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -11991,7 +11991,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Para cuando llegues al segundo nivel, has aprendido a usar la esencia mágica de la naturaleza para lanzar hechizos, tanto como un druid lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter ranger spell list|spells|class=ranger}].",
+          "Para cuando llegues al segundo nivel, has aprendido a usar la esencia mágica de la naturaleza para lanzar hechizos, tanto como un druid lo hace. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter ranger spell list|spells|class=ranger}].",
           {
             "type": "entries",
             "name": "Spell Slots",
@@ -12044,7 +12044,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de ortografía. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
+              "La sabiduría es tu habilidad de lanzamiento para tus hechizos de ranger, ya que tu magia se basa en tu attunement a la naturaleza. Usted utiliza su Sabiduría cuando un hechizo se refiere a su habilidad de spellcasting. Además, usted utiliza su modificador de Sabiduría al establecer eltirada de salvación DC para un hechizo ranger que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -12076,7 +12076,7 @@
         "name_es": "Spellcasting Focus",
         "entries_es": [
           "{@i 2nd-level ranger {@variantrule optional class features|tce|optional feature}",
-          "Puede utilizar un {@item druidic focus|phb} como un foco de ortografía para sus hechizos de ranger. Un foco druídico podría ser un ramillete de muérdago o holly, una varita o varilla hecha de yew u otra madera especial, un personal extraído entero de un árbol vivo, o un objeto que incorpora plumas, piel, huesos y dientes de animales sagrados."
+          "Puede utilizar un {@item druidic focus|phb} como un foco de spellcasting para sus hechizos de ranger. Un foco druídico podría ser un ramillete de muérdago o holly, una varita o varilla hecha de yew u otra madera especial, un personal extraído entero de un árbol vivo, o un objeto que incorpora plumas, piel, huesos y dientes de animales sagrados."
         ]
       },
       {
@@ -12645,7 +12645,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Has aprendido a canalizar la esencia mágica de la naturaleza para lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Ranger, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+          "Has aprendido a canalizar la esencia mágica de la naturaleza para lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Ranger, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -13250,7 +13250,7 @@
         ],
         "name_es": "Feral Senses",
         "entries_es": [
-          "Su conexión con las fuerzas de la naturaleza le otorga [[TAG0] con una gama de 30 pies."
+          "Su conexión con las fuerzas de la naturaleza le otorga [[TAG0] con una distancia de 30 pies."
         ]
       },
       {
@@ -14478,7 +14478,7 @@
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
                   "La habilidad de lanzamiento del sidekick para estos hechizos depende de la elección que usted hizo en la mesa de Spellcasting.",
-                  "El sidekick utiliza su habilidad de ortografía cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de ortografía al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
+                  "El sidekick utiliza su habilidad de spellcasting cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de spellcasting al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
                   {
                     "type": "abilityDc",
                     "name": "Spell",
@@ -14610,7 +14610,7 @@
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
                   "La habilidad de lanzamiento del sidekick para estos hechizos depende de la elección que usted hizo en la mesa de Spellcasting.",
-                  "El sidekick utiliza su habilidad de ortografía cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de ortografía al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
+                  "El sidekick utiliza su habilidad de spellcasting cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de spellcasting al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
                   {
                     "type": "abilityDc",
                     "name": "Spell",
@@ -14646,7 +14646,7 @@
         "name_es": "Spellcasting",
         "entries_es": [
           "[[TAG0]",
-          "El sidekick gana la capacidad de lanzar hechizos. (Si la criatura ya tiene el rasgo del Spellcasting, esta característica reemplaza ese rasgo.) Elija el papel de Spellcaster: Mago, Sanador o Prodigio. Esta elección determina la lista de hechizos y la habilidad de ortografía utilizada por el sidekick, como se muestra en la tabla de Spellcasting.",
+          "El sidekick gana la capacidad de lanzar hechizos. (Si la criatura ya tiene el rasgo del Spellcasting, esta característica reemplaza ese rasgo.) Elija el papel de Spellcaster: Mago, Sanador o Prodigio. Esta elección determina la lista de hechizos y la habilidad de spellcasting utilizada por el sidekick, como se muestra en la tabla de Spellcasting.",
           {
             "type": "table",
             "caption": "Spellcasting",
@@ -14781,7 +14781,7 @@
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
                   "La habilidad de lanzamiento del sidekick para estos hechizos depende de la elección que usted hizo en la mesa de Spellcasting.",
-                  "El sidekick utiliza su habilidad de ortografía cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de ortografía al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
+                  "El sidekick utiliza su habilidad de spellcasting cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de spellcasting al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
                   {
                     "type": "abilityDc",
                     "name": "Spell",
@@ -14913,7 +14913,7 @@
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
                   "La habilidad de lanzamiento del sidekick para estos hechizos depende de la elección que usted hizo en la mesa de Spellcasting.",
-                  "El sidekick utiliza su habilidad de ortografía cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de ortografía al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
+                  "El sidekick utiliza su habilidad de spellcasting cuando un hechizo se refiere a esa habilidad. Además, utiliza su modificador de capacidad de spellcasting al establecer eltirada de salvación DC para un hechizo que lanza y al hacer un tirada de ataque con uno.",
                   {
                     "type": "abilityDc",
                     "name": "Spell",
@@ -14974,7 +14974,7 @@
         "name_es": "Potent Cantrips",
         "entries_es": [
           "[[TAG0]",
-          "El sidekick puede agregar su modificador de habilidad de ortografía al daño que trata con cualquier cantrip."
+          "El sidekick puede agregar su modificador de habilidad de spellcasting al daño que trata con cualquier cantrip."
         ]
       },
       {
@@ -15020,7 +15020,7 @@
         "name_es": "Empowered Spells",
         "entries_es": [
           "[[TAG0]",
-          "Elige una escuela de magia. Cada vez que el sidekick lanza un hechizo de esa escuela expendiendo de una ranura de hechizo, el sidekick puede agregar su modificador de habilidad de ortografía al tirada de daño del hechizo o tirada de curación, si es que hay."
+          "Elige una escuela de magia. Cada vez que el sidekick lanza un hechizo de esa escuela expendiendo de una ranura de hechizo, el sidekick puede agregar su modificador de habilidad de spellcasting al tirada de daño del hechizo o tirada de curación, si es que hay."
         ]
       },
       {
@@ -15459,7 +15459,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -15486,13 +15486,13 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de hechicero."
+              "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de hechicero."
             ]
           }
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Un evento en tu pasado, o en la vida de un padre o un ancestro, te dejó una marca indeleble, infundiéndote con magia arcana. Esta fuente de magia, sea cual sea su origen, alimenta tus hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter sorcerer spell list|spells|class=sorcerer}].",
+          "Un evento en tu pasado, o en la vida de un padre o un ancestro, te dejó una marca indeleble, infundiéndote con magia arcana. Esta fuente de magia, sea cual sea su origen, alimenta tus hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter sorcerer spell list|spells|class=sorcerer}].",
           {
             "type": "entries",
             "name": "Cantrips",
@@ -15556,7 +15556,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero, ya que el poder de tu magia depende de tu capacidad para proyectar tu voluntad en el mundo. Usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de hechicero que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -15583,7 +15583,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de hechicero."
+              "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de hechicero."
             ]
           }
         ]
@@ -16221,7 +16221,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
                 ]
               },
               {
@@ -16295,7 +16295,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
                 ]
               },
               {
@@ -16314,7 +16314,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Dibujo de tu magia innata, puedes hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información que figura a continuación detalla cómo utilizas esas reglas con hechizos Sorcerer, que aparecen en {@filter Sorcerer spell list|spells|class=Sorcerer} más adelante en la descripción de la clase.",
+          "Dibujo de tu magia innata, puedes hacer hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información que figura a continuación detalla cómo utilizas esas reglas con hechizos Sorcerer, que aparecen en {@filter Sorcerer spell list|spells|class=Sorcerer} más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -16376,7 +16376,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
                 ]
               },
               {
@@ -16450,7 +16450,7 @@
                 ],
                 "name_es": "Spellcasting Ability",
                 "entries_es": [
-                  "Charisma es tu habilidad de ortografía para tus hechizos de hechicero."
+                  "Charisma es tu habilidad de spellcasting para tus hechizos de hechicero."
                 ]
               },
               {
@@ -17523,7 +17523,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -17550,13 +17550,13 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de bloqueo."
+              "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de bloqueo."
             ]
           }
         ],
         "name_es": "Pact Magic",
         "entries_es": [
-          "Su investigación arcana y la magia que le otorga su patrón le han dado facilidad con hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter warlock spell list|spells|class=warlock}].",
+          "Su investigación arcana y la magia que le otorga su patrón le han dado facilidad con hechizos. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter warlock spell list|spells|class=warlock}].",
           {
             "type": "entries",
             "name": "Cantrips",
@@ -17620,7 +17620,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Charisma es tu habilidad de ortografía para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de ortografía. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Charisma es tu habilidad de spellcasting para tus hechizos de bloqueo, así que usas tu Charisma cuando un hechizo se refiere a tu habilidad de spellcasting. Además, usted utiliza su modificador de Charisma al establecer eltirada de salvación DC para un hechizo de bloqueo que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -17647,7 +17647,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos de bloqueo."
+              "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos de bloqueo."
             ]
           }
         ]
@@ -18267,7 +18267,7 @@
         ],
         "name_es": "Pact Magic",
         "entries_es": [
-          "A través de la ceremonia ocultista, has formado un pacto con una misteriosa entidad para ganar poderes mágicos. La entidad es una voz en las sombras —su identidad no clara— pero su capullo para usted es concreto: la capacidad de lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Warlock, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
+          "A través de la ceremonia ocultista, has formado un pacto con una misteriosa entidad para ganar poderes mágicos. La entidad es una voz en las sombras —su identidad no clara— pero su capullo para usted es concreto: la capacidad de lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Warlock, que aparecen en la [[TAG1] más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -19523,7 +19523,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -19561,7 +19561,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos magos."
+              "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos magos."
             ]
           },
           {
@@ -19683,7 +19683,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ],
@@ -19698,7 +19698,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ]
@@ -19839,7 +19839,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ],
@@ -19854,7 +19854,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ]
@@ -19893,7 +19893,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Como estudiante de magia arcana, tienes un libro de hechizos que contiene hechizos que muestran los primeros brillos de tu verdadero poder. Véase {@book chapter 10|PHB|10} para las reglas generales de la ortografía y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
+          "Como estudiante de magia arcana, tienes un libro de hechizos que contiene hechizos que muestran los primeros brillos de tu verdadero poder. Véase {@book chapter 10|PHB|10} para las reglas generales de la spellcasting y {@book chapter 11|PHB|11} para el {@filter wizard spell list|spells|class=wizard}].",
           {
             "type": "entries",
             "name": "Cantrips",
@@ -19957,7 +19957,7 @@
             ],
             "name_es": "Spellcasting Ability",
             "entries_es": [
-              "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de ortografía. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
+              "Inteligencia es tu habilidad de lanzamiento para tus hechizos magos, ya que aprendes tus hechizos magos a través de un estudio dedicado y la memorización. Usas tu Inteligencia cuando un hechizo se refiere a tu habilidad de spellcasting. Además, utiliza su modificador de Inteligencia al establecer eltirada de salvación DC para un hechizo mago que usted lanzó y al hacer un tirada de ataque con uno.",
               {
                 "type": "abilityDc",
                 "name": "Spell",
@@ -19995,7 +19995,7 @@
             ],
             "name_es": "Spellcasting Focus",
             "entries_es": [
-              "Puede utilizar un {@item arcane focus|phb} como un foco de ortografía para sus hechizos magos."
+              "Puede utilizar un {@item arcane focus|phb} como un foco de spellcasting para sus hechizos magos."
             ]
           },
           {
@@ -20117,7 +20117,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ],
@@ -20132,7 +20132,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ]
@@ -20273,7 +20273,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ],
@@ -20288,7 +20288,7 @@
                     "name_es": "Reemplazando el Libro",
                     "entries_es": [
                       "Puedes copiar un hechizo de tu propio libro de hechizos en otro libro, por ejemplo, si quieres hacer una copia de seguridad de tu libro de hechizos. Esto es como copiar un nuevo hechizo en tu libro de hechizos, pero más rápido y más fácil, ya que entiendes tu propia notación y ya sabes cómo lanzar el hechizo. Necesitas gastar sólo 1 hora y 10 gp para cada nivel del hechizo copiado.",
-                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de ortografía en un lugar seguro."
+                      "Si pierde su libro de hechizos, puede utilizar el mismo procedimiento para transcribir los hechizos que ha preparado en un nuevo libro de hechizos. Rellenar el resto de su libro de hechizos requiere que usted encuentre nuevos hechizos para hacerlo, como normal. Por esta razón, muchos magos mantienen libros de spellcasting en un lugar seguro."
                     ]
                   }
                 ]
@@ -20796,7 +20796,7 @@
         ],
         "name_es": "Spellcasting",
         "entries_es": [
-          "Como estudiante de magia arcana, has aprendido a lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la ortografía. La información a continuación detalla cómo utiliza esas reglas con hechizos Wizard, que aparecen en {@filter Wizard spell list|spells|class=Wizard} más adelante en la descripción de la clase.",
+          "Como estudiante de magia arcana, has aprendido a lanzar hechizos. Véase {@book chapter 7|XPHB|7} para las reglas sobre la spellcasting. La información a continuación detalla cómo utiliza esas reglas con hechizos Wizard, que aparecen en {@filter Wizard spell list|spells|class=Wizard} más adelante en la descripción de la clase.",
           {
             "type": "entries",
             "entries": [
@@ -21719,7 +21719,7 @@
         ],
         "name_es": "Alchemical Savant",
         "entries_es": [
-          "A 5o nivel, desarrollas el dominio magistral de químicos mágicos, mejorando la curación y el daño que creas a través de ellos. Cada vez que usted lanza un hechizo usando su {@item alchemist's supplies|PHB} como el foco de la ortografía, usted gana un bono a un tirada del hechizo. Ese tirada debe restaurar puntos de impacto o ser un tirada de daño que trate de ácido, fuego, necrotic o daño venenoso, y el bono equivale a su modificador de inteligencia (mínimo de +1)."
+          "A 5o nivel, desarrollas el dominio magistral de químicos mágicos, mejorando la curación y el daño que creas a través de ellos. Cada vez que usted lanza un hechizo usando su {@item alchemist's supplies|PHB} como el foco de la spellcasting, usted gana un bono a un tirada del hechizo. Ese tirada debe restaurar puntos de impacto o ser un tirada de daño que trate de ácido, fuego, necrotic o daño venenoso, y el bono equivale a su modificador de inteligencia (mínimo de +1)."
         ]
       },
       {
@@ -21929,7 +21929,7 @@
         "name_es": "Arcane Firearm",
         "entries_es": [
           "A 5o nivel, usted sabe cómo convertir una varita, personal o varilla en una arma de fuego arcana, un conducto para sus hechizos destructivos. Cuando termines un largo descanso, puedes usar {@item woodcarver's tools|PHB} para tallar sigiles especiales en una varita, personal o varilla y así convertirlo en tu arma de fuego arcana. Los sigiles desaparecen del objeto si después los tallas en un artículo diferente. Los sigiles duran indefinidamente.",
-          "Puede utilizar su arma de fuego arcano como un foco de ortografía para sus hechizos de artificio. Cuando usted lanzó un hechizo artificio a través de la arma de fuego, tirar un {@damage d8}, y usted gana un bono a uno de los rollos de daño del hechizo igual al número rodado."
+          "Puede utilizar su arma de fuego arcano como un foco de spellcasting para sus hechizos de artificio. Cuando usted lanzó un hechizo artificio a través de la arma de fuego, tirar un {@damage d8}, y usted gana un bono a uno de los rollos de daño del hechizo igual al número rodado."
         ]
       },
       {
@@ -22537,7 +22537,7 @@
         ],
         "name_es": "Consultar a los Espíritus",
         "entries_es": [
-          "A 10o nivel, usted gana la capacidad de consultar con sus espíritus ancestrales. Cuando lo haces, lanzas el hechizo {@spell augury} o {@spell clairvoyance}, sin usar una ranura de hechizo o componentes materiales. En lugar de crear un sensor esférico, este uso de [[TAG1] llama invisiblemente a uno de sus espíritus ancestrales a la ubicación elegida. La sabiduría es tu habilidad de ortografía para estos hechizos.",
+          "A 10o nivel, usted gana la capacidad de consultar con sus espíritus ancestrales. Cuando lo haces, lanzas el hechizo {@spell augury} o {@spell clairvoyance}, sin usar una ranura de hechizo o componentes materiales. En lugar de crear un sensor esférico, este uso de [[TAG1] llama invisiblemente a uno de sus espíritus ancestrales a la ubicación elegida. La sabiduría es tu habilidad de spellcasting para estos hechizos.",
           "Después de lanzar cualquier hechizo de esta manera, no puede utilizar esta característica de nuevo hasta que termine un breve o largo descanso."
         ]
       },
@@ -23207,7 +23207,7 @@
         "entries_es": [
           "[[TAG0]",
           "Tu vínculo con el poder elemental de los gigantes crece, y aprendes a infundir armas con energía primordial.",
-          "Cuando entras en tu rabia, puedes elegir un arma que lo sostienes y lo infundes con uno de los siguientes tipos de daños: ácido, frío, fuego, truenos o relámpagos. Mientras utiliza el arma infundida durante su rabia, el tipo de daño del arma cambia al tipo elegido, se ocupa de un daño extra [[TAG0] del tipo elegido cuando golpea, y gana la propiedad lanzada, con un rango normal de 20 pies y una larga gama de 60 pies. Si tiras el arma, vuelve a aparecer en tu mano al instante después de que golpee o pierda un objetivo. Los beneficios del arma infundida son suprimidos mientras que una criatura que no lo controla.",
+          "Cuando entras en tu rabia, puedes elegir un arma que lo sostienes y lo infundes con uno de los siguientes tipos de daños: ácido, frío, fuego, truenos o relámpagos. Mientras utiliza el arma infundida durante su rabia, el tipo de daño del arma cambia al tipo elegido, se ocupa de un daño extra [[TAG0] del tipo elegido cuando golpea, y gana la propiedad lanzada, con un rango normal de 20 pies y una larga distancia de 60 pies. Si tiras el arma, vuelve a aparecer en tu mano al instante después de que golpee o pierda un objetivo. Los beneficios del arma infundida son suprimidos mientras que una criatura que no lo controla.",
           "Si bien estrangula y sostiene el arma infundada, puede utilizar una acción de bonificación para cambiar el tipo de daño actual del arma infundida a otra de las opciones de tipo de daño anteriores."
         ]
       },
@@ -23352,7 +23352,7 @@
             ],
             "name_es": "Owl",
             "entries_es": [
-              "Usted tiene {@sense Darkvision|XPHB} con una gama de 60 pies. Si usted ya tiene {@sense Darkvision|XPHB}, su rango aumenta en 60 pies."
+              "Usted tiene {@sense Darkvision|XPHB} con una distancia de 60 pies. Si usted ya tiene {@sense Darkvision|XPHB}, su rango aumenta en 60 pies."
             ]
           },
           {
@@ -23389,7 +23389,7 @@
             ],
             "name_es": "Owl",
             "entries_es": [
-              "Usted tiene {@sense Darkvision|XPHB} con una gama de 60 pies. Si usted ya tiene {@sense Darkvision|XPHB}, su rango aumenta en 60 pies."
+              "Usted tiene {@sense Darkvision|XPHB} con una distancia de 60 pies. Si usted ya tiene {@sense Darkvision|XPHB}, su rango aumenta en 60 pies."
             ]
           },
           {
@@ -24027,7 +24027,7 @@
         ],
         "name_es": "Batalla Mágica",
         "entries_es": [
-          "A nivel 14, usted ha dominado el arte de tejer la ortografía y el uso de armas en un solo acto armónico. Cuando usas tu acción para lanzar un hechizo desnudo, puedes hacer un ataque de arma como una acción de bonificación."
+          "A nivel 14, usted ha dominado el arte de tejer la spellcasting y el uso de armas en un solo acto armónico. Cuando usas tu acción para lanzar un hechizo desnudo, puedes hacer un ataque de arma como una acción de bonificación."
         ]
       }
     ],
@@ -34080,7 +34080,7 @@
         "name_es": "Maestro telequinético",
         "entries_es": [
           "[[TAG0]",
-          "Su capacidad para mover criaturas y objetos con su mente es igualada por pocos. Puede lanzar el hechizo {@spell telekinesis}, sin necesidad de componentes, y su capacidad de ortografía para el hechizo es Inteligencia. En cada uno de tus turnos mientras te concentras en el hechizo, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como una acción de bonificación.",
+          "Su capacidad para mover criaturas y objetos con su mente es igualada por pocos. Puede lanzar el hechizo {@spell telekinesis}, sin necesidad de componentes, y su capacidad de spellcasting para el hechizo es Inteligencia. En cada uno de tus turnos mientras te concentras en el hechizo, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como una acción de bonificación.",
           "Una vez que usted lanzó el hechizo con esta característica, no puede hacerlo de nuevo hasta que termine un descanso largo, a menos que usted expulse una energía Psionic muere para echarlo de nuevo."
         ]
       }
@@ -34608,7 +34608,7 @@
         ],
         "name_es": "Maestro telequinético",
         "entries_es": [
-          "Siempre tienes el hechizo [[TAG0] preparado. Con esta característica, se puede fundir sin una ranura de hechizo o componentes, y su capacidad de ortografía para él es Inteligencia. En cada uno de tus turnos mientras mantienes {@status Concentration|XPHB} en él, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como un {@variantrule Bonus Action|XPHB}.",
+          "Siempre tienes el hechizo [[TAG0] preparado. Con esta característica, se puede fundir sin una ranura de hechizo o componentes, y su capacidad de spellcasting para él es Inteligencia. En cada uno de tus turnos mientras mantienes {@status Concentration|XPHB} en él, incluyendo el giro cuando lo lanzas, puedes hacer un ataque con un arma como un {@variantrule Bonus Action|XPHB}.",
           "Una vez que usted lanzó el hechizo con esta característica, no puede hacerlo de esta manera hasta que termine un {@variantrule Long Rest|XPHB} a menos que usted expulse un Psionic Energy Die (no se requiere acción) para restaurar su uso de él."
         ]
       }
@@ -38231,7 +38231,7 @@
         ],
         "name_es": "Gloriosa Defensa",
         "entries_es": [
-          "Puedes convertir la defensa en una huelga repentina. Cuando usted u otra criatura puede ver dentro de 10 pies de usted es golpeado por un tirada de ataque, usted puede tomar un {@variantrule Reaction|XPHB} otorgar un bono al AC del objetivo contra ese ataque, potencialmente causando que se pierda. El bono equivale a su modificador de Charisma (mínimo de +1). Si el ataque falla, usted puede hacer un ataque con un arma contra el atacante como parte de este {@variantrule Reaction|XPHB} si el atacante está dentro de la gama de su arma.",
+          "Puedes convertir la defensa en una huelga repentina. Cuando usted u otra criatura puede ver dentro de 10 pies de usted es golpeado por un tirada de ataque, usted puede tomar un {@variantrule Reaction|XPHB} otorgar un bono al AC del objetivo contra ese ataque, potencialmente causando que se pierda. El bono equivale a su modificador de Charisma (mínimo de +1). Si el ataque falla, usted puede hacer un ataque con un arma contra el atacante como parte de este {@variantrule Reaction|XPHB} si el atacante está dentro de la distancia de su arma.",
           "Puede utilizar esta característica varias veces igual a su modificador de Charisma (mínimo de una vez), y recuperar todos los usos gastados cuando termine un {@variantrule Long Rest|XPHB}."
         ]
       },
@@ -41560,7 +41560,7 @@
             ],
             "name_es": "Scrolls",
             "entries_es": [
-              "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de ortografía para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
+              "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de spellcasting para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
             ]
           }
         ],
@@ -41597,7 +41597,7 @@
             ],
             "name_es": "Scrolls",
             "entries_es": [
-              "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de ortografía para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
+              "Puede utilizar cualquier {@item Spell Scroll|XDMG}, usando Inteligencia como su habilidad de spellcasting para el hechizo. Si el hechizo es un cantrip o un hechizo de nivel 1, usted puede lanzarlo de forma fiable. Si el pergamino contiene un hechizo de alto nivel, primero debe tener éxito en un cheque de Inteligencia ([TAG1]) ([TAG2]] más el nivel del hechizo). En un cheque exitoso, usted lanzó el hechizo del pergamino. En un cheque fallido, el pergamino se desintegra."
             ]
           }
         ]
@@ -48803,7 +48803,7 @@
         ],
         "name_es": "Expert Divination",
         "entries_es": [
-          "A partir del sexto nivel, los hechizos de adivinación de casting vienen tan fácilmente a usted que gasta sólo una fracción de sus esfuerzos de ortografía. Cuando usted echa un {@filter divination spell of 2nd level or higher|spells|school=D} utilizando una ranura de hechizo, usted recupera una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que el hechizo que usted lanza y no puede ser más alto que el quinto nivel."
+          "A partir del sexto nivel, los hechizos de adivinación de casting vienen tan fácilmente a usted que gasta sólo una fracción de sus esfuerzos de spellcasting. Cuando usted echa un {@filter divination spell of 2nd level or higher|spells|school=D} utilizando una ranura de hechizo, usted recupera una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que el hechizo que usted lanza y no puede ser más alto que el quinto nivel."
         ]
       },
       {
@@ -48823,7 +48823,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -48869,7 +48869,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -48922,7 +48922,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -48968,7 +48968,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -49037,7 +49037,7 @@
         ],
         "name_es": "Expert Divination",
         "entries_es": [
-          "A partir del sexto nivel, los hechizos de adivinación de casting vienen tan fácilmente a usted que gasta sólo una fracción de sus esfuerzos de ortografía. Cuando usted echa un {@filter divination spell of 2nd level or higher|spells|school=D} utilizando una ranura de hechizo, usted recupera una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que el hechizo que usted lanza y no puede ser más alto que el quinto nivel."
+          "A partir del sexto nivel, los hechizos de adivinación de casting vienen tan fácilmente a usted que gasta sólo una fracción de sus esfuerzos de spellcasting. Cuando usted echa un {@filter divination spell of 2nd level or higher|spells|school=D} utilizando una ranura de hechizo, usted recupera una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que el hechizo que usted lanza y no puede ser más alto que el quinto nivel."
         ]
       },
       {
@@ -49057,7 +49057,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -49103,7 +49103,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -49156,7 +49156,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -49202,7 +49202,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana [[TAG0] a una gama de 60 pies."
+                  "Usted gana [[TAG0] a una distancia de 60 pies."
                 ]
               },
               {
@@ -50853,7 +50853,7 @@
         "entries_es": [
           "[[TAG0]",
           "Puedes conjurar la mente de tu libro de magia. Como una acción de bonificación mientras el libro está en su persona, usted puede hacer que la mente se manifieste como un objeto espectral pequeño, flotando en un espacio no ocupado de su elección dentro de 60 pies de usted. La mente espectral es intangible y no ocupa su espacio, y derrama luz en un radio de 10 pies. Parece un tomo fantasmal, una cascada de texto, o un erudito del pasado (su elección).",
-          "Mientras se manifiesta, la mente espectral puede escuchar y ver, y tiene {@sense darkvision} con una gama de 60 pies. La mente puede compartir telepáticamente con usted lo que ve y oye (no se requiere acción).",
+          "Mientras se manifiesta, la mente espectral puede escuchar y ver, y tiene {@sense darkvision} con una distancia de 60 pies. La mente puede compartir telepáticamente con usted lo que ve y oye (no se requiere acción).",
           "Cada vez que echas un hechizo mago en tu turno, puedes echarlo como si estuvieras en el espacio de la mente espectral, en lugar de la tuya, usando sus sentidos. Usted puede hacerlo un número de veces por día igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo.",
           "Como una acción de bonificación, usted puede hacer que la mente espectral para subir hasta 30 pies a un espacio no ocupado que usted o ella puede ver. Puede pasar a través de criaturas pero no de objetos.",
           "La mente espectral deja de manifestarse si está a más de 300 pies de distancia de usted, si alguien echa {@spell dispel magic} en él, si el libro de hechizos despilfarrado es destruido, si muere, o si usted despide la mente espectral como una acción de bonificación.",
@@ -50923,7 +50923,7 @@
         "entries_es": [
           "[[TAG0]",
           "Puedes conjurar la mente de tu libro de magia. Como una acción de bonificación mientras el libro está en su persona, usted puede hacer que la mente se manifieste como un objeto espectral pequeño, flotando en un espacio no ocupado de su elección dentro de 60 pies de usted. La mente espectral es intangible y no ocupa su espacio, y derrama luz en un radio de 10 pies. Parece un tomo fantasmal, una cascada de texto, o un erudito del pasado (su elección).",
-          "Mientras se manifiesta, la mente espectral puede escuchar y ver, y tiene {@sense darkvision} con una gama de 60 pies. La mente puede compartir telepáticamente con usted lo que ve y oye (no se requiere acción).",
+          "Mientras se manifiesta, la mente espectral puede escuchar y ver, y tiene {@sense darkvision} con una distancia de 60 pies. La mente puede compartir telepáticamente con usted lo que ve y oye (no se requiere acción).",
           "Cada vez que echas un hechizo mago en tu turno, puedes echarlo como si estuvieras en el espacio de la mente espectral, en lugar de la tuya, usando sus sentidos. Usted puede hacerlo un número de veces por día igual a su bonificación de competencia, y usted recupera todos los usos gastados cuando termina un descanso largo.",
           "Como una acción de bonificación, usted puede hacer que la mente espectral para subir hasta 30 pies a un espacio no ocupado que usted o ella puede ver. Puede pasar a través de criaturas pero no de objetos.",
           "La mente espectral deja de manifestarse si está a más de 300 pies de distancia de usted, si alguien echa {@spell dispel magic} en él, si el libro de hechizos despilfarrado es destruido, si muere, o si usted despide la mente espectral como una acción de bonificación.",
@@ -51227,7 +51227,7 @@
         ],
         "name_es": "Expert Divination",
         "entries_es": [
-          "Casting Divination hechizos viene tan fácilmente a usted que sólo gasta una fracción de sus esfuerzos de ortografía. Cuando lanzas un hechizo Divination usando una ranura de hechizo nivel 2+, recuperas una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que la ranura que gasta y no puede ser superior al nivel 5."
+          "Casting Divination hechizos viene tan fácilmente a usted que sólo gasta una fracción de sus esfuerzos de spellcasting. Cuando lanzas un hechizo Divination usando una ranura de hechizo nivel 2+, recuperas una ranura de hechizo gastado. La ranura que recupera debe ser de un nivel más bajo que la ranura que gasta y no puede ser superior al nivel 5."
         ]
       },
       {
@@ -51247,7 +51247,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana {@sense Darkvision|XPHB} con una gama de 120 pies."
+                  "Usted gana {@sense Darkvision|XPHB} con una distancia de 120 pies."
                 ]
               },
               {
@@ -51282,7 +51282,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana {@sense Darkvision|XPHB} con una gama de 120 pies."
+                  "Usted gana {@sense Darkvision|XPHB} con una distancia de 120 pies."
                 ]
               },
               {
@@ -51324,7 +51324,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana {@sense Darkvision|XPHB} con una gama de 120 pies."
+                  "Usted gana {@sense Darkvision|XPHB} con una distancia de 120 pies."
                 ]
               },
               {
@@ -51359,7 +51359,7 @@
                 ],
                 "name_es": "Darkvision",
                 "entries_es": [
-                  "Usted gana {@sense Darkvision|XPHB} con una gama de 120 pies."
+                  "Usted gana {@sense Darkvision|XPHB} con una distancia de 120 pies."
                 ]
               },
               {
