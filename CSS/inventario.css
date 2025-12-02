@@ -61,7 +61,8 @@
 .slot-label {
     flex: 0 0 auto;
     color: #ccc;
-    width: 60px;
+    width: 90px;
+    text-align: left;
 }
 
 /* Contenido del slot: lista vertical de objetos */
@@ -83,6 +84,28 @@
 .slot-item,
 .slot-empty {
     margin: 0;
+    font-size: 0.9rem;
+}
+
+.arma-slot .slot-content p,
+.armadura-slot .slot-content p {
+    margin: 0.1rem 0;
+}
+
+.arma-slot__hint {
+    margin: -0.35rem 0 1rem 60px;
+    color: #bfb3cc;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.arma-slot .slot-label,
+.armadura-slot .slot-label {
+    width: 130px;
+}
+
+.armor-meta {
+    color: #d9d3dd;
     font-size: 0.9rem;
 }
 
@@ -163,6 +186,14 @@
     font-size: 1.4rem;
 }
 
+.arma-modal-hint {
+    margin-top: -0.35rem;
+    margin-bottom: 0.75rem;
+    color: #d7c8e5;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 /* Formulario en columna, no en línea */
 .modal-contenido form {
     display: flex;
@@ -226,6 +257,10 @@
         width: auto;
         text-align: left;
         margin-bottom: 0.25rem;
+    }
+    .arma-slot .slot-label,
+    .armadura-slot .slot-label {
+        width: auto;
     }
 
     .slot-content {

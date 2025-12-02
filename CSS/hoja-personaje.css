@@ -390,6 +390,12 @@
     border-color: #f86aff;
 }
 
+.skill-icon--manual {
+    background: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
 .skill-source-label {
     display: inline-flex;
     width: 18px;
@@ -859,6 +865,13 @@
   line-height: 1.4;
 }
 
+.combat-condition-selector {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
 .combat-condition-body ul {
   margin: 0.25rem 0 0;
   padding-left: 1.1rem;
@@ -870,6 +883,56 @@
   font-size: 0.85rem;
 }
 
+.combat-condition-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.combat-condition-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: #0c1120;
+  border: 1px solid #1c2740;
+  border-radius: 8px;
+  color: #dcecff;
+}
+
+.combat-condition-chip small {
+  display: block;
+  color: #9ca7c2;
+}
+
+.combat-condition-remove {
+  background: transparent;
+  color: #ff9bbf;
+  border: 1px solid #ff9bbf;
+  border-radius: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.combat-condition-empty {
+  margin: 0;
+  color: #9ca7c2;
+}
+
+.combat-armor-card {
+  margin-top: 10px;
+  background: #0b0f1b;
+  border: 1px solid #1f2940;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.combat-armor-meta {
+  margin: 6px 0 0;
+  color: #9ca7c2;
+}
+
 .combat-card__eyebrow {
   margin: 0;
   font-size: 0.78rem;
@@ -878,8 +941,67 @@
   color: #9ca7c2;
 }
 
+.combat-weapon-switch {
+  display: inline-flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.weapon-switch-btn {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid #2a3550;
+  background: #0f1423;
+  color: #dbe4ff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.weapon-switch-btn.is-active {
+  background: #a600a6;
+  border-color: #a600a6;
+  color: #fff;
+}
+
 .combat-card__title {
   margin: 0 0 0.25rem;
+}
+
+.combat-weapon-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.combat-weapon-block {
+  background: #0c1020;
+  border: 1px solid #1f2940;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.combat-weapon-modifiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 8px 0 4px;
+}
+
+.combat-weapon-modifiers label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #cfd6ef;
+}
+
+.combat-weapon-modifiers input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #2a3550;
+  background: #0f1423;
+  color: #fff;
 }
 
 .combat-weapon-meta {
@@ -955,6 +1077,58 @@
 
 .combat-card--temp .temp-pv-block {
   margin: 0;
+}
+
+.combat-armor-wrapper {
+  margin-top: 12px;
+}
+
+.combat-armor-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.combat-armor-box {
+  background: #0b0f1b;
+  border: 1px solid #1f2940;
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.combat-armor-box__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: #dbe4ff;
+}
+
+.combat-armor-box__body {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #c7d2f0;
+}
+
+.combat-armor-mod input {
+  width: 100%;
+  margin-top: 2px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #2a3550;
+  background: #0f1423;
+  color: #fff;
+}
+
+.temp-pv-block input[type="number"] {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #2a3550;
+  background: #0f1423;
+  color: #fff;
 }
 
 .prof-chip {
@@ -1140,8 +1314,23 @@
 /* Texto de competencias en la misma línea, separado por comas */
 .profs-list .prof-item .basic-text {
     margin: 0;
-    display: inline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
     text-align: left;
+}
+
+.prof-chip--source-race {
+  border-color: #7fb4ff;
+  color: #cde4ff;
+  background: rgba(127, 180, 255, 0.12);
+}
+
+.prof-chip--source-bg {
+  border-color: #ffb366;
+  color: #ffe0c0;
+  background: rgba(255, 179, 102, 0.12);
 }
 
 /* --- Módulo extendido (spells / features / etc.) --- */

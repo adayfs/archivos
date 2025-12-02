@@ -1510,6 +1510,7 @@ function drak_campaign_render_homebrew( $campaign_id, $accent_color = '', $cover
     $accent      = $accent ?: '#9b5cff';
     $accent_weak = $accent ? drak_campaign_hex_to_rgba( $accent, 0.35 ) : 'rgba(155, 92, 255, 0.35)';
     $search       = isset( $_GET['hb_search'] ) ? sanitize_text_field( wp_unslash( $_GET['hb_search'] ) ) : '';
+    $can_manage   = function_exists( 'drak_homebrew_user_can_manage' ) ? drak_homebrew_user_can_manage() : false;
     ?>
     <div class="hb-wrapper" style="--accent: <?php echo esc_attr( $accent ); ?>; --accent-weak: <?php echo esc_attr( $accent_weak ); ?>;">
         <div class="hb-hero">
@@ -1518,9 +1519,11 @@ function drak_campaign_render_homebrew( $campaign_id, $accent_color = '', $cover
             </div>
             <div class="hb-hero__body">
                 <h2 class="hb-hero__title"><?php echo esc_html( get_the_title( $campaign_id ) ); ?> · Homebrew</h2>
-                <div class="hb-hero__links">
-                    <button class="drak-btn" type="button" data-hb-tab="notas">Añadir regla</button>
-                </div>
+                <?php if ( $can_manage ) : ?>
+                    <div class="hb-hero__links">
+                        <button class="drak-btn" type="button" data-hb-tab="notas">Añadir regla</button>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -1690,7 +1693,7 @@ while ( have_posts() ) :
     $gallery_url  = trailingslashit( $base_url . 'galeria' );
     $homebrew_url = trailingslashit( $base_url . 'homebrew' );
     $homebrew_ok  = function_exists( 'drak_homebrew_user_can_manage' ) ? drak_homebrew_user_can_manage() : false;
-    if ( 'homebrew' === $section && ! $homebrew_ok ) {
+    /*if ( 'homebrew' === $section && ! $homebrew_ok ) {
         if ( ! is_user_logged_in() ) {
             auth_redirect();
             exit;
@@ -1700,7 +1703,7 @@ while ( have_posts() ) :
             __( 'Acceso restringido', 'temahijo' ),
             [ 'response' => 403 ]
         );
-    }
+    }*/
     $logo_id      = drak_get_campaign_logo_id( $campaign_id );
     $logo_html    = $logo_id ? wp_get_attachment_image( $logo_id, 'medium', false, [ 'class' => 'campaign-hero__logo-img' ] ) : '';
     ?>
@@ -1731,11 +1734,10 @@ while ( have_posts() ) :
                         <a class="campaign-action drak-btn<?php echo $section === 'wiki' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $wiki_url ); ?>">
                             <span class="campaign-action__title">Wiki</span>
                         </a>
-                        <?php if ( $homebrew_ok ) : ?>
+                       
                             <a class="campaign-action drak-btn<?php echo $section === 'homebrew' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $homebrew_url ); ?>">
                                 <span class="campaign-action__title">Homebrew</span>
                             </a>
-                        <?php endif; ?>
                         <a class="campaign-action drak-btn<?php echo $section === 'galeria' ? ' is-active' : ''; ?>" href="<?php echo esc_url( $gallery_url ); ?>">
                             <span class="campaign-action__title">Galería</span>
                         </a>

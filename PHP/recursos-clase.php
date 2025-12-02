@@ -618,7 +618,11 @@ add_action(
 				'methods'             => 'POST',
 				'callback'            => function( $req ) {
 					$post_id = (int) $req['post_id'];
-					if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					$can_manage = current_user_can( 'edit_post', $post_id );
+					if ( ! $can_manage && function_exists( 'drak_user_can_manage_personaje' ) ) {
+						$can_manage = drak_user_can_manage_personaje( $post_id );
+					}
+					if ( ! $can_manage ) {
 						return new WP_Error( 'forbidden', 'Sin permisos', [ 'status' => 403 ] );
 					}
 					$rid    = sanitize_text_field( $req['resource_id'] ?? '' );
@@ -639,7 +643,11 @@ add_action(
 				'methods'             => 'POST',
 				'callback'            => function( $req ) {
 					$post_id = (int) $req['post_id'];
-					if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					$can_manage = current_user_can( 'edit_post', $post_id );
+					if ( ! $can_manage && function_exists( 'drak_user_can_manage_personaje' ) ) {
+						$can_manage = drak_user_can_manage_personaje( $post_id );
+					}
+					if ( ! $can_manage ) {
 						return new WP_Error( 'forbidden', 'Sin permisos', [ 'status' => 403 ] );
 					}
 					$rid    = sanitize_text_field( $req['resource_id'] ?? '' );
@@ -660,7 +668,11 @@ add_action(
 				'methods'             => 'POST',
 				'callback'            => function( $req ) {
 					$post_id = (int) $req['post_id'];
-					if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					$can_manage = current_user_can( 'edit_post', $post_id );
+					if ( ! $can_manage && function_exists( 'drak_user_can_manage_personaje' ) ) {
+						$can_manage = drak_user_can_manage_personaje( $post_id );
+					}
+					if ( ! $can_manage ) {
 						return new WP_Error( 'forbidden', 'Sin permisos', [ 'status' => 403 ] );
 					}
 					$tipo = sanitize_text_field( $req['type'] ?? 'short' ); // short|long
@@ -677,7 +689,11 @@ add_action(
 				'methods'             => 'POST',
 				'callback'            => function( $req ) {
 					$post_id = (int) $req['post_id'];
-					if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					$can_manage = current_user_can( 'edit_post', $post_id );
+					if ( ! $can_manage && function_exists( 'drak_user_can_manage_personaje' ) ) {
+						$can_manage = drak_user_can_manage_personaje( $post_id );
+					}
+					if ( ! $can_manage ) {
 						return new WP_Error( 'forbidden', 'Sin permisos', [ 'status' => 403 ] );
 					}
 					drak_recursos_upsert_para_personaje( $post_id );

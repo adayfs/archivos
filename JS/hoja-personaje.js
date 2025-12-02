@@ -3,18 +3,24 @@
     if (!document.querySelector('.formulario-hoja-personaje')) {
       return;
     }
+    initBasicTextChips();
     initManualOverrideState();
+    hydrateManualSkills();
     initTempHpControls();
     initCombatModule();
     initSheetModal();
     refreshAbilityDisplays();
+    initEditableBasics();
     initSkillSaveSystem();
+    applyManualSkillSelections();
+    recomputeSkillsAndSaves();
     initExtendedModule();
     initStandaloneClassSelects();
     initExpertiseManager();
     initClassReferenceModule();
     initCharacterAutomation();
     updateTheorySummaryVisibility();
+    initLanguageChoiceModal();
   });
 
   const SELECT_PLACEHOLDERS = Object.freeze({
@@ -78,20 +84,89 @@
     wis: 'SAB',
     cha: 'CAR',
   });
+  const LANGUAGE_FALLBACK = Object.freeze([
+    { id: 'common', name: 'Común' },
+    { id: 'dwarvish', name: 'Enano' },
+    { id: 'elvish', name: 'Élfico' },
+    { id: 'giant', name: 'Gigante' },
+    { id: 'gnomish', name: 'Gnomo' },
+    { id: 'goblin', name: 'Goblin' },
+    { id: 'halfling', name: 'Mediano' },
+    { id: 'orc', name: 'Orco' },
+    { id: 'abyssal', name: 'Abisal' },
+    { id: 'celestial', name: 'Celestial' },
+    { id: 'draconic', name: 'Dracónico' },
+    { id: 'deep-speech', name: 'Habla Profunda' },
+    { id: 'infernal', name: 'Infernal' },
+    { id: 'primordial', name: 'Primordial' },
+    { id: 'sylvan', name: 'Silvano' },
+    { id: 'undercommon', name: 'Inframundo' },
+  ]);
 
   const manualOverrideConfig = Object.freeze({
     cs_hp: 'cs_hp_manual_override',
+    cs_iniciativa: 'cs_iniciativa_manual_override',
+    cs_ac: 'cs_ac_manual_override',
+    cs_velocidad: 'cs_velocidad_manual_override',
   });
 
   const manualBasicOverrides = new Set();
+  const manualSkillSelections = new Set();
 
   const STATIC_DATA = window.DND5_STATIC_DATA || null;
   const COMBAT_CONFIG = window.COMBAT_CONFIG || {};
+  const BASIC_SAVE_CONFIG = window.BASIC_AUTOSAVE || null;
   const PRELOADED_THEORY_CATALOG = Array.isArray(window.APOTHECARY_THEORY_CATALOG)
     ? window.APOTHECARY_THEORY_CATALOG
     : null;
   const APOTHECARY_CLASS_IDS = new Set(['apothecary-scgtd-drakkenheim']);
   const APOTHECARY_MUTAGENIST_ID = 'apothecary-mutagenist-scgtd-drakkenheim';
+  let lastDerivedTools = [];
+
+  function initBasicTextChips() {
+    const nodes = document.querySelectorAll('.profs-list .basic-text');
+    nodes.forEach((node) => {
+      const raw = node.textContent || '';
+      const isLanguages = node.id === 'display_cs_idiomas';
+      const chips = Array.from(node.querySelectorAll('.prof-chip')).map((chip) => chip.textContent.trim());
+      const parts = raw
+        .split(/[,;]+/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+        .concat(chips);
+      if (!parts.length) return;
+
+      const frag = document.createDocumentFragment();
+      parts.forEach((item, idx) => {
+        const span = document.createElement('span');
+        span.className = 'prof-chip prof-chip--plain';
+        let label = item;
+
+        const sourceMatch = item.match(/^(Raza|Trasfondo)\s*:\s*(.+)$/i);
+        if (sourceMatch) {
+          const kind = sourceMatch[1].toLowerCase();
+          label = sourceMatch[2];
+          span.classList.add(kind === 'raza' ? 'prof-chip--source-race' : 'prof-chip--source-bg');
+        }
+
+        if (isLanguages) {
+          span.dataset.langIndex = idx;
+          span.dataset.langId = label;
+          if (/any/i.test(label)) {
+            span.dataset.langAny = '1';
+            span.classList.add('prof-chip--choose');
+            span.classList.remove('prof-chip--plain');
+          }
+        }
+
+        span.textContent = label;
+        frag.appendChild(span);
+      });
+
+      node.textContent = '';
+      node.appendChild(frag);
+    });
+  }
 
   const SKILL_FIELD_BY_NAME = Object.freeze({
     'acrobatics': 'cs_skill_acrobacias',
@@ -158,9 +233,15 @@
     data: null,
   };
   const combatModuleState = {
-    weapon: COMBAT_CONFIG.weapon_main || null,
-    attackExtra: Number(COMBAT_CONFIG.attack_extra || 0) || 0,
-    damageExtra: Number(COMBAT_CONFIG.damage_extra || 0) || 0,
+    weaponMain: COMBAT_CONFIG.weapon_main || null,
+    weaponOff: COMBAT_CONFIG.weapon_offhand || null,
+    attackExtraMain: Number(COMBAT_CONFIG.attack_extra_main || 0) || 0,
+    damageExtraMain: Number(COMBAT_CONFIG.damage_extra_main || 0) || 0,
+    attackExtraOff: Number(COMBAT_CONFIG.attack_extra_off || 0) || 0,
+    damageExtraOff: Number(COMBAT_CONFIG.damage_extra_off || 0) || 0,
+    acExtra: Number(COMBAT_CONFIG.ac_extra || 0) || 0,
+    shieldExtra: Number(COMBAT_CONFIG.shield_extra || 0) || 0,
+    tempHpExtra: Number(COMBAT_CONFIG.temp_hp_extra || 0) || 0,
     notes: COMBAT_CONFIG.notes || '',
   };
   let lastCombatContext = null;
@@ -496,6 +577,26 @@
     return manualBasicOverrides.has(fieldId);
   }
 
+  function getManualSkillsHiddenField() {
+    return document.getElementById('manual_skill_overrides');
+  }
+
+  function hydrateManualSkills() {
+    const hidden = getManualSkillsHiddenField();
+    if (!hidden || !hidden.value) return;
+    hidden.value
+      .split(',')
+      .map((v) => v.trim())
+      .filter(Boolean)
+      .forEach((id) => manualSkillSelections.add(id));
+  }
+
+  function persistManualSkills() {
+    const hidden = getManualSkillsHiddenField();
+    if (!hidden) return;
+    hidden.value = Array.from(manualSkillSelections).join(',');
+  }
+
   function formatMod(value) {
     if (!Number.isFinite(value)) return '0';
     return value > 0 ? `+${value}` : `${value}`;
@@ -638,18 +739,35 @@
       else modDisplay.classList.add('mod-zero');
     });
 
-    ['cs_iniciativa', 'cs_ac', 'cs_velocidad', 'cs_hp'].forEach((field) => {
-      const valueInput = document.getElementById(field);
-      const display = document.getElementById(`display_${field}`);
+    const basicDisplays = [
+      { id: 'cs_iniciativa', formatter: formatMod },
+      { id: 'cs_ac' },
+      { id: 'cs_velocidad' },
+      { id: 'cs_hp' },
+    ];
+    basicDisplays.forEach(({ id, formatter }) => {
+      const valueInput = document.getElementById(id);
+      const displayId = id === 'cs_hp_temp' ? 'display_cs_hp_temp' : `display_${id}`;
+      const display = document.getElementById(displayId);
       if (valueInput && display) {
-        display.textContent = valueInput.value || '0';
+        const raw = valueInput.value || '0';
+        const numeric = parseInt(raw, 10);
+        const text = formatter ? formatter(Number.isNaN(numeric) ? 0 : numeric) : raw;
+        display.textContent = text;
+        if (id === 'cs_iniciativa') {
+          display.classList.remove('mod-pos', 'mod-neg', 'mod-zero');
+          const value = Number.isNaN(numeric) ? 0 : numeric;
+          if (value > 0) display.classList.add('mod-pos');
+          else if (value < 0) display.classList.add('mod-neg');
+          else display.classList.add('mod-zero');
+        }
       }
     });
 
     const dexMod = document.getElementById('cs_destreza_mod');
     const iniInput = document.getElementById('cs_iniciativa');
     const iniDisplay = document.getElementById('display_cs_iniciativa');
-    if (dexMod && iniInput && iniDisplay) {
+    if (!hasManualOverride('cs_iniciativa') && dexMod && iniInput && iniDisplay) {
       const value = parseInt(dexMod.value || '0', 10);
       iniInput.value = value;
       iniDisplay.textContent = formatMod(value);
@@ -660,10 +778,109 @@
     }
   }
 
+  function initEditableBasics() {
+    const editable = [
+      { id: 'cs_iniciativa', formatter: formatMod, numeric: true, usesOverride: true },
+      { id: 'cs_ac', numeric: true, usesOverride: true },
+      { id: 'cs_velocidad', numeric: true, usesOverride: true },
+      { id: 'cs_hp', numeric: true, usesOverride: true },
+    ];
+
+    function applyEdit(config, displayEl, hiddenEl) {
+      if (!displayEl || !hiddenEl) return;
+      const raw = (displayEl.textContent || '').trim();
+      if (!raw) {
+        hiddenEl.value = '';
+        if (config.usesOverride && manualOverrideConfig[config.id]) {
+          setManualOverride(config.id, false);
+        }
+        if (config.id === 'cs_hp') {
+          setManualOverride('cs_hp', false);
+        }
+        scheduleCharacterRecalc();
+        recomputeSkillsAndSaves();
+        return;
+      }
+
+      let value = raw;
+      if (config.numeric) {
+        value = parseInt(raw, 10);
+        if (Number.isNaN(value)) {
+          displayEl.textContent = hiddenEl.value || '';
+          return;
+        }
+      }
+
+      hiddenEl.value = value;
+      const formatted =
+        typeof config.formatter === 'function' ? config.formatter(Number.isNaN(value) ? 0 : value) : value;
+      displayEl.textContent = formatted;
+
+      if (config.usesOverride && manualOverrideConfig[config.id]) {
+        setManualOverride(config.id, true);
+      }
+
+      scheduleCharacterRecalc();
+      recomputeSkillsAndSaves();
+    }
+
+    editable.forEach((config) => {
+      const display = document.querySelector(`[data-basic-edit="${config.id}"]`);
+      const hidden = document.getElementById(config.id);
+      if (!display || !hidden) return;
+
+      display.addEventListener('focus', () => {
+        const range = document.createRange();
+        range.selectNodeContents(display);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
+
+      display.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter') {
+          ev.preventDefault();
+          display.blur();
+        }
+      });
+
+      display.addEventListener('blur', () => {
+        applyEdit(config, display, hidden);
+        scheduleBasicAutosave();
+      });
+    });
+  }
+
+  let basicSaveTimer = null;
+  function scheduleBasicAutosave() {
+    if (!BASIC_SAVE_CONFIG?.ajax_url || !BASIC_SAVE_CONFIG?.post_id || !BASIC_SAVE_CONFIG?.nonce) return;
+    if (!document.querySelector('input[name="hoja_guardar"]')) return;
+    clearTimeout(basicSaveTimer);
+    basicSaveTimer = setTimeout(() => {
+      const payload = new URLSearchParams({
+        action: 'drak_save_basic_stats',
+        post_id: BASIC_SAVE_CONFIG.post_id,
+        nonce: BASIC_SAVE_CONFIG.nonce,
+        cs_iniciativa: document.getElementById('cs_iniciativa')?.value || '',
+        cs_ac: document.getElementById('cs_ac')?.value || '',
+        cs_velocidad: document.getElementById('cs_velocidad')?.value || '',
+        cs_hp: document.getElementById('cs_hp')?.value || '',
+      });
+      fetch(BASIC_SAVE_CONFIG.ajax_url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        credentials: 'same-origin',
+        body: payload,
+      }).catch(() => {});
+    }, 400);
+  }
+
   function initTempHpControls() {
     const slider = document.getElementById('slider_temp_hp');
     const display = document.getElementById('display_cs_temp_hp');
     const hidden = document.getElementById('cs_hp_temp');
+    const bonusInput = document.getElementById('combat_temp_hp_extra');
+    const hpBaseInput = document.getElementById('cs_hp');
 
     if (!slider || !display || !hidden) {
       return;
@@ -676,7 +893,8 @@
     let saveTimeout = null;
 
     function updateSliderGradient(value, max) {
-      const percentage = max ? (value / max) * 100 : 0;
+      const safeMax = Math.max(max || 0, 1);
+      const percentage = (value / safeMax) * 100;
       let color = '#9933ff';
       if (percentage <= 33) color = '#ff4c4c';
       else if (percentage <= 66) color = '#ffcc00';
@@ -685,11 +903,20 @@
 
     function syncTempHp(value) {
       const safeValue = Math.max(0, value);
+      const baseHp = parseInt(hpBaseInput?.value || '0', 10) || 0;
+      const bonus = combatModuleState.tempHpExtra || 0;
+      const newMax = Math.max(safeValue, baseHp + bonus, baseHp || 0, 1);
+      slider.min = 0;
+      slider.max = newMax;
       slider.value = safeValue;
       slider.setAttribute('value', safeValue);
       display.textContent = safeValue;
       hidden.value = safeValue;
-      updateSliderGradient(safeValue, parseInt(slider.max || safeValue || '0', 10));
+      const topDisplay = document.getElementById('display_cs_hp_temp');
+      if (topDisplay) {
+        topDisplay.textContent = safeValue;
+      }
+      updateSliderGradient(safeValue, newMax);
     }
 
     function persistTempHp(value) {
@@ -726,58 +953,46 @@
     });
 
     display.addEventListener('input', () => {
-      const value = parseInt(display.textContent || '0', 10) || 0;
-      syncTempHp(value);
-      scheduleSave(value);
+      const total = parseInt(display.textContent || '0', 10) || 0;
+      const baseVal = Math.max(0, total - (combatModuleState.tempHpExtra || 0));
+      syncTempHp(baseVal);
+      scheduleSave(baseVal);
     });
 
     const resetBtn = document.getElementById('btn-reset-temp-pv');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        const hpField = document.getElementById('cs_hp');
-        const hpValue = parseInt(hpField?.value || '0', 10);
-        if (Number.isNaN(hpValue)) return;
-        slider.max = hpValue;
-        syncTempHp(hpValue);
-        scheduleSave(hpValue);
+        const baseHp = parseInt(hpBaseInput?.value || '0', 10) || 0;
+        syncTempHp(baseHp);
+        scheduleSave(baseHp);
       });
     }
 
-    syncTempHp(parseInt(hidden.value || '0', 10));
+    if (bonusInput) {
+      bonusInput.value = combatModuleState.tempHpExtra;
+      bonusInput.addEventListener('input', () => {
+        combatModuleState.tempHpExtra = parseInt(bonusInput.value || '0', 10) || 0;
+        syncTempHp(parseInt(hidden.value || '0', 10) || 0);
+        scheduleSave(parseInt(hidden.value || '0', 10) || 0);
+      });
+    }
+
+    const startVal = parseInt(slider.value || hidden.value || '0', 10) || 0;
+    syncTempHp(startVal);
   }
 
   function initCombatModule() {
     const attackCard = document.getElementById('combat-attack-card');
     if (!attackCard) return;
 
-    const weaponFromDataset = parseWeaponData(attackCard.dataset.weapon);
-    if (weaponFromDataset) {
-      combatModuleState.weapon = weaponFromDataset;
-    } else if (combatModuleState.weapon) {
-      combatModuleState.weapon = normalizeWeaponData(combatModuleState.weapon);
-    }
+    const mainBlock = document.getElementById('combat-weapon-main');
+    const offBlock = document.getElementById('combat-weapon-offhand');
+    const weaponFromDataset = parseWeaponData(mainBlock?.dataset.weapon);
+    const weaponSecondaryFromDataset = parseWeaponData(offBlock?.dataset.weapon);
+    combatModuleState.weaponMain = weaponFromDataset || normalizeWeaponData(combatModuleState.weaponMain);
+    combatModuleState.weaponOff = weaponSecondaryFromDataset || normalizeWeaponData(combatModuleState.weaponOff);
 
-    const attackExtraInput = document.getElementById('combat_attack_extra');
-    const damageExtraInput = document.getElementById('combat_damage_extra');
     const notesInput = document.getElementById('combat_notes');
-
-    if (attackExtraInput) {
-      attackExtraInput.value = combatModuleState.attackExtra;
-      attackExtraInput.addEventListener('input', () => {
-        combatModuleState.attackExtra = parseInt(attackExtraInput.value || '0', 10) || 0;
-        refreshCombatFromCache();
-        scheduleCombatSave();
-      });
-    }
-
-    if (damageExtraInput) {
-      damageExtraInput.value = combatModuleState.damageExtra;
-      damageExtraInput.addEventListener('input', () => {
-        combatModuleState.damageExtra = parseInt(damageExtraInput.value || '0', 10) || 0;
-        refreshCombatFromCache();
-        scheduleCombatSave();
-      });
-    }
 
     if (notesInput) {
       notesInput.value = combatModuleState.notes || '';
@@ -787,9 +1002,44 @@
       });
     }
 
-    renderCombatWeaponInfo(combatModuleState.weapon);
+    const weaponInputs = [
+      { id: 'combat_attack_extra_main', key: 'attackExtraMain' },
+      { id: 'combat_damage_extra_main', key: 'damageExtraMain' },
+      { id: 'combat_attack_extra_off', key: 'attackExtraOff' },
+      { id: 'combat_damage_extra_off', key: 'damageExtraOff' },
+    ];
+    weaponInputs.forEach(({ id, key }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.value = combatModuleState[key] ?? 0;
+      el.addEventListener('input', () => {
+        combatModuleState[key] = parseInt(el.value || '0', 10) || 0;
+        refreshCombatFromCache();
+        scheduleCombatSave();
+      });
+    });
+
+    const acExtraInput = document.getElementById('combat_ac_extra');
+    const shieldExtraInput = document.getElementById('combat_shield_extra');
+    [
+      { el: acExtraInput, key: 'acExtra' },
+      { el: shieldExtraInput, key: 'shieldExtra' },
+    ].forEach(({ el, key }) => {
+      if (!el) return;
+      el.value = combatModuleState[key] ?? 0;
+      el.addEventListener('input', () => {
+        combatModuleState[key] = parseInt(el.value || '0', 10) || 0;
+        updateCombatBasicsDisplay(lastCombatContext?.derived || buildFallbackDerived(collectCombatContextOnly()));
+        updateArmorTotals(lastCombatContext?.derived || buildFallbackDerived(collectCombatContextOnly()));
+        scheduleCombatSave();
+      });
+    });
+
+    renderCombatWeaponsInfo(combatModuleState.weaponMain, combatModuleState.weaponOff);
     const fallbackContext = collectCombatContextOnly();
     const fallbackDerived = buildFallbackDerived(fallbackContext);
+    updateCombatBasicsDisplay(fallbackDerived);
+    updateArmorTotals(fallbackDerived);
     updateCombatCard(fallbackDerived, fallbackContext);
     refreshCombatFromCache();
 
@@ -806,7 +1056,7 @@
   const ITEM_DATA_FILES = Object.freeze({
     weapon: 'jsons/dnd-weapons.json',
     armor: 'jsons/dnd-armors.json',
-    tool: 'jsons/dnd-tools.json',
+    tool: 'jsons/dnd-tools-es.json',
   });
   const itemCache = {
     weapon: null,
@@ -865,31 +1115,79 @@
 
   function loadItemData(type) {
     if (itemCache[type]) return Promise.resolve(itemCache[type]);
-    const file = ITEM_DATA_FILES[type];
-    if (!file) return Promise.resolve(null);
-    const url = getStaticDataUri(file);
-    const fallbackUrl =
-      file.startsWith('jsons/') && STATIC_DATA?.races
-        ? STATIC_DATA.races.replace(/dnd-races[^/]*\\.json$/i, file)
-        : null;
 
-    return fetch(url, { credentials: 'same-origin' })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data) {
-          itemCache[type] = data;
-          return data;
+    const themeBase = (window?.THEME_DIR_URI || '').replace(/\/$/, '');
+    const siteBase = window.location.origin.replace(/\/$/, '');
+
+    let files = [];
+    if (type === 'tool') {
+      files = [
+        'data/dnd-tools-es.json',
+        'data/dnd-tools.json',
+        'jsons/dnd-tools-es.json',
+        'jsons/dnd-tools.json',
+      ];
+    } else {
+      const file = ITEM_DATA_FILES[type];
+      if (file) {
+        files.push(file);
+        if (file.includes('-es.')) {
+          files.push(file.replace(/-es\./, '.'));
         }
-        if (!fallbackUrl || fallbackUrl === url) return null;
-        return fetch(fallbackUrl, { credentials: 'same-origin' })
-          .then((res) => (res.ok ? res.json() : null))
-          .then((data2) => {
-            itemCache[type] = data2;
-            return data2;
-          })
-          .catch(() => null);
+      }
+    }
+
+    const joinPath = (base, path) => {
+      if (!base || !path) return '';
+      let cleanBase = base.replace(/\/+$/, '');
+      let cleanPath = path.replace(/^\/+/, '');
+      if (/\/data$/i.test(cleanBase) && cleanPath.startsWith('data/')) {
+        cleanPath = cleanPath.replace(/^data\//, '');
+      }
+      if (/\/jsons$/i.test(cleanBase) && cleanPath.startsWith('jsons/')) {
+        cleanPath = cleanPath.replace(/^jsons\//, '');
+      }
+      return `${cleanBase}/${cleanPath}`;
+    };
+
+    const candidates = [];
+    files.forEach((path) => {
+      const uri = getStaticDataUri(path);
+      if (uri) candidates.push(uri);
+      if (themeBase) candidates.push(joinPath(themeBase, path));
+      candidates.push(joinPath(`${siteBase}/wp-content/themes/temahijo`, path));
+    });
+
+    const seen = new Set();
+    const urlList = candidates
+      .map((u) => (u || '').trim())
+      .filter(Boolean)
+      .map((u) => {
+        let clean = u.replace(/([^:])\/{2,}/g, (m, p1) => (p1 === ':' ? m : p1 + '/'));
+        clean = clean.replace(/\/data\/data\//g, '/data/');
+        return clean;
       })
-      .catch(() => null);
+      .filter((u) => {
+        if (!u || seen.has(u)) return false;
+        seen.add(u);
+        return true;
+      });
+
+    const tryNext = (idx = 0) => {
+      if (idx >= urlList.length) return Promise.resolve(null);
+      return fetch(urlList[idx], { credentials: 'same-origin' })
+        .then((res) => (res.ok ? res.json() : null))
+        .catch(() => null)
+        .then((data) => {
+          if (data) {
+            itemCache[type] = data;
+            return data;
+          }
+          return tryNext(idx + 1);
+        });
+    };
+
+    return tryNext();
   }
 
   function findItemEntry(type, ref) {
@@ -1566,10 +1864,78 @@
     }, {});
 
     let profDataPromise = null;
+    const staticProfBase = (() => {
+      const racesUri = STATIC_DATA?.races || '';
+      const idx = racesUri.lastIndexOf('/');
+      return idx === -1 ? '' : racesUri.slice(0, idx + 1);
+    })();
+
+    function mapStaticEntry(item) {
+      if (!item) return { id: '', name: '' };
+      const name =
+        typeof item.name === 'object' ? item.name.es || item.name.en || item.id : item.name || item.id || '';
+      return {
+        id: item.id || sanitizeProficiencyValue(name),
+        name,
+      };
+    }
+
+    function loadStaticList(type) {
+      if (!staticProfBase) return Promise.resolve([]);
+      const fileMap = {
+        weapons: ['dnd-weapons-es.json', 'dnd-weapons.json'],
+        armors: ['dnd-armors-es.json', 'dnd-armors.json'],
+        tools: ['dnd-tools-es.json', 'dnd-tools.json'],
+        languages: ['dnd-languages-es.json', 'dnd-languages.json'],
+      };
+      const rootKeyMap = {
+        weapons: 'weapons',
+        armors: 'armors',
+        tools: 'tools',
+        languages: 'languages',
+      };
+      const files = fileMap[type] || [];
+      const root = rootKeyMap[type] || '';
+
+      const attempt = (index = 0) => {
+        if (index >= files.length) return Promise.resolve([]);
+        const target = staticProfBase + files[index];
+        return fetch(target)
+          .then((res) => (res.ok ? res.json() : Promise.reject(new Error('No se pudo cargar el json'))))
+          .then((json) => {
+            const list = Array.isArray(json?.[root]) ? json[root] : [];
+            return list.map(mapStaticEntry);
+          })
+          .catch(() => attempt(index + 1));
+      };
+
+      return attempt();
+    }
+
+    function fallbackProficiencyData() {
+      return Promise.all([
+        loadStaticList('weapons'),
+        loadStaticList('armors'),
+        loadStaticList('tools'),
+        loadStaticList('languages'),
+      ]).then(([weapons, armors, tools, languages]) => ({
+        weapons,
+        armors,
+        tools,
+        languages,
+      }));
+    }
 
     function fetchProficiencies() {
-      if (!hasApi) return Promise.resolve({});
       if (profDataPromise) return profDataPromise;
+      const useFallback = () =>
+        fallbackProficiencyData().catch(() => ({
+          weapons: [],
+          armors: [],
+          tools: [],
+          languages: [],
+        }));
+      if (!hasApi) return useFallback();
       const formData = new FormData();
       formData.append('action', 'drak_dnd5_get_proficiencies');
       profDataPromise = fetch(window.DND5_API.ajax_url, {
@@ -1579,9 +1945,22 @@
       })
         .then((res) => res.json())
         .then((data) => (data?.success ? data.data : {}))
+        .then((data) => {
+          const needsFallback =
+            !data?.weapons?.length || !data?.armors?.length || !data?.tools?.length || !data?.languages?.length;
+          if (!needsFallback) {
+            return data;
+          }
+          return useFallback().then((fallback) => ({
+            weapons: data?.weapons?.length ? data.weapons : fallback.weapons,
+            armors: data?.armors?.length ? data.armors : fallback.armors,
+            tools: data?.tools?.length ? data.tools : fallback.tools,
+            languages: data?.languages?.length ? data.languages : fallback.languages,
+          }));
+        })
         .catch((error) => {
           console.error('Error al cargar competencias', error);
-          return {};
+          return useFallback();
         })
         .finally(() => {
           profDataPromise = null;
@@ -1859,6 +2238,25 @@
       });
     });
 
+    qsa('.skill-indicator[data-skill-indicator]').forEach((indicator) => {
+      const skillId = indicator.dataset.skillIndicator;
+      if (!skillId) return;
+      indicator.addEventListener('click', () => {
+        const isAuto = characterAutomationState.autoSkills?.has(skillId);
+        if (isAuto) return;
+        if (manualSkillSelections.has(skillId)) {
+          manualSkillSelections.delete(skillId);
+          setSkillProficiency(skillId, false, null, characterAutomationState.expertise.has(skillId), false);
+        } else {
+          manualSkillSelections.add(skillId);
+          setSkillProficiency(skillId, true, 'Manual', characterAutomationState.expertise.has(skillId), true);
+        }
+        persistManualSkills();
+        recomputeSkillsAndSaves();
+        scheduleCharacterRecalc();
+      });
+    });
+
     recomputeSkillsAndSaves = () => {
       Object.keys(skillAbilityMap).forEach(updateSkill);
       Object.keys(saveAbilityMap).forEach(updateSave);
@@ -1893,6 +2291,7 @@
       spells: 'Conjuros',
       actions: 'Acciones',
       background: 'Trasfondo',
+      tools: 'Herramientas',
     };
 
     function setActiveTab(tabName) {
@@ -2173,6 +2572,10 @@
 
       if (tabName === 'background') {
         fetchBackgroundView();
+        return;
+      }
+      if (tabName === 'tools') {
+        renderToolsTab();
         return;
       }
 
@@ -2472,6 +2875,124 @@
           <h5 class="feature-card__title">${title}</h5>
           <div class="feature-card__body">${text}</div>
         </div>
+      `;
+    }
+
+    function renderToolsTab() {
+      const profInput = document.getElementById('prof_tools');
+      const tokens = new Set();
+      parseIds(profInput?.value || '').forEach((id) => tokens.add(id));
+      (lastDerivedTools || []).forEach((item) => tokens.add(item));
+      const list = Array.from(tokens).filter(Boolean);
+
+      if (!list.length) {
+        showEmpty('No hay herramientas con competencia.');
+        return;
+      }
+
+      showLoading();
+      loadItemData('tool')
+        .then((data) => {
+          const tools = data?.tools || [];
+          const cards = list
+            .map((raw) => {
+              const info = normalizeToolInfo(raw, tools);
+              return renderToolCard(info);
+            })
+            .join('');
+          panelEl.innerHTML = `
+            <section class="character-extended__section">
+              <h4 class="character-extended__section-title">Herramientas</h4>
+              ${cards}
+            </section>
+          `;
+          initFeatureAccordions(panelEl);
+        })
+        .catch(() => {
+          const cards = list
+            .map((raw) => {
+              const info = { name: raw };
+              return renderToolCard(info);
+            })
+            .join('');
+          panelEl.innerHTML = `
+            <section class="character-extended__section">
+              <h4 class="character-extended__section-title">Herramientas</h4>
+              ${cards}
+            </section>
+          `;
+        });
+    }
+
+  function normalizeToolInfo(raw, dataset) {
+    const text = (raw || '').toString();
+    const sourceMatch = text.match(/^(Clase|Raza|Trasfondo)\s*:\s*(.+)$/i);
+    const source = sourceMatch ? sourceMatch[1] : '';
+    const label = sourceMatch ? sourceMatch[2] : text;
+    const slugifyTool = (value) => {
+      const base = slugifyWeaponId(value);
+      return base.replace(/^(herramientas?-de-|juego-de-|kit-de-|kit-)/, '');
+    };
+    const slugCandidates = [
+      slugifyTool(label),
+      slugifyWeaponId(label),
+    ].filter(Boolean);
+
+    let entry = null;
+    if (Array.isArray(dataset)) {
+      entry = dataset.find((item) => {
+        const names = [
+          item.id,
+          item.name?.es,
+          item.name?.en,
+          item.name,
+        ].filter(Boolean);
+        const itemSlugs = names.flatMap((n) => [slugifyTool(n), slugifyWeaponId(n)]).filter(Boolean);
+        return itemSlugs.some((s) => slugCandidates.includes(s));
+      }) || null;
+    }
+
+    const name =
+      entry && typeof entry.name === 'object'
+        ? entry.name.es || entry.name.en || entry.id
+        : entry?.name || label;
+    return {
+      source,
+      name: name || label,
+      entry,
+    };
+    }
+
+    function renderToolCard(info) {
+      if (!info) return '';
+      const entry = info.entry;
+      const meta = [];
+      if (entry?.category) meta.push(entry.category);
+      const metaHtml = meta.length ? `<div class="feature-card__meta">${meta.join(' · ')}</div>` : '';
+    const bodyEntries = entry ? getLocalizedArrayFrom(entry, 'entries') : [];
+    const fallbackEntries = entry?.entries || entry?.text || entry?.description || entry?.desc;
+      const body = bodyEntries && bodyEntries.length
+        ? renderEntries(bodyEntries)
+        : (fallbackEntries ? renderEntries(fallbackEntries) : '');
+      const extra = [];
+      if (entry?.weight) extra.push(`<p><strong>Peso:</strong> ${escapeHtml(String(entry.weight))}</p>`);
+      if (entry?.value) extra.push(`<p><strong>Valor:</strong> ${escapeHtml(String(entry.value))}</p>`);
+      return `
+        <article class="feature-card is-collapsed">
+          <header class="feature-card__header">
+            <h5 class="feature-card__title">${escapeHtml(info.name || 'Herramienta')}</h5>
+            <button type="button" class="feature-card__toggle" aria-expanded="false" aria-label="Mostrar detalle">
+              <span class="feature-card__toggle-icon">▼</span>
+            </button>
+          </header>
+          <div class="feature-card__content">
+            ${metaHtml}
+            <div class="feature-card__body">
+              ${body || '<p>Sin descripción disponible.</p>'}
+              ${extra.join('')}
+            </div>
+          </div>
+        </article>
       `;
     }
 
@@ -2952,8 +3473,13 @@
     const formData = new FormData();
     formData.append('action', 'guardar_modulo_combate');
     formData.append('post_id', window.HP_TEMP_AJAX.post_id);
-    formData.append('attack_extra', combatModuleState.attackExtra || 0);
-    formData.append('damage_extra', combatModuleState.damageExtra || 0);
+    formData.append('attack_extra_main', combatModuleState.attackExtraMain || 0);
+    formData.append('damage_extra_main', combatModuleState.damageExtraMain || 0);
+    formData.append('attack_extra_off', combatModuleState.attackExtraOff || 0);
+    formData.append('damage_extra_off', combatModuleState.damageExtraOff || 0);
+    formData.append('ac_extra', combatModuleState.acExtra || 0);
+    formData.append('shield_extra', combatModuleState.shieldExtra || 0);
+    formData.append('temp_hp_extra', combatModuleState.tempHpExtra || 0);
     formData.append('notes', combatModuleState.notes || '');
 
     fetch(window.DND5_API.ajax_url, {
@@ -2970,7 +3496,13 @@
         const parsed = JSON.parse(raw);
         return normalizeWeaponData(parsed);
       } catch (e) {
-        return null;
+        try {
+          const decoded = raw.replace(/&quot;/g, '"');
+          const parsed = JSON.parse(decoded);
+          return normalizeWeaponData(parsed);
+        } catch (err) {
+          return null;
+        }
       }
     }
     if (typeof raw === 'object') {
@@ -3002,85 +3534,141 @@
     };
   }
 
-  function renderCombatWeaponInfo(weapon) {
-    const nameEl = document.getElementById('combat-weapon-name');
-    const metaEl = document.getElementById('combat-weapon-meta');
+  function normalizeArmorData(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    const acRaw = value.ac ?? value.base_ac ?? value.baseAc ?? '';
+    const ac = typeof acRaw === 'number' ? acRaw : parseInt(acRaw || '0', 10) || 0;
+    return {
+      name: value.name || '',
+      slug: value.slug || '',
+      type: value.type || '',
+      ac,
+      strength: value.strength || '',
+      stealthDisadvantage: Boolean(value.stealth_disadvantage || value.stealthDisadvantage),
+      weight: value.weight ?? '',
+      value: value.value ?? '',
+      description: value.description || value.descripcion || '',
+    };
+  }
+
+  function renderCombatArmorInfo(armor, derived) {
+    const nameEl = document.getElementById('combat-armor-name');
+    const metaEl = document.getElementById('combat-armor-meta');
     if (!nameEl || !metaEl) return;
 
-    if (!weapon) {
-      nameEl.textContent = 'Sin arma asignada';
-      metaEl.textContent = 'Selecciona un arma en el inventario.';
+    if (!armor) {
+      nameEl.textContent = 'Sin armadura';
+      metaEl.textContent = 'Selecciona armadura en el inventario.';
       return;
     }
 
-    nameEl.textContent = weapon.name || 'Arma principal';
+    nameEl.textContent = armor.name || 'Armadura';
+    const meta = [];
+    if (armor.ac) meta.push(`CA base ${armor.ac}`);
+    if (typeof derived?.ac === 'number') meta.push(`CA actual ${derived.ac}`);
+    if (armor.type) meta.push(`Tipo: ${armor.type}`);
+    meta.push(`Sigilo: ${armor.stealthDisadvantage ? 'Desventaja' : '—'}`);
+    metaEl.textContent = meta.filter(Boolean).join(' · ') || '—';
+  }
 
-    const parts = [];
-    if (weapon.damageDice) parts.push(weapon.damageDice);
-    if (weapon.damageType) parts.push(weapon.damageType);
-    if (weapon.category) parts.push(weapon.category);
-    if (weapon.properties?.length) parts.push(weapon.properties.join(', '));
-    metaEl.textContent = parts.filter(Boolean).join(' · ') || '—';
+  function renderCombatWeaponsInfo(weaponMain, weaponOff) {
+    const slots = [
+      { key: 'main', weapon: normalizeWeaponData(weaponMain) },
+      { key: 'off', weapon: normalizeWeaponData(weaponOff) },
+    ];
+    slots.forEach(({ key, weapon }) => {
+      const nameEl = document.getElementById(`combat-${key}-weapon-name`);
+      const metaEl = document.getElementById(`combat-${key}-weapon-meta`);
+      if (!nameEl || !metaEl) return;
+      if (!weapon) {
+        nameEl.textContent = key === 'off' ? 'Sin arma secundaria' : 'Sin arma asignada';
+        metaEl.textContent = key === 'off'
+          ? 'Selecciona un arma secundaria en el inventario.'
+          : 'Selecciona un arma en el inventario.';
+        return;
+      }
+      nameEl.textContent = weapon.name || (key === 'off' ? 'Arma secundaria' : 'Arma principal');
+      const parts = [];
+      if (weapon.damageDice) parts.push(weapon.damageDice);
+      if (weapon.damageType) parts.push(weapon.damageType);
+      if (weapon.category) parts.push(weapon.category);
+      if (weapon.properties?.length) parts.push(weapon.properties.join(', '));
+      metaEl.textContent = parts.filter(Boolean).join(' · ') || '—';
+    });
   }
 
   function updateCombatCard(derived, context) {
     const card = document.getElementById('combat-attack-card');
     if (!card) return;
     lastCombatContext = { derived, context };
+    updateCombatBasicsDisplay(derived);
+    updateArmorTotals(derived);
 
-    const weapon = normalizeWeaponData(combatModuleState.weapon);
-    renderCombatWeaponInfo(weapon);
+    renderCombatWeaponsInfo(combatModuleState.weaponMain, combatModuleState.weaponOff);
+    renderCombatArmorInfo(normalizeArmorData(COMBAT_CONFIG.armor), derived);
 
-    const attackEl = document.getElementById('combat-attack-value');
-    const damageEl = document.getElementById('combat-damage-value');
-    const attackBreakEl = document.getElementById('combat-attack-breakdown');
-    const damageBreakEl = document.getElementById('combat-damage-breakdown');
-
-    if (!weapon) {
-      if (attackEl) attackEl.textContent = '—';
-      if (damageEl) damageEl.textContent = '—';
-      if (attackBreakEl) attackBreakEl.textContent = 'Selecciona un arma en el inventario.';
-      if (damageBreakEl) damageBreakEl.textContent = '';
-      renderWeaponMasteryInfo(card, '', false, '');
-      return;
-    }
-
-    const abilityInfo = pickWeaponAbility(weapon, derived);
     const proficiencySet = buildWeaponProficiencySet(context);
-    const isProficient = isProficientWithWeapon(weapon, proficiencySet);
-    const profBonus = isProficient ? derived.proficiencyBonus : 0;
-    const masteryKey = getWeaponMasteryKey(weapon);
-    const hasMastery = hasWeaponMasteryAccess(context);
-    const masteryActive = Boolean(masteryKey && isProficient && hasMastery);
-    const masteryReason = !masteryActive && masteryKey
-      ? (!isProficient ? 'sin competencia' : !hasMastery ? 'sin rasgo/feat de Maestría' : '')
-      : '';
-    renderWeaponMasteryInfo(card, masteryKey, masteryActive, masteryReason);
-    const attackTotal = abilityInfo.mod + profBonus + (combatModuleState.attackExtra || 0);
 
-    if (attackEl) attackEl.textContent = formatMod(attackTotal);
-    if (attackBreakEl) {
-      const parts = [];
-      parts.push(`${ABILITY_LABELS[abilityInfo.ability] || abilityInfo.ability}: ${formatMod(abilityInfo.mod)}`);
-      if (isProficient) {
-        parts.push(`Competencia ${formatMod(derived.proficiencyBonus)}`);
-      }
-      if (combatModuleState.attackExtra) {
-        parts.push(`Extra ${formatMod(combatModuleState.attackExtra)}`);
-      }
-      attackBreakEl.textContent = parts.join(' · ');
-    }
+    const slots = [
+      { key: 'main', weapon: normalizeWeaponData(combatModuleState.weaponMain) },
+      { key: 'off', weapon: normalizeWeaponData(combatModuleState.weaponOff) },
+    ];
 
-    const damageMod = abilityInfo.mod + (combatModuleState.damageExtra || 0);
-    if (damageEl) damageEl.textContent = formatDamageString(weapon.damageDice, damageMod, weapon.damageType);
-    if (damageBreakEl) {
-      const parts = [];
-      parts.push(`Mod (${ABILITY_LABELS[abilityInfo.ability] || abilityInfo.ability}): ${formatMod(abilityInfo.mod)}`);
-      if (combatModuleState.damageExtra) {
-        parts.push(`Extra ${formatMod(combatModuleState.damageExtra)}`);
+    slots.forEach(({ key, weapon }) => {
+      const attackEl = document.getElementById(`combat-${key}-attack-value`);
+      const damageEl = document.getElementById(`combat-${key}-damage-value`);
+      const attackBreakEl = document.getElementById(`combat-${key}-attack-breakdown`);
+      const damageBreakEl = document.getElementById(`combat-${key}-damage-breakdown`);
+      const extraAttack =
+        key === 'off' ? combatModuleState.attackExtraOff || 0 : combatModuleState.attackExtraMain || 0;
+      const extraDamage =
+        key === 'off' ? combatModuleState.damageExtraOff || 0 : combatModuleState.damageExtraMain || 0;
+
+      if (!weapon) {
+        if (attackEl) attackEl.textContent = '—';
+        if (damageEl) damageEl.textContent = '—';
+        if (attackBreakEl) attackBreakEl.textContent = key === 'off' ? 'Selecciona un arma secundaria.' : 'Selecciona un arma en el inventario.';
+        if (damageBreakEl) damageBreakEl.textContent = '';
+        renderWeaponMasteryInfo(card, '', false, '');
+        return;
       }
-      damageBreakEl.textContent = parts.join(' · ');
-    }
+
+      const abilityInfo = pickWeaponAbility(weapon, derived);
+      const isProficient = isProficientWithWeapon(weapon, proficiencySet);
+      const profBonus = isProficient ? derived.proficiencyBonus : 0;
+      const masteryKey = getWeaponMasteryKey(weapon);
+      const hasMastery = hasWeaponMasteryAccess(context);
+      const masteryActive = Boolean(masteryKey && isProficient && hasMastery);
+      const masteryReason = !masteryActive && masteryKey
+        ? (!isProficient ? 'sin competencia' : !hasMastery ? 'sin rasgo/feat de Maestría' : '')
+        : '';
+      renderWeaponMasteryInfo(card, masteryKey, masteryActive, masteryReason);
+      const attackTotal = abilityInfo.mod + profBonus + extraAttack;
+
+      if (attackEl) attackEl.textContent = formatMod(attackTotal);
+      if (attackBreakEl) {
+        const parts = [];
+        parts.push(`${ABILITY_LABELS[abilityInfo.ability] || abilityInfo.ability}: ${formatMod(abilityInfo.mod)}`);
+        if (isProficient) {
+          parts.push(`Competencia ${formatMod(derived.proficiencyBonus)}`);
+        }
+        if (extraAttack) {
+          parts.push(`Extra ${formatMod(extraAttack)}`);
+        }
+        attackBreakEl.textContent = parts.join(' · ');
+      }
+
+      const damageMod = abilityInfo.mod + extraDamage;
+      if (damageEl) damageEl.textContent = formatDamageString(weapon.damageDice, damageMod, weapon.damageType);
+      if (damageBreakEl) {
+        const parts = [];
+        parts.push(`Mod (${ABILITY_LABELS[abilityInfo.ability] || abilityInfo.ability}): ${formatMod(abilityInfo.mod)}`);
+        if (extraDamage) {
+          parts.push(`Extra ${formatMod(extraDamage)}`);
+        }
+        damageBreakEl.textContent = parts.join(' · ');
+      }
+    });
   }
 
   function pickWeaponAbility(weapon, derived) {
@@ -3303,8 +3891,17 @@
 
   function initConditionSelector() {
     const select = document.getElementById('combat-condition-select');
-    const body = document.getElementById('combat-condition-body');
-    if (!select || !body || !characterDataStore.data?.conditions) return;
+    const preview = document.getElementById('combat-condition-preview');
+    const listEl = document.getElementById('combat-condition-list');
+    const addBtn = document.getElementById('combat-condition-add');
+    if (!select || !preview || !listEl || !characterDataStore.data?.conditions) {
+      if (select) {
+        select.innerHTML = '<option value="">No se pudieron cargar condiciones.</option>';
+      }
+      return;
+    }
+
+    const activeConditions = [];
 
     const entries = Object.values(characterDataStore.data.conditions || {});
     const sorted = entries.sort((a, b) => (a.name_es || a.name || '').localeCompare(b.name_es || b.name || ''));
@@ -3313,21 +3910,75 @@
       .map((cond) => `<option value="${cond.id}">${escapeHtml(cond.name_es || cond.name || cond.id)}</option>`)
       .join('')}`;
 
-    select.addEventListener('change', () => {
-      const cond = characterDataStore.data.conditions[select.value];
+    function renderPreview(cond) {
       if (!cond) {
-        body.innerHTML = '<p>Selecciona una condición para ver sus efectos.</p>';
+        preview.innerHTML = '<p>Selecciona una condición para ver sus efectos y añádela.</p>';
         return;
       }
       const entriesHtml = Array.isArray(cond.entries)
         ? `<ul>${cond.entries.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`
         : '<p>No hay detalles disponibles.</p>';
-      body.innerHTML = `
+      preview.innerHTML = `
         <h4>${escapeHtml(cond.name_es || cond.name || cond.id)}</h4>
         ${entriesHtml}
         <p class="combat-condition-source">Fuente: ${escapeHtml(cond.source || '')}</p>
       `;
+    }
+
+    function renderConditionList() {
+      if (!activeConditions.length) {
+        listEl.innerHTML = '<p class="combat-condition-empty">Sin condiciones activas.</p>';
+        return;
+      }
+      const html = activeConditions
+        .map((condId) => {
+          const cond = characterDataStore.data.conditions[condId];
+          if (!cond) return '';
+          return `
+            <div class="combat-condition-chip" data-cond="${condId}">
+              <div>
+                <strong>${escapeHtml(cond.name_es || cond.name || cond.id)}</strong>
+                <small>${escapeHtml(cond.source || '')}</small>
+              </div>
+              <button type="button" class="combat-condition-remove" aria-label="Quitar ${escapeHtml(
+                cond.name_es || cond.name || cond.id
+              )}">✕</button>
+            </div>
+          `;
+        })
+        .join('');
+      listEl.innerHTML = html;
+    }
+
+    select.addEventListener('change', () => {
+      const cond = characterDataStore.data.conditions[select.value];
+      renderPreview(cond);
     });
+
+    addBtn?.addEventListener('click', () => {
+      const condId = select.value;
+      if (!condId) return;
+      if (!activeConditions.includes(condId)) {
+        activeConditions.push(condId);
+        renderConditionList();
+      }
+    });
+
+    listEl.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('.combat-condition-remove');
+      if (!btn) return;
+      const chip = btn.closest('.combat-condition-chip');
+      const condId = chip?.dataset.cond;
+      if (!condId) return;
+      const idx = activeConditions.indexOf(condId);
+      if (idx >= 0) {
+        activeConditions.splice(idx, 1);
+        renderConditionList();
+      }
+    });
+
+    renderPreview(null);
+    renderConditionList();
   }
 
 function normalizeProficiencyList(list) {
@@ -3349,7 +4000,7 @@ function normalizeProficiencyList(list) {
     return filtered;
 }
 
-function renderProficiencyLinks(list, targetId, type = '') {
+  function renderProficiencyLinks(list, targetId, type = '') {
     const target = document.getElementById(targetId);
     if (!target) return;
     const items = Array.isArray(list) ? list : [];
@@ -3358,7 +4009,7 @@ function renderProficiencyLinks(list, targetId, type = '') {
       return;
     }
     const html = items
-      .map((entry) => {
+      .map((entry, idx) => {
         const raw = (entry || '').toString();
         const clean = raw.replace(/^[^:]+:\s*/, '').trim();
         const match = clean.match(/\{@item\s+([^|}]+)\|([^|}]+)(?:\|([^}]+))?\}/i);
@@ -3371,10 +4022,88 @@ function renderProficiencyLinks(list, targetId, type = '') {
           )}" data-dnd5-ref="${escapeHtml(ref)}">${escapeHtml(name)}</span>`;
         }
         const plain = strip5eTags(clean);
-        return `<span class="prof-chip${type === 'language' ? '' : ' prof-chip--plain'}">${escapeHtml(plain)}</span>`;
+        const attrs = [];
+        if (type === 'language') {
+          attrs.push(`data-lang-index="${idx}"`);
+          attrs.push(`data-lang-id="${escapeHtml(plain)}"`);
+          if (/any/i.test(plain)) {
+            attrs.push('data-lang-any="1"');
+            attrs.push('class="prof-chip prof-chip--choose"');
+            return `<span ${attrs.join(' ')}>${escapeHtml(plain)}</span>`;
+          }
+        }
+        const sourceMatch = plain.match(/^(Raza|Trasfondo)\s*:\s*(.+)$/i);
+        const classes = [type === 'language' ? 'prof-chip' : 'prof-chip prof-chip--plain'];
+        let label = plain;
+        if (sourceMatch) {
+          const kind = sourceMatch[1].toLowerCase();
+          label = sourceMatch[2];
+          classes.push(kind === 'raza' ? 'prof-chip--source-race' : 'prof-chip--source-bg');
+        }
+        const extra = attrs.length ? ` ${attrs.join(' ')}` : '';
+        return `<span class="${classes.join(' ')}"${extra}>${escapeHtml(label)}</span>`;
       })
       .join(' ');
     target.innerHTML = html;
+  }
+
+  let languageOptionsCache = null;
+  function loadLanguageOptions() {
+    if (languageOptionsCache) return Promise.resolve(languageOptionsCache);
+
+    const selectOptions = Array.from(document.querySelectorAll('#profs-languages-select option'))
+      .filter((opt) => opt.value)
+      .map((opt) => ({ id: opt.value, name: opt.textContent || opt.value }));
+    if (selectOptions.length) {
+      languageOptionsCache = selectOptions;
+      return Promise.resolve(languageOptionsCache);
+    }
+
+    const candidates = [];
+    if (STATIC_DATA?.languages) candidates.push(STATIC_DATA.languages);
+    if (STATIC_DATA?.languages && STATIC_DATA.languages.endsWith('-es.json')) {
+      candidates.push(STATIC_DATA.languages.replace('-es.json', '.json'));
+    }
+    const fallbackList = [
+      { id: 'common', name: 'Común' },
+      { id: 'dwarvish', name: 'Enano' },
+      { id: 'elvish', name: 'Élfico' },
+      { id: 'giant', name: 'Gigante' },
+      { id: 'gnomish', name: 'Gnomo' },
+      { id: 'goblin', name: 'Goblin' },
+      { id: 'halfling', name: 'Mediano' },
+      { id: 'orc', name: 'Orco' },
+      { id: 'abyssal', name: 'Abisal' },
+      { id: 'celestial', name: 'Celestial' },
+      { id: 'draconic', name: 'Dracónico' },
+      { id: 'deep-speech', name: 'Habla Profunda' },
+      { id: 'infernal', name: 'Infernal' },
+      { id: 'primordial', name: 'Primordial' },
+      { id: 'sylvan', name: 'Silvano' },
+      { id: 'undercommon', name: 'Inframundo' },
+    ];
+
+    const tryFetch = (index = 0) => {
+      if (index >= candidates.length) {
+        languageOptionsCache = fallbackList;
+        return Promise.resolve(languageOptionsCache);
+      }
+      const url = candidates[index];
+      return fetch(url)
+        .then((res) => (res.ok ? res.json() : Promise.reject()))
+        .then((json) => {
+          const list = Array.isArray(json?.languages) ? json.languages : [];
+          languageOptionsCache = list.map((item) => {
+            const name =
+              typeof item.name === 'object' ? item.name.es || item.name.en || item.id : item.name || item.id || '';
+            return { id: item.id || name, name };
+          });
+          return languageOptionsCache;
+        })
+        .catch(() => tryFetch(index + 1));
+    };
+
+    return tryFetch();
   }
 
   function buildFallbackDerived(context) {
@@ -3415,12 +4144,29 @@ function renderProficiencyLinks(list, targetId, type = '') {
       raceId: (document.getElementById('raza')?.value || '').trim(),
       backgroundId: (document.getElementById('background')?.value || '').trim(),
       esotericTheories: getSelectedEsotericTheories(),
+      armor: normalizeArmorData(COMBAT_CONFIG.armor),
     };
   }
 
   function collectCombatContextOnly() {
     const ctx = collectCharacterContext();
     return ctx;
+  }
+
+  function computeArmorClass(armor, dexMod) {
+    if (!armor) return null;
+    const type = (armor.type || '').toString().toLowerCase();
+    const base = typeof armor.ac === 'number' ? armor.ac : parseInt(armor.ac || '0', 10);
+    if (!base) return null;
+
+    let dexBonus = dexMod;
+    if (type.includes('ma')) {
+      dexBonus = Math.min(dexMod, 2);
+    } else if (type.includes('ha')) {
+      dexBonus = 0;
+    }
+
+    return base + dexBonus;
   }
 
   function buildDerivedCharacter(context, data) {
@@ -3497,6 +4243,10 @@ function renderProficiencyLinks(list, targetId, type = '') {
     derived.hp = firstLevelHp + Math.max(0, context.level - 1) * perLevelHp;
 
     derived.ac = 10 + context.abilityMods.dex;
+    const armorAc = computeArmorClass(context.armor, context.abilityMods.dex);
+    if (armorAc) {
+      derived.ac = armorAc;
+    }
 
     if (raceDef && typeof derived.speed !== 'number') {
       derived.speed = 30;
@@ -3526,15 +4276,8 @@ function renderProficiencyLinks(list, targetId, type = '') {
       }
     }
 
-    const slider = document.getElementById('slider_temp_hp');
-    if (slider) {
-      const sliderMax = manualHp
-        ? parseInt(document.getElementById('cs_hp')?.value || '0', 10)
-        : derived.hp;
-      if (sliderMax) {
-        slider.max = String(sliderMax);
-      }
-    }
+    updateCombatBasicsDisplay(derived);
+    updateArmorTotals(derived);
 
     updateSaveDisplays(derived);
     updateSkillDisplays(derived);
@@ -3542,18 +4285,179 @@ function renderProficiencyLinks(list, targetId, type = '') {
     renderProficiencyLinks(derived.weaponText, 'display_cs_armas', 'weapon');
     renderProficiencyLinks(derived.armorText, 'display_cs_armaduras', 'armor');
     renderProficiencyLinks(derived.toolText, 'display_cs_herramientas', 'tool');
+    lastDerivedTools = derived.toolText || [];
     renderProficiencyLinks(derived.languageText, 'display_cs_idiomas', 'language');
 
     recomputeSkillsAndSaves();
   }
 
+  function initLanguageChoiceModal() {
+    const container = document.getElementById('display_cs_idiomas');
+    const hidden = document.getElementById('prof_languages');
+    if (!container || !hidden) return;
+
+    let modal = document.getElementById('lang-choice-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'lang-choice-modal';
+      modal.className = 'modal-overlay';
+      modal.style.display = 'none';
+      modal.innerHTML = `
+        <div class="modal-contenido">
+          <span class="close-lang-popup" role="button" aria-label="Cerrar">×</span>
+          <h3>Selecciona idioma</h3>
+          <div class="lang-choice-body">
+            <select id="lang-choice-select" class="basics-modal-input"></select>
+            <p class="lang-choice-empty" style="display:none; margin-top:8px;">No hay idiomas disponibles.</p>
+          </div>
+          <div class="sheet-modal-actions">
+            <button type="button" id="lang-choice-apply" class="btn-primary">Elegir</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    const select = modal.querySelector('#lang-choice-select');
+    const emptyMsg = modal.querySelector('.lang-choice-empty');
+    const closeBtn = modal.querySelector('.close-lang-popup');
+    const applyBtn = modal.querySelector('#lang-choice-apply');
+    let options = [];
+    let currentChip = null;
+
+    function fillSelect(current = '') {
+      if (!select) return;
+      select.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Elige un idioma…';
+      select.appendChild(placeholder);
+      options.forEach((opt) => {
+        const option = document.createElement('option');
+        option.value = opt.id;
+        option.textContent = opt.name;
+        if (opt.id === current) option.selected = true;
+        select.appendChild(option);
+      });
+      if (emptyMsg) emptyMsg.style.display = options.length ? 'none' : 'block';
+      if (select) select.style.display = options.length ? 'block' : 'none';
+      if (applyBtn) applyBtn.disabled = !options.length;
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      currentChip = null;
+    }
+    closeBtn?.addEventListener('click', closeModal);
+    modal.addEventListener('click', (ev) => {
+      if (ev.target === modal) closeModal();
+    });
+
+    applyBtn?.addEventListener('click', () => {
+      if (!currentChip || !select) return;
+      const value = select.value;
+      if (!value) return;
+      const option = options.find((o) => o.id === value);
+      const label = option?.name || value;
+
+      const idx = parseInt(currentChip.dataset.langIndex || '-1', 10);
+      const ids = parseIds(hidden.value);
+      if (idx >= 0 && idx < ids.length) {
+        ids[idx] = value;
+      } else {
+        ids.push(value);
+      }
+      hidden.value = ids.join(',');
+
+      // Re-render chips para reflejar el cambio y quitar el estado "any"
+      const newList = ids.map((id) => {
+        const matchOpt = options.find((o) => o.id === id);
+        return matchOpt ? matchOpt.name : id;
+      });
+      renderProficiencyLinks(newList, 'display_cs_idiomas', 'language');
+
+      scheduleCharacterRecalc();
+      closeModal();
+    });
+
+    container.addEventListener('click', (ev) => {
+      const chip = ev.target.closest('.prof-chip[data-lang-any]');
+      if (!chip) return;
+      currentChip = chip;
+      loadLanguageOptions()
+        .then((list) => {
+          options = list || [];
+          fillSelect(chip.dataset.langId || '');
+          modal.style.display = 'flex';
+        })
+        .catch(() => {
+          options = [];
+          fillSelect('');
+          modal.style.display = 'flex';
+        });
+    });
+  }
+
   function updateBasicStat(fieldId, value, formatter) {
+    if (hasManualOverride(fieldId)) {
+      const manualDisplayId = fieldId === 'cs_hp_temp' ? 'display_cs_hp_temp' : `display_${fieldId}`;
+      const manualDisplay = document.getElementById(manualDisplayId);
+      if (manualDisplay) {
+        const hidden = document.getElementById(fieldId);
+        const current = hidden?.value || manualDisplay.textContent || '';
+        manualDisplay.textContent =
+          typeof formatter === 'function' ? formatter(parseInt(current, 10) || 0) : current;
+      }
+      return;
+    }
     const hidden = document.getElementById(fieldId);
     if (hidden) hidden.value = typeof value === 'number' ? value : (value || '');
-    const display = document.getElementById(`display_${fieldId}`);
+    const displayId = fieldId === 'cs_hp_temp' ? 'display_cs_hp_temp' : `display_${fieldId}`;
+    const display = document.getElementById(displayId);
     if (!display) return;
     const formatted = typeof formatter === 'function' ? formatter(value) : value;
     display.textContent = formatted ?? '';
+  }
+
+  function updateCombatBasicsDisplay(derived) {
+    const fallback = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.value || el.textContent || '' : '';
+    };
+    const initSource =
+      typeof derived?.initiative !== 'undefined'
+        ? derived.initiative
+        : parseInt(fallback('cs_iniciativa') || '0', 10);
+    const initValue = Number.isFinite(initSource) ? initSource : 0;
+    const acBase = Number.isFinite(derived?.ac) ? derived.ac : parseInt(fallback('cs_ac') || '0', 10) || 0;
+    const acTotal = acBase + (combatModuleState.acExtra || 0) + (combatModuleState.shieldExtra || 0);
+    const speedVal = Number.isFinite(derived?.speed) ? derived.speed : fallback('cs_velocidad') || '—';
+    const hpVal = Number.isFinite(derived?.hp) ? derived.hp : fallback('cs_hp') || '—';
+    const map = [
+      { id: 'combat_display_cs_iniciativa', value: formatMod(initValue) },
+      { id: 'combat_display_cs_ac', value: acTotal || acBase || '—' },
+      { id: 'combat_display_cs_velocidad', value: speedVal ?? '—' },
+      { id: 'combat_display_cs_hp', value: hpVal ?? '—' },
+    ];
+    map.forEach(({ id, value }) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    });
+  }
+
+  function updateArmorTotals(derived) {
+    const base = Number.isFinite(derived?.ac) ? derived.ac : 0;
+    const acExtra = combatModuleState.acExtra || 0;
+    const shieldExtra = combatModuleState.shieldExtra || 0;
+    const acTotal = base + acExtra + shieldExtra;
+    const armorBaseEl = document.getElementById('combat-armor-base');
+    const armorTotalEl = document.getElementById('combat-armor-total');
+    const shieldBaseEl = document.getElementById('combat-shield-base');
+    const shieldTotalEl = document.getElementById('combat-shield-total');
+    if (armorBaseEl) armorBaseEl.textContent = base || '—';
+    if (armorTotalEl) armorTotalEl.textContent = acTotal || base || '—';
+    if (shieldBaseEl) shieldBaseEl.textContent = '0';
+    if (shieldTotalEl) shieldTotalEl.textContent = shieldExtra || 0;
   }
 
   function updateSaveDisplays(derived) {
@@ -3580,6 +4484,7 @@ function renderProficiencyLinks(list, targetId, type = '') {
       const hasExpert = characterAutomationState.expertise.has(fieldId);
       setSkillProficiency(fieldId, hasProf, info?.source, hasExpert);
     });
+    applyManualSkillSelections();
 
     renderExpertiseList();
     populateExpertiseSelect();
@@ -3603,7 +4508,20 @@ function renderProficiencyLinks(list, targetId, type = '') {
     }
   }
 
-  function setSkillProficiency(fieldId, isActive, source, hasExpertise) {
+  function applyManualSkillSelections() {
+    const autoSet = characterAutomationState.autoSkills || new Set();
+    const expertiseSet = characterAutomationState.expertise || new Set();
+    manualSkillSelections.forEach((fieldId) => {
+      if (autoSet.has(fieldId)) {
+        manualSkillSelections.delete(fieldId);
+        return;
+      }
+      setSkillProficiency(fieldId, true, 'Manual', expertiseSet.has(fieldId), true);
+    });
+    persistManualSkills();
+  }
+
+  function setSkillProficiency(fieldId, isActive, source, hasExpertise, isManual = false) {
     const profInput = document.getElementById(`prof_${fieldId}`);
     if (profInput) {
       profInput.value = isActive ? '1' : '0';
@@ -3611,17 +4529,19 @@ function renderProficiencyLinks(list, targetId, type = '') {
 
     const icon = document.querySelector(`.skill-icon[data-skill-icon="${fieldId}"]`);
     if (icon) {
-      icon.classList.remove('skill-icon--prof', 'skill-icon--expert');
+      icon.classList.remove('skill-icon--prof', 'skill-icon--expert', 'skill-icon--manual');
       if (hasExpertise) {
         icon.classList.add('skill-icon--expert');
       } else if (isActive) {
-        icon.classList.add('skill-icon--prof');
+        icon.classList.add(isManual ? 'skill-icon--manual' : 'skill-icon--prof');
       }
     }
 
     const label = document.querySelector(`.skill-source-label[data-skill-label="${fieldId}"]`);
     if (label) {
-      if (isActive && source) {
+      if (isManual) {
+        label.textContent = 'M';
+      } else if (isActive && source) {
         label.textContent = mapSourceLabel(source);
       } else {
         label.textContent = '';
@@ -3839,10 +4759,11 @@ function renderProficiencyLinks(list, targetId, type = '') {
     if (!expertiseUI.select) return;
     const set = characterAutomationState.expertise || new Set();
     const autoSet = characterAutomationState.autoSkills || new Set();
+    const manualSet = manualSkillSelections || new Set();
     const available = Object.keys(SKILL_LABELS).filter((fieldId) => {
       if (set.has(fieldId)) return false;
-      if (!autoSet.size) return true;
-      return autoSet.has(fieldId);
+      if (!autoSet.size && !manualSet.size) return true;
+      return autoSet.has(fieldId) || manualSet.has(fieldId);
     });
 
     expertiseUI.select.innerHTML = '';
