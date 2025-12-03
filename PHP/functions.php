@@ -750,6 +750,16 @@ function drak_process_inventory_submission( $post_id, $source ) {
 		return new WP_Error( 'forbidden', 'No tienes permisos para actualizar este inventario.' );
 	}
 
+	$fuerza_score = intval( get_field( 'cs_fuerza', $post_id ) );
+	$gold_cap = 500;
+	if ( $fuerza_score >= 18 ) {
+		$gold_cap = 2000;
+	} elseif ( $fuerza_score >= 16 ) {
+		$gold_cap = 1500;
+	} elseif ( $fuerza_score >= 12 ) {
+		$gold_cap = 1000;
+	}
+
 	$int_score = intval( get_field( 'cs_inteligencia', $post_id ) );
 	$wis_score = intval( get_field( 'cs_sabiduria', $post_id ) );
 	$dex_score = intval( get_field( 'cs_destreza', $post_id ) );
@@ -758,6 +768,7 @@ function drak_process_inventory_submission( $post_id, $source ) {
 
 	if ( isset( $source['golden_coins'] ) ) {
 		$oro = max( 0, intval( drak_get_post_value_from_array( $source, 'golden_coins', 0 ) ) );
+		$oro = min( $oro, $gold_cap );
 		update_field( 'golden_coins', $oro, $post_id );
 	}
 
@@ -1126,13 +1137,24 @@ function renderizar_inventario_personaje($post_id) {
     }
 	
 	// Slot especial: Oro
-$gold = get_field('golden_coins', $post_id);
+$fuerza_score_for_gold = intval( get_field( 'cs_fuerza', $post_id ) );
+$gold_cap = 500;
+if ( $fuerza_score_for_gold >= 18 ) {
+    $gold_cap = 2000;
+} elseif ( $fuerza_score_for_gold >= 16 ) {
+    $gold_cap = 1500;
+} elseif ( $fuerza_score_for_gold >= 12 ) {
+    $gold_cap = 1000;
+}
+$gold = min( intval( get_field( 'golden_coins', $post_id ) ), $gold_cap );
+echo '<h3 class="inventory-extra-header inventory-gold-cap">Capacidad máxima según FUE (' . intval( $fuerza_score_for_gold ) . '): ' . intval( $gold_cap ) . ' monedas</h3>';
 echo '<div class="inventory-slot" data-slot="oro">';
 echo '  <span class="slot-label">Oro:</span>';
 echo '  <div class="slot-content" id="oro-display">';
 echo      '<p class="slot-item" id="oro-valor">' . intval($gold) . ' monedas</p>';
 echo '  </div>';
 echo '  <input type="hidden" name="golden_coins" id="input_oro" value="' . intval($gold) . '">';
+echo '  <input type="hidden" id="gold_cap" value="' . intval( $gold_cap ) . '">';
 echo '  <button type="button" class="add-gold">＋</button>';
 echo '  <button type="button" class="remove-gold">−</button>';
 echo '</div>';
@@ -3166,9 +3188,16 @@ const modalRemove = document.getElementById('modal-remove-gold');
 const formAdd = document.getElementById('form-add-gold');
 const formRemove = document.getElementById('form-remove-gold');
 const closeButtons = document.querySelectorAll('.modal-contenido .close-popup');
+const goldCapEl = document.getElementById('gold_cap');
+const goldCap = parseInt(goldCapEl?.value || '500', 10) || 500;
 
 function updateGoldDisplay() {
-  const value = parseInt(oroInput.value || '0');
+  let value = parseInt(oroInput.value || '0');
+  if (!Number.isFinite(value)) value = 0;
+  if (value > goldCap) {
+    value = goldCap;
+    oroInput.value = value;
+  }
   oroValor.textContent = value + ' monedas';
   queueInventorySave();
 }
@@ -3189,20 +3218,22 @@ formAdd?.addEventListener('submit', e => {
   e.preventDefault();
   const cantidad = parseInt(document.getElementById('gold-amount-add').value || '0', 10);
   if (cantidad > 0) {
-    oroInput.value = parseInt(oroInput.value) + cantidad;
+    oroInput.value = Math.min(goldCap, parseInt(oroInput.value || '0', 10) + cantidad);
     updateGoldDisplay();
   }
   modalAdd.style.display = 'none';
+  formAdd.reset();
 });
 
 formRemove?.addEventListener('submit', e => {
   e.preventDefault();
   const cantidad = parseInt(document.getElementById('gold-amount-remove').value || '0', 10);
   if (cantidad > 0) {
-    oroInput.value = Math.max(0, parseInt(oroInput.value) - cantidad);
+    oroInput.value = Math.max(0, parseInt(oroInput.value || '0', 10) - cantidad);
     updateGoldDisplay();
   }
   modalRemove.style.display = 'none';
+  formRemove.reset();
 });
 
 closeButtons.forEach(btn => {
