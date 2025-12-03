@@ -259,14 +259,26 @@
     quiverType: (COMBAT_CONFIG.quiver?.type || '').toString().toLowerCase(),
   };
 
+  if (typeof combatModuleState.ammo !== 'object' || combatModuleState.ammo === null || Array.isArray(combatModuleState.ammo)) {
+    combatModuleState.ammo = {};
+  }
+  if (!combatModuleState.quiverType) {
+    const quiverKey = Object.keys(combatModuleState.ammo).find((key) => /^quiver-[a-z0-9_-]+$/.test(key));
+    if (quiverKey) {
+      combatModuleState.quiverType = quiverKey.replace(/^quiver-/, '');
+    }
+  }
   if (combatModuleState.quiverType) {
     const key = `quiver-${combatModuleState.quiverType}`;
     if (typeof combatModuleState.ammo !== 'object' || combatModuleState.ammo === null) {
       combatModuleState.ammo = {};
     }
-    if (combatModuleState.ammo[key] == null) {
-      combatModuleState.ammo[key] = Number(COMBAT_CONFIG.quiver?.amount || 0) || 0;
-    }
+    const quiverAmount = Number(
+      COMBAT_CONFIG.quiver?.amount ??
+        combatModuleState.ammo?.[key] ??
+        0
+    ) || 0;
+    combatModuleState.ammo[key] = combatModuleState.ammo[key] == null ? quiverAmount : combatModuleState.ammo[key];
   }
   let lastCombatContext = null;
   let apothecaryTheoryCache = null;
@@ -987,6 +999,10 @@
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
         const baseHp = parseInt(hpBaseInput?.value || '0', 10) || 0;
+        if (bonusInput) {
+          bonusInput.value = '';
+          combatModuleState.tempHpExtra = 0;
+        }
         syncTempHp(baseHp);
         scheduleSave(baseHp);
       });
@@ -3860,18 +3876,19 @@
     ['main', 'off'].forEach((slot) => {
       const input = document.getElementById(`combat-ammo-input-${slot}`);
       const consumeBtn = document.querySelector(`[data-ammo-consume="${slot}"]`);
-      if (!input || !consumeBtn) return;
+      if (!consumeBtn) return;
 
-      input.readOnly = true;
-      input.classList.add('combat-ammo__input--locked');
-
-      input.addEventListener('input', () => {
-        const weapon = getWeaponBySlot(slot);
-        if (!weapon || !weaponRequiresAmmo(weapon)) return;
-        setAmmoValueForWeapon(weapon, slot, input.value || '0');
-        renderWeaponAmmo(slot, weapon);
-        scheduleCombatSave();
-      });
+      if (input) {
+        input.readOnly = true;
+        input.classList.add('combat-ammo__input--locked');
+        input.addEventListener('input', () => {
+          const weapon = getWeaponBySlot(slot);
+          if (!weapon || !weaponRequiresAmmo(weapon)) return;
+          setAmmoValueForWeapon(weapon, slot, input.value || '0');
+          renderWeaponAmmo(slot, weapon);
+          scheduleCombatSave();
+        });
+      }
 
       consumeBtn.addEventListener('click', () => {
         const weapon = getWeaponBySlot(slot);
@@ -3953,15 +3970,19 @@
     const input = document.getElementById(`combat-ammo-input-${slot}`);
     const valueEl = document.getElementById(`combat-ammo-value-${slot}`);
     const warning = document.getElementById(`combat-ammo-warning-${slot}`);
-    if (!block || !input || !valueEl) return;
+    const consumeBtn = document.querySelector(`[data-ammo-consume="${slot}"]`);
+    if (!block || !valueEl) return;
 
     if (!weapon || !weaponRequiresAmmo(weapon)) {
       block.classList.add('is-hidden');
       block.dataset.ammoKey = '';
-      input.value = '';
+      if (input) input.value = '';
       valueEl.textContent = '—';
       valueEl.classList.remove('combat-ammo__value--empty');
       warning?.classList.remove('is-visible');
+      if (consumeBtn) {
+        consumeBtn.textContent = 'Lanzar munición';
+      }
       return;
     }
 
@@ -3969,10 +3990,14 @@
     const key = ammoKeyFromWeapon(weapon, slot);
     block.dataset.ammoKey = key;
     block.classList.remove('is-hidden');
-    input.value = current;
+    if (input) input.value = current;
     valueEl.textContent = current;
     valueEl.classList.toggle('combat-ammo__value--empty', current <= 0);
     warning?.classList.toggle('is-visible', current <= 0);
+    if (consumeBtn) {
+      const ammoType = (combatModuleState.quiverType || '').trim();
+      consumeBtn.textContent = ammoType ? `Lanzar ${ammoType}` : 'Lanzar munición';
+    }
   }
 
   function updateCombatCard(derived, context) {

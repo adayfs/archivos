@@ -386,7 +386,7 @@ function drak_recursos_render_block( int $post_id ): string {
 		// Info extra para depurar: clase y nivel detectados.
 		$ctx       = drak_recursos_get_ctx( $post_id );
 		$clase_dbg = implode( ',', array_keys( $ctx['classLevels'] ?? [] ) );
-		return '<div class="recursos-clase-block"><h3>Recursos de Clase</h3><p class="recursos-empty">Este personaje no tiene recursos configurados.</p><p class="recursos-debug">Clase detectada: ' . esc_html( $clase_dbg ?: 'ninguna' ) . ' · Nivel: ' . esc_html( (string) ( $ctx['totalLevel'] ?? 0 ) ) . '</p></div>';
+		return '';
 		}
 	} catch ( Throwable $e ) {
 		error_log( '[recursos-clase] Error render_block: ' . $e->getMessage() );

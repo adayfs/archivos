@@ -854,15 +854,20 @@ function drak_process_inventory_submission( $post_id, $source ) {
 		update_field( 'ankward_slot', $value, $post_id );
 	}
 
-	if ( isset( $source['carcaj'] ) && is_array( $source['carcaj'] ) ) {
-		$raw = $source['carcaj'];
-		$type = sanitize_text_field( wp_unslash( $raw['type'] ?? '' ) );
-		$amount = max( 0, intval( $raw['amount'] ?? 0 ) );
+    if ( isset( $source['carcaj'] ) && ( is_array( $source['carcaj'] ) || is_string( $source['carcaj'] ) ) ) {
+        $raw = is_array( $source['carcaj'] ) ? $source['carcaj'] : drak_normalize_carcaj_value( $source['carcaj'] );
+        $type = sanitize_text_field( wp_unslash( $raw['type'] ?? '' ) );
+        $amount = max( 0, intval( $raw['amount'] ?? 0 ) );
 		$payload = [
 			'type'   => $type,
 			'amount' => $amount,
 		];
 		update_field( 'carcaj', $payload, $post_id );
+		$ammo_state = [];
+		if ( $type ) {
+			$ammo_state[ 'quiver-' . $type ] = $amount;
+		}
+		update_post_meta( $post_id, 'combat_ammo_state', $ammo_state );
 	}
 
 	for ( $i = 1; $i <= 10; $i++ ) {
@@ -1018,7 +1023,8 @@ function renderizar_inventario_personaje($post_id) {
     }
     $rope_value     = get_field( 'rope_slot', $post_id );
     $ankward_value  = get_field( 'ankward_slot', $post_id );
-    $carcaj_value   = get_field( 'carcaj', $post_id );
+    $carcaj_value_raw = get_field( 'carcaj', $post_id );
+    $carcaj_value   = drak_normalize_carcaj_value( $carcaj_value_raw );
     $carcaj_type    = is_array( $carcaj_value ) ? ( $carcaj_value['type'] ?? '' ) : '';
     $carcaj_amount  = is_array( $carcaj_value ) ? intval( $carcaj_value['amount'] ?? 0 ) : 0;
 
@@ -1822,13 +1828,16 @@ function renderizar_hoja_personaje($post_id) {
     $combat_damage_extra = intval( get_post_meta( $post_id, 'combat_damage_extra', true ) );
     $combat_notes        = sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) );
     $combat_ammo_state   = drak_get_combat_ammo_state( $post_id );
-    $carcaj_raw          = get_field( 'carcaj', $post_id );
+    $carcaj_raw          = drak_normalize_carcaj_value( get_field( 'carcaj', $post_id ) );
     $carcaj_payload      = [];
     if ( is_array( $carcaj_raw ) ) {
         $carcaj_payload = [
             'type'   => sanitize_key( $carcaj_raw['type'] ?? '' ),
             'amount' => max( 0, intval( $carcaj_raw['amount'] ?? 0 ) ),
         ];
+    }
+    if ( ! empty( $carcaj_payload['type'] ) ) {
+        $combat_ammo_state[ 'quiver-' . $carcaj_payload['type'] ] = $carcaj_payload['amount'];
     }
 
 
@@ -2400,12 +2409,14 @@ function renderizar_combate_personaje( $post_id ) {
 	          <div class="temp-pv-block">
 	            <div class="temp-pv-header">
 	              <h4 class="combat-card__title">PV temporales</h4>
-	              <button type="button" id="btn-reset-temp-pv" class="btn-reset-temp-pv">RESET</button>
+	              <div class="temp-pv-inline">
+	                <label class="combat-temp-mod">
+	                  Mod PV
+	                  <input type="number" name="combat_temp_hp_extra" id="combat_temp_hp_extra" value="<?php echo esc_attr( $temp_hp_extra ); ?>">
+	                </label>
+	                <button type="button" id="btn-reset-temp-pv" class="btn-reset-temp-pv">RESET</button>
+	              </div>
 	            </div>
-            <label class="combat-temp-mod">
-              Mod PV
-              <input type="number" name="combat_temp_hp_extra" id="combat_temp_hp_extra" value="<?php echo esc_attr( $temp_hp_extra ); ?>">
-            </label>
 	            <p id="display_cs_temp_hp" class="basic-circle" contenteditable="true" spellcheck="false"><?php echo esc_html( $hp_temp ); ?></p>
 	            <div class="temp-pv-slider-wrapper">
 	              <input type="range" id="slider_temp_hp" min="0" max="999" value="<?php echo esc_attr( $hp_temp ); ?>">
@@ -2474,30 +2485,6 @@ function renderizar_combate_personaje( $post_id ) {
                 <h4 id="combat-main-weapon-name"><?php echo ! empty( $weapon_main['name'] ) ? esc_html( $weapon_main['name'] ) : 'Sin arma asignada'; ?></h4>
                 <p class="combat-weapon-meta" id="combat-main-weapon-meta"></p>
               </div>
-              <div class="combat-weapon-modifiers">
-                <label>
-                  Bonificador al ataque
-                  <input type="number" name="combat_attack_extra_main" id="combat_attack_extra_main" value="<?php echo esc_attr( $attack_extra_main ); ?>">
-                </label>
-                <label>
-                  Bonificador al daño
-                  <input type="number" name="combat_damage_extra_main" id="combat_damage_extra_main" value="<?php echo esc_attr( $damage_extra_main ); ?>">
-                </label>
-              </div>
-              <div class="combat-ammo is-hidden" id="combat-ammo-main">
-                <div class="combat-ammo__row">
-                  <label class="combat-ammo__label">
-                    Munición
-                    <input type="number" id="combat-ammo-input-main" class="combat-ammo__input" min="0" step="1">
-                  </label>
-                  <div class="combat-ammo__status">
-                    <span class="combat-ammo__value" id="combat-ammo-value-main">—</span>
-                    <button type="button" class="combat-ammo__consume" data-ammo-consume="main">Consumir 1</button>
-                  </div>
-                  <small class="combat-ammo__note">Editar cantidad desde el inventario (carcaj).</small>
-                </div>
-                <p class="combat-ammo__warning" id="combat-ammo-warning-main">Sin munición</p>
-              </div>
               <div class="combat-attack-grid">
                 <div class="combat-attack-box">
                   <span class="combat-label">Tirada de ataque</span>
@@ -2510,6 +2497,28 @@ function renderizar_combate_personaje( $post_id ) {
                     <small id="combat-main-damage-breakdown" class="combat-breakdown"></small>
                   </div>
                 </div>
+              <div class="combat-ammo is-hidden" id="combat-ammo-main">
+                <div class="combat-ammo__row">
+                  <div class="combat-ammo__label">
+                    Munición
+                  </div>
+                  <div class="combat-ammo__status">
+                    <span class="combat-ammo__value" id="combat-ammo-value-main">—</span>
+                  </div>
+                </div>
+                <button type="button" class="combat-ammo__consume combat-ammo__consume--full" data-ammo-consume="main">Lanzar munición</button>
+                <p class="combat-ammo__warning" id="combat-ammo-warning-main">Sin munición</p>
+              </div>
+              <div class="combat-weapon-modifiers">
+                <label>
+                  Bonificador al ataque
+                  <input type="number" name="combat_attack_extra_main" id="combat_attack_extra_main" value="<?php echo esc_attr( $attack_extra_main ); ?>">
+                </label>
+                <label>
+                  Bonificador al daño
+                  <input type="number" name="combat_damage_extra_main" id="combat_damage_extra_main" value="<?php echo esc_attr( $damage_extra_main ); ?>">
+                </label>
+              </div>
               </div>
 
             <div class="combat-weapon-block" id="combat-weapon-offhand" data-weapon="<?php echo esc_attr( wp_json_encode( $weapon_offhand ) ); ?>">
@@ -2517,30 +2526,6 @@ function renderizar_combate_personaje( $post_id ) {
                 <p class="combat-card__eyebrow">Arma secundaria</p>
                 <h4 id="combat-off-weapon-name"><?php echo ! empty( $weapon_offhand['name'] ) ? esc_html( $weapon_offhand['name'] ) : 'Sin arma secundaria'; ?></h4>
                 <p class="combat-weapon-meta" id="combat-off-weapon-meta"></p>
-              </div>
-              <div class="combat-weapon-modifiers">
-                <label>
-                  Bonificador al ataque
-                  <input type="number" name="combat_attack_extra_off" id="combat_attack_extra_off" value="<?php echo esc_attr( $attack_extra_off ); ?>">
-                </label>
-                <label>
-                  Bonificador al daño
-                  <input type="number" name="combat_damage_extra_off" id="combat_damage_extra_off" value="<?php echo esc_attr( $damage_extra_off ); ?>">
-                </label>
-              </div>
-              <div class="combat-ammo is-hidden" id="combat-ammo-off">
-                <div class="combat-ammo__row">
-                  <label class="combat-ammo__label">
-                    Munición
-                    <input type="number" id="combat-ammo-input-off" class="combat-ammo__input" min="0" step="1">
-                  </label>
-                  <div class="combat-ammo__status">
-                    <span class="combat-ammo__value" id="combat-ammo-value-off">—</span>
-                    <button type="button" class="combat-ammo__consume" data-ammo-consume="off">Consumir 1</button>
-                  </div>
-                  <small class="combat-ammo__note">Editar cantidad desde el inventario (carcaj).</small>
-                </div>
-                <p class="combat-ammo__warning" id="combat-ammo-warning-off">Sin munición</p>
               </div>
               <div class="combat-attack-grid">
                 <div class="combat-attack-box">
@@ -2554,7 +2539,29 @@ function renderizar_combate_personaje( $post_id ) {
                     <small id="combat-off-damage-breakdown" class="combat-breakdown"></small>
                   </div>
                 </div>
+              <div class="combat-ammo is-hidden" id="combat-ammo-off">
+                <div class="combat-ammo__row">
+                  <div class="combat-ammo__label">
+                    Munición
+                  </div>
+                  <div class="combat-ammo__status">
+                    <span class="combat-ammo__value" id="combat-ammo-value-off">—</span>
+                  </div>
+                </div>
+                <button type="button" class="combat-ammo__consume combat-ammo__consume--full" data-ammo-consume="off">Lanzar munición</button>
+                <p class="combat-ammo__warning" id="combat-ammo-warning-off">Sin munición</p>
               </div>
+              <div class="combat-weapon-modifiers">
+                <label>
+                  Bonificador al ataque
+                  <input type="number" name="combat_attack_extra_off" id="combat_attack_extra_off" value="<?php echo esc_attr( $attack_extra_off ); ?>">
+                </label>
+                <label>
+                  Bonificador al daño
+                  <input type="number" name="combat_damage_extra_off" id="combat_damage_extra_off" value="<?php echo esc_attr( $damage_extra_off ); ?>">
+                </label>
+              </div>
+            </div>
             </div>
 
           <div class="combat-modifiers">
@@ -6418,6 +6425,16 @@ function drak_static_data_uri( $filename ) {
  * @param int $post_id
  * @return array<string,int>
  */
+function drak_normalize_carcaj_value( $raw ) {
+    if ( is_string( $raw ) && $raw !== '' ) {
+        $decoded = json_decode( $raw, true );
+        if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+            $raw = $decoded;
+        }
+    }
+    return is_array( $raw ) ? $raw : [];
+}
+
 function drak_get_combat_ammo_state( $post_id ) {
     $raw = get_post_meta( $post_id, 'combat_ammo_state', true );
     $has_meta = ! empty( $raw );
@@ -6430,7 +6447,8 @@ function drak_get_combat_ammo_state( $post_id ) {
     $clean = is_array( $raw ) ? drak_sanitize_combat_ammo_state( $raw ) : [];
 
     if ( function_exists( 'get_field' ) ) {
-        $carcaj = get_field( 'carcaj', $post_id );
+        $carcaj_raw = get_field( 'carcaj', $post_id );
+        $carcaj = drak_normalize_carcaj_value( $carcaj_raw );
         if ( is_array( $carcaj ) ) {
             $type   = sanitize_key( $carcaj['type'] ?? '' );
             $amount = max( 0, intval( $carcaj['amount'] ?? 0 ) );
@@ -6652,6 +6670,20 @@ add_action('wp_enqueue_scripts', function () {
         $personaje_slug = get_query_var('personaje_slug');
         $personaje = $personaje_slug ? get_page_by_path($personaje_slug, OBJECT, 'personaje') : null;
         $post_id = $personaje ? $personaje->ID : 0;
+        $combat_ammo_state = $post_id ? drak_get_combat_ammo_state( $post_id ) : [];
+        $carcaj_payload = [];
+        if ( $post_id && function_exists( 'get_field' ) ) {
+            $carcaj_raw = drak_normalize_carcaj_value( get_field( 'carcaj', $post_id ) );
+            if ( is_array( $carcaj_raw ) ) {
+                $carcaj_payload = [
+                    'type'   => sanitize_key( $carcaj_raw['type'] ?? '' ),
+                    'amount' => max( 0, intval( $carcaj_raw['amount'] ?? 0 ) ),
+                ];
+            }
+        }
+        if ( ! empty( $carcaj_payload['type'] ) ) {
+            $combat_ammo_state[ 'quiver-' . $carcaj_payload['type'] ] = $carcaj_payload['amount'];
+        }
 
         wp_enqueue_script('dnd5-renderer', get_stylesheet_directory_uri() . '/js/dnd5-renderer.js', [], null, true);
         wp_localize_script('dnd5-renderer', 'DND5_LINK_BASES', $dnd5_link_bases);

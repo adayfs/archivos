@@ -955,9 +955,32 @@
 
 .temp-pv-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 0.5rem;
+}
+
+.temp-pv-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.temp-pv-inline .combat-temp-mod,
+.temp-pv-inline .btn-reset-temp-pv {
+  width: 50%;
+}
+
+.temp-pv-inline .combat-temp-mod input {
+  width: 100%;
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+.temp-pv-inline .btn-reset-temp-pv {
+  text-align: center;
 }
 
 .btn-reset-temp-pv {
@@ -1137,8 +1160,24 @@
   color: #fff;
 }
 
+#combat-condition-add {
+  background: #ff00ff;
+  border-color: #ff00ff;
+  color: #fff;
+  font-weight: 700;
+}
+
+#combat-condition-add:hover {
+  background: #cc00cc;
+  border-color: #cc00cc;
+}
+
 .combat-card__title {
   margin: 0 0 0.25rem;
+}
+
+.combat-attack-box .combat-value {
+  color: #ff4d4d;
 }
 
 .combat-weapon-pair {
@@ -1190,35 +1229,33 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 6px;
 }
 
 .combat-ammo__label {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  gap: 2px;
   font-size: 0.9rem;
   color: #cfd6ef;
-}
-
-.combat-ammo__input {
-  width: 110px;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid #2a3550;
-  background: #0f1423;
-  color: #fff;
 }
 
 .combat-ammo__status {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  width: 100%;
 }
 
 .combat-ammo__value {
   font-weight: 700;
-  color: #cfd6ef;
+  color: #c98b47;
+  font-size: 1.6rem;
 }
 
 .combat-ammo__value--empty {
@@ -1226,18 +1263,24 @@
 }
 
 .combat-ammo__consume {
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid #2a3550;
-  background: #1a2238;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ff00ff;
+  background: #ff00ff;
   color: #fff;
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
+.combat-ammo__consume--full {
+  width: 100%;
+  text-align: center;
+  margin-top: 6px;
+}
+
 .combat-ammo__consume:hover {
-  background: #242f4a;
-  border-color: #33426b;
+  background: #cc00cc;
+  border-color: #cc00cc;
   transform: translateY(-1px);
 }
 
@@ -1250,13 +1293,6 @@
 
 .combat-ammo__warning.is-visible {
   display: block;
-}
-
-.combat-ammo__note {
-  display: block;
-  margin-top: 4px;
-  color: #aeb6d3;
-  font-size: 0.85rem;
 }
 
 .combat-ammo__input--locked {
