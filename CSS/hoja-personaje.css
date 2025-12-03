@@ -602,7 +602,8 @@
 }
 
 .feat-modal__list {
-    max-height: 60vh;
+    max-height: 40vh;
+    max-height: min(40vh, 300px);
     overflow-y: auto;
     display: flex;
     flex-direction: column;

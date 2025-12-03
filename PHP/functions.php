@@ -729,6 +729,88 @@ function drak_get_weapon_main_payload( int $post_id ): array {
 }
 
 /**
+ * Helper para sanitizar valores desde un array arbitrario (por ejemplo, $_POST recibido via AJAX).
+ */
+function drak_get_post_value_from_array( $array, $key, $default = '' ) {
+	if ( ! isset( $array[ $key ] ) ) {
+		return $default;
+	}
+	$value = wp_unslash( $array[ $key ] );
+	if ( is_array( $value ) ) {
+		return array_map( 'sanitize_text_field', $value );
+	}
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Procesa y guarda los campos del inventario (form o AJAX).
+ */
+function drak_process_inventory_submission( $post_id, $source ) {
+	if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+		return new WP_Error( 'forbidden', 'No tienes permisos para actualizar este inventario.' );
+	}
+
+	if ( isset( $source['golden_coins'] ) ) {
+		$oro = max( 0, intval( drak_get_post_value_from_array( $source, 'golden_coins', 0 ) ) );
+		update_field( 'golden_coins', $oro, $post_id );
+	}
+
+	if ( isset( $source['arma_principal'] ) && is_array( $source['arma_principal'] ) ) {
+		$arma_data = drak_get_post_value_from_array( $source, 'arma_principal', [] );
+		update_field( 'arma_principal', $arma_data, $post_id );
+	}
+	if ( isset( $source['arma_secundaria'] ) && is_array( $source['arma_secundaria'] ) ) {
+		$arma_data_secundaria = drak_get_post_value_from_array( $source, 'arma_secundaria', [] );
+		update_field( 'arma_secundaria', $arma_data_secundaria, $post_id );
+	}
+	if ( isset( $source['armadura'] ) && is_array( $source['armadura'] ) ) {
+		$armadura_data = drak_get_post_value_from_array( $source, 'armadura', [] );
+		update_field( 'armadura', $armadura_data, $post_id );
+	}
+
+	$delerium_number_fields = [
+		'delerium_contamination_level' => 6,
+		'delerium_chips'               => null,
+		'delerium_fragments'           => null,
+		'delerium_shards'              => null,
+		'delerium_crystals'            => null,
+		'delerium_geodas'              => null,
+	];
+
+	foreach ( $delerium_number_fields as $field => $max_value ) {
+		if ( ! isset( $source[ $field ] ) ) {
+			continue;
+		}
+		$valor = intval( drak_get_post_value_from_array( $source, $field, 0 ) );
+		$valor = max( 0, $valor );
+		if ( $max_value !== null ) {
+			$valor = min( $valor, $max_value );
+		}
+		update_field( $field, $valor, $post_id );
+	}
+
+	if ( isset( $source['delerium_mutations'] ) ) {
+		$mutations = sanitize_textarea_field( wp_unslash( $source['delerium_mutations'] ) );
+		update_field( 'delerium_mutations', $mutations, $post_id );
+	}
+
+	if ( isset( $source['delerium_madness'] ) ) {
+		$madness = sanitize_textarea_field( wp_unslash( $source['delerium_madness'] ) );
+		update_field( 'delerium_madness', $madness, $post_id );
+	}
+
+	for ( $i = 1; $i <= 10; $i++ ) {
+		$campo = 'mainpack_slot_' . $i;
+		if ( isset( $source[ $campo ] ) ) {
+			$valor = drak_get_post_value_from_array( $source, $campo, '' );
+			update_field( $campo, $valor, $post_id );
+		}
+	}
+
+	return true;
+}
+
+/**
  * Normaliza el campo de armadura guardado en el inventario.
  */
 function drak_get_armor_payload( int $post_id ): array {
@@ -772,66 +854,17 @@ function renderizar_inventario_personaje($post_id) {
         if ( ! drak_user_can_manage_personaje( $post_id ) ) {
             echo '<div class="mensaje-confirmacion">❌ No tienes permisos para actualizar este inventario.</div>';
         } else {
-            if (isset($_POST['golden_coins'])) {
-                $oro = max(0, intval(drak_get_post_value('golden_coins', 0)));
-                update_field('golden_coins', $oro, $post_id);
+            $result = drak_process_inventory_submission( $post_id, $_POST );
+            if ( is_wp_error( $result ) ) {
+                echo '<div class="mensaje-confirmacion">❌ ' . esc_html( $result->get_error_message() ) . '</div>';
+            } else {
+                echo '<div class="mensaje-confirmacion">✅ Inventario actualizado correctamente.</div>';
             }
-
-            if (isset($_POST['arma_principal']) && is_array($_POST['arma_principal'])) {
-                $arma_data = drak_get_post_value('arma_principal', []);
-                update_field('arma_principal', $arma_data, $post_id);
-            }
-            if (isset($_POST['arma_secundaria']) && is_array($_POST['arma_secundaria'])) {
-                $arma_data_secundaria = drak_get_post_value('arma_secundaria', []);
-                update_field('arma_secundaria', $arma_data_secundaria, $post_id);
-            }
-            if (isset($_POST['armadura']) && is_array($_POST['armadura'])) {
-                $armadura_data = drak_get_post_value('armadura', []);
-                update_field('armadura', $armadura_data, $post_id);
-            }
-
-            $delerium_number_fields = [
-                'delerium_contamination_level' => 6,
-                'delerium_chips'               => null,
-                'delerium_fragments'           => null,
-                'delerium_shards'              => null,
-                'delerium_crystals'            => null,
-                'delerium_geodas'              => null,
-            ];
-
-            foreach ($delerium_number_fields as $field => $max_value) {
-                if (!isset($_POST[$field])) {
-                    continue;
-                }
-                $valor = intval(drak_get_post_value($field, 0));
-                $valor = max(0, $valor);
-                if ($max_value !== null) {
-                    $valor = min($valor, $max_value);
-                }
-                update_field($field, $valor, $post_id);
-            }
-
-            if (isset($_POST['delerium_mutations'])) {
-                $mutations = sanitize_textarea_field(wp_unslash($_POST['delerium_mutations']));
-                update_field('delerium_mutations', $mutations, $post_id);
-            }
-
-            if (isset($_POST['delerium_madness'])) {
-                $madness = sanitize_textarea_field(wp_unslash($_POST['delerium_madness']));
-                update_field('delerium_madness', $madness, $post_id);
-            }
-
-            for ($i = 1; $i <= 8; $i++) {
-                $campo = 'mainpack_slot_' . $i;
-                $valor = drak_get_post_value($campo, '');
-                update_field($campo, $valor, $post_id);
-            }
-            echo '<div class="mensaje-confirmacion">✅ Inventario actualizado correctamente.</div>';
         }
     }
 
     echo '<div class="mainpack-container">';
-    echo '<form method="post" id="mainpack-formulario" class="formulario-inventario">';
+    echo '<form method="post" id="mainpack-formulario" class="formulario-inventario" data-ajax-url="' . esc_url( drak_get_admin_ajax_url() ) . '">';
 
     $delerium_contamination = min(6, max(0, intval(get_field('delerium_contamination_level', $post_id))));
     $delerium_counts = [
@@ -1096,7 +1129,7 @@ echo '<input type="hidden" name="armadura[value]" id="armadura_value" value="' .
 echo '<input type="hidden" name="armadura[descripcion]" id="armadura_descripcion" value="' . esc_attr($armadura['description'] ?? '') . '">';
 
     echo '<input type="hidden" name="post_id" value="' . esc_attr($post_id) . '">';
-    echo '<div class="boton-centrao"><button type="submit" name="mainpack_guardar">Guardar Inventario</button></div>';
+    echo '<input type="hidden" id="inventory_nonce" name="inventory_nonce" value="' . esc_attr( wp_create_nonce( 'save_inventory_' . $post_id ) ) . '">';
     echo '</form>';
     echo '</div>';
 
@@ -1531,8 +1564,12 @@ function renderizar_hoja_personaje($post_id) {
         </p>
       </div>
 
-      <!-- Fila con Clase / Subclase / Raza en la misma línea -->
+      <!-- Fila con Raza / Clase / Subclase / Trasfondo -->
   <div class="basicos-secundarios">
+    <div class="basic-item basic-item-wide">
+      <span class="basic-label">Raza</span>
+      <p class="basic-text" id="display_raza"></p>
+    </div>
     <div class="basic-item basic-item-wide">
       <span class="basic-label">Clase</span>
       <p class="basic-text" id="display_clase"></p>
@@ -1543,10 +1580,6 @@ function renderizar_hoja_personaje($post_id) {
       <p class="basic-text" id="display_subclase"></p>
     </div>
 
-    <div class="basic-item basic-item-wide">
-      <span class="basic-label">Raza</span>
-      <p class="basic-text" id="display_raza"></p>
-    </div>
     <div class="basic-item basic-item-wide">
       <span class="basic-label">Trasfondo</span>
       <p class="basic-text" id="display_background"></p>
@@ -1888,6 +1921,12 @@ foreach ($filas as $label => $keys_row) :
           <input type="number" min="1" max="20" class="basics-modal-input" data-basic="nivel">
         </div>
         <div class="basics-modal-row">
+          <label>Raza</label>
+          <select id="modal-raza" class="basics-modal-input">
+            <option value="">Cargando razas…</option>
+          </select>
+        </div>
+        <div class="basics-modal-row">
           <label>Clase</label>
           <select id="modal-clase" class="basics-modal-input">
             <option value="">Cargando clases…</option>
@@ -1897,12 +1936,6 @@ foreach ($filas as $label => $keys_row) :
           <label>Subclase</label>
           <select id="modal-subclase" class="basics-modal-input" disabled>
             <option value="">Selecciona una clase primero…</option>
-          </select>
-        </div>
-        <div class="basics-modal-row">
-          <label>Raza</label>
-          <select id="modal-raza" class="basics-modal-input">
-            <option value="">Cargando razas…</option>
           </select>
         </div>
         <div class="basics-modal-row basics-modal-row--background">
@@ -2358,6 +2391,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const deleteOverlay = document.getElementById('delete-form-overlay');
   const deleteForm    = document.getElementById('delete-form');
   const deleteContent = document.getElementById('delete-form-content');
+  const inventoryForm = document.getElementById('mainpack-formulario');
+  const inventoryNonce = document.getElementById('inventory_nonce');
+  const inventoryAjaxUrl = inventoryForm?.dataset.ajaxUrl || window.ajaxurl || '/wp-admin/admin-ajax.php';
+  let inventorySaveTimer = null;
+
+  function queueInventorySave() {
+    if (!inventoryForm || !inventoryNonce || !inventoryAjaxUrl) return;
+    clearTimeout(inventorySaveTimer);
+    inventorySaveTimer = setTimeout(() => {
+      const fd = new FormData(inventoryForm);
+      fd.append('action', 'drak_save_inventory');
+      fd.append('inventory_nonce', inventoryNonce.value);
+      fetch(inventoryAjaxUrl, {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: fd,
+      }).catch(() => {});
+    }, 500);
+  }
+  window.drakQueueInventorySave = queueInventorySave;
 	
 	  // Convierte el string guardado ("Antorcha x 2 - Cuerda")
   // en una lista de <p> dentro del slot
@@ -2390,6 +2443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       container.classList.remove("empty");
     }
+    queueInventorySave();
   }
 
   // Inicializar la vista de los 8 slots al cargar la página
@@ -2451,7 +2505,7 @@ document.querySelectorAll('.inventory-slot[data-slot] .add-item').forEach(btn =>
   }
 
   // Enviar formulario de añadir
-  form.addEventListener('submit', function (e) {
+form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const name = nameInput.value.trim();
@@ -2525,6 +2579,7 @@ document.querySelectorAll('.inventory-slot[data-slot] .add-item').forEach(btn =>
 
     updateSlotView(slot);
     overlay.style.display = 'none';
+    queueInventorySave();
   });
 
   // ----------------- ELIMINAR OBJETOS ("-") -----------------
@@ -2614,6 +2669,7 @@ document.querySelectorAll('.inventory-slot[data-slot] .add-item').forEach(btn =>
        input.value = newItems.join(' - ');
     updateSlotView(slot);
     deleteOverlay.style.display = 'none';
+    queueInventorySave();
 
   });
 
@@ -2631,6 +2687,7 @@ const closeButtons = document.querySelectorAll('.modal-contenido .close-popup');
 function updateGoldDisplay() {
   const value = parseInt(oroInput.value || '0');
   oroValor.textContent = value + ' monedas';
+  queueInventorySave();
 }
 
 if (btnAddGold && modalAdd) {
@@ -9262,6 +9319,29 @@ function drak_save_delerium_module() {
 }
 add_action( 'wp_ajax_drak_save_delerium_module', 'drak_save_delerium_module' );
 add_action( 'wp_ajax_nopriv_drak_save_delerium_module', 'drak_save_delerium_module' );
+
+/**
+ * Guardado AJAX del inventario (autosave).
+ */
+function drak_save_inventory_ajax() {
+    if ( ! isset( $_POST['post_id'], $_POST['inventory_nonce'] ) ) {
+        wp_send_json_error( [ 'message' => 'Parámetros incompletos.' ], 400 );
+    }
+    $post_id = intval( $_POST['post_id'] );
+    $nonce   = sanitize_text_field( wp_unslash( $_POST['inventory_nonce'] ) );
+    if ( ! wp_verify_nonce( $nonce, 'save_inventory_' . $post_id ) ) {
+        wp_send_json_error( [ 'message' => 'Nonce inválido.' ], 403 );
+    }
+
+    $result = drak_process_inventory_submission( $post_id, $_POST );
+    if ( is_wp_error( $result ) ) {
+        wp_send_json_error( [ 'message' => $result->get_error_message() ], 403 );
+    }
+
+    wp_send_json_success( [ 'message' => 'Inventario guardado' ] );
+}
+add_action( 'wp_ajax_drak_save_inventory', 'drak_save_inventory_ajax' );
+add_action( 'wp_ajax_nopriv_drak_save_inventory', 'drak_save_inventory_ajax' );
 
 /**
  * Live search para Wiki de campaña.

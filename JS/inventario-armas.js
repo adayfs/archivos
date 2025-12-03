@@ -242,13 +242,13 @@
         contextLabel.textContent = currentSlot === 'secundaria' ? '(secundaria)' : '(principal)';
       }
 
-      function applySelection(weapon) {
-        if (!weapon) return;
-        const targetDisplay = displays[currentSlot];
-        const name = readWeaponName(weapon.name);
-        if (targetDisplay) {
-          targetDisplay.innerHTML = `<p><strong>${name}</strong> (${weapon.damage_dice || '—'} ${weapon.damage_type || ''})</p>`;
-        }
+    function applySelection(weapon) {
+      if (!weapon) return;
+      const targetDisplay = displays[currentSlot];
+      const name = readWeaponName(weapon.name);
+      if (targetDisplay) {
+        targetDisplay.innerHTML = `<p><strong>${name}</strong> (${weapon.damage_dice || '—'} ${weapon.damage_type || ''})</p>`;
+      }
 
         setHidden(currentSlot, 'name', name);
         setHidden(currentSlot, 'slug', weapon.slug);
@@ -264,9 +264,10 @@
         setHidden(currentSlot, 'descripcion', weapon.desc || '');
         setHidden(currentSlot, 'es_magica', magicCheckbox?.checked ? '1' : '0');
         setHidden(currentSlot, 'requiere_attunement', attuneCheckbox?.checked ? '1' : '0');
+        if (window.drakQueueInventorySave) window.drakQueueInventorySave();
       }
 
-      function clearWeaponSelection(slot = currentSlot) {
+    function clearWeaponSelection(slot = currentSlot) {
         const emptyCopy =
           slot === 'secundaria' ? 'No hay arma secundaria asignada' : 'No hay arma asignada';
         const targetDisplay = displays[slot];
@@ -284,11 +285,12 @@
         }
         if (preview) {
           preview.style.display = 'none';
-          if (previewProps) previewProps.innerHTML = '';
-        }
-        if (magicCheckbox) magicCheckbox.checked = false;
-        if (attuneCheckbox) attuneCheckbox.checked = false;
+        if (previewProps) previewProps.innerHTML = '';
       }
+      if (magicCheckbox) magicCheckbox.checked = false;
+      if (attuneCheckbox) attuneCheckbox.checked = false;
+      if (window.drakQueueInventorySave) window.drakQueueInventorySave();
+    }
 
       function syncCheckboxesFromHidden(slot) {
         if (magicCheckbox) {
@@ -590,6 +592,7 @@
         hidden.weight.value = armor.weight ?? '';
         hidden.value.value = armor.value ?? '';
         hidden.descripcion.value = armor.desc || '';
+        if (window.drakQueueInventorySave) window.drakQueueInventorySave();
       }
 
       function clearArmor() {
@@ -602,6 +605,7 @@
           if (previewDescripcion) previewDescripcion.textContent = '';
         }
         selector.value = '';
+        if (window.drakQueueInventorySave) window.drakQueueInventorySave();
       }
 
       selector?.addEventListener('change', () => {
