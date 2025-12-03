@@ -256,7 +256,18 @@
     tempHpExtra: Number(COMBAT_CONFIG.temp_hp_extra || 0) || 0,
     notes: COMBAT_CONFIG.notes || '',
     ammo: COMBAT_CONFIG.ammo || {},
+    quiverType: (COMBAT_CONFIG.quiver?.type || '').toString().toLowerCase(),
   };
+
+  if (combatModuleState.quiverType) {
+    const key = `quiver-${combatModuleState.quiverType}`;
+    if (typeof combatModuleState.ammo !== 'object' || combatModuleState.ammo === null) {
+      combatModuleState.ammo = {};
+    }
+    if (combatModuleState.ammo[key] == null) {
+      combatModuleState.ammo[key] = Number(COMBAT_CONFIG.quiver?.amount || 0) || 0;
+    }
+  }
   let lastCombatContext = null;
   let apothecaryTheoryCache = null;
   let apothecaryTheoryPromise = null;
@@ -3717,6 +3728,10 @@
     formData.append('temp_hp_extra', combatModuleState.tempHpExtra || 0);
     formData.append('notes', combatModuleState.notes || '');
     formData.append('ammo_state', JSON.stringify(combatModuleState.ammo || {}));
+    if (combatModuleState.quiverType) {
+      formData.append('ammo_quiver_type', combatModuleState.quiverType);
+      formData.append('ammo_quiver_amount', getQuiverAmount());
+    }
 
     fetch(window.DND5_API.ajax_url, {
       method: 'POST',
@@ -3794,6 +3809,9 @@
   }
 
   function ammoKeyFromWeapon(weapon, slot = '') {
+    if (combatModuleState.quiverType && weaponRequiresAmmo(weapon)) {
+      return `quiver-${combatModuleState.quiverType}`;
+    }
     if (!weapon) return slot ? `slot-${slot}` : '';
     const raw =
       weapon.slug ||
@@ -3826,6 +3844,12 @@
     combatModuleState.ammo[key] = Math.max(0, parseInt(value, 10) || 0);
   }
 
+  function getQuiverAmount() {
+    if (!combatModuleState.quiverType) return 0;
+    const key = `quiver-${combatModuleState.quiverType}`;
+    return combatModuleState.ammo?.[key] ?? 0;
+  }
+
   function getWeaponBySlot(slot) {
     const weapon =
       slot === 'off' ? combatModuleState.weaponOff || null : combatModuleState.weaponMain || null;
@@ -3837,6 +3861,9 @@
       const input = document.getElementById(`combat-ammo-input-${slot}`);
       const consumeBtn = document.querySelector(`[data-ammo-consume="${slot}"]`);
       if (!input || !consumeBtn) return;
+
+      input.readOnly = true;
+      input.classList.add('combat-ammo__input--locked');
 
       input.addEventListener('input', () => {
         const weapon = getWeaponBySlot(slot);

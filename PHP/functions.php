@@ -750,6 +750,12 @@ function drak_process_inventory_submission( $post_id, $source ) {
 		return new WP_Error( 'forbidden', 'No tienes permisos para actualizar este inventario.' );
 	}
 
+	$int_score = intval( get_field( 'cs_inteligencia', $post_id ) );
+	$wis_score = intval( get_field( 'cs_sabiduria', $post_id ) );
+	$dex_score = intval( get_field( 'cs_destreza', $post_id ) );
+	$can_potion_slot_4 = ( $int_score > 16 || $wis_score > 16 || $dex_score > 16 );
+	$can_scroll_extra  = ( $int_score > 16 || $wis_score > 16 );
+
 	if ( isset( $source['golden_coins'] ) ) {
 		$oro = max( 0, intval( drak_get_post_value_from_array( $source, 'golden_coins', 0 ) ) );
 		update_field( 'golden_coins', $oro, $post_id );
@@ -797,6 +803,55 @@ function drak_process_inventory_submission( $post_id, $source ) {
 	if ( isset( $source['delerium_madness'] ) ) {
 		$madness = sanitize_textarea_field( wp_unslash( $source['delerium_madness'] ) );
 		update_field( 'delerium_madness', $madness, $post_id );
+	}
+
+	// Slots de pociones
+	for ( $i = 1; $i <= 4; $i++ ) {
+		$field = 'potions_slot_' . $i;
+		if ( ! isset( $source[ $field ] ) ) {
+			continue;
+		}
+		if ( 4 === $i && ! $can_potion_slot_4 ) {
+			update_field( $field, '', $post_id );
+			continue;
+		}
+		$value = drak_get_post_value_from_array( $source, $field, '' );
+		update_field( $field, $value, $post_id );
+	}
+
+	// Slots de pergaminos / mapas / documentos
+	for ( $i = 1; $i <= 6; $i++ ) {
+		$field = 'scrolls_slot_' . $i;
+		if ( ! isset( $source[ $field ] ) ) {
+			continue;
+		}
+		if ( $i > 4 && ! $can_scroll_extra ) {
+			update_field( $field, '', $post_id );
+			continue;
+		}
+		$value = drak_get_post_value_from_array( $source, $field, '' );
+		update_field( $field, $value, $post_id );
+	}
+
+	if ( isset( $source['rope_slot'] ) ) {
+		$value = drak_get_post_value_from_array( $source, 'rope_slot', '' );
+		update_field( 'rope_slot', $value === 'rope' ? 'rope' : '', $post_id );
+	}
+
+	if ( isset( $source['ankward_slot'] ) ) {
+		$value = sanitize_textarea_field( wp_unslash( $source['ankward_slot'] ) );
+		update_field( 'ankward_slot', $value, $post_id );
+	}
+
+	if ( isset( $source['carcaj'] ) && is_array( $source['carcaj'] ) ) {
+		$raw = $source['carcaj'];
+		$type = sanitize_text_field( wp_unslash( $raw['type'] ?? '' ) );
+		$amount = max( 0, intval( $raw['amount'] ?? 0 ) );
+		$payload = [
+			'type'   => $type,
+			'amount' => $amount,
+		];
+		update_field( 'carcaj', $payload, $post_id );
 	}
 
 	for ( $i = 1; $i <= 10; $i++ ) {
@@ -934,6 +989,104 @@ function renderizar_inventario_personaje($post_id) {
     echo '    </div>';
     echo '  </div>';
     echo '</section>';
+
+    // Slots específicos (pociones, pergaminos, cuerda, carcaj)
+    $int_score = intval( get_field( 'cs_inteligencia', $post_id ) );
+    $wis_score = intval( get_field( 'cs_sabiduria', $post_id ) );
+    $dex_score = intval( get_field( 'cs_destreza', $post_id ) );
+    $can_potion_slot_4 = ( $int_score > 16 || $wis_score > 16 || $dex_score > 16 );
+    $can_scroll_extra  = ( $int_score > 16 || $wis_score > 16 );
+
+    $potion_values = [];
+    for ( $i = 1; $i <= 4; $i++ ) {
+        $potion_values[ $i ] = get_field( 'potions_slot_' . $i, $post_id );
+    }
+    $scroll_values = [];
+    for ( $i = 1; $i <= 6; $i++ ) {
+        $scroll_values[ $i ] = get_field( 'scrolls_slot_' . $i, $post_id );
+    }
+    $rope_value     = get_field( 'rope_slot', $post_id );
+    $ankward_value  = get_field( 'ankward_slot', $post_id );
+    $carcaj_value   = get_field( 'carcaj', $post_id );
+    $carcaj_type    = is_array( $carcaj_value ) ? ( $carcaj_value['type'] ?? '' ) : '';
+    $carcaj_amount  = is_array( $carcaj_value ) ? intval( $carcaj_value['amount'] ?? 0 ) : 0;
+
+    $render_special_slots = false; // se reubican más abajo
+    if ( $render_special_slots ) {
+    echo '<section class="inventory-special inventory-special--slots" data-inventory-special data-int="' . esc_attr( $int_score ) . '" data-wis="' . esc_attr( $wis_score ) . '" data-dex="' . esc_attr( $dex_score ) . '">';
+
+    // Carcaj
+    $slot_key = 'carcaj';
+    $carcaj_display = $carcaj_type ? ( ucfirst( $carcaj_type ) . ' x ' . $carcaj_amount ) : '';
+    $empty_class = empty( $carcaj_display ) ? ' empty' : '';
+    echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="ammo">';
+    echo '  <span class="slot-label">Carcaj / munición:</span>';
+    echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+    echo '  <input type="hidden" name="carcaj_display" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $carcaj_display ) . '">';
+    echo '  <input type="hidden" name="carcaj[type]" id="carcaj_type_hidden" value="' . esc_attr( $carcaj_type ) . '">';
+    echo '  <input type="hidden" name="carcaj[amount]" id="carcaj_amount_hidden" value="' . esc_attr( $carcaj_amount ) . '">';
+    echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '">＋</button>';
+    echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '">−</button>';
+    echo '</div>';
+
+    // Pociones (1-4)
+    for ( $i = 1; $i <= 4; $i++ ) {
+        $slot_key = 'potions_' . $i;
+        $value    = $potion_values[ $i ] ?? '';
+        $locked   = ( 4 === $i && ! $can_potion_slot_4 );
+        $locked_attr = $locked ? ' data-locked="1"' : '';
+        $empty_class = empty( $value ) ? ' empty' : '';
+        echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="potion"' . $locked_attr . '>';
+        echo '  <span class="slot-label">Poción ' . $i . ':</span>';
+        echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+        echo '  <input type="hidden" name="potions_slot_' . $i . '" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $value ) . '">';
+        echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '"' . ( $locked ? ' disabled' : '' ) . '>＋</button>';
+        echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '"' . ( $locked ? ' disabled' : '' ) . '>−</button>';
+        echo '</div>';
+    }
+
+    // Pergaminos / mapas / documentos (1-6)
+    for ( $i = 1; $i <= 6; $i++ ) {
+        $slot_key = 'scrolls_' . $i;
+        $value    = $scroll_values[ $i ] ?? '';
+        $locked   = ( $i > 4 && ! $can_scroll_extra );
+        $locked_attr = $locked ? ' data-locked="1"' : '';
+        $empty_class = empty( $value ) ? ' empty' : '';
+        echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="scroll"' . $locked_attr . '>';
+        echo '  <span class="slot-label">Pergamino ' . $i . ':</span>';
+        echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+        echo '  <input type="hidden" name="scrolls_slot_' . $i . '" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $value ) . '">';
+        echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '"' . ( $locked ? ' disabled' : '' ) . '>＋</button>';
+        echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '"' . ( $locked ? ' disabled' : '' ) . '>−</button>';
+        echo '</div>';
+    }
+
+    // Cuerda
+    $slot_key = 'rope';
+    $value    = $rope_value === 'rope' ? 'Cuerda' : '';
+    $empty_class = empty( $value ) ? ' empty' : '';
+    echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="rope">';
+    echo '  <span class="slot-label">Cuerda:</span>';
+    echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+    echo '  <input type="hidden" name="rope_slot" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $rope_value ) . '">';
+    echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '">＋</button>';
+    echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '">−</button>';
+    echo '</div>';
+
+    // Slot extraño
+    $slot_key = 'ankward';
+    $empty_class = empty( $ankward_value ) ? ' empty' : '';
+    echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="ankward">';
+    echo '  <span class="slot-label">Slot extraño:</span>';
+    echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+    echo '  <input type="hidden" name="ankward_slot" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $ankward_value ) . '">';
+    echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '">＋</button>';
+    echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '">−</button>';
+    echo '</div>';
+
+    echo '</section>';
+    echo '<hr>';
+    }
 
     // Subclase (opcional)
     if ( $sub_features ) {
@@ -1127,6 +1280,102 @@ echo '<input type="hidden" name="armadura[stealth_disadvantage]" id="armadura_st
 echo '<input type="hidden" name="armadura[weight]" id="armadura_weight" value="' . esc_attr($armadura['weight'] ?? '') . '">';
 echo '<input type="hidden" name="armadura[value]" id="armadura_value" value="' . esc_attr($armadura['value'] ?? '') . '">';
 echo '<input type="hidden" name="armadura[descripcion]" id="armadura_descripcion" value="' . esc_attr($armadura['description'] ?? '') . '">';
+
+    // Slots rápidos (orden: munición, pociones, pergaminos, cuerda, slot extraño)
+    echo '<section class="inventory-special inventory-special--slots" data-inventory-special data-int="' . esc_attr( $int_score ) . '" data-wis="' . esc_attr( $wis_score ) . '" data-dex="' . esc_attr( $dex_score ) . '">';
+
+    // Carcaj
+    $slot_key = 'carcaj';
+    $carcaj_display = $carcaj_type ? ( ucfirst( $carcaj_type ) . ' x ' . $carcaj_amount ) : '';
+    $empty_class = empty( $carcaj_display ) ? ' empty' : '';
+    echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="ammo">';
+    echo '  <span class="slot-label">Carcaj / munición:</span>';
+    echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+    echo '  <input type="hidden" name="carcaj_display" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $carcaj_display ) . '">';
+    echo '  <input type="hidden" name="carcaj[type]" id="carcaj_type_hidden" value="' . esc_attr( $carcaj_type ) . '">';
+    echo '  <input type="hidden" name="carcaj[amount]" id="carcaj_amount_hidden" value="' . esc_attr( $carcaj_amount ) . '">';
+    echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '">＋</button>';
+    echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '">−</button>';
+    echo '</div>';
+    echo '<hr>';
+
+    // Pociones
+    for ( $i = 1; $i <= 4; $i++ ) {
+        $slot_key = 'potions_' . $i;
+        $value    = $potion_values[ $i ] ?? '';
+        $locked   = ( 4 === $i && ! $can_potion_slot_4 );
+        $locked_attr = $locked ? ' data-locked="1"' : '';
+        $empty_class = empty( $value ) ? ' empty' : '';
+        if ( 4 === $i && ! $locked ) {
+            $reason_attr = [ 'INT' => $int_score, 'WIS' => $wis_score, 'DEX' => $dex_score ];
+            arsort( $reason_attr );
+            $top = key( $reason_attr );
+            $top_val = reset( $reason_attr );
+            echo '<h3 class="inventory-extra-header">Slot extra de pociones por ' . esc_html( $top ) . ' (' . intval( $top_val ) . ')</h3>';
+        }
+        echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="potion"' . $locked_attr . '>';
+        echo '  <span class="slot-label">Poción ' . $i . ':</span>';
+        echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+        echo '  <input type="hidden" name="potions_slot_' . $i . '" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $value ) . '">';
+        echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '"' . ( $locked ? ' disabled' : '' ) . '>＋</button>';
+        echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '"' . ( $locked ? ' disabled' : '' ) . '>−</button>';
+        echo '</div>';
+    }
+
+    echo '<hr>';
+
+    // Pergaminos / mapas / documentos (1-6)
+    for ( $i = 1; $i <= 6; $i++ ) {
+        $slot_key = 'scrolls_' . $i;
+        $value    = $scroll_values[ $i ] ?? '';
+        $locked   = ( $i > 4 && ! $can_scroll_extra );
+        $locked_attr = $locked ? ' data-locked="1"' : '';
+        $empty_class = empty( $value ) ? ' empty' : '';
+        if ( 5 === $i && ! $locked ) {
+            $reason_attr = [ 'INT' => $int_score, 'WIS' => $wis_score ];
+            arsort( $reason_attr );
+            $top = key( $reason_attr );
+            $top_val = reset( $reason_attr );
+            echo '<h3 class="inventory-extra-header">Slots extra de pergaminos por ' . esc_html( $top ) . ' (' . intval( $top_val ) . ')</h3>';
+        }
+        echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="scroll"' . $locked_attr . '>';
+        echo '  <span class="slot-label">Pergamino ' . $i . ':</span>';
+        echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+        echo '  <input type="hidden" name="scrolls_slot_' . $i . '" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $value ) . '">';
+        echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '"' . ( $locked ? ' disabled' : '' ) . '>＋</button>';
+        echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '"' . ( $locked ? ' disabled' : '' ) . '>−</button>';
+        echo '</div>';
+    }
+
+    echo '<hr>';
+
+    // Cuerda
+    $slot_key = 'rope';
+    $value    = $rope_value === 'rope' ? 'Cuerda' : '';
+    $empty_class = empty( $value ) ? ' empty' : '';
+    echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="rope">';
+    echo '  <span class="slot-label">Cuerda:</span>';
+    echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+    echo '  <input type="hidden" name="rope_slot" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $rope_value ) . '">';
+    echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '">＋</button>';
+    echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '">−</button>';
+    echo '</div>';
+
+    echo '<hr>';
+
+    // Slot extraño
+    $slot_key = 'ankward';
+    $empty_class = empty( $ankward_value ) ? ' empty' : '';
+    echo '<div class="inventory-slot" data-slot="' . esc_attr( $slot_key ) . '" data-slot-type="ankward">';
+    echo '  <span class="slot-label">Slot extraño:</span>';
+    echo '  <div class="slot-content' . $empty_class . '" id="texto_' . esc_attr( $slot_key ) . '"></div>';
+    echo '  <input type="hidden" name="ankward_slot" id="input_slot_' . esc_attr( $slot_key ) . '" value="' . esc_attr( $ankward_value ) . '">';
+    echo '  <button type="button" class="add-item" data-slot="' . esc_attr( $slot_key ) . '" data-personaje="' . esc_attr( $post_id ) . '">＋</button>';
+    echo '  <button type="button" class="remove-item" data-slot="' . esc_attr( $slot_key ) . '">−</button>';
+    echo '</div>';
+
+    echo '</section>';
+    echo '<hr>';
 
     echo '<input type="hidden" name="post_id" value="' . esc_attr($post_id) . '">';
     echo '<input type="hidden" id="inventory_nonce" name="inventory_nonce" value="' . esc_attr( wp_create_nonce( 'save_inventory_' . $post_id ) ) . '">';
@@ -1551,6 +1800,14 @@ function renderizar_hoja_personaje($post_id) {
     $combat_damage_extra = intval( get_post_meta( $post_id, 'combat_damage_extra', true ) );
     $combat_notes        = sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) );
     $combat_ammo_state   = drak_get_combat_ammo_state( $post_id );
+    $carcaj_raw          = get_field( 'carcaj', $post_id );
+    $carcaj_payload      = [];
+    if ( is_array( $carcaj_raw ) ) {
+        $carcaj_payload = [
+            'type'   => sanitize_key( $carcaj_raw['type'] ?? '' ),
+            'amount' => max( 0, intval( $carcaj_raw['amount'] ?? 0 ) ),
+        ];
+    }
 
 
     ?>
@@ -2215,6 +2472,7 @@ function renderizar_combate_personaje( $post_id ) {
                     <span class="combat-ammo__value" id="combat-ammo-value-main">—</span>
                     <button type="button" class="combat-ammo__consume" data-ammo-consume="main">Consumir 1</button>
                   </div>
+                  <small class="combat-ammo__note">Editar cantidad desde el inventario (carcaj).</small>
                 </div>
                 <p class="combat-ammo__warning" id="combat-ammo-warning-main">Sin munición</p>
               </div>
@@ -2258,6 +2516,7 @@ function renderizar_combate_personaje( $post_id ) {
                     <span class="combat-ammo__value" id="combat-ammo-value-off">—</span>
                     <button type="button" class="combat-ammo__consume" data-ammo-consume="off">Consumir 1</button>
                   </div>
+                  <small class="combat-ammo__note">Editar cantidad desde el inventario (carcaj).</small>
                 </div>
                 <p class="combat-ammo__warning" id="combat-ammo-warning-off">Sin munición</p>
               </div>
@@ -2387,6 +2646,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const qtySelect     = document.getElementById('item-qty');
   const currentSlot   = document.getElementById('current-slot');
   const slotNumero    = document.getElementById('slot-numero');
+  const defaultNameOptions = nameSelect ? Array.from(nameSelect.options).map((opt) => ({ value: opt.value, label: opt.textContent })) : [];
 
   const deleteOverlay = document.getElementById('delete-form-overlay');
   const deleteForm    = document.getElementById('delete-form');
@@ -2411,6 +2671,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 500);
   }
   window.drakQueueInventorySave = queueInventorySave;
+
+  function initSpecialSlotsV2() {
+    const container = document.querySelector('[data-inventory-special]');
+    if (!container) return;
+    const intScore = parseInt(container.dataset.int || '0', 10) || 0;
+    const wisScore = parseInt(container.dataset.wis || '0', 10) || 0;
+    const dexScore = parseInt(container.dataset.dex || '0', 10) || 0;
+
+    const canPotion4 = intScore > 16 || wisScore > 16 || dexScore > 16;
+    const canScroll56 = intScore > 16 || wisScore > 16;
+
+    const potion4 = container.querySelector('input[name="potions_slot_4"]');
+    if (potion4) {
+      potion4.disabled = !canPotion4;
+      if (!canPotion4) potion4.value = '';
+    }
+    ['5', '6'].forEach((idx) => {
+      const input = container.querySelector(`input[name="scrolls_slot_${idx}"]`);
+      if (input) {
+        input.disabled = !canScroll56;
+        if (!canScroll56) input.value = '';
+      }
+    });
+
+    container.querySelectorAll('input, select, textarea').forEach((el) => {
+      el.addEventListener('change', queueInventorySave);
+      el.addEventListener('input', queueInventorySave);
+    });
+  }
 	
 	  // Convierte el string guardado ("Antorcha x 2 - Cuerda")
   // en una lista de <p> dentro del slot
@@ -2430,26 +2719,58 @@ document.addEventListener('DOMContentLoaded', function () {
     return htmlParts.join("");
   }
 
+  const slotMeta = {};
+
+  function capitalize(str) {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   function updateSlotView(slot) {
-    const input     = document.getElementById("input_slot_" + slot);
-    const container = document.getElementById("texto_" + slot);
-    if (!input || !container) return;
+    const slotEl = document.querySelector(`.inventory-slot[data-slot="${slot}"]`);
+    const type = slotEl?.dataset.slotType || 'generic';
+    const container = document.getElementById(`texto_${slot}`);
+    if (!container) return;
 
-    const val = (input.value || "").trim();
-    container.innerHTML = buildSlotHTMLFromValue(val);
-
-    if (!val) {
-      container.classList.add("empty");
+    let val = '';
+    if (type === 'ammo') {
+      const t = document.getElementById('carcaj_type_hidden')?.value || '';
+      const amt = parseInt(document.getElementById('carcaj_amount_hidden')?.value || '0', 10) || 0;
+      val = t ? `${capitalize(t)} x ${amt}` : '';
+      const display = document.getElementById(`input_slot_${slot}`);
+      if (display) display.value = val;
+    } else if (type === 'rope') {
+      const input = document.getElementById(`input_slot_${slot}`);
+      val = input?.value === 'rope' ? 'Cuerda' : '';
+    } else if (type === 'potion' || type === 'scroll' || type === 'ankward') {
+      const input = document.getElementById(`input_slot_${slot}`);
+      val = (input?.value || '').trim();
     } else {
-      container.classList.remove("empty");
+      const input = document.getElementById(`input_slot_${slot}`);
+      val = (input?.value || '').trim();
     }
+
+    container.innerHTML = buildSlotHTMLFromValue(val);
+    container.classList.toggle('empty', !val);
     queueInventorySave();
   }
 
-  // Inicializar la vista de los 8 slots al cargar la página
-  for (let i = 1; i <= 8; i++) {
-    updateSlotView(i);
+  function updateAllSlots() {
+    document.querySelectorAll('.inventory-slot[data-slot]').forEach((el) => {
+      const key = el.dataset.slot;
+      slotMeta[key] = el.dataset.slotType || 'generic';
+      const locked = el.dataset.locked === '1';
+      if (locked) {
+        el.classList.add('slot-locked');
+        el.querySelectorAll('button').forEach((btn) => (btn.disabled = true));
+        const input = document.getElementById(`input_slot_${key}`);
+        if (input) input.value = '';
+      }
+      updateSlotView(key);
+    });
   }
+
+  updateAllSlots();
 
 
   // Rellenar selector de cantidad 1..10 (si está vacío)
@@ -2471,19 +2792,112 @@ document.addEventListener('DOMContentLoaded', function () {
   toggleQtyField();
 
   // Abrir modal de añadir ("+")
-document.querySelectorAll('.inventory-slot[data-slot] .add-item').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const slot = this.closest('.inventory-slot').dataset.slot;
-      currentSlot.value = slot;
-      if (slotNumero) slotNumero.textContent = slot;
+  let currentSlotType = 'generic';
 
-      nameInput.value = '';
-      if (nameSelect) nameSelect.value = '';
-      sizeSelect.value = 'normal';
-      qtySelect.value = '1';
-      toggleQtyField();
+  function populateSelectForType(type) {
+    if (!nameSelect) return;
+    const optionsByType = {
+      potion: ['Poción de curación', 'Poción de resistencia', 'Poción (genérica)'],
+      scroll: ['Pergamino (genérico)', 'Mapa', 'Documento'],
+      ammo: ['flechas', 'virotes', 'dardos', 'balas'],
+    };
+    const list = optionsByType[type] || [];
+    nameSelect.innerHTML = '';
+    const base = document.createElement('option');
+    base.value = '';
+    base.textContent = '-- Selecciona --';
+    nameSelect.appendChild(base);
+    if (!list.length && defaultNameOptions.length) {
+      defaultNameOptions.forEach(({ value, label }) => {
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = label;
+        nameSelect.appendChild(opt);
+      });
+      return;
+    }
+    list.forEach((label) => {
+      const opt = document.createElement('option');
+      opt.value = label;
+      opt.textContent = label;
+      nameSelect.appendChild(opt);
+    });
+  }
 
+  function prepareModalForSlot(slot, type) {
+    currentSlot.value = slot;
+    currentSlotType = type || 'generic';
+    if (slotNumero) slotNumero.textContent = slot;
+
+    nameInput.value = '';
+    if (nameSelect) nameSelect.value = '';
+    sizeSelect.value = 'normal';
+    qtySelect.value = '1';
+    sizeSelect.disabled = type !== 'generic';
+    qtySelect.disabled = type === 'potion' || type === 'scroll';
+    nameInput.readOnly = type !== 'generic';
+
+    if (type === 'ammo') {
+      populateSelectForType('ammo');
+      qtySelect.disabled = false;
+      qtySelect.innerHTML = '';
+      for (let i = 0; i <= 99; i++) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = i;
+        qtySelect.appendChild(opt);
+      }
+      const currentType = document.getElementById('carcaj_type_hidden')?.value || '';
+      const currentAmount = parseInt(document.getElementById('carcaj_amount_hidden')?.value || '0', 10) || 0;
+      if (nameSelect) nameSelect.value = currentType;
+      if (nameInput) nameInput.value = currentType;
+      qtySelect.value = currentAmount;
       overlay.style.display = 'flex';
+      return;
+    } else if (type === 'potion' || type === 'scroll') {
+      populateSelectForType(type);
+      const input = document.getElementById('input_slot_' + slot);
+      const currentVal = (input?.value || '').trim();
+      if (nameSelect) nameSelect.value = currentVal;
+      if (nameInput) nameInput.value = currentVal;
+    } else {
+      populateSelectForType('generic');
+      // generic
+      if (qtySelect && !qtySelect.options.length) {
+        for (let i = 1; i <= 10; i++) {
+          const opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = i;
+          qtySelect.appendChild(opt);
+        }
+      }
+    }
+
+    toggleQtyField();
+    overlay.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.inventory-slot[data-slot] .add-item').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const slotEl = this.closest('.inventory-slot');
+      const slot = slotEl.dataset.slot;
+      const type = slotEl.dataset.slotType || 'generic';
+      const locked = slotEl.dataset.locked === '1';
+      if (locked) {
+        alert('Este slot no está disponible (requiere INT/WIS/DEX > 16).');
+        return;
+      }
+      if (type === 'rope') {
+        const input = document.getElementById('input_slot_rope');
+        if (input) input.value = 'rope';
+        updateSlotView('rope');
+        return;
+      }
+      if (type === 'ammo') {
+        prepareModalForSlot(slot, 'ammo');
+        return;
+      }
+      prepareModalForSlot(slot, type);
     });
   });
 
@@ -2508,10 +2922,54 @@ document.querySelectorAll('.inventory-slot[data-slot] .add-item').forEach(btn =>
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const name = nameInput.value.trim();
+    const chosenName = nameSelect ? (nameSelect.value || '') : '';
+    const name = (nameInput.value || chosenName).trim();
     const size = sizeSelect.value;
     const qty  = parseInt(qtySelect.value, 10) || 0;
     const slot = currentSlot.value;
+    const slotType = currentSlotType || 'generic';
+
+    if (slotType === 'potion' || slotType === 'scroll') {
+      if (!name) {
+        alert('Introduce un nombre.');
+        return;
+      }
+      const input = document.getElementById('input_slot_' + slot);
+      input.value = name;
+      updateSlotView(slot);
+      overlay.style.display = 'none';
+      return;
+    }
+
+    if (slotType === 'ammo') {
+      const type = (nameSelect.value || nameInput.value || '').trim().toLowerCase();
+      const amount = parseInt(qtySelect.value || '0', 10) || 0;
+      if (!type) {
+        alert('Selecciona un tipo de munición.');
+        return;
+      }
+      const typeHidden = document.getElementById('carcaj_type_hidden');
+      const amountHidden = document.getElementById('carcaj_amount_hidden');
+      const display = document.getElementById('input_slot_carcaj');
+      if (typeHidden) typeHidden.value = type;
+      if (amountHidden) amountHidden.value = amount;
+      if (display) display.value = `${type} x ${amount}`;
+      updateSlotView(slot);
+      overlay.style.display = 'none';
+      return;
+    }
+
+    if (slotType === 'ankward') {
+      if (!name) {
+        alert('Introduce un objeto.');
+        return;
+      }
+      const input = document.getElementById('input_slot_' + slot);
+      input.value = name;
+      updateSlotView(slot);
+      overlay.style.display = 'none';
+      return;
+    }
 
     if (!name || !size || (size === 'pequeño' && !qty)) {
       alert('Todos los campos son obligatorios.');
@@ -2584,9 +3042,34 @@ form.addEventListener('submit', function (e) {
 
   // ----------------- ELIMINAR OBJETOS ("-") -----------------
 
-  document.querySelectorAll('.remove-item').forEach(btn => {
+  document.querySelectorAll('.remove-item').forEach((btn) => {
     btn.addEventListener('click', function () {
-      const slot = this.closest('.inventory-slot').dataset.slot;
+      const slotEl = this.closest('.inventory-slot');
+      const slot = slotEl.dataset.slot;
+      const slotType = slotEl.dataset.slotType || 'generic';
+      const locked = slotEl.dataset.locked === '1';
+      if (locked) return;
+
+      if (['potion', 'scroll', 'ammo', 'rope', 'ankward'].includes(slotType)) {
+        if (!confirm('¿Vaciar este slot?')) return;
+        if (slotType === 'ammo') {
+          const typeHidden = document.getElementById('carcaj_type_hidden');
+          const amountHidden = document.getElementById('carcaj_amount_hidden');
+          const display = document.getElementById('input_slot_carcaj');
+          if (typeHidden) typeHidden.value = '';
+          if (amountHidden) amountHidden.value = '0';
+          if (display) display.value = '';
+        } else if (slotType === 'rope') {
+          const input = document.getElementById('input_slot_rope');
+          if (input) input.value = '';
+        } else {
+          const input = document.getElementById('input_slot_' + slot);
+          if (input) input.value = '';
+        }
+        updateSlotView(slot);
+        return;
+      }
+
       const input = document.getElementById('input_slot_' + slot);
       const currentVal = (input.value || '').trim();
       const items = currentVal ? currentVal.split(' - ') : [];
@@ -5906,19 +6389,27 @@ function drak_static_data_uri( $filename ) {
  */
 function drak_get_combat_ammo_state( $post_id ) {
     $raw = get_post_meta( $post_id, 'combat_ammo_state', true );
-    if ( empty( $raw ) ) {
-        return [];
-    }
+    $has_meta = ! empty( $raw );
     if ( is_string( $raw ) ) {
         $decoded = json_decode( $raw, true );
         if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
             $raw = $decoded;
         }
     }
-    if ( ! is_array( $raw ) ) {
-        return [];
+    $clean = is_array( $raw ) ? drak_sanitize_combat_ammo_state( $raw ) : [];
+
+    if ( function_exists( 'get_field' ) ) {
+        $carcaj = get_field( 'carcaj', $post_id );
+        if ( is_array( $carcaj ) ) {
+            $type   = sanitize_key( $carcaj['type'] ?? '' );
+            $amount = max( 0, intval( $carcaj['amount'] ?? 0 ) );
+            if ( $type ) {
+                $clean[ 'quiver-' . $type ] = $amount;
+            }
+        }
     }
-    return drak_sanitize_combat_ammo_state( $raw );
+
+    return $clean;
 }
 
 /**
@@ -5983,6 +6474,8 @@ function drak_guardar_modulo_combate() {
     $temp_hp_extra     = isset( $_POST['temp_hp_extra'] ) ? intval( $_POST['temp_hp_extra'] ) : 0;
     $notes        = isset( $_POST['notes'] ) ? sanitize_text_field( wp_unslash( $_POST['notes'] ) ) : '';
     $ammo_state_raw = isset( $_POST['ammo_state'] ) ? wp_unslash( $_POST['ammo_state'] ) : '';
+    $ammo_quiver_type = isset( $_POST['ammo_quiver_type'] ) ? sanitize_key( wp_unslash( $_POST['ammo_quiver_type'] ) ) : '';
+    $ammo_quiver_amount = isset( $_POST['ammo_quiver_amount'] ) ? intval( $_POST['ammo_quiver_amount'] ) : null;
     $ammo_state = [];
     if ( is_string( $ammo_state_raw ) && $ammo_state_raw !== '' ) {
         $decoded = json_decode( $ammo_state_raw, true );
@@ -6003,6 +6496,14 @@ function drak_guardar_modulo_combate() {
     update_post_meta( $post_id, 'combat_temp_hp_extra', $temp_hp_extra );
     update_post_meta( $post_id, 'combat_notes', $notes );
     update_post_meta( $post_id, 'combat_ammo_state', $ammo_state );
+
+    if ( $ammo_quiver_type ) {
+        $payload = [
+            'type'   => $ammo_quiver_type,
+            'amount' => max( 0, $ammo_quiver_amount ?? ( $ammo_state[ 'quiver-' . $ammo_quiver_type ] ?? 0 ) ),
+        ];
+        update_field( 'carcaj', $payload, $post_id );
+    }
 
     wp_send_json_success(
         [
@@ -6148,6 +6649,7 @@ add_action('wp_enqueue_scripts', function () {
             'temp_hp_extra'     => intval( get_post_meta( $post_id, 'combat_temp_hp_extra', true ) ),
             'notes'          => sanitize_text_field( get_post_meta( $post_id, 'combat_notes', true ) ),
             'ammo'           => $combat_ammo_state,
+            'quiver'         => $carcaj_payload,
         ];
         wp_localize_script( 'hoja-personaje-js', 'COMBAT_CONFIG', $combat_config );
         $can_edit_sheet = $post_id ? drak_user_can_manage_personaje( $post_id ) : false;

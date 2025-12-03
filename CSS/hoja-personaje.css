@@ -1252,6 +1252,21 @@
   display: block;
 }
 
+.combat-ammo__note {
+  display: block;
+  margin-top: 4px;
+  color: #aeb6d3;
+  font-size: 0.85rem;
+}
+
+.combat-ammo__input--locked {
+  cursor: not-allowed;
+}
+
+.slot-locked {
+  opacity: 0.6;
+}
+
 .combat-weapon-meta {
   margin: 0;
   color: #9ca7c2;
