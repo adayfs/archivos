@@ -211,6 +211,56 @@ function drak_render_campaign_header_bar() {
 add_action( 'wp_body_open', 'drak_render_campaign_header_bar', 5 );
 
 /**
+ * Botonera de navegación entre Hoja / Inventario / Grimorio / Combate.
+ * Se muestra justo debajo del hero de campaña (wp_body_open prioridad 6).
+ */
+function drak_render_personaje_nav_bar() {
+    if (
+        ! is_page_template( 'page-hoja-personaje.php' ) &&
+        ! is_page_template( 'page-inventario-personaje.php' ) &&
+        ! is_page_template( 'page-grimorio-personaje.php' ) &&
+        ! is_page_template( 'page-combate-personaje.php' )
+    ) {
+        return;
+    }
+
+    $slug      = get_query_var( 'personaje_slug' );
+    $personaje = $slug ? get_page_by_path( $slug, OBJECT, 'personaje' ) : null;
+    if ( ! $personaje ) {
+        return;
+    }
+
+    $personaje_slug = $personaje->post_name;
+    $nav_links = [
+        'hoja'       => home_url( '/hoja-personaje/' . $personaje_slug ),
+        'inventario' => home_url( '/inventario/' . $personaje_slug ),
+        'grimorio'   => home_url( '/grimorio/' . $personaje_slug ),
+        'combate'    => home_url( '/combate/' . $personaje_slug ),
+    ];
+
+    $template = get_page_template_slug() ?: '';
+    $active = 'hoja';
+    if ( str_contains( $template, 'inventario' ) ) {
+        $active = 'inventario';
+    } elseif ( str_contains( $template, 'grimorio' ) ) {
+        $active = 'grimorio';
+    } elseif ( str_contains( $template, 'combate' ) ) {
+        $active = 'combate';
+    }
+    ?>
+    <div class="personaje-hero-bar">
+      <div class="personaje-hero__tabs">
+        <a class="personaje-hero__tab <?php echo $active === 'hoja' ? 'is-active' : ''; ?>" href="<?php echo esc_url( $nav_links['hoja'] ); ?>">Hoja de Personaje</a>
+        <a class="personaje-hero__tab <?php echo $active === 'inventario' ? 'is-active' : ''; ?>" href="<?php echo esc_url( $nav_links['inventario'] ); ?>">Inventario</a>
+        <a class="personaje-hero__tab <?php echo $active === 'grimorio' ? 'is-active' : ''; ?>" href="<?php echo esc_url( $nav_links['grimorio'] ); ?>">Grimorio</a>
+        <a class="personaje-hero__tab <?php echo $active === 'combate' ? 'is-active' : ''; ?>" href="<?php echo esc_url( $nav_links['combate'] ); ?>">Mod Combate</a>
+      </div>
+    </div>
+    <?php
+}
+add_action( 'wp_body_open', 'drak_render_personaje_nav_bar', 6 );
+
+/**
  * =========================================================
  * LOGO DE CAMPAÑA (metadato _campaign_logo_id, sin ACF)
  * =========================================================
@@ -6500,6 +6550,65 @@ function guardar_hp_temporal() {
 
 add_action('wp_ajax_guardar_hp_temporal', 'guardar_hp_temporal');
 add_action('wp_ajax_nopriv_guardar_hp_temporal', 'guardar_hp_temporal');
+
+/**
+ * Actualiza la imagen destacada del personaje desde el selector de medios.
+ */
+function drak_set_personaje_image() {
+	if ( ! isset( $_POST['post_id'], $_POST['attachment_id'] ) ) {
+		wp_send_json_error( [ 'message' => 'Faltan parámetros.' ], 400 );
+	}
+	$post_id      = intval( wp_unslash( $_POST['post_id'] ) );
+	$attachment_id = intval( wp_unslash( $_POST['attachment_id'] ) );
+	$context      = isset( $_POST['context'] ) ? sanitize_key( wp_unslash( $_POST['context'] ) ) : '';
+
+	if ( ! $post_id || ! $attachment_id ) {
+		wp_send_json_error( [ 'message' => 'Datos inválidos.' ], 400 );
+	}
+
+	if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+		wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+	}
+
+	// Guarda la imagen por contexto para permitir hero diferentes por página.
+	if ( $context ) {
+		update_post_meta( $post_id, 'hero_image_' . $context, $attachment_id );
+	} else {
+		// Fallback: usa destacada si no se pasa contexto.
+		set_post_thumbnail( $post_id, $attachment_id );
+	}
+
+	$url = wp_get_attachment_image_url( $attachment_id, 'large' );
+	wp_send_json_success( [ 'image_url' => $url ] );
+}
+add_action( 'wp_ajax_drak_set_personaje_image', 'drak_set_personaje_image' );
+
+/**
+ * Devuelve la URL de la imagen hero para una vista concreta del personaje.
+ *
+ * @param int    $post_id
+ * @param string $context (hoja|inventario|grimorio|combate)
+ * @param string $fallback_url
+ *
+ * @return string
+ */
+function drak_get_personaje_hero_image_url( $post_id, $context, $fallback_url = '' ) {
+	$context = sanitize_key( $context );
+	if ( $context ) {
+		$meta_id = get_post_meta( $post_id, 'hero_image_' . $context, true );
+		if ( $meta_id ) {
+			$url = wp_get_attachment_image_url( $meta_id, 'large' );
+			if ( $url ) {
+				return $url;
+			}
+		}
+	}
+	$thumb = get_the_post_thumbnail_url( $post_id, 'large' );
+	if ( $thumb ) {
+		return $thumb;
+	}
+	return $fallback_url;
+}
 
 /**
  * Guardado AJAX del módulo de combate (bonos y notas).

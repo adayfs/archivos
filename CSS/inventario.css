@@ -2,7 +2,7 @@
 
 /* Contenedor general de la página de inventario */
 .contenido-inventario {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto 3rem;
     padding: 2rem 1rem;
 	 text-align: center;

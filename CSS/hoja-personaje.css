@@ -1,6 +1,6 @@
 /* Contenedor general de la página de hoja */
 .contenido-hoja-personaje {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto 3rem;
     padding: 2rem 1rem;
     text-align: center;
@@ -28,6 +28,179 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.personaje-hero {
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.personaje-hero__image {
+    width: 100%;
+    min-height: 350px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.personaje-hero__actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.personaje-hero__change {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #ff00ff;
+    background: #ff00ff;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.personaje-hero__change:hover {
+    background: #cc00cc;
+    border-color: #cc00cc;
+    transform: translateY(-1px);
+}
+
+.personaje-hero__tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.personaje-hero__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #0f1423;
+    color: #dbe4ff;
+    border: 1px solid #2a3550;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.personaje-hero__tab.is-active {
+    background: #a600a6;
+    border-color: #a600a6;
+    color: #fff;
+}
+
+.personaje-hero__tab:hover {
+    background: #1a2238;
+    border-color: #3a4c76;
+    transform: translateY(-1px);
+}
+
+/* Normaliza hero en inventario y grimorio */
+.contenido-inventario .personaje-hero,
+.contenido-grimorio .personaje-hero {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenido-inventario .personaje-hero__image,
+.contenido-grimorio .personaje-hero__image {
+    min-height: 350px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+}
+
+.personaje-hero-bar {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 8px;
+    padding: 0 1rem;
+}
+
+.personaje-hero {
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.personaje-hero__image {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.personaje-hero__actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.personaje-hero__change {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #ff00ff;
+    background: #ff00ff;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.personaje-hero__change:hover {
+    background: #cc00cc;
+    border-color: #cc00cc;
+    transform: translateY(-1px);
+}
+
+.personaje-hero__tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.personaje-hero__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #0f1423;
+    color: #dbe4ff;
+    border: 1px solid #2a3550;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.personaje-hero__tab.is-active {
+    background: #a600a6;
+    border-color: #a600a6;
+    color: #fff;
+}
+
+.personaje-hero__tab:hover {
+    background: #1a2238;
+    border-color: #3a4c76;
+    transform: translateY(-1px);
 }
 
 

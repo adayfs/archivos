@@ -35,31 +35,24 @@ $can_edit_sheet = is_user_logged_in() && drak_user_can_manage_personaje( $person
 ?>
 
 
+<?php wp_enqueue_media(); ?>
+
 <div class="contenido-hoja-personaje">
-  <h2 class="titulo-hoja-personaje">
-    Hoja de <?php echo esc_html($personaje->post_title); ?>
-  </h2>
 
   <?php
     // Imagen destacada del personaje
-    $imagen_url    = get_the_post_thumbnail_url($personaje->ID, 'medium');
+    $imagen_url    = function_exists( 'drak_get_personaje_hero_image_url' )
+      ? drak_get_personaje_hero_image_url( $personaje->ID, 'hoja', $nav_images['hoja'] )
+      : get_the_post_thumbnail_url($personaje->ID, 'large');
     // Página principal del personaje (/personaje/slug)
     $personaje_url = get_permalink($personaje->ID);
   ?>
 
-  <div class="personaje-nav">
-    <?php if ($imagen_url) : ?>
-      <a href="<?php echo esc_url($personaje_url); ?>" class="personaje-avatar-link" aria-label="Volver a la ficha del personaje">
-        <div class="personaje-avatar"
-             style="background-image:url('<?php echo esc_url($imagen_url); ?>');"></div>
-      </a>
-    <?php endif; ?>
-  </div>
-
-  <div class="personaje-botones">
-    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['inventario'] ); ?>">Inventario</a>
-    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['grimorio'] ); ?>">Grimorio</a>
-    <a class="personaje-boton" href="<?php echo esc_url( $nav_links['combate'] ); ?>">Mod Combate</a>
+  <div class="personaje-hero">
+    <div class="personaje-hero__image" data-hero-image style="min-height:350px; background-image:url('<?php echo esc_url( $imagen_url ?: $nav_images['hoja'] ); ?>');"></div>
+    <div class="personaje-hero__actions">
+      <button type="button" class="personaje-hero__change" data-post-id="<?php echo esc_attr( $personaje->ID ); ?>" data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" data-hero-context="hoja">Cambiar imagen</button>
+    </div>
   </div>
 
   <?php if ( $can_edit_sheet ) : ?>
@@ -76,6 +69,41 @@ $can_edit_sheet = is_user_logged_in() && drak_user_can_manage_personaje( $person
   <?php echo renderizar_hoja_personaje($personaje->ID); ?>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.personaje-hero__change');
+  const hero = document.querySelector('[data-hero-image]');
+  if (!btn || !hero || !(window.wp && wp.media)) return;
+  const ajaxUrl = btn.dataset.ajaxUrl;
+  const postId = btn.dataset.postId;
+  btn.addEventListener('click', () => {
+    const frame = wp.media({
+      title: 'Selecciona imagen del personaje',
+      multiple: false,
+      library: { type: 'image' },
+      button: { text: 'Usar imagen' },
+    });
+    frame.on('select', () => {
+      const attachment = frame.state().get('selection').first().toJSON();
+      hero.style.backgroundImage = `url('${attachment.url}')`;
+      if (!ajaxUrl || !postId) return;
+      fetch(ajaxUrl, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          action: 'drak_set_personaje_image',
+          post_id: postId,
+          attachment_id: attachment.id,
+          context: btn.dataset.heroContext || '',
+        }),
+      }).catch(() => {});
+    });
+    frame.open();
+  });
+});
+</script>
 
 
 <?php
