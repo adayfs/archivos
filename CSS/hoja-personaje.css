@@ -786,12 +786,13 @@
 
 .feat-modal__selection-inline {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 0.65rem;
-    padding: 0.65rem 0.25rem 0;
+    padding: 0.65rem 0.25rem 1rem;
     min-height: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .feat-modal__empty {
