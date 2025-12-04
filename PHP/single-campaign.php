@@ -643,6 +643,22 @@ function drak_campaign_render_personajes( $campaign_id ) {
 function drak_campaign_render_diary( $campaign_id ) {
     $search = isset( $_GET['wiki_search'] ) ? sanitize_text_field( wp_unslash( $_GET['wiki_search'] ) ) : '';
     $paged  = max( 1, (int) get_query_var( 'paged' ) ?: (int) ( $_GET['paged'] ?? 1 ) );
+    $campaign_slug = $campaign_id ? get_post_field( 'post_name', $campaign_id ) : '';
+    $new_diary_url = add_query_arg(
+        array_filter(
+            [
+                'post_type' => 'diario',
+                'campaign'  => $campaign_slug ?: null,
+            ]
+        ),
+        admin_url( 'post-new.php' )
+    );
+
+    if ( is_user_logged_in() && current_user_can( 'manage_options' ) && $new_diary_url ) {
+        echo '<div class="campaign-actions campaign-actions--inline">';
+        echo '<a class="campaign-action drak-btn" href="' . esc_url( $new_diary_url ) . '">Crear Nueva Entrada</a>';
+        echo '</div>';
+    }
 
     $query = new WP_Query( [
         'post_type'      => 'diario',
@@ -1757,11 +1773,21 @@ while ( have_posts() ) :
                             drak_campaign_render_diary( $campaign_id );
                             break;
                         case 'wiki':
+                            if ( isset( $_GET['wiki_import'] ) ) {
+                                drak_wiki_import_render_page( $campaign_id );
+                                break;
+                            }
                             $wiki_section = isset( $_GET['wiki_section'] ) ? sanitize_key( wp_unslash( $_GET['wiki_section'] ) ) : '';
                             if ( $wiki_section ) {
                                 drak_campaign_render_wiki_section( $campaign_id, $wiki_section );
                             } else {
                                 drak_campaign_section_title( 'Wiki' );
+                                $import_url = add_query_arg( 'wiki_import', 1, $wiki_url );
+                                if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
+                                    echo '<div class="campaign-actions campaign-actions--inline">';
+                                    echo '<a class="campaign-action drak-btn" href="' . esc_url( $import_url ) . '">Importar Wiki</a>';
+                                    echo '</div>';
+                                }
                                 drak_campaign_render_wiki_hub( $campaign_id, $wiki_url );
                             }
                             break;

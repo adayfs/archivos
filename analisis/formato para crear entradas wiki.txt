@@ -1,0 +1,39 @@
+LUGARES
+-------
+
+Drakkenheim:
+Ciudad a la que llega el grupo de aventureros. Wade Colton afirma haber estado allí y haber salido con vida, y se presenta como posible guía. El grupo se desplaza hacia el norte explorando la ciudad, que es totalmente nueva para ellos. En el camino se cruzan con una pequeña procesión de unas doce personas encapuchadas con túnicas y símbolos de la facción de la Llama sagrada, sin que se produzca conflicto. Tras unas tres horas de marcha encuentran una zona rica en delirium: un pequeño lago o acumulación de agua rodeada de grandes cristales de delirium y un ambiente de tonalidad octarina. Alrededor del lago y de los cráteres cercanos se mueven varios monstruos mutados por el delirium, de diferentes tipos (uno similar a un pez hinchado y otros más ágiles, algunos que explotan al morir). El grupo los combate, los derrota y procede a extraer delirium del lugar. Posteriormente se dirigen a consultar a la druida Zoya sobre el delirium.
+
+Bucket Town:
+Zona de bajos fondos situada al norte de Drakkenheim. Wade Colton indica que solía moverse por esta área en el pasado. Se menciona como objetivo lejano de la marcha del grupo, que avanza en esa dirección mientras explora la ciudad, aunque en esta sesión aún no llegan a entrar en la zona.
+
+
+NPCS
+----
+
+Zoya:
+Druida cercana al grupo, a la que se refieren como “nuestra druida favorita”. Tras el combate contra los monstruos mutados por el delirium alrededor del lago, el grupo decide ir a verla para preguntarle sobre el delirium. Thalanor muestra un interés especial por visitarla, lo que sugiere una relación de confianza y aprecio entre él y Zoya.
+
+
+FACCIONES
+---------
+
+Llama sagrada:
+Facción identificable por los símbolos que portan sus miembros en las túnicas. En Drakkenheim se observa una pequeña procesión de unas doce personas encapuchadas con dichos símbolos. Se cruzan con el grupo de aventureros sin que se produzca interacción directa ni conflicto, mostrando simplemente su presencia activa en la ciudad.
+
+
+PERSONAJES
+----------
+
+Wade Colton:
+Aventurero con experiencia previa en Drakkenheim, del que presume diciendo que ha estado allí y ha salido con vida. Ofrece información sobre la ciudad y se presenta como posible guía, indicando que al norte se encuentra la zona de bajos fondos conocida como Bucket Town, donde solía moverse. Durante la exploración de Drakkenheim, aprovecha la altura de un edificio medio derruido para escalar y obtener una visión periférica de la zona del lago de delirium. En el combate contra los monstruos mutados, combate desde las alturas disparando contra los engendros mientras sus compañeros los contienen en tierra. Tras la victoria, participa en la extracción de delirium y acompaña al grupo a consultar a Zoya.
+
+Thalanor:
+Miembro del grupo de aventureros que acompaña a Wade Colton y Maldrake Vossh en la exploración de Drakkenheim. En el enfrentamiento contra los monstruos mutados alrededor del lago de delirium se coloca en primera línea junto a Maldrake para obstaculizar el avance de los engendros, permitiendo que el resto del grupo ataque desde posiciones ventajosas. Demuestra interés personal en visitar a la druida Zoya, a la que el grupo acude después del combate para informarse sobre el delirium.
+
+Maldrake Vossh:
+Miembro del grupo y narrador implícito de la escena. Llega a Drakkenheim junto a Wade Colton, Thalanor y Mugran, y participa en la exploración de la ciudad y del entorno contaminado por delirium. En el combate contra los monstruos mutados alrededor del lago se encarga, junto a Thalanor, de bloquearles el camino, facilitando así los ataques a distancia de Wade y los lanzamientos de rocas de Mugran. Tras acabar con los engendros, participa en la extracción de delirium y en la posterior visita a la druida Zoya para recabar más información sobre esta sustancia.
+
+Mugran:
+Integrante del grupo de aventureros que acompaña a Wade Colton, Thalanor y Maldrake Vossh en Drakkenheim. Durante el combate en la zona del lago rico en delirium, se centra en atacar a los monstruos mutados lanzándoles rocas mientras Thalanor y Maldrake les cortan el paso y Wade dispara desde un edificio cercano. Forma parte del grupo que, tras acabar con los engendros, procede a extraer el delirium de la zona y luego se dirige a visitar a Zoya para aclarar dudas sobre esta sustancia.
+

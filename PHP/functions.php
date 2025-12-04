@@ -13,6 +13,138 @@
  */
 define( 'CHILD_THEME_TEMAHIJO_VERSION', '1.0.0' );
 require_once __DIR__ . '/recursos-clase.php';
+require_once __DIR__ . '/diario-automation.php';
+require_once __DIR__ . '/wiki-import.php';
+
+/**
+ * Backfill unico: asigna la campaña "cronicas-de-drakkenheim" a todos los diarios sin campaña.
+ */
+function drak_backfill_diario_campaign_once() {
+    if ( get_option( 'drak_diario_campaign_backfill_done' ) ) {
+        return;
+    }
+
+    $campaign = get_page_by_path( 'cronicas-de-drakkenheim', OBJECT, 'campaign' );
+    if ( ! $campaign || empty( $campaign->ID ) ) {
+        return;
+    }
+    $campaign_id = (int) $campaign->ID;
+
+    $query = new WP_Query( [
+        'post_type'      => 'diario',
+        'post_status'    => [ 'publish', 'draft', 'pending', 'private', 'future', 'auto-draft' ],
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+    ] );
+
+    if ( $query->have_posts() ) {
+        foreach ( $query->posts as $post_id ) {
+            $current = get_field( 'campaign', $post_id );
+            $has_campaign = false;
+            if ( is_array( $current ) ) {
+                $has_campaign = ! empty( array_filter( $current ) );
+            } elseif ( $current ) {
+                $has_campaign = true;
+            }
+            if ( $has_campaign ) {
+                continue;
+            }
+            if ( function_exists( 'update_field' ) ) {
+                update_field( 'campaign', $campaign_id, $post_id );
+            } else {
+                update_post_meta( $post_id, 'campaign', $campaign_id );
+            }
+        }
+    }
+
+    update_option( 'drak_diario_campaign_backfill_done', 1, false );
+}
+add_action( 'init', 'drak_backfill_diario_campaign_once', 20 );
+
+/**
+ * Metabox manual para asignar Campaña y visibilidad en Diario (por si ACF no se muestra).
+ */
+function drak_diario_add_campaign_metabox() {
+    add_meta_box(
+        'drak-diario-campaign',
+        'Asignación de campaña',
+        'drak_diario_render_campaign_metabox',
+        'diario',
+        'side',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes_diario', 'drak_diario_add_campaign_metabox' );
+
+function drak_diario_render_campaign_metabox( $post ) {
+    wp_nonce_field( 'drak_diario_campaign_save', 'drak_diario_campaign_nonce' );
+    $current_campaign  = get_field( 'campaign', $post->ID );
+    if ( is_array( $current_campaign ) ) {
+        $current_campaign = array_filter( $current_campaign );
+        $current_campaign = reset( $current_campaign );
+    }
+    if ( ! $current_campaign ) {
+        $current_campaign = get_post_meta( $post->ID, 'campaign', true );
+    }
+    $current_campaign  = intval( $current_campaign );
+    $current_visibility = get_post_meta( $post->ID, 'campaign_visibility', true );
+    if ( ! $current_visibility ) {
+        $current_visibility = 'public';
+    }
+
+    $campaigns = get_posts( [
+        'post_type'      => 'campaign',
+        'post_status'    => [ 'publish', 'private' ],
+        'posts_per_page' => 200,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'fields'         => 'ids',
+    ] );
+    ?>
+    <p><label for="drak_diario_campaign_select"><strong>Campaña *</strong></label></p>
+    <select name="drak_diario_campaign_select" id="drak_diario_campaign_select" style="width:100%;">
+        <option value="">Selecciona</option>
+        <?php foreach ( $campaigns as $cid ) : ?>
+            <option value="<?php echo esc_attr( $cid ); ?>"<?php selected( $current_campaign, $cid ); ?>>
+                <?php echo esc_html( get_the_title( $cid ) ); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <p style="margin-top:10px;"><label for="drak_diario_visibility"><strong>Visibilidad en campaña</strong></label></p>
+    <select name="drak_diario_visibility" id="drak_diario_visibility" style="width:100%;">
+        <option value="public"<?php selected( $current_visibility, 'public' ); ?>>Visible para todos los jugadores</option>
+        <option value="dm_only"<?php selected( $current_visibility, 'dm_only' ); ?>>Solo DM/Admin</option>
+    </select>
+    <?php
+}
+
+function drak_diario_save_campaign_metabox( $post_id, $post, $update ) {
+    if ( ! isset( $_POST['drak_diario_campaign_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['drak_diario_campaign_nonce'] ) ), 'drak_diario_campaign_save' ) ) {
+        return;
+    }
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    if ( 'diario' !== ( $post->post_type ?? '' ) ) {
+        return;
+    }
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+
+    $campaign_id = isset( $_POST['drak_diario_campaign_select'] ) ? intval( $_POST['drak_diario_campaign_select'] ) : 0;
+    $visibility  = isset( $_POST['drak_diario_visibility'] ) ? sanitize_text_field( wp_unslash( $_POST['drak_diario_visibility'] ) ) : 'public';
+
+    if ( $campaign_id ) {
+        if ( function_exists( 'update_field' ) ) {
+            update_field( 'campaign', $campaign_id, $post_id );
+        } else {
+            update_post_meta( $post_id, 'campaign', $campaign_id );
+        }
+    }
+    update_post_meta( $post_id, 'campaign_visibility', $visibility );
+}
+add_action( 'save_post_diario', 'drak_diario_save_campaign_metabox', 5, 3 );
 
 
 /**
