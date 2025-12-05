@@ -70,41 +70,5 @@ $can_edit_sheet = is_user_logged_in() && drak_user_can_manage_personaje( $person
 
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.personaje-hero__change');
-  const hero = document.querySelector('[data-hero-image]');
-  if (!btn || !hero || !(window.wp && wp.media)) return;
-  const ajaxUrl = btn.dataset.ajaxUrl;
-  const postId = btn.dataset.postId;
-  btn.addEventListener('click', () => {
-    const frame = wp.media({
-      title: 'Selecciona imagen del personaje',
-      multiple: false,
-      library: { type: 'image' },
-      button: { text: 'Usar imagen' },
-    });
-    frame.on('select', () => {
-      const attachment = frame.state().get('selection').first().toJSON();
-      hero.style.backgroundImage = `url('${attachment.url}')`;
-      if (!ajaxUrl || !postId) return;
-      fetch(ajaxUrl, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          action: 'drak_set_personaje_image',
-          post_id: postId,
-          attachment_id: attachment.id,
-          context: btn.dataset.heroContext || '',
-        }),
-      }).catch(() => {});
-    });
-    frame.open();
-  });
-});
-</script>
-
-
 <?php
 get_footer();

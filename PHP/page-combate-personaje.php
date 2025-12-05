@@ -4,7 +4,7 @@
  */
 
 get_header();
-wp_enqueue_media();
+// wp_enqueue_media(); // ya no se usa el selector de medios nativo
 
 $slug      = get_query_var( 'personaje_slug' );
 $personaje = $slug ? get_page_by_path( $slug, OBJECT, 'personaje' ) : null;
@@ -50,41 +50,6 @@ $nav_images = array(
 
   <?php echo renderizar_combate_personaje( $personaje->ID ); ?>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.personaje-hero__change');
-  const hero = document.querySelector('[data-hero-image]');
-  if (!btn || !hero || !(window.wp && wp.media)) return;
-  const ajaxUrl = btn.dataset.ajaxUrl;
-  const postId = btn.dataset.postId;
-  btn.addEventListener('click', () => {
-    const frame = wp.media({
-      title: 'Selecciona imagen del personaje',
-      multiple: false,
-      library: { type: 'image' },
-      button: { text: 'Usar imagen' },
-    });
-    frame.on('select', () => {
-      const attachment = frame.state().get('selection').first().toJSON();
-      hero.style.backgroundImage = `url('${attachment.url}')`;
-      if (!ajaxUrl || !postId) return;
-      fetch(ajaxUrl, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          action: 'drak_set_personaje_image',
-          post_id: postId,
-          attachment_id: attachment.id,
-          context: btn.dataset.heroContext || '',
-        }),
-      }).catch(() => {});
-    });
-    frame.open();
-  });
-});
-</script>
 
 <?php
 get_footer();

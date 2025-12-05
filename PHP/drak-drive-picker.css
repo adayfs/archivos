@@ -1,0 +1,11 @@
+.drak-drive-picker__preview img { max-width: 100%; height: auto; display: block; margin-bottom: 8px; }
+.drak-drive-picker__placeholder { color: #666; font-size: 12px; margin: 0 0 8px; }
+.drak-drive-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100000; display: none; }
+.drak-drive-modal__overlay { position: absolute; inset: 0; }
+.drak-drive-modal__content { position: relative; background: #fff; max-width: 960px; margin: 40px auto; padding: 16px; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 2; }
+.drak-drive-modal__header { display: flex; gap: 8px; margin-bottom: 12px; }
+.drak-drive-modal__search { flex: 1; }
+.drak-drive-modal__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; max-height: 60vh; overflow: auto; }
+.drak-drive-modal__grid img { width: 100%; height: 100%; object-fit: cover; border: 2px solid transparent; cursor: pointer; }
+.drak-drive-modal__grid img:hover { border-color: #2271b1; }
+.drak-drive-modal__loading, .drak-drive-modal__empty { text-align: center; padding: 12px; }

@@ -43,7 +43,7 @@ function drak_gallery_register_cpt() {
 		'capability_type'    => 'post',
 		'supports'           => array( 'title', 'thumbnail', 'author' ),
 		'has_archive'        => false,
-		'show_in_rest'       => false,
+		'show_in_rest'       => true,
 	);
 
 	register_post_type( 'galeria_item', $args );
@@ -60,9 +60,10 @@ function drak_gallery_register_acf_fields() {
 
 	acf_add_local_field_group(
 		array(
-			'key'      => 'group_drak_gallery',
-			'title'    => __( 'Asociaciones de galería', 'drak-gallery' ),
-			'fields'   => array(
+			'key'          => 'group_drak_gallery',
+			'title'        => __( 'Asociaciones de galería', 'drak-gallery' ),
+			'show_in_rest' => 1,
+			'fields'       => array(
 				array(
 					'key'               => 'field_gallery_type',
 					'label'             => __( 'Tipo de asociación', 'drak-gallery' ),
@@ -200,6 +201,15 @@ function drak_gallery_register_acf_fields() {
 					'rows'          => 3,
 					'new_lines'     => 'br',
 					'default_value' => '',
+				),
+				array(
+					'key'           => 'field_gallery_image_url',
+					'label'         => __( 'URL de imagen (Drive)', 'drak-gallery' ),
+					'name'          => 'gallery_image_url',
+					'type'          => 'url',
+					'instructions'  => __( 'Si se indica, se usará esta URL pública como imagen principal del elemento.', 'drak-gallery' ),
+					'required'      => 0,
+					'placeholder'   => 'https://...',
 				),
 			),
 			'location' => array(
@@ -685,8 +695,14 @@ function drak_gallery_render_upload_form() {
 		<?php endif; ?>
 
 		<div class="drak-field">
-			<label for="drak-gallery-image"><?php esc_html_e( 'Imagen (JPG, PNG, WebP, máximo 8MB)', 'drak-gallery' ); ?> *</label>
-			<input type="file" id="drak-gallery-image" name="drak_gallery_image" accept="image/*" required>
+			<label for="drak-gallery-image-url"><?php esc_html_e( 'URL de la imagen (Drive o externa)', 'drak-gallery' ); ?></label>
+			<input type="url" id="drak-gallery-image-url" name="drak_gallery_image_url" placeholder="https://..." aria-describedby="drak-gallery-image-hint">
+			<small id="drak-gallery-image-hint" class="drak-field__hint"><?php esc_html_e( 'Si se rellena, se usará esta URL y no es necesario subir archivo.', 'drak-gallery' ); ?></small>
+		</div>
+
+		<div class="drak-field">
+			<label for="drak-gallery-image"><?php esc_html_e( 'Subir imagen (JPG, PNG, WebP, máximo 8MB)', 'drak-gallery' ); ?></label>
+			<input type="file" id="drak-gallery-image" name="drak_gallery_image" accept="image/*">
 		</div>
 
 		<button type="submit" class="drak-button"><?php esc_html_e( 'Enviar imagen', 'drak-gallery' ); ?></button>
@@ -786,49 +802,64 @@ function drak_gallery_handle_upload() {
 		}
 	}
 
-	if ( ! isset( $_FILES['drak_gallery_image'] ) ) {
-		wp_die( esc_html__( 'Debes seleccionar una imagen.', 'drak-gallery' ) );
+	$image_url = '';
+	if ( isset( $_POST['drak_gallery_image_url'] ) ) {
+		$image_url_raw = trim( wp_unslash( $_POST['drak_gallery_image_url'] ) );
+		$image_url     = $image_url_raw ? esc_url_raw( $image_url_raw ) : '';
+		if ( $image_url && ! filter_var( $image_url, FILTER_VALIDATE_URL ) ) {
+			wp_die( esc_html__( 'La URL de la imagen no es válida.', 'drak-gallery' ) );
+		}
 	}
 
-	$file = $_FILES['drak_gallery_image'];
-	if ( $file['error'] !== UPLOAD_ERR_OK ) {
-		wp_die( esc_html__( 'Error al subir la imagen.', 'drak-gallery' ) );
+	$file     = $_FILES['drak_gallery_image'] ?? null;
+	$has_file = $file && isset( $file['error'] ) && (int) $file['error'] !== UPLOAD_ERR_NO_FILE;
+
+	if ( ! $image_url && ! $has_file ) {
+		wp_die( esc_html__( 'Debes indicar una URL de imagen o subir un archivo.', 'drak-gallery' ) );
 	}
 
-	if ( $file['size'] > 8 * 1024 * 1024 ) {
-		wp_die( esc_html__( 'La imagen supera el límite de 8MB.', 'drak-gallery' ) );
+	$attachment_id = 0;
+
+	if ( $has_file && ! $image_url ) {
+		if ( $file['error'] !== UPLOAD_ERR_OK ) {
+			wp_die( esc_html__( 'Error al subir la imagen.', 'drak-gallery' ) );
+		}
+
+		if ( $file['size'] > 8 * 1024 * 1024 ) {
+			wp_die( esc_html__( 'La imagen supera el límite de 8MB.', 'drak-gallery' ) );
+		}
+
+		$mime = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
+		$allowed_mimes = array( 'image/jpeg', 'image/png', 'image/webp', 'image/gif' );
+		if ( empty( $mime['type'] ) || ! in_array( $mime['type'], $allowed_mimes, true ) ) {
+			wp_die( esc_html__( 'Formato de imagen no admitido.', 'drak-gallery' ) );
+		}
+
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+
+		$upload = wp_handle_upload(
+			$file,
+			array(
+				'test_form' => false,
+			)
+		);
+
+		if ( isset( $upload['error'] ) ) {
+			wp_die( esc_html( $upload['error'] ) );
+		}
+
+		$attachment = array(
+			'post_mime_type' => $mime['type'],
+			'post_title'     => sanitize_file_name( $file['name'] ),
+			'post_content'   => '',
+			'post_status'    => 'inherit',
+		);
+
+		$attachment_id = wp_insert_attachment( $attachment, $upload['file'] );
+		$attach_data   = wp_generate_attachment_metadata( $attachment_id, $upload['file'] );
+		wp_update_attachment_metadata( $attachment_id, $attach_data );
 	}
-
-	$mime = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
-	$allowed_mimes = array( 'image/jpeg', 'image/png', 'image/webp', 'image/gif' );
-	if ( empty( $mime['type'] ) || ! in_array( $mime['type'], $allowed_mimes, true ) ) {
-		wp_die( esc_html__( 'Formato de imagen no admitido.', 'drak-gallery' ) );
-	}
-
-	require_once ABSPATH . 'wp-admin/includes/file.php';
-	require_once ABSPATH . 'wp-admin/includes/image.php';
-
-	$upload = wp_handle_upload(
-		$file,
-		array(
-			'test_form' => false,
-		)
-	);
-
-	if ( isset( $upload['error'] ) ) {
-		wp_die( esc_html( $upload['error'] ) );
-	}
-
-	$attachment = array(
-		'post_mime_type' => $mime['type'],
-		'post_title'     => sanitize_file_name( $file['name'] ),
-		'post_content'   => '',
-		'post_status'    => 'inherit',
-	);
-
-	$attachment_id = wp_insert_attachment( $attachment, $upload['file'] );
-	$attach_data   = wp_generate_attachment_metadata( $attachment_id, $upload['file'] );
-	wp_update_attachment_metadata( $attachment_id, $attach_data );
 
 	$title = isset( $_POST['drak_gallery_title'] ) ? sanitize_text_field( wp_unslash( $_POST['drak_gallery_title'] ) ) : '';
 	$description = isset( $_POST['drak_gallery_description'] ) ? sanitize_textarea_field( wp_unslash( $_POST['drak_gallery_description'] ) ) : '';
@@ -849,7 +880,9 @@ function drak_gallery_handle_upload() {
 		wp_die( esc_html__( 'No fue posible crear el elemento de galería.', 'drak-gallery' ) );
 	}
 
-	set_post_thumbnail( $post_id, $attachment_id );
+	if ( $attachment_id ) {
+		set_post_thumbnail( $post_id, $attachment_id );
+	}
 
 	drak_gallery_update_field( 'gallery_type', $selected_types, $post_id );
 	drak_gallery_update_field( 'gallery_personajes', $associations['personaje'], $post_id );
@@ -864,6 +897,9 @@ function drak_gallery_handle_upload() {
 	$campaigns = drak_gallery_clean_ids( $_POST['gallery_campaigns'] ?? array() );
 	if ( ! empty( $campaigns ) ) {
 		drak_gallery_update_field( 'gallery_campaigns', $campaigns, $post_id );
+	}
+	if ( $image_url ) {
+		drak_gallery_update_field( 'gallery_image_url', $image_url, $post_id );
 	}
 	drak_gallery_update_field( 'gallery_description', $description, $post_id );
 
@@ -893,6 +929,52 @@ function drak_gallery_clean_ids( $raw_ids ) {
 	);
 
 	return array_values( $ids );
+}
+
+/**
+ * Devuelve las URLs de imagen (Drive o adjunto) para un ítem de galería.
+ *
+ * @param int $post_id Post ID.
+ * @return array|null {
+ *     @type string $thumb URL para miniatura.
+ *     @type string $full  URL para tamaño completo.
+ * }
+ */
+function drak_gallery_get_image_sources( $post_id ) {
+	$url_field = trim( (string) drak_gallery_get_field( 'gallery_image_url', $post_id ) );
+	if ( $url_field ) {
+		$url = esc_url_raw( $url_field );
+		if ( $url && filter_var( $url, FILTER_VALIDATE_URL ) ) {
+			$sources = array(
+				'thumb'  => $url,
+				'full'   => $url,
+				'source' => 'url',
+			);
+
+			return apply_filters( 'drak_gallery_image_sources', $sources, $post_id );
+		}
+	}
+
+	$thumb_id = get_post_thumbnail_id( $post_id );
+	if ( ! $thumb_id ) {
+		return null;
+	}
+
+	$thumb = wp_get_attachment_image_url( $thumb_id, 'medium' );
+	$full  = wp_get_attachment_image_url( $thumb_id, 'full' );
+
+	if ( ! $thumb || ! $full ) {
+		return null;
+	}
+
+	$sources = array(
+		'thumb'  => $thumb,
+		'full'   => $full,
+		'source' => 'attachment',
+		'id'     => $thumb_id,
+	);
+
+	return apply_filters( 'drak_gallery_image_sources', $sources, $post_id );
 }
 
 /**
@@ -947,16 +1029,8 @@ function drak_gallery_render_grid( $atts = array() ) {
 			while ( $query->have_posts() ) :
 				$query->the_post();
 
-				$thumb_id = get_post_thumbnail_id();
-				if ( ! $thumb_id ) {
-					// Elementos sin imagen destacada no deben renderizar huecos.
-					continue;
-				}
-
-				$thumb = wp_get_attachment_image_url( $thumb_id, 'medium' );
-				$full  = wp_get_attachment_image_url( $thumb_id, 'full' );
-
-				if ( ! $thumb || ! $full ) {
+				$image_sources = drak_gallery_get_image_sources( get_the_ID() );
+				if ( ! $image_sources || empty( $image_sources['thumb'] ) || empty( $image_sources['full'] ) ) {
 					continue;
 				}
 
@@ -976,10 +1050,10 @@ function drak_gallery_render_grid( $atts = array() ) {
 					data-author="<?php echo esc_attr( $author ); ?>"
 					data-date="<?php echo esc_attr( $date ); ?>"
 					data-description="<?php echo esc_attr( $description ); ?>"
-					data-full="<?php echo esc_url( $full ); ?>"
+					data-full="<?php echo esc_url( $image_sources['full'] ); ?>"
 					data-rel="<?php echo esc_attr( wp_json_encode( $detailed ) ); ?>"
 				>
-					<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
+					<img src="<?php echo esc_url( $image_sources['thumb'] ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
 				</div>
 				<?php
 			endwhile;
@@ -1117,11 +1191,35 @@ function drak_render_gallery_for_post( $post_id ) {
 	$meta_query = array();
 
 	if ( $post_type === 'personaje_wiki' ) {
-		$meta_query[] = array(
-			'key'     => 'gallery_personajes_wiki',
-			'value'   => '"' . $post_id . '"',
-			'compare' => 'LIKE',
+		$linked_personaje_id = (int) get_post_meta( $post_id, 'linked_personaje_id', true );
+		if ( ! $linked_personaje_id ) {
+			$slug_personaje = get_post_field( 'post_name', $post_id );
+			if ( $slug_personaje ) {
+				$personaje_post = get_page_by_path( $slug_personaje, OBJECT, 'personaje' );
+				if ( $personaje_post ) {
+					$linked_personaje_id = (int) $personaje_post->ID;
+				}
+			}
+		}
+
+		$relation = array(
+			'relation' => 'OR',
+			array(
+				'key'     => 'gallery_personajes_wiki',
+				'value'   => '"' . $post_id . '"',
+				'compare' => 'LIKE',
+			),
 		);
+
+		if ( $linked_personaje_id ) {
+			$relation[] = array(
+				'key'     => 'gallery_personajes',
+				'value'   => '"' . $linked_personaje_id . '"',
+				'compare' => 'LIKE',
+			);
+		}
+
+		$meta_query[] = $relation;
 		$campaign_id = (int) get_post_meta( $post_id, 'campaign', true );
 		if ( $campaign_id ) {
 			$meta_query[] = array(
@@ -1139,6 +1237,7 @@ function drak_render_gallery_for_post( $post_id ) {
 		}
 	} else {
 		$map = array(
+			'personaje' => 'gallery_personajes',
 			'lugar'   => 'gallery_lugares',
 			'npc'     => 'gallery_npcs',
 			'faccion' => 'gallery_facciones',
@@ -1189,7 +1288,10 @@ function drak_render_gallery_for_post( $post_id ) {
 		$query->the_post();
 		$has        = drak_gallery_get_associations( get_the_ID() );
 		$detailed   = drak_gallery_get_associations( get_the_ID(), true );
-		$thumb      = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+		$image_sources = drak_gallery_get_image_sources( get_the_ID() );
+		if ( ! $image_sources ) {
+			continue;
+		}
 		$author     = get_the_author();
 		$date       = get_the_date();
 		$description = wp_strip_all_tags( (string) drak_gallery_get_field( 'gallery_description', get_the_ID() ) );
@@ -1204,11 +1306,11 @@ function drak_render_gallery_for_post( $post_id ) {
 			data-author="<?php echo esc_attr( $author ); ?>"
 			data-date="<?php echo esc_attr( $date ); ?>"
 			data-description="<?php echo esc_attr( $description ); ?>"
-			data-full="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ); ?>"
+			data-full="<?php echo esc_url( $image_sources['full'] ); ?>"
 			data-rel="<?php echo esc_attr( wp_json_encode( $detailed ) ); ?>"
 		>
-			<?php if ( $thumb ) : ?>
-				<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
+			<?php if ( ! empty( $image_sources['thumb'] ) ) : ?>
+				<img src="<?php echo esc_url( $image_sources['thumb'] ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
 			<?php endif; ?>
 		</div>
 		<?php

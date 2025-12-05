@@ -17,6 +17,800 @@ require_once __DIR__ . '/diario-automation.php';
 require_once __DIR__ . '/wiki-import.php';
 
 /**
+ * Carga datos de ítems priorizando items-es.json y devolviendo el array base.
+ *
+ * @return array
+ */
+function drak_load_items_data() {
+    static $cache = null;
+    if ( null !== $cache ) {
+        return $cache;
+    }
+
+    $paths = [
+        get_stylesheet_directory() . '/data/items-es.json',
+        dirname( __DIR__ ) . '/jsons/items-es.json',
+        dirname( __DIR__ ) . '/5etools-src-main/data/items-es.json',
+        get_stylesheet_directory() . '/data/items.json',
+        dirname( __DIR__ ) . '/jsons/items.json',
+        dirname( __DIR__ ) . '/5etools-src-main/data/items.json',
+    ];
+
+    foreach ( $paths as $path ) {
+        if ( file_exists( $path ) ) {
+            $json = file_get_contents( $path );
+            if ( $json ) {
+                $decoded = json_decode( $json, true );
+                if ( is_array( $decoded ) ) {
+                    $cache = isset( $decoded['item'] ) && is_array( $decoded['item'] ) ? $decoded['item'] : $decoded;
+                    return $cache;
+                }
+            }
+        }
+    }
+
+    $cache = [];
+    return $cache;
+}
+
+/**
+ * ------------------------------------------------------------
+ * Drive Image Picker (metabox + modal + AJAX)
+ * ------------------------------------------------------------
+ */
+
+/**
+ * Post types donde se mostrará la metabox.
+ *
+ * @return array
+ */
+function drak_drive_picker_targets() {
+    return apply_filters( 'drak_drive_picker_targets', [ 'personaje', 'post', 'page', 'lugar', 'npc' ] );
+}
+
+/**
+ * Registra la metabox.
+ */
+function drak_drive_picker_metabox() {
+    foreach ( drak_drive_picker_targets() as $pt ) {
+        add_meta_box(
+            'drak_drive_picker',
+            'Seleccionar Imagen Drive',
+            'drak_drive_picker_render_box',
+            $pt,
+            'side',
+            'default'
+        );
+    }
+}
+add_action( 'add_meta_boxes', 'drak_drive_picker_metabox' );
+
+/**
+ * Render de la metabox.
+ *
+ * @param WP_Post $post Post actual.
+ */
+function drak_drive_picker_render_box( $post ) {
+    $selected = (int) get_post_meta( $post->ID, 'drive_gallery_item_id', true );
+    $image    = $selected ? drak_drive_picker_get_image_url( $selected ) : '';
+    wp_nonce_field( 'drak_drive_picker_save', 'drak_drive_picker_nonce' );
+    ?>
+    <div class="drak-drive-picker" data-selected="<?php echo esc_attr( $selected ); ?>">
+        <input type="hidden" name="drive_gallery_item_id" id="drive_gallery_item_id" value="<?php echo esc_attr( $selected ); ?>">
+        <div class="drak-drive-picker__preview">
+            <?php if ( $image ) : ?>
+                <img src="<?php echo esc_url( $image ); ?>" alt="">
+            <?php else : ?>
+                <p class="drak-drive-picker__placeholder">No hay imagen seleccionada.</p>
+            <?php endif; ?>
+        </div>
+        <button type="button" class="button drak-drive-picker__open">Abrir Galería Drive</button>
+    </div>
+    <?php
+
+    static $modal_rendered = false;
+    if ( ! $modal_rendered ) :
+        $modal_rendered = true;
+        ?>
+        <div id="drak-drive-picker-modal" class="drak-drive-modal" aria-hidden="true" style="display:none;">
+            <div class="drak-drive-modal__overlay" data-close></div>
+            <div class="drak-drive-modal__content">
+                <div class="drak-drive-modal__header">
+                    <input type="search" class="drak-drive-modal__search" placeholder="Buscar por título...">
+                    <button type="button" class="button drak-drive-modal__close" data-close>Cerrar</button>
+                </div>
+                <div class="drak-drive-modal__grid" data-grid></div>
+                <div class="drak-drive-modal__loading">Cargando...</div>
+                <div class="drak-drive-modal__empty" style="display:none;">Sin resultados.</div>
+            </div>
+        </div>
+        <?php
+    endif;
+}
+
+/**
+ * Guardado del ID seleccionado.
+ *
+ * @param int     $post_id Post ID.
+ * @param WP_Post $post    Post object.
+ */
+function drak_drive_picker_save( $post_id, $post ) {
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    if ( ! isset( $_POST['drak_drive_picker_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['drak_drive_picker_nonce'] ) ), 'drak_drive_picker_save' ) ) {
+        return;
+    }
+    if ( ! in_array( $post->post_type, drak_drive_picker_targets(), true ) ) {
+        return;
+    }
+    if ( isset( $_POST['drive_gallery_item_id'] ) ) {
+        update_post_meta( $post_id, 'drive_gallery_item_id', absint( $_POST['drive_gallery_item_id'] ) );
+    }
+}
+add_action( 'save_post', 'drak_drive_picker_save', 10, 2 );
+
+/**
+ * Encola assets en admin cuando corresponde.
+ */
+function drak_drive_picker_assets( $hook ) {
+    $screen = get_current_screen();
+    if ( ! $screen || ! in_array( $screen->post_type, drak_drive_picker_targets(), true ) ) {
+        return;
+    }
+
+    $theme_uri = get_stylesheet_directory_uri();
+
+    wp_enqueue_style(
+        'drak-drive-picker',
+        $theme_uri . '/drak-drive-picker.css',
+        [],
+        '1.0.0'
+    );
+
+    wp_enqueue_script(
+        'drak-drive-picker',
+        $theme_uri . '/drak-drive-picker.js',
+        [ 'jquery' ],
+        '1.0.0',
+        true
+    );
+
+    wp_localize_script(
+        'drak-drive-picker',
+        'DrakDrivePicker',
+        [
+            'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+            'nonce'   => wp_create_nonce( 'drak_drive_picker_ajax' ),
+            'texts'   => [
+                'loading' => __( 'Cargando...', 'temahijo' ),
+                'empty'   => __( 'Sin resultados.', 'temahijo' ),
+                'error'   => __( 'Error cargando imágenes.', 'temahijo' ),
+            ],
+        ]
+    );
+}
+add_action( 'admin_enqueue_scripts', 'drak_drive_picker_assets' );
+
+/**
+ * AJAX: lista de imágenes desde galeria_item.
+ */
+function drak_drive_picker_list() {
+    check_ajax_referer( 'drak_drive_picker_ajax', 'nonce' );
+
+    if ( ! current_user_can( 'edit_posts' ) ) {
+        wp_send_json_error( [ 'message' => __( 'No autorizado.', 'temahijo' ) ], 403 );
+    }
+
+    $search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+
+    $query = new WP_Query(
+        [
+            'post_type'      => 'galeria_item',
+            'post_status'    => 'publish',
+            'posts_per_page' => 20,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            's'              => $search,
+        ]
+    );
+
+    $items = [];
+    if ( $query->have_posts() ) {
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            $id  = get_the_ID();
+            $url = drak_drive_picker_get_image_url( $id );
+            if ( ! $url ) {
+                continue;
+            }
+            $items[] = [
+                'id'    => $id,
+                'title' => get_the_title(),
+                'url'   => $url,
+            ];
+        }
+    }
+    wp_reset_postdata();
+
+    wp_send_json_success(
+        [
+            'items' => $items,
+        ]
+    );
+}
+add_action( 'wp_ajax_drak_drive_picker_list', 'drak_drive_picker_list' );
+
+/**
+ * AJAX público (logueados): lista de imágenes de galeria_item para el selector frontal.
+ */
+function drak_drive_picker_list_public() {
+	$search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+
+	$query = new WP_Query(
+		[
+			'post_type'      => 'galeria_item',
+			'post_status'    => 'publish',
+			'posts_per_page' => 20,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			's'              => $search,
+		]
+	);
+
+	$items = [];
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$id  = get_the_ID();
+			$url = drak_drive_picker_get_image_url( $id );
+			if ( ! $url ) {
+				continue;
+			}
+			$items[] = [
+				'id'    => $id,
+				'title' => get_the_title(),
+				'url'   => $url,
+			];
+		}
+	}
+	wp_reset_postdata();
+
+	wp_send_json_success( [ 'items' => $items ] );
+}
+add_action( 'wp_ajax_drak_drive_picker_list_public', 'drak_drive_picker_list_public' );
+add_action( 'wp_ajax_nopriv_drak_drive_picker_list_public', 'drak_drive_picker_list_public' );
+
+/**
+ * Whitelist para Force Login (REST y AJAX del picker).
+ */
+add_filter(
+	'v_forcelogin_rest_whitelist',
+	static function ( $endpoints ) {
+		$endpoints[] = 'drak';
+		return $endpoints;
+	}
+);
+
+add_filter(
+	'v_forcelogin_whitelist',
+	static function ( $urls ) {
+		$urls[] = admin_url( 'admin-ajax.php?action=drak_drive_picker_list_public' );
+		return $urls;
+	}
+);
+
+/**
+ * REST endpoint público para listar imágenes de galeria_item.
+ */
+/**
+ * REST endpoint público para listar imágenes de galeria_item.
+ */
+function drak_register_drive_images_route() {
+	register_rest_route(
+		'drak/v1',
+		'/drive-images',
+		[
+			'methods'             => WP_REST_Server::READABLE,
+			'permission_callback' => '__return_true',
+			'args'                => [
+				's' => [
+					'type' => 'string',
+				],
+			],
+			'callback'            => static function ( WP_REST_Request $request ) {
+				$search = sanitize_text_field( $request->get_param( 's' ) );
+
+				$query = new WP_Query(
+					[
+						'post_type'      => 'galeria_item',
+						'post_status'    => 'publish',
+						'posts_per_page' => 20,
+						'orderby'        => 'date',
+						'order'          => 'DESC',
+						's'              => $search,
+					]
+				);
+
+				$items = [];
+				if ( $query->have_posts() ) {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+						$id  = get_the_ID();
+						$url = drak_drive_picker_get_image_url( $id );
+						if ( ! $url ) {
+							continue;
+						}
+						$items[] = [
+							'id'    => $id,
+							'title' => get_the_title(),
+							'url'   => $url,
+						];
+					}
+				}
+				wp_reset_postdata();
+
+				return rest_ensure_response(
+					[
+						'success' => true,
+						'data'    => [
+							'items' => $items,
+						],
+					]
+				);
+			},
+		]
+	);
+}
+add_action( 'rest_api_init', 'drak_register_drive_images_route', 1 );
+
+/**
+ * Recupera la URL de imagen desde ACF/meta.
+ *
+ * @param int $post_id galeria_item ID.
+ * @return string
+ */
+function drak_drive_picker_get_image_url( $post_id ) {
+	$url = '';
+	if ( function_exists( 'get_field' ) ) {
+		$url = get_field( 'gallery_image_url', $post_id );
+	} else {
+		$url = get_post_meta( $post_id, 'gallery_image_url', true );
+	}
+	$url = is_string( $url ) ? trim( $url ) : '';
+	if ( ! $url ) {
+		return '';
+	}
+
+	$url = drak_drive_normalize_url( $url );
+
+	return $url ? esc_url( $url ) : '';
+}
+
+/**
+ * Normaliza URLs de Drive a formato directo uc?export=view&id=FILEID.
+ *
+ * @param string $url URL original.
+ * @return string URL normalizada o la original si no se detecta ID.
+ */
+function drak_drive_normalize_url( $url ) {
+	$url = trim( (string) $url );
+	if ( ! $url ) {
+		return '';
+	}
+
+	$id = '';
+	$parts = wp_parse_url( $url );
+
+	if ( ! empty( $parts['query'] ) ) {
+		parse_str( $parts['query'], $query_vars );
+		if ( ! empty( $query_vars['id'] ) ) {
+			$id = $query_vars['id'];
+		}
+	}
+
+	if ( ! $id && ! empty( $parts['path'] ) && preg_match( '#/file/d/([^/]+)/?#', $parts['path'], $m ) ) {
+		$id = $m[1];
+	}
+
+	if ( ! $id && preg_match( '#id=([a-zA-Z0-9_-]{10,})#', $url, $m ) ) {
+		$id = $m[1];
+	}
+
+	if ( $id ) {
+		return 'https://drive.google.com/uc?export=view&id=' . rawurlencode( $id );
+	}
+
+	return $url;
+}
+
+/**
+ * Encola assets del selector Drive en las vistas de personaje.
+ */
+function drak_enqueue_drive_hero_picker_front() {
+    $theme_uri = get_stylesheet_directory_uri();
+
+	wp_enqueue_style(
+		'drak-drive-hero-picker',
+		$theme_uri . '/css/drak-drive-hero-picker.css',
+		[],
+		'1.0.0'
+	);
+
+	wp_enqueue_script(
+		'drak-drive-hero-picker',
+		$theme_uri . '/js/drak-drive-hero-picker.js',
+		[],
+		'1.0.0',
+		true
+	);
+
+	wp_localize_script(
+		'drak-drive-hero-picker',
+		'DrakDriveHeroPicker',
+		[
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( 'drak_drive_picker_ajax' ),
+			'restUrl' => get_rest_url( null, '/drak/v1/drive-images' ),
+			'texts'   => [
+				'title'   => __( 'Seleccionar imagen desde Drive', 'temahijo' ),
+				'close'   => __( 'Cerrar', 'temahijo' ),
+				'search'  => __( 'Buscar por título...', 'temahijo' ),
+				'loading' => __( 'Cargando...', 'temahijo' ),
+				'empty'   => __( 'Sin resultados.', 'temahijo' ),
+				'error'   => __( 'Error cargando imágenes.', 'temahijo' ),
+			],
+		]
+	);
+}
+add_action( 'wp_enqueue_scripts', 'drak_enqueue_drive_hero_picker_front' );
+
+/**
+ * Marca el footer con el modal (segundo fallback por si el JS externo no crea el DOM).
+ */
+function drak_drive_hero_picker_footer_markup() {
+    // Solo en plantillas de personaje (slug o template dedicado).
+    $templates = [
+        'page-hoja-personaje.php',
+        'page-inventario-personaje.php',
+        'page-grimorio-personaje.php',
+        'page-combate-personaje.php',
+    ];
+    $is_target = get_query_var( 'personaje_slug' ) ? true : false;
+    $tpl       = get_page_template_slug();
+    if ( in_array( basename( $tpl ), $templates, true ) ) {
+        $is_target = true;
+    }
+    if ( ! $is_target ) {
+        return;
+    }
+
+    $nonce = wp_create_nonce( 'drak_drive_picker_ajax' );
+    ?>
+    <div class="drive-picker-modal" id="drive-picker-modal-fallback" style="display:none;">
+        <div class="drive-picker-modal__overlay" data-close></div>
+        <div class="drive-picker-modal__content">
+            <div class="drive-picker-modal__header">
+                <input type="search" class="drive-picker-modal__search" placeholder="<?php esc_attr_e( 'Buscar por título...', 'temahijo' ); ?>">
+                <button type="button" class="drive-picker-modal__close" data-close><?php esc_html_e( 'Cerrar', 'temahijo' ); ?></button>
+            </div>
+            <div class="drive-picker-modal__grid" data-grid></div>
+            <div class="drive-picker-modal__loading"><?php esc_html_e( 'Cargando...', 'temahijo' ); ?></div>
+            <div class="drive-picker-modal__empty" style="display:none;"><?php esc_html_e( 'Sin resultados.', 'temahijo' ); ?></div>
+        </div>
+    </div>
+    <script>
+    (function() {
+      const cfg = {
+        ajaxUrl: <?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>,
+        restUrl: <?php echo wp_json_encode( get_rest_url( null, '/drak/v1/drive-images' ) ); ?>,
+        nonce: <?php echo wp_json_encode( $nonce ); ?>,
+        texts: {
+          loading: <?php echo wp_json_encode( __( 'Cargando...', 'temahijo' ) ); ?>,
+          empty: <?php echo wp_json_encode( __( 'Sin resultados.', 'temahijo' ) ); ?>,
+          error: <?php echo wp_json_encode( __( 'Error cargando imágenes.', 'temahijo' ) ); ?>,
+        }
+      };
+      const modal = document.getElementById('drive-picker-modal-fallback');
+      if (!modal) return;
+      const grid = modal.querySelector('[data-grid]');
+      const loading = modal.querySelector('.drive-picker-modal__loading');
+      const empty = modal.querySelector('.drive-picker-modal__empty');
+      const searchInput = modal.querySelector('.drive-picker-modal__search');
+
+      function closeModal() {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      modal.addEventListener('click', (ev) => {
+        if (ev.target.dataset.close !== undefined) {
+          closeModal();
+        }
+      });
+
+      function loadImages(term) {
+        grid.innerHTML = '';
+        empty.style.display = 'none';
+        loading.style.display = 'block';
+        const restUrl = cfg.restUrl;
+        const fetchPromise = restUrl
+          ? fetch(restUrl + (restUrl.includes('?') ? '&' : '?') + 's=' + encodeURIComponent(term || ''), { credentials: 'same-origin' })
+          : fetch(cfg.ajaxUrl, {
+              method: 'POST',
+              credentials: 'same-origin',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams({
+                action: 'drak_drive_picker_list_public',
+                nonce: cfg.nonce || '',
+                s: term || ''
+              })
+            });
+
+        fetchPromise
+          .then(r => r.json())
+          .then(data => {
+            loading.style.display = 'none';
+            const items = data?.data?.items || data?.items || [];
+            if (!items.length) {
+              empty.style.display = 'block';
+              return;
+            }
+            items.forEach(item => {
+              const img = document.createElement('img');
+              img.src = item.url;
+              img.alt = item.title;
+              img.dataset.id = item.id;
+              img.title = item.title;
+              img.addEventListener('click', () => selectImage(item));
+              grid.appendChild(img);
+            });
+          })
+          .catch(() => {
+            loading.textContent = cfg.texts.error;
+          });
+      }
+
+      function selectImage(item) {
+        const btn = modal.dataset.currentButton ? document.querySelector('[data-picker-btn="' + modal.dataset.currentButton + '"]') : null;
+        const hero = btn ? btn.closest('.personaje-hero')?.querySelector('[data-hero-image]') : null;
+        if (hero) {
+          hero.style.backgroundImage = "url('" + item.url + "')";
+        }
+        const postId = btn ? btn.dataset.postId : '';
+        const context = btn ? btn.dataset.heroContext || '' : '';
+        if (postId) {
+          const payload = new URLSearchParams({
+            action: 'drak_set_personaje_drive_image',
+            post_id: postId,
+            gallery_item_id: item.id,
+            context: context,
+            nonce: cfg.nonce
+          });
+          fetch(cfg.ajaxUrl, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: payload
+          });
+        }
+        closeModal();
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', () => loadImages(searchInput.value || ''));
+      }
+
+      document.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('.personaje-hero__change');
+        if (!btn) return;
+        ev.preventDefault();
+        // marca botón actual para volver a él al guardar
+        const btnId = 'btn-' + Math.random().toString(36).slice(2);
+        btn.setAttribute('data-picker-btn', btnId);
+        modal.dataset.currentButton = btnId;
+        loadImages('');
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    })();
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'drak_drive_hero_picker_footer_markup', 100 );
+/**
+ * Obtiene listado de pociones desde data/items.json (prefijo "Potion").
+ *
+ * @return array
+ */
+function drak_get_potion_options() {
+    static $cache = null;
+    if ( null !== $cache ) {
+        return $cache;
+    }
+    $cache = [];
+    $data  = drak_load_items_data();
+    if ( ! is_array( $data ) ) {
+        return $cache;
+    }
+    $names = [];
+    foreach ( $data as $item ) {
+        $name    = isset( $item['name'] ) && is_string( $item['name'] ) ? $item['name'] : '';
+        $name_es = isset( $item['name_es'] ) && is_string( $item['name_es'] ) ? $item['name_es'] : '';
+        $display = $name_es ? $name_es : $name;
+
+        if ( ! $name && ! $name_es ) {
+            continue;
+        }
+        if ( 0 === stripos( $name, 'Potion' ) || ( $name_es && 0 === stripos( $name_es, 'Poción' ) ) ) {
+            $names[] = $display;
+        }
+    }
+    $names = array_values( array_unique( $names ) );
+    sort( $names, SORT_NATURAL | SORT_FLAG_CASE );
+    $cache = $names;
+    return $cache;
+}
+
+/**
+ * Obtiene listado de pergaminos (scrolls) desde items.json (prefijo "Scroll").
+ *
+ * @return array
+ */
+function drak_get_scroll_options() {
+    static $cache = null;
+    if ( null !== $cache ) {
+        return $cache;
+    }
+    $cache = [];
+    $data  = drak_load_items_data();
+    if ( ! is_array( $data ) ) {
+        return $cache;
+    }
+
+    $names = [];
+    foreach ( $data as $item ) {
+        $name    = isset( $item['name'] ) && is_string( $item['name'] ) ? $item['name'] : '';
+        $name_es = isset( $item['name_es'] ) && is_string( $item['name_es'] ) ? $item['name_es'] : '';
+        $display = $name_es ? $name_es : $name;
+
+        if ( ! $name && ! $name_es ) {
+            continue;
+        }
+        if ( 0 === stripos( $name, 'Scroll' ) || ( $name_es && 0 === stripos( $name_es, 'Pergamino' ) ) ) {
+            $names[] = $display;
+        }
+    }
+    $names = array_values( array_unique( $names ) );
+    sort( $names, SORT_NATURAL | SORT_FLAG_CASE );
+    $cache = $names;
+    return $cache;
+}
+
+/**
+ * Obtiene descripciones de pociones: [ name => html ].
+ */
+function drak_get_potion_entries() {
+    static $cache = null;
+    if ( null !== $cache ) {
+        return $cache;
+    }
+    $cache = [];
+    $data  = drak_load_items_data();
+    if ( ! is_array( $data ) ) {
+        return $cache;
+    }
+
+    foreach ( $data as $item ) {
+        $name    = isset( $item['name'] ) && is_string( $item['name'] ) ? $item['name'] : '';
+        $name_es = isset( $item['name_es'] ) && is_string( $item['name_es'] ) ? $item['name_es'] : '';
+        $display = $name_es ? $name_es : $name;
+
+        if ( ! $name && ! $name_es ) {
+            continue;
+        }
+        if ( 0 !== stripos( $name, 'Potion' ) && ( ! $name_es || 0 !== stripos( $name_es, 'Poción' ) ) ) {
+            continue;
+        }
+        $entries_raw = $item['entries_es'] ?? $item['entries'] ?? [];
+        if ( is_string( $entries_raw ) ) {
+            $entries_raw = [ $entries_raw ];
+        }
+        if ( ! is_array( $entries_raw ) ) {
+            $entries_raw = [];
+        }
+        $parts = [];
+        foreach ( $entries_raw as $entry ) {
+            if ( is_string( $entry ) ) {
+                $parts[] = $entry;
+            } elseif ( is_array( $entry ) && isset( $entry['entries'] ) && is_array( $entry['entries'] ) ) {
+                foreach ( $entry['entries'] as $sub ) {
+                    if ( is_string( $sub ) ) {
+                        $parts[] = $sub;
+                    }
+                }
+            }
+        }
+        if ( ! $parts ) {
+            continue;
+        }
+        $html = '';
+        foreach ( $parts as $p ) {
+            $html .= '<p>' . esc_html( $p ) . '</p>';
+        }
+        $cache[ $display ]                     = $html;
+        $cache[ sanitize_title( $display ) ]   = $html;
+        if ( $name && $name !== $display ) {
+            $cache[ $name ]                  = $html;
+            $cache[ sanitize_title( $name ) ] = $html;
+        }
+    }
+
+    return $cache;
+}
+
+/**
+ * Devuelve entradas completas de items por nombre (html ya escapado).
+ *
+ * @return array [ name => html ]
+ */
+function drak_get_item_entries() {
+    static $cache = null;
+    if ( null !== $cache ) {
+        return $cache;
+    }
+    $cache = [];
+    $data  = drak_load_items_data();
+    if ( ! is_array( $data ) ) {
+        return $cache;
+    }
+
+    foreach ( $data as $item ) {
+        $name    = isset( $item['name'] ) && is_string( $item['name'] ) ? $item['name'] : '';
+        $name_es = isset( $item['name_es'] ) && is_string( $item['name_es'] ) ? $item['name_es'] : '';
+        $display = $name_es ? $name_es : $name;
+
+        if ( ! $name && ! $name_es ) {
+            continue;
+        }
+        $entries_raw = $item['entries_es'] ?? $item['entries'] ?? [];
+        if ( is_string( $entries_raw ) ) {
+            $entries_raw = [ $entries_raw ];
+        }
+        if ( ! is_array( $entries_raw ) ) {
+            $entries_raw = [];
+        }
+        $parts = [];
+        foreach ( $entries_raw as $entry ) {
+            if ( is_string( $entry ) ) {
+                $parts[] = $entry;
+            } elseif ( is_array( $entry ) && isset( $entry['entries'] ) && is_array( $entry['entries'] ) ) {
+                foreach ( $entry['entries'] as $sub ) {
+                    if ( is_string( $sub ) ) {
+                        $parts[] = $sub;
+                    }
+                }
+            }
+        }
+        if ( ! $parts ) {
+            continue;
+        }
+        $html = '';
+        foreach ( $parts as $p ) {
+            $html .= '<p>' . esc_html( $p ) . '</p>';
+        }
+        $cache[ $display ]                       = $html;
+        $cache[ sanitize_title( $display ) ]     = $html;
+        if ( $name && $name !== $display ) {
+            $cache[ $name ]                    = $html;
+            $cache[ sanitize_title( $name ) ] = $html;
+        }
+    }
+
+    return $cache;
+}
+
+/**
  * Backfill unico: asigna la campaña "cronicas-de-drakkenheim" a todos los diarios sin campaña.
  */
 function drak_backfill_diario_campaign_once() {
@@ -2847,7 +3641,7 @@ add_action('wp_footer', function () {
 window.DELERIUM_AUTOSAVE = <?php echo wp_json_encode( $delerium_autosave ); ?>;
 	
 document.addEventListener('DOMContentLoaded', function () {
-  const overlay       = document.getElementById('item-form-overlay');
+    const overlay       = document.getElementById('item-form-overlay');
   const form          = document.getElementById('item-form');
   if (!overlay || !form) return; // No estamos en la página de inventario
 
@@ -2858,6 +3652,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentSlot   = document.getElementById('current-slot');
   const slotNumero    = document.getElementById('slot-numero');
   const defaultNameOptions = nameSelect ? Array.from(nameSelect.options).map((opt) => ({ value: opt.value, label: opt.textContent })) : [];
+  const potionOptions = <?php echo wp_json_encode( drak_get_potion_options() ); ?>;
+  const potionEntries = <?php echo wp_json_encode( drak_get_potion_entries() ); ?>;
+  const itemEntries = <?php echo wp_json_encode( drak_get_item_entries() ); ?>;
+  const scrollOptions = <?php echo wp_json_encode( drak_get_scroll_options() ); ?>;
 
   const deleteOverlay = document.getElementById('delete-form-overlay');
   const deleteForm    = document.getElementById('delete-form');
@@ -2912,9 +3710,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 	
-	  // Convierte el string guardado ("Antorcha x 2 - Cuerda")
+  // Convierte el string guardado ("Antorcha x 2 - Cuerda")
   // en una lista de <p> dentro del slot
-  function buildSlotHTMLFromValue(value) {
+  function buildSlotHTMLFromValue(value, type = 'generic') {
     const trimmed = (value || "").trim();
     if (!trimmed) {
       return '<p class="slot-empty">(vacío)</p>';
@@ -2924,6 +3722,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const htmlParts = parts.map(part => {
       const texto = part.trim();
       if (!texto) return "";
+      if (type === 'potion' || type === 'scroll') {
+        const safe = texto.replace(/"/g, '&quot;');
+        return `<p class="slot-item slot-item--clickable" data-item-name="${safe}" data-item-type="${type}">${texto}</p>`;
+      }
       return `<p class="slot-item">${texto}</p>`;
     }).filter(Boolean);
 
@@ -2961,7 +3763,7 @@ document.addEventListener('DOMContentLoaded', function () {
       val = (input?.value || '').trim();
     }
 
-    container.innerHTML = buildSlotHTMLFromValue(val);
+    container.innerHTML = buildSlotHTMLFromValue(val, type);
     container.classList.toggle('empty', !val);
     queueInventorySave();
   }
@@ -2982,6 +3784,19 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   updateAllSlots();
+
+  // Click en ítems (pociones/pergaminos) para ver info
+  document.addEventListener('click', (ev) => {
+    const slotItem = ev.target.closest('.slot-item--clickable');
+    if (!slotItem) return;
+    const slotContainer = ev.target.closest('.inventory-slot');
+    if (!slotContainer) return;
+    const type = slotContainer.dataset.slotType || '';
+    if (type !== 'potion' && type !== 'scroll') return;
+    const name = slotItem.dataset.itemName || slotItem.textContent.trim();
+    if (!name) return;
+    showItemInfo(name);
+  });
 
 
   // Rellenar selector de cantidad 1..10 (si está vacío)
@@ -3007,9 +3822,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function populateSelectForType(type) {
     if (!nameSelect) return;
+    const basePotionList = (Array.isArray(potionOptions) && potionOptions.length)
+      ? potionOptions
+      : ['Poción de curación', 'Poción de resistencia', 'Poción (genérica)'];
+    const baseScrollList = (Array.isArray(scrollOptions) && scrollOptions.length)
+      ? scrollOptions
+      : ['Pergamino (genérico)', 'Mapa', 'Documento'];
     const optionsByType = {
-      potion: ['Poción de curación', 'Poción de resistencia', 'Poción (genérica)'],
-      scroll: ['Pergamino (genérico)', 'Mapa', 'Documento'],
+      potion: basePotionList,
+      scroll: baseScrollList,
       ammo: ['flechas', 'virotes', 'dardos', 'balas'],
     };
     const list = optionsByType[type] || [];
@@ -3033,6 +3854,107 @@ document.addEventListener('DOMContentLoaded', function () {
       opt.textContent = label;
       nameSelect.appendChild(opt);
     });
+  }
+
+  // Modal de info de ítems (pociones / pergaminos)
+  let potionInfoModal = null;
+
+  function showItemInfo(name) {
+    const modal = ensureItemInfoModal();
+    const body = modal.querySelector('#potion-info-body');
+    const titleEl = modal.querySelector('#potion-info-title');
+    if (!body || !titleEl) return;
+    let entry = '';
+    const lookup = (map) => {
+      if (!map || typeof map !== 'object') return '';
+      return map[name]
+        || map[name.toLowerCase()]
+        || map[name.replace(/\s+/g, '-').toLowerCase()]
+        || map[name.replace(/\s+/g, '').toLowerCase()]
+        || map[name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '-')]
+        || '';
+    };
+    entry = lookup(itemEntries) || lookup(potionEntries);
+    if (!entry && potionEntries && typeof potionEntries === 'object') {
+      const slug = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '-');
+      entry = potionEntries[slug] || '';
+    }
+    titleEl.textContent = name;
+    const formatted = entry ? format5eTags(entry) : '<p>No hay descripción disponible.</p>';
+    body.innerHTML = formatted;
+    modal.style.display = 'flex';
+  }
+
+  function ensureItemInfoModal() {
+    if (potionInfoModal) return potionInfoModal;
+    const overlayInfo = document.createElement('div');
+    overlayInfo.className = 'modal-overlay';
+    overlayInfo.id = 'potion-info-overlay';
+    overlayInfo.style.display = 'none';
+    overlayInfo.innerHTML = `
+      <div class="modal-contenido">
+        <span class="close-popup" id="potion-info-close">×</span>
+        <h2 id="potion-info-title">Item</h2>
+        <div id="potion-info-body"></div>
+      </div>
+    `;
+    document.body.appendChild(overlayInfo);
+    overlayInfo.addEventListener('click', (ev) => {
+      if (ev.target === overlayInfo || ev.target.id === 'potion-info-close') {
+        overlayInfo.style.display = 'none';
+      }
+    });
+    potionInfoModal = overlayInfo;
+    return overlayInfo;
+  }
+
+  function format5eTags(html) {
+    if (!html) return '';
+    const replacements = [
+      {
+        pattern: /\{@condition\s+([^|}]+)(?:\|[^}]+)?\}/giu,
+        replacer: (m, name) => `<span class="dnd-tag dnd-tag--condition" title="Condición">${name.trim()}</span>`,
+      },
+      {
+        pattern: /\{@variantrule\s+([^|}]+)(?:\|[^}]+)?(?:\|[^}]+)?\}/giu,
+        replacer: (m, name) => `<span class="dnd-tag dnd-tag--variantrule" title="Regla opcional">${name.trim()}</span>`,
+      },
+      {
+        pattern: /\{@dice\s+([^}]+)\}/giu,
+        replacer: (m, roll) => `<span class="dnd-tag dnd-tag--dice" title="Tirada">${roll.trim()}</span>`,
+      },
+      {
+        pattern: /\{#itemEntry\s+([^|}]+)(?:\|[^}]+)?\}/giu,
+        replacer: (m, name) => {
+          const key = name.trim();
+          const slug = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '-');
+          const entry = (itemEntries && typeof itemEntries === 'object')
+            ? (itemEntries[key] || itemEntries[key.toLowerCase()] || itemEntries[slug] || '')
+            : '';
+          if (entry) {
+            return `<div class="dnd-item-entry">${entry}</div>`;
+          }
+          return `<span class="dnd-tag dnd-tag--item">${key}</span>`;
+        },
+      },
+      {
+        pattern: /\{@dc\s+([^}]+)\}/giu,
+        replacer: (m, val) => `<span class="dnd-tag dnd-tag--dc" title="Dificultad">CD ${val.trim()}</span>`,
+      },
+      {
+        pattern: /\{@action\s+([^|}]+)(?:\|[^}]+)?\}/giu,
+        replacer: (m, name) => `<span class="dnd-tag dnd-tag--action" title="Acción">${name.trim()}</span>`,
+      },
+      {
+        pattern: /\{@damage\s+([^}]+)\}/giu,
+        replacer: (m, dmg) => `<span class="dnd-tag dnd-tag--damage" title="Daño">${dmg.trim()}</span>`,
+      },
+    ];
+    let out = html;
+    replacements.forEach(({ pattern, replacer }) => {
+      out = out.replace(pattern, replacer);
+    });
+    return out;
   }
 
   function prepareModalForSlot(slot, type) {
@@ -6714,6 +7636,43 @@ function drak_set_personaje_image() {
 	wp_send_json_success( [ 'image_url' => $url ] );
 }
 add_action( 'wp_ajax_drak_set_personaje_image', 'drak_set_personaje_image' );
+add_action( 'wp_ajax_drak_set_personaje_drive_image', 'drak_set_personaje_drive_image' );
+
+/**
+ * Actualiza la imagen hero del personaje usando un item de galería (Drive).
+ */
+function drak_set_personaje_drive_image() {
+	check_ajax_referer( 'drak_drive_picker_ajax', 'nonce' );
+
+	if ( ! isset( $_POST['post_id'], $_POST['gallery_item_id'] ) ) {
+		wp_send_json_error( [ 'message' => 'Faltan parámetros.' ], 400 );
+	}
+
+	$post_id        = intval( wp_unslash( $_POST['post_id'] ) );
+	$gallery_item_id = intval( wp_unslash( $_POST['gallery_item_id'] ) );
+	$context        = isset( $_POST['context'] ) ? sanitize_key( wp_unslash( $_POST['context'] ) ) : '';
+
+	if ( ! $post_id || ! $gallery_item_id ) {
+		wp_send_json_error( [ 'message' => 'Datos inválidos.' ], 400 );
+	}
+
+	if ( ! drak_user_can_manage_personaje( $post_id ) ) {
+		wp_send_json_error( [ 'message' => 'Permisos insuficientes.' ], 403 );
+	}
+
+	$url = drak_drive_picker_get_image_url( $gallery_item_id );
+	if ( ! $url ) {
+		wp_send_json_error( [ 'message' => 'La imagen no tiene URL de Drive.' ], 400 );
+	}
+
+	$key_prefix = $context ? 'hero_image_drive_' . $context : 'hero_image_drive';
+
+	update_post_meta( $post_id, $key_prefix . '_item_id', $gallery_item_id );
+	update_post_meta( $post_id, $key_prefix . '_url', $url );
+
+	wp_send_json_success( [ 'image_url' => $url ] );
+}
+add_action( 'wp_ajax_nopriv_drak_set_personaje_drive_image', 'drak_set_personaje_drive_image' );
 
 /**
  * Devuelve la URL de la imagen hero para una vista concreta del personaje.
@@ -6726,6 +7685,18 @@ add_action( 'wp_ajax_drak_set_personaje_image', 'drak_set_personaje_image' );
  */
 function drak_get_personaje_hero_image_url( $post_id, $context, $fallback_url = '' ) {
 	$context = sanitize_key( $context );
+	// Prioridad: imagen desde galería (Drive).
+	if ( $context ) {
+		$drive_url = get_post_meta( $post_id, 'hero_image_drive_' . $context . '_url', true );
+		if ( $drive_url ) {
+			return esc_url( $drive_url );
+		}
+	}
+	$drive_global = get_post_meta( $post_id, 'hero_image_drive_url', true );
+	if ( $drive_global ) {
+		return esc_url( $drive_global );
+	}
+
 	if ( $context ) {
 		$meta_id = get_post_meta( $post_id, 'hero_image_' . $context, true );
 		if ( $meta_id ) {

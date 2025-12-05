@@ -1,6 +1,7 @@
 {
   "key": "group_drak_gallery",
   "title": "Asociaciones de galería",
+  "show_in_rest": 1,
   "fields": [
     {
       "key": "field_gallery_type",
@@ -108,6 +109,20 @@
           }
         ]
       ]
+    },
+    {
+      "key": "field_gallery_image_url",
+      "label": "URL de imagen (Drive)",
+      "name": "gallery_image_url",
+      "type": "url",
+      "instructions": "Pega la URL pública de la imagen en Drive u otra fuente. Si se rellena, se usará en lugar de la imagen subida.",
+      "required": 0,
+      "placeholder": "https://...",
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      }
     },
     {
       "key": "field_gallery_description",
