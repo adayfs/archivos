@@ -17,12 +17,14 @@
         }
         return false;
       });
-      if (id) {
-        return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(id)}`;
+      if (id && id.length > 5) {
+        return `https://lh3.googleusercontent.com/d/${encodeURIComponent(id)}=w2000`;
       }
     } catch (e) {
       // noop
     }
+    // Si es Drive y no hay ID válida, retorna cadena vacía para evitar 400.
+    if (url.includes('drive.google')) return '';
     return url;
   }
 

@@ -404,7 +404,7 @@ function drak_drive_normalize_url( $url ) {
 
 	if ( ! empty( $parts['query'] ) ) {
 		parse_str( $parts['query'], $query_vars );
-		if ( ! empty( $query_vars['id'] ) ) {
+		if ( isset( $query_vars['id'] ) && $query_vars['id'] !== '' ) {
 			$id = $query_vars['id'];
 		}
 	}
@@ -417,11 +417,34 @@ function drak_drive_normalize_url( $url ) {
 		$id = $m[1];
 	}
 
-	if ( $id ) {
-		return 'https://drive.google.com/uc?export=view&id=' . rawurlencode( $id );
+	if ( $id && strlen( $id ) > 5 ) {
+		return drak_drive_public_image_url( $id );
+	}
+
+	// Si es enlace a drive pero no hay ID válido, descartar.
+	if ( ! empty( $parts['host'] ) && false !== strpos( $parts['host'], 'drive.google' ) ) {
+		return '';
 	}
 
 	return $url;
+}
+
+/**
+ * Construye URL pública a imagen de Drive vía googleusercontent.
+ *
+ * @param string $id File ID.
+ * @param int    $width Opcional ancho sugerido.
+ * @return string
+ */
+function drak_drive_public_image_url( $id, $width = 2000 ) {
+	$id = trim( (string) $id );
+	if ( ! $id ) {
+		return '';
+	}
+	$width = absint( $width );
+	$width = $width > 0 ? $width : 2000;
+
+	return sprintf( 'https://lh3.googleusercontent.com/d/%s=w%d', rawurlencode( $id ), $width );
 }
 
 /**
@@ -7688,11 +7711,13 @@ function drak_get_personaje_hero_image_url( $post_id, $context, $fallback_url = 
 	// Prioridad: imagen desde galería (Drive).
 	if ( $context ) {
 		$drive_url = get_post_meta( $post_id, 'hero_image_drive_' . $context . '_url', true );
+		$drive_url = drak_drive_normalize_url( $drive_url );
 		if ( $drive_url ) {
 			return esc_url( $drive_url );
 		}
 	}
 	$drive_global = get_post_meta( $post_id, 'hero_image_drive_url', true );
+	$drive_global = drak_drive_normalize_url( $drive_global );
 	if ( $drive_global ) {
 		return esc_url( $drive_global );
 	}
