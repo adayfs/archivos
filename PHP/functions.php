@@ -196,24 +196,34 @@ add_action( 'admin_enqueue_scripts', 'drak_drive_picker_assets' );
  * AJAX: lista de imágenes desde galeria_item.
  */
 function drak_drive_picker_list() {
-    check_ajax_referer( 'drak_drive_picker_ajax', 'nonce' );
+	check_ajax_referer( 'drak_drive_picker_ajax', 'nonce' );
 
-    if ( ! current_user_can( 'edit_posts' ) ) {
-        wp_send_json_error( [ 'message' => __( 'No autorizado.', 'temahijo' ) ], 403 );
-    }
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_send_json_error( [ 'message' => __( 'No autorizado.', 'temahijo' ) ], 403 );
+	}
 
-    $search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+	$search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+	$personaje_id = isset( $_GET['personaje'] ) ? absint( $_GET['personaje'] ) : 0;
+	$meta_query = [];
+	if ( $personaje_id ) {
+		$meta_query[] = [
+			'key'     => 'gallery_personajes',
+			'value'   => '"' . $personaje_id . '"',
+			'compare' => 'LIKE',
+		];
+	}
 
-    $query = new WP_Query(
-        [
-            'post_type'      => 'galeria_item',
-            'post_status'    => 'publish',
-            'posts_per_page' => 20,
-            'orderby'        => 'date',
-            'order'          => 'DESC',
-            's'              => $search,
-        ]
-    );
+	$query = new WP_Query(
+		[
+			'post_type'      => 'galeria_item',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			's'              => $search,
+			'meta_query'     => $meta_query,
+		]
+	);
 
     $items = [];
     if ( $query->have_posts() ) {
@@ -246,15 +256,25 @@ add_action( 'wp_ajax_drak_drive_picker_list', 'drak_drive_picker_list' );
  */
 function drak_drive_picker_list_public() {
 	$search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+	$personaje_id = isset( $_GET['personaje'] ) ? absint( $_GET['personaje'] ) : 0;
+	$meta_query = [];
+	if ( $personaje_id ) {
+		$meta_query[] = [
+			'key'     => 'gallery_personajes',
+			'value'   => '"' . $personaje_id . '"',
+			'compare' => 'LIKE',
+		];
+	}
 
 	$query = new WP_Query(
 		[
 			'post_type'      => 'galeria_item',
 			'post_status'    => 'publish',
-			'posts_per_page' => 20,
+			'posts_per_page' => -1,
 			'orderby'        => 'date',
 			'order'          => 'DESC',
 			's'              => $search,
+			'meta_query'     => $meta_query,
 		]
 	);
 
@@ -320,15 +340,25 @@ function drak_register_drive_images_route() {
 			],
 			'callback'            => static function ( WP_REST_Request $request ) {
 				$search = sanitize_text_field( $request->get_param( 's' ) );
+				$personaje_id = absint( $request->get_param( 'personaje' ) );
+				$meta_query = [];
+				if ( $personaje_id ) {
+					$meta_query[] = [
+						'key'     => 'gallery_personajes',
+						'value'   => '"' . $personaje_id . '"',
+						'compare' => 'LIKE',
+					];
+				}
 
 				$query = new WP_Query(
 					[
 						'post_type'      => 'galeria_item',
 						'post_status'    => 'publish',
-						'posts_per_page' => 20,
+						'posts_per_page' => -1,
 						'orderby'        => 'date',
 						'order'          => 'DESC',
 						's'              => $search,
+						'meta_query'     => $meta_query,
 					]
 				);
 

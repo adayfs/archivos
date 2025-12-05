@@ -101,9 +101,17 @@
     state.grid.innerHTML = '';
     state.empty.style.display = 'none';
     state.loading.style.display = 'block';
+    const personajeId = state.current ? (state.current.dataset.postId || '') : '';
     const restUrl = (typeof DrakDriveHeroPicker !== 'undefined' && DrakDriveHeroPicker.restUrl) ? DrakDriveHeroPicker.restUrl : '';
+    const qs = new URLSearchParams({
+      s: search || '',
+    });
+    if (personajeId) {
+      qs.set('personaje', personajeId);
+    }
+
     const fetchPromise = restUrl
-      ? fetch(restUrl + (restUrl.includes('?') ? '&' : '?') + 's=' + encodeURIComponent(search || ''), { credentials: 'same-origin' })
+      ? fetch(restUrl + (restUrl.includes('?') ? '&' : '?') + qs.toString(), { credentials: 'same-origin' })
       : fetch(state.config.ajaxUrl, {
           method: 'POST',
           credentials: 'same-origin',
@@ -112,6 +120,7 @@
             action: 'drak_drive_picker_list_public',
             nonce: state.config.nonce || '',
             s: search || '',
+            personaje: personajeId,
           }),
         });
 
