@@ -51,7 +51,10 @@ $ajax_url = drak_get_admin_ajax_url();
 .page-template-page-crear-personaje .site-content > .ast-container {
   max-width: 100%;
   padding: 0;
-  margin-left: 790px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .wizard-hero {
   position: relative;
@@ -104,7 +107,7 @@ $ajax_url = drak_get_admin_ajax_url();
 .personaje-wizard {
   max-width: 1100px;
   margin: 0 auto 48px;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 .personaje-wizard__title {
   margin-top: 0;
@@ -229,6 +232,17 @@ $ajax_url = drak_get_admin_ajax_url();
   .wizard-hero__back {
     bottom: 12px;
     left: 12px;
+  }
+  .wizard-hero__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .personaje-wizard {
+    padding: 0 16px;
+  }
+  .pw-nav {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 </style>
